@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="SummOrg">
+		<xs:annotation>
+			<xs:documentation>Суммы организации</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FN52" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FN1011">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="FN1002">
+										<xs:complexType>
+											<xs:attribute name="D126" type="xs:string"/>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+								<xs:attribute name="D39" type="xs:string"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="D83" type="xs:string"/>
+					<xs:attribute name="N313" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Summ" type="SummOrg">
+		<xs:annotation>
+			<xs:documentation>Суммы</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="OkJurnal">
+		<xs:annotation>
+			<xs:documentation>Для отработаных значений</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Ok" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Ok">
+		<xs:annotation>
+			<xs:documentation>Значения отработтаные</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Inn" type="xs:string"/>
+			<xs:attribute name="Message" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

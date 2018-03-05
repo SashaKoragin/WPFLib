@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="JurnalError">
+		<xs:annotation>
+			<xs:documentation>Журнал Для введение ошибок Автомата</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Error" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Error">
+		<xs:annotation>
+			<xs:documentation>Ошибка Error</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Inn" type="xs:string"/>
+			<xs:attribute name="Error" type="xs:string"/>
+			<xs:attribute name="System" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

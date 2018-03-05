@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="NdflFl">
+		<xs:sequence>
+			<xs:element name="Fn1534" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FN17091">
+							<xs:complexType>
+								<xs:attribute name="D83_1" type="xs:string"/>
+								<xs:attribute name="DataIzd" type="xs:string"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="NDFL">
+						<xs:simpleType>
+							<xs:restriction base="xs:string"/>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="N590" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Ndfl" type="NdflFl">
+		<xs:annotation>
+			<xs:documentation>3НДФЛ</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

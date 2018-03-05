@@ -1,0 +1,178 @@
+﻿<UserControl
+    x:Class="LotusNotes.Dialogs.Local.Zg.Local.Zg.ZgOtdel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:LotusNotes.ModelDialogs"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:val="clr-namespace:LotusNotes.ParamFormula"
+    d:DesignHeight="700"
+    d:DesignWidth="700"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="ValidationFailed">
+            <StackPanel Orientation="Horizontal">
+                <Border BorderBrush="Red" BorderThickness="3">
+                    <AdornedElementPlaceholder />
+                </Border>
+                <TextBlock
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Foreground="Red"
+                    Text="!" />
+            </StackPanel>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid d:DataContext="{d:DesignInstance {x:Type local:ZgDialogModel}}">
+        <DockPanel LastChildFill="True">
+            <StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Calendar
+                        x:Name="Calendar"
+                        Grid.Row="0"
+                        Margin="5,5,5,5"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        DockPanel.Dock="Left"
+                        SelectionMode="SingleRange">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectedDatesChanged">
+                                <i:InvokeCommandAction Command="{Binding Calendar.SelectionCommand}" CommandParameter="{Binding SelectedDates, ElementName=Calendar}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Calendar>
+                    <DockPanel Grid.Row="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Content="Дата начала:" />
+                            <DatePicker
+                                x:Name="DatePickerStart"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                SelectedDate="{Binding Calendar.StartDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                Text="{Binding Path=SelectedDate, Mode=TwoWay, StringFormat='dd MMM yyyy', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}"
+                                ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
+                                Validation.ErrorTemplate="{StaticResource ValidationFailed}" />
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Content="Дата окнчания:" />
+                            <DatePicker
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                SelectedDate="{Binding Calendar.EndDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                Text="{Binding Path=SelectedDate, Mode=TwoWay, StringFormat='dd MMM yyyy', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}"
+                                ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
+                                Validation.ErrorTemplate="{StaticResource ValidationFailed}" />
+                        </Grid>
+                    </DockPanel>
+                </Grid>
+            </StackPanel>
+            <StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Row="0" Grid.Column="0">
+                        <TextBlock Margin="5,5,5,5" Text="Выбор отдела:" />
+                        <ComboBox
+                            x:Name="ComboBox"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            ItemsSource="{Binding Sheme.ShemeOtdel}"
+                            SelectedItem="{Binding Sheme.SelectOtdel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                            ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
+                            Validation.ErrorTemplate="{StaticResource ValidationFailed}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:Name="DataTemplate">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding OtdelDepartament}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" Grid.Column="0">
+                        <TextBlock Margin="5,5,5,5" Text="Строка статуса:" />
+                        <ComboBox
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            ItemsSource="{Binding Status.StatusZgCollection}"
+                            SelectedItem="{Binding Status.SelectStatus, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                            ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
+                            Validation.ErrorTemplate="{StaticResource ValidationFailed}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:Name="DataTemplates">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </DockPanel>
+                    <ListView
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="5,5,5,5"
+                        ItemsSource="{Binding FormulsOtdel.ShemeOtdelFormul}"
+                        SelectedItem="{Binding FormulsOtdel.SelectfFormul, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                        SelectionMode="Single"
+                        ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
+                        Validation.ErrorTemplate="{StaticResource ValidationFailed}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn
+                                    Width="Auto"
+                                    DisplayMemberBinding="{Binding Index}"
+                                    Header="Номер" />
+                                <GridViewColumn Width="Auto" Header="Выбор выборки">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListViewItem}}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn
+                                    Width="Auto"
+                                    DisplayMemberBinding="{Binding Name}"
+                                    Header="Название" />
+                                <GridViewColumn
+                                    Width="Auto"
+                                    DisplayMemberBinding="{Binding Discription}"
+                                    Header="Описание" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                </Grid>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

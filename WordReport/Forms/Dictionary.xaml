@@ -1,0 +1,25 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local1="clr-namespace:WordReport.Validation">
+    <local1:ContentZn x:Key="ContentZn" />
+    <Style x:Key="StyleText">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="TextBox.ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <ControlTemplate x:Key="ValidationFailed">
+        <StackPanel Orientation="Horizontal">
+            <Border BorderBrush="Red" BorderThickness="4">
+                <AdornedElementPlaceholder />
+            </Border>
+            <TextBlock
+                FontSize="25"
+                FontWeight="Bold"
+                Foreground="Red"
+                Text="!" />
+        </StackPanel>
+    </ControlTemplate>
+</ResourceDictionary>

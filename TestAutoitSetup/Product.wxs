@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define TestAutoit_TargetDir=$(var.TestAutoit.TargetDir)?>
+	<Product Id="*" Name="TestAutoitSetup" Language="1033" Version="1.0.0.0" Manufacturer="Sborka" UpgradeCode="7807c194-22a9-4e9b-85b3-d9c49a714487">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+
+		<Feature Id="ProductFeature" Title="TestAutoitSetup" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+			<ComponentGroupRef Id="ProgramFilesFolder_files" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="TestAutoitSetup" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+		</ComponentGroup>
+	</Fragment>
+	<Fragment>
+	  <ComponentGroup Id="ProgramFilesFolder_files" Directory="ProgramFilesFolder">
+	    <Component Id="AutoItX3.Assembly.dll" Guid="3624a546-7252-4b83-82e1-ad2bf520379f">
+	      <File Id="AutoItX3.Assembly.dll" Name="AutoItX3.Assembly.dll" Source="$(var.TestAutoit_TargetDir)AutoItX3.Assembly.dll" />
+	    </Component>
+	    <Component Id="TestAutoit.exe" Guid="f89a7f27-916d-48f1-b09e-cdff488dcdaf">
+	      <File Id="TestAutoit.exe" Name="TestAutoit.exe" Source="$(var.TestAutoit_TargetDir)TestAutoit.exe" />
+	    </Component>
+	    <Component Id="TestAutoit.exe.config" Guid="b0f82e0b-9279-4f07-859a-8fba51fc77b0">
+	      <File Id="TestAutoit.exe.config" Name="TestAutoit.exe.config" Source="$(var.TestAutoit_TargetDir)TestAutoit.exe.config" />
+	    </Component>
+	  </ComponentGroup>
+	</Fragment>
+</Wix>

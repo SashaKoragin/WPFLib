@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:complexType name="NameOrg">
+		<xs:annotation>
+			<xs:documentation>Название организации</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FN212">
+				<xs:complexType>
+					<xs:attribute name="N18" type="xs:string"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Name" type="NameOrg">
+		<xs:annotation>
+			<xs:documentation>Название организации</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

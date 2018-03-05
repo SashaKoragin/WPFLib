@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <?define CurrentVersion="!(bind.fileVersion.SeathZip.exe)"?>
+  <?define SeathZip_TargetDir=$(var.SeathZip.TargetDir)?>
+	<Product Id="*" Name="SeathARG" Language="1049" Version="$(var.CurrentVersion)" Manufacturer="MyProject" UpgradeCode="7322e3b2-f28a-4dcc-ad78-94f1b0bf9aaf">
+	 <Package InstallerVersion="405" Compressed="yes" InstallScope="perMachine" />
+
+    <PropertyRef Id="NETFRAMEWORK45"/>
+    <PropertyRef Id="NETFRAMEWORK40FULL"/>
+
+    <Condition Message='This setup requires Microsoft .NET Framework 4.0 Full or 4.5 package or greater needs to be installed for this installation to continue.'>
+      <![CDATA[Installed OR (NETFRAMEWORK40FULL AND NETFRAMEWORK45)]]>
+    </Condition>
+
+    <Upgrade Id='7322e3b2-f28a-4dcc-ad78-94f1b0bf9aaf'>
+      <UpgradeVersion OnlyDetect='yes' Minimum='1.0.0.0' IncludeMinimum='yes' Maximum='$(var.CurrentVersion)' IncludeMaximum='no' Property='PREVIOUSFOUND' Language='1049' IgnoreRemoveFailure='yes'/>
+    </Upgrade>
+    
+    <Icon Id="icon.ico" SourceFile="$(var.ProjectDir)ico\icon.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="icon.ico"/>
+
+    <WixVariable Id="WixUIBunnersBmp" Value="Dialog\installer_banner_wix.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="Dialog\installer_background_wix.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="License\License.rtf" />
+    
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UIRef Id="WixUI_MyInstallDir" />
+    
+		<MajorUpgrade Schedule="afterInstallInitialize" AllowDowngrades="no" DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+    
+		<Feature Id="ProductFeature" Title="SeathARG" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="ApplicationShortcut" />
+      <ComponentRef Id="AppShortcutDesktop" />
+			<ComponentGroupRef Id="ProgramFilesFolder_files" />
+      <ComponentRef Id="CreateNewFolder" />
+      <ComponentRef Id="CreateNewFolder1" />
+      <ComponentRef Id="ClearUnistallation" />
+      <ComponentRef Id="ClearDll" />
+		</Feature>
+ </Product>
+
+
+  
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder"/>
+				<Directory Id="INSTALLFOLDER" Name="SeathARG" >
+        <Directory Id="INSTALLLOCATION">
+          <Directory Id="DLL" Name="DLL">
+          </Directory>
+      </Directory>
+    </Directory>
+    <Directory Id="ProgramMenuFolder" >
+      <Directory Id="ProgramMenuDirr" Name="SeathARG"/>
+    </Directory>
+         <Directory Id="DesktopFolder" Name="Desktop"/>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="ProgramMenuDirr">
+      <Component Id="ApplicationShortcut" Guid="3025C067-732A-46AD-B09D-D1EFBE8FEA10">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="SeathARG" Description="SeathZip" Target="[INSTALLFOLDER]SeathZip.exe" WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
+        <RemoveFolder Id="CleanUpShortCut" Directory="ProgramMenuDirr" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\SeathARG" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="AppShortcutDesktop" Guid="DCEC9605-AD06-4F55-B332-45F83FC82E35">
+        <Shortcut Id="AppStartDesktopShortcut" WorkingDirectory="INSTALLFOLDER" Name="SeathZip" Description="SeathZip" Target="[INSTALLFOLDER]SeathZip.exe"/>
+        <RemoveFolder Id="RemoveDesktopFolder" Directory="DesktopFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\SeathARG" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  
+  <Fragment>
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Directory Id="NewFolderDirectory" Name="RunTimeDerectory">
+        <Component Id="CreateNewFolder" Guid="9E42788D-7FC2-4201-B54F-0EA626502429">
+          <CreateFolder />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Directory Id="NewFolderDirectory1" Name="OkPath">
+        <Component Id="CreateNewFolder1" Guid="3F742882-5E92-4D1D-AF5A-663C118C49DF">
+          <CreateFolder />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+  </Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Component Id="ClearUnistallation" Guid="7A0448FC-CA18-4FE8-B47F-5363982602F2">
+        <CreateFolder Directory="INSTALLLOCATION" />
+        <RemoveFile Id="RemoveFileLog" On="uninstall" Name="*.*" Directory="NewFolderDirectory1" />
+        <RemoveFolder Id="RemoveFolderLog" On="uninstall" Directory="NewFolderDirectory1" />
+        <RemoveFile Id="RemoveFilePath" On="uninstall" Name="*.*" Directory="NewFolderDirectory" />
+        <RemoveFolder Id="RemoveFolderPath" On="uninstall" Directory="NewFolderDirectory" />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="DLL">
+      <Component Id="ClearDll" Guid="3B821046-4736-4F43-991E-EF807445AC73">
+        <CreateFolder Directory="DLL" />
+        <RemoveFile Id="RemoveFilePathDll" On="uninstall" Name="*.*" Directory="DLL" />
+        <RemoveFolder Id="RemoveFolderPathDll" On="uninstall" Directory="DLL" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="DLL">
+			<Component Id="Dll_7z.dll" Guid="4a4880f3-800e-496b-bbf4-d52a1c56158d">
+			  <File Id="Dll_7z.dll" Name="7z.dll" Source="$(var.SeathZip_TargetDir)DLL\7z.dll" />
+			</Component>
+			<Component Id="Dll_7z64.dll" Guid="a0d7851b-a76b-4820-9de8-e69eea8564e7">
+			  <File Id="Dll_7z64.dll" Name="7z64.dll" Source="$(var.SeathZip_TargetDir)DLL\7z64.dll" />
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProgramFilesFolder_files" Directory="INSTALLFOLDER" >
+      <Component Id="SeathZip.exe" Guid="67a472c0-f874-48c5-abe9-ec1dd6d31401">
+        <File Id="SeathZip.exe" Name="SeathZip.exe" Source="$(var.SeathZip_TargetDir)SeathZip.exe" />
+      </Component>
+      <Component Id="SeathZip.exe.config" Guid="d39d4382-112d-45e2-8b6c-fd7be7778d2d">
+        <File Id="SeathZip.exe.config" Name="SeathZip.exe.config" Source="$(var.SeathZip_TargetDir)SeathZip.exe.config" />
+        <util:XmlFile Id="SeathZip" File="[#SeathZip.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='RunTimeDirectory'[\]]//@value" Value="[NewFolderDirectory]" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="SeathZip1" File="[#SeathZip.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='OkPath'[\]]//@value" Value="[NewFolderDirectory1]" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="SeathZip2" File="[#SeathZip.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathSeath'[\]]//@value" Value="[SimpleEditProperty]" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="SeathZip3" File="[#SeathZip.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathDLL64'[\]]//@value" Value="[DLL]7z64.dll" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="SeathZip4" File="[#SeathZip.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathDLL32'[\]]//@value" Value="[DLL]7z.dll" SelectionLanguage="XPath" Sequence="1" />
+      </Component>
+      <Component Id="Microsoft.WindowsAPICodePack.dll" Guid="5965a6fe-11b2-4cc0-b81a-c84d19486461">
+        <File Id="Microsoft.WindowsAPICodePack.dll" Name="Microsoft.WindowsAPICodePack.dll" Source="$(var.SeathZip_TargetDir)Microsoft.WindowsAPICodePack.dll" />
+      </Component>
+      <Component Id="Microsoft.WindowsAPICodePack.Shell.dll" Guid="f0b78156-afda-4657-8cbd-120250fdc4cf">
+        <File Id="Microsoft.WindowsAPICodePack.Shell.dll" Name="Microsoft.WindowsAPICodePack.Shell.dll" Source="$(var.SeathZip_TargetDir)Microsoft.WindowsAPICodePack.Shell.dll" />
+      </Component>
+      <Component Id="SevenZipSharp.dll" Guid="63f14ad3-0cf4-49f1-b9de-1d4636453a17">
+        <File Id="SevenZipSharp.dll" Name="SevenZipSharp.dll" Source="$(var.SeathZip_TargetDir)SevenZipSharp.dll" />
+      </Component>
+      <Component Id="System.Windows.Interactivity.dll" Guid="1d6aa255-6f10-4000-b657-f93a957a0a93">
+        <File Id="System.Windows.Interactivity.dll" Name="System.Windows.Interactivity.dll" Source="$(var.SeathZip_TargetDir)System.Windows.Interactivity.dll" />
+      </Component>
+      <Component Id="icon.ico" Guid="2FD7248E-DE22-42A6-AB98-CD300A75E3C9">
+        <File Id="icon.ico" Name="icon.ico" Source="$(var.SeathZip_TargetDir)ico\icon.ico" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
