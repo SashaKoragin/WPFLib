@@ -1,26 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using ViewModelLib.ModelTestAutoit.StackPanelModel.ShemeSnuOneForm;
 
 namespace AddModelProject.TestAutoit.Logica.Parsexlsx
 {
+   /// <summary>
+   /// Парсим XLSX
+   /// </summary>
    public class ParseXlsx
     {
+        /// <summary>
+        /// Метод вытаскивает Листы и столбцы для дальнейшего использования
+        /// </summary>
+        /// <param name="fullpath">Полный путь к файлу</param>
+        /// <param name="modelSnuOne">Модель данных</param>
         public void ParseXls(string fullpath, ref ModelSnuOneFormNameList modelSnuOne)
         {
-            modelSnuOne.ShemeColumn.Clear();
             modelSnuOne.ShemeFull.Clear();
             var worbook = new ClosedXML.Excel.XLWorkbook(fullpath);
             foreach (var workSneets in worbook.Worksheets)
             {
+                var model = new ModelSnuOneFormNameList.NameColumn();
                 foreach (var column in workSneets.ColumnsUsed(column => !column.IsEmpty()))
                 {
-                    modelSnuOne.ShemeColumn.Add(new ModelSnuOneFormNameList.NameColumn() {ColumnName = column.ColumnLetter()});
+                  //
+                  //   models.ShemeLetter.Add(new NameColumn() { ColumnName = column.ColumnLetter() });
+                  //  model.
+                    model.ShemeLetter.Add(new ModelSnuOneFormNameList.NameColumn() { ColumnName = column.ColumnLetter() });
+                    //model.Add(new ModelSnuOneFormNameList.NameColumn() {ColumnName = column.ColumnLetter() });
                 }
-             modelSnuOne.ShemeFull.Add(new ModelSnuOneFormNameList() {Listletter = workSneets.Name, ShemeColumn = modelSnuOne.ShemeColumn});
+             modelSnuOne.ShemeFull.Add(new ModelSnuOneFormNameList() {Listletter = workSneets.Name, Columns = model.ShemeLetter });
             }
         }
 

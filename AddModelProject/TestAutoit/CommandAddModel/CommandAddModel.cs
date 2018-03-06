@@ -9,8 +9,17 @@ using ViewModelLib.ModelTestAutoit.TextBoxModel;
 
 namespace AddModelProject.TestAutoit.CommandAddModel
 {
+    /// <summary>
+    /// Класс для команд кнопок работы с моделями данных Папка соответствует проекту
+    /// </summary>
    public class CommandAddModel
     {
+        /// <summary>
+        /// Подгрузить файл xlsx
+        /// </summary>
+        /// <param name="files">массив данных файлов</param>
+        /// <param name="textBoxModel">Наша модель TextBoxModel</param>
+        /// <param name="modelSnuOne">Наша модель ModelSnuOneFormNameList</param>
         public static void AddTextBoxFile(FileInfo[] files,ref TextBoxModel textBoxModel,ref ModelSnuOneFormNameList modelSnuOne)
         {
             foreach (var file in files)

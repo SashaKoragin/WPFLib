@@ -10,4 +10,16 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
     </ResourceDictionary.MergedDictionaries>
+    <ControlTemplate x:Key="ValidationFailederror">
+        <StackPanel Orientation="Horizontal">
+            <Border BorderBrush="Red" BorderThickness="3">
+                <AdornedElementPlaceholder />
+            </Border>
+            <TextBlock
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Foreground="Red"
+                    Text="!" />
+        </StackPanel>
+    </ControlTemplate>
 </ResourceDictionary>

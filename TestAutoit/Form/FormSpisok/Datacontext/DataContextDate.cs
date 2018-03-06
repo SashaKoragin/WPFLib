@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using AddModelProject.TestAutoit.AddModel;
 using LibaryCommandPublic.TestAutoit;
@@ -24,13 +25,16 @@ namespace TestAutoit.Form.FormSpisok.Datacontext
         public CheckBoxModel CheckBoxModel { get; }
         public ModelSnuOneFormNameList ModelSnuOne { get; }
         public DelegateCommand SelectFile { get; }
-
+        public DelegateCommand FormirovanieXml { get; }
         public DataContextDate()
         {
+
             TextBoxFileModel = new TextBoxModel();
             ModelSnuOne = new ModelSnuOneFormNameList();
+            CheckBoxModel = new CheckBoxModel();
             CommandTestAutoit command = new CommandTestAutoit();
             SelectFile = new DelegateCommand(delegate {command.SelectFileSlsx(TextBoxFileModel, ModelSnuOne); });
+            FormirovanieXml = new DelegateCommand(delegate {command.FormirovanieXml(ModelSnuOne, TextBoxFileModel);});
         }
     }
 }

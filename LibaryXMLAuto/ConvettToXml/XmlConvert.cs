@@ -10,8 +10,36 @@ using LibaryXMLAutoModelXmlAuto.ModelSnuOne;
 
 namespace LibaryXMLAuto.ConvettToXml
 {
-   public class XmlConvert
+    /// <summary>
+    /// Класс конвертации xlsx то xmlSheme
+    /// </summary>
+    public class XmlConvert
     {
+
+        /// <summary>
+        /// Метод конвертации xlsx по xml sheme 
+        /// </summary>
+        /// <param name="pathFilexlsx">Путь к файлу xlsx</param>
+        /// <param name="listfile">Выбранный лист</param>
+        /// <param name="letter">Буква в xlsx</param>
+        /// <param name="isOneUseRows">Параметр указывающий Используем 1 строку или нет</param>
+        /// <param name="xmlSheme">Название схемы по какой схеме делаем список</param>
+        public void ConvertList(string pathFilexlsx,string listfile,string letter,bool isOneUseRows,string xmlSheme)
+        {
+            var path = pathFilexlsx;
+            var worbook = new ClosedXML.Excel.XLWorkbook(path);
+            var ws = worbook.Worksheets.Worksheet(listfile);
+            var countcell = ws.Columns(letter).Cells().Count(inn => !inn.IsEmpty());
+            List<string> listinn = new List<string>();
+            for (int i = 0; i < countcell; i++)
+            {
+                if (i >= 2)
+                {
+                    listinn.Add(ws.Cell(letter + i).Value.ToString());
+                }
+            }
+            Serializ(listinn);
+        }
         /// <summary>
         /// Метод конвертации в xml файл по схеме SnuOneForm.xsd
         /// <![CDATA[
@@ -20,7 +48,6 @@ namespace LibaryXMLAuto.ConvettToXml
         ///    <INN INN ="504602844980" />
         ///    <INN INN="772576444844" />
         /// </SnuOneForm> ]]>
-        /// 
         /// </summary>
         /// <param name="masivInnStrings">Параметр список</param>
         public void Serializ(List<string> masivInnStrings)

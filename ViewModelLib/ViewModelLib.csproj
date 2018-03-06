@@ -65,6 +65,7 @@
     <Compile Include="Converter\ConvetrorImage\ConvertorImage.cs" />
     <Compile Include="ModelTestAutoit\CheckBoxModel\CheckBoxModel.cs" />
     <Compile Include="ModelTestAutoit\ListViewModel\ListViewModel.cs" />
+    <Compile Include="ModelTestAutoit\ShemeXsd\Sheme.cs" />
     <Compile Include="ModelTestAutoit\StackPanelModel\ShemeSnuOneForm\ModelSnuOneFormNameList.cs" />
     <Compile Include="ModelTestAutoit\TextBoxModel\TextBoxModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
