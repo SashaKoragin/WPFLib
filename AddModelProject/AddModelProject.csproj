@@ -31,29 +31,31 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML, Version=0.91.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\ClosedXML.0.91.0\lib\net452\ClosedXML.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\ClosedXML.0.91.0\lib\net452\ClosedXML.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FastMember.Signed, Version=1.0.0.9, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\FastMember.Signed.1.1.0\lib\net40\FastMember.Signed.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\FastMember.Signed.1.1.0\lib\net40\FastMember.Signed.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack">
-      <HintPath>..\..\..\..\NugetPackages\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Nuget\Microsoft.WindowsAPICodePack.Core.1.1.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
-      <HintPath>..\..\..\..\NugetPackages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Nuget\Microsoft.WindowsAPICodePack.Shell.1.1.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -73,15 +75,14 @@
     <Compile Include="TestAutoit\CommandAddModel\CommandAddModel.cs" />
     <Compile Include="TestAutoit\Logica\Parsexlsx\ParseXlsx.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ViewModelLib\ViewModelLib.csproj">
       <Project>{08bb509f-ead1-4666-a539-6d60f464db2f}</Project>
       <Name>ViewModelLib</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

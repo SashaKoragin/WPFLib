@@ -94,16 +94,24 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Catel.Core, Version=4.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Nuget\Catel.Core.4.5.3\lib\net45\Catel.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Catel.MVVM, Version=4.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\Nuget\Catel.MVVM.4.5.3\lib\net45\Catel.MVVM.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\NugetPackages\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\NugetPackages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SevenZipSharp, Version=0.64.3890.29348, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\NugetPackages\SevenZipSharp.0.64\lib\SevenZipSharp.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\SevenZipSharp.0.64\lib\SevenZipSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -112,7 +120,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\NugetPackages\Catel.MVVM.4.5.3\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\Catel.MVVM.4.5.3\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
@@ -200,9 +208,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
