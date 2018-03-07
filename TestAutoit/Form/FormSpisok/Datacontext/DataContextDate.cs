@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using AddModelProject.TestAutoit.AddModel;
+﻿using AddModelProject.TestAutoit.AddModel;
 using LibaryCommandPublic.TestAutoit;
 using Prism.Commands;
 using ViewModelLib.ViewModelPage.ListViewModel.ListViewFile;
 using ViewModelLib.ModelTestAutoit.TextBoxModel;
 using ViewModelLib.ModelTestAutoit.CheckBoxModel;
+using ViewModelLib.ModelTestAutoit.ShemeXsd;
 using ViewModelLib.ModelTestAutoit.StackPanelModel.ShemeSnuOneForm;
 
 namespace TestAutoit.Form.FormSpisok.Datacontext
@@ -20,6 +14,7 @@ namespace TestAutoit.Form.FormSpisok.Datacontext
     /// </summary>
    internal class DataContextDate
     {
+        public Sheme ShemeDocument { get; }
         public TextBoxModel TextBoxFileModel { get; }
         public ListViewModel ListViewFileModel { get; }
         public CheckBoxModel CheckBoxModel { get; }
@@ -28,7 +23,8 @@ namespace TestAutoit.Form.FormSpisok.Datacontext
         public DelegateCommand FormirovanieXml { get; }
         public DataContextDate()
         {
-
+            var sheme = new AddModelTestAutoit();
+            ShemeDocument = sheme.AddShemeUse();
             TextBoxFileModel = new TextBoxModel();
             ModelSnuOne = new ModelSnuOneFormNameList();
             CheckBoxModel = new CheckBoxModel();

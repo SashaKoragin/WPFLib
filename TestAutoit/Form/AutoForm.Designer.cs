@@ -101,7 +101,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(881, 306);
+            this.tabControl1.Size = new System.Drawing.Size(1109, 522);
             this.tabControl1.TabIndex = 5;
             // 
             // tabPage1
@@ -114,7 +114,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(873, 280);
+            this.tabPage1.Size = new System.Drawing.Size(1101, 496);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -125,7 +125,7 @@
             this.SnuOnePage.Location = new System.Drawing.Point(4, 22);
             this.SnuOnePage.Name = "SnuOnePage";
             this.SnuOnePage.Padding = new System.Windows.Forms.Padding(3);
-            this.SnuOnePage.Size = new System.Drawing.Size(873, 280);
+            this.SnuOnePage.Size = new System.Drawing.Size(1101, 496);
             this.SnuOnePage.TabIndex = 1;
             this.SnuOnePage.Text = "Формирование СНУ для единичной печати";
             this.SnuOnePage.UseVisualStyleBackColor = true;
@@ -147,7 +147,7 @@
             this.tabPage2.Controls.Add(this.Forvirovanie);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(873, 280);
+            this.tabPage2.Size = new System.Drawing.Size(1101, 496);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Формирование списка";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -156,7 +156,7 @@
             // 
             this.Forvirovanie.Location = new System.Drawing.Point(4, 4);
             this.Forvirovanie.Name = "Forvirovanie";
-            this.Forvirovanie.Size = new System.Drawing.Size(866, 273);
+            this.Forvirovanie.Size = new System.Drawing.Size(1089, 489);
             this.Forvirovanie.TabIndex = 0;
             this.Forvirovanie.Text = "Forvirovanie";
             this.Forvirovanie.Child = null;
@@ -165,7 +165,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(905, 330);
+            this.ClientSize = new System.Drawing.Size(1121, 546);
             this.Controls.Add(this.tabControl1);
             this.KeyPreview = true;
             this.Name = "AutoForm";
