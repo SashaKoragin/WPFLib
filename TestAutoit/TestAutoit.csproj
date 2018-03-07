@@ -120,10 +120,14 @@
     <Compile Include="Form\AutoForm.Designer.cs">
       <DependentUpon>AutoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\FormSpisok\ColectionUserControl\TestUserControl.xaml.cs">
-      <DependentUpon>TestUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Form\FormSpisok\Datacontext\DataContextDate.cs" />
+    <Compile Include="Form\FormSpisok\FormirovanieXml\SnuOneForm.xaml.cs">
+      <DependentUpon>SnuOneForm.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Form\FormSpisok\FormirovanieXml\TestExample.xaml.cs">
+      <DependentUpon>TestExample.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\FormSpisok\WpfForm\FormSpisok.xaml.cs">
       <DependentUpon>FormSpisok.xaml</DependentUpon>
     </Compile>
@@ -197,7 +201,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Form\FormSpisok\ColectionUserControl\TestUserControl.xaml">
+    <Page Include="Form\FormSpisok\FormirovanieXml\SnuOneForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\FormSpisok\FormirovanieXml\TestExample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

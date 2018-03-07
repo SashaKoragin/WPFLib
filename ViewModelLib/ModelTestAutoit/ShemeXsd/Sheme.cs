@@ -36,9 +36,21 @@ namespace ViewModelLib.ModelTestAutoit.ShemeXsd
                 RaisePropertyChanged();
             }
         }
+
+        private UserControl _control;
         private string _shemes;
         private FlowDocument _document;
 
+        public UserControl UserContr
+        {
+            get { return _control; }
+            set
+            {
+                _control = value;
+                RaisePropertyChanged();
+            }
+            
+        }
         /// <summary>
         /// Сама схема
         /// </summary>

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TestAutoit.Form.FormSpisok.ColectionUserControl
+namespace TestAutoit.Form.FormSpisok.FormirovanieXml
 {
     /// <summary>
-    /// Логика взаимодействия для TestUserControl.xaml
+    /// Логика взаимодействия для TestExample.xaml
     /// </summary>
-    public partial class TestUserControl : UserControl
+    public partial class TestExample : UserControl
     {
-        public TestUserControl()
+        public TestExample()
         {
             InitializeComponent();
         }
