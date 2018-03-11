@@ -17,28 +17,24 @@ namespace LibaryXMLAuto.ConvettToXml
     {
 
         /// <summary>
-        /// Метод конвертации xlsx по xml sheme 
+        /// Метод конвертации xlsx по xml sheme SnuOneForm.xsd
         /// </summary>
         /// <param name="pathFilexlsx">Путь к файлу xlsx</param>
         /// <param name="listfile">Выбранный лист</param>
         /// <param name="letter">Буква в xlsx</param>
         /// <param name="isOneUseRows">Параметр указывающий Используем 1 строку или нет</param>
-        /// <param name="xmlSheme">Название схемы по какой схеме делаем список</param>
-        public void ConvertList(string pathFilexlsx,string listfile,string letter,bool isOneUseRows,string xmlSheme)
+        public void ConvertListSnuOneForm(string pathFilexlsx,string listfile,string letter,bool isOneUseRows)
         {
             var path = pathFilexlsx;
             var worbook = new ClosedXML.Excel.XLWorkbook(path);
             var ws = worbook.Worksheets.Worksheet(listfile);
             var countcell = ws.Columns(letter).Cells().Count(inn => !inn.IsEmpty());
             List<string> listinn = new List<string>();
-            for (int i = 0; i < countcell; i++)
+            for (int i = Convert.ToInt32(isOneUseRows)+1; i <= countcell; i++)
             {
-                if (i >= 2)
-                {
                     listinn.Add(ws.Cell(letter + i).Value.ToString());
-                }
             }
-            Serializ(listinn);
+            SerializSnuOneForm(listinn);
         }
         /// <summary>
         /// Метод конвертации в xml файл по схеме SnuOneForm.xsd
@@ -50,7 +46,7 @@ namespace LibaryXMLAuto.ConvettToXml
         /// </SnuOneForm> ]]>
         /// </summary>
         /// <param name="masivInnStrings">Параметр список</param>
-        public void Serializ(List<string> masivInnStrings)
+        public void SerializSnuOneForm(List<string> masivInnStrings)
         {
             int i = 0;
             SnuOneForm snu = new SnuOneForm() {INN = new INN[masivInnStrings.Count] };
@@ -61,11 +57,12 @@ namespace LibaryXMLAuto.ConvettToXml
                 i++;
             }
             XmlSerializer formatter = new XmlSerializer(typeof(SnuOneForm));
-            using (FileStream fs = new FileStream("C:\\Inn.xml", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream("C:\\Inn.xml", FileMode.Create))
             {
                 formatter.Serialize(fs, snu);
             }
         }
+
         /// <summary>
         /// Метод отрабатывает если Журнал с ошибками не создан дольше будеь добавлять элементы
         /// </summary>
@@ -80,6 +77,7 @@ namespace LibaryXMLAuto.ConvettToXml
                 formatter.Serialize(fs, error);
             }
         }
+
         /// <summary>
         /// Метод отрабатывает если Журнал с ок не создан дольше будеь добавлять элементы
         /// </summary>

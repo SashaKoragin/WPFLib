@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace ViewModelLib.ModelTestAutoit.ShemeXsd
     /// <summary>
     /// Класс модели образцов
     /// </summary>
-   public class Sheme : BindableBase
+   public class Sheme : BindableBase, IDataErrorInfo
     {
         /// <summary>
         /// Схема листов с колонками
@@ -75,6 +76,34 @@ namespace ViewModelLib.ModelTestAutoit.ShemeXsd
                 RaisePropertyChanged();
             }
         }
+
+        public string Error { get; set; }
+        private bool IsValid { get; set; } = true;
+        public string this[string columnName]
+        {
+            get { return ValidateErrs(columnName); }
+        }
+        public bool IsValidation()
+        {
+            IsValid = false;
+            RaisePropertyChanged("Shema");
+            return IsValid;
+        }
+
+        private string ValidateErrs(string columnName)
+        {
+            Error = null;
+            if (!IsValid)
+                switch (columnName)
+                {
+                    case "Shema":
+                        if (Shema!=null)
+                        { IsValid = true; break; }
+                        { Error = "Не выбрана схема списка!!!"; break; }
+                }
+            return Error;
+        }
+
 
     }
 }

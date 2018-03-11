@@ -65,7 +65,7 @@ namespace ViewModelLib.ModelTestAutoit.TextBoxModel
         public bool IsValidation()
         {
             IsValid = false;
-            RaisePropertyChanged("Path");
+            RaisePropertyChanged("Name");
             return IsValid;
         }
 
@@ -75,7 +75,7 @@ namespace ViewModelLib.ModelTestAutoit.TextBoxModel
             if (!IsValid)
                 switch (columnName)
                 {
-                    case "Path":
+                    case "Name":
                         if (File.Exists(Path))
                         { IsValid = true; break; }
                         { Error = "Не выбран файл XLSX"; break; }

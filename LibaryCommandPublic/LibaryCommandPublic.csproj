@@ -51,6 +51,10 @@
       <Project>{93aca244-ed58-43e5-bec6-05f07e4b475a}</Project>
       <Name>AddModelProject</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LibaryXMLAuto\LibaryXMLAuto.csproj">
+      <Project>{a2bc3ae2-4a61-4e9e-9fa4-96a02677c79c}</Project>
+      <Name>LibaryXMLAuto</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ViewModelLib\ViewModelLib.csproj">
       <Project>{08bb509f-ead1-4666-a539-6d60f464db2f}</Project>
       <Name>ViewModelLib</Name>

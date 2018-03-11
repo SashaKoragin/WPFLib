@@ -22,11 +22,7 @@ namespace AddModelProject.TestAutoit.Logica.Parsexlsx
                 var model = new ModelSnuOneFormNameList.NameColumn();
                 foreach (var column in workSneets.ColumnsUsed(column => !column.IsEmpty()))
                 {
-                  //
-                  //   models.ShemeLetter.Add(new NameColumn() { ColumnName = column.ColumnLetter() });
-                  //  model.
                     model.ShemeLetter.Add(new ModelSnuOneFormNameList.NameColumn() { ColumnName = column.ColumnLetter() });
-                    //model.Add(new ModelSnuOneFormNameList.NameColumn() {ColumnName = column.ColumnLetter() });
                 }
              modelSnuOne.ShemeFull.Add(new ModelSnuOneFormNameList() {Listletter = workSneets.Name, Columns = model.ShemeLetter });
             }

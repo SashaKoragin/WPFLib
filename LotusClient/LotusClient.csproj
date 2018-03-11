@@ -36,11 +36,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.3.1.953, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\MaterialDesignThemes.2.3.1.953\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\MaterialDesignThemes.2.3.1.953\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

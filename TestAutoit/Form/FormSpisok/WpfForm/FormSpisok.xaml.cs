@@ -11,6 +11,7 @@ namespace TestAutoit.Form.FormSpisok.WpfForm
         public FormSpisok()
         {
             InitializeComponent();
+            DataContext = new Datacontext.DataContextDate();
         }
     }
 }

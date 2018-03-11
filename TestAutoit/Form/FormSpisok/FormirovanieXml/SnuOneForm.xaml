@@ -18,7 +18,7 @@
             <convetrorImage:ConvertorImage x:Key="ConverteImage" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
+    <Grid d:DataContext="{d:DesignInstance {x:Type datacontext:DataContextDate}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
@@ -31,9 +31,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="100*" />
         </Grid.RowDefinitions>
-        <Grid.DataContext>
-            <datacontext:DataPageSheme />
-        </Grid.DataContext>
         <WrapPanel Grid.Row="1" Grid.Column="0">
             <Label Margin="5,5,0,5" Content="Выбранный файл: " />
             <TextBox
@@ -48,7 +45,9 @@
                                 Height="16"
                                 Source="{Binding TextBoxFileModel.Icon, Converter={StaticResource ConverteImage}}" />
                             <TextBox
-                                IsEnabled="False"
+                                
+                                IsReadOnly="True"
+                                MinWidth="50"
                                 Text="{Binding TextBoxFileModel.Name, ValidatesOnDataErrors=True}"
                                 ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
                                 Validation.ErrorTemplate="{StaticResource ValidationFailederror}" />
@@ -62,7 +61,7 @@
             Grid.Column="0"
             Margin="5,5,5,5">
             <CheckBox
-                Content="Выбрать заголовок!!!"
+                Content="Убрать заголовок!!!"
                 IsChecked="{Binding CheckBoxModel.IsCheced}"
                 ToolTip="Участвует ли 1 строка в списке или нет!!!" />
             <WrapPanel>
@@ -104,13 +103,5 @@
             Margin="5,5,5,5">
             <Button Command="{Binding SelectFile}" Content="Выбрать файл XSLS" />
         </StackPanel>
-        <Button
-            Grid.Row="3"
-            Grid.Column="0"
-            Margin="5,5,5,5"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Bottom"
-            Command="{Binding FormirovanieXml}"
-            Content="Сформировать список" />
     </Grid>
 </UserControl>

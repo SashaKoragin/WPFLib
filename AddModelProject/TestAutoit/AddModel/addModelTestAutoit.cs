@@ -14,6 +14,11 @@ namespace AddModelProject.TestAutoit.AddModel
 {
     public class AddModelTestAutoit
     {
+        public void AddXmlFile()
+        {
+            
+        }
+
         public Sheme AddShemeUse(UserControl[] test)
         {
            var  sheme = new Sheme();
@@ -32,4 +37,5 @@ namespace AddModelProject.TestAutoit.AddModel
             return document;
         }
     }
+
 }

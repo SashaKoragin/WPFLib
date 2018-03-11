@@ -85,6 +85,10 @@ namespace ViewModelLib.ModelTestAutoit.StackPanelModel.ShemeSnuOneForm
             IsValid = false;
             RaisePropertyChanged("SelectList");
             RaisePropertyChanged("SelectColumnLetter");
+            if (String.IsNullOrEmpty(Error))
+            {
+                IsValid = true;
+            }
             return IsValid;
         }
 
@@ -96,11 +100,11 @@ namespace ViewModelLib.ModelTestAutoit.StackPanelModel.ShemeSnuOneForm
                 {
                     case "SelectList":
                         if (SelectList != null)
-                        { IsValid = true; break; }
+                        { break; }
                         { Error = "Не выбран лист"; break; }
                     case "SelectColumnLetter":
-                        if (SelectColumnLetter != null)
-                        {IsValid = true; break;}
+                        if (SelectColumnLetter.ColumnName != null)
+                        { break;}
                         {Error = "Не выбран столбец"; break;}
                 }
             return Error;

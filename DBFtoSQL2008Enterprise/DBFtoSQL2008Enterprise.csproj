@@ -36,31 +36,31 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML, Version=0.91.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\ClosedXML.0.91.0\lib\net452\ClosedXML.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\ClosedXML.0.91.0\lib\net452\ClosedXML.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="FastMember.Signed, Version=1.0.0.9, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\FastMember.Signed.1.1.0\lib\net40\FastMember.Signed.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\FastMember.Signed.1.1.0\lib\net40\FastMember.Signed.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.3.1.953, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\MaterialDesignThemes.2.3.1.953\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\MaterialDesignThemes.2.3.1.953\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MigSharp, Version=3.2.1.0, Culture=neutral, PublicKeyToken=6cbf6233e7d0373d, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\MigSharp.3.2.1\lib\net45\MigSharp.dll</HintPath>
+      <HintPath>..\..\..\..\Nuget\MigSharp.3.2.1\lib\net45\MigSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

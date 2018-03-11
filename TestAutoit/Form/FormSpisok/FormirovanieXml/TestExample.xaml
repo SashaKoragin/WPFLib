@@ -9,10 +9,7 @@
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">
-    <Grid>
-        <Grid.DataContext>
-            <datacontext:DataPageSheme />
-        </Grid.DataContext>
+    <Grid d:DataContext="{d:DesignInstance {x:Type datacontext:DataContextDate}}">
         <Button Content="sdfd" />
     </Grid>
 </UserControl>
