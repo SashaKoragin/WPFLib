@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace LibaryAIS3Windows.Status
 {
     /// <summary>
@@ -27,5 +22,9 @@ namespace LibaryAIS3Windows.Status
        /// Символизирует Status Автомат находится в состоянии не готов работать нажмите клавишу {Tab}!!!
        /// </summary>
        public const string Status4 = "Автомат находится в состоянии не готов работать нажмите клавишу {Tab}!!!";
-   }
+        /// <summary>
+        /// Статус отсутствия списков для обработки
+        /// </summary>
+       public const string Status5 = "Отсутствуют списки для обработки!!!";
+    }
 }

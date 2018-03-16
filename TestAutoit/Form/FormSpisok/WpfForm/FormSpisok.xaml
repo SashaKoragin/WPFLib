@@ -19,7 +19,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/ResourceStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <converter:ConvertorImage x:Key="ConverteImage" />
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid d:DataContext="{d:DesignInstance {x:Type datacontext:DataContextDate}}">
@@ -67,9 +66,12 @@
         </DockPanel>
         <UserControl
             Grid.Row="0"
-            Grid.Column="2"
             Grid.RowSpan="3"
+            Grid.Column="2"
             Content="{Binding ShemeDocument.Shema.UserContr}" />
-        <UserControl Grid.Column="2" Grid.Row="3" Content="{Binding Spisok}"></UserControl>
+        <UserControl
+            Grid.Row="3"
+            Grid.Column="2"
+            Content="{Binding Spisok}" />
     </Grid>
 </UserControl>

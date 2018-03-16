@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using Prism.Mvvm;
-using ViewModelLib.ModelTestAutoit.StackPanelModel.ShemeSnuOneForm;
+using ViewModelLib.ModelTestAutoit.ModelFormirovanie.StackPanelModel.ShemeSnuOneForm;
 
-namespace ViewModelLib.ModelTestAutoit.ShemeXsd
+namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.ShemeXsd
 {
     /// <summary>
     /// Класс модели образцов
@@ -87,6 +87,7 @@ namespace ViewModelLib.ModelTestAutoit.ShemeXsd
         {
             IsValid = false;
             RaisePropertyChanged("Shema");
+            
             return IsValid;
         }
 

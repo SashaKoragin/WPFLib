@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ViewModelLib.ModelTestAutoit.StackPanelModel.ShemeSnuOneForm;
-using ViewModelLib.ModelTestAutoit.TextBoxModel;
+﻿using System.IO;
+using AddModelProject.TestAutoit.AddModel;
+using ViewModelLib.ModelTestAutoit.ModelFormirovanie.StackPanelModel.ShemeSnuOneForm;
+using ViewModelLib.ModelTestAutoit.ModelFormirovanie.TextBoxModel;
+using ViewModelLib.ModelTestAutoit.PublicModel.ReportXml;
 
 namespace AddModelProject.TestAutoit.CommandAddModel
 {
@@ -30,5 +27,14 @@ namespace AddModelProject.TestAutoit.CommandAddModel
                 new Logica.Parsexlsx.ParseXlsx().ParseXls(file.FullName,ref modelSnuOne);
             }
         }
+
+        public void JurnalOnInn(ReportJurnal jurnal, string pathjurnal,string pathfile)
+        {
+            AddModelTestAutoit model = new AddModelTestAutoit();
+            jurnal.XmlReportJurnal.Clear();
+            jurnal.XmlFile.Clear();
+            model.AddJurnals(jurnal, pathjurnal, pathfile);
+        }
+
     }
 }

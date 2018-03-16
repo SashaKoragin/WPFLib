@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using Microsoft.WindowsAPICodePack.Shell;
 
 namespace AddModelProject.PublicAdd
@@ -24,6 +21,21 @@ namespace AddModelProject.PublicAdd
             var shell = ShellObject.FromParsingName(namefile);
             ShellThumbnail sh = shell.Thumbnail;
             return sh.MediumIcon;
+        }
+
+        //public static Icon ExtracticonNameFile(String namefile)
+        //{
+        //    DirectoryInfo
+        //    var shell = ShellObject.FromParsingName(namefile);
+        //    ShellThumbnail sh = shell.Thumbnail;
+        //    return sh.MediumIcon;
+        //}
+
+        public static FileInfo[] FileinfoMass(string path)
+        {
+            var dir = new DirectoryInfo(path);
+            var files = dir.GetFiles();
+            return files;
         }
     }
 }

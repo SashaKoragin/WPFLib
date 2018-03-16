@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using ViewModelLib.ModelTestAutoit.StackPanelModel.ShemeSnuOneForm;
+﻿using ViewModelLib.ModelTestAutoit.ModelFormirovanie.StackPanelModel.ShemeSnuOneForm;
 
 namespace AddModelProject.TestAutoit.Logica.Parsexlsx
 {
@@ -22,7 +21,7 @@ namespace AddModelProject.TestAutoit.Logica.Parsexlsx
                 var model = new ModelSnuOneFormNameList.NameColumn();
                 foreach (var column in workSneets.ColumnsUsed(column => !column.IsEmpty()))
                 {
-                    model.ShemeLetter.Add(new ModelSnuOneFormNameList.NameColumn() { ColumnName = column.ColumnLetter() });
+                    model.ShemeLetter.Add(new ModelSnuOneFormNameList.NameColumn() { ColumnName = column.ColumnLetter(), ColumnCellValueName = column.ColumnLetter() +"-"+column.Cell(1).Value });
                 }
              modelSnuOne.ShemeFull.Add(new ModelSnuOneFormNameList() {Listletter = workSneets.Name, Columns = model.ShemeLetter });
             }

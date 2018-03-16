@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TestAutoit.ButtonsKey;
+using TestAutoit.Form.Automat.WpfPage;
 using TestAutoit.Start;
-using TestAutoit.Window;
 
 namespace TestAutoit.Form
 {
     public partial class AutoForm : System.Windows.Forms.Form
     {
-        public  Form.FormSpisok.WpfForm.FormSpisok Form = new FormSpisok.WpfForm.FormSpisok();
+        internal  Form.FormSpisok.WpfForm.FormSpisok Form = new FormSpisok.WpfForm.FormSpisok();
+        internal  FormSnuAuto AutoSnu = new FormSnuAuto();
         public AutoForm()
         {
             InitializeComponent();
             Forvirovanie.Child = Form;
+            AutoOneSnu.Child = AutoSnu;
         }
         /// <summary>
         /// Идея данной штуки заключается в том что принимает значения от разных
@@ -33,39 +34,6 @@ namespace TestAutoit.Form
         {
             Start.StrartUse start = new StrartUse(this);
             start.Ptrints();
-        }
-
-        private void SnuOneB(object sender, EventArgs e)
-        {
-            Window.TimeClass time = new TimeClass();
-            time.Timeclass();
-        }
-
-
-        /// <summary>
-        /// Горячая клавиша изменения состояния Bool Работает или не работает
-        /// Реализуется в using TestAutoit.ButtonsKey
-        /// </summary>
-        /// <param name="sender">Не используется</param>
-        /// <param name="e">Аргументы параметры</param>
-        private void PressButon(object sender, KeyEventArgs e)
-        {
-           Task.Run(delegate
-            {
-                KeyButtons button = new KeyButtons();
-                button.Button(e,AllButtonControls);
-            });
-        }
-        /// <summary>
-        /// Обработчик для формирования заявки СНУ ФЛ
-        /// </summary>
-        /// <param name="sender">Объукт конвертируем в кнопку</param>
-        /// <param name="e">Аргументы</param>
-        private void OneZayvkiSnu(object sender, EventArgs e)
-        {
-            AllButtonControls = (Button)sender;
-            TimeClass time = new TimeClass();
-            time.AutoClicerSnuOneForm(AllButtonControls);
         }
     }
 }

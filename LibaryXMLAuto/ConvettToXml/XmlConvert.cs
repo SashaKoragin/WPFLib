@@ -23,10 +23,10 @@ namespace LibaryXMLAuto.ConvettToXml
         /// <param name="listfile">Выбранный лист</param>
         /// <param name="letter">Буква в xlsx</param>
         /// <param name="isOneUseRows">Параметр указывающий Используем 1 строку или нет</param>
-        public void ConvertListSnuOneForm(string pathFilexlsx,string listfile,string letter,bool isOneUseRows)
+        /// <param name="path">Параметр пути сохранения</param>
+        public void ConvertListSnuOneForm(string pathFilexlsx,string listfile,string letter,bool isOneUseRows,string path)
         {
-            var path = pathFilexlsx;
-            var worbook = new ClosedXML.Excel.XLWorkbook(path);
+            var worbook = new ClosedXML.Excel.XLWorkbook(pathFilexlsx);
             var ws = worbook.Worksheets.Worksheet(listfile);
             var countcell = ws.Columns(letter).Cells().Count(inn => !inn.IsEmpty());
             List<string> listinn = new List<string>();
@@ -34,7 +34,7 @@ namespace LibaryXMLAuto.ConvettToXml
             {
                     listinn.Add(ws.Cell(letter + i).Value.ToString());
             }
-            SerializSnuOneForm(listinn);
+            SerializSnuOneForm(listinn, path);
         }
         /// <summary>
         /// Метод конвертации в xml файл по схеме SnuOneForm.xsd
@@ -46,7 +46,8 @@ namespace LibaryXMLAuto.ConvettToXml
         /// </SnuOneForm> ]]>
         /// </summary>
         /// <param name="masivInnStrings">Параметр список</param>
-        public void SerializSnuOneForm(List<string> masivInnStrings)
+        /// <param name="path">Параметр пути сохранения</param>
+        public void SerializSnuOneForm(List<string> masivInnStrings,string path)
         {
             int i = 0;
             SnuOneForm snu = new SnuOneForm() {INN = new INN[masivInnStrings.Count] };
@@ -57,7 +58,7 @@ namespace LibaryXMLAuto.ConvettToXml
                 i++;
             }
             XmlSerializer formatter = new XmlSerializer(typeof(SnuOneForm));
-            using (FileStream fs = new FileStream("C:\\Inn.xml", FileMode.Create))
+            using (FileStream fs = new FileStream(path+ "Inn.xml", FileMode.Create))
             {
                 formatter.Serialize(fs, snu);
             }

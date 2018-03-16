@@ -36,7 +36,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.SnuOnePage = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
+            this.AutoOneSnu = new System.Windows.Forms.Integration.ElementHost();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.Forvirovanie = new System.Windows.Forms.Integration.ElementHost();
             this.tabControl1.SuspendLayout();
@@ -121,7 +121,7 @@
             // 
             // SnuOnePage
             // 
-            this.SnuOnePage.Controls.Add(this.button3);
+            this.SnuOnePage.Controls.Add(this.AutoOneSnu);
             this.SnuOnePage.Location = new System.Drawing.Point(4, 22);
             this.SnuOnePage.Name = "SnuOnePage";
             this.SnuOnePage.Padding = new System.Windows.Forms.Padding(3);
@@ -130,17 +130,14 @@
             this.SnuOnePage.Text = "Формирование СНУ для единичной печати";
             this.SnuOnePage.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // AutoOneSnu
             // 
-            this.button3.BackColor = System.Drawing.Color.Lime;
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(6, 142);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(109, 26);
-            this.button3.TabIndex = 1;
-            this.button3.Text = "Старт автомат!!!";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.OneZayvkiSnu);
+            this.AutoOneSnu.Location = new System.Drawing.Point(0, 0);
+            this.AutoOneSnu.Name = "AutoOneSnu";
+            this.AutoOneSnu.Size = new System.Drawing.Size(1101, 496);
+            this.AutoOneSnu.TabIndex = 2;
+            this.AutoOneSnu.Text = "elementHost1";
+            this.AutoOneSnu.Child = null;
             // 
             // tabPage2
             // 
@@ -154,9 +151,9 @@
             // 
             // Forvirovanie
             // 
-            this.Forvirovanie.Location = new System.Drawing.Point(4, 4);
+            this.Forvirovanie.Location = new System.Drawing.Point(-4, 0);
             this.Forvirovanie.Name = "Forvirovanie";
-            this.Forvirovanie.Size = new System.Drawing.Size(1089, 489);
+            this.Forvirovanie.Size = new System.Drawing.Size(1105, 496);
             this.Forvirovanie.TabIndex = 0;
             this.Forvirovanie.Text = "Forvirovanie";
             this.Forvirovanie.Child = null;
@@ -170,7 +167,6 @@
             this.KeyPreview = true;
             this.Name = "AutoForm";
             this.Text = "Тест Net Autoit";
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PressButon);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -190,9 +186,9 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage SnuOnePage;
-        internal System.Windows.Forms.Button button3;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Integration.ElementHost Forvirovanie;
+        private System.Windows.Forms.Integration.ElementHost AutoOneSnu;
     }
 }
 

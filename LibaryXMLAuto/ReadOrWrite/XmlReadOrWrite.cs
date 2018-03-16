@@ -16,7 +16,7 @@ namespace LibaryXMLAuto.ReadOrWrite
         /// </summary>
         /// <param name="path">Путь к Xml</param>
         /// <returns>Документ</returns>
-        private XmlDocument Document(string path)
+        public static XmlDocument Document(string path)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(path);
@@ -107,5 +107,10 @@ namespace LibaryXMLAuto.ReadOrWrite
             doc.Save(path);
         }
 
+        public int CountAtribute(string path)
+        {
+            var doc = Document(path);
+            return doc.DocumentElement.ChildNodes.Count;
+        }
     }
 }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Prism.Mvvm;
 
-namespace ViewModelLib.ModelTestAutoit.StackPanelModel.ShemeSnuOneForm
+namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.StackPanelModel.ShemeSnuOneForm
 {
     /// <summary>
     /// Модель генерации списков TestAutoit SnuOneForm
@@ -30,10 +30,11 @@ namespace ViewModelLib.ModelTestAutoit.StackPanelModel.ShemeSnuOneForm
             get { return Shemefulllist; }
         }
         private ModelSnuOneFormNameList _selectList;
+
         /// <summary>
         /// Выбор буквы сделано
         /// </summary>
-        private NameColumn _selectcColumnLetter = new NameColumn();
+        private NameColumn _selectcColumnLetter;
 
         /// <summary>
         /// Выбираем букву
@@ -103,7 +104,7 @@ namespace ViewModelLib.ModelTestAutoit.StackPanelModel.ShemeSnuOneForm
                         { break; }
                         { Error = "Не выбран лист"; break; }
                     case "SelectColumnLetter":
-                        if (SelectColumnLetter.ColumnName != null)
+                        if (SelectColumnLetter!=null)
                         { break;}
                         {Error = "Не выбран столбец"; break;}
                 }
@@ -121,6 +122,7 @@ namespace ViewModelLib.ModelTestAutoit.StackPanelModel.ShemeSnuOneForm
             public ObservableCollection<NameColumn> ShemeLetter = new ObservableCollection<NameColumn>();
 
             private string _columnname;
+            private string _columncellvaluename;
             /// <summary>
             /// Имена колонок A,B,C и т,д по алфавиту
             /// </summary>
@@ -130,6 +132,16 @@ namespace ViewModelLib.ModelTestAutoit.StackPanelModel.ShemeSnuOneForm
                 set
                 {
                     _columnname = value;
+                    RaisePropertyChanged();
+                }
+            }
+
+            public string ColumnCellValueName
+            {
+                get { return _columncellvaluename;}
+                set
+                {
+                    _columncellvaluename = value;
                     RaisePropertyChanged();
                 }
             }
