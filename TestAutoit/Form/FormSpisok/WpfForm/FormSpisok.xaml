@@ -19,6 +19,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Style/ResourceStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converter:ConvertorImage x:Key="ConverteImage" />
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid d:DataContext="{d:DesignInstance {x:Type datacontext:DataContextDate}}">
@@ -47,7 +48,7 @@
                     Margin="5,5,5,5"
                     ItemsSource="{Binding ShemeDocument.ShemeFullDocument}"
                     SelectedItem="{Binding ShemeDocument.Shema, ValidatesOnDataErrors=True}"
-                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
+                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
                     Validation.ErrorTemplate="{StaticResource ValidationFailederror}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -69,9 +70,51 @@
             Grid.RowSpan="3"
             Grid.Column="2"
             Content="{Binding ShemeDocument.Shema.UserContr}" />
-        <UserControl
+        <WrapPanel
             Grid.Row="3"
             Grid.Column="2"
-            Content="{Binding Spisok}" />
+            Margin="5,5,5,5"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center">
+            <Button
+                Margin="5,5,5,5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Command="{Binding FormirovanieXml}"
+                Content="Сформировать список" />
+            <ListView
+                x:Name="ListView"
+                Margin="5,5,5,5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                ItemsSource="{Binding XmlFile.XmlFiles}"
+                SelectedItem="{Binding XmlFile.File}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Сформированые списки">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel
+                                        HorizontalAlignment="Stretch"
+                                        Orientation="Horizontal"
+                                        Tag="{Binding ElementName=ListView, Path=DataContext}">
+                                        <Image
+                                            Width="16"
+                                            Height="16"
+                                            Source="{Binding Icon, Converter={StaticResource ConverteImage}}" />
+                                        <TextBlock HorizontalAlignment="Stretch" Text="{Binding Name}" />
+                                        <StackPanel.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Command="{Binding PlacementTarget.Tag.Transfer, RelativeSource={RelativeSource AncestorType=ContextMenu}}" Header="Перенести на отработку!!!" />
+                                            </ContextMenu>
+                                        </StackPanel.ContextMenu>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </WrapPanel>
     </Grid>
 </UserControl>

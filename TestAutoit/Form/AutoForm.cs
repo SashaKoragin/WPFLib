@@ -8,13 +8,11 @@ namespace TestAutoit.Form
 {
     public partial class AutoForm : System.Windows.Forms.Form
     {
-        internal  Form.FormSpisok.WpfForm.FormSpisok Form = new FormSpisok.WpfForm.FormSpisok();
-        internal  FormSnuAuto AutoSnu = new FormSnuAuto();
         public AutoForm()
         {
             InitializeComponent();
-            Forvirovanie.Child = Form;
-            AutoOneSnu.Child = AutoSnu;
+            Forvirovanie.Child = new FormSpisok.WpfForm.FormSpisok();
+            AutoOneSnu.Child = new FormSnuAuto();
         }
         /// <summary>
         /// Идея данной штуки заключается в том что принимает значения от разных

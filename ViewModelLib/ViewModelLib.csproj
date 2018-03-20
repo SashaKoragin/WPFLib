@@ -30,6 +30,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.91.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <HintPath>C:\Nuget\ClosedXML.0.91.0\lib\net452\ClosedXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>C:\Nuget\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>C:\Nuget\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FastMember.Signed, Version=1.0.0.9, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL">
+      <HintPath>C:\Nuget\FastMember.Signed.1.1.0\lib\net40\FastMember.Signed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
       <Private>True</Private>
@@ -65,14 +81,14 @@
   <ItemGroup>
     <Compile Include="Converter\ConvetrorImage\ConvertorImage.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\CheckBoxModel\CheckBoxModel.cs" />
-    <Compile Include="ModelTestAutoit\ModelFormirovanie\ListViewModel\ListViewModelXmlFileGenerate.cs" />
-    <Compile Include="ModelTestAutoit\ModelFormirovanie\ShemeXsd\Sheme.cs" />
-    <Compile Include="ModelTestAutoit\ModelFormirovanie\StackPanelModel\ShemeSnuOneForm\ModelSnuOneFormNameList.cs" />
-    <Compile Include="ModelTestAutoit\ModelFormirovanie\TextBoxModel\TextBoxModel.cs" />
-    <Compile Include="ModelTestAutoit\ModelSnuOneAuto\DataXml\XmlUse.cs" />
-    <Compile Include="ModelTestAutoit\PublicModel\ButtonStartAutomat\StartOnStop.cs" />
+    <Compile Include="ModelTestAutoit\ModelFormirovanie\ListViewModelXml\ListViewModelXmlFileGenerateProperty.cs" />
+    <Compile Include="ModelTestAutoit\ModelFormirovanie\ShemeXsd\ShemeProperty.cs" />
+    <Compile Include="ModelTestAutoit\ModelFormirovanie\StackPanelModel\ShemeSnuOneForm\ModelSnuOneFormNameListProperty.cs" />
+    <Compile Include="ModelTestAutoit\ModelFormirovanie\TextBoxModel\TextBoxModelProperty.cs" />
+    <Compile Include="ModelTestAutoit\ModelSnuOneAuto\DataXml\XmlUseProperty.cs" />
+    <Compile Include="ModelTestAutoit\PublicModel\ButtonStartAutomat\StartOnStopProperty.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ReportXlsx\ReportXlsx.cs" />
-    <Compile Include="ModelTestAutoit\PublicModel\ReportXml\ReportJurnal.cs" />
+    <Compile Include="ModelTestAutoit\PublicModel\ReportXml\ReportJurnalProperty.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModelPage\AnotherCommandImplementation.cs" />
@@ -91,6 +107,10 @@
     <ProjectReference Include="..\LibaryXMLAuto\LibaryXMLAuto.csproj">
       <Project>{a2bc3ae2-4a61-4e9e-9fa4-96a02677c79c}</Project>
       <Name>LibaryXMLAuto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PublicLogicaFull\PublicLogicaFull.csproj">
+      <Project>{3d408912-630f-4f37-bfc7-c63f7e8307ad}</Project>
+      <Name>PublicLogicaFull</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

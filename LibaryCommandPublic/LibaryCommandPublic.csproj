@@ -60,10 +60,6 @@
     <Compile Include="TestAutoit\SnuOneAuto\PublicCommand\CommandSnuOneAuto.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AddModelProject\AddModelProject.csproj">
-      <Project>{93aca244-ed58-43e5-bec6-05f07e4b475a}</Project>
-      <Name>AddModelProject</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LibaryAIS3Windows\LibaryAIS3Windows.csproj">
       <Project>{92017569-2991-4b9a-bfa2-6b41cfa72b83}</Project>
       <Name>LibaryAIS3Windows</Name>
@@ -71,6 +67,10 @@
     <ProjectReference Include="..\LibaryXMLAuto\LibaryXMLAuto.csproj">
       <Project>{a2bc3ae2-4a61-4e9e-9fa4-96a02677c79c}</Project>
       <Name>LibaryXMLAuto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PublicLogicaFull\PublicLogicaFull.csproj">
+      <Project>{3d408912-630f-4f37-bfc7-c63f7e8307ad}</Project>
+      <Name>PublicLogicaFull</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewModelLib\ViewModelLib.csproj">
       <Project>{08bb509f-ead1-4666-a539-6d60f464db2f}</Project>

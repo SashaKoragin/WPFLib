@@ -12,17 +12,6 @@ namespace LibaryXMLAuto.ReadOrWrite
    public class XmlReadOrWrite
     {
         /// <summary>
-        /// Открывает документ xml
-        /// </summary>
-        /// <param name="path">Путь к Xml</param>
-        /// <returns>Документ</returns>
-        public static XmlDocument Document(string path)
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(path);
-            return doc;
-        }
-        /// <summary>
         /// Дессериализация в объекта
         /// </summary>
         /// <param name="filename">путь к файлу xml</param>
@@ -48,7 +37,7 @@ namespace LibaryXMLAuto.ReadOrWrite
         /// <param name="atribut"></param>
         public void DeleteAtributXml(string pathxml, string atribut)
         {
-            var doc = Document(pathxml);
+            var doc = LogicaXml.LogicaXml.Document(pathxml);
             XmlNode node = doc.SelectSingleNode(atribut);
             node.ParentNode.RemoveChild(node);
             doc.Save(pathxml);
@@ -62,7 +51,7 @@ namespace LibaryXMLAuto.ReadOrWrite
         /// <param name="err">Ошибка</param>
         public void AddElementError(string path , string znacenie, string branch, string err)
         {
-            var doc = Document(path);
+            var doc = LogicaXml.LogicaXml.Document(path);
             XmlElement xRoot = doc.DocumentElement;
             XmlElement error = doc.CreateElement("Error");
             XmlAttribute errors = doc.CreateAttribute("Error");
@@ -90,7 +79,7 @@ namespace LibaryXMLAuto.ReadOrWrite
         /// <param name="ok">Отработано</param>
         public void AddElementOk(string path, string znacenie,  string ok)
         {
-            var doc = Document(path);
+            var doc = LogicaXml.LogicaXml.Document(path);
             XmlElement xRoot = doc.DocumentElement;
             XmlElement okey = doc.CreateElement("Ok");
             XmlAttribute inn = doc.CreateAttribute("Inn");
@@ -105,12 +94,6 @@ namespace LibaryXMLAuto.ReadOrWrite
             okey.Attributes.Append(message);
             xRoot.AppendChild(okey);
             doc.Save(path);
-        }
-
-        public int CountAtribute(string path)
-        {
-            var doc = Document(path);
-            return doc.DocumentElement.ChildNodes.Count;
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace TestAutoit.Config
 {
-    class ConnectString
+   internal class ConnectString
     {
             public static readonly string Connection = ConfigurationManager.ConnectionStrings["SQL"].ConnectionString;
     }

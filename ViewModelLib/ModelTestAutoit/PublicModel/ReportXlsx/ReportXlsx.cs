@@ -1,29 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
+using PublicLogicaFull.FileLogica.FileInfoLogica;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ViewModelLib.ModelTestAutoit.ModelFormirovanie.ListViewModel;
-using ViewModelLib.ModelTestAutoit.PublicModel.ReportXml;
 
 namespace ViewModelLib.ModelTestAutoit.PublicModel.ReportXlsx
 {
-   public class ReportXlsx
+   public class ReportXlsxProperty
     {
-        public ObservableCollection<ReportXlsx> _reportxlsxel = new ObservableCollection<ReportXlsx>();
-
-        public ObservableCollection<ReportXlsx> ReportXlsxel
-        {
-            get { return _reportxlsxel; }
-        }
-        private ReportXlsx _xlsx;
+        public ObservableCollection<ReportXlsxProperty> ReportXlsxel { get; } = new ObservableCollection<ReportXlsxProperty>();
+        private ReportXlsxProperty _xlsx;
         private Icon _icon;
         private string _name;
         private string _path;
-        public ReportXlsx Xlsx
+        public ReportXlsxProperty Xlsx
         {
             get { return _xlsx; }
             set
@@ -49,16 +40,47 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ReportXlsx
             get { return _path; }
             set { _path = value; }
         }
-
-        //public void AddFile(string path)
-        //{
-        //    if (Directory.Exists(path))
-        //    {
-        //        foreach (var file in Fileinfo(path))
-        //        {
-        //            ReportXlsxel.XmlFiles.Add(new ListViewModelXmlFileGenerate() { Icon = PublicAdd.IconsFile.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName });
-        //        }
-        //    }
-        //}
 }
+
+    public class ReportXlsxMethod : ReportXlsxProperty
+    {
+        /// <summary>
+        /// Конструктор класса
+        /// </summary>
+        /// <param name="pathdirectoryreport">Путь к файлу отчета Excel</param>
+        public ReportXlsxMethod(string pathdirectoryreport)
+        {
+            UpdateColectFile(pathdirectoryreport);
+        }
+        /// <summary>
+        /// Добавление Отчета Excel
+        /// </summary>
+        /// <param name="pathdirectoryreport">Полный путь ук файлу</param>
+        public void UpdateColectFile(string pathdirectoryreport)
+        {
+            if (Directory.Exists(pathdirectoryreport))
+            {
+                ReportXlsxel.Clear();
+                foreach (var file in FileLogica.FileinfoMass(pathdirectoryreport))
+                {
+                    ReportXlsxel.Add(new ReportXlsxProperty { Icon = FileLogica.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName });
+                }
+            }
+        }
+        /// <summary>
+        /// Удаление отчета файла Excel
+        /// </summary>
+        public void DeleteReportFile()
+        {
+            File.Delete(Xlsx.Path);
+            ReportXlsxel.Remove(ReportXlsxel.Single(name => name.Path == Xlsx.Path));
+        }
+        /// <summary>
+        /// Открытие отчета Report Excel
+        /// </summary>
+        public void OpenReport()
+        {
+            PublicLogicaFull.FileLogica.OpenFile.OpenFile.Openxls(Xlsx.Path);
+        }
+    }
 }

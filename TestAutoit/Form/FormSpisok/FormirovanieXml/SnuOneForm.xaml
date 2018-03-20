@@ -48,7 +48,7 @@
                                 MinWidth="50"
                                 IsReadOnly="True"
                                 Text="{Binding TextBoxFileModel.Name, ValidatesOnDataErrors=True}"
-                                ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
+                                ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
                                 Validation.ErrorTemplate="{StaticResource ValidationFailederror}" />
                         </WrapPanel>
                     </ControlTemplate>
@@ -68,7 +68,7 @@
                 <ComboBox
                     ItemsSource="{Binding ModelSnuOne.ShemeFull}"
                     SelectedItem="{Binding ModelSnuOne.SelectList, ValidatesOnDataErrors=True}"
-                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
+                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
                     Validation.ErrorTemplate="{StaticResource ValidationFailederror}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -84,7 +84,7 @@
                 <ComboBox
                     ItemsSource="{Binding ModelSnuOne.SelectList.Columns}"
                     SelectedItem="{Binding ModelSnuOne.SelectColumnLetter, ValidatesOnDataErrors=True}"
-                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
+                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
                     Validation.ErrorTemplate="{StaticResource ValidationFailederror}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>

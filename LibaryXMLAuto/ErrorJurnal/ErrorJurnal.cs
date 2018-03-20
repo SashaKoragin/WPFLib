@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using System.IO;
 using LibaryXMLAuto.ReadOrWrite;
 
 namespace LibaryXMLAuto.ErrorJurnal
@@ -30,7 +24,7 @@ namespace LibaryXMLAuto.ErrorJurnal
             }
             else
             {
-                ConvettToXml.XmlConvert convert=new ConvettToXml.XmlConvert();
+                var convert =new Converts.ConvettToXml.XmlConvert();
                 convert.CreateJurnalError(pathjurnal,znacenie,branch,error);
             }
         }

@@ -1,14 +1,10 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using AddModelProject.TestAutoit.AddModel;
-using LibaryXMLAuto.ConvettToXml;
-using Microsoft.Win32;
+using LibaryXMLAuto.Converts.ConvettToXml;
 using ViewModelLib.ModelTestAutoit.ModelFormirovanie.CheckBoxModel;
-using ViewModelLib.ModelTestAutoit.ModelFormirovanie.ListViewModel;
+using ViewModelLib.ModelTestAutoit.ModelFormirovanie.ListViewModelXml;
 using ViewModelLib.ModelTestAutoit.ModelFormirovanie.ShemeXsd;
 using ViewModelLib.ModelTestAutoit.ModelFormirovanie.StackPanelModel.ShemeSnuOneForm;
 using ViewModelLib.ModelTestAutoit.ModelFormirovanie.TextBoxModel;
@@ -26,20 +22,27 @@ namespace LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand
         /// </summary>
         /// <param name="modelTextBox">Модель modelTextBox</param>
         /// <param name="modelSnuOne">Модель modelSnuOne</param>
-        public void SelectFileSlsx(TextBoxModel modelTextBox, ModelSnuOneFormNameList modelSnuOne)
+        public void SelectFileSlsx(TextBoxModelMethod modelTextBox, ModelSnuOneFormNameListMethod modelSnuOne)
         {
-            var win = new OpenFileDialog { Filter = "Файлы xlsx|*.xlsx", Multiselect = false };
-            if (win.ShowDialog() == true)
+            var dialog = new PublicLogicaFull.FileLogica.DialogWindowSelect.DialogFileSelect();
+            var file = dialog.OpenFileDialog();
+            if (file.Exists)
             {
-                FileInfo[] files = win.FileNames.Select(file => new FileInfo(file)).ToArray();
-                AddModelProject.TestAutoit.CommandAddModel.CommandAddModel.AddTextBoxFile(files,ref modelTextBox,ref modelSnuOne); 
+                modelTextBox.NewFileXsls(file);
+                modelSnuOne.AddParseXsls(file);
             }
-            modelTextBox.IsValidation();
         }
-
-        public  void  FormirovanieXml(ModelSnuOneFormNameList modelsnuone, TextBoxModel textboxfilemodel,Sheme shemedocument, CheckBoxModel checkBoxModel,string path, ListViewModelXmlFileGenerate xmlmodel)
+        /// <summary>
+        /// Формирование списков xml по схеме!!! 
+        /// </summary>
+        /// <param name="modelsnuone">Модель схем</param>
+        /// <param name="textboxfilemodel"></param>
+        /// <param name="shemedocument"></param>
+        /// <param name="checkBoxModel"></param>
+        /// <param name="path"></param>
+        /// <param name="xmlmodel"></param>
+        public  void  FormirovanieXml(ModelSnuOneFormNameListProperty modelsnuone, TextBoxModelMethod textboxfilemodel,ShemeMethod shemedocument, CheckBoxModel checkBoxModel,string path, ListViewModelXmlFileGenerateMethod xmlmodel)
         {
-                    var sheme = new AddModelTestAutoit();
                     XmlConvert convert = new XmlConvert();
                     if (shemedocument.IsValidation())
                     {
@@ -53,11 +56,10 @@ namespace LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand
                                        {
                                         try
                                            {
-                                             xmlmodel.UpdateOn();
                                              convert.ConvertListSnuOneForm(textboxfilemodel.Path,
                                              modelsnuone.SelectList.Listletter,
                                              modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.IsCheced, path);
-                                             sheme.UpdateXmlFile(xmlmodel, path);
+                                             xmlmodel.AddXmlFile(path);
                                              xmlmodel.UpdateOff();
                                            }
                                         catch (Exception e)
@@ -69,15 +71,6 @@ namespace LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand
                                 break;
                         }
                     }
-        }
-
-        public void Nransferes(string pathold,string pathnew)
-        {
-            if (File.Exists(pathnew))
-            {
-                File.Delete(pathnew);
-            }
-            File.Move(pathold,pathnew);
         }
     }
 }

@@ -62,8 +62,8 @@
                     x:Name="ListView"
                     Margin="5,5,5,5"
                     IsSelected="False"
-                    ItemsSource="{Binding ReportJurnalOnInn.XmlFile}"
-                    SelectedItem="{Binding ReportJurnalOnInn.XmlJurnal}">
+                    ItemsSource="{Binding ReportJurnalOnInn.XmlFileZnach}"
+                    SelectedItem="{Binding ReportJurnalOnInn.XmlFile}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Списки для обработки!!!">
@@ -91,7 +91,7 @@
                     Name="ListView1"
                     Margin="5,5,5,5"
                     ItemsSource="{Binding ReportJurnalOnInn.XmlReportJurnal}"
-                    SelectedItem="{Binding ReportJurnalOnInn.XmlJurnal}">
+                    SelectedItem="{Binding ReportJurnalOnInn.XmlFile}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Журналы автомата!!!">
@@ -118,14 +118,14 @@
                 <ListView
                     Name="ListView2"
                     Margin="5,5,5,5"
-                    ItemsSource="{Binding ReportJurnalOnInn.XmlReportJurnal}"
-                    SelectedItem="{Binding ReportJurnalOnInn.XmlJurnal}">
+                    ItemsSource="{Binding Report.ReportXlsxel}"
+                    SelectedItem="{Binding Report.Xlsx}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Журналы автомата!!!">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <WrapPanel Tag="{Binding ElementName=ListView1, Path=DataContext}">
+                                        <WrapPanel Tag="{Binding ElementName=ListView2, Path=DataContext}">
                                             <Image
                                                 Width="16"
                                                 Height="16"
@@ -133,7 +133,8 @@
                                             <TextBlock HorizontalAlignment="Stretch" Text="{Binding Name}" />
                                             <WrapPanel.ContextMenu>
                                                 <ContextMenu>
-                                                    <MenuItem Command="{Binding PlacementTarget.Tag.OpenFile, RelativeSource={RelativeSource AncestorType=ContextMenu}}" Header="Открыть файл!!!" />
+                                                    <MenuItem Command="{Binding PlacementTarget.Tag.DeleteReport, RelativeSource={RelativeSource AncestorType=ContextMenu}}" Header="Удалить отчет!!!" />
+                                                    <MenuItem Command="{Binding PlacementTarget.Tag.OpenReport, RelativeSource={RelativeSource AncestorType=ContextMenu}}" Header="Открыть отчет!!!" />
                                                 </ContextMenu>
                                             </WrapPanel.ContextMenu>
                                         </WrapPanel>
@@ -149,7 +150,7 @@
                 <FlowDocumentReader
                     Height="470"
                     HorizontalAlignment="Stretch"
-                    Document="{Binding ReportJurnalOnInn.XmlJurnal.Document}" />
+                    Document="{Binding ReportJurnalOnInn.XmlFile.Document}" />
             </StackPanel>
         </WrapPanel>
     </Grid>

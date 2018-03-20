@@ -28,7 +28,7 @@ namespace LibaryXMLAuto.ErrorJurnal
             }
             else
             {
-                ConvettToXml.XmlConvert convert = new ConvettToXml.XmlConvert();
+                var convert = new  Converts.ConvettToXml.XmlConvert();
                 convert.CreateJurnalOk(pathjurnal, znacenie, ok);
             }
         }

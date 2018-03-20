@@ -111,8 +111,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ButtonsClikcs\ButtonsCliks.cs" />
+    <Compile Include="Config\ConfigFile.cs" />
     <Compile Include="Config\ConnectString.cs" />
-    <Compile Include="Constantsfile\ConstantFile.cs" />
     <Compile Include="Form\AutoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,9 +133,6 @@
     </Compile>
     <Compile Include="Form\FormSpisok\WpfForm\FormSpisok.xaml.cs">
       <DependentUpon>FormSpisok.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Form\FormSpisok\WpfForm\Spisok\ButtonFormirovanie.xaml.cs">
-      <DependentUpon>ButtonFormirovanie.xaml</DependentUpon>
     </Compile>
     <Compile Include="Lk\LkYesAndNo.cs" />
     <Compile Include="Parse\ParseFl.cs" />
@@ -181,10 +178,6 @@
     <None Include="UseFiles\OtchetLkYes.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AddModelProject\AddModelProject.csproj">
-      <Project>{93aca244-ed58-43e5-bec6-05f07e4b475a}</Project>
-      <Name>AddModelProject</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LibaryAIS3Windows\LibaryAIS3Windows.csproj">
       <Project>{92017569-2991-4b9a-bfa2-6b41cfa72b83}</Project>
       <Name>LibaryAIS3Windows</Name>
@@ -223,12 +216,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Form\FormSpisok\WpfForm\Spisok\ButtonFormirovanie.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ExcelReport\" />
     <Folder Include="FormXml\" />
     <Folder Include="XmlJurnal\" />
   </ItemGroup>
