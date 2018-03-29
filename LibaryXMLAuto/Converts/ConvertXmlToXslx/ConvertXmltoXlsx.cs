@@ -1,5 +1,8 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using ClosedXML.Excel;
 
 namespace LibaryXMLAuto.Converts.ConvertXmlToXslx
@@ -18,7 +21,13 @@ namespace LibaryXMLAuto.Converts.ConvertXmlToXslx
                 string pathsavefull = savereport + file.Name + ".xlsx";
                 DataSet table = new DataSet(file.Name);
                 table.ReadXml(file.FullName);
-                XLWorkbook workbooks = new XLWorkbook();
+            //Надо думать над конвертацией даты
+            //foreach (DataTable dataTable in table.Tables)
+            //{
+            //     dataTable.Columns[""].GetType
+            //}
+            //Regex.IsMatch(, "('\'d{4}(-'\'d{2}){2}T'\'d{2}(:'\'d{2}){2})")
+                 XLWorkbook workbooks = new XLWorkbook();
                 workbooks.Worksheets.Add(table);
                 workbooks.SaveAs(pathsavefull);
             return new FileInfo(pathsavefull);

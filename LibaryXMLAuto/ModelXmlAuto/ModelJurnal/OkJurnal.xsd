@@ -18,6 +18,7 @@
 		<xs:complexType>
 			<xs:attribute name="Inn" type="xs:string"/>
 			<xs:attribute name="Message" type="xs:string"/>
+			<xs:attribute name="DateTimeUse" type="xs:dateTime" form="unqualified"/>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

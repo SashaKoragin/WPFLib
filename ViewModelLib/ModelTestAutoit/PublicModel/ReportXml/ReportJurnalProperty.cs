@@ -82,6 +82,15 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ReportXml
     public class ReportJurnalMethod : ReportJurnalProperty
     {
         /// <summary>
+        /// Работа с журналом выполненых и отработаных
+        /// </summary>
+        /// <param name="pathJurnalXml"></param>
+        public ReportJurnalMethod(string pathJurnalXml)
+        {
+            AddJurnal(pathJurnalXml);
+        }
+
+        /// <summary>
         /// Конструктор класса для манипуляциии колекциями
         /// </summary>
         /// <param name="pathJurnalXml">Путь к Журналам с ошибками</param>

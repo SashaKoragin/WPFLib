@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Converts\ConvertXmlToXslx\ConvertXmltoXlsx.cs" />
     <Compile Include="Converts\ConvettToXml\XmlConvert.cs" />
+    <Compile Include="ReadOrWrite\CreateElement\CreteElement.cs" />
     <Compile Include="ErrorJurnal\ErrorJurnal.cs" />
     <Compile Include="ErrorJurnal\OkJurnal.cs" />
     <Compile Include="GenerateAtribyte\GeneratorAtribute.cs" />

@@ -49,12 +49,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ButtonsClikcs\ButtonConstant.cs" />
+    <Compile Include="ButtonsClikcs\ClikcCheker\Cheker.cs" />
     <Compile Include="ButtonsClikcs\KclicerButton.cs" />
     <Compile Include="ExitLogica\Exit.cs" />
     <Compile Include="ExitLogica\ExitClass.cs" />
-    <Compile Include="Mode\SnuForm.cs" />
+    <Compile Include="Mode\Reg\Yvedomlenie\Yvedomlenia.cs" />
+    <Compile Include="Mode\Okp4\SnuFormirovanie\SnuForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadWindow\Read\Reades.cs" />
     <Compile Include="Status\StatusAis.cs" />
+    <Compile Include="Window\Otdel\Reg\Yvedomlenie\TextYvedomlenie.cs" />
     <Compile Include="Window\Windows.cs" />
   </ItemGroup>
   <ItemGroup>

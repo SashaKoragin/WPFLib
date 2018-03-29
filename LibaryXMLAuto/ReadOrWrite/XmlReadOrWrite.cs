@@ -12,10 +12,10 @@ namespace LibaryXMLAuto.ReadOrWrite
    public class XmlReadOrWrite
     {
         /// <summary>
-        /// Дессериализация в объекта
+        /// Дессериализация файла xml в объект
         /// </summary>
         /// <param name="filename">путь к файлу xml</param>
-        /// <param name="objType">Тип объекта сериализации</param>
+        /// <param name="objType">Тип объекта сериализации cs файла</param>
         public object ReadXml(string filename, Type objType)
         {
             using (Stream fs = new FileStream(filename, FileMode.Open))
@@ -46,28 +46,18 @@ namespace LibaryXMLAuto.ReadOrWrite
         /// Метод Добавление в журнал ошибки по схеме ErrorJurnal.xsd
         /// </summary>
         /// <param name="path">Путь к файлу</param>
-        /// <param name="znacenie">Значение в котором ошибка</param>
+        /// <param name="znacenieinn">Значение в котором ошибка</param>
         /// <param name="branch">Ветка автоматизации</param>
         /// <param name="err">Ошибка</param>
-        public void AddElementError(string path , string znacenie, string branch, string err)
+        public void AddElementError(string path , string znacenieinn, string branch, string err)
         {
             var doc = LogicaXml.LogicaXml.Document(path);
             XmlElement xRoot = doc.DocumentElement;
             XmlElement error = doc.CreateElement("Error");
-            XmlAttribute errors = doc.CreateAttribute("Error");
-            XmlAttribute inn = doc.CreateAttribute("Inn");
-            XmlAttribute system = doc.CreateAttribute("System");
-            // создаем текстовые значения для элементов и атрибута
-            XmlText errorstext = doc.CreateTextNode(err);
-            XmlText inntext = doc.CreateTextNode(znacenie);
-            XmlText systemtext = doc.CreateTextNode(branch);
-            //добавляем узлы
-            inn.AppendChild(inntext);
-            errors.AppendChild(errorstext);
-            system.AppendChild(systemtext);
-            error.Attributes.Append(inn);
-            error.Attributes.Append(errors);
-            error.Attributes.Append(system);
+            error.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc,"Inn", znacenieinn));
+            error.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Error", err));
+            error.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "System", branch));
+            error.Attributes.Append(CreateElement.CreteElement.AtributeAddDateNow(doc, "DateTimeUse"));
             xRoot.AppendChild(error);
             doc.Save(path);
         }
@@ -82,16 +72,9 @@ namespace LibaryXMLAuto.ReadOrWrite
             var doc = LogicaXml.LogicaXml.Document(path);
             XmlElement xRoot = doc.DocumentElement;
             XmlElement okey = doc.CreateElement("Ok");
-            XmlAttribute inn = doc.CreateAttribute("Inn");
-            XmlAttribute message = doc.CreateAttribute("Message");
-            // создаем текстовые значения для элементов и атрибута
-            XmlText inntext = doc.CreateTextNode(znacenie);
-            XmlText messagetext = doc.CreateTextNode(ok);
-            //добавляем узлы
-            inn.AppendChild(inntext);
-            message.AppendChild(messagetext);
-            okey.Attributes.Append(inn);
-            okey.Attributes.Append(message);
+            okey.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Inn", znacenie));
+            okey.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Message", ok));
+            okey.Attributes.Append(CreateElement.CreteElement.AtributeAddDateNow(doc, "DateTimeUse"));
             xRoot.AppendChild(okey);
             doc.Save(path);
         }

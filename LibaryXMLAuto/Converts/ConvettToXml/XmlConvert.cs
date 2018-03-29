@@ -71,7 +71,7 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
         public void CreateJurnalError(string pathjurnal, string znacenie, string branch, string errors)
         {
             JurnalError error = new JurnalError() {Error = new Error[1]};
-            Error er = new Error() { Inn = znacenie, Error1 = errors, System = branch };
+            Error er = new Error() { Inn = znacenie, Error1 = errors, System = branch, DateTimeUse = DateTime.Now, DateTimeUseSpecified = true};
             error.Error[0] = er;
             XmlSerializer formatter = new XmlSerializer(typeof(JurnalError));
             using (FileStream fs = new FileStream(pathjurnal, FileMode.OpenOrCreate))
@@ -86,7 +86,7 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
         public void CreateJurnalOk(string pathjurnal, string znacenie, string okeys)
         {
             OkJurnal okey = new OkJurnal() { Ok = new Ok[1] };
-            Ok ok = new Ok() { Inn = znacenie, Message = okeys };
+            Ok ok = new Ok() { Inn = znacenie, Message = okeys, DateTimeUse = DateTime.Now, DateTimeUseSpecified = true};
             okey.Ok[0] = ok;
             XmlSerializer formatter = new XmlSerializer(typeof(OkJurnal));
             using (FileStream fs = new FileStream(pathjurnal, FileMode.OpenOrCreate))

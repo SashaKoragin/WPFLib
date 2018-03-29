@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using TestAutoit.Form.Automat.WpfPage;
 using TestAutoit.Start;
-
 namespace TestAutoit.Form
 {
     public partial class AutoForm : System.Windows.Forms.Form
@@ -12,7 +9,10 @@ namespace TestAutoit.Form
         {
             InitializeComponent();
             Forvirovanie.Child = new FormSpisok.WpfForm.FormSpisok();
-            AutoOneSnu.Child = new FormSnuAuto();
+            registrationHost.Child = new Automat.Reg.WpfPage.YtochnenieSved();
+            AutoOneSnu.Child = new TestAutoit.Form.Automat.Okp4.WpfPage.FormSnuAuto();
+            Report.Child = new Report.Form.Report();
+
         }
         /// <summary>
         /// Идея данной штуки заключается в том что принимает значения от разных

@@ -1,5 +1,5 @@
 ﻿using System.Windows.Input;
-using LibaryCommandPublic.TestAutoit.SnuOneAuto.AutoCommand;
+using LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand;
 using LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand;
 using Prism.Commands;
 using TestAutoit.Config;
@@ -8,7 +8,7 @@ using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXlsx;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXml;
 
-namespace TestAutoit.Form.Automat.DataContext
+namespace TestAutoit.Form.Automat.Okp4.DataContext
 {
    internal class DataContextAutomat
     {

@@ -35,13 +35,13 @@ namespace LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand
         /// <summary>
         /// Формирование списков xml по схеме!!! 
         /// </summary>
-        /// <param name="modelsnuone">Модель схем</param>
-        /// <param name="textboxfilemodel"></param>
-        /// <param name="shemedocument"></param>
-        /// <param name="checkBoxModel"></param>
-        /// <param name="path"></param>
-        /// <param name="xmlmodel"></param>
-        public  void  FormirovanieXml(ModelSnuOneFormNameListProperty modelsnuone, TextBoxModelMethod textboxfilemodel,ShemeMethod shemedocument, CheckBoxModel checkBoxModel,string path, ListViewModelXmlFileGenerateMethod xmlmodel)
+        /// <param name="modelsnuone">Выбор модели Сериализации файла</param>
+        /// <param name="textboxfilemodel">Модель файла</param>
+        /// <param name="shemedocument">Модель схем</param>
+        /// <param name="checkBoxModel">Модель заголовка</param>
+        /// <param name="path">Путь сохранение xml</param>
+        /// <param name="xmlmodel">ListView для отражения xml</param>
+        public void  FormirovanieXml(ModelSnuOneFormNameListProperty modelsnuone, TextBoxModelMethod textboxfilemodel,ShemeMethod shemedocument, CheckBoxModel checkBoxModel,string path, ListViewModelXmlFileGenerateMethod xmlmodel)
         {
                     XmlConvert convert = new XmlConvert();
                     if (shemedocument.IsValidation())

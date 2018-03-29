@@ -13,7 +13,7 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Style/ResourceStyle.xaml" />
+                <ResourceDictionary Source="../../../Style/ResourceStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <convetrorImage:ConvertorImage x:Key="ConverteImage" />
         </ResourceDictionary>

@@ -11,7 +11,7 @@ using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 using System.Threading;
 using GalaSoft.MvvmLight.Threading;
 
-namespace LibaryCommandPublic.TestAutoit.SnuOneAuto.AutoCommand
+namespace LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
 {
    public class AutoCklicsAisCommand
     {

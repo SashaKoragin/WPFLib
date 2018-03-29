@@ -12,5 +12,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
        internal const string Enter = "{Enter}";
        internal const string CtrlV = "^v";
        internal const string CtrlA = "^A";
-   }
+       internal const string CtrlC = "^c";
+       internal const string Wheel = "up";
+    }
 }

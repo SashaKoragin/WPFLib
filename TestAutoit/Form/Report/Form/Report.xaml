@@ -1,0 +1,105 @@
+﻿<UserControl
+    x:Class="TestAutoit.Form.Report.Form.Report"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:convetrorImage="clr-namespace:ViewModelLib.Converter.ConvetrorImage;assembly=ViewModelLib"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:datacontext="clr-namespace:TestAutoit.Form.Report.DataContext"
+    xmlns:local="clr-namespace:TestAutoit.Form.Report.Form"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance {x:Type datacontext: DataContextReport}}"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Style/ResourceStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <convetrorImage:ConvertorImage x:Key="ConverteImage" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Column="1">
+            <StackPanel>
+                <WrapPanel>
+                    <Button
+                        Margin="5,5,5,5"
+                        Command="{Binding Update}"
+                        Content="Обновить список!!!" />
+                </WrapPanel>
+                <ListView
+                    Name="ListView1"
+                    Margin="5,5,5,5"
+                    ItemsSource="{Binding ReportJurnalOnInn.XmlReportJurnal}"
+                    SelectedItem="{Binding ReportJurnalOnInn.XmlFile}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Журналы автомата!!!">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <WrapPanel Tag="{Binding ElementName=ListView1, Path=DataContext}">
+                                            <Image
+                                                Width="16"
+                                                Height="16"
+                                                Source="{Binding Icon, Converter={StaticResource ConverteImage}}" />
+                                            <TextBlock HorizontalAlignment="Stretch" Text="{Binding Name}" />
+                                            <WrapPanel.ContextMenu>
+                                                <ContextMenu>
+                                                    <MenuItem Command="{Binding PlacementTarget.Tag.OpenFile, RelativeSource={RelativeSource AncestorType=ContextMenu}}" Header="Открыть файл!!!" />
+                                                </ContextMenu>
+                                            </WrapPanel.ContextMenu>
+                                        </WrapPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <ListView
+                    Name="ListView2"
+                    Margin="5,5,5,5"
+                    ItemsSource="{Binding Report.ReportXlsxel}"
+                    SelectedItem="{Binding Report.Xlsx}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Журналы автомата!!!">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <WrapPanel Tag="{Binding ElementName=ListView2, Path=DataContext}">
+                                            <Image
+                                                Width="16"
+                                                Height="16"
+                                                Source="{Binding Icon, Converter={StaticResource ConverteImage}}" />
+                                            <TextBlock HorizontalAlignment="Stretch" Text="{Binding Name}" />
+                                            <WrapPanel.ContextMenu>
+                                                <ContextMenu>
+                                                    <MenuItem Command="{Binding PlacementTarget.Tag.DeleteReport, RelativeSource={RelativeSource AncestorType=ContextMenu}}" Header="Удалить отчет!!!" />
+                                                    <MenuItem Command="{Binding PlacementTarget.Tag.OpenReport, RelativeSource={RelativeSource AncestorType=ContextMenu}}" Header="Открыть отчет!!!" />
+                                                </ContextMenu>
+                                            </WrapPanel.ContextMenu>
+                                        </WrapPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Содержание Xml Файлов:" />
+                <FlowDocumentReader
+                    Height="470"
+                    HorizontalAlignment="Stretch"
+                    Document="{Binding ReportJurnalOnInn.XmlFile.Document}" />
+            </StackPanel>
+        </WrapPanel>
+    </Grid>
+</UserControl>

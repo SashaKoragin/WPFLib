@@ -19,6 +19,11 @@
 			<xs:attribute name="Inn" type="xs:string"/>
 			<xs:attribute name="Error" type="xs:string"/>
 			<xs:attribute name="System" type="xs:string"/>
+			<xs:attribute name="DateTimeUse">
+				<xs:simpleType>
+					<xs:restriction base="xs:dateTime"/>
+				</xs:simpleType>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

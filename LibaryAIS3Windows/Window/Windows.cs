@@ -3,16 +3,20 @@ using System.Drawing;
 
 namespace LibaryAIS3Windows.Window
 {
+    /// <summary>
+    /// Класс констант текста АИС 3
+    /// </summary>
    public class Windows
    {
        /// <summary>
-       /// Переменная для второго параметра Text 
-       /// </summary>
-       internal static string Text = "";
-       /// <summary>
-       /// Константа символизирует окно АИС 3 Title
-       /// </summary>
-       internal static string AisNalog3 = "АИС Налог-3 ПРОМ ";
+        /// Переменная для второго параметра Text 
+        /// </summary>
+        internal static string Text = "";
+
+        /// <summary>
+        /// Константа символизирует окно АИС 3 Title
+        /// </summary>
+        internal static string AisNalog3 = "АИС Налог-3 ПРОМ ";
         /// <summary>
         /// Переменная для подготовки условия Пожалйста подождите
         /// </summary>

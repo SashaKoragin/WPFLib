@@ -100,6 +100,10 @@ namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.ListViewModelXml
                 }
             }
         }
+        /// <summary>
+        /// Метод переноса файла списка xml на отработку после формирования
+        /// </summary>
+        /// <param name="pathnew"></param>
         public void MoveFile(string pathnew)
         {
             if (System.IO.File.Exists(File.Path))

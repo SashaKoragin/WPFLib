@@ -1,22 +1,20 @@
 ﻿<UserControl
-    x:Class="TestAutoit.Form.Automat.WpfPage.FormSnuAuto"
+    x:Class="TestAutoit.Form.Automat.Okp4.WpfPage.FormSnuAuto"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:convetrorImage="clr-namespace:ViewModelLib.Converter.ConvetrorImage;assembly=ViewModelLib"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:datacontext="clr-namespace:TestAutoit.Form.Automat.DataContext"
-    xmlns:local="clr-namespace:TestAutoit.Form.Automat.WpfPage"
+    xmlns:datacontext="clr-namespace:TestAutoit.Form.Automat.Okp4.DataContext"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="{d:DesignInstance {x:Type datacontext:DataContextAutomat}}"
     d:DesignHeight="300"
-    d:DesignWidth="700"
-    TextElement.FontSize="14"
-    TextElement.FontWeight="Black"
+    d:DesignWidth="300"
     mc:Ignorable="d">
+
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../../FormSpisok/Style/ResourceStyle.xaml" />
+                <ResourceDictionary Source="../../../../Style/ResourceStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <convetrorImage:ConvertorImage x:Key="ConverteImage" />
         </ResourceDictionary>

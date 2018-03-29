@@ -39,10 +39,16 @@
             this.AutoOneSnu = new System.Windows.Forms.Integration.ElementHost();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.Forvirovanie = new System.Windows.Forms.Integration.ElementHost();
+            this.Registration = new System.Windows.Forms.TabPage();
+            this.registrationHost = new System.Windows.Forms.Integration.ElementHost();
+            this.Reports = new System.Windows.Forms.TabPage();
+            this.Report = new System.Windows.Forms.Integration.ElementHost();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SnuOnePage.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.Registration.SuspendLayout();
+            this.Reports.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -97,7 +103,9 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.SnuOnePage);
+            this.tabControl1.Controls.Add(this.Registration);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.Reports);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -158,6 +166,43 @@
             this.Forvirovanie.Text = "Forvirovanie";
             this.Forvirovanie.Child = null;
             // 
+            // Registration
+            // 
+            this.Registration.Controls.Add(this.registrationHost);
+            this.Registration.Location = new System.Drawing.Point(4, 22);
+            this.Registration.Name = "Registration";
+            this.Registration.Size = new System.Drawing.Size(1101, 496);
+            this.Registration.TabIndex = 3;
+            this.Registration.Text = "Уточнение сведений о ФЛ";
+            this.Registration.UseVisualStyleBackColor = true;
+            // 
+            // registrationHost
+            // 
+            this.registrationHost.Location = new System.Drawing.Point(3, 3);
+            this.registrationHost.Name = "registrationHost";
+            this.registrationHost.Size = new System.Drawing.Size(1095, 490);
+            this.registrationHost.TabIndex = 0;
+            this.registrationHost.Child = null;
+            // 
+            // Reports
+            // 
+            this.Reports.Controls.Add(this.Report);
+            this.Reports.Location = new System.Drawing.Point(4, 22);
+            this.Reports.Name = "Reports";
+            this.Reports.Size = new System.Drawing.Size(1101, 496);
+            this.Reports.TabIndex = 4;
+            this.Reports.Text = "Отчеты";
+            this.Reports.UseVisualStyleBackColor = true;
+            // 
+            // Report
+            // 
+            this.Report.Location = new System.Drawing.Point(3, 3);
+            this.Report.Name = "Report";
+            this.Report.Size = new System.Drawing.Size(1095, 490);
+            this.Report.TabIndex = 0;
+            this.Report.Text = "elementHost1";
+            this.Report.Child = null;
+            // 
             // AutoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -172,6 +217,8 @@
             this.tabPage1.PerformLayout();
             this.SnuOnePage.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.Registration.ResumeLayout(false);
+            this.Reports.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -189,6 +236,10 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Integration.ElementHost Forvirovanie;
         private System.Windows.Forms.Integration.ElementHost AutoOneSnu;
+        private System.Windows.Forms.TabPage Registration;
+        internal System.Windows.Forms.Integration.ElementHost registrationHost;
+        private System.Windows.Forms.TabPage Reports;
+        private System.Windows.Forms.Integration.ElementHost Report;
     }
 }
 

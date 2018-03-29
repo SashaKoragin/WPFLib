@@ -51,6 +51,10 @@ namespace LibaryXMLAutoModelXmlAuto.ModelJurnal {
         
         private string messageField;
         
+        private System.DateTime dateTimeUseField;
+        
+        private bool dateTimeUseFieldSpecified;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Inn {
@@ -70,6 +74,28 @@ namespace LibaryXMLAutoModelXmlAuto.ModelJurnal {
             }
             set {
                 this.messageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime DateTimeUse {
+            get {
+                return this.dateTimeUseField;
+            }
+            set {
+                this.dateTimeUseField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DateTimeUseSpecified {
+            get {
+                return this.dateTimeUseFieldSpecified;
+            }
+            set {
+                this.dateTimeUseFieldSpecified = value;
             }
         }
     }

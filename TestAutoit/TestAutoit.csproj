@@ -119,20 +119,27 @@
     <Compile Include="Form\AutoForm.Designer.cs">
       <DependentUpon>AutoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\Automat\DataContext\DataContextAutomat.cs" />
-    <Compile Include="Form\Automat\WpfPage\FormSnuAuto.xaml.cs">
+    <Compile Include="Form\Automat\Okp4\DataContext\DataContextAutomat.cs" />
+    <Compile Include="Form\Automat\Okp4\WpfPage\FormSnuAuto.xaml.cs">
       <DependentUpon>FormSnuAuto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Reg\DataContext\DataContextReg.cs" />
+    <Compile Include="Form\Automat\Reg\WpfPage\YtochnenieSved.xaml.cs">
+      <DependentUpon>YtochnenieSved.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\FormSpisok\Datacontext\DataContextDate.cs" />
     <Compile Include="Form\FormSpisok\FormirovanieXml\SnuOneForm.xaml.cs">
       <DependentUpon>SnuOneForm.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Form\FormSpisok\FormirovanieXml\TestExample.xaml.cs">
       <DependentUpon>TestExample.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\FormSpisok\WpfForm\FormSpisok.xaml.cs">
       <DependentUpon>FormSpisok.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Report\DataContext\DataContextReport.cs" />
+    <Compile Include="Form\Report\Form\Report.xaml.cs">
+      <DependentUpon>Report.xaml</DependentUpon>
     </Compile>
     <Compile Include="Lk\LkYesAndNo.cs" />
     <Compile Include="Parse\ParseFl.cs" />
@@ -196,7 +203,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Form\Automat\WpfPage\FormSnuAuto.xaml">
+    <Page Include="Form\Automat\Okp4\WpfPage\FormSnuAuto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Reg\WpfPage\YtochnenieSved.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,7 +219,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Form\FormSpisok\Style\ResourceStyle.xaml">
+    <Page Include="Form\Report\Form\Report.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\ResourceStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +235,7 @@
   <ItemGroup>
     <Folder Include="ExcelReport\" />
     <Folder Include="FormXml\" />
+    <Folder Include="Form\GlavnayPage\" />
     <Folder Include="XmlJurnal\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
