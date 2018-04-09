@@ -6,11 +6,15 @@ namespace LibaryAIS3Windows.Window
     /// <summary>
     /// Класс констант текста АИС 3
     /// </summary>
-   public class Windows
-   {
-       /// <summary>
-        /// Переменная для второго параметра Text 
+   public class WindowsAis3
+    {
+        /// <summary>
+        /// Для наведения фокуса на Аиз 3
         /// </summary>
+        internal static string GridWinAis3 = "[NAME:gridData]";
+       /// <summary>
+       /// Переменная для второго параметра Text 
+       /// </summary>
         internal static string Text = "";
 
         /// <summary>

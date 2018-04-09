@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Windows.Media;
+using AutomatAis3Full.Config;
+using LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand;
+using LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand;
+using Prism.Commands;
+using ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml;
+using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
+using ViewModelLib.ModelTestAutoit.PublicModel.QbeSelect;
+
+namespace AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.DataContext
+{
+    public class DataContextZemly
+    {
+        public XmlUseMethod Xml1 { get; }
+        public ICommand Update { get; }
+        public DelegateCommand<object> SelectAddC { get; }
+        public DelegateCommand<object> RemoveAddC { get; }
+        public DelegateCommand<object> SelectAddF { get; }
+        public DelegateCommand<object> RemoveAddF { get; }
+        public StatusButtonMethod StartButton2 { get; }
+        public ICommand Green { get; }
+        public ICommand Yellow { get; }
+        public QbeClassMethod QbeStatus { get; }
+        public DataContextZemly()
+        {
+            QbeStatus = new QbeClassMethod();
+            var commandauto = new LibaryCommandPublic.TestAutoit.Reg.TreatmentFPD.Zemly.Zemly();
+            StartButton2 = new StatusButtonMethod();
+            Xml1 = new XmlUseMethod();
+            StartButton2.Button.Command = new DelegateCommand(() => { commandauto.ZemlyAuto(QbeStatus,StartButton2,ConfigFile.FileFpd, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
+            Yellow = new DelegateCommand(() => { Yellows(StartButton2); });
+            Green = new DelegateCommand(() => { Greens(StartButton2); });
+            Update = new DelegateCommand(() => { Xml1.UpdateFileXml(ConfigFile.FileFpd); });
+            SelectAddC = new DelegateCommand<object>(param=> {QbeStatus.SelectStatusAddC(param);});
+            RemoveAddC = new DelegateCommand<object>(param=> {QbeStatus.DeleteStatusAddC(param);});
+            SelectAddF = new DelegateCommand<object>(param => { QbeStatus.SelectStatusAddF(param);});
+            RemoveAddF = new DelegateCommand<object>(param => { QbeStatus.DeleteStatusAddF(param); });
+        }
+
+        public void Yellows(StatusButtonMethod status)
+        {
+            status.StatusYellow();
+        }
+
+        public void Greens(StatusButtonMethod status)
+        {
+            status.StatusGrin();
+        }
+    }
+}

@@ -26,7 +26,7 @@ namespace LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand
         {
             var dialog = new PublicLogicaFull.FileLogica.DialogWindowSelect.DialogFileSelect();
             var file = dialog.OpenFileDialog();
-            if (file.Exists)
+            if (file!=null)
             {
                 modelTextBox.NewFileXsls(file);
                 modelSnuOne.AddParseXsls(file);
@@ -44,33 +44,72 @@ namespace LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand
         public void  FormirovanieXml(ModelSnuOneFormNameListProperty modelsnuone, TextBoxModelMethod textboxfilemodel,ShemeMethod shemedocument, CheckBoxModel checkBoxModel,string path, ListViewModelXmlFileGenerateMethod xmlmodel)
         {
                     XmlConvert convert = new XmlConvert();
-                    if (shemedocument.IsValidation())
-                    {
-                        switch (shemedocument.Shema.Shemes)
+            if (shemedocument.IsValidation())
+            {
+                switch (shemedocument.Shema.Shemes)
+                {
+                    case "SnuOneForm":
+                        if (textboxfilemodel.IsValidation() && modelsnuone.IsValidation())
                         {
-                            case "SnuOneForm":
-                                if (textboxfilemodel.IsValidation() && modelsnuone.IsValidation())
+                            xmlmodel.UpdateOn();
+                            Task.Run((delegate
+                            {
+                                try
                                 {
-                                  xmlmodel.UpdateOn();
-                                    Task.Run((delegate
-                                       {
-                                        try
-                                           {
-                                             convert.ConvertListSnuOneForm(textboxfilemodel.Path,
-                                             modelsnuone.SelectList.Listletter,
-                                             modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.IsCheced, path);
-                                             xmlmodel.AddXmlFile(path);
-                                             xmlmodel.UpdateOff();
-                                           }
-                                        catch (Exception e)
-                                           {
-                                             MessageBox.Show(e.Message);
-                                           }
-                                        }));
+                                    convert.ConvertListSnuOneForm(textboxfilemodel.Path,
+                                        modelsnuone.SelectList.Listletter,
+                                        modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.IsCheced, path);
+                                    xmlmodel.AddXmlFile(path);
+                                    xmlmodel.UpdateOff();
                                 }
-                                break;
+                                catch (Exception e)
+                                {
+                                    MessageBox.Show(e.Message);
+                                }
+                            }));
                         }
-                    }
+                        break;
+                    case "TreatmentFpd":
+                        if (textboxfilemodel.IsValidation() && modelsnuone.IsValidation() && checkBoxModel.IsValidation())
+                        {
+                            xmlmodel.UpdateOn();
+                            Task.Run((delegate
+                            {
+                                try
+                                {
+                                    convert.ConvertListFpdReg(textboxfilemodel.Path, modelsnuone.SelectList.Listletter,
+                                        modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.SelectIntRow, path);
+                                    xmlmodel.AddXmlFile(path);
+                                    xmlmodel.UpdateOff();
+                                }
+                                catch (Exception e)
+                                {
+                                    MessageBox.Show(e.Message);
+                                }
+                            }));
+                        }
+                        break;
+                    case "FullInnCount":
+                        if (textboxfilemodel.IsValidation() && modelsnuone.IsValidation() &&checkBoxModel.IsValidation())
+                        {
+                            xmlmodel.UpdateOn();
+                            Task.Run((delegate
+                            {
+                                try
+                                {
+                                    convert.ConvertInnMassList(textboxfilemodel.Path, modelsnuone.SelectList.Listletter, modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.SelectIntRow,checkBoxModel.Colelementcollection, path);
+                                    xmlmodel.AddXmlFile(path);
+                                    xmlmodel.UpdateOff();
+                                }
+                                catch (Exception e)
+                                {
+                                    MessageBox.Show(e.Message);
+                                }
+                            }));
+                        }
+                        break;
+                }
+            }
         }
     }
 }

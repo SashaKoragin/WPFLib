@@ -25,6 +25,7 @@ namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.ShemeXsd
 
         private UserControl _control;
         private string _shemes;
+        private string _nameshemes;
         private FlowDocument _document;
         private ShemeProperty _shema;
 
@@ -63,6 +64,19 @@ namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.ShemeXsd
                 RaisePropertyChanged();
             }
         }
+        /// <summary>
+        /// Имя схемы для UI пользователя
+        /// </summary>
+        public string Nameshemes
+        {
+            get { return _nameshemes; }
+            set
+            {
+                _nameshemes = value;
+                RaisePropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Документ образца
         /// </summary>
@@ -130,8 +144,9 @@ namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.ShemeXsd
         /// <param name="usercontrolmass">Массив UserControl для добавления</param>
         public void AddShemeUse(UserControl[] usercontrolmass)
         {
-            Shemefulllist.Add(new ShemeProperty() { Document = AddDocument.DocumentSnuOneForm(ExampleXaml.SnuOneForm), Shemes = "SnuOneForm", UserContr = usercontrolmass[0] });
-            Shemefulllist.Add(new ShemeProperty() { Document = AddDocument.DocumentSnuOneForm("sdsddsadsadsa"), Shemes = "Новый список", UserContr = usercontrolmass[1] });
+            Shemefulllist.Add(new ShemeProperty() { Document = AddDocument.DocumentSnuOneForm(ExampleXaml.SnuOneForm), Nameshemes = "Формирование СНУ", Shemes = "SnuOneForm", UserContr = usercontrolmass[0] });
+            Shemefulllist.Add(new ShemeProperty() {Document = AddDocument.DocumentSnuOneForm(ExampleXaml.TreatmentFpd), Nameshemes = "Обработка ФПД", Shemes = "TreatmentFpd", UserContr = usercontrolmass[1]});
+            Shemefulllist.Add(new ShemeProperty() { Document = AddDocument.DocumentSnuOneForm(ExampleXaml.CollectionInn), Nameshemes = "Формирование СНУ Массово", Shemes = "FullInnCount", UserContr = usercontrolmass[2] });
         }
     }
 }

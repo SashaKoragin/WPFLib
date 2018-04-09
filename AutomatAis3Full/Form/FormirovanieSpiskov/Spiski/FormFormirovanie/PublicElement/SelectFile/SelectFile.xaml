@@ -1,0 +1,39 @@
+﻿<UserControl
+    x:Class="AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie.PublicElement.SelectFile.SelectFile"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:datacontext="clr-namespace:AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.DataContext"
+    xmlns:local="clr-namespace:AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie.PublicElement.SelectFile"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance {x:Type datacontext:DataContextSpisok}}"
+    d:DesignHeight="300"
+    d:DesignWidth="500"
+    mc:Ignorable="d">
+    <WrapPanel>
+        <Label Margin="5,5,0,5" Content="Выбранный файл: " />
+        <TextBox
+            Margin="5,5,5,5"
+            HorizontalContentAlignment="Stretch"
+            VerticalContentAlignment="Stretch">
+            <TextBox.Template>
+                <ControlTemplate>
+                    <WrapPanel Background="Transparent">
+                        <Image
+                            Width="16"
+                            Height="16"
+                            Source="{Binding TextBoxFileModel.Icon, Converter={StaticResource ConverteImage}}" />
+                        <TextBox
+                            MinWidth="50"
+                            IsReadOnly="True"
+                            Text="{Binding TextBoxFileModel.Name, ValidatesOnDataErrors=True}"
+                            ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                            Validation.ErrorTemplate="{StaticResource ValidationFailederror}" />
+
+                    </WrapPanel>
+                </ControlTemplate>
+            </TextBox.Template>
+        </TextBox>
+        <Button Command="{Binding SelectFile}" Content="Выбрать файл XLSX (Excel)" />
+    </WrapPanel>
+</UserControl>

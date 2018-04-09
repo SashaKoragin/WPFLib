@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using PublicLogicaFull.FileLogica.FileInfoLogica;
 using System.Windows.Documents;
 using Prism.Mvvm;
@@ -132,11 +133,15 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ReportXml
             }
         }
 
-
-
         public void OpenFile(string fullpath)
         {
             PublicLogicaFull.FileLogica.OpenFile.OpenFile.Openxls(fullpath);
+        }
+
+        public void DeleteXmlReportJurnal()
+        {
+            File.Delete(XmlFile.Path);
+            XmlReportJurnal.Remove(XmlReportJurnal.Single(fullpath => fullpath.Path == XmlFile.Path));
         }
     }
 }

@@ -1,0 +1,37 @@
+﻿<UserControl
+    x:Class="AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormirovanieXml.CountCollection.ColElement"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:datacontext="clr-namespace:AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.DataContext"
+    xmlns:local="clr-namespace:AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormirovanieXml.CountCollection"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance {x:Type datacontext:DataContextSpisok}}"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <StackPanel>
+        <WrapPanel Margin="5,5,5,5">
+            <Label Content="Выбор строки с какой начинать!!!" />
+            <ComboBox
+                HorizontalAlignment="Left"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                ItemsSource="{Binding CheckBoxModel.NumRow}"
+                SelectedItem="{Binding CheckBoxModel.SelectIntRow, ValidatesOnDataErrors=True}"
+                ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                Validation.ErrorTemplate="{StaticResource ValidationFailederror}" />
+        </WrapPanel>
+        <WrapPanel>
+            <Label Content="Ввидите колличество значений в списке:" />
+            <TextBox
+                Width="20"
+                FontSize="14"
+                FontWeight="Black"
+                MaxLength="2"
+                Text="{Binding CheckBoxModel.Colelementcollection, ValidatesOnDataErrors=True}"
+                ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                Validation.ErrorTemplate="{StaticResource ValidationFailederror}" />
+        </WrapPanel>
+    </StackPanel>
+</UserControl>

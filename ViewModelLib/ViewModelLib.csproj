@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\ConvetrorImage\ConvertorImage.cs" />
+    <Compile Include="ModelTestAutoit\FullWindowAutoIt\FullWindowAutoIt.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\CheckBoxModel\CheckBoxModel.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\ListViewModelXml\ListViewModelXmlFileGenerateProperty.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\ShemeXsd\ShemeProperty.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="ModelTestAutoit\ModelFormirovanie\TextBoxModel\TextBoxModelProperty.cs" />
     <Compile Include="ModelTestAutoit\ModelSnuOneAuto\DataXml\XmlUseProperty.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ButtonStartAutomat\StartOnStopProperty.cs" />
+    <Compile Include="ModelTestAutoit\PublicModel\QbeSelect\QbeClass.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ReportXlsx\ReportXlsx.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ReportXml\ReportJurnalProperty.cs" />
     <Compile Include="Properties\Annotations.cs" />

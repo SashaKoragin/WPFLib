@@ -21,5 +21,15 @@ namespace LibaryXMLAuto.GenerateAtribyte
             return String.Format("/SnuOneForm/INN[@INN =\"{0}\"]",inn);
         }
 
+        /// <summary>
+        /// Данный клас генерит Атрибут для поиска в xml для схемы SnuOneForm.xsd
+        /// </summary>
+        /// <param name="fpd">ИНН</param>
+        /// <returns>Сгенерированую строку для поиска Атрибута</returns>
+        public static string GenerateAtributeFpd(string fpd)
+        {
+            return String.Format("/TreatmentFPD/Fpd[@FpdId =\"{0}\"]", fpd);
+        }
+
     }
 }

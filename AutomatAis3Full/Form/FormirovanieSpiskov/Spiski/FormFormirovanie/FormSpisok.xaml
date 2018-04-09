@@ -1,0 +1,117 @@
+﻿<UserControl
+    x:Class="AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie.FormSpisok"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:datacontext="clr-namespace:AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.DataContext"
+    xmlns:local="clr-namespace:AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance {x:Type datacontext:DataContextSpisok}}"
+    d:DesignHeight="600"
+    d:DesignWidth="600"
+    mc:Ignorable="d">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="100*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="100*" />
+        </Grid.RowDefinitions>
+        <DockPanel
+            Grid.Row="0"
+            Grid.RowSpan="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="20,5,5,5">
+            <WrapPanel DockPanel.Dock="Top">
+                <Label Content="Выбор схемы!!!" />
+                <ComboBox
+                    MinWidth="100"
+                    Margin="5,5,5,5"
+                    ItemsSource="{Binding ShemeDocument.ShemeFullDocument}"
+                    SelectedItem="{Binding ShemeDocument.Shema, ValidatesOnDataErrors=True}"
+                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                    Validation.ErrorTemplate="{StaticResource ValidationFailederror}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Nameshemes}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </WrapPanel>
+            <FlowDocumentReader
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                DockPanel.Dock="Bottom"
+                Document="{Binding ShemeDocument.Shema.Document}"
+                FontSize="10"
+                FontWeight="Black" />
+        </DockPanel>
+        <UserControl
+            Grid.Row="0"
+            Grid.Column="2"
+            Content="{Binding SelectFileControl}" />
+        <UserControl
+            Grid.Row="1"
+            Grid.Column="2"
+            Content="{Binding ShemeDocument.Shema.UserContr}" />
+        <UserControl
+            Grid.Row="2"
+            Grid.Column="2"
+            Content="{Binding SelectListControl}" />
+        <WrapPanel
+            Grid.Row="3"
+            Grid.Column="2"
+            Margin="5,5,5,5"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center">
+            <Button
+                Margin="5,5,5,5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Command="{Binding FormirovanieXml}"
+                Content="Сформировать список" />
+            <ListView
+                x:Name="ListView"
+                Margin="5,5,5,5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                ItemsSource="{Binding XmlFile.XmlFiles}"
+                SelectedItem="{Binding XmlFile.File}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Сформированые списки">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel
+                                        HorizontalAlignment="Stretch"
+                                        Orientation="Horizontal"
+                                        Tag="{Binding ElementName=ListView, Path=DataContext}">
+                                        <Image
+                                            Width="16"
+                                            Height="16"
+                                            Source="{Binding Icon, Converter={StaticResource ConverteImage}}" />
+                                        <TextBlock HorizontalAlignment="Stretch" Text="{Binding Name}" />
+                                        <StackPanel.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Command="{Binding PlacementTarget.Tag.Transfer, RelativeSource={RelativeSource AncestorType=ContextMenu}}" Header="Перенести на отработку!!!" />
+                                            </ContextMenu>
+                                        </StackPanel.ContextMenu>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </WrapPanel>
+    </Grid>
+</UserControl>

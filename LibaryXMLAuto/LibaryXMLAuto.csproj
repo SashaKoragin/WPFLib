@@ -45,6 +45,12 @@
   <ItemGroup>
     <Compile Include="Converts\ConvertXmlToXslx\ConvertXmltoXlsx.cs" />
     <Compile Include="Converts\ConvettToXml\XmlConvert.cs" />
+    <Compile Include="ModelXmlAuto\ListInnSheme\FullInnCount.cs">
+      <DependentUpon>FullInnCount.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ModelXmlAuto\ModelFpdId\FpdReg.cs">
+      <DependentUpon>FpdReg.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ReadOrWrite\CreateElement\CreteElement.cs" />
     <Compile Include="ErrorJurnal\ErrorJurnal.cs" />
     <Compile Include="ErrorJurnal\OkJurnal.cs" />
@@ -64,6 +70,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="ModelXmlAuto\ListInnSheme\FullInnCount.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ModelXmlAuto\ModelFpdId\FpdReg.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ModelXmlAuto\ModelJurnal\ErrorJurnal.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -87,6 +99,8 @@
     <ItemGroup>
       <XsdFiles Include="ModelXmlAuto\ModelSnuOne\*.xsd" />
       <XsdFiless Include="ModelXmlAuto\ModelJurnal\*.xsd" />
+      <XsdFilesFpd Include="ModelXmlAuto\ModelFpdId\*.xsd" />
+      <XsdFilessListInn Include="ModelXmlAuto\ListInnSheme\*.xsd" />
     </ItemGroup>
     <Message Importance="high" Text="CreateXsd" />
     <GetFrameworkSdkPath>
@@ -98,5 +112,7 @@
     <Message Importance="high" Text="Processing XSD schemas" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFiles.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.ModelSnuOne /outputdir:ModelXmlAuto\ModelSnuOne" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFiless.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.ModelJurnal /outputdir:ModelXmlAuto\ModelJurnal" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFilesFpd.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.FpdReg /outputdir:ModelXmlAuto\ModelFpdId" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFilessListInn.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.FullInnCount /outputdir:ModelXmlAuto\ListInnSheme" />
   </Target>
 </Project>

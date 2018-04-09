@@ -5,6 +5,11 @@ namespace PublicLogicaFull.DocumentLogica.FlowDocumentExample.ExamleFlowDocument
 {
    public class AddDocument
     {
+        /// <summary>
+        /// Образец по форме ИНН
+        /// </summary>
+        /// <param name="example">XMl в виде строки</param>
+        /// <returns>FlowDocument - форматированый документ</returns>
         public static FlowDocument DocumentSnuOneForm(string example)
         {
             var document = new FlowDocument();

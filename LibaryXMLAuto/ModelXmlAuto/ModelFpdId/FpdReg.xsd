@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Fpd">
+		<xs:annotation>
+			<xs:documentation>Уникальный номер ФПД</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="FpdId"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TreatmentFPD">
+		<xs:annotation>
+			<xs:documentation>Глобальный элемент обработка ФПД</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Fpd" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

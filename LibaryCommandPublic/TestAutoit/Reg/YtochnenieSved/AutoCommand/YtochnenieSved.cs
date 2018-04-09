@@ -22,12 +22,12 @@ namespace LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                 KclicerButton clickerButton = new KclicerButton();
-                LibaryAIS3Windows.Window.Windows ais3 = new LibaryAIS3Windows.Window.Windows();
+                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
                     while (statusButton.Iswork)
                     {
-                        clickerButton.Click2(pathjurnalerror,pathjurnalok);
+                        clickerButton.Click2(pathjurnalerror, pathjurnalok);
                     }
                     DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusYellow);
                 }

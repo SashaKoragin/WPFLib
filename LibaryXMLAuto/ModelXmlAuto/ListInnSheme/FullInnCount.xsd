@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:altova="http://www.altova.com/xml-schema-extensions" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:simpleType name="Listinginn">
+		<xs:annotation>
+			<xs:documentation>Список ИНН</xs:documentation>
+		</xs:annotation>
+		<xs:list itemType="xs:string"/>
+	</xs:simpleType>
+	<xs:element name="MyInnn" type="Listinginn">
+		<xs:annotation>
+			<xs:documentation>Коллекция ИНН</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ListInn">
+		<xs:annotation>
+			<xs:documentation>Списки ИНН</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MyInnn"/>
+			</xs:sequence>
+			<xs:attribute name="NumColection" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Номер колекции ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CountInn" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Количество в списке ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="INNList">
+		<xs:annotation>
+			<xs:documentation>Список ИНН List для массовой печати</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ListInn" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

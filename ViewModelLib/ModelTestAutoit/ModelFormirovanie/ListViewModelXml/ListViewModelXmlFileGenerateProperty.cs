@@ -13,7 +13,7 @@ namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.ListViewModelXml
     /// </summary>
    public class ListViewModelXmlFileGenerateProperty : BindableBase
     {
-        public ObservableCollection<ListViewModelXmlFileGenerateProperty> _xmlfile= new ObservableCollection<ListViewModelXmlFileGenerateProperty>();
+        private ObservableCollection<ListViewModelXmlFileGenerateProperty> _xmlfile = new ObservableCollection<ListViewModelXmlFileGenerateProperty>();
 
         public ObservableCollection<ListViewModelXmlFileGenerateProperty> XmlFiles
         {
@@ -66,7 +66,7 @@ namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.ListViewModelXml
         /// <summary>
         /// Объект блокировки
         /// </summary>
-        public object _lock = new object();
+        public object Lock = new object();
         /// <summary>
         /// Запретить обновление из потока Патерн MVVM
         /// </summary>
@@ -79,7 +79,7 @@ namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.ListViewModelXml
         /// </summary>
         public void UpdateOn()
         {
-            BindingOperations.EnableCollectionSynchronization(XmlFiles, _lock);
+            BindingOperations.EnableCollectionSynchronization(XmlFiles, Lock);
         }
 
         /// <summary>
@@ -89,28 +89,26 @@ namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.ListViewModelXml
         public void AddXmlFile(string path)
         {
             XmlFiles.Clear();
-            lock (_lock)
+            lock (Lock)
             {
-                if (Directory.Exists(path))
-                {
+                    Directory.CreateDirectory(path);
                     foreach (var file in FileLogica.FileinfoMass(path))
                     {
                        XmlFiles.Add(new ListViewModelXmlFileGenerateProperty { Icon = FileLogica.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName });
                     }
-                }
             }
         }
         /// <summary>
         /// Метод переноса файла списка xml на отработку после формирования
         /// </summary>
-        /// <param name="pathnew"></param>
+        /// <param name="pathnew">Путь к сформированым спискам </param>
         public void MoveFile(string pathnew)
         {
             if (System.IO.File.Exists(File.Path))
             {
-                System.IO.File.Delete(pathnew);
+                System.IO.File.Delete(pathnew+File.Name);
             }
-            System.IO.File.Move(File.Path, pathnew);
+            System.IO.File.Move(File.Path, pathnew + File.Name);
             XmlFiles.Remove(XmlFiles.Single(name => name.Path == File.Path));
         }
     }

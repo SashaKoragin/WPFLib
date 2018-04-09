@@ -10,10 +10,15 @@ using Prism.Mvvm;
 namespace ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat
 {
    public class StartOnStopProperty : BindableBase
-    {
+   {
+
+
         private int _count;
         private bool _iswork;
         private Button _button = new Button();
+
+        public bool IsChekcs { get; set; }
+
         public Button Button
         {
             get { return _button; }
@@ -110,6 +115,14 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat
                 StatusGrin();
             else
                 StatusYellow();
+        }
+
+        public void IsCheker()
+        {
+            if (IsChekcs)
+            {
+                IsChekcs = false;
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Security.AccessControl;
-using ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml;
+﻿using ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXlsx;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXml;
 

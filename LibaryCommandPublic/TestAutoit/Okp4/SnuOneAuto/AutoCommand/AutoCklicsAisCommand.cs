@@ -30,7 +30,7 @@ namespace LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
                     DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                     KclicerButton clickerButton = new KclicerButton();
                     Exit exit = new Exit();
-                    LibaryAIS3Windows.Window.Windows ais3 = new LibaryAIS3Windows.Window.Windows();
+                    LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
                     LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite read = new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
                     object obj = read.ReadXml(pathfileinn, typeof(SnuOneForm));
                     SnuOneForm snumodel = (SnuOneForm)obj;

@@ -28,6 +28,7 @@ namespace Lotuslib.Seath.SeathZg
         {
             try
             {
+
                 shemezg.ShemeDbZg.Clear();
                 shemezg.UpdateOn();
                 Task.Run(() =>
@@ -36,30 +37,45 @@ namespace Lotuslib.Seath.SeathZg
                     ConectionString.ConectionString.ServerLocal, databasepath, false);
                     var col = db.Search(formula, null, 0);
                     var docum = col.GetFirstDocument();
+                    var i = 1;
+                    var workbook1 = new XLWorkbook();
+                    var worksheet1 = workbook1.Worksheets.Add("Отчет Lotus");
                     while (docum != null)
                     {
                     var docum1 = docum;
-                        Task.Run(async () =>
-                        {
-                            await Task.Run(() =>
-                            {
-                                lock (shemezg._lock)
-                                    shemezg.ShemeDbZg.Add(new ModelZg
-                                    {
-                                        StatusZg = docum1.GetItemValue(LotusItem.DbZgItem.StatusZg)[0],
-                                        Num = docum1.GetItemValue(LotusItem.DbZgItem.NumZg)[0],
-                                        Datareg = docum1.GetItemValue(LotusItem.DbZgItem.DataregZg)[0],
-                                        DepartamentZg = docum1.GetItemValue(LotusItem.DbZgItem.DepartamentZg)[0],
-                                        Incardrespoutnum = docum1.GetItemValue(LotusItem.DbZgItem.InCardRespOutNum)[0],
-                                        Incardrespdi =Convert.ToString(docum1.GetItemValue(LotusItem.DbZgItem.InCardRespDi)[0]),
-                                        Extofiledate =Convert.ToString(docum1.GetItemValue(LotusItem.DbZgItem.ExToFileDate)[0]),
-                                        NameFio = docum1.GetItemValue(LotusItem.DbZgItem.NamePerson)[0]
-                                    });
-                            });
-                        });
+                        //Task.Run(async () =>
+                        //{
+                        //    await Task.Run(() =>
+                        //    {
+                                var a = docum1.GetItemValue(LotusItem.DbZgItem.NamePerson)[0].ToString();
+                                var a1 = docum1.GetItemValue(LotusItem.DbZgItem.NumZg)[0].ToString();
+                                var a2 = docum1.GetItemValue(LotusItem.DbZgItem.StatusZg)[0].ToString();
+                                var a3 = docum1.GetItemValue(LotusItem.DbZgItem.DataregZg)[0].ToString();
+                                var a4 = docum1.GetItemValue(LotusItem.DbZgItem.InCardRespOutNum)[0].ToString();
+                                worksheet1.Cell($"A{i}").Value = a;
+                                worksheet1.Cell($"B{i}").Value = a1;
+                                worksheet1.Cell($"C{i}").Value = a2;
+                                worksheet1.Cell($"D{i}").Value = a3;
+                                worksheet1.Cell($"E{i}").Value = a4;
+                                i++;
+                                //lock (shemezg._lock)
+                                //shemezg.ShemeDbZg.Add(new ModelZg
+                                //{
+                                //    StatusZg = docum1.GetItemValue(LotusItem.DbZgItem.StatusZg)[0],
+                                //    Num = docum1.GetItemValue(LotusItem.DbZgItem.NumZg)[0],
+                                //    Datareg = docum1.GetItemValue(LotusItem.DbZgItem.DataregZg)[0],
+                                //    DepartamentZg = docum1.GetItemValue(LotusItem.DbZgItem.DepartamentZg)[0],
+                                //    Incardrespoutnum = docum1.GetItemValue(LotusItem.DbZgItem.InCardRespOutNum)[0],
+                                //    Incardrespdi =Convert.ToString(docum1.GetItemValue(LotusItem.DbZgItem.InCardRespDi)[0]),
+                                //    Extofiledate =Convert.ToString(docum1.GetItemValue(LotusItem.DbZgItem.ExToFileDate)[0]),
+                                //    NameFio = docum1.GetItemValue(LotusItem.DbZgItem.NamePerson)[0]
+                                //});
+                        //    });
+                        //});
                         docum = col.GetNextDocument(docum1);
                     }
-                    ExportToExcel(shemezg);
+                    workbook1.SaveAs("C:\\Отчет.xlsx");
+                    // ExportToExcel(shemezg);
                     shemezg.UpdateOff();
                     
                 });
