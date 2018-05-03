@@ -8,7 +8,7 @@ using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormirovanieXml;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormirovanieXml.CountCollection;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormirovanieXml.DeleteTitle;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormirovanieXml.RowSelect;
-using LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand;
+using LibaryCommandPublic.TestAutoit.PublicCommand;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.ModelFormirovanie.CheckBoxModel;
 using ViewModelLib.ModelTestAutoit.ModelFormirovanie.ListViewModelXml;
@@ -22,7 +22,7 @@ namespace AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.DataContext
    {
        public UserControl[] TestUserControl =
        {
-           new DeleteTitle(), new RowSelect(), new ColElement() 
+           new DeleteTitle(), new RowSelect(), new ColElement()
        };
 
         public TextBoxModelMethod TextBoxFileModel { get; }

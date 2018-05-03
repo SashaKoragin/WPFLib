@@ -12,6 +12,7 @@ using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 using LibaryAIS3Windows.Window;
 using LibaryCommandPublic.EventQbe.Reg;
 using ViewModelLib.ModelTestAutoit.PublicModel.QbeSelect;
+using ViewModelLib.ModelTestAutoit.PublicModel.SelectBranch;
 
 namespace LibaryCommandPublic.TestAutoit.Reg.TreatmentFPD.Zemly
 {
@@ -23,66 +24,74 @@ namespace LibaryCommandPublic.TestAutoit.Reg.TreatmentFPD.Zemly
         /// Можно пропустить и другие ветки логика меняется только в  Click3
         /// </summary>
         /// <param name="qbeselect">Значения ФПД </param>
+        /// <param name="branch">Ветка для обработки режима</param>
         /// <param name="statusButton">Модель кнопки </param>
         /// <param name="pathjurnalerror">Журнал ошибок</param>
         /// <param name="pathjurnalok">Журнал ОК</param>
         /// <param name="pathfilefpd">Значения ФПД </param>
-        public void ZemlyAuto(QbeClass qbeselect,StatusButtonMethod statusButton,string pathfilefpd, string pathjurnalerror, string pathjurnalok)
+        public void ZemlyAuto(QbeClass qbeselect, Branch branch,StatusButtonMethod statusButton,string pathfilefpd, string pathjurnalerror, string pathjurnalok)
         {
             DispatcherHelper.Initialize();
             if (File.Exists(pathfilefpd))
             {
-                Task.Run(delegate
+                if (branch.IsValidation())
                 {
-                    try
+                    Task.Run(delegate
                     {
-                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
-                    KclicerButton clickerButton = new KclicerButton();
-                    SelectEventQbe selectQbe = new SelectEventQbe();
-                    SelectQbe qbeselectmethod = new SelectQbe();
-                    Exit exit = new Exit();
-                    WindowsAis3 ais = new WindowsAis3();
-                    LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite read = new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
-                    object obj = read.ReadXml(pathfilefpd, typeof(LibaryXMLAutoModelXmlAuto.FpdReg.TreatmentFPD));
-                    LibaryXMLAutoModelXmlAuto.FpdReg.TreatmentFPD fpdmodel = (LibaryXMLAutoModelXmlAuto.FpdReg.TreatmentFPD)obj;
-                    if (ais.WinexistsAis3() == 1)
-                    {
-                        foreach (var fpd in fpdmodel.Fpd)
+                        try
                         {
-                            if (statusButton.Iswork)
+                            DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                            KclicerButton clickerButton = new KclicerButton();
+                            SelectEventQbe selectQbe = new SelectEventQbe();
+                            SelectQbe qbeselectmethod = new SelectQbe();
+                            Exit exit = new Exit();
+                            WindowsAis3 ais = new WindowsAis3();
+                            LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite read =
+                            new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
+                            object obj = read.ReadXml(pathfilefpd, typeof(LibaryXMLAutoModelXmlAuto.FpdReg.TreatmentFPD));
+                            LibaryXMLAutoModelXmlAuto.FpdReg.TreatmentFPD fpdmodel = (LibaryXMLAutoModelXmlAuto.FpdReg.TreatmentFPD) obj;
+                            if (ais.WinexistsAis3() == 1)
                             {
-                                if (statusButton.IsChekcs)
+                                foreach (var fpd in fpdmodel.Fpd)
                                 {
-                                    selectQbe.AddEvent(qbeselect, qbeselectmethod);
-                                    selectQbe.RemoveEvent(qbeselectmethod);
-                                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.IsCheker);
+                                    if (statusButton.Iswork)
+                                    {
+                                        if (statusButton.IsChekcs)
+                                        {
+                                            selectQbe.AddEvent(qbeselect, branch, qbeselectmethod);
+                                            selectQbe.RemoveEvent(branch, qbeselectmethod);
+                                            DispatcherHelper.CheckBeginInvokeOnUI(statusButton.IsCheker);
+                                        }
+                                        clickerButton.Click3(fpd.FpdId, pathjurnalerror, pathjurnalok);
+                                        read.DeleteAtributXml(pathfilefpd,
+                                            LibaryXMLAuto.GenerateAtribyte.GeneratorAtribute.GenerateAtributeFpd(
+                                                fpd.FpdId));
+                                        statusButton.Count++;
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
                                 }
-                                clickerButton.Click3(fpd.FpdId,pathjurnalerror, pathjurnalok,statusButton.IsChekcs);
-                                read.DeleteAtributXml(pathfilefpd, LibaryXMLAuto.GenerateAtribyte.GeneratorAtribute.GenerateAtributeFpd(fpd.FpdId));
-                                statusButton.Count++;
+                                var status = exit.Exitfunc(statusButton.Count, fpdmodel.Fpd.Length, statusButton.Iswork);
+                                statusButton.Count = status.IsCount;
+                                statusButton.Iswork = status.IsWork;
+                                DispatcherHelper.CheckBeginInvokeOnUI(
+                                    delegate { statusButton.StatusGrinandYellow(status.Stat); });
+
                             }
                             else
                             {
-                                break;
+                                MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
                             }
                         }
-                        var status = exit.Exitfunc(statusButton.Count, fpdmodel.Fpd.Length, statusButton.Iswork);
-                        statusButton.Count = status.IsCount;
-                        statusButton.Iswork = status.IsWork;
-                        DispatcherHelper.CheckBeginInvokeOnUI(delegate { statusButton.StatusGrinandYellow(status.Stat); });
-
-                    }
-                    else
-                    {
-                        MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
-                        DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
-                    }
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(e.ToString());
-                    }
-                });
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(e.ToString());
+                        }
+                    });
+                }
             }
             else
             {

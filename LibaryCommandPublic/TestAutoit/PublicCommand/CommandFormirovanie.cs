@@ -9,7 +9,7 @@ using ViewModelLib.ModelTestAutoit.ModelFormirovanie.ShemeXsd;
 using ViewModelLib.ModelTestAutoit.ModelFormirovanie.StackPanelModel.ShemeSnuOneForm;
 using ViewModelLib.ModelTestAutoit.ModelFormirovanie.TextBoxModel;
 
-namespace LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand
+namespace LibaryCommandPublic.TestAutoit.PublicCommand
 {
    /// <summary>
    /// Библиотека для команд связана с библиотекой AddModelProject
@@ -32,6 +32,7 @@ namespace LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand
                 modelSnuOne.AddParseXsls(file);
             }
         }
+
         /// <summary>
         /// Формирование списков xml по схеме!!! 
         /// </summary>
@@ -43,7 +44,7 @@ namespace LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand
         /// <param name="xmlmodel">ListView для отражения xml</param>
         public void  FormirovanieXml(ModelSnuOneFormNameListProperty modelsnuone, TextBoxModelMethod textboxfilemodel,ShemeMethod shemedocument, CheckBoxModel checkBoxModel,string path, ListViewModelXmlFileGenerateMethod xmlmodel)
         {
-                    XmlConvert convert = new XmlConvert();
+            XmlConvert convert = new XmlConvert();
             if (shemedocument.IsValidation())
             {
                 switch (shemedocument.Shema.Shemes)
@@ -56,9 +57,7 @@ namespace LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand
                             {
                                 try
                                 {
-                                    convert.ConvertListSnuOneForm(textboxfilemodel.Path,
-                                        modelsnuone.SelectList.Listletter,
-                                        modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.IsCheced, path);
+                                    convert.ConvertListSnuOneForm(textboxfilemodel.Path,modelsnuone.SelectList.Listletter,modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.IsCheced, string.Join(null,path,"Inn.xml"));
                                     xmlmodel.AddXmlFile(path);
                                     xmlmodel.UpdateOff();
                                 }
@@ -77,8 +76,7 @@ namespace LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand
                             {
                                 try
                                 {
-                                    convert.ConvertListFpdReg(textboxfilemodel.Path, modelsnuone.SelectList.Listletter,
-                                        modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.SelectIntRow, path);
+                                    convert.ConvertListFpdReg(textboxfilemodel.Path, modelsnuone.SelectList.Listletter, modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.SelectIntRow, string.Join(null, path, "Fpd.xml"));
                                     xmlmodel.AddXmlFile(path);
                                     xmlmodel.UpdateOff();
                                 }
@@ -97,7 +95,26 @@ namespace LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand
                             {
                                 try
                                 {
-                                    convert.ConvertInnMassList(textboxfilemodel.Path, modelsnuone.SelectList.Listletter, modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.SelectIntRow,checkBoxModel.Colelementcollection, path);
+                                    convert.ConvertInnMassList(textboxfilemodel.Path, modelsnuone.SelectList.Listletter, modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.SelectIntRow,checkBoxModel.Colelementcollection, string.Join(null, path, "InnFull.xml"));
+                                    xmlmodel.AddXmlFile(path);
+                                    xmlmodel.UpdateOff();
+                                }
+                                catch (Exception e)
+                                {
+                                    MessageBox.Show(e.Message);
+                                }
+                            }));
+                        }
+                        break;
+                    case "FidZorI":
+                        if (textboxfilemodel.IsValidation() && modelsnuone.IsValidation())
+                        {
+                            xmlmodel.UpdateOn();
+                            Task.Run((delegate
+                            {
+                                try
+                                {
+                                    convert.SerializFidZorI(textboxfilemodel.Path,modelsnuone.SelectList.Listletter,modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.IsCheced, string.Join(null, path, "Fid.xml"));
                                     xmlmodel.AddXmlFile(path);
                                     xmlmodel.UpdateOff();
                                 }

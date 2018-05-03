@@ -3,7 +3,7 @@ using ViewModelLib.ModelTestAutoit.PublicModel.ReportXlsx;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXml;
 
 
-namespace LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand
+namespace LibaryCommandPublic.TestAutoit.PublicCommand
 {
     public class CommandSnuOneAuto
     {

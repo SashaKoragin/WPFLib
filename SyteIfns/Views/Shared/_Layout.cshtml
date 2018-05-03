@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title – приложение ASP.NET</title>
+    <script language="javascript" type="text/javascript" src="~/Scripts/MyTestScript.js"></script>
+    @Styles.Render("~/Content/Site.css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("scripts", required: false)
+</head>
+<body>
+<div class="header">
+    <button type="button" class="buttonclass" onclick="test('menu')">Отделы</button>
+    <button type="button" class="buttonclass" onclick="show('menu')">Скрыть</button>
+</div>
+<div id="menu" class="sildebar">
+    <div class="treeview">
+        <ul>
+            <li>
+                <div>
+                    <p>
+                        <a href="#" class="sc" onclick="return UnHide(this)">&#9660;</a>
+                        <a href="#">Отделы!!!</a>
+                    </p>
+                </div>
+                <ul>
+                    <li class="cl">
+                        <div>
+                            <p>
+                                <a href="#" class="sc" onclick="return UnHide(this)">&#9658;</a>
+                                <a href="#">Урегулирование задолженности.</a>
+                            </p>
+                        </div>
+                        <ul><li><div><p>@Html.ActionLink("Контакт", "Contact", "Home")</p></div></li>
+                            <li><div><p>@Html.ActionLink("О программе", "About", "Home")</p></div></li>
+                            <li><div><p>@Html.ActionLink("Домашняя страница", "Index", "Home")</p></div></li>
+                        </ul>
+                    </li>
+                    <li class="cl">
+                        <div>
+                            <p>
+                                <a href="#" class="sc" onclick="return UnHide(this)">&#9658;</a>
+                                <a href="#">Аналитический отдел</a>
+                            </p>
+                        </div>
+                        <ul><li><div><p>@Html.ActionLink("Отчет слияния лиц!!!","FaceMergin", "Home")</p></div></li></ul>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="content">
+    @RenderBody()
+</div>
+<div class="footer">
+    
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</body>
+</html>

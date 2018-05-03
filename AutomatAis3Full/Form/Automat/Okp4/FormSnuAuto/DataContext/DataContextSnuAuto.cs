@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using AutomatAis3Full.Config;
 using LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand;
-using LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;

@@ -10,7 +10,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
        internal const string Down1 = "{Down}";
        internal const string Delete = "{Del}";
        internal const string Down2 = "{Down 2}";
-       internal const string Down13 = "{Down 13}";
+        internal const string Down3 = "{Down 3}";
+        internal const string Down13 = "{Down 13}";
        internal const string Right5 = "{right 5}";
        internal const string Enter = "{Enter}";
        internal const string CtrlV = "^v";

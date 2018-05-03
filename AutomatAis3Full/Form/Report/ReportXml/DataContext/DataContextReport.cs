@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AutomatAis3Full.Config;
-using LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand;
+using LibaryCommandPublic.TestAutoit.PublicCommand;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXlsx;
@@ -35,7 +35,11 @@ namespace AutomatAis3Full.Form.Report.ReportXml.DataContext
             DeleteReport = new DelegateCommand(() => { Report.DeleteReportFile(); });
             OpenReport = new DelegateCommand(() => { Report.OpenReport(); });
             OpenFile = new DelegateCommand(() => { command.ConvertXslToXmlAndOpen(Report, ReportJurnalAndFile, ConfigFile.ExcelReportFile); });
-            Update = new DelegateCommand(() =>{ ReportJurnalAndFile.AddFileXml(ConfigFile.PathJurnal);});
+            Update = new DelegateCommand(() =>
+            {
+                ReportJurnalAndFile.AddFileXml(ConfigFile.PathInn);
+                ReportJurnalAndFile.AddJurnal(ConfigFile.PathJurnal);
+            });
         }
     }
 }

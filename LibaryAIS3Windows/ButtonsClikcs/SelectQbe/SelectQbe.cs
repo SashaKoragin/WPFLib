@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoIt;
+﻿using AutoIt;
+using LibaryAIS3Windows.Window;
 
 namespace LibaryAIS3Windows.ButtonsClikcs.SelectQbe
 {
@@ -42,19 +38,33 @@ namespace LibaryAIS3Windows.ButtonsClikcs.SelectQbe
             F?.Invoke(sysF);   
         }
         /// <summary>
-        /// Само событие галочки
+        /// Само событие галочки на земле или имуществе
         /// </summary>
         public void QbeZemlyOnImushestvo()
         {
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, Window.WindowsAis3.WindowsAis.X + Window.WindowsAis3.WinGrid.X + 390, Window.WindowsAis3.WindowsAis.Y + Window.WindowsAis3.WinGrid.Y + 55, 1);
+            WindowsAis3 win = new WindowsAis3();
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 400, win.WindowsAis.Y + win.WinGrid.Y + 55);
         }
+
+        /// <summary>
+        /// Само событие галочки на Транспорте
+        /// </summary>
+        public void QbeTransport()
+        {
+            WindowsAis3 win = new WindowsAis3();
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 450, win.WindowsAis.Y + win.WinGrid.Y + 55);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 450, win.WindowsAis.Y + win.WinGrid.Y + 300);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 450, win.WindowsAis.Y + win.WinGrid.Y + 320);
+        }
+
         /// <summary>
         /// Само событие простановки С
         /// </summary>
         /// <param name="str">Параметры сотсояния C через слеш /</param>
         public void SelectC(string str)
         {
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, Window.WindowsAis3.WindowsAis.X + Window.WindowsAis3.WinGrid.X + 70, Window.WindowsAis3.WindowsAis.Y + Window.WindowsAis3.WinGrid.Y + 35, 1);
+            WindowsAis3 win = new WindowsAis3();
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 70, win.WindowsAis.Y + win.WinGrid.Y + 35);
             AutoItX.ClipPut(str);
             AutoItX.Send(ButtonConstant.Down1);
             AutoItX.Send(ButtonConstant.Right5);
@@ -68,7 +78,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs.SelectQbe
         /// <param name="str">Параметры состояние F через слеш /</param>
         public void SelectF(string str)
         {
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, Window.WindowsAis3.WindowsAis.X + Window.WindowsAis3.WinGrid.X + 70, Window.WindowsAis3.WindowsAis.Y + Window.WindowsAis3.WinGrid.Y + 35, 1);
+            WindowsAis3 win = new WindowsAis3();
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 70, win.WindowsAis.Y + win.WinGrid.Y + 35);
             AutoItX.ClipPut(str);
             AutoItX.Send(ButtonConstant.Down2);
             AutoItX.Send(ButtonConstant.Right5);

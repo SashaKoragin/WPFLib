@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using AutomatAis3Full.Form.Automat.Okp4.FormSnuAuto.SnuFormAuto;
+using AutomatAis3Full.Form.Automat.Okp4.MassSnuForm.MassSnuForm;
+using AutomatAis3Full.Form.Automat.Okp4.PravoEdit.PravoEdit;
 using AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.UserControl;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie;
 using AutomatAis3Full.Form.Report.ReportXml.ReportForm;
@@ -27,9 +29,15 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                     NameControl = "ОКП4",
                     CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                         {new FullWindowAutoIt() {NameControl = "1.06 Формирование и печать СНУ", CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
-                        {
+                           {
                            new FullWindowAutoIt() {NameControl = "1 Создание заявки на формирование СНУ", UserControl = new FormSnuAuto()},
-                        } }}
+                           new FullWindowAutoIt() {NameControl = "1 Создание заявки на формирование СНУ массово!!!", UserControl = new MassSnuForm()},
+                           } },
+                        new FullWindowAutoIt() {NameControl = "02. Доопределение данных об объектах собственности", CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                           {
+                            new FullWindowAutoIt() {NameControl = "14.КС–Корректировка сведений о правах не зарегистрированных  в органах Росреестра и правах наследования на ОН и ЗУ", UserControl = new PravoEditForm()                           } }
+                        } }
+                    
                 },
                 new FullWindowAutoIt()
                 {
@@ -42,9 +50,9 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                             NameControl = "Собственность", CollectionUserControl =  new ObservableCollection<FullWindowAutoIt>() {
                               new FullWindowAutoIt()
                               {
-                                  NameControl = "05. Взаимодействие с органами Росреестра – Земельные участки", CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                  NameControl = "05-06-07. Росреестр – Земельные участки/Имущество/Транспорт", CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                                   { 
-                                    new FullWindowAutoIt() {NameControl = "03.Обработка ФПД от РР-ФЛ-Анализ результатов обработки документов", UserControl = new FpdZemly()}
+                                    new FullWindowAutoIt() {NameControl = "05.03,06-03,07-02 Обработка данных веток", UserControl = new FpdZemly()}
                                   }
                                }
                         }

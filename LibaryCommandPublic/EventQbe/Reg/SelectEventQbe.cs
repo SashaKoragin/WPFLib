@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LibaryAIS3Windows.ButtonsClikcs.SelectQbe;
-using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
+using ViewModelLib.ModelTestAutoit.PublicModel.SelectBranch;
 using ViewModelLib.ModelTestAutoit.PublicModel.QbeSelect;
 
 namespace LibaryCommandPublic.EventQbe.Reg
@@ -18,10 +18,19 @@ namespace LibaryCommandPublic.EventQbe.Reg
         /// Добавление событий если удовлетворяет условиям пользователя
         /// </summary>
         /// <param name="qbeselect">Класс с нашей выборкой оттуда тянем условия</param>
+        /// <param name="branch">Ветка для принятия решения</param>
         /// <param name="eventQbe">Класс с событиями</param>
-        public void AddEvent(QbeClass qbeselect, SelectQbe eventQbe)
+        public void AddEvent(QbeClass qbeselect,Branch branch, SelectQbe eventQbe)
         {
-            eventQbe.Start += eventQbe.QbeZemlyOnImushestvo;
+            switch (branch.Select.NumBranch)
+            {
+                case 100:
+                  eventQbe.Start += eventQbe.QbeZemlyOnImushestvo;
+                  break;
+                case 101:
+                  eventQbe.Start += eventQbe.QbeTransport;
+                  break;
+            }
             if (qbeselect.C.Count != 0)
             {
                 eventQbe.C += eventQbe.SelectC;
@@ -35,10 +44,19 @@ namespace LibaryCommandPublic.EventQbe.Reg
         /// <summary>
         /// Класс отписки от событий на которые подписан пользователь
         /// </summary>
+        /// <param name="branch">Ветка для определения отписи от собития</param>
         /// <param name="eventQbe">Класс с событиями</param>
-        public void RemoveEvent(SelectQbe eventQbe)
+        public void RemoveEvent(Branch branch, SelectQbe eventQbe)
         {
-            eventQbe.Start -= eventQbe.QbeZemlyOnImushestvo;
+            switch (branch.Select.NumBranch)
+            {
+                case 100:
+                    eventQbe.Start -= eventQbe.QbeZemlyOnImushestvo;
+                    break;
+                case 101:
+                    eventQbe.Start -= eventQbe.QbeTransport;
+                    break;
+            }
             eventQbe.C -= eventQbe.SelectC;
             eventQbe.F -= eventQbe.SelectF;
         }

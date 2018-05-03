@@ -92,6 +92,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Okp4\MassSnuForm\MassSnuForm\MassSnuForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Okp4\PravoEdit\PravoEdit\PravoEditForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Registration\TreatmentFPD\Zemly\UserControl\FpdZemly.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -141,9 +149,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Config\ConfigFile.cs" />
+    <Compile Include="Form\AddResours\SelectBranch\SelectBranch.cs" />
     <Compile Include="Form\Automat\Okp4\FormSnuAuto\DataContext\DataContextSnuAuto.cs" />
     <Compile Include="Form\Automat\Okp4\FormSnuAuto\SnuFormAuto\FormSnuAuto.xaml.cs">
       <DependentUpon>FormSnuAuto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Okp4\MassSnuForm\DataContext\MassSnuDataContext.cs" />
+    <Compile Include="Form\Automat\Okp4\MassSnuForm\MassSnuForm\MassSnuForm.xaml.cs">
+      <DependentUpon>MassSnuForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Okp4\PravoEdit\DataContext\PravoEditDataContext.cs" />
+    <Compile Include="Form\Automat\Okp4\PravoEdit\PravoEdit\PravoEditForm.xaml.cs">
+      <DependentUpon>PravoEditForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Registration\TreatmentFPD\Zemly\DataContext\DataContextZemly.cs" />
     <Compile Include="Form\Automat\Registration\TreatmentFPD\Zemly\UserControl\FpdZemly.xaml.cs">

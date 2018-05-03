@@ -34,22 +34,17 @@ namespace LibaryAIS3Windows.Window
         /// </summary>
        internal static string UpdateDataSource = "Обновление данных. Пожалуйста подождите...";
         /// <summary>
-        /// Диалоговое окно кнопка Создать заявку
-        /// Ветка Налоговое администрирование\Физические лица\1.06. Формирование и печать CНУ\1. Создание заявки на формирование СНУ для единичной печати
-        /// </summary>
-        internal static string DialogWin = "Создать заявку с параметрами";
-        /// <summary>
         /// Считать позицию Общего окна АИС 3
         /// </summary>
-        internal static Rectangle WindowsAis = AutoItX.WinGetPos(AisNalog3, Text);
+        internal Rectangle WindowsAis = AutoItX.WinGetPos(AisNalog3, Text);
         /// <summary>
         /// Считать позицию создание заявки на формирование СНУ
         /// </summary>
-        internal static Rectangle WinRequest = AutoItX.ControlGetPos("АИС Налог-3 ПРОМ ", "", "[NAME:CreateRequestImplView]");
+        internal Rectangle WinRequest = AutoItX.ControlGetPos("АИС Налог-3 ПРОМ ", "", "[NAME:CreateRequestImplView]");
         /// <summary>
         /// Grid контроль полей для вычисления
         /// </summary>
-        internal static Rectangle WinGrid = AutoItX.ControlGetPos("АИС Налог-3 ПРОМ ", "", "[Name:gridConditions]");
+        internal Rectangle WinGrid = AutoItX.ControlGetPos("АИС Налог-3 ПРОМ ", "", "[Name:gridConditions]");
         /// <summary>
         /// Проверка наличия окна АИС налог 3 
         /// если вернет 1 то окно существует если 0 то не существует!!!

@@ -12,14 +12,25 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat
    public class StartOnStopProperty : BindableBase
    {
 
-
+        private bool _isChecs;
         private int _count;
         private bool _iswork;
         private Button _button = new Button();
 
-        public bool IsChekcs { get; set; }
+       public bool IsChekcs
+       {
+           get
+           {
+               return _isChecs;
+           }
+           set
+           {
+               _isChecs = value;
+               RaisePropertyChanged();
+           }
+       }
 
-        public Button Button
+       public Button Button
         {
             get { return _button; }
             set

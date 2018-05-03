@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
 using AutomatAis3Full.Config;
-using LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand;
-using LibaryCommandPublic.TestAutoit.SnuOneAuto.PublicCommand;
+using AutomatAis3Full.Form.AddResours.SelectBranch;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 using ViewModelLib.ModelTestAutoit.PublicModel.QbeSelect;
+using ViewModelLib.ModelTestAutoit.PublicModel.SelectBranch;
 
 namespace AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.DataContext
 {
@@ -27,13 +27,15 @@ namespace AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.DataConte
         public ICommand Green { get; }
         public ICommand Yellow { get; }
         public QbeClassMethod QbeStatus { get; }
+        public Branch Branch { get; }
         public DataContextZemly()
         {
+            Branch = new SelectBranch().AddBranhc();
             QbeStatus = new QbeClassMethod();
             var commandauto = new LibaryCommandPublic.TestAutoit.Reg.TreatmentFPD.Zemly.Zemly();
             StartButton2 = new StatusButtonMethod();
             Xml1 = new XmlUseMethod();
-            StartButton2.Button.Command = new DelegateCommand(() => { commandauto.ZemlyAuto(QbeStatus,StartButton2,ConfigFile.FileFpd, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
+            StartButton2.Button.Command = new DelegateCommand(() => { commandauto.ZemlyAuto(QbeStatus,Branch,StartButton2,ConfigFile.FileFpd, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
             Yellow = new DelegateCommand(() => { Yellows(StartButton2); });
             Green = new DelegateCommand(() => { Greens(StartButton2); });
             Update = new DelegateCommand(() => { Xml1.UpdateFileXml(ConfigFile.FileFpd); });

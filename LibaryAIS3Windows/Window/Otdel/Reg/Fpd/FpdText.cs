@@ -27,9 +27,17 @@ namespace LibaryAIS3Windows.Window.Otdel.Reg.Fpd
         /// </summary>
         internal static string TextFidUser = "ФИД лица";
         /// <summary>
-        /// Условие которое ищим
+        /// Условие 1 которое ищим
         /// </summary>
         internal static string TextUslovie = "Лицо не найдено в ФБД ЕГРН (ПОН ИЛ/ витрине лиц ЦУН), проводятся уточняющие мероприятия";
+        /// <summary>
+        /// Условие 2 которое ищем
+        /// </summary>
+        internal static string Text11 = "Документ ФПД требует повторной обработки по итогам выполненных уточняющих мероприятий по определению лица";
+        /// <summary>
+        /// Условие 3 которое ищем
+        /// </summary>
+        internal static string Text4 = "Обнаружены критичные ошибки ФЛК 2-го уровня в сведениях об объекте  или правах";
         /// <summary>
         /// Окно ЦУН
         /// </summary>

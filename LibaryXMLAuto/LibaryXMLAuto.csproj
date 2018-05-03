@@ -48,6 +48,9 @@
     <Compile Include="ModelXmlAuto\ListInnSheme\FullInnCount.cs">
       <DependentUpon>FullInnCount.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ModelXmlAuto\ModelFidZorI\FidZemlyOrImushestvo.cs">
+      <DependentUpon>FidZemlyOrImushestvo.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModelXmlAuto\ModelFpdId\FpdReg.cs">
       <DependentUpon>FpdReg.xsd</DependentUpon>
     </Compile>
@@ -68,9 +71,14 @@
     <Compile Include="ReadOrWrite\LogicaXml\LogicaXml.cs" />
     <Compile Include="ReadOrWrite\XmlReadOrWrite.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ModelXmlSql\ConvertModel\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="ModelXmlAuto\ListInnSheme\FullInnCount.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ModelXmlAuto\ModelFidZorI\FidZemlyOrImushestvo.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="ModelXmlAuto\ModelFpdId\FpdReg.xsd">
@@ -85,6 +93,7 @@
     <None Include="ModelXmlAuto\ModelSnuOne\SnuOneForm.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Compile Include="ModelXmlSql\Model\FaceError\FaceMergin.xsd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild" DependsOnTargets="CreateXsd" />
@@ -101,6 +110,7 @@
       <XsdFiless Include="ModelXmlAuto\ModelJurnal\*.xsd" />
       <XsdFilesFpd Include="ModelXmlAuto\ModelFpdId\*.xsd" />
       <XsdFilessListInn Include="ModelXmlAuto\ListInnSheme\*.xsd" />
+      <XsdFilesFid Include="ModelXmlAuto\ModelFidZorI\*.xsd" />
     </ItemGroup>
     <Message Importance="high" Text="CreateXsd" />
     <GetFrameworkSdkPath>
@@ -114,5 +124,6 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFiless.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.ModelJurnal /outputdir:ModelXmlAuto\ModelJurnal" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFilesFpd.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.FpdReg /outputdir:ModelXmlAuto\ModelFpdId" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFilessListInn.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.FullInnCount /outputdir:ModelXmlAuto\ListInnSheme" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFilesFid.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.ModelFidZorI /outputdir:ModelXmlAuto\ModelFidZorI" />
   </Target>
 </Project>

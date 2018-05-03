@@ -10,7 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="{d:DesignInstance {x:Type datacontext:DataContextZemly}}"
     d:DesignHeight="300"
-    d:DesignWidth="300"
+    d:DesignWidth="500"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -28,6 +28,23 @@
                 Content="{Binding StartButton2.Button}" />
             <Label Content="Комманда приостановить Shift+S" />
             <Label Content="Комманда возобновить Shift+A" />
+            <WrapPanel>
+                <Label Content="Обработка веток:"/>
+                <ComboBox HorizontalContentAlignment="Stretch" 
+                          MinWidth="80" 
+                          SelectedItem="{Binding Branch.Select, ValidatesOnDataErrors=True}" 
+                          ItemsSource="{Binding Branch.BranchSelect}"
+                          ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                          Validation.ErrorTemplate="{StaticResource ValidationFailederror}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding NameBranch}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </WrapPanel>
             <CheckBox Content="Поставить значение С^ в заголовок!!!" IsChecked="{Binding StartButton2.IsChekcs}" />
             <WrapPanel Margin="5,5,5,5">
                 <Label Content="Выбрать статус C" />
@@ -54,16 +71,15 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </materialDesign:PopupBox>
-                <ItemsControl ItemsSource="{Binding QbeStatus.C}" >
+                <ItemsControl ItemsSource="{Binding QbeStatus.C}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal">
-                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Label Content="{Binding Num}" Background="{Binding ColorNum}"/>
+                            <Label Background="{Binding ColorNum}" Content="{Binding Num}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
@@ -93,16 +109,15 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </materialDesign:PopupBox>
-                <ItemsControl ItemsSource="{Binding QbeStatus.F}" >
+                <ItemsControl ItemsSource="{Binding QbeStatus.F}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal">
-                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Label Content="{Binding Num}" Background="{Binding ColorNum}"/>
+                            <Label Background="{Binding ColorNum}" Content="{Binding Num}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

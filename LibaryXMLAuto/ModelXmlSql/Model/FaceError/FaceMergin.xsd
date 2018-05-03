@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="FN212">
+		<xs:annotation>
+			<xs:documentation>Таблица 212</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="N1">
+				<xs:annotation>
+					<xs:documentation>Ун лица не слилось</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N18">
+				<xs:annotation>
+					<xs:documentation>Название организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N134">
+				<xs:annotation>
+					<xs:documentation>ИНН Организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D3">
+				<xs:annotation>
+					<xs:documentation>КПП организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="FID_Entity">
+				<xs:annotation>
+					<xs:documentation>ФИД организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FaceError">
+		<xs:annotation>
+			<xs:documentation>Лицо по которому ошибка!!!</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FN212"/>
+			</xs:sequence>
+			<xs:attribute name="N1old" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Сливаемое лицо!!!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N1new" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>На которое сливаем !!!</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Messagee" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Ошибка по слиянию</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Face">
+		<xs:annotation>
+			<xs:documentation>Лица.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FaceError" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

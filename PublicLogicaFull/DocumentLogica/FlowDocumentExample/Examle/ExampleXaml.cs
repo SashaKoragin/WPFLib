@@ -40,5 +40,13 @@ namespace PublicLogicaFull.DocumentLogica.FlowDocumentExample.Examle
                                              "     <MyInnn >500303703461/775101147891/772809074772</MyInnn>\n" +
                                              "  </ListInn>" +
                                              "</INNList>";
+        /// <summary>
+        /// Образец Фид Земля и Имущество
+        /// </summary>
+        public static string ZemlyOrImyShestvoFid = "<?xml version =\"1.0\"encoding=\"UTF-8\"?>\n" +
+                                             "<FidFactZemlyOrImushestvo xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"FidZemlyOrImushestvo.xsd\">\n" +
+                                             "     <Fid FidZemlyOrImushestvo=\"72428058864\"/>\n" +
+                                             "     <Fid FidZemlyOrImushestvo=\"71470728214\"/>\n" +
+                                             "</FidFactZemlyOrImushestvo>";
     }
 }

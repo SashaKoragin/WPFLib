@@ -10,6 +10,7 @@ using System.Xml.Serialization;
 using ClosedXML.Excel;
 using LibaryXMLAutoModelXmlAuto.FpdReg;
 using LibaryXMLAutoModelXmlAuto.FullInnCount;
+using LibaryXMLAutoModelXmlAuto.ModelFidZorI;
 using LibaryXMLAutoModelXmlAuto.ModelJurnal;
 using LibaryXMLAutoModelXmlAuto.ModelSnuOne;
 
@@ -50,17 +51,30 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
         /// <param name="listfile">Выбранный лист</param>
         /// <param name="letter">Буква в xlsx</param>
         /// <param name="isOneUseRows">Параметр указывающий Используем 1 строку или нет</param>
-        /// <param name="path">Параметр пути сохранения</param>
-        public void ConvertListSnuOneForm(string pathFilexlsx,string listfile,string letter,bool isOneUseRows,string path)
+        /// <returns>Возвращаем List из столбца Excel</returns>
+        private List<string> ListRowExcel(string pathFilexlsx, string listfile, string letter, bool isOneUseRows)
         {
             var ws = ListXlsx(pathFilexlsx, listfile);
             var countcell = CountUseRow(ws, letter);
             List<string> listinn = new List<string>();
-            for (int i = Convert.ToInt32(isOneUseRows)+1; i <= countcell; i++)
+            for (int i = Convert.ToInt32(isOneUseRows) + 1; i <= countcell; i++)
             {
-                    listinn.Add(ws.Cell(letter + i).Value.ToString());
+                listinn.Add(ws.Cell(letter + i).Value.ToString());
             }
-            SerializSnuOneForm(listinn, path);
+            return listinn;
+        }
+
+        /// <summary>
+        /// Метод конвертации xlsx по xml sheme SnuOneForm.xsd
+        /// </summary>
+        /// <param name="pathFilexlsx">Путь к файлу xlsx</param>
+        /// <param name="listfile">Выбранный лист</param>
+        /// <param name="letter">Буква в xlsx</param>
+        /// <param name="isOneUseRows">Параметр указывающий Используем 1 строку или нет</param>
+        /// <param name="path">Параметр пути сохранения</param>
+        public void ConvertListSnuOneForm(string pathFilexlsx,string listfile,string letter,bool isOneUseRows,string path)
+        {
+            SerializSnuOneForm(ListRowExcel(pathFilexlsx,listfile,letter,isOneUseRows), path);
         }
 
         ///<summary>
@@ -107,14 +121,36 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
                 }
                 j++;
             }
-            XmlSerializer formatter = new XmlSerializer(typeof(INNList));
-            using (FileStream fs = new FileStream(path + "InnFull.xml", FileMode.Create))
-            {
-                formatter.Serialize(fs, fullinn);
-            }
+            SerializerClassToXml(path, fullinn, typeof(INNList));
         }
 
-
+        /// <summary>
+        /// Подготовка значениий фид для сериализации по схеме
+        /// <![CDATA[
+        /// <?xml version="1.0" encoding="UTF-8"?>
+        ///<FidFactZemlyOrImushestvo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FidZemlyOrImushestvo.xsd">
+        ///   <Fid FidZemlyOrImushestvo="72428058864"/>
+        ///   <Fid FidZemlyOrImushestvo="71470728214"/>
+        ///</FidFactZemlyOrImushestvo>]]>
+        /// </summary>
+        /// <param name="pathFilexlsx">Путь к файлу xlsx</param>
+        /// <param name="listfile">Выбранный лист</param>
+        /// <param name="letter">Буква в xlsx</param>
+        /// <param name="isOneUseRows">Параметр указывающий Используем 1 строку или нет</param>
+        /// <param name="path">Параметр пути сохранения</param>
+        public void SerializFidZorI(string pathFilexlsx, string listfile, string letter, bool isOneUseRows, string path)
+        {
+            List<string> liststringrow = ListRowExcel(pathFilexlsx, listfile, letter, isOneUseRows);
+            int i = 0;
+            FidFactZemlyOrImushestvo fid = new FidFactZemlyOrImushestvo() {Fid = new Fid[liststringrow.Count]};
+            foreach (var fidid in liststringrow)
+            {
+                Fid f = new Fid() {FidZemlyOrImushestvo = fidid};
+                fid.Fid[i] = f;
+                i++;
+            }
+            SerializerClassToXml(path, fid, typeof(FidFactZemlyOrImushestvo));
+        }
 
         /// <summary>
         /// Метод конвертации в xml файл по схеме SnuOneForm.xsd
@@ -137,15 +173,8 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
                 snu.INN[i] = k;
                 i++;
             }
-            XmlSerializer formatter = new XmlSerializer(typeof(SnuOneForm));
-            using (FileStream fs = new FileStream(path+ "Inn.xml", FileMode.Create))
-            {
-                formatter.Serialize(fs, snu);
-            }
+            SerializerClassToXml(path, snu, typeof(SnuOneForm));
         }
-
-
-
 
         /// <summary>
         /// Метод конвертации xlsx по xml sheme FpdReg.xsd
@@ -188,11 +217,7 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
                 znfpd.Fpd[i] = k;
                 i++;
             }
-            XmlSerializer formatter = new XmlSerializer(typeof(TreatmentFPD));
-            using (FileStream fs = new FileStream(path + "Fpd.xml", FileMode.Create))
-            {
-                formatter.Serialize(fs, znfpd);
-            }
+            SerializerClassToXml(path, znfpd, typeof(TreatmentFPD));
         }
 
 
@@ -204,11 +229,7 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
             JurnalError error = new JurnalError() {Error = new Error[1]};
             Error er = new Error() { Inn = znacenie, Error1 = errors, System = branch, DateTimeUse = DateTime.Now, DateTimeUseSpecified = true};
             error.Error[0] = er;
-            XmlSerializer formatter = new XmlSerializer(typeof(JurnalError));
-            using (FileStream fs = new FileStream(pathjurnal, FileMode.OpenOrCreate))
-            {
-                formatter.Serialize(fs, error);
-            }
+            SerializerClassToXml(pathjurnal, error, typeof(JurnalError));
         }
 
         /// <summary>
@@ -219,14 +240,22 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
             OkJurnal okey = new OkJurnal() { Ok = new Ok[1] };
             Ok ok = new Ok() { Inn = znacenie, Message = okeys, DateTimeUse = DateTime.Now, DateTimeUseSpecified = true};
             okey.Ok[0] = ok;
-            XmlSerializer formatter = new XmlSerializer(typeof(OkJurnal));
-            using (FileStream fs = new FileStream(pathjurnal, FileMode.OpenOrCreate))
+            SerializerClassToXml(pathjurnal, okey, typeof(OkJurnal));
+        }
+        /// <summary>
+        /// Функция Сериализации объекта по классу в XML
+        /// </summary>
+        /// <param name="path">Полный путь к файлу xml</param>
+        /// <param name="objserialize">Объект для сериализациии как правило класс</param>
+        /// <param name="objType">Тип объекта по которому будем сериализовывать</param>
+        private void SerializerClassToXml(string path,object objserialize, Type objType)
+        {
+            XmlSerializer formatter = new XmlSerializer(objType);
+            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
             {
-                formatter.Serialize(fs, okey);
+                formatter.Serialize(fs,objserialize);
             }
         }
-
-
 
     }
 }

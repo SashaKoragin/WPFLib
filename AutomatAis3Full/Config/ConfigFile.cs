@@ -11,6 +11,8 @@ namespace AutomatAis3Full.Config
         public static string FileSpisok = ConfigurationManager.AppSettings["FileSpisok"];
         public static string PathJurnal = ConfigurationManager.AppSettings["PathJurnal"];
         public static string PathInn = ConfigurationManager.AppSettings["PathInn"];
-        public static string ExcelReportFile = ConfigurationManager.AppSettings["ExcelReportFile"]; 
+        public static string ExcelReportFile = ConfigurationManager.AppSettings["ExcelReportFile"];
+        public static string FileInnFull = ConfigurationManager.AppSettings["FileInnFull"];
+        public static string FileFid = ConfigurationManager.AppSettings["FileFid"];
     }
 }

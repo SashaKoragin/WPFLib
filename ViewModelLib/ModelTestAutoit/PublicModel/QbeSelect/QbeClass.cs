@@ -18,8 +18,6 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.QbeSelect
         private ObservableCollection<ParamQbe> _statusF  = new ObservableCollection<ParamQbe>();
 
         public ObservableCollection<ParamQbe> StatusC { get; set; } = new ObservableCollection<ParamQbe>();
-
-
         public ObservableCollection<ParamQbe> StatusF { get; set; } = new ObservableCollection<ParamQbe>();
 
         public ObservableCollection<ParamQbe> F
@@ -41,38 +39,58 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.QbeSelect
         }
     }
 
+
     public class QbeClassMethod : QbeClass
     {
+        /// <summary>
+        /// Объявление класса
+        /// </summary>
         public QbeClassMethod()
         {
             AddColectionQbe();
         }
-
+        /// <summary>
+        /// Добавление QBE полей
+        /// </summary>
         private void AddColectionQbe()
         {
             StatusC.Add(new ParamQbe() { ColorNum = Brushes.Yellow, Num = 14 });
+            StatusC.Add(new ParamQbe() {ColorNum = Brushes.Aqua, Num = 11});
+            StatusC.Add(new ParamQbe() {ColorNum = Brushes.Brown, Num = 4});
             StatusF.Add(new ParamQbe() { ColorNum = Brushes.Yellow, Num = 14 });
             StatusF.Add(new ParamQbe() { ColorNum = Brushes.Orange, Num = 6 });
         }
-
+        /// <summary>
+        /// Выбираем Статус C
+        /// </summary>
+        /// <param name="param">Объект выбора</param>
         public void SelectStatusAddC(object param)
         {
             System.Windows.Controls.CheckBox parame = (System.Windows.Controls.CheckBox)param;
             C.Add(new ParamQbe() {Num =Convert.ToInt32(parame.Content), ColorNum = parame.Background});
         }
-
+        /// <summary>
+        /// Удаляем сататус C
+        /// </summary>
+        /// <param name="param">Объект выбора</param>
         public void DeleteStatusAddC(object param)
         {
             System.Windows.Controls.CheckBox parame = (System.Windows.Controls.CheckBox)param;
             C.Remove(C.Single(parameter => parameter.Num == Convert.ToInt32(parame.Content)));
         }
-
+        /// <summary>
+        /// Добавляем статус F 
+        /// </summary>
+        /// <param name="param">Объект выбора</param>
         public void SelectStatusAddF(object param)
         {
             System.Windows.Controls.CheckBox parame = (System.Windows.Controls.CheckBox)param;
             F.Add(new ParamQbe() { Num = Convert.ToInt32(parame.Content), ColorNum = parame.Background });
         }
-
+        /// <summary>
+        /// Удаляем статус F
+        /// </summary>
+        /// <param name="param">Объект выбора</param>
         public void DeleteStatusAddF(object param)
         {
             System.Windows.Controls.CheckBox parame = (System.Windows.Controls.CheckBox) param;

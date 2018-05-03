@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Fid">
+		<xs:annotation>
+			<xs:documentation>Свойство ФИДА</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="FidZemlyOrImushestvo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Само значение Фида</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FidFactZemlyOrImushestvo">
+		<xs:annotation>
+			<xs:documentation>Корневой элемент для фидов факта владения Земля и Имущество</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Fid" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
