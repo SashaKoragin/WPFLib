@@ -29,3 +29,24 @@ function UnHide(eThis) {
     }
     return false;
 }
+
+function post() {
+    try {
+        var n1Old = $("#N1Old").val();
+        var n1New = $("#N1New").val();
+        var returnet;
+        $.ajax({
+            url: "http://10.177.234.151:8181/ServiceRest/SqlFaceAdd",
+            type: "POST",
+            contentType: "application/json",
+            dataType: "json",
+            data: '{"N1New":' + n1New + ',"N1Old":' + n1Old + '}',
+            success: function (resultdata) {
+                alert(JSON.stringify(resultdata).toString());
+            },
+            error: function (e) { alert(e.toString()); }
+        });
+    } catch (e) {
+        alert(e.toString());
+    }
+}

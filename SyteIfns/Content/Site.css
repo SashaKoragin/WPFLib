@@ -1,4 +1,25 @@
-﻿.buttonclass:hover { background-color: #b3ffd9}
+﻿.merginreport {
+    width: auto;
+    height: auto;
+    margin: 0.1%;
+}
+
+.add {
+    width: auto;
+    height: auto;
+    text-align: left;
+}
+.old {
+    margin: 0.2%;
+}
+.new {
+    margin: 0.2%;
+}
+.mergireport {
+    width: auto;
+    height: auto;
+}
+.buttonclass:hover { background-color: #b3ffd9}
 .buttonclass {
   width: 150px;
   display: inline-block;
@@ -32,7 +53,7 @@
 }
 .content {
     width: auto;
-    height: 600px;
+    height: auto;
     border: 1px solid red;
 }
 .footer {
@@ -58,10 +79,10 @@
     .treeview li li div { border-bottom: 1px dotted; }
     .treeview li p
     {
-        position: absolute; z-index: 1; top: 0.8em; //top: 0.65em; left: 1.75em;
+        position: absolute; z-index: 1; top: 0.8em; top: 0.65em; left: 1.75em;
         width: 100%; margin: 0; border-bottom: 1px dashed; padding: 0;
     }
-    .treeview a { padding: 0.1em 0.2em; white-space: nowrap; //height: 1px; }
+    .treeview a { padding: 0.1em 0.2em; white-space: nowrap; height: 1px; }
     .treeview img.i
     {
         border-right: 2px solid; border-bottom: 0.5em solid;

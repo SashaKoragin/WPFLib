@@ -178,7 +178,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Config\App.config" />
+    <None Include="Config\App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="UseFiles\OtchetLkNo.txt" />

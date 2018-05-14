@@ -1,40 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
+using System.Web;
 using System.Web.Mvc;
-using System.Xml;
 using RestSharp;
-//using LibaryXMLAutoModelXmlSql.Model.FaceError;
-using SyteIfns.Models.PostRestAplication.ModelFaceError;
 
-
-namespace SyteIfns.Controllers
+namespace SyteIfns.PostResponse.TestPostResponse
 {
-    public class HomeController : Controller
+    public class TestPostResponse
     {
-        public ActionResult Index()
+
+        [HttpGet]
+        public string MyTest()
         {
-            return View();
+            string adress = @"http://localhost:8181";
+            try
+            {
+                var cl = new RestClient(adress);
+                var request = new RestRequest("/ServiceRest/Test", Method.POST);
+                request.Method = Method.POST;
+                IRestResponse response = cl.ExecuteAsPost(request, "POST");
+                var content = response.Content; // raw content as string
+                return content;
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
         }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
-        [HttpPost]
+        [HttpGet]
         public string FaceSelect()
         {
             WebRequest req;

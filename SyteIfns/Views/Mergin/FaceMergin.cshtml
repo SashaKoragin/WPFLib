@@ -1,0 +1,52 @@
+﻿@model SyteIfns.Models.PostRestAplication.ModelFaceError.ReaderAnsvwer
+@{
+    ViewBag.Tiile = "FaceMergin";
+}
+<script language="javascript" type="text/javascript" src="~/Scripts/MyTestScript.js"></script>
+<div class="merginreport">
+<h1>Добавление лица на слияние!!!</h1>
+ @using (Html.BeginForm("AddFace", "Mergin"))
+{
+        <div class="add">
+                <div class="old">
+                    <label>Старое лицо:</label>
+                    <input id="N1Old" name="nold" type="number"/><br/>
+                </div>
+                <div class="new">
+                    <label>Новое лицо:</label>
+                    <input id="N1New" name="nnew" type="number"/><br/>
+                </div>
+                <input type="submit" value="Отправить"/>
+        </div>
+}
+    <p>@Model.AddFace</p>
+    <p>Отчет по слиянию лиц!!!</p>
+    <table>
+        <tr>
+            <th>Старое лицо</th>
+            <th>Новое лицо</th>
+            <th>Сообщение</th>
+            <th>Ун сливаемого лица</th>
+            <th>Название</th>
+            <th>ИНН</th>
+            <th>КПП</th>
+            <th>ФИД</th>
+        </tr>
+        @if (@Model.Face != null)
+        {
+            foreach (var face in @Model.Face.FaceError)
+            {
+                <tr>
+                    <th>@face.N1old</th>
+                    <th>@face.N1new</th>
+                    <th>@face.Messagee</th>
+                    <th>@face.FN212.N1</th>
+                    <th>@face.FN212.N18</th>
+                    <th>@face.FN212.N134</th>
+                    <th>@face.FN212.D3</th>
+                    <th>@face.FN212.FID_Entity</th>
+                </tr>
+            }
+        }
+    </table>
+</div>

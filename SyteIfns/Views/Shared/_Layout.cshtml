@@ -15,44 +15,63 @@
     <button type="button" class="buttonclass" onclick="test('menu')">Отделы</button>
     <button type="button" class="buttonclass" onclick="show('menu')">Скрыть</button>
 </div>
-<div id="menu" class="sildebar">
-    <div class="treeview">
-        <ul>
-            <li>
-                <div>
-                    <p>
-                        <a href="#" class="sc" onclick="return UnHide(this)">&#9660;</a>
-                        <a href="#">Отделы!!!</a>
-                    </p>
-                </div>
-                <ul>
-                    <li class="cl">
-                        <div>
-                            <p>
-                                <a href="#" class="sc" onclick="return UnHide(this)">&#9658;</a>
-                                <a href="#">Урегулирование задолженности.</a>
-                            </p>
-                        </div>
-                        <ul><li><div><p>@Html.ActionLink("Контакт", "Contact", "Home")</p></div></li>
-                            <li><div><p>@Html.ActionLink("О программе", "About", "Home")</p></div></li>
-                            <li><div><p>@Html.ActionLink("Домашняя страница", "Index", "Home")</p></div></li>
-                        </ul>
-                    </li>
-                    <li class="cl">
-                        <div>
-                            <p>
-                                <a href="#" class="sc" onclick="return UnHide(this)">&#9658;</a>
-                                <a href="#">Аналитический отдел</a>
-                            </p>
-                        </div>
-                        <ul><li><div><p>@Html.ActionLink("Отчет слияния лиц!!!","FaceMergin", "Home")</p></div></li></ul>
-                    </li>
-
-                </ul>
-            </li>
-        </ul>
+    <div id="menu" class="sildebar">
+        <div class="treeview">
+            <ul>
+                <li>
+                    <div>
+                        <p>
+                            <a href="#" class="sc" onclick="return UnHide(this)">&#9660;</a>
+                            <a href="#">Отделы!!!</a>
+                        </p>
+                    </div>
+                    <ul>
+                        <li class="cl">
+                            <div>
+                                <p>
+                                    <a href="#" class="sc" onclick="return UnHide(this)">&#9658;</a>
+                                    <a href="#">Урегулирование задолженности.</a>
+                                </p>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div>
+                                        <p>@Html.ActionLink("Контакт", "Contact", "Home")</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <p>@Html.ActionLink("О программе", "About", "Home")</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <p>@Html.ActionLink("Домашняя страница", "Index", "Home")</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="cl">
+                            <div>
+                                <p>
+                                    <a href="#" class="sc" onclick="return UnHide(this)">&#9658;</a>
+                                    <a href="#">Аналитический отдел</a>
+                                </p>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div>
+                                        <p>@Html.ActionLink("Отчет слияния лиц!!!", "FaceMergin", "Mergin")</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
+
 <div class="content">
     @RenderBody()
 </div>
