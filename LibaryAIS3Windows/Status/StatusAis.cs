@@ -26,5 +26,9 @@ namespace LibaryAIS3Windows.Status
         /// Статус отсутствия списков для обработки
         /// </summary>
        public const string Status5 = "Отсутствуют списки для обработки!!!";
+        /// <summary>
+        /// Закончили обрабатывать пользовательское задание
+        /// </summary>
+       public const string Status6 = "Закончили обрабатывать пользовательское задание!!!";
     }
 }

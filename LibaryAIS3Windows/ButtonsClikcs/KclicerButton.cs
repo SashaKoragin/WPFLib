@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Windows.Forms;
+using LibaryAIS3Windows.Window.Otdel.Analitic.TeskText;
 using AutoIt;
+using LibaryAIS3Windows.ExitLogica.ExitTaskFull;
 using LibaryAIS3Windows.Mode.Okp4.PravoZorI;
 using LibaryAIS3Windows.Mode.Okp4.SnuFormirovanie;
 using LibaryAIS3Windows.Window;
@@ -362,6 +363,57 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     break;
                 }
             }
+        }
+
+        ///  <summary>
+        /// Атоматизация ветки 
+        /// Общие задания\Урегулирование задолженности\05.09 Ручное формирование решений на зачет/возврат/возврат процентов\05.09 Подпись проектов решений на зачет/возврат/возврат процентов\Подпись начальником аналитического отдела
+        /// а также ветка 
+        /// Общие задания\Урегулирование задолженности\05.09.01(06.01) Формирование сообщения о факте излишней уплаты (излишнего взыскания)\05.09.01(06.01) Формирование сообщения об излишней уплате (взыскании)\05.09.01(06.01) Формирование решений о зачете по инициативе НО\Подпись начальником аналитического отдела
+        /// </summary>
+        public string Click6()
+        {
+            int i = 0;
+            WindowsAis3 win = new WindowsAis3();
+            while (true)
+            {
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinRequest.X + 355, win.WindowsAis.Y + win.WinRequest.Y + 80);
+                AutoItX.WinWait(WindowsAis3.AisNalog3, ZachetVozvrat.Nachalnic, 10);
+                if (AutoItX.WinExists(WindowsAis3.AisNalog3, ZachetVozvrat.Nachalnic) == 1)
+                {
+                    break;
+                }
+                if (i == Proverka.Controlnumer)
+                {
+                    return Status.StatusAis.Status6;
+                }
+                i++;
+            }
+            //Подписываем проверяем если Ок сохраняем
+            var countdocstring = ReadWindow.Read.Reades.ReadFormNotActiv(Mode.Analitic.Task.TaskZn.Signature);
+            while (true)
+            {
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinRequest.X + 550, win.WindowsAis.Y + win.WinRequest.Y + 75);
+                var countdocstringcontrol = ReadWindow.Read.Reades.ReadFormNotActiv(Mode.Analitic.Task.TaskZn.Signature);
+                if (!countdocstring.Equals(countdocstringcontrol))
+                {
+                    break;
+                }
+            }
+            while (true)
+            {
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinRequest.X + 205, win.WindowsAis.Y + win.WinRequest.Y + 85);
+                AutoItX.WinWait(ZachetVozvrat.TitleClose, ZachetVozvrat.TextWin, 10);
+                if (AutoItX.WinExists(ZachetVozvrat.TitleClose, ZachetVozvrat.TextWin) == 1)
+                {
+                    AutoItX.WinActivate(ZachetVozvrat.TitleClose);
+                    AutoItX.Send(ButtonConstant.Enter);
+                    AutoItX.WinWait(ZachetVozvrat.TitleExit, ZachetVozvrat.WorkOk, 10);
+                    AutoItX.Send(ButtonConstant.Enter);
+                    break;
+                }
+            }
+            return Status.StatusAis.Status3;
         }
     }
 }

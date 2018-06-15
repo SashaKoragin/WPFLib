@@ -26,5 +26,9 @@ namespace SyteIfns.Models.PostRestAplication.ModelFaceError
             RefreshModel();
         }
 
+        public void Deleteface(int? id)
+        {
+         //  Face.FaceError.Id Думаю ошибочно нужно параметр кидать на Rest Приложение там на сервере обновит и вернет нормальную модель. Вопрос что делать с моделями их както много!!!!
+        }
     }
 }

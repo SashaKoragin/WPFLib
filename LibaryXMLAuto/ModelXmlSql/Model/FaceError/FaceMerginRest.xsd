@@ -41,6 +41,11 @@
 			<xs:sequence>
 				<xs:element ref="FN212"/>
 			</xs:sequence>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Номер по списку</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="N1old" type="xs:int">
 				<xs:annotation>
 					<xs:documentation>Старое лицо</xs:documentation>

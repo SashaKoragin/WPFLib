@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>angry birds.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
@@ -88,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Form\Automat\Analitic\Zadanie\ZacetVozvrat\Signature\SigZacetVozvrat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Okp4\FormSnuAuto\SnuFormAuto\FormSnuAuto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -150,6 +157,10 @@
     </Compile>
     <Compile Include="Config\ConfigFile.cs" />
     <Compile Include="Form\AddResours\SelectBranch\SelectBranch.cs" />
+    <Compile Include="Form\Automat\Analitic\Zadanie\ZacetVozvrat\DataContext\DataContextSig.cs" />
+    <Compile Include="Form\Automat\Analitic\Zadanie\ZacetVozvrat\Signature\SigZacetVozvrat.xaml.cs">
+      <DependentUpon>SigZacetVozvrat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\Okp4\FormSnuAuto\DataContext\DataContextSnuAuto.cs" />
     <Compile Include="Form\Automat\Okp4\FormSnuAuto\SnuFormAuto\FormSnuAuto.xaml.cs">
       <DependentUpon>FormSnuAuto.xaml</DependentUpon>
@@ -245,6 +256,9 @@
       <Project>{08bb509f-ead1-4666-a539-6d60f464db2f}</Project>
       <Name>ViewModelLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="angry birds.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

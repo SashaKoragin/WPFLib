@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Collections.ObjectModel;
+using AutomatAis3Full.Form.Automat.Analitic.Zadanie.ZacetVozvrat.Signature;
 using AutomatAis3Full.Form.Automat.Okp4.FormSnuAuto.SnuFormAuto;
 using AutomatAis3Full.Form.Automat.Okp4.MassSnuForm.MassSnuForm;
 using AutomatAis3Full.Form.Automat.Okp4.PravoEdit.PravoEdit;
@@ -19,11 +13,25 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
 
     public class AddLogicaFull
       {
+       /// <summary>
+       /// Рефлизация древовидной структуры
+       /// </summary>
+       /// <returns></returns>
         public FullWindowAutoItMethod FullWindowAdd()
         {
             FullWindowAutoItMethod autoit = new FullWindowAutoItMethod();
             ObservableCollection<FullWindowAutoIt> window = new ObservableCollection<FullWindowAutoIt>
-            {
+            { new FullWindowAutoIt()
+                { NameControl = "Аналитический", CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                {
+                    new FullWindowAutoIt() {NameControl = "Урегулирование задолженности", CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                    {
+                        new FullWindowAutoIt() {NameControl = "05.09 Подпись проектов решений на зачет/возврат", CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                        {
+                            new FullWindowAutoIt() {NameControl = "Подпись начальником аналитического отдела", UserControl = new SigZacetVozvrat()}
+                        } }
+                    }}
+                } },
                 new FullWindowAutoIt()
                 {
                     NameControl = "ОКП4",

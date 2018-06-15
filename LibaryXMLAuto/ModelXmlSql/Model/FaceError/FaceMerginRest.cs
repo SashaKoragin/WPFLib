@@ -114,6 +114,10 @@ namespace LibaryXMLAutoModelXmlSql.Model.FaceError {
         
         private FN212 fN212Field;
         
+        private int idField;
+        
+        private bool idFieldSpecified;
+        
         private int n1oldField;
         
         private bool n1oldFieldSpecified;
@@ -131,6 +135,28 @@ namespace LibaryXMLAutoModelXmlSql.Model.FaceError {
             }
             set {
                 this.fN212Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdSpecified {
+            get {
+                return this.idFieldSpecified;
+            }
+            set {
+                this.idFieldSpecified = value;
             }
         }
         

@@ -13,7 +13,7 @@ namespace LibaryAIS3Windows.ReadWindow.Read
    public class Reades
     {
         /// <summary>
-        /// Функция считывает данные с любого поданного контрола 
+        /// Функция считывает данные с активного поданного контрола 
         /// </summary>
         /// <param name="element">Наш контол Название ,идентификатор Name</param>
         /// <returns></returns>
@@ -33,6 +33,28 @@ namespace LibaryAIS3Windows.ReadWindow.Read
                 else
                 {
                     AutoIt.AutoItX.ClipPut(null);
+                    break;
+                }
+            }
+            return parametr;
+        }
+
+        /// <summary>
+        /// Функция считывает данные с не активного поданного контрола 
+        /// </summary>
+        /// <param name="element">Наш контол Название ,идентификатор Name</param>
+        /// <returns></returns>
+        public static string ReadFormNotActiv(string[] element)
+        {
+            string parametr = null;
+            while (true)
+            {
+                if (String.IsNullOrWhiteSpace(parametr))
+                {
+                    parametr = AutoIt.AutoItX.ControlGetText(element[0], "", element[1]);
+                }
+                else
+                {
                     break;
                 }
             }
