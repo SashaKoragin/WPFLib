@@ -41,9 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlEntytiCommand\TaskUse\TaskResult.cs" />
     <Compile Include="SqlSelect\SqlFaceMergin\FaceSelectError.cs" />
     <Compile Include="SqlSelect\SqlLk2\SelectSqlLk2.cs" />
+    <Compile Include="SqlSelect\SqlReshenia\ProcedureTreb.cs" />
     <Compile Include="SqlZapros\Zapros\SqlZapros.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SqlEntytiCommand\ConnectSql\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

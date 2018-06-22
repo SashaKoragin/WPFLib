@@ -63,6 +63,9 @@
     <Compile Include="ModelXmlSql\Model\FaceError\FaceMerginRest.cs">
       <DependentUpon>FaceMerginRest.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ModelXmlSql\Model\Trebovanie\ModelTreb.cs">
+      <DependentUpon>ModelTreb.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ReadOrWrite\CreateElement\CreteElement.cs" />
     <Compile Include="ErrorJurnal\ErrorJurnal.cs" />
     <Compile Include="ErrorJurnal\OkJurnal.cs" />
@@ -102,6 +105,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ModelXmlSql\Model\FaceError\FaceMerginRest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ModelXmlSql\Model\Trebovanie\ModelTreb.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />

@@ -1,7 +1,9 @@
 ﻿import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import { enableProdMode } from '@angular/core';
-import { AppModule } from "./app/app.module";
+import { FaceError,Trebovanie } from "./app/LoadComponentFull";
 
 const platform = platformBrowserDynamic();
 enableProdMode();
-platform.bootstrapModule(AppModule);
+platform.bootstrapModule(FaceError);
+platform.bootstrapModule(Trebovanie);
+

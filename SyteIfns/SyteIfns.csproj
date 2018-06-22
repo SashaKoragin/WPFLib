@@ -135,7 +135,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MerginController.cs" />
+    <Compile Include="Controllers\OtdelController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -150,15 +150,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Global.asax" />
     <Content Include="package.json" />
     <Content Include="packages.config" />
     <Content Include="public\app.js" />
     <Content Include="public\polyfills.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="src\app\template\MergeFace.html" />
+    <Content Include="src\app\Otdel\Analiticks\FaceMerge\Template\MergeFace.html" />
+    <Content Include="src\app\Otdel\Yregulirovanie\Trebovanie\Template\Trebovanie.html" />
     <Content Include="webpack.config.js" />
     <None Include="Properties\PublishProfiles\Sasha.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -185,11 +186,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Mergin\FaceMergin.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Otdel\Analitics\MergeFace.cshtml" />
     <Content Include="tsconfig.json" />
+    <Content Include="Views\Otdel\Yregulirovanie\Trebovanie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -211,16 +211,17 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\app\app.component.ts" />
+    <Content Include="src\app\Otdel\Analiticks\FaceMerge\StartModule\StartComponent.ts" />
     <Content Include="src\main.ts" />
     <Content Include="src\polyfills.ts" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="src\app\adress\app.adressservice.ts" />
-    <TypeScriptCompile Include="src\app\app.module.ts" />
-    <TypeScriptCompile Include="src\app\app.post.ts" />
-    <TypeScriptCompile Include="src\app\model\app.model.ts" />
-    <TypeScriptCompile Include="src\app\model\test.ts" />
+    <TypeScriptCompile Include="src\app\AdressFullRest\AdresSservice.ts" />
+    <TypeScriptCompile Include="src\app\LoadComponentFull.ts" />
+    <TypeScriptCompile Include="src\app\PostZaprosFull\PostFull.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\Analiticks\FaceMerge\Model\FaceError.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\StartModule\Trebovanie.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\Model\ModelTrebovanie.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
