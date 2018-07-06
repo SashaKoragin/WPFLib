@@ -1,4 +1,4 @@
-﻿export class Seting {
+﻿export class Setting {
     public ParametrSelect: ParametrSelect = new ParametrSelect();
     public Db: string;
     public Id: number;

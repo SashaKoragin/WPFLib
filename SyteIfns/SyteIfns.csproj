@@ -159,7 +159,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="src\app\Otdel\Analiticks\FaceMerge\Template\MergeFace.html" />
-    <Content Include="src\app\Otdel\Yregulirovanie\Trebovanie\Template\Trebovanie.html" />
+    <Content Include="src\app\Otdel\Yregulirovanie\Trebovanie\Template\Reshenie.html" />
+    <Content Include="src\app\Otdel\Yregulirovanie\Trebovanie\Template\Style.css" />
     <Content Include="webpack.config.js" />
     <None Include="Properties\PublishProfiles\Sasha.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -189,7 +190,7 @@
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Otdel\Analitics\MergeFace.cshtml" />
     <Content Include="tsconfig.json" />
-    <Content Include="Views\Otdel\Yregulirovanie\Trebovanie.cshtml" />
+    <Content Include="Views\Otdel\Yregulirovanie\Reshenie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -218,10 +219,14 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\app\AdressFullRest\AdresSservice.ts" />
     <TypeScriptCompile Include="src\app\LoadComponentFull.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\LogicaSetting\CreateSettingSelect.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\Model\Filter.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\Model\ModelSelect.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\Model\Process.ts" />
     <TypeScriptCompile Include="src\app\PostZaprosFull\PostFull.ts" />
     <TypeScriptCompile Include="src\app\Otdel\Analiticks\FaceMerge\Model\FaceError.ts" />
-    <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\StartModule\Trebovanie.ts" />
-    <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\Model\ModelTrebovanie.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\StartModule\Reshenie.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\Model\ModelReshenie.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -15,10 +15,10 @@ namespace SyteIfns.Controllers
             //return View(new ReaderAnsvwer());
             return View("Analitics/MergeFace");
         }
-        public ActionResult Trebovanie()
+        public ActionResult Reshenie()
         {
-            ViewBag.Message = "Модуль для Требований!!!";
-            return View("Yregulirovanie/Trebovanie");
+            ViewBag.Message = "Модуль для Решений!!!";
+            return View("Yregulirovanie/Reshenie");
         }
     }
 }

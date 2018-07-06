@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Incass">
+		<xs:annotation>
+			<xs:documentation>Созданные инкассовае поручения</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="D851Res_1" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун Требования</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D850Incass" type="xs:int"/>
+			<xs:attribute name="D851Incass" type="xs:int"/>
+			<xs:attribute name="Summ" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>Суммы по инкассовым поручениям</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D270IshIncass" type="xs:int"/>
+			<xs:attribute name="DateCreate" type="xs:dateTime"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Reshenie">
+		<xs:annotation>
+			<xs:documentation>Созданные решения</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence minOccurs="0">
+				<xs:element ref="Incass" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="D865" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун решения</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D270" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Системный номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N1" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун плательщика</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Summ" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>Сумма Требования</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N120" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>Валюта</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D850Res" type="xs:int"/>
+			<xs:attribute name="D851Res" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун Требования</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D865Res" type="xs:int"/>
+			<xs:attribute name="D270IshRes" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Исходящий по требованию</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата создания требования</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TableSysNumReshen">
+		<xs:annotation>
+			<xs:documentation>Список системных номеров</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence minOccurs="0">
+				<xs:element ref="Reshenie" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="D270" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Системный номер для добавления</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdStatus_1" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Статус Требований 1</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ErrorReshenie" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Ошибка Требований</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateBlokReshenie" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата ошибки требований</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdStatus_2" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Статус инкассовых поручений</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ErrorIncass" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Ошибка инкасовых поручений</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateBlokIncass" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата ошибки инкассовых</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SysNum">
+		<xs:annotation>
+			<xs:documentation>Корневой Элемент root</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element ref="TableSysNumReshen"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

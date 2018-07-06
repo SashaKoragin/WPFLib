@@ -13,9 +13,6 @@ import { AdressMerge } from '../AdressFullRest/AdresSservice';
 var httpOptionsJson = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-var httpOptionsXml = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/xml' })
-};
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
@@ -47,8 +44,21 @@ var PostTrebovanie = /** @class */ (function () {
         this.http = http;
         this.url = new AdressMerge();
     }
-    PostTrebovanie.prototype.modeltest = function (seting) {
-        return this.http.post(this.url.testingxml, seting, httpOptionsJson);
+    PostTrebovanie.prototype.modelreshenie = function (setting) {
+        try {
+            return this.http.post(this.url.loadreshenie, setting, httpOptionsJson);
+        }
+        catch (e) {
+            alert(e.toString());
+        }
+    };
+    PostTrebovanie.prototype.procedurestart = function (setting) {
+        try {
+            return this.http.post(this.url.useprocedure, setting, httpOptionsJson);
+        }
+        catch (e) {
+            alert(e.toString());
+        }
     };
     PostTrebovanie = __decorate([
         Injectable(),
@@ -57,3 +67,4 @@ var PostTrebovanie = /** @class */ (function () {
     return PostTrebovanie;
 }());
 export { PostTrebovanie };
+//# sourceMappingURL=PostFull.js.map

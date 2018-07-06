@@ -3,16 +3,13 @@ import { HttpClient, HttpHeaders, HttpParams,HttpErrorResponse,HttpResponse} fro
 import { AdressMerge } from '../AdressFullRest/AdresSservice';
 import { Observable } from 'rxjs';
 import { Face, FaceErrorField, FaceAdd } from '../Otdel/Analiticks/FaceMerge/Model/FaceError';
-import { Seting } from '../Otdel/Yregulirovanie/Trebovanie/Model/ModelTrebovanie';
+import { Setting } from '../Otdel/Yregulirovanie/Trebovanie/Model/ModelReshenie';
 
 const httpOptionsJson = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 
 };
 
-const httpOptionsXml = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/xml'})
-}
 @Injectable()
 
 export class DataService {
@@ -44,8 +41,20 @@ export class DataService {
 export class PostTrebovanie {
     private url: AdressMerge = new AdressMerge();
     constructor(private http: HttpClient) { }
-    modeltest(seting: Seting) {
 
-        return this.http.post(this.url.testingxml, seting, httpOptionsXml);
+    modelreshenie(setting: Setting) {
+   try {
+       return this.http.post(this.url.loadreshenie, setting, httpOptionsJson);
+       } catch(e) {
+        alert(e.toString());
+    } 
+    }
+
+    procedurestart(setting: Setting) {
+        try {
+            return this.http.post(this.url.useprocedure, setting, httpOptionsJson);
+        } catch (e) {
+            alert(e.toString());
+        } 
     }
 }

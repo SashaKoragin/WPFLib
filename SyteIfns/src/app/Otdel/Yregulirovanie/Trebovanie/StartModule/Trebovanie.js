@@ -9,11 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { PostTrebovanie } from '../../../../PostZaprosFull/PostFull';
-import { Seting } from '../Model/ModelTrebovanie';
+import { Setting } from '../Model/ModelTrebovanie';
 var TrebovanieStart = /** @class */ (function () {
     function TrebovanieStart(dataservice) {
         this.dataservice = dataservice;
-        this.setting = new Seting();
+        this.setting = new Setting();
         this.component = 'Круто!!!';
     }
     TrebovanieStart.prototype.ngOnInit = function () {

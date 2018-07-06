@@ -1,33 +1,33 @@
 ﻿using System.IO;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using LibaryXMLAutoModelXmlSql.Model.FaceError;
+using LibaryXMLAutoModelXmlSql.Model.Trebovanie;
 
 namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
 {
+    /// <summary>
+    /// Сериализация JSON
+    /// </summary>
    public class SerializeJson
     {
-        public string Json(Face f)
+        /// <summary>
+        /// Разбор модели на строку JSON
+        /// --Данныю вещь можно попробовать делать с помощью официальных библиотек!!!--
+        /// </summary>
+        /// <param name="model">Модель класса для его преобразование в string JSON</param>
+        /// <returns>string JSON</returns>
+        public string Json(object model)
         {
             MemoryStream ms = new MemoryStream();
-
-            // Serializer the User object to the stream.  
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Face));
-            ser.WriteObject(ms, f);
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(SysNum), new DataContractJsonSerializerSettings()
+            {
+                DateTimeFormat = new DateTimeFormat("dd-MM-yyyy")
+            });
+            ser.WriteObject(ms, model);
             byte[] json = ms.ToArray();
             ms.Close();
             return Encoding.UTF8.GetString(json, 0, json.Length);
-            //DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeObject);
-            //try
-            //{
-            //    object o = jsonFormatter.ReadObject(reader);
-            //    return o;
-            //}
-            //catch (Exception e)
-            //{
-            //  Console.WriteLine(e);
-            //}
-            //return null;
         }
      }
 }

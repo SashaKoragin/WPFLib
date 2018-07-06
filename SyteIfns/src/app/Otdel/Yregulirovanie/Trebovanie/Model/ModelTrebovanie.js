@@ -1,10 +1,10 @@
-var Seting = /** @class */ (function () {
-    function Seting() {
+var Setting = /** @class */ (function () {
+    function Setting() {
         this.ParametrSelect = new ParametrSelect();
     }
-    return Seting;
+    return Setting;
 }());
-export { Seting };
+export { Setting };
 var ParametrSelect = /** @class */ (function () {
     function ParametrSelect() {
         this.D270 = 0;

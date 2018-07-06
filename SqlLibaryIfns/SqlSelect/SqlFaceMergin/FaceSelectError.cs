@@ -41,7 +41,7 @@ namespace SqlLibaryIfns.SqlSelect.SqlFaceMergin
        /// <summary>
        /// Выборка лиц по которым не прошло слияние в логе!!!
        /// </summary>
-        public static string FaceError = @"Select distinct Id, N1old, N1new,Messagee,N1,N18,N134,D3,FID_Entity From BDK77737751000070020000019757..Face FaceError
+        public static readonly string FaceError = @"Select distinct Id, N1old, N1new,Messagee,N1,N18,N134,D3,FID_Entity From BDK77737751000070020000019757..Face FaceError
                                           Join FN212 on N1 = FaceError.N1old FOR XML AUTO,ROOT('Face')";
 
        public static string FaceDelete = @"use BDK77737751000070020000019757

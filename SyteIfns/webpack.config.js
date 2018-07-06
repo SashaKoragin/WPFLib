@@ -32,7 +32,6 @@ module.exports = {
                 loader: 'html-loader'
             }, {
                 test: /\.css$/,
-                include: path.resolve(__dirname, 'ClientApp/app'),
                 loader: 'raw-loader'
             }
         ]

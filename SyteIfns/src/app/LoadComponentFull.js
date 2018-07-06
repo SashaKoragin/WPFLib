@@ -9,7 +9,8 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from "./Otdel/Analiticks/FaceMerge/StartModule/StartComponent";
-import { TrebovanieStart } from "./Otdel/Yregulirovanie/Trebovanie/StartModule/Trebovanie";
+import { ReshenieStart } from "./Otdel/Yregulirovanie/Trebovanie/StartModule/Reshenie";
+import { Filter } from './Otdel/Yregulirovanie/Trebovanie/Model/Filter';
 var FaceError = /** @class */ (function () {
     function FaceError() {
     }
@@ -23,16 +24,17 @@ var FaceError = /** @class */ (function () {
     return FaceError;
 }());
 export { FaceError };
-var Trebovanie = /** @class */ (function () {
-    function Trebovanie() {
+var Reshenie = /** @class */ (function () {
+    function Reshenie() {
     }
-    Trebovanie = __decorate([
+    Reshenie = __decorate([
         NgModule({
             imports: [BrowserModule, FormsModule, HttpClientModule],
-            declarations: [TrebovanieStart],
-            bootstrap: [TrebovanieStart]
+            declarations: [ReshenieStart, Filter],
+            bootstrap: [ReshenieStart]
         })
-    ], Trebovanie);
-    return Trebovanie;
+    ], Reshenie);
+    return Reshenie;
 }());
-export { Trebovanie };
+export { Reshenie };
+//# sourceMappingURL=LoadComponentFull.js.map

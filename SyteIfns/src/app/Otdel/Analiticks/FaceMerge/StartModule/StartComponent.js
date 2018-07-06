@@ -62,3 +62,4 @@ var AppComponent = /** @class */ (function () {
     return AppComponent;
 }());
 export { AppComponent };
+//# sourceMappingURL=StartComponent.js.map

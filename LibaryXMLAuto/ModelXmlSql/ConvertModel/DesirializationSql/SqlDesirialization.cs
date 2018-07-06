@@ -5,7 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Schema;
 using System.Xml.Serialization;
+using LibaryXMLAutoModelXmlSql.Model.Trebovanie;
+
 //using LibaryXMLAutoModelXmlSql.Model.FaceError;
 
 namespace LibaryXMLAuto.ModelXmlSql.ConvertModel.DesirializationSql
@@ -22,8 +25,16 @@ namespace LibaryXMLAuto.ModelXmlSql.ConvertModel.DesirializationSql
                 XmlSerializer serializer = new XmlSerializer(objType);
                 if (serializer.CanDeserialize(reader))
                 {
+                    try
+                    {
                     object o = serializer.Deserialize(reader);
                     return o;
+                    }
+                    catch (Exception e)
+                    {
+                      Console.Write(e.Message);
+                    }
+
                 }
             return null;
         }

@@ -1,0 +1,123 @@
+﻿<div id="db">
+    <b id="text">Выбор Базы Данных:</b>
+    <button class="btn btn-sm btn-danger" (click)="swithdb()">{{db}}</button>
+</div>
+<form id="form" (ngSubmit)="storeprocedurestart(1,setting.ParametrSelect.D270)">
+    <div id="add">
+        <label>Добавить системный номер:</label>
+        <input id="SysNum" placeholder="Сис. номер!!!" name="sysnum" [(ngModel)]="setting.ParametrSelect.D270" type="number" />
+        <input type="submit" value="Отправить" />
+    </div>
+</form>
+<b>{{status.messagestatus}}</b>
+<div id="start">
+    <button id="startresh" [disabled]="status.blocks" class="btn btn-sm" (click)="storeprocedurestart(2)">Запустить решения</button>
+    <button id="startincass" [disabled]="status.blocks" class="btn btn-sm" (click)="storeprocedurestart(3)">Запустить инкассовые поручения</button>
+</div>
+<table *ngIf="mode; else detalization" class="table table-striped">
+    <thead>
+    <tr>
+        <th>Системный номер<br/>
+            <input type="text" name="D270" [(ngModel)]="filters.d270Field" placeholder="Системный номер" />
+        </th>
+        <th>Статус Решения<br/>
+            <input type="text" name="idStatus" [(ngModel)]="filters.idStatus_1Field" placeholder="Статус решения" />
+        </th>
+        <th>Ошибка по решению<br/>
+            <input type="text" name="error" [(ngModel)]="filters.errorReshenieField" placeholder="Ошибка" />
+        </th>
+        <th>Дата ошибки<br/>
+            <input type="text" name="dateBlokReshenie" [(ngModel)]="filters.dateBlokReshenieField" placeholder="Дата" />
+        </th>
+        <th>Статус Инкас. Поруч.<br/>
+            <input type="text" name="idStatus_2" [(ngModel)]="filters.idStatus_2Field" placeholder="Инкас.Поручение" />
+        </th>
+        <th>Ошибка по инкассовым поруч.<br />
+            <input type="text" name="errorIncass" [(ngModel)]="filters.errorIncassField" placeholder="Ошибка" />
+        </th>
+        <th>Дата ошибки<br/>
+            <input type="text" name="dateBlokIncass" [(ngModel)]="filters.dateBlokIncassField" placeholder="Дата" />
+        </th>
+        <th>Детализация</th>
+    </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td colspan="4">
+                <label for="limit">Limit: </label><input type="number" name="limit" [(ngModel)]="limit" min="1" [attr.max]="[numberResh]" step="1" placeholder="Limit">
+                <label for="page">Page: </label><input type="number" name="page" [(ngModel)]="page" min="1" [attr.max]="[numberResh]" step="1" placeholder="Page">
+            </td>
+        </tr>
+    </tfoot>
+        <tbody>
+            <tr *ngFor="let res of reshenie?.tableSysNumReshenField | elementfilter:filters | slice:(page-1) *limit:page*limit"  >
+                <th>{{res?.d270Field}}</th>
+                <th>{{res?.idStatus_1Field}}</th>
+                <th>{{res?.errorReshenieField}}</th>
+                <th>{{res?.dateBlokReshenieField}}</th>
+                <th>{{res?.idStatus_2Field}}</th>
+                <th>{{res?.errorIncassField}}</th>
+                <th>{{res?.dateBlokIncassField}}</th>
+                <td>
+                    <button id="detal" class="btn btn-sm btn-danger" (click)="detal(res)">Детализация</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+<ng-template #detalization>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Ун требования</th>
+            <th>Системный номер</th>
+            <th>Ун плательщика</th>
+            <th>Сумма</th>
+            <th>Валюта</th>
+            <th>???</th>
+            <th>Ун решения</th>
+            <th>????</th>
+            <th>Исходящий</th>
+            <th>Дата создания</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>{{resheniedetal?.d865ResField}}</th>
+            <th>{{resheniedetal?.d270Field}}</th>
+            <th>{{resheniedetal?.n1Field}}</th>
+            <th>{{resheniedetal?.summField}}</th>
+            <th>{{resheniedetal?.n120Field}}</th>
+            <th>{{resheniedetal?.d850ResField}}</th>
+            <th>{{resheniedetal?.d851ResField}}</th>
+            <th>{{resheniedetal?.d865ResField}}</th>
+            <th>{{resheniedetal?.d270IshResField}}</th>
+            <th>{{resheniedetal?.dateCreateField}}</th>
+        </tr>
+        </tbody>
+    </table>
+    <div class="glyphicon-align-left">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Ун Решения</th>
+                <th>???</th>
+                <th>Ун инкассового поруч</th>
+                <th>Суммы </th>
+                <th>Исходящийна инкас</th>
+                <th>Дата создания</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let in of incass">
+                <th>{{in?.d851Res_1Field}}</th>
+                <th>{{in?.d850IncassField}}</th>
+                <th>{{in?.d851IncassField}}</th>
+                <th>{{in?.summField}}</th>
+                <th>{{in?.d270IshIncassField}}</th>
+                <th>{{in?.dateCreateField}}</th>
+            </tr>
+            </tbody>
+        </table>
+        <b><button id="break" class="btn btn-sm" (click)="returns()">Вернутся</button></b>
+    </div>
+</ng-template>

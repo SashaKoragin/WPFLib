@@ -26,3 +26,4 @@ var FaceAdd = /** @class */ (function () {
     return FaceAdd;
 }());
 export { FaceAdd };
+//# sourceMappingURL=FaceError.js.map
