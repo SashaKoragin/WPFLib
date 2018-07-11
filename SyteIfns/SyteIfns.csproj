@@ -140,6 +140,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\PostRestAplication\ModelFaceError\ReaderAnsvwer.cs" />
+    <Compile Include="PostResponse\FileStream\AddresFile\AdressFile.cs" />
+    <Compile Include="PostResponse\FileStream\DonloadFileReport.cs" />
     <Compile Include="PostResponse\PostRestAdd.cs" />
     <Compile Include="PostResponse\Response.cs" />
     <Compile Include="PostResponse\TestPostResponse\TestPostResponse.cs" />

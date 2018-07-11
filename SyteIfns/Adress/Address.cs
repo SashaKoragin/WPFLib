@@ -11,8 +11,6 @@ namespace SyteIfns.Adress
     /// </summary>
     public class Address
     {
-
-
         /// <summary>
         /// Тестовый адрес
         /// </summary>

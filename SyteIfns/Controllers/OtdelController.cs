@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
+using SyteIfns.PostResponse.FileStream;
 
 namespace SyteIfns.Controllers
 {
@@ -20,5 +23,12 @@ namespace SyteIfns.Controllers
             ViewBag.Message = "Модуль для Решений!!!";
             return View("Yregulirovanie/Reshenie");
         }
+
+        public ActionResult DonloadFile()
+        {
+            DonloadFileReport donload = new DonloadFileReport();
+            return File(donload.DonloadTrebovanie(), "application/xlsx", "Требования.xlsx");
+        }
+
     }
 }
