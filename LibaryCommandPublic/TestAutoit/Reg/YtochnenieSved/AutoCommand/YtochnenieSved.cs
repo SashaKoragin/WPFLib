@@ -27,7 +27,7 @@ namespace LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand
                 {
                     while (statusButton.Iswork)
                     {
-                        clickerButton.Click2(pathjurnalerror, pathjurnalok);
+                        clickerButton.Click2(pathjurnalerror, pathjurnalok,statusButton.IsChekcs);
                     }
                     DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusYellow);
                 }

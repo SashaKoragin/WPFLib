@@ -27,6 +27,14 @@
             <Label Content="Комманда приостановить Shift+S" />
             <Label Content="Комманда возобновить Shift+A" />
         </StackPanel>
+        <CheckBox
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="5,5,5,5"
+            VerticalAlignment="Top"
+            Content="Учитывать установку фильтра!!!"
+            FontWeight="Bold"
+            IsChecked="{Binding StartButton1.IsChekcs}" />
     </Grid>
     <UserControl.InputBindings>
         <KeyBinding

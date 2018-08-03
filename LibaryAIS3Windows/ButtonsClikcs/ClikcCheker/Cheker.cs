@@ -18,7 +18,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs.ClikcCheker
         public static void Chekerfid()
         {
             var win = new Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie();
-            AutoIt.AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WinVisualIdentification.X + win.WindowsIdentification.X + 590, win.WinVisualIdentification.Y +win.WindowsIdentification.Y+ 62, 1);
+            AutoIt.AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WinVisualIdentification.X + win.WindowsIdentification.X + 670, win.WinVisualIdentification.Y +win.WindowsIdentification.Y+ 65, 1);
         }
     }
 }

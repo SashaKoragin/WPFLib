@@ -1,0 +1,41 @@
+﻿.user {
+    display: inline-block;
+}
+
+.message {
+    display: inline-block;
+}
+
+button {
+         background-color: green;
+         color: white;
+         cursor: pointer;
+         
+}
+
+button:hover {
+            background-color: orange;
+            color: white;
+}
+
+table.table {
+  vertical-align: top;
+  font-family: Georgia, serif;
+  border: 6px ridge #24943A;
+  background-color: #D4EED1;
+  text-align: center; 
+}
+table.table td, table.table th {
+  border: 1px solid #24943A;
+  padding: 3px 2px;
+}
+table.table tbody td {
+  font-size: 13px;
+}
+table.table thead {
+  background: #24943A;
+  background: -moz-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+  background: -webkit-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+  background: linear-gradient(to bottom, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+  border-bottom: 0px solid #444444;
+}

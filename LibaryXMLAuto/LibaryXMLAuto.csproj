@@ -60,14 +60,17 @@
       <DependentUpon>FpdReg.xsd</DependentUpon>
     </Compile>
     <Compile Include="ModelXmlSql\ConvertModel\DesirializationSql\SqlDesirialization.cs" />
+    <Compile Include="ModelXmlSql\Model\Bdk\BdkIt\AnalisBdk.cs">
+      <DependentUpon>AnalisBdk.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModelXmlSql\Model\FaceError\FaceMerginRest.cs">
       <DependentUpon>FaceMerginRest.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ModelXmlSql\Model\FullSetting\FullSetting.cs" />
     <Compile Include="ModelXmlSql\Model\Trebovanie\Reshenie.cs">
       <SubType>code</SubType>
       <DependentUpon>Reshenie.xsd</DependentUpon>
     </Compile>
-    <Compile Include="ModelXmlSql\Model\Trebovanie\Setting.cs" />
     <Compile Include="ReadOrWrite\CreateElement\CreteElement.cs" />
     <Compile Include="ErrorJurnal\ErrorJurnal.cs" />
     <Compile Include="ErrorJurnal\OkJurnal.cs" />
@@ -85,8 +88,16 @@
     <Compile Include="ReadOrWrite\LogicaXml\LogicaXml.cs" />
     <Compile Include="ReadOrWrite\SerializationJson\SerializeJson.cs" />
     <Compile Include="ReadOrWrite\XmlReadOrWrite.cs" />
+    <Compile Include="Reports\ReportsBdk\ReportBdk.cs">
+      <DependentUpon>ReportBdk.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\TemplateSheme\TemplateReport.cs">
+      <DependentUpon>TemplateReport.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ModelXmlSql\Model\Bdk\BdkNo\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="ModelXmlAuto\ListInnSheme\FullInnCount.xsd">
       <SubType>Designer</SubType>
@@ -106,6 +117,9 @@
     <None Include="ModelXmlAuto\ModelSnuOne\SnuOneForm.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ModelXmlSql\Model\Bdk\BdkIt\AnalisBdk.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ModelXmlSql\Model\FaceError\FaceMerginRest.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -113,6 +127,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Reports\ReportsBdk\ReportBdk.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\TemplateSheme\TemplateReport.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild" DependsOnTargets="CreateXsd" />
@@ -132,6 +152,9 @@
       <XsdFilesFid Include="ModelXmlAuto\ModelFidZorI\*.xsd" />
       <XsdXmlSql Include="ModelXmlSql\Model\FaceError\*.xsd" />
       <XsdXmlSqlTreb Include="ModelXmlSql\Model\Trebovanie\*.xsd" />
+      <XsdXmlSqlBdk Include="ModelXmlSql\Model\Bdk\BdkIt\*.xsd" />
+      <XsdXmlSqlReport Include="Reports\ReportsBdk\*.xsd" />
+      <XsdXmlSqlTemplateReport Include="Reports\TemplateSheme\*.xsd" />
     </ItemGroup>
     <Message Importance="high" Text="CreateXsd" />
     <GetFrameworkSdkPath>
@@ -148,5 +171,8 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFilesFid.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.ModelFidZorI /outputdir:ModelXmlAuto\ModelFidZorI" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSql.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.Model.FaceError /outputdir:ModelXmlSql\Model\FaceError" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlTreb.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.Model.Trebovanie /outputdir:ModelXmlSql\Model\Trebovanie" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlBdk.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.Model.Bdk.BdkIt /outputdir:ModelXmlSql\Model\Bdk\BdkIt\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlReport.FullPath)&quot; /classes /namespace:$(RootNamespace)Reports.ReportsBdk /outputdir:Reports\ReportsBdk\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlTemplateReport.FullPath)&quot; /classes /namespace:$(RootNamespace)Reports.TemplateSheme /outputdir:Reports\TemplateSheme\" />
   </Target>
 </Project>

@@ -5,11 +5,11 @@ import { catchError, retry, map } from 'rxjs/operators';
 import { plainToClass } from "class-transformer";
 
 //По сути патерн MVVM только в рамках асинхронности
-@Component({
+@Component(({
     selector: 'my-app',
     templateUrl: '../Template/MergeFace.html',
     providers: [DataService]
-})
+})as any)
     
 export class AppComponent implements OnInit { 
     facemodel: Face = null;

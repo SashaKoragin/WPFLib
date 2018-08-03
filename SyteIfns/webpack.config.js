@@ -4,6 +4,9 @@ var webpack = require('webpack');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // плагин минимизации
 module.exports = {
     mode: "development",
+    devServer: {
+        overlay:true
+    },
     entry: {
         'polyfills': './src/polyfills.ts',
         'app': './src/main.ts'
@@ -44,4 +47,5 @@ module.exports = {
         ),
         new UglifyJSPlugin()
     ]
+    
 }

@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using LibaryXMLAutoModelXmlSql.Model.Trebovanie;
+using Newtonsoft.Json;
 
 namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
 {
@@ -12,22 +13,17 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
    public class SerializeJson
     {
         /// <summary>
-        /// Разбор модели на строку JSON
-        /// --Данныю вещь можно попробовать делать с помощью официальных библиотек!!!--
+        /// Библиотечная функция получения данных JSON
         /// </summary>
-        /// <param name="model">Модель класса для его преобразование в string JSON</param>
-        /// <returns>string JSON</returns>
-        public string Json(object model)
+        /// <param name="model">Объект модели класса</param>
+        /// <returns>JSON string</returns>
+        public string JsonLibary(object model)
         {
-            MemoryStream ms = new MemoryStream();
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(SysNum), new DataContractJsonSerializerSettings()
-            {
-                DateTimeFormat = new DateTimeFormat("dd-MM-yyyy")
-            });
-            ser.WriteObject(ms, model);
-            byte[] json = ms.ToArray();
-            ms.Close();
-            return Encoding.UTF8.GetString(json, 0, json.Length);
+         return  JsonConvert.SerializeObject(model,new JsonSerializerSettings()
+          {
+            NullValueHandling = NullValueHandling.Ignore,
+            DateFormatString = "dd-MM-yyyy"
+          });
         }
      }
 }

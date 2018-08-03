@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using LibaryAIS3Windows.Window.Otdel.Analitic.TeskText;
 using AutoIt;
 using LibaryAIS3Windows.ExitLogica.ExitTaskFull;
@@ -82,17 +83,32 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// Пользовательские задания
         /// Ветка Физические лица/1.08. Сообщение ФЛ об объектах собственности\Уточнение сведений о ФЛ
         /// </summary>
-        public void Click2(string pathjurnalerror, string pathjurnalok)
+        /// <param name="pathjurnalerror">Путь к журналу с ошибками</param>
+        /// <param name="pathjurnalok">Путь к отработаным записям</param>
+        /// <param name="usefilter">Переключатель если ложь делаем как обычно если правда то на вторую строку</param>
+        public void Click2(string pathjurnalerror, string pathjurnalok,bool usefilter)
        {
+           try
+           {
+
             while (true)
             {
                 WindowsAis3 win = new WindowsAis3();
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinRequest.X + 355, win.WindowsAis.Y + win.WinRequest.Y + 80);
-                AutoItX.WinWait(WindowsAis3.Text, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFid, 10);
+                if (usefilter)
+                {
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.GridMain.X + 70, win.WindowsAis.Y + win.GridMain.Y + 55,2);
+                    AutoItX.WinWait(WindowsAis3.Text, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFid, 30);
+                }
+                else
+                {
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinRequest.X + 355, win.WindowsAis.Y + win.WinRequest.Y + 80);
+                    AutoItX.WinWait(WindowsAis3.Text, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFid, 30);
+                }
                 if (AutoItX.WinExists(WindowsAis3.Text, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFid) == 1)
                 {
                     break;
                 }
+
             }
             var fid = ReadWindow.Read.Reades.ReadForm(Mode.Reg.Yvedomlenie.Yvedomlenia.FidText);
             while (true)
@@ -104,7 +120,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     break;
                 }
             }
-            AutoItX.Sleep(1000);
+            AutoItX.Sleep(2000);
             ClikcCheker.Cheker.Chekerfid();
             AutoItX.ControlClick(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, Mode.Reg.Yvedomlenie.Yvedomlenia.Update[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Update[1], ButtonConstant.MouseLeft);
             while (true)
@@ -127,6 +143,12 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, fid, "Отработали");
                     break;
                 }
+            }
+
+            }
+            catch (Exception e)
+            {
+                LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, "Ошибка исключения надо смотреть!!!", ModeBranchUser, e.Message);
             }
         }
 

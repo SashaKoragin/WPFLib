@@ -28,7 +28,7 @@ namespace SqlLibaryIfns.SqlZapros.StoreProcedure
                 Sobytie sobytie = new Sobytie { Messages = null };
                 using (var con = new SqlConnection(conectionstring))
                 {
-                    SqlCommand command = new SqlCommand(procedure) { CommandType = CommandType.StoredProcedure, Connection = con };
+                    SqlCommand command = new SqlCommand(procedure) { CommandType = CommandType.StoredProcedure, Connection = con, CommandTimeout = 0};
                     con.InfoMessage += sobytie.Con_InfoMessage;
                     if (listparametr != null)
                     {

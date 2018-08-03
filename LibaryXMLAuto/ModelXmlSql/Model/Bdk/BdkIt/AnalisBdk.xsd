@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="AhalisBdk">
+		<xs:annotation>
+			<xs:documentation>Таблица Анализа БДК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Idtable" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DbName_1" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование контейнера</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="VerConteiner_1" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Версия контейнера</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="RUS_1" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КЛС</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N279_1" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Инспекция откуда поступил</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D2702_1" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование инспекции</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Viddela_1" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Вид дела</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D3970" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун дела в БДК</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D09" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Вид дела справочник</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D41" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата приема не в счет те которые ФЛ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N279_2" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код участка</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N1" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун плательщика в контейнере</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N134" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D3" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N1002" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ОГРН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N18" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование плательщика</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="idanalis" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун сообщения</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageError" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение анализа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DataError" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата сообщения анализа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="idok" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун сообщения обработки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageOk" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение Ок</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DataOk" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата сообщение Ок</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NumDelo" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун дела БДК в БД</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AnalisBdkFull">
+		<xs:annotation>
+			<xs:documentation>Анализ для БДК</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AhalisBdk" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

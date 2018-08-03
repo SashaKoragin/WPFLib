@@ -45,7 +45,7 @@ namespace SqlLibaryIfns.SqlSelect.SqlReshenia
                                                Left join vGetFLActionType_2 v2 on v2.n1=Face.N1
                                                Left Join (Select fn1517.d851_2, fn1517.d87, fn1517.d851,fn1016.d430,fn1517.d270 From fn1517 (nolock)
                                                     join fn1016 (nolock) on fn1016.d81 = fn1517.d81) a on a.D851_2 = doc.D851
-                                             Where a.D851_2 is NULL  and doc.D09<>1 and doc.D1967<GETDATE() and doc.colday<365 and doc.colday>-45 --and doc.D270 =116718895 --and cash.N1 is Null  and doc.D270 =116718895--IsBusinessman ИП или не ИП --Удаление фиктивных D09";
+                                             Where a.D851_2 is NULL  and doc.D09<>1 and doc.D1967<GETDATE() and doc.colday<365 and doc.colday>-55 --and doc.D270 =116718895 --and cash.N1 is Null  and doc.D270 =116718895--IsBusinessman ИП или не ИП --Удаление фиктивных D09";
 
         /// <summary>
         /// Выборка отработаных решений и инкассовых поручений!!!

@@ -1,11 +1,15 @@
 ﻿<div id="db">
+    <h2>База данных по умолчанию:  {{database.db.db}}</h2><br/>
     <b id="text">Выбор Базы Данных:</b>
-    <button class="btn btn-sm btn-danger" (click)="swithdb()">{{db}}</button>
+    <select [(ngModel)]="database.db">
+        <option *ngFor="let x of database.databases" [ngValue]="x">{{x.db}}</option>
+    </select>
+    <button class="btn btn-sm btn-danger" (click)="swithdb(database.db.num)">Получить данные с БД</button>
 </div>
-<form id="form" (ngSubmit)="storeprocedurestart(1,setting.ParametrSelect.D270)">
+<form id="form" (ngSubmit)="storeprocedurestart(1,setting.ParametrReshen.D270)">
     <div id="add">
         <label>Добавить системный номер:</label>
-        <input id="SysNum" placeholder="Сис. номер!!!" name="sysnum" [(ngModel)]="setting.ParametrSelect.D270" type="number" />
+        <input id="SysNum" placeholder="Сис. номер!!!" name="sysnum" [(ngModel)]="setting.ParametrReshen.D270" type="number" />
         <input type="submit" value="Отправить" />
     </div>
 </form>
@@ -18,25 +22,25 @@
     <thead>
     <tr>
         <th>Системный номер<br/>
-            <input type="text" name="D270" [(ngModel)]="filters.d270Field" placeholder="Системный номер" />
+            <input type="text" name="D270" [(ngModel)]="filters.D270" placeholder="Системный номер" />
         </th>
         <th>Статус Решения<br/>
-            <input type="text" name="idStatus" [(ngModel)]="filters.idStatus_1Field" placeholder="Статус решения" />
+            <input type="text" name="idStatus" [(ngModel)]="filters.IdStatus_1" placeholder="Статус решения" />
         </th>
         <th>Ошибка по решению<br/>
-            <input type="text" name="error" [(ngModel)]="filters.errorReshenieField" placeholder="Ошибка" />
+            <input type="text" name="error" [(ngModel)]="filters.ErrorReshenie" placeholder="Ошибка" />
         </th>
         <th>Дата ошибки<br/>
-            <input type="text" name="dateBlokReshenie" [(ngModel)]="filters.dateBlokReshenieField" placeholder="Дата" />
+            <input type="text" name="dateBlokReshenie" [(ngModel)]="filters.DateBlokReshenie" placeholder="Дата" />
         </th>
         <th>Статус Инкас. Поруч.<br/>
-            <input type="text" name="idStatus_2" [(ngModel)]="filters.idStatus_2Field" placeholder="Инкас.Поручение" />
+            <input type="text" name="idStatus_2" [(ngModel)]="filters.IdStatus_2" placeholder="Инкас.Поручение" />
         </th>
         <th>Ошибка по инкассовым поруч.<br />
-            <input type="text" name="errorIncass" [(ngModel)]="filters.errorIncassField" placeholder="Ошибка" />
+            <input type="text" name="errorIncass" [(ngModel)]="filters.ErrorIncass" placeholder="Ошибка" />
         </th>
         <th>Дата ошибки<br/>
-            <input type="text" name="dateBlokIncass" [(ngModel)]="filters.dateBlokIncassField" placeholder="Дата" />
+            <input type="text" name="dateBlokIncass" [(ngModel)]="filters.DateBlokIncass" placeholder="Дата" />
         </th>
         <th>Детализация</th>
     </tr>
@@ -50,14 +54,14 @@
         </tr>
     </tfoot>
         <tbody>
-            <tr *ngFor="let res of reshenie?.tableSysNumReshenField | elementfilter:filters | slice:(page-1) *limit:page*limit"  >
-                <th>{{res?.d270Field}}</th>
-                <th>{{res?.idStatus_1Field}}</th>
-                <th>{{res?.errorReshenieField}}</th>
-                <th>{{res?.dateBlokReshenieField}}</th>
-                <th>{{res?.idStatus_2Field}}</th>
-                <th>{{res?.errorIncassField}}</th>
-                <th>{{res?.dateBlokIncassField}}</th>
+            <tr *ngFor="let res of reshenie?.TableSysNumReshen | elementfilter:filters | slice:(page-1) *limit:page*limit"  >
+                <th>{{res?.D270}}</th>
+                <th>{{res?.IdStatus_1}}</th>
+                <th>{{res?.ErrorReshenie}}</th>
+                <th>{{res?.DateBlokReshenie}}</th>
+                <th>{{res?.IdStatus_2}}</th>
+                <th>{{res?.ErrorIncass}}</th>
+                <th>{{res?.DateBlokIncass}}</th>
                 <td>
                     <button id="detal" class="btn btn-sm btn-danger" (click)="detal(res)">Детализация</button>
                 </td>
@@ -82,16 +86,16 @@
         </thead>
         <tbody>
         <tr>
-            <th>{{resheniedetal?.d865ResField}}</th>
-            <th>{{resheniedetal?.d270Field}}</th>
-            <th>{{resheniedetal?.n1Field}}</th>
-            <th>{{resheniedetal?.summField}}</th>
-            <th>{{resheniedetal?.n120Field}}</th>
-            <th>{{resheniedetal?.d850ResField}}</th>
-            <th>{{resheniedetal?.d851ResField}}</th>
-            <th>{{resheniedetal?.d865ResField}}</th>
-            <th>{{resheniedetal?.d270IshResField}}</th>
-            <th>{{resheniedetal?.dateCreateField}}</th>
+            <th>{{resheniedetal?.D865Res}}</th>
+            <th>{{resheniedetal?.D270}}</th>
+            <th>{{resheniedetal?.N1}}</th>
+            <th>{{resheniedetal?.Summ}}</th>
+            <th>{{resheniedetal?.N120}}</th>
+            <th>{{resheniedetal?.D850Res}}</th>
+            <th>{{resheniedetal?.D851Res}}</th>
+            <th>{{resheniedetal?.D865Res}}</th>
+            <th>{{resheniedetal?.D270IshRes}}</th>
+            <th>{{resheniedetal?.DateCreate}}</th>
         </tr>
         </tbody>
     </table>
@@ -109,12 +113,12 @@
             </thead>
             <tbody>
             <tr *ngFor="let in of incass">
-                <th>{{in?.d851Res_1Field}}</th>
-                <th>{{in?.d850IncassField}}</th>
-                <th>{{in?.d851IncassField}}</th>
-                <th>{{in?.summField}}</th>
-                <th>{{in?.d270IshIncassField}}</th>
-                <th>{{in?.dateCreateField}}</th>
+                <th>{{in?.D851Res_1}}</th>
+                <th>{{in?.D850Incass}}</th>
+                <th>{{in?.D851Incass}}</th>
+                <th>{{in?.Summ}}</th>
+                <th>{{in?.D270IshIncass}}</th>
+                <th>{{in?.DateCreate}}</th>
             </tr>
             </tbody>
         </table>

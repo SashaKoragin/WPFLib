@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="FN1723_2">
+		<xs:annotation>
+			<xs:documentation>Характеристики контейнера</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="D85" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата отправки Бдк</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D981" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Название Бдк</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="GUID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>GUID Бдк</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FN71">
+		<xs:annotation>
+			<xs:documentation>Инспекция</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FN1723_2" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="N279" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер инспекции</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N280" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование инспекции</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="Report">
+		<xs:annotation>
+			<xs:documentation>Отчеты</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="FN71" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ReportBdk" type="Report">
+		<xs:annotation>
+			<xs:documentation>Отчеты Word БДК </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

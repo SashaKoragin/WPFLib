@@ -39,12 +39,18 @@ namespace LibaryAIS3Windows.Window
         internal Rectangle WindowsAis = AutoItX.WinGetPos(AisNalog3, Text);
         /// <summary>
         /// Считать позицию создание заявки на формирование СНУ
+        /// Так- же данная функция работае для пользовательских заданий
         /// </summary>
         internal Rectangle WinRequest = AutoItX.ControlGetPos("АИС Налог-3 ПРОМ ", "", "[NAME:CreateRequestImplView]");
         /// <summary>
         /// Grid контроль полей для вычисления
         /// </summary>
         internal Rectangle WinGrid = AutoItX.ControlGetPos("АИС Налог-3 ПРОМ ", "", "[Name:gridConditions]");
+
+        /// <summary>
+        /// Контроль поле для пользовательских заданий
+        /// </summary>
+        internal Rectangle GridMain = AutoItX.ControlGetPos("АИС Налог-3 ПРОМ ", "", "[NAME:mainGrid]");
         /// <summary>
         /// Проверка наличия окна АИС налог 3 
         /// если вернет 1 то окно существует если 0 то не существует!!!

@@ -34,9 +34,10 @@
       <HintPath>C:\Nuget\ClosedXML.0.93.0\lib\net40\ClosedXML.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
-      <HintPath>C:\Nuget\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Nuget\DocumentFormat.OpenXml.2.8.1\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
@@ -60,9 +61,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExcelReport\Report\DonloadsFile.cs" />
     <Compile Include="ExcelReport\Report\ReportExcel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlEntytiCommand\TaskUse\TaskResult.cs" />
+    <Compile Include="SqlModelReport\Bdk\ModelFull.cs" />
+    <Compile Include="SqlModelReport\SqlTemplate\ModelTemplate.cs" />
+    <Compile Include="SqlSelect\Report\ReportBdk\ReportBdk.cs" />
+    <Compile Include="SqlSelect\Report\Template\Template.cs" />
+    <Compile Include="SqlSelect\SqlBdkIt\SqlBdkIt.cs" />
     <Compile Include="SqlSelect\SqlFaceMergin\FaceSelectError.cs" />
     <Compile Include="SqlSelect\SqlLk2\SelectSqlLk2.cs" />
     <Compile Include="SqlSelect\SqlReshenia\ProcedureTreb.cs" />
@@ -75,6 +82,7 @@
     <Folder Include="SqlEntytiCommand\ConnectSql\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

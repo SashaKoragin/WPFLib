@@ -35,6 +35,7 @@ namespace WordReportsFull.EventsFull
             {
                 try
                 {
+                    
                     var contentparam = (ValidationControl.ContentZn)MainWindow.Dispatcher.Invoke(() => MainWindow.ComboBox.SelectedValue);
                     Word.Application oWord = new Word.Application();
                     Word.Document oDoc = ReportsWordDocumentsSql.SelectDocument(oWord, inn.Text,god.Text, contentparam);

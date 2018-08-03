@@ -1,58 +1,58 @@
 ﻿export class SysNum {
-    tableSysNumReshenField: TableSysNumReshenField[];
+    TableSysNumReshen: TableSysNumReshen[];
 }
-export class TableSysNumReshenField {
+export class TableSysNumReshen {
 
-    d270Field: number;
-    d270FieldSpecified: boolean;
-    dateBlokIncassField: string;
-    dateBlokIncassFieldSpecified: boolean;
-    dateBlokReshenieField: string;
-    dateBlokReshenieFieldSpecified: boolean;
-    errorIncassField?: string;
-    errorReshenieField?: any;
-    idStatus_1Field: number;
-    idStatus_1FieldSpecified: boolean;
-    idStatus_2Field: number;
-    idStatus_2FieldSpecified: boolean;
-    reshenieField: ReshenieField;
-}
-
-export class ReshenieField {
-    d270Field: number;
-    d270FieldSpecified: boolean;
-    d270IshResField: number;
-    d270IshResFieldSpecified: boolean;
-    d850ResField: number;
-    d850ResFieldSpecified: boolean;
-    d851ResField: number;
-    d851ResFieldSpecified: boolean;
-    d865Field: number;
-    d865FieldSpecified: boolean;
-    d865ResField: number;
-    d865ResFieldSpecified: boolean;
-    dateCreateField: string;
-    dateCreateFieldSpecified: boolean;
-    incassField: IncassField[];
-    n120Field: number;
-    n120FieldSpecified: boolean;
-    n1Field: number;
-    n1FieldSpecified: boolean;
-    summField: number;
-    summFieldSpecified: boolean;
+    D270: number;
+    D270Specified: boolean;
+    DateBlokIncass: string;
+    DateBlokIncassSpecified: boolean;
+    DateBlokReshenie: string;
+    DateBlokReshenieSpecified: boolean;
+    ErrorIncass?: string;
+    ErrorReshenie?: any;
+    IdStatus_1: number;
+    IdStatus_1Specified: boolean;
+    IdStatus_2: number;
+    IdStatus_2Specified: boolean;
+    Reshenie: Reshenie;
 }
 
-export class IncassField {
-    d270IshIncassField: number;
-    d270IshIncassFieldSpecified: boolean;
-    d850IncassField: number;
-    d850IncassFieldSpecified: boolean;
-    d851IncassField: number;
-    d851IncassFieldSpecified: boolean;
-    d851Res_1Field: number;
-    d851Res_1FieldSpecified: boolean;
-    summField: number;
-    summFieldSpecified: boolean;
-    dateCreateField: string;
-    dateCreateFieldSpecified: boolean;
+export class Reshenie {
+    D270: number;
+    D270Specified: boolean;
+    D270IshRes: number;
+    D270IshResSpecified: boolean;
+    D850Res: number;
+    D850ResSpecified: boolean;
+    D851Res: number;
+    D851ResSpecified: boolean;
+    D865: number;
+    D865Specified: boolean;
+    D865Res: number;
+    D865ResSpecified: boolean;
+    DateCreate: string;
+    DateCreateSpecified: boolean;
+    Incass: Incass[];
+    N120: number;
+    N120Specified: boolean;
+    N1: number;
+    N1Specified: boolean;
+    Summ: number;
+    SummSpecified: boolean;
+}
+
+export class Incass {
+    D270IshIncass: number;
+    D270IshIncassSpecified: boolean;
+    D850Incass: number;
+    D850IncassSpecified: boolean;
+    D851Incass: number;
+    D851IncassSpecified: boolean;
+    D851Res_1: number;
+    D851Res_1Specified: boolean;
+    Summ: number;
+    SummSpecified: boolean;
+    DateCreate: string;
+    DateCreateSpecified: boolean;
 }

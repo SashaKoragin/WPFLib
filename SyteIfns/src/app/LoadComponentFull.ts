@@ -4,7 +4,9 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from "./Otdel/Analiticks/FaceMerge/StartModule/StartComponent";
 import { ReshenieStart} from "./Otdel/Yregulirovanie/Trebovanie/StartModule/Reshenie"
-import {Filter} from './Otdel/Yregulirovanie/Trebovanie/Model/Filter'
+import { Filter } from './Otdel/Yregulirovanie/Trebovanie/Model/Filter'
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BdkIt } from './Otdel/It/Bdk/StartModule/Bdk'
 @NgModule({
     imports: [BrowserModule, FormsModule, HttpClientModule],
     declarations: [AppComponent],
@@ -21,4 +23,13 @@ export class FaceError {
     bootstrap: [ReshenieStart]
 })
 export class Reshenie {
+}
+
+
+@NgModule({
+    imports: [BrowserModule, FormsModule, HttpClientModule],
+    declarations: [BdkIt],
+    bootstrap: [BdkIt]
+})
+export class Bdk {
 }

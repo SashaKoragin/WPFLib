@@ -1,0 +1,57 @@
+﻿<div id="model">
+    <div class="user">
+        <label>Пользователь Ун БД:  </label>
+        <input id="N269" placeholder="УН пользователя!!!" name="n269" [(ngModel)]="setting.ParametrBdk.N269" type="number" />
+        <label class="has-error">{{setting.ParametrBdk.validationmessage}}</label>    
+    <br/>
+    </div><br/>
+    <div class="message">
+        <label>Сообщение:   </label>
+        <input id="D05" placeholder="Сообщение!!!" name="d05" [(ngModel)]="setting.ParametrBdk.D05" /><br />
+    </div>
+</div>
+<label>{{bloks.messagestatus}}</label>
+<div>
+    <button id="analis" [disabled]="bloks.blocks" class="btn btn-sm" (click)="storeprocedure(1,0,null)">Запустить анализ БДК</button>
+    <button id="startingprocedure" [disabled]="bloks.blocks" class="btn btn-sm" (click)="storeprocedure(2,setting.ParametrBdk.N269,setting.ParametrBdk.D05)">Запустить создание БДК</button>
+</div>
+<div>
+    <h1>Анализ данных по БДК</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th colspan="6">Общие сведения</th>
+            <th colspan="2">Анализ</th>
+            <th colspan="2">После обработки</th>
+        </tr>
+        <tr>
+            <th>Контейнер</th>
+            <th>Инспекция</th>
+            <th>Вид дела</th>
+            <th>Дата приема</th>
+            <th>ИНН</th>
+            <th>КПП</th>
+            <th>Ун анализа</th>
+            <th>Сообщение</th>
+            <th>Ун обработки</th>
+            <th>Сообщение</th>
+            <th>Дело</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let bdk of bdk?.AhalisBdk">
+                <th>{{bdk?.DbName_1}}</th>
+                <th>{{bdk?.N279_1}}</th>
+                <th>{{bdk?.Viddela_1}}</th>
+                <th>{{bdk?.D41}}</th>
+                <th>{{bdk?.N134}}</th>
+                <th>{{bdk?.D3}}</th>
+                <th>{{bdk?.idanalis}}</th>
+                <th>{{bdk?.MessageError}}</th>
+                <th>{{bdk?.idok}}</th>
+                <th>{{bdk?.MessageOk}}</th>
+                <th>{{bdk?.NumDelo}}</th>
+            </tr>
+        </tbody>
+    </table>
+</div>

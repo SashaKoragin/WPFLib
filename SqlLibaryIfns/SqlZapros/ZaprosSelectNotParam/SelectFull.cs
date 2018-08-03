@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Xml;
 using LibaryXMLAuto.ModelXmlSql.ConvertModel.DesirializationSql;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
+using LibaryXMLAutoModelXmlSql.Model.Bdk.BdkIt;
 using LibaryXMLAutoModelXmlSql.Model.FaceError;
 using LibaryXMLAutoModelXmlSql.Model.Trebovanie;
 
@@ -54,7 +55,18 @@ namespace SqlLibaryIfns.SqlZapros.ZaprosSelectNotParam
         public string SysNumReshenie(string conectionstring, string select)
         {
             SerializeJson serializeJson = new SerializeJson();
-            return serializeJson.Json((SysNum)SelectFullSqlReader(conectionstring,select,typeof(SysNum)));      
+            return serializeJson.JsonLibary((SysNum)SelectFullSqlReader(conectionstring,select,typeof(SysNum)));      
+        }
+        /// <summary>
+        /// Данный блок относится к БДК
+        /// </summary>
+        /// <param name="conectionstring">Строка соединения</param>
+        /// <param name="select">Команда Select</param>
+        /// <returns>Возвращаем модель JSON в виде строки</returns>
+        public string BdkSqlSelect(string conectionstring, string select)
+        {
+            SerializeJson serializeJson = new SerializeJson();
+            return serializeJson.JsonLibary((AnalisBdkFull) SelectFullSqlReader(conectionstring, select,typeof(AnalisBdkFull)));
         }
     }
 }

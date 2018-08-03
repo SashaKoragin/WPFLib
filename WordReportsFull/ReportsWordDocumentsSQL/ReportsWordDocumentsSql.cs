@@ -19,7 +19,6 @@ namespace WordReportsFull.ReportsWordDocumentsSQL
 
         public static Word.Document SelectDocument(Word.Application oWord, String inn, String god, ContentZn contentparam)
         {
-            
             ValidationXml validate= new ValidationXml();
             Word.Document oDoc = oWord.Documents.Add(contentparam.FullName);
             XmlDocument xml = new XmlDocument();

@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Mime;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using SyteIfns.PostResponse.FileStream;
 
 namespace SyteIfns.Controllers
 {
     public class OtdelController : Controller
     {
-        // GET: Otdel
         public ActionResult MergeFace()
         {
             ViewBag.Message = "Модуль предназначен для слияния лиц!!!";
-            //return View(new ReaderAnsvwer());
             return View("Analitics/MergeFace");
         }
         public ActionResult Reshenie()
@@ -24,11 +16,28 @@ namespace SyteIfns.Controllers
             return View("Yregulirovanie/Reshenie");
         }
 
-        public ActionResult DonloadFile()
+        public ActionResult Bdk()
+        {
+            ViewBag.Message = "Модуль для работы с Бдк!!!";
+            return View("It/Bdk");
+        }
+        /// <summary>
+        /// Загрузка файла Требований
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DonloadTrebovanie()
         {
             DonloadFileReport donload = new DonloadFileReport();
-            return File(donload.DonloadTrebovanie(), "application/xlsx", "Требования.xlsx");
+            return File(donload.DonloadFile(PostResponse.FileStream.AddresFile.AdressFile.AdressTrebovanie), "application/xlsx", "Требования.xlsx");
         }
-
+        /// <summary>
+        /// Загрузка файла Бдк
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DonloadBdk()
+        {
+            DonloadFileReport donload = new DonloadFileReport();
+            return File(donload.DonloadFile(PostResponse.FileStream.AddresFile.AdressFile.AdressBdk), "application/xlsx", "Бдк.xlsx");
+        }
     }
 }

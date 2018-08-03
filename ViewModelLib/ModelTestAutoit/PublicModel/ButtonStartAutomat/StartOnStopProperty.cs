@@ -16,7 +16,10 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat
         private int _count;
         private bool _iswork;
         private Button _button = new Button();
-
+      
+        /// <summary>
+        /// Логика галочки 
+        /// </summary>
        public bool IsChekcs
        {
            get
@@ -127,7 +130,9 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat
             else
                 StatusYellow();
         }
-
+        /// <summary>
+        /// Логика галочки
+        /// </summary>
         public void IsCheker()
         {
             if (IsChekcs)

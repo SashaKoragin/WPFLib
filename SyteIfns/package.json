@@ -4,11 +4,12 @@
   "description": "First Angular 5 Project",
   "author": "Eugene Popov <metanit.com>",
   "scripts": {
-    "dev": "webpack-dev-server --hot --open",
-    "build": "webpack"
+    "dev": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production"
   },
   "dependencies": {
     "@angular/common": "~6.0.3",
+    "@angular/cdk": "~6.3.3",
     "@angular/compiler": "~6.0.3",
     "@angular/core": "~6.0.3",
     "@angular/forms": "~6.0.3",

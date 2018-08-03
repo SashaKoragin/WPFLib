@@ -68,6 +68,7 @@ namespace WordReportsFull.CreateReportWord
         {
             var i = 1;
             var tables = word.Bookmarks["Summ"];
+           
             var table = word.Tables.Add(tables.Range, summorg.FN52.Length, 5, 1, 2);
             foreach (var summ in summorg.FN52)
             {

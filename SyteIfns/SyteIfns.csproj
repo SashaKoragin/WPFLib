@@ -20,8 +20,8 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -71,12 +71,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
@@ -125,12 +123,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:\Nuget\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Adress\Address.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -139,12 +131,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\PostRestAplication\ModelFaceError\ReaderAnsvwer.cs" />
     <Compile Include="PostResponse\FileStream\AddresFile\AdressFile.cs" />
     <Compile Include="PostResponse\FileStream\DonloadFileReport.cs" />
-    <Compile Include="PostResponse\PostRestAdd.cs" />
-    <Compile Include="PostResponse\Response.cs" />
-    <Compile Include="PostResponse\TestPostResponse\TestPostResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +149,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="src\app\Otdel\Analiticks\FaceMerge\Template\MergeFace.html" />
+    <Content Include="src\app\Otdel\It\Bdk\Template\Bdk.html" />
+    <Content Include="src\app\Otdel\It\Bdk\Template\BdkStyle.css" />
     <Content Include="src\app\Otdel\Yregulirovanie\Trebovanie\Template\Reshenie.html" />
     <Content Include="src\app\Otdel\Yregulirovanie\Trebovanie\Template\Style.css" />
     <Content Include="webpack.config.js" />
@@ -193,8 +183,10 @@
     <Content Include="Views\Otdel\Analitics\MergeFace.cshtml" />
     <Content Include="tsconfig.json" />
     <Content Include="Views\Otdel\Yregulirovanie\Reshenie.cshtml" />
+    <Content Include="Views\Otdel\It\Bdk.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Adress\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
@@ -203,12 +195,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LibaryXMLAuto\LibaryXMLAuto.csproj">
-      <Project>{a2bc3ae2-4a61-4e9e-9fa4-96a02677c79c}</Project>
-      <Name>LibaryXMLAuto</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
@@ -220,15 +206,17 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="src\app\AdressFullRest\AdresSservice.ts" />
+    <TypeScriptCompile Include="src\app\FullSetting\CreateSetting.ts" />
+    <TypeScriptCompile Include="src\app\FullSetting\FullSetting.ts" />
+    <TypeScriptCompile Include="src\app\FullSetting\ProcessFull.ts" />
     <TypeScriptCompile Include="src\app\LoadComponentFull.ts" />
-    <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\LogicaSetting\CreateSettingSelect.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\It\Bdk\Model\BdkModel.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\It\Bdk\StartModule\Bdk.ts" />
     <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\Model\Filter.ts" />
     <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\Model\ModelSelect.ts" />
-    <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\Model\Process.ts" />
     <TypeScriptCompile Include="src\app\PostZaprosFull\PostFull.ts" />
     <TypeScriptCompile Include="src\app\Otdel\Analiticks\FaceMerge\Model\FaceError.ts" />
     <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\StartModule\Reshenie.ts" />
-    <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\Model\ModelReshenie.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -286,5 +274,11 @@
     <TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
     <TypeScriptMapRoot />
     <TypeScriptSourceRoot />
+    <IncludeIisSettings>true</IncludeIisSettings>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
+    <PublishDatabaseSettings>
+      <Objects>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
 </Project>
