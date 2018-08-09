@@ -4,7 +4,22 @@
     <select [(ngModel)]="database.db">
         <option *ngFor="let x of database.databases" [ngValue]="x">{{x.db}}</option>
     </select>
-    <button class="btn btn-sm btn-danger" (click)="swithdb(database.db.num)">Получить данные с БД</button>
+    <div class="grid-container">
+        <div class="grid-item">
+            <label>Дата начала:</label>
+        </div>
+        <div class="grid-item">
+            <input id="D85" name="D85DateStart" type="date" [(ngModel)]="date.D85DateStart" />
+        </div>
+        <div class="grid-item">
+            <label>Дата окончания:</label>
+        </div>
+        <div class="grid-item">
+            <input id="D85_1" name="D85" [(ngModel)]="date.D85DateFinish" type="date" />
+        </div>
+    </div>
+    <label class="errors">{{date.messageerror}}</label><br />
+    <button class="btn btn-sm btn-danger" (click)="swithdb(database.db.num,date.D85DateStart,date.D85DateFinish)">Получить данные с БД</button>
 </div>
 <form id="form" (ngSubmit)="storeprocedurestart(1,setting.ParametrReshen.D270)">
     <div id="add">
@@ -46,28 +61,29 @@
     </tr>
     </thead>
     <tfoot>
-        <tr>
-            <td colspan="4">
-                <label for="limit">Limit: </label><input type="number" name="limit" [(ngModel)]="limit" min="1" [attr.max]="[numberResh]" step="1" placeholder="Limit">
-                <label for="page">Page: </label><input type="number" name="page" [(ngModel)]="page" min="1" [attr.max]="[numberResh]" step="1" placeholder="Page">
-            </td>
-        </tr>
+    <tr>
+        <td colspan="4">
+            <label for="limit">Limit: </label><input type="number" name="limit" [(ngModel)]="limit" min="1" [attr.max]="[numberResh]" step="1" placeholder="Limit">
+            <label for="page">Page: </label><input type="number" name="page" [(ngModel)]="page" min="1" [attr.max]="[numberResh]" step="1" placeholder="Page">
+        </td>
+    </tr>
     </tfoot>
-        <tbody>
-            <tr *ngFor="let res of reshenie?.TableSysNumReshen | elementfilter:filters | slice:(page-1) *limit:page*limit"  >
-                <th>{{res?.D270}}</th>
-                <th>{{res?.IdStatus_1}}</th>
-                <th>{{res?.ErrorReshenie}}</th>
-                <th>{{res?.DateBlokReshenie}}</th>
-                <th>{{res?.IdStatus_2}}</th>
-                <th>{{res?.ErrorIncass}}</th>
-                <th>{{res?.DateBlokIncass}}</th>
-                <td>
-                    <button id="detal" class="btn btn-sm btn-danger" (click)="detal(res)">Детализация</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <tbody>
+    <tr *ngFor="let res of reshenie?.TableSysNumReshen | elementfilter:filters | slice:(page-1) *limit:page*limit"  >
+        <th>{{res?.D270}}</th>
+        <th>{{res?.IdStatus_1}}</th>
+        <th>{{res?.ErrorReshenie}}</th>
+        <th>{{res?.DateBlokReshenie}}</th>
+        <th>{{res?.IdStatus_2}}</th>
+        <th>{{res?.ErrorIncass}}</th>
+        <th>{{res?.DateBlokIncass}}</th>
+        <td>
+            <button id="detal" class="btn btn-sm btn-danger" (click)="detal(res)">Детализация</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p *ngIf="errornull; else notfound"></p>
 <ng-template #detalization>
     <table class="table table-striped">
         <thead>
@@ -124,4 +140,8 @@
         </table>
         <b><button id="break" class="btn btn-sm" (click)="returns()">Вернутся</button></b>
     </div>
+</ng-template>
+
+<ng-template #notfound>
+    <h4>По данной выборки нет данных!!!</h4>
 </ng-template>

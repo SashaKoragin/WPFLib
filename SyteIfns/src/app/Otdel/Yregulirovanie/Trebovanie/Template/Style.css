@@ -56,3 +56,18 @@ b {
     background-color: #24943A;
     font-size: 20px;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: max-content max-content;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+  text-align: left;
+  font-family: Georgia, serif;
+}
+.errors {
+    background: red;
+    font-size: 20px;
+}

@@ -63,9 +63,11 @@
   <ItemGroup>
     <Compile Include="ExcelReport\Report\DonloadsFile.cs" />
     <Compile Include="ExcelReport\Report\ReportExcel.cs" />
+    <Compile Include="GenerateParametrSql\GenerateParametrSql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlEntytiCommand\TaskUse\TaskResult.cs" />
     <Compile Include="SqlModelReport\Bdk\ModelFull.cs" />
+    <Compile Include="SqlModelReport\SqlReshenue\SqlReshen.cs" />
     <Compile Include="SqlModelReport\SqlTemplate\ModelTemplate.cs" />
     <Compile Include="SqlSelect\Report\ReportBdk\ReportBdk.cs" />
     <Compile Include="SqlSelect\Report\Template\Template.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="SqlZapros\SobytieSql\Sobytie.cs" />
     <Compile Include="SqlZapros\StoreProcedure\StartProcedure.cs" />
     <Compile Include="SqlZapros\ZaprosSelectNotParam\SelectFull.cs" />
+    <Compile Include="SqlZapros\ZaprosSelectParametr\SelectFullParametr.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SqlEntytiCommand\ConnectSql\" />
@@ -84,6 +87,12 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\MyStudio\Обучение\Loggers\Loggers.csproj">
+      <Project>{9bac233e-ed3d-493e-b7f6-f26f8091968d}</Project>
+      <Name>Loggers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

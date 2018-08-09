@@ -17,7 +17,7 @@ namespace SqlLibaryIfns.SqlSelect.Report.Template
                                                     (SELECT Stone.* FROM Stone WHERE Stone.IdStone = Template.IdStone FOR XML AUTO, TYPE)
                                                 From NameDocument
                                                 Join Template on Template.IdTemplate = NameDocument.IdTemplate
-                                                Where NameDocument.IdTemplate = 1
+                                                Where NameDocument.IdTemplate = @IdTemplate
                                                 FOR XML AUTO,ROOT('TemplateFull')";
    }
 }

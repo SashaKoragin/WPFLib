@@ -15,7 +15,10 @@ export class TableSysNumReshen {
     IdStatus_1Specified: boolean;
     IdStatus_2: number;
     IdStatus_2Specified: boolean;
+    DataCreate: string;
+    DataCreateSpecified: boolean;
     Reshenie: Reshenie;
+
 }
 
 export class Reshenie {

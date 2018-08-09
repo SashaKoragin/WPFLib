@@ -499,6 +499,10 @@ namespace LibaryXMLAutoModelXmlSql.Model.Trebovanie {
         
         private bool dateBlokIncassFieldSpecified;
         
+        private System.DateTime dataCreateField;
+        
+        private bool dataCreateFieldSpecified;
+        
         /// <remarks/>
         public Reshenie Reshenie {
             get {
@@ -638,6 +642,28 @@ namespace LibaryXMLAutoModelXmlSql.Model.Trebovanie {
             }
             set {
                 this.dateBlokIncassFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime DataCreate {
+            get {
+                return this.dataCreateField;
+            }
+            set {
+                this.dataCreateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DataCreateSpecified {
+            get {
+                return this.dataCreateFieldSpecified;
+            }
+            set {
+                this.dataCreateFieldSpecified = value;
             }
         }
     }

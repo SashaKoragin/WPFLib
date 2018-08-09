@@ -7,6 +7,7 @@ import { ReshenieStart} from "./Otdel/Yregulirovanie/Trebovanie/StartModule/Resh
 import { Filter } from './Otdel/Yregulirovanie/Trebovanie/Model/Filter'
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BdkIt } from './Otdel/It/Bdk/StartModule/Bdk'
+import { BdkLetter } from './Otdel/It/FormLetter/StartModel/FormLetter'
 @NgModule({
     imports: [BrowserModule, FormsModule, HttpClientModule],
     declarations: [AppComponent],
@@ -32,4 +33,13 @@ export class Reshenie {
     bootstrap: [BdkIt]
 })
 export class Bdk {
+}
+
+@NgModule({
+    imports: [BrowserModule, FormsModule, HttpClientModule],
+    declarations: [BdkLetter],
+    bootstrap: [BdkLetter]
+})
+export class Letter {
+    
 }

@@ -21,6 +21,12 @@ namespace SyteIfns.Controllers
             ViewBag.Message = "Модуль для работы с Бдк!!!";
             return View("It/Bdk");
         }
+
+        public ActionResult BdkLetter()
+        {
+            ViewBag.Message = "Модуль формирование писем Бдк!!!";
+            return View("It/FormLetter");
+        }
         /// <summary>
         /// Загрузка файла Требований
         /// </summary>

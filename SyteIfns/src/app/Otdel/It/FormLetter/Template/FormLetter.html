@@ -1,0 +1,20 @@
+﻿<div id="model">
+    <div class="grid-container">
+        <div class="grid-item">
+            <label>Дата начала:</label>
+        </div>
+        <div class="grid-item">
+            <input id="D85" name="D85DateStart" type="date" [(ngModel)]="date.D85DateStart"/>
+            <!--<p>{{date.D85DateStart|date:'dd-MM-yyyy'}}</p>-->
+        </div>
+        <div class="grid-item">
+            <label>Дата окончания:</label>
+        </div>
+        <div class="grid-item">
+            <input id="D85_1" name="D85" [(ngModel)]="date.D85DateFinish" type="date"/>
+        </div>
+    </div>
+    <label class="errors">{{date.messageerror}}</label><br/>
+    <label class="ok">{{bloks.messagestatus}}</label><br/>
+    <button id="startreport" class="btn btn-sm" (click)="startreport(date.D85DateStart,date.D85DateFinish)">Запустить формирование писем</button>
+</div>

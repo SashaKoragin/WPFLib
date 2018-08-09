@@ -151,6 +151,8 @@
     <Content Include="src\app\Otdel\Analiticks\FaceMerge\Template\MergeFace.html" />
     <Content Include="src\app\Otdel\It\Bdk\Template\Bdk.html" />
     <Content Include="src\app\Otdel\It\Bdk\Template\BdkStyle.css" />
+    <Content Include="src\app\Otdel\It\FormLetter\Template\FormLetter.css" />
+    <Content Include="src\app\Otdel\It\FormLetter\Template\FormLetter.html" />
     <Content Include="src\app\Otdel\Yregulirovanie\Trebovanie\Template\Reshenie.html" />
     <Content Include="src\app\Otdel\Yregulirovanie\Trebovanie\Template\Style.css" />
     <Content Include="webpack.config.js" />
@@ -175,7 +177,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -184,10 +188,12 @@
     <Content Include="tsconfig.json" />
     <Content Include="Views\Otdel\Yregulirovanie\Reshenie.cshtml" />
     <Content Include="Views\Otdel\It\Bdk.cshtml" />
+    <Content Include="Views\Otdel\It\FormLetter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Adress\" />
     <Folder Include="App_Data\" />
+    <Folder Include="src\app\Otdel\It\FormLetter\Model\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -207,11 +213,13 @@
   <ItemGroup>
     <TypeScriptCompile Include="src\app\AdressFullRest\AdresSservice.ts" />
     <TypeScriptCompile Include="src\app\FullSetting\CreateSetting.ts" />
+    <TypeScriptCompile Include="src\app\FullSetting\DateModelFull.ts" />
     <TypeScriptCompile Include="src\app\FullSetting\FullSetting.ts" />
     <TypeScriptCompile Include="src\app\FullSetting\ProcessFull.ts" />
     <TypeScriptCompile Include="src\app\LoadComponentFull.ts" />
     <TypeScriptCompile Include="src\app\Otdel\It\Bdk\Model\BdkModel.ts" />
     <TypeScriptCompile Include="src\app\Otdel\It\Bdk\StartModule\Bdk.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\It\FormLetter\StartModel\FormLetter.ts" />
     <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\Model\Filter.ts" />
     <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\Model\ModelSelect.ts" />
     <TypeScriptCompile Include="src\app\PostZaprosFull\PostFull.ts" />

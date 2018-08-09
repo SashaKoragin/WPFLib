@@ -33,4 +33,8 @@ export class BlocsInfoButton {
             this.messagestatus = message;
         }
     }
+
+    serverrestmessage(message: string) {
+        this.messagestatus = message;
+    }
 }

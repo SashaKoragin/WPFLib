@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 using SqlLibaryIfns.SqlZapros.SobytieSql;
 
 namespace SqlLibaryIfns.SqlZapros.StoreProcedure
@@ -32,7 +31,8 @@ namespace SqlLibaryIfns.SqlZapros.StoreProcedure
                     con.InfoMessage += sobytie.Con_InfoMessage;
                     if (listparametr != null)
                     {
-                        command = GenerateParametrs(command, listparametr);
+                        GenerateParametrSql.GenerateParametrSql sql = new GenerateParametrSql.GenerateParametrSql();
+                        command = sql.GenerateParametrs(command, listparametr);
                     }
                     con.Open();
                     using (command.ExecuteReader())
@@ -49,21 +49,5 @@ namespace SqlLibaryIfns.SqlZapros.StoreProcedure
             }
         }
 
-        /// <summary>
-        /// Генерация параметров для SqlCommand
-        /// </summary>
-        /// <typeparam name="TKey">Ключ параметра</typeparam>
-        /// <typeparam name="TValue">Значение параметра</typeparam>
-        /// <param name="command">Команда ref SqlCommand</param>
-        /// <param name="listparametr">Словарь параметров для подставления в SqlCommand</param>
-        /// <returns></returns>
-        public SqlCommand GenerateParametrs<TKey, TValue>(SqlCommand command, Dictionary<TKey, TValue> listparametr)
-        {
-            foreach (var param in listparametr)
-            {
-                command.Parameters.AddWithValue(param.Key.ToString(), param.Value);
-            }
-            return command;
-        }
     }
 }

@@ -69,3 +69,12 @@ export class PostBdk {
             return this.http.post(url.procedurebdk, setting, httpOptionsJson);
     }
 }
+
+@Injectable()
+export class LetterForm {
+    constructor(private http: HttpClient) { }
+
+    modelbdk(setting: FullSetting) {
+        return this.http.post(url.startoutbdkletter, setting, httpOptionsJson);
+    }
+}

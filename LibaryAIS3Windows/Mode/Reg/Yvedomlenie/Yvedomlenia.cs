@@ -57,5 +57,13 @@ namespace LibaryAIS3Windows.Mode.Reg.Yvedomlenie
             "",
             "[NAME:cmbD428]"
         };
+        /// <summary>
+        /// Кнопка сохранить
+        /// </summary>
+        internal static string[] Save =
+        {
+            "",
+            "[NAME:btnSave]"
+        };
     }
 }

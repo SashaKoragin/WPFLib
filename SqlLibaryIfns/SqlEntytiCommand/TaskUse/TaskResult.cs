@@ -24,10 +24,11 @@ namespace SqlLibaryIfns.SqlEntytiCommand.TaskUse
         {
             StartProcedure startprocedure = new StartProcedure();
 
-            Dictionary<string, string> listparametr = null;
+            Dictionary<string, int> listparametr = null;
             if (seting.ParametrReshen.D270!=0)
             {
-                CreateParamert(ref listparametr,seting.ParametrReshen.GetType(), seting.ParametrReshen);
+                listparametr = new Dictionary<string, int>();
+                listparametr.Add("@D270", seting.ParametrReshen.D270);
             }
             switch (seting.Id)
             {
@@ -53,10 +54,11 @@ namespace SqlLibaryIfns.SqlEntytiCommand.TaskUse
         public async Task<string> TaskSqlProcedureBdk(string connection, FullSetting seting)
         {
             StartProcedure startprocedure = new StartProcedure();
+            GenerateParametrSql.GenerateParametrSql sql = new GenerateParametrSql.GenerateParametrSql();
             Dictionary<string, string> listparametr = null;
             if (seting.ParametrBdk.N269 != 0)
             {
-                CreateParamert(ref listparametr, seting.ParametrBdk.GetType(), seting.ParametrBdk);
+                sql.CreateParamert(ref listparametr, seting.ParametrBdk.GetType(), seting.ParametrBdk);
             }
             switch (seting.Id)
             {
@@ -66,31 +68,6 @@ namespace SqlLibaryIfns.SqlEntytiCommand.TaskUse
                     return await Task.Factory.StartNew(() => startprocedure.StartingProcedure(connection, SqlSelect.SqlBdkIt.SqlBdkIt.StartBdk, listparametr));
                default:
                     return null;
-            }
-        }
-
-        /// <summary>
-        /// Процесс генерации словаря параметров для процедуры если они есть
-        /// </summary>
-        /// <param name="listparametr">ref вернет ссылку на обект с изменениями Словарь параметров</param>
-        /// <param name="param">Тип класса из функции GetType()</param>
-        /// <param name="ob">Сам класс в виде object</param>
-        public void CreateParamert(ref Dictionary<string, string> listparametr,Type param,object ob)
-        {
-            listparametr = new Dictionary<string, string>();
-            if (param.IsClass)
-            {
-                PropertyInfo[] property = param.GetProperties();
-                
-                foreach (var prop in property)
-                {
-                        var value =prop.GetValue(ob,null);
-                        var name = prop.Name;
-                    if (value!=null)
-                    {
-                        listparametr.Add("@" + name, value.ToString());
-                    } 
-                }
             }
         }
   }

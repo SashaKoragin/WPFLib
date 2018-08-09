@@ -47,17 +47,6 @@ namespace SqlLibaryIfns.SqlZapros.ZaprosSelectNotParam
            return (Face)SelectFullSqlReader(conectionstring, select, typeof(Face));
         }
         /// <summary>
-        /// Данный блок относится к Решениям 
-        /// </summary>
-        /// <param name="conectionstring">Строка соединения</param>
-        /// <param name="select">Команда Select</param>
-        /// <returns>Возвращаем модель JSON в виде строки</returns>
-        public string SysNumReshenie(string conectionstring, string select)
-        {
-            SerializeJson serializeJson = new SerializeJson();
-            return serializeJson.JsonLibary((SysNum)SelectFullSqlReader(conectionstring,select,typeof(SysNum)));      
-        }
-        /// <summary>
         /// Данный блок относится к БДК
         /// </summary>
         /// <param name="conectionstring">Строка соединения</param>

@@ -1,0 +1,29 @@
+﻿.grid-container {
+  display: grid;
+  grid-template-columns: max-content max-content;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0px;
+  font-size: 20px;
+  text-align: left;
+}
+button {
+         background-color: green;
+         color: white;
+         cursor: pointer;
+         
+}
+
+button:hover {
+            background-color: orange;
+            color: white;
+}
+.errors {
+    background: red;
+    font-size: 25px;
+}
+.ok {
+    background: green;
+    font-size: 25px;    
+}
