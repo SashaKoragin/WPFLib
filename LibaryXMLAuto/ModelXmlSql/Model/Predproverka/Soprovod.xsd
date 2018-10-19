@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="PredProverka" type="Soprovod">
+		<xs:annotation>
+			<xs:documentation>Предпроверка сопроводительное письмо</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="Soprovod">
+		<xs:annotation>
+			<xs:documentation>Описание сопроводительного письма</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="DocumentReglament" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DocumentReglament">
+		<xs:annotation>
+			<xs:documentation>Документ на отработке</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DocumentDetalization"/>
+			</xs:sequence>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N441__1" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун документа процедуры истребования</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Status1" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун статуса по статусам</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MesErSt1" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение об ошибке по статусу 1</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DSt1" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата сообщения</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Status2" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун статуса по документу</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MesErSt2" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение об ошибке по документу</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DSt2" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата статуса 2</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D85" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DocumentDetalization">
+		<xs:annotation>
+			<xs:documentation>Детализация документа</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N441__1" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун документа процедуры истребования</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdProcedure" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун процедуры</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N333__1" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун документа со статусами</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdUser" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун пользователя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdGroup" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун группы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdDocument" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун создаваемого документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N77" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ОКАТО</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Coment" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Коментарий</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N441__4" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата контроля</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

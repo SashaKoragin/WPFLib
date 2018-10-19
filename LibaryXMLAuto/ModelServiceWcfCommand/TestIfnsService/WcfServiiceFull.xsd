@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ServiceWcfFullCommand" type="ServiceWcf">
+		<xs:annotation>
+			<xs:documentation>Sql Команды Service Wcf</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ServiceWcfCommand">
+		<xs:annotation>
+			<xs:documentation>Команда</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="GroupOtdel"/>
+				<xs:element ref="ClassOtdel"/>
+				<xs:element ref="SobytieOtdel"/>
+			</xs:sequence>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер команды</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdGroup" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер группы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdClass" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер Класса</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdSobytieSystem" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун события-системы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DescriptionFull" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Описание полное</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DescriptionParam" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Описание параметров</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Command" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Комманда на выполнение</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата создания</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GroupOtdel">
+		<xs:annotation>
+			<xs:documentation>Отношение команды к группе</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IdGroup" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер группы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="GroupDescription" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Описание группы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameGroup" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Имя группы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата создания</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ClassOtdel">
+		<xs:annotation>
+			<xs:documentation>Отношение комманды к классу</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IdClass" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер класса</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ClassLanguage" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Язык команды Sql, и т.д</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ClassDescription" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Описание класса команды</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата создания</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SobytieOtdel">
+		<xs:annotation>
+			<xs:documentation>Принадлежность к разделу задачи</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IdSobytieSystem" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер подсистемы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DescriptionSobytie" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Описание подсистемы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата создания</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ServiceWcf">
+		<xs:annotation>
+			<xs:documentation>WCF полная работа сервиса и команды</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ServiceWcfCommand"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,5 +1,5 @@
 ﻿import { Pipe, PipeTransform } from '@angular/core';
-import { TableSysNumReshen} from './ModelSelect'
+import { TableSysNumReshen} from './ModelSelect';
 @Pipe({
     name: 'elementfilter',
     pure: false

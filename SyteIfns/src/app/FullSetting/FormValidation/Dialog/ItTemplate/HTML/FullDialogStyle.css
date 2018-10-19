@@ -1,0 +1,15 @@
+﻿.conteinerform {
+      box-shadow: 0 0 5px rgba(0,0,0,0.5);
+      display: grid;
+      margin-top: 20px;
+      padding: 3px;
+      grid-template-columns: 600px;
+      grid-column-gap: 40px;
+      width:inherit;
+}
+.Inline {
+    display: flex;
+}
+.textHeade {
+    width: 280px
+}

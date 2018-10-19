@@ -1,73 +1,92 @@
-﻿table.table {
-  vertical-align: top;
-  font-family: Georgia, serif;
-  border: 6px ridge #24943A;
-  background-color: #D4EED1;
-  text-align: center; 
+﻿.start {
+    display:flex;
+    padding: 5px;
+    margin: 10px;
 }
-table.table td, table.table th {
-  border: 1px solid #24943A;
-  padding: 3px 2px;
-}
-table.table tbody td {
-  font-size: 13px;
-}
-table.table thead {
-  background: #24943A;
-  background: -moz-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
-  background: -webkit-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
-  background: linear-gradient(to bottom, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
-  border-bottom: 0px solid #444444;
-}
-#break {
-    background-color:#f44336;
-    font-size: 24px;
-    border-radius: 8px;
-    border: 2px solid #4CAF50;
-   -webkit-transition-duration: 0.4s
-}
-#form {
-    padding: 10px;
+.start div {
+  margin-right: 2em;
+  margin-left: 2em;
 }
 
-#start {
-    padding: 10px;
+
+.button {
+    padding-bottom: 5px;
 }
-#startresh {
-    padding: 10px;
-    background: #3a9e4d;
-    -webkit-transition-duration: 0.4s;
-    font-size: 20px;
+#form {
+    padding: 5px;
 }
-#startincass {
-    padding: 10px;
-    background: #3a9e4d;
-    -webkit-transition-duration: 0.4s;
-    font-size: 20px;
-}
-#db {
-    padding: 10px;
-}
+
 b {
     font-family: Georgia, serif;
 }
 
-#detal {
-    background-color: #24943A;
-    font-size: 20px;
+table {
+  width: 100%;
+}
+
+.mat-header-cell{
+  background: linear-gradient(45deg, rgba(67, 233, 34, 0.801), rgb(120, 219, 100));
+  font-size: 16pt;
+  font-style: italic; 
+  padding: 10px;
+  margin: 5px;
+}
+
+.mat-cell{
+  background: gold;
+  align-items: center;
+  font-size: 12pt;
+  font-style: normal; 
 }
 
 .grid-container {
+  margin: 10px;
   display: grid;
   grid-template-columns: max-content max-content;
+  grid-column-gap: 10px;
 }
 .grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  font-size: 15px;
-  text-align: left;
-  font-family: Georgia, serif;
+     background-color: white;
+     padding: 0px;
+     text-align: left;
+     align-self: center;
+     font-size: 100%;
 }
 .errors {
     background: red;
     font-size: 20px;
+}
+.head {
+    width:1000px;
+}
+.grid-container2 {
+      box-shadow: 0 0 5px rgba(0,0,0,0.5);
+      display: grid;
+      padding: 3px;
+      grid-template-columns: 300px max-content 350px;
+      grid-column-gap: 40px;
+      width:inherit;
+}
+
+.grid-item2 {
+     background-color: white;
+     padding: 0px;
+     font-size: 20px;
+     text-align: left;
+     align-self: center;
+}
+
+.db {
+    width: 350px
+}
+
+button {
+         background-color: green;
+         color: white;
+         cursor: pointer;
+}
+
+button:hover {
+            background-color: orange;
+            color: white;
 }

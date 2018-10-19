@@ -1,0 +1,117 @@
+﻿<h2 mat-dialog-title>Добавление заголовка документа</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="formTemplateHeaders" #formDir="ngForm">
+        <div class="conteinerform">
+           <div class="cross-validation" [class.cross-validation-error]="formTemplateHeaders.errors?.identityRevealed && (formTemplateHeaders.touched || formTemplateHeaders.dirty)">
+               <div class="Inline">
+                   <mat-form-field class="textHeade">
+                       <input matInput placeholder="Заголовок 1" type="text" class="form-control" [(ngModel)]="data.angulardate.Headers.TextHeade1" formControlName="textHeade1" required>
+                   </mat-form-field>
+                   <div *ngIf="textHeade1.invalid && (textHeade1.dirty || textHeade1.touched)" class="alert alert-danger">
+                       <div *ngIf="textHeade1.errors.required">
+                           Не введен заголовок 1!!!
+                       </div>
+                   </div>
+               </div>
+               <div class="Inline">
+                   <mat-form-field class="textHeade">
+                       <input matInput placeholder="Заголовок 2" type="text" class="form-control" [(ngModel)]="data.angulardate.Headers.TextHeade2" formControlName="textHeade2" required>
+                   </mat-form-field>
+                   <div *ngIf="textHeade2.invalid && (textHeade2.dirty || textHeade2.touched)" class="alert alert-danger">
+                       <div *ngIf="textHeade2.errors.required">
+                           Не введен заголовок 2!!!
+                       </div>
+                   </div>
+               </div>
+               <div class="Inline">
+                   <mat-form-field class="textHeade">
+                       <input matInput placeholder="Заголовок 3" type="text" class="form-control" [(ngModel)]="data.angulardate.Headers.TextHeade3" formControlName="textHeade3" required>
+                   </mat-form-field>
+                   <div *ngIf="textHeade3.invalid && (textHeade3.dirty || textHeade3.touched)" class="alert alert-danger">
+                       <div *ngIf="textHeade3.errors.required">
+                           Не введен заголовок 3!!!
+                       </div>
+                   </div>
+               </div>
+               <div class="Inline">
+                   <mat-form-field class="textHeade">
+                       <input matInput placeholder="Заголовок 4" type="text" class="form-control" [(ngModel)]="data.angulardate.Headers.TextHeade4" formControlName="textHeade4" required>
+                   </mat-form-field>
+                   <div *ngIf="textHeade4.invalid && (textHeade4.dirty || textHeade4.touched)" class="alert alert-danger">
+                       <div *ngIf="textHeade4.errors.required">
+                           Не введен заголовок 4!!!
+                       </div>
+                   </div>
+               </div>
+               <div class="Inline">
+                   <mat-form-field class="textHeade">
+                       <input matInput placeholder="Заголовок 5" type="text" class="form-control" [(ngModel)]="data.angulardate.Headers.TextHeade5" formControlName="textHeade5" required>
+                   </mat-form-field>
+                   <div *ngIf="textHeade5.invalid && (textHeade5.dirty || textHeade5.touched)" class="alert alert-danger">
+                       <div *ngIf="textHeade5.errors.required">
+                           Не введен заголовок 5!!!
+                       </div>
+                   </div>
+               </div>
+               <div class="Inline">
+                   <mat-form-field class="textHeade">
+                       <input matInput placeholder="Заголовок 6" type="text" class="form-control" [(ngModel)]="data.angulardate.Headers.TextHeade6" formControlName="textHeade6" required>
+                   </mat-form-field>
+                   <div *ngIf="textHeade6.invalid && (textHeade6.dirty || textHeade6.touched)" class="alert alert-danger">
+                       <div *ngIf="textHeade6.errors.required">
+                           Не введен заголовок 6!!!
+                       </div>
+                   </div>
+               </div>
+               <div class="Inline">
+                   <mat-form-field class="textHeade">
+                       <input matInput placeholder="Заголовок 7" type="text" class="form-control" [(ngModel)]="data.angulardate.Headers.TextHeade7" formControlName="textHeade7" required>
+                   </mat-form-field>
+                   <div *ngIf="textHeade7.invalid && (textHeade7.dirty || textHeade7.touched)" class="alert alert-danger">
+                       <div *ngIf="textHeade7.errors.required">
+                           Не введен заголовок 7!!!
+                       </div>
+                   </div>
+               </div>
+               <div class="Inline">
+                   <mat-form-field class="textHeade">
+                       <input matInput placeholder="Заголовок 8" type="text" class="form-control" [(ngModel)]="data.angulardate.Headers.TextHeade8" formControlName="textHeade8" required>
+                   </mat-form-field>
+                   <div *ngIf="textHeade8.invalid && (textHeade8.dirty || textHeade8.touched)" class="alert alert-danger">
+                       <div *ngIf="textHeade8.errors.required">
+                           Не введен заголовок 8!!!
+                       </div>
+                   </div>
+               </div>
+               <div class="Inline">
+                   <mat-form-field class="textHeade">
+                       <input matInput placeholder="Заголовок 9" type="text" class="form-control" [(ngModel)]="data.angulardate.Headers.TextHeade9" formControlName="textHeade9" required>
+                   </mat-form-field>
+                   <div *ngIf="textHeade9.invalid && (textHeade9.dirty || textHeade9.touched)" class="alert alert-danger">
+                       <div *ngIf="textHeade9.errors.required">
+                           Не введен заголовок 9!!!
+                       </div>
+                   </div>
+               </div>
+               <div class="Inline">
+                   <mat-form-field class="textHeade">
+                       <input matInput placeholder="Заголовок 10" type="text" class="form-control" [(ngModel)]="data.angulardate.Headers.TextHeade10" formControlName="textHeade10" required>
+                   </mat-form-field>
+                   <div *ngIf="textHeade10.invalid && (textHeade10.dirty || textHeade10.touched)" class="alert alert-danger">
+                       <div *ngIf="textHeade10.errors.required">
+                           Не введен заголовок 10!!!
+                       </div>
+                   </div>
+               </div>
+               <button mat-button mat-dialog-close type="submit" class="btn btn-default"
+                       [disabled]="formTemplateHeaders.invalid"
+                       (click)="addTempateHeade();formDir.resetForm({})">
+                   Добавить шаблон
+               </button>
+           </div>
+        </div>
+</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

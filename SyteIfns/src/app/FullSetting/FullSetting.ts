@@ -7,8 +7,12 @@ export class FullSetting {
 
     //Шаблон для печати
     public UseTemplate: UseTemplate = new UseTemplate();
+    //Параметр для выбора данных с сервиса
+    public ParamService: ParamService = new ParamService();
     //Параметры отправки БДК
     public ParametrBdkOut: ParametrBdkOut = new ParametrBdkOut();
+    //Параметры предпроверки
+    public ParamPredproverka: ParamPredproverka = new ParamPredproverka();
     //Принадлежность БД Тест или рабочая
     public Db: string;
     //Номер процедуры
@@ -48,6 +52,10 @@ class ParametrBdk {
     }
 
 }
+//Настройки предпроверки
+class ParamPredproverka {
+    public N441:number = 0;
+}
 //Класс шаблона
 class UseTemplate {
     //Номер шаблона
@@ -59,4 +67,8 @@ class ParametrBdkOut {
     public D85DateStart: string;
     //По какую дату передаю в конвертированном порядке в классе DateModelFull
     public D85DateFinish: string;
+}
+
+class ParamService {
+    IdCommand:number;
 }

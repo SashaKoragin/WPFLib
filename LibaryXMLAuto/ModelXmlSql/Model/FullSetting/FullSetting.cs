@@ -24,6 +24,14 @@ namespace LibaryXMLAuto.ModelXmlSql.Model.FullSetting
         /// </summary>
         public ParametrBdkOut ParametrBdkOut { get; set; }
         /// <summary>
+        /// Параметры предпроверки
+        /// </summary>
+        public ParamPredproverka ParamPredproverka { get; set; }
+        /// <summary>
+        /// Параметры для выбора комманды с сервиса данных
+        /// </summary>
+        public ParamService ParamService { get; set; }
+        /// <summary>
         /// БД Тест или рабочая
         /// </summary>
         [DataMember(Name = "Db")]
@@ -98,4 +106,20 @@ namespace LibaryXMLAuto.ModelXmlSql.Model.FullSetting
         [DataMember(Name = "D85_DateFinish")]
         public DateTime D85DateFinish { get; set; }
     }
+
+    public class ParamPredproverka
+    {
+        public int N441 { get; set; }
+    }
+
+    public class ParamService
+    {
+        /// <summary>
+        /// Подстановка параметра для выборки с сервиса данных выборки
+        /// </summary>
+        [DataMember(Name = "IdCommand")]
+        public int IdCommand { get; set; }
+    }
+
+
 }

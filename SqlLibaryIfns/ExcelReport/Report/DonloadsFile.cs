@@ -1,7 +1,8 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using SqlLibaryIfns.SqlSelect.SqlBdkIt;
-using SqlLibaryIfns.SqlZapros.Report;
+using LibaryXMLAutoModelServiceWcfCommand.TestIfnsService;
+using SqlLibaryIfns.SqlSelect.ModelSqlFullService;
+using SqlLibaryIfns.SqlZapros.SqlConnections;
 
 namespace SqlLibaryIfns.ExcelReport.Report
 {
@@ -16,6 +17,8 @@ namespace SqlLibaryIfns.ExcelReport.Report
         /// <returns></returns>
         public async Task<Stream> SelectDonloadsFile( string path, string filename, string conectionstring = null)
         {
+            var sqlconnect = new SqlConnectionType();
+            var xlsx = new ReportExcel();
             switch (filename)
             {
                 case "Требования.xlsx":
@@ -27,9 +30,16 @@ namespace SqlLibaryIfns.ExcelReport.Report
                     }
                     return null;
                 case "Бдк.xlsx":
-                    var sql = new ReportSqlQbe();
-                    var xlsx = new ReportExcel();
-                    xlsx.ReportSave(path, "Бдк", "Бдк", sql.ReportQbe(conectionstring, SqlBdkIt.SelectXlsx));
+                    xlsx.ReportSave(path, "Бдк", "Бдк", sqlconnect.ReportQbe(conectionstring, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(conectionstring, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand("6"))).ServiceWcfCommand.Command));
+                    if (File.Exists(Path.Combine(path, filename)))
+                    {
+                        return
+                               await Task.Factory.StartNew<Stream>(
+                                   () => DonloadFile(Path.Combine(path, filename)));
+                    }
+                    return null;
+                case "Истребование.xlsx":
+                    xlsx.ReportSave(path,"Истребование","Не доделки по документам",sqlconnect.ReportQbe(conectionstring,((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(conectionstring,ModelSqlFullService.ProcedureSelectParametr,typeof(ServiceWcf),ModelSqlFullService.ParamCommand("18"))).ServiceWcfCommand.Command));
                     if (File.Exists(Path.Combine(path, filename)))
                     {
                         return

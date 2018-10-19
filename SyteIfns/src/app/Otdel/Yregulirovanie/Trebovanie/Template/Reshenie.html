@@ -1,25 +1,13 @@
 ﻿<div id="db">
     <h2>База данных по умолчанию:  {{database.db.db}}</h2><br/>
     <b id="text">Выбор Базы Данных:</b>
-    <select [(ngModel)]="database.db">
-        <option *ngFor="let x of database.databases" [ngValue]="x">{{x.db}}</option>
-    </select>
-    <div class="grid-container">
-        <div class="grid-item">
-            <label>Дата начала:</label>
-        </div>
-        <div class="grid-item">
-            <input id="D85" name="D85DateStart" type="date" [(ngModel)]="date.D85DateStart" />
-        </div>
-        <div class="grid-item">
-            <label>Дата окончания:</label>
-        </div>
-        <div class="grid-item">
-            <input id="D85_1" name="D85" [(ngModel)]="date.D85DateFinish" type="date" />
-        </div>
-    </div>
-    <label class="errors">{{date.messageerror}}</label><br />
-    <button class="btn btn-sm btn-danger" (click)="swithdb(database.db.num,date.D85DateStart,date.D85DateFinish)">Получить данные с БД</button>
+    <mat-form-field>
+        <mat-select placeholder="Выбор БД!!!" [(ngModel)]="database.db"  name="sel">
+            <mat-option *ngFor="let sel of database.databases" [value]="sel">
+                {{sel.db}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 </div>
 <form id="form" (ngSubmit)="storeprocedurestart(1,setting.ParametrReshen.D270)">
     <div id="add">
@@ -29,119 +17,192 @@
     </div>
 </form>
 <b>{{status.messagestatus}}</b>
-<div id="start">
-    <button id="startresh" [disabled]="status.blocks" class="btn btn-sm" (click)="storeprocedurestart(2)">Запустить решения</button>
-    <button id="startincass" [disabled]="status.blocks" class="btn btn-sm" (click)="storeprocedurestart(3)">Запустить инкассовые поручения</button>
-</div>
-<table *ngIf="mode; else detalization" class="table table-striped">
-    <thead>
-    <tr>
-        <th>Системный номер<br/>
-            <input type="text" name="D270" [(ngModel)]="filters.D270" placeholder="Системный номер" />
-        </th>
-        <th>Статус Решения<br/>
-            <input type="text" name="idStatus" [(ngModel)]="filters.IdStatus_1" placeholder="Статус решения" />
-        </th>
-        <th>Ошибка по решению<br/>
-            <input type="text" name="error" [(ngModel)]="filters.ErrorReshenie" placeholder="Ошибка" />
-        </th>
-        <th>Дата ошибки<br/>
-            <input type="text" name="dateBlokReshenie" [(ngModel)]="filters.DateBlokReshenie" placeholder="Дата" />
-        </th>
-        <th>Статус Инкас. Поруч.<br/>
-            <input type="text" name="idStatus_2" [(ngModel)]="filters.IdStatus_2" placeholder="Инкас.Поручение" />
-        </th>
-        <th>Ошибка по инкассовым поруч.<br />
-            <input type="text" name="errorIncass" [(ngModel)]="filters.ErrorIncass" placeholder="Ошибка" />
-        </th>
-        <th>Дата ошибки<br/>
-            <input type="text" name="dateBlokIncass" [(ngModel)]="filters.DateBlokIncass" placeholder="Дата" />
-        </th>
-        <th>Детализация</th>
-    </tr>
-    </thead>
-    <tfoot>
-    <tr>
-        <td colspan="4">
-            <label for="limit">Limit: </label><input type="number" name="limit" [(ngModel)]="limit" min="1" [attr.max]="[numberResh]" step="1" placeholder="Limit">
-            <label for="page">Page: </label><input type="number" name="page" [(ngModel)]="page" min="1" [attr.max]="[numberResh]" step="1" placeholder="Page">
-        </td>
-    </tr>
-    </tfoot>
-    <tbody>
-    <tr *ngFor="let res of reshenie?.TableSysNumReshen | elementfilter:filters | slice:(page-1) *limit:page*limit"  >
-        <th>{{res?.D270}}</th>
-        <th>{{res?.IdStatus_1}}</th>
-        <th>{{res?.ErrorReshenie}}</th>
-        <th>{{res?.DateBlokReshenie}}</th>
-        <th>{{res?.IdStatus_2}}</th>
-        <th>{{res?.ErrorIncass}}</th>
-        <th>{{res?.DateBlokIncass}}</th>
-        <td>
-            <button id="detal" class="btn btn-sm btn-danger" (click)="detal(res)">Детализация</button>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<p *ngIf="errornull; else notfound"></p>
-<ng-template #detalization>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Ун требования</th>
-            <th>Системный номер</th>
-            <th>Ун плательщика</th>
-            <th>Сумма</th>
-            <th>Валюта</th>
-            <th>???</th>
-            <th>Ун решения</th>
-            <th>????</th>
-            <th>Исходящий</th>
-            <th>Дата создания</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th>{{resheniedetal?.D865Res}}</th>
-            <th>{{resheniedetal?.D270}}</th>
-            <th>{{resheniedetal?.N1}}</th>
-            <th>{{resheniedetal?.Summ}}</th>
-            <th>{{resheniedetal?.N120}}</th>
-            <th>{{resheniedetal?.D850Res}}</th>
-            <th>{{resheniedetal?.D851Res}}</th>
-            <th>{{resheniedetal?.D865Res}}</th>
-            <th>{{resheniedetal?.D270IshRes}}</th>
-            <th>{{resheniedetal?.DateCreate}}</th>
-        </tr>
-        </tbody>
-    </table>
-    <div class="glyphicon-align-left">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Ун Решения</th>
-                <th>???</th>
-                <th>Ун инкассового поруч</th>
-                <th>Суммы </th>
-                <th>Исходящийна инкас</th>
-                <th>Дата создания</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let in of incass">
-                <th>{{in?.D851Res_1}}</th>
-                <th>{{in?.D850Incass}}</th>
-                <th>{{in?.D851Incass}}</th>
-                <th>{{in?.Summ}}</th>
-                <th>{{in?.D270IshIncass}}</th>
-                <th>{{in?.DateCreate}}</th>
-            </tr>
-            </tbody>
-        </table>
-        <b><button id="break" class="btn btn-sm" (click)="returns()">Вернутся</button></b>
+<div class="start">
+    <div>
+        <button mat-button id="startresh" [disabled]="status.blocks" class="btn btn-sm" (click)="storeprocedurestart(2)">Запустить решения</button>
     </div>
-</ng-template>
+    <div>
+        <button mat-button id="startincass" [disabled]="status.blocks" class="btn btn-sm" (click)="storeprocedurestart(3)">Запустить инкассовые поручения</button>
+    </div>
+</div>
 
-<ng-template #notfound>
-    <h4>По данной выборки нет данных!!!</h4>
-</ng-template>
+    <div class="head" [style.display]="paramlogica.select ? 'grid' : 'none'">
+        <div class="button"><button mat-button (click)="update()">Обновить</button></div>
+        <div class="grid-container2" *ngFor="let selectvalue of selecting?.parametrreshen">
+            <div class="grid-item2">
+                <label>{{selectvalue.name}}</label>
+            </div>
+            <div class="grid-item2">
+                <mat-form-field>
+                    <mat-select placeholder="Отбор данных!" [(ngModel)]="selectvalue.select" name="sel">
+                        <mat-option *ngFor="let sel of selecting.selectparam" [value]="sel">
+                            {{sel.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="grid-item2">
+                <mat-form-field class="db">
+                    <input matInput [(ngModel)]="selectvalue.paramvalue">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <div class="mat-app-background basic-container" [style.display]="paramlogica.database ? 'none' : 'grid'">
+        <div class="button"><button mat-button (click)="back(1)">Назад</button></div>
+        <div class="mat-elevation-z8">
+            <table mat-table *ngIf="paramlogica.errornull; else notfound" [dataSource]="table.dataSource">
+                <!-- Position Column -->
+                <ng-container matColumnDef="d270">
+                    <th mat-header-cell *matHeaderCellDef>Системный номер</th>
+                    <td mat-cell *matCellDef="let element"> {{element.D270}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="idstatus">
+                    <th mat-header-cell *matHeaderCellDef>Статус решения</th>
+                    <td mat-cell *matCellDef="let element"> {{element.IdStatus_1}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="error">
+                    <th mat-header-cell *matHeaderCellDef>Ошибка</th>
+                    <td mat-cell *matCellDef="let element"> {{element.ErrorReshenie}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dateBlokReshenie">
+                    <th mat-header-cell *matHeaderCellDef>Дата</th>
+                    <td mat-cell *matCellDef="let element"> {{element.DateBlokReshenie}} </td>
+                </ng-container>
+                <!-- Weight Column -->
+
+                <ng-container matColumnDef="idstat2">
+                    <th mat-header-cell *matHeaderCellDef>Инкас.Поручение</th>
+                    <td mat-cell *matCellDef="let element">{{element.IdStatus_2}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="errorIncass">
+                    <th mat-header-cell *matHeaderCellDef>Ошибка</th>
+                    <td mat-cell *matCellDef="let element">{{element.ErrorIncass}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="dateBlokIncass">
+                    <th mat-header-cell *matHeaderCellDef>Дата</th>
+                    <td mat-cell *matCellDef="let element">{{element.DateBlokIncass}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="detal">
+                    <th mat-header-cell *matHeaderCellDef>Детализация</th>
+                    <td mat-cell *matCellDef="let element"><button mat-button (click)="detaliz(element.Reshenie)">Детализация</button></td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="table.displaydataSource"></tr>
+                <tr mat-row *matRowDef="let row; columns: table.displaydataSource;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[50, 100, 200,500]" showFirstLastButtons="true"></mat-paginator>
+        </div>
+    </div>
+
+    <div class="mat-app-background basic-container" [style.display]="paramlogica.detal ? 'none' : 'grid'">
+        <div class="button"><button mat-button (click)="back(2)">Назад</button></div>
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="table.dataSourceDetalSysNum">
+                <!-- Position Column -->
+                <ng-container matColumnDef="D865Res">
+                    <th mat-header-cell *matHeaderCellDef>Ун Требования</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.D865Res}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="D270">
+                    <th mat-header-cell *matHeaderCellDef>Системный номер</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.D270}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="N1">
+                    <th mat-header-cell *matHeaderCellDef>Ун плательщика</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.N1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Summ">
+                    <th mat-header-cell *matHeaderCellDef>Сумма</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.Summ}}  </td>
+                </ng-container>
+                <!-- Weight Column -->
+
+                <ng-container matColumnDef="N120">
+                    <th mat-header-cell *matHeaderCellDef>Валюта</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.N120}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="D850Res">
+                    <th mat-header-cell *matHeaderCellDef>???</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.D850Res}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="D851Res">
+                    <th mat-header-cell *matHeaderCellDef>Ун решения</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.D851Res}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="D270IshRes">
+                    <th mat-header-cell *matHeaderCellDef>Исходящий</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.D270IshRes}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="DateCreate">
+                    <th mat-header-cell *matHeaderCellDef>Дата создания</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.DateCreate}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="table.displaydataSourceDetalSysNum"></tr>
+                <tr mat-row *matRowDef="let row; columns: table.displaydataSourceDetalSysNum;"></tr>
+            </table>
+        </div>
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="table.dataSourceDetalIncass">
+                <!-- Position Column -->
+                <ng-container matColumnDef="D851Res_1">
+                    <th mat-header-cell *matHeaderCellDef>Ун Решения</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.D851Res_1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="D850Incass">
+                    <th mat-header-cell *matHeaderCellDef>???</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.D850Incass}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="D851Incass">
+                    <th mat-header-cell *matHeaderCellDef>Ун инкассового поруч</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.D851Incass}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Summ">
+                    <th mat-header-cell *matHeaderCellDef>Суммы</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.Summ}} </td>
+                </ng-container>
+                <!-- Weight Column -->
+
+                <ng-container matColumnDef="D270IshIncass">
+                    <th mat-header-cell *matHeaderCellDef>Исходящийна инкас</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.D270IshIncass}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="DateCreate">
+                    <th mat-header-cell *matHeaderCellDef>Дата создания</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.DateCreate}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="table.displaydataSourceDetalIncass"></tr>
+                <tr mat-row *matRowDef="let row; columns: table.displaydataSourceDetalIncass;"></tr>
+            </table>
+        </div>
+    </div>
+    <div [style.display]="paramlogica.progress ? 'none':'inline'">
+        <p>Идет загрузка данных подождите пожалуйста!!!</p>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <ng-template #notfound>
+        <h4>По данной выборки нет данных!!!</h4>
+    </ng-template>

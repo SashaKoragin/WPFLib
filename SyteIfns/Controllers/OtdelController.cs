@@ -27,6 +27,19 @@ namespace SyteIfns.Controllers
             ViewBag.Message = "Модуль формирование писем Бдк!!!";
             return View("It/FormLetter");
         }
+
+        public ActionResult AddTemplate()
+        {
+            ViewBag.Message = "Модуль создания шаблонов!!!";
+            return View("It/AddTemplate");
+        }
+
+        public ActionResult PredproverkaSoprovod()
+        {
+            ViewBag.Message = "Модуль для предпроверки!!!";
+            return View("Predproverka/PredproverkaSoprovod");
+        }
+
         /// <summary>
         /// Загрузка файла Требований
         /// </summary>
@@ -44,6 +57,15 @@ namespace SyteIfns.Controllers
         {
             DonloadFileReport donload = new DonloadFileReport();
             return File(donload.DonloadFile(PostResponse.FileStream.AddresFile.AdressFile.AdressBdk), "application/xlsx", "Бдк.xlsx");
+        }
+        /// <summary>
+        /// Загрузка файла Бдк
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DonloadIstrebovanie()
+        {
+            DonloadFileReport donload = new DonloadFileReport();
+            return File(donload.DonloadFile(PostResponse.FileStream.AddresFile.AdressFile.AdressIstrebovanie), "application/xlsx", "Истребование.xlsx");
         }
     }
 }

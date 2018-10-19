@@ -1,0 +1,82 @@
+﻿.start {
+    display:flex;
+    padding: 5px;
+    margin: 10px;
+}
+
+.button {
+    padding-bottom: 5px;
+}
+#form {
+    padding: 5px;
+}
+
+b {
+    font-family: Georgia, serif;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-header-cell{
+  background: linear-gradient(45deg, rgba(67, 233, 34, 0.801), rgb(120, 219, 100));
+  font-size: 16pt;
+  font-style: italic; 
+  padding: 10px;
+  margin: 5px;
+}
+
+.mat-cell{
+  background: gold;
+  align-items: center;
+  font-size: 12pt;
+  font-style: normal; 
+}
+
+.grid-container {
+  margin: 10px;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-column-gap: 10px;
+}
+
+.grid-item {
+     background-color: white;
+     padding: 0px;
+     text-align: left;
+     align-self: center;
+     font-size: 100%;
+}
+
+.head {
+    width:1000px;
+}
+
+.grid-container2 {
+      box-shadow: 0 0 5px rgba(0,0,0,0.5);
+      display: grid;
+      padding: 3px;
+      grid-template-columns: 300px max-content 350px;
+      grid-column-gap: 40px;
+      width:inherit;
+}
+
+.grid-item2 {
+     background-color: white;
+     padding: 0px;
+     font-size: 20px;
+     text-align: left;
+     align-self: center;
+}
+
+button {
+         background-color: green;
+         color: white;
+         cursor: pointer;
+}
+
+button:hover {
+            background-color: orange;
+            color: white;
+}

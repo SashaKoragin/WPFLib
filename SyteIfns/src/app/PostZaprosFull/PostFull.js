@@ -14,6 +14,9 @@ var url = new AdressMerge();
 var httpOptionsJson = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+var httpOptionsXml = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/xml' })
+};
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
@@ -43,14 +46,6 @@ var PostTrebovanie = /** @class */ (function () {
     function PostTrebovanie(http) {
         this.http = http;
     }
-    PostTrebovanie.prototype.modelreshenie = function (setting) {
-        try {
-            return this.http.post(url.loadreshenie, setting, httpOptionsJson);
-        }
-        catch (e) {
-            alert(e.toString());
-        }
-    };
     PostTrebovanie.prototype.procedurestart = function (setting) {
         try {
             return this.http.post(url.useprocedure, setting, httpOptionsJson);
@@ -97,4 +92,62 @@ var LetterForm = /** @class */ (function () {
     return LetterForm;
 }());
 export { LetterForm };
+var PostSoprovod = /** @class */ (function () {
+    function PostSoprovod(http) {
+        this.http = http;
+    }
+    PostSoprovod.prototype.procedurestart = function (setting) {
+        try {
+            return this.http.post(url.startproceduresoprovod, setting, httpOptionsJson);
+        }
+        catch (e) {
+            alert(e.toString());
+        }
+    };
+    PostSoprovod = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [HttpClient])
+    ], PostSoprovod);
+    return PostSoprovod;
+}());
+export { PostSoprovod };
+var ServiceModel = /** @class */ (function () {
+    function ServiceModel(http) {
+        this.http = http;
+    }
+    ServiceModel.prototype.modelservice = function (setting) {
+        return this.http.post(url.servicecommand, setting, httpOptionsJson);
+    };
+    ServiceModel.prototype.datacommandserver = function (angular) {
+        return this.http.post(url.sqlcommand, angular, httpOptionsJson);
+    };
+    ServiceModel.prototype.downloadFile = function (angular) {
+        return this.http.post(url.donloadfileangular, angular, { responseType: 'arraybuffer', headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+    };
+    ServiceModel = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [HttpClient])
+    ], ServiceModel);
+    return ServiceModel;
+}());
+export { ServiceModel };
+var TemplateAdd = /** @class */ (function () {
+    function TemplateAdd(http) {
+        this.http = http;
+    }
+    TemplateAdd.prototype.addtemplate = function (template) {
+        try {
+            return this.http.post(url.addtemplate, template, httpOptionsJson);
+        }
+        catch (e) {
+            alert(e.toString());
+        }
+    };
+    TemplateAdd = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [HttpClient])
+    ], TemplateAdd);
+    return TemplateAdd;
+}());
+export { TemplateAdd };
 //# sourceMappingURL=PostFull.js.map

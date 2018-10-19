@@ -1,10 +1,10 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { ModelBdk } from '../Model/BdkModel'
-import { FullSetting } from '../../../../FullSetting/FullSetting'
+import { ModelBdk } from '../Model/BdkModel';
+import { FullSetting } from '../../../../FullSetting/FullSetting';
 import { PostBdk } from '../../../../PostZaprosFull/PostFull';
-import { CreateSettingSelect, DataBase } from '../../../../FullSetting/CreateSetting'
-import { BlocsInfoButton } from '../../../../FullSetting/ProcessFull'
-import { plainToClass, deserialize } from "class-transformer";
+import { CreateSettingSelect, DataBase } from '../../../../FullSetting/CreateSetting';
+import { BlocsInfoButton } from '../../../../FullSetting/ProcessFull';
+import { plainToClass, deserialize } from 'class-transformer';
 
 @Component(({
     selector: 'my-bdk',
@@ -42,7 +42,7 @@ export class BdkIt implements OnInit{
         if (this.setting.ParametrBdk.valid()) {
         switch (numprocedure) {
             case 1:
-                this.bloks.blockprocedure('анализу данных BDK'); 
+                this.bloks.blockprocedure('анализу данных BDK');
                 break;
             case 2:
                 this.bloks.blockprocedure('созданию данных BDK');

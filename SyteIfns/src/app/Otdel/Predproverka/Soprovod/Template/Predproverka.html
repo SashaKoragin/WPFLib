@@ -1,0 +1,167 @@
+﻿<form id="form" (ngSubmit)="startprocedurepred(1)">
+    <div id="add">
+        <label>Добавить ун документа:</label>
+        <input id="IdDoc" placeholder="Ун. документа!!!" name="sysnum" [(ngModel)]="setting.ParamPredproverka.N441" type="number" />
+        <input type="submit" value="Отправить" />
+    </div>
+</form>
+<b>{{status.messagestatus}}</b>
+<div class="start">
+    <div>
+        <button mat-button id="StartStatus" [disabled]="status.blocks" class="btn btn-sm" (click)="startprocedurepred(2)">Простановка статусов</button>
+    </div>
+    <div>
+        <button mat-button id="StartDoc" [disabled]="status.blocks" class="btn btn-sm" (click)="startprocedurepred(3)">Подготовка документа</button>
+    </div>
+</div>
+<div class="head" [style.display]="paramlogica.select ? 'grid' : 'none'">
+    <div class="button"><button mat-button (click)="update()">Обновить</button></div>
+    <div class="grid-container2" *ngFor="let selectvalue of selecting?.paramepredproverka">
+        <div class="grid-item2">
+            <label>{{selectvalue.name}}</label>
+        </div>
+        <div class="grid-item2">
+            <mat-form-field>
+                <mat-select placeholder="Отбор данных!" [(ngModel)]="selectvalue.select" name="sel">
+                    <mat-option *ngFor="let sel of selecting.selectparam" [value]="sel">
+                        {{sel.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="grid-item2">
+            <mat-form-field class="db">
+                <input matInput [(ngModel)]="selectvalue.paramvalue">
+            </mat-form-field>
+        </div>
+    </div>
+</div>
+
+<div class="mat-app-background basic-container" [style.display]="paramlogica.database ? 'none' : 'grid'">
+    <div class="button"><button mat-button (click)="back(1)">Назад</button></div>
+    <div class="mat-elevation-z8">
+        <table mat-table *ngIf="paramlogica.errornull; else notfound" [dataSource]="predproverkatable.dataSourceDocumentReglament">
+            <!-- Position Column -->
+            <ng-container matColumnDef="Id">
+                <th mat-header-cell *matHeaderCellDef>Ун</th>
+                <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="N441__1">
+                <th mat-header-cell *matHeaderCellDef>Ун документа</th>
+                <td mat-cell *matCellDef="let element"> {{element.N441__1}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="Status1">
+                <th mat-header-cell *matHeaderCellDef>Статус 1</th>
+                <td mat-cell *matCellDef="let element"> {{element.Status1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="MesErSt1">
+                <th mat-header-cell *matHeaderCellDef>Ошибка</th>
+                <td mat-cell *matCellDef="let element"> {{element.MesErSt1}} </td>
+            </ng-container>
+            <!-- Weight Column -->
+
+            <ng-container matColumnDef="DSt1">
+                <th mat-header-cell *matHeaderCellDef>Дата ошибки</th>
+                <td mat-cell *matCellDef="let element">{{element.DSt1}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Status2">
+                <th mat-header-cell *matHeaderCellDef>Статус 2</th>
+                <td mat-cell *matCellDef="let element">{{element.Status2}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="MesErSt2">
+                <th mat-header-cell *matHeaderCellDef>Ошибка</th>
+                <td mat-cell *matCellDef="let element">{{element.MesErSt2}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="DSt2">
+                <th mat-header-cell *matHeaderCellDef>Дата ошибки</th>
+                <td mat-cell *matCellDef="let element">{{element.DSt2}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="D85">
+                <th mat-header-cell *matHeaderCellDef>Дата записи</th>
+                <td mat-cell *matCellDef="let element">{{element.D85}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="Detal">
+                <th mat-header-cell *matHeaderCellDef>Детализация</th>
+                <td mat-cell *matCellDef="let element"><button mat-button (click)="detaliz(element.DocumentDetalization)">Детализация</button></td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="predproverkatable.displaydataSourceDocumentReglament"></tr>
+            <tr mat-row *matRowDef="let row; columns: predproverkatable.displaydataSourceDocumentReglament;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[50, 100, 200,500]" showFirstLastButtons="true"></mat-paginator>
+    </div>
+</div>
+
+<div class="mat-app-background basic-container" [style.display]="paramlogica.detal ? 'none' : 'grid'">
+    <div class="button"><button mat-button (click)="back(2)">Назад</button></div>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="predproverkatable.dataSourceDocumentDetalization">
+            <!-- Position Column -->
+            <ng-container matColumnDef="Id">
+                <th mat-header-cell *matHeaderCellDef>Ун</th>
+                <td mat-cell *matCellDef="let element"> {{element?.Id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="N441__1">
+                <th mat-header-cell *matHeaderCellDef>Ун документа</th>
+                <td mat-cell *matCellDef="let element"> {{element?.N441__1}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="IdProcedure">
+                <th mat-header-cell *matHeaderCellDef>Ун процедуры</th>
+                <td mat-cell *matCellDef="let element"> {{element?.IdProcedure}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="N333__1">
+                <th mat-header-cell *matHeaderCellDef>Документ</th>
+                <td mat-cell *matCellDef="let element"> {{element?.N333__1}}  </td>
+            </ng-container>
+            <!-- Weight Column -->
+
+            <ng-container matColumnDef="IdUser">
+                <th mat-header-cell *matHeaderCellDef>Ун пользователя</th>
+                <td mat-cell *matCellDef="let element"> {{element?.IdUser}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="IdGroup">
+                <th mat-header-cell *matHeaderCellDef>Ун группы</th>
+                <td mat-cell *matCellDef="let element"> {{element?.IdGroup}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="IdDocument">
+                <th mat-header-cell *matHeaderCellDef>Ун документа</th>
+                <td mat-cell *matCellDef="let element"> {{element?.IdDocument}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="N77">
+                <th mat-header-cell *matHeaderCellDef>Окато</th>
+                <td mat-cell *matCellDef="let element"> {{element?.N77}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="N441__4">
+                <th mat-header-cell *matHeaderCellDef>Контрольная дата</th>
+                <td mat-cell *matCellDef="let element"> {{element?.N441__4}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="predproverkatable.displaydataSourceDocumentDetalization"></tr>
+            <tr mat-row *matRowDef="let row; columns: predproverkatable.displaydataSourceDocumentDetalization;"></tr>
+        </table>
+    </div>
+</div>
+    <div [style.display]="paramlogica.progress ? 'none':'inline'">
+        <p>Идет загрузка данных подождите пожалуйста!!!</p>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    <ng-template #notfound>
+        <h4>По данной выборки нет данных!!!</h4>
+    </ng-template>

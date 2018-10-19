@@ -7,17 +7,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from '@angular/core';
-import { PostTrebovanie } from '../../../../PostZaprosFull/PostFull';
+import { Component, ViewChild } from '@angular/core';
+import { GenerateParamService } from '../../../../FullSetting/CreateSetting';
+import { PostTrebovanie, ServiceModel } from '../../../../PostZaprosFull/PostFull';
 import { CreateSettingSelect, DataBase } from '../../../../FullSetting/CreateSetting';
 import { FullSetting } from '../../../../FullSetting/FullSetting';
 import { SysNum, TableSysNumReshen } from '../Model/ModelSelect';
-import { deserialize } from "class-transformer";
+import { deserialize } from 'class-transformer';
 import { BlocsInfoButton } from '../../../../FullSetting/ProcessFull';
 import { DateModel } from '../../../../FullSetting/DateModelFull';
+import { TableReshenia } from '../../../../FullSetting/SelectTable/TableGenerator';
+import { ParamLogica } from '../../../../FullSetting/SelectTable/LogicaSelect';
+import { ServiceWcf } from '../../../../ModelService/ModelService';
+import { ParametrSelectMail } from '../../../../ModelService/SelectCommand';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 var ReshenieStart = /** @class */ (function () {
-    function ReshenieStart(dataservice) {
+    function ReshenieStart(dataservice, service) {
         this.dataservice = dataservice;
+        this.service = service;
+        this.wcf = null;
+        this.table = new TableReshenia();
+        this.paramlogica = new ParamLogica();
+        this.selecting = new ParametrSelectMail();
         this.date = new DateModel();
         this.status = new BlocsInfoButton();
         this.database = new DataBase();
@@ -28,40 +39,18 @@ var ReshenieStart = /** @class */ (function () {
         this.resheniedetal = null;
         this.incass = null;
         this.errornull = true;
-        this.limit = 100;
-        this.page = 1;
         this.filters = new TableSysNumReshen();
     }
     ReshenieStart.prototype.ngOnInit = function () {
-    };
-    //Основная функция загрузки данных
-    ReshenieStart.prototype.loadswith = function (num, dateStart, dateFinis) {
         var _this = this;
         try {
-            if (this.date.valid()) {
-                this.date.convertdateresh(this.setting, dateStart, dateFinis);
-                this.dataservice.modelreshenie(this.select.workandtest(num, this.setting)).subscribe(function (model) {
-                    _this.reshenie = deserialize(SysNum, model.toString());
-                    if (_this.reshenie != null) {
-                        _this.errornull = true;
-                    }
-                    else {
-                        _this.errornull = false;
-                    }
-                });
-            }
+            var generate = new GenerateParamService(1);
+            this.service.modelservice(generate.setting).subscribe(function (model) {
+                _this.wcf = deserialize(ServiceWcf, model.toString());
+            });
         }
         catch (e) {
-            console.log(e.toString());
-        }
-    };
-    //Переключатель загрузки Test Work
-    ReshenieStart.prototype.swithdb = function (num, dateStart, dateFinis) {
-        switch (num) {
-            case 1:
-                this.loadswith(num, dateStart, dateFinis);
-            case 2:
-                this.loadswith(num, dateStart, dateFinis);
+            alert(e.toString());
         }
     };
     //Выполнение процедуры
@@ -94,22 +83,64 @@ var ReshenieStart = /** @class */ (function () {
                 break;
         }
     };
-    ReshenieStart.prototype.detal = function (reshenie) {
-        this.mode = false;
-        this.resheniedetal = reshenie.Reshenie;
-        this.incass = reshenie.Reshenie.Incass;
-    };
     ReshenieStart.prototype.returns = function () {
         this.mode = true;
     };
+    ReshenieStart.prototype.update = function () {
+        var _this = this;
+        try {
+            this.paramlogica.logicaselect(); //Закрываем логику выбора
+            this.paramlogica.logicaprogress(); //Открываем логику загрузки
+            this.service.datacommandserver(this.selecting.generatecommand(this.wcf, this.selecting.parametrreshen, this.database.db.num)).subscribe(function (model) {
+                _this.reshenie = deserialize(SysNum, model.toString());
+                _this.paramlogica.logicaprogress(); //Закрываем логику загрузки
+                _this.paramlogica.logicadatabase(); //Открываем логику Данных
+                if (_this.reshenie != null) {
+                    _this.table.dataSource = new MatTableDataSource(_this.reshenie.TableSysNumReshen);
+                    _this.table.dataSource.paginator = _this.paginatordataSource;
+                    _this.paramlogica.errornull = true;
+                }
+                else {
+                    _this.paramlogica.errornull = false;
+                }
+            });
+        }
+        catch (e) {
+            alert(e.toString());
+        }
+    };
+    ReshenieStart.prototype.detaliz = function (reshen) {
+        var res;
+        res = [reshen];
+        this.paramlogica.logicadatabase(); //Закрываем логику Данных
+        this.paramlogica.detalization(); //Открываем детализацию
+        this.table.dataSourceDetalSysNum = new MatTableDataSource(res);
+        this.table.dataSourceDetalIncass = new MatTableDataSource(res[0].Incass);
+    };
+    ReshenieStart.prototype.back = function (num) {
+        switch (num) {
+            case 1:
+                this.paramlogica.logicadatabase(); //Закрываем логику Данных
+                this.paramlogica.logicaselect(); //Открываем логику загрузки
+                break;
+            case 2:
+                this.paramlogica.logicadatabase(); //Открываем логику Данных
+                this.paramlogica.detalization(); //Закрываем детализацию
+                break;
+        }
+    };
+    __decorate([
+        ViewChild(MatPaginator),
+        __metadata("design:type", MatPaginator)
+    ], ReshenieStart.prototype, "paginatordataSource", void 0);
     ReshenieStart = __decorate([
         Component(({
             selector: 'my-treb',
             templateUrl: '../Template/Reshenie.html',
             styleUrls: ['../Template/Style.css'],
-            providers: [PostTrebovanie]
+            providers: [PostTrebovanie, ServiceModel]
         })),
-        __metadata("design:paramtypes", [PostTrebovanie])
+        __metadata("design:paramtypes", [PostTrebovanie, ServiceModel])
     ], ReshenieStart);
     return ReshenieStart;
 }());

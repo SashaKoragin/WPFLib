@@ -131,38 +131,48 @@
                 Click="SeathFull"
                 Content="Поиск в Архивах" />
         </StackPanel>
-        <ListView
-            x:Name="ListFileArhFull"
+        <StackPanel
             Grid.Row="3"
             Grid.Column="0"
             Grid.ColumnSpan="3"
-            MaxHeight="150"
-            Margin="5,5,5,5"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Stretch"
-            DataContext="{StaticResource Content}"
-            ItemsSource="{Binding File, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-            MouseDoubleClick="OpenF"
-            Style="{StaticResource ArhListStile}">
-            <!--  Контекстное меню в данном элементе находится в словаре и тригер тоже в словаре на выбор элемента!!!!  -->
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="Auto" Header="Файл">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <WrapPanel HorizontalAlignment="Stretch">
-                                    <Image
-                                        Width="16"
-                                        Height="16"
-                                        Source="{Binding FileIcon, Converter={StaticResource Convert}}" />
-                                    <TextBlock Text="{Binding NameFile}" />
-                                </WrapPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+            VerticalAlignment="Stretch">
+            <ListView
+                x:Name="ListFileArhFull"
+                MaxHeight="150"
+                Margin="5,5,5,5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Stretch"
+                DataContext="{StaticResource Content}"
+                ItemsSource="{Binding File, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                MouseDoubleClick="OpenF"
+                Style="{StaticResource ArhListStile}">
+                <!--  Контекстное меню в данном элементе находится в словаре и тригер тоже в словаре на выбор элемента!!!!  -->
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="Auto" Header="Файл">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <WrapPanel HorizontalAlignment="Stretch">
+                                        <Image
+                                            Width="16"
+                                            Height="16"
+                                            Source="{Binding FileIcon, Converter={StaticResource Convert}}" />
+                                        <TextBlock Text="{Binding NameFile}" />
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <ListBox Name="BoxError" MaxHeight="300">
+                <TextBlock
+                    FontStretch="SemiExpanded"
+                    Foreground="Red"
+                    Text="Список ошибок по архивам!!!" />
+            </ListBox>
+        </StackPanel>
+
         <StatusBar
             Grid.Row="4"
             Grid.Column="0"

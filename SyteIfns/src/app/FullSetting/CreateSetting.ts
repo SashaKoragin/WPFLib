@@ -1,27 +1,19 @@
-﻿import { FullSetting } from './FullSetting'
+﻿import { FullSetting } from './FullSetting';
 //Переключатель для решений
 export class DataBase {
-    public databases =new Array<DataBases>();
-    public db: DataBases = new DataBases(1, "Тест");
 
-    constructor() {
-        this.pusharray();
-    }
+    public databases: DataBases[] =[
+        { num: 1, db: 'Тест' },
+        { num: 2, db: 'Рабочая' }
+    ];
 
-    pusharray() {
-        this.databases.push(new DataBases(1, "Тест"));
-        this.databases.push(new DataBases(2, "Рабочая"));
-    }
-
+    public db: DataBases = this.databases[0];
 }
 class DataBases {
-    constructor(num: number, db: string) {
-        this.num = num;
-        this.db = db;
-    }
     num: number;
     db: string;
 }
+
 
 //Класс для генерации настроек для процедур
 export class CreateSettingSelect {
@@ -45,6 +37,7 @@ export class CreateSettingSelect {
         setting.Db = 'Work';
         return setting;
     }
+
     //Добавления системного номеры на обработку
     createaddresh(resh: number, setting: FullSetting): FullSetting {
         setting.Id = 1;
@@ -67,5 +60,12 @@ export class CreateSettingSelect {
         setting.ParametrBdk.D05 = message;
         return setting;
     }
+}
+//Генерация параметра для сервиса
+export class GenerateParamService {
 
+   public setting = new FullSetting;
+    constructor(private id: number) {
+        this.setting.ParamService.IdCommand = id;
+    }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SqlLibaryIfns.SqlSelect.SqlLk2
+﻿namespace SqlLibaryIfns.SqlSelect.SqlLk2
 {
    public class SelectSqlLk2
     {

@@ -1,0 +1,326 @@
+﻿<div>
+    <div [style.display]="logica.navigation ? 'grid' : 'none'">
+        <div class="divinline" style.display="inline-block">
+            <button mat-button (click)="logica.logicaviewtemp()">Просмотр всех шаблонов</button>
+            <button mat-button (click)="logica.logicaaddtemp()">Добавить шаблон</button>
+        </div>
+    </div >
+    <div [style.display]="logica.viewtemp ? 'grid' : 'none'"> 
+        <h5>Действующие шаблоны</h5>
+        <div class="divinline">
+            <button mat-button (click)="logica.back()">Назад</button>    
+        </div>
+        <table class="Template" mat-table [dataSource]="template.dataSource">
+            <ng-container matColumnDef="Id">
+                <th mat-header-cell *matHeaderCellDef>Ун шаблона</th>
+                <td mat-cell *matCellDef="let element"> {{element?.Id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="IdNamedocument">
+                <th mat-header-cell *matHeaderCellDef>Номер документа</th>
+                <td mat-cell *matCellDef="let element"> {{element?.IdNamedocument}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="NameDocument">
+                <th mat-header-cell *matHeaderCellDef>Наименование документа</th>
+                <td mat-cell *matCellDef="let element"> {{element?.NameDocument1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ManualDoc">
+                <th mat-header-cell *matHeaderCellDef>Описание документа</th>
+                <td mat-cell *matCellDef="let element"> {{element?.ManualDoc}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="IdTemplate">
+                <th mat-header-cell *matHeaderCellDef>Ун шаблона</th>
+                <td mat-cell *matCellDef="let element"> {{element?.IdTemplate}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="DateCreate">
+                <th mat-header-cell *matHeaderCellDef>Дата создания</th>
+                <td mat-cell *matCellDef="let element"> {{element?.DateCreate}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Detal">
+                <th mat-header-cell *matHeaderCellDef>Детализация</th>
+                <td mat-cell *matCellDef="let element"><button mat-button (click)="detal()">Детализация</button></td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="template.displaydataSource"></tr>
+            <tr mat-row *matRowDef="let row; columns: template.displaydataSource;"></tr>
+        </table>
+        <mat-paginator class="Template" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons="true"></mat-paginator>
+    </div>
+    
+    <div class="addtemplate" [style.display]="logica.addtemp ? 'grid' : 'none'">
+        <h5>Добавление шаблона</h5>
+        <div class="divinline">
+            <button mat-button (click)="logica.back()">Назад</button>
+        </div>
+        <div class="contaner">
+            <table class="TableFull mat-elevation-z8" mat-table [dataSource]="template.dataSourceHeaders">
+
+                <ng-container matColumnDef="Select" sticky>
+                    <th mat-header-cell *matHeaderCellDef>Выбор модели</th>
+                    <td mat-cell *matCellDef="let row">
+                        <mat-checkbox (click)="$event.stopPropagation();"
+                                      (change)="form.selectionHeaders.toggle(row);form.selectHeaders()"
+                                      [checked]="form.selectionHeaders.isSelected(row)">
+                        </mat-checkbox>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="IdHeaders">
+                    <th mat-header-cell *matHeaderCellDef>Ун заголовка</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.IdHeaders}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TextHeade1">
+                    <th mat-header-cell *matHeaderCellDef>Заголовок 1</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.TextHeade1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TextHeade2">
+                    <th mat-header-cell *matHeaderCellDef>Заголовок 2</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.TextHeade2}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TextHeade3">
+                    <th mat-header-cell *matHeaderCellDef>Заголовок 3</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.TextHeade3}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TextHeade4">
+                    <th mat-header-cell *matHeaderCellDef>Заголовок 4</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.TextHeade4}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TextHeade5">
+                    <th mat-header-cell *matHeaderCellDef>Заголовок 5</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.TextHeade5}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TextHeade6">
+                    <th mat-header-cell *matHeaderCellDef>Заголовок 6</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.TextHeade6}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TextHeade7">
+                    <th mat-header-cell *matHeaderCellDef>Заголовок 7</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.TextHeade7}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TextHeade8">
+                    <th mat-header-cell *matHeaderCellDef>Заголовок 8</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.TextHeade8}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TextHeade9">
+                    <th mat-header-cell *matHeaderCellDef>Заголовок 9</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.TextHeade9}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TextHeade10">
+                    <th mat-header-cell *matHeaderCellDef>Заголовок 10</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.TextHeade10}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="DateCreate">
+                    <th mat-header-cell *matHeaderCellDef>Дата создания</th>
+                    <td mat-cell *matCellDef="let element">{{element?.DateCreate}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="template.displaydataSourceHeaders"></tr>
+                <tr mat-row *matRowDef="let row; columns: template.displaydataSourceHeaders;"></tr>
+            </table>
+            <button mat-button (click)="form.openDialogHead()">Добавить шаблон Headers</button>
+          </div>
+        <div class="contaner">
+            <table class="TableFull mat-elevation-z8" mat-table [dataSource]="template.dataSourceBody">
+
+                <ng-container matColumnDef="Select" sticky>
+                    <th mat-header-cell *matHeaderCellDef>Выбор модели</th>
+                    <td mat-cell *matCellDef="let row">
+                        <mat-checkbox (click)="$event.stopPropagation();"
+                                      (change)="form.selectionBody.toggle(row);form.selectBody()"
+                                      [checked]="form.selectionBody.isSelected(row)">
+                        </mat-checkbox>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="IdBody">
+                    <th mat-header-cell *matHeaderCellDef>Ун содержания</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.IdBody}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="BodyGl1">
+                    <th mat-header-cell *matHeaderCellDef>Содержание 1</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.BodyGl1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="BodyGl2">
+                    <th mat-header-cell *matHeaderCellDef>Содержание 2</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.BodyGl2}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="BodyGl3">
+                    <th mat-header-cell *matHeaderCellDef>Содержание 3</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.BodyGl3}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="BodyGl4">
+                    <th mat-header-cell *matHeaderCellDef>Содержание 4</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.BodyGl4}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="BodyGl5">
+                    <th mat-header-cell *matHeaderCellDef>Содержание 5</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.BodyGl5}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="BodyGl6">
+                    <th mat-header-cell *matHeaderCellDef>Содержание 6</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.BodyGl6}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="BodyGl7">
+                    <th mat-header-cell *matHeaderCellDef>Содержание 7</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.BodyGl7}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="DateCreate">
+                    <th mat-header-cell *matHeaderCellDef>Дата создания</th>
+                    <td mat-cell *matCellDef="let element">{{element?.DateCreate}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="template.displaydataSourceBody"></tr>
+                <tr mat-row *matRowDef="let row; columns: template.displaydataSourceBody;"></tr>
+            </table>
+            <button mat-button (click)="form.openDialogBody()">Добавить шаблон Body</button>
+        </div>
+        <div class="contaner">
+            <table class="TableFull mat-elevation-z8" mat-table [dataSource]="template.dataSourceStone">
+
+                <ng-container matColumnDef="Select" sticky>
+                    <th mat-header-cell *matHeaderCellDef>Выбор модели</th>
+                    <td mat-cell *matCellDef="let row">
+                        <mat-checkbox (click)="$event.stopPropagation();"
+                                      (change)="form.selectionStone.toggle(row);form.selectStone()"
+                                      [checked]="form.selectionStone.isSelected(row)">
+                        </mat-checkbox>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="IdStone">
+                    <th mat-header-cell *matHeaderCellDef>Ун колонтитула</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.IdStone}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Stone1">
+                    <th mat-header-cell *matHeaderCellDef>Колонтитул 1</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.Stone1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Stone2">
+                    <th mat-header-cell *matHeaderCellDef>Колонтитул 2</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.Stone2}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Stone3">
+                    <th mat-header-cell *matHeaderCellDef>Колонтитул 3</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.Stone3}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Stone4">
+                    <th mat-header-cell *matHeaderCellDef>Колонтитул 4</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.Stone4}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Stone5">
+                    <th mat-header-cell *matHeaderCellDef>Колонтитул 5</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.Stone5}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Stone6">
+                    <th mat-header-cell *matHeaderCellDef>Колонтитул 6</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.Stone6}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Stone7">
+                    <th mat-header-cell *matHeaderCellDef>Колонтитул 7</th>
+                    <td mat-cell *matCellDef="let element"> {{element?.Stone7}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="DateCreate">
+                    <th mat-header-cell *matHeaderCellDef>Дата создания</th>
+                    <td mat-cell *matCellDef="let element">{{element?.DateCreate}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="template.displaydataSourceStone"></tr>
+                <tr mat-row *matRowDef="let row; columns: template.displaydataSourceStone;"></tr>
+            </table>
+            <button mat-button (click)="form.openDialogStone()">Добавить шаблон Stone</button>
+        </div>
+        <form [formGroup]="form.formTemplate" #formDir="ngForm">
+            <div class="conteinerform">
+                <div class="cross-validation" [class.cross-validation-error]="form.formTemplate.errors?.identityRevealed && (form.formTemplate.touched || form.formTemplate.dirty)">
+                    <div class="Inline">
+                        <mat-form-field class="input">
+                            <input matInput id="nameDoc" placeholder="Наименование документа" type="text" class="form-control" [(ngModel)]="form.document.NameDocument.NameDocument1" formControlName="nameDoc" required>
+                        </mat-form-field>
+                        <div *ngIf="form.nameDoc.invalid && (form.nameDoc.dirty || form.nameDoc.touched)" class="alert alert-danger">
+                            <div *ngIf="form.nameDoc.errors.required">
+                                Не введено имя документа!!!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Inline">
+                        <mat-form-field class="input">
+                            <input matInput id="manualDoc" placeholder="Описание документа" type="text" class="form-control" [(ngModel)]="form.document.NameDocument.ManualDoc" formControlName="manualDoc" required>
+                        </mat-form-field>
+                        <div *ngIf="form.manualDoc.invalid && (form.manualDoc.dirty || form.manualDoc.touched)" class="alert alert-danger">
+                            <div *ngIf="form.manualDoc.errors.required">
+                                Не введено описание документа!!!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Inline">
+                        <mat-form-field class="input">
+                            <input matInput id="headers" placeholder="Шаблон шапки" type="number" class="form-control" [(ngModel)]="form.document.Template.IdHeaders" formControlName="headers" required>
+                        </mat-form-field>
+                        <div *ngIf="form.headers.invalid && (form.headers.dirty || form.headers.touched)" class="alert alert-danger">
+                            <div *ngIf="form.headers.errors.required">
+                                Не выбранна шапка документа!!!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Inline">
+                        <mat-form-field class="input">
+                            <input matInput id="body" placeholder="Шаблон документа" type="number" class="form-control" [(ngModel)]="form.document.Template.IdBody" formControlName="body" required>
+                        </mat-form-field>
+                        <div *ngIf="form.body.invalid && (form.body.dirty || form.body.touched)" class="alert alert-danger">
+                            <div *ngIf="form.body.errors.required">
+                                Не выбранна основная часть документа!!!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Inline">
+                        <mat-form-field class="input">
+                            <input matInput id="stone" placeholder="Шаблон подписание" type="number" class="form-control" [(ngModel)]="form.document.Template.IdStone" formControlName="stone" required>
+                        </mat-form-field>
+                                <div *ngIf="form.stone.invalid && (form.stone.dirty || form.stone.touched)" class="alert alert-danger">
+                                    <div *ngIf="form.stone.errors.required">
+                                        Не выбран подписант документа!!!
+                                    </div>
+                                </div>
+                   </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default"
+                    [disabled]="form.formTemplate.invalid" 
+                    (click)="addtemplate(form.document);formDir.resetForm({})">
+                Добавить шаблон
+            </button>
+        </form>
+    </div>
+</div>

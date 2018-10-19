@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title – приложение ASP.NET</title>
     <script language="javascript" type="text/javascript" src="~/Scripts/MyTestScript.js"></script>
+    <link rel="stylesheet" href="~/public/vendor.css" asp-append-version="true" />
+    <script src="~/public/vendor.js"></script>
     @Styles.Render("~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("scripts", required: false)
@@ -15,6 +17,7 @@
 <div class="header">
     <button type="button" class="buttonclass" onclick="test('menu')">Отделы</button>
     <button type="button" class="buttonclass" onclick="show('menu')">Скрыть</button>
+
 </div>
 <div id="menu" class="sildebar">
     <div class="treeview">
@@ -48,6 +51,13 @@
                                 </div>
                             </li>
                         </ul>
+                        <ul>
+                            <li>
+                                <div>
+                                    <p>@Html.ActionLink("Создание шаблонов", "AddTemplate", "Otdel")</p>
+                                </div>
+                            </li>
+                        </ul>
                     </li>
                     <li class="cl">
                         <div>
@@ -75,6 +85,21 @@
                             <li>
                                 <div>
                                     <p>@Html.ActionLink("Отчет слияния лиц!!!", "MergeFace", "Otdel")</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="cl">
+                        <div>
+                            <p>
+                                <a href="#" class="sc" onclick="return UnHide(this)">&#9658;</a>
+                                <a href="#">Отдел предроверочного анализа</a>
+                            </p>
+                        </div>
+                        <ul>
+                            <li>
+                                <div>
+                                    <p>@Html.ActionLink("Поручение об истребовании!!!", "PredproverkaSoprovod", "Otdel")</p>
                                 </div>
                             </li>
                         </ul>

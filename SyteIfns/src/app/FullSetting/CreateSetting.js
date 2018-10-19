@@ -1,21 +1,18 @@
+import { FullSetting } from './FullSetting';
 //Переключатель для решений
 var DataBase = /** @class */ (function () {
     function DataBase() {
-        this.databases = new Array();
-        this.db = new DataBases(1, "Тест");
-        this.pusharray();
+        this.databases = [
+            { num: 1, db: 'Тест' },
+            { num: 2, db: 'Рабочая' }
+        ];
+        this.db = this.databases[0];
     }
-    DataBase.prototype.pusharray = function () {
-        this.databases.push(new DataBases(1, "Тест"));
-        this.databases.push(new DataBases(2, "Рабочая"));
-    };
     return DataBase;
 }());
 export { DataBase };
 var DataBases = /** @class */ (function () {
-    function DataBases(num, db) {
-        this.num = num;
-        this.db = db;
+    function DataBases() {
     }
     return DataBases;
 }());
@@ -68,4 +65,14 @@ var CreateSettingSelect = /** @class */ (function () {
     return CreateSettingSelect;
 }());
 export { CreateSettingSelect };
+//Генерация параметра для сервиса
+var GenerateParamService = /** @class */ (function () {
+    function GenerateParamService(id) {
+        this.id = id;
+        this.setting = new FullSetting;
+        this.setting.ParamService.IdCommand = id;
+    }
+    return GenerateParamService;
+}());
+export { GenerateParamService };
 //# sourceMappingURL=CreateSetting.js.map

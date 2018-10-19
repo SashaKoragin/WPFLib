@@ -1,14 +1,20 @@
+import { FormControl } from '@angular/forms';
+import { moment } from './FormatDate';
 //Общепринятая молдель отправки даты на сервер
 var DateModel = /** @class */ (function () {
     function DateModel() {
         this.validation = true;
+        //С какой даты
+        this.D85DateStart = new FormControl(new Date());
+        //По какую дату
+        this.D85DateFinish = new FormControl(new Date());
     }
     DateModel.prototype.valid = function () {
-        if (this.D85DateStart == null || this.D85DateFinish == null) {
+        if (this.D85DateStart.value == null || this.D85DateFinish.value == null) {
             this.messageerror = 'Не все даты введены для запроса!!!';
             return this.validation = false;
         }
-        if (this.D85DateStart > this.D85DateFinish) {
+        if (moment(this.D85DateStart.value).format('MM.DD.YYYY') > moment(this.D85DateFinish.value).format('MM.DD.YYYY')) {
             this.messageerror = 'Дата начала не может быть больше окончания!!!';
             return this.validation = false;
         }
@@ -17,17 +23,13 @@ var DateModel = /** @class */ (function () {
     };
     ///Конвертация даты в модели BDkOut
     DateModel.prototype.convertdate = function (setting, dateStart, dateFinis) {
-        var ds = new Date(dateStart);
-        var df = new Date(dateFinis);
-        setting.ParametrBdkOut.D85DateStart = "/Date(" + ds.getTime() + ")/";
-        setting.ParametrBdkOut.D85DateFinish = "/Date(" + df.getTime() + ")/";
+        setting.ParametrBdkOut.D85DateStart = "/Date(" + dateStart.getTime() + ")/";
+        setting.ParametrBdkOut.D85DateFinish = "/Date(" + dateFinis.getTime() + ")/";
     };
     ///Конвертация даты в модели Решения
     DateModel.prototype.convertdateresh = function (setting, dateStart, dateFinis) {
-        var ds = new Date(dateStart);
-        var df = new Date(dateFinis);
-        setting.ParametrReshen.D85DateStart = "/Date(" + ds.getTime() + ")/";
-        setting.ParametrReshen.D85DateFinish = "/Date(" + df.getTime() + ")/";
+        setting.ParametrReshen.D85DateStart = "/Date(" + dateStart.getTime() + ")/";
+        setting.ParametrReshen.D85DateFinish = "/Date(" + dateFinis.getTime() + ")/";
     };
     return DateModel;
 }());

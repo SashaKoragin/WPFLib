@@ -7,8 +7,12 @@ var FullSetting = /** @class */ (function () {
         this.ParametrBdk = new ParametrBdk();
         //Шаблон для печати
         this.UseTemplate = new UseTemplate();
+        //Параметр для выбора данных с сервиса
+        this.ParamService = new ParamService();
         //Параметры отправки БДК
         this.ParametrBdkOut = new ParametrBdkOut();
+        //Параметры предпроверки
+        this.ParamPredproverka = new ParamPredproverka();
     }
     return FullSetting;
 }());
@@ -40,6 +44,13 @@ var ParametrBdk = /** @class */ (function () {
     };
     return ParametrBdk;
 }());
+//Настройки предпроверки
+var ParamPredproverka = /** @class */ (function () {
+    function ParamPredproverka() {
+        this.N441 = 0;
+    }
+    return ParamPredproverka;
+}());
 //Класс шаблона
 var UseTemplate = /** @class */ (function () {
     function UseTemplate() {
@@ -53,5 +64,10 @@ var ParametrBdkOut = /** @class */ (function () {
     function ParametrBdkOut() {
     }
     return ParametrBdkOut;
+}());
+var ParamService = /** @class */ (function () {
+    function ParamService() {
+    }
+    return ParamService;
 }());
 //# sourceMappingURL=FullSetting.js.map

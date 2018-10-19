@@ -44,12 +44,15 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converts\ConvertXmlToXslx\ConvertXmltoXlsx.cs" />
     <Compile Include="Converts\ConvettToXml\XmlConvert.cs" />
+    <Compile Include="ModelServiceWcfCommand\AngularModel\AngularModel.cs" />
+    <Compile Include="ModelServiceWcfCommand\TestIfnsService\WcfServiiceFull.cs">
+      <DependentUpon>WcfServiiceFull.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModelXmlAuto\ListInnSheme\FullInnCount.cs">
       <DependentUpon>FullInnCount.xsd</DependentUpon>
     </Compile>
@@ -67,6 +70,12 @@
       <DependentUpon>FaceMerginRest.xsd</DependentUpon>
     </Compile>
     <Compile Include="ModelXmlSql\Model\FullSetting\FullSetting.cs" />
+    <Compile Include="ModelXmlSql\Model\ModelMail\Mail.cs">
+      <DependentUpon>Mail.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ModelXmlSql\Model\Predproverka\Soprovod.cs">
+      <DependentUpon>Soprovod.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModelXmlSql\Model\Trebovanie\Reshenie.cs">
       <SubType>code</SubType>
       <DependentUpon>Reshenie.xsd</DependentUpon>
@@ -88,17 +97,22 @@
     <Compile Include="ReadOrWrite\LogicaXml\LogicaXml.cs" />
     <Compile Include="ReadOrWrite\SerializationJson\SerializeJson.cs" />
     <Compile Include="ReadOrWrite\XmlReadOrWrite.cs" />
+    <Compile Include="Reports\FullTemplateSheme\FullTemplate.cs" />
+    <Compile Include="Reports\FullTemplateSheme\FullTemplateReport.cs">
+      <DependentUpon>FullTemplateReport.xsd</DependentUpon>
+      <SubType>code</SubType>
+    </Compile>
     <Compile Include="Reports\ReportsBdk\ReportBdk.cs">
       <DependentUpon>ReportBdk.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\TemplateSheme\TemplateReport.cs">
-      <DependentUpon>TemplateReport.xsd</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ModelXmlSql\Model\Bdk\BdkNo\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ModelServiceWcfCommand\TestIfnsService\WcfServiiceFull.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ModelXmlAuto\ListInnSheme\FullInnCount.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -123,14 +137,20 @@
     <None Include="ModelXmlSql\Model\FaceError\FaceMerginRest.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ModelXmlSql\Model\ModelMail\Mail.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ModelXmlSql\Model\Predproverka\Soprovod.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ModelXmlSql\Model\Trebovanie\Reshenie.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Reports\ReportsBdk\ReportBdk.xsd">
+    <None Include="Reports\FullTemplateSheme\FullTemplateReport.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Reports\TemplateSheme\TemplateReport.xsd">
+    <None Include="Reports\ReportsBdk\ReportBdk.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -154,7 +174,10 @@
       <XsdXmlSqlTreb Include="ModelXmlSql\Model\Trebovanie\*.xsd" />
       <XsdXmlSqlBdk Include="ModelXmlSql\Model\Bdk\BdkIt\*.xsd" />
       <XsdXmlSqlReport Include="Reports\ReportsBdk\*.xsd" />
-      <XsdXmlSqlTemplateReport Include="Reports\TemplateSheme\*.xsd" />
+      <XsdXmlSqlFullTemplateReport Include="Reports\FullTemplateSheme\*.xsd" />
+      <XsdXmlSqlServiceWcfTestIfns Include="ModelServiceWcfCommand\TestIfnsService\*.xsd" />
+      <XsdXmlSqlMail Include="ModelXmlSql\Model\ModelMail\*.xsd" />
+      <XsdXmlSqlPredproverka Include="ModelXmlSql\Model\Predproverka\*.xsd" />
     </ItemGroup>
     <Message Importance="high" Text="CreateXsd" />
     <GetFrameworkSdkPath>
@@ -173,6 +196,9 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlTreb.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.Model.Trebovanie /outputdir:ModelXmlSql\Model\Trebovanie" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlBdk.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.Model.Bdk.BdkIt /outputdir:ModelXmlSql\Model\Bdk\BdkIt\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlReport.FullPath)&quot; /classes /namespace:$(RootNamespace)Reports.ReportsBdk /outputdir:Reports\ReportsBdk\" />
-    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlTemplateReport.FullPath)&quot; /classes /namespace:$(RootNamespace)Reports.TemplateSheme /outputdir:Reports\TemplateSheme\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlServiceWcfTestIfns.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelServiceWcfCommand.TestIfnsService /outputdir:ModelServiceWcfCommand\TestIfnsService\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlMail.FullPath)&quot;  /classes /namespace:$(RootNamespace)ModelXmlSql.Model.ModelMail /outputdir:ModelXmlSql\Model\ModelMail\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlFullTemplateReport.FullPath)&quot; /classes /namespace:$(RootNamespace)Reports.FullTemplateSheme /outputdir:Reports\FullTemplateSheme\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlPredproverka.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.Model.Predproverka /outputdir:ModelXmlSql\Model\Predproverka\" />
   </Target>
 </Project>

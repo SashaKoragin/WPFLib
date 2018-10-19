@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using SqlLibaryIfns.SqlSelect.SqlReshenia;
-using System.Reflection;
-using SqlLibaryIfns.SqlZapros.StoreProcedure;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using LibaryXMLAuto.ModelXmlSql.Model.FullSetting;
+using LibaryXMLAutoModelServiceWcfCommand.TestIfnsService;
+using SqlLibaryIfns.SqlSelect.ModelSqlFullService;
+using SqlLibaryIfns.SqlZapros.SqlConnections;
 
 namespace SqlLibaryIfns.SqlEntytiCommand.TaskUse
 {
@@ -12,9 +11,9 @@ namespace SqlLibaryIfns.SqlEntytiCommand.TaskUse
     {
         /// <summary>
         /// Выбор процедуры в зависимости от настроек:
-        /// 1 - Процедура добавления значения на добавления
-        /// 2 - Процедура запуска процесса решений
-        /// 3 - Процедура запуска инкассовых поручений
+        /// 1 - Процедура добавления значения на добавления а название под ун 3
+        /// 2 - Процедура запуска процесса решений а название под ун 4
+        /// 3 - Процедура запуска инкассовых поручений а название под ун 5
         /// Процесс генерации параметров для процедуры нужно улучшить!!!!
         /// </summary>
         /// <param name="connection">Строка соединения</param>
@@ -22,8 +21,7 @@ namespace SqlLibaryIfns.SqlEntytiCommand.TaskUse
         /// <returns>Строка с ответа с сервера</returns>
         public async Task<string> TaskSqlProcedure(string connection, FullSetting seting)
         {
-            StartProcedure startprocedure = new StartProcedure();
-
+            var sqlconnect = new SqlConnectionType();
             Dictionary<string, int> listparametr = null;
             if (seting.ParametrReshen.D270!=0)
             {
@@ -33,11 +31,11 @@ namespace SqlLibaryIfns.SqlEntytiCommand.TaskUse
             switch (seting.Id)
             {
                 case 1:
-                    return await Task.Factory.StartNew(()=> startprocedure.StartingProcedure(connection,ProcedureReshenie.ProcedureAddTreb, listparametr));
+                    return await Task.Factory.StartNew(()=> sqlconnect.StartingProcedure(connection, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(connection, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand("3"))).ServiceWcfCommand.Command, listparametr));
                 case 2:
-                    return await Task.Factory.StartNew(() => startprocedure.StartingProcedure(connection, ProcedureReshenie.ProcedureStartTreb, listparametr));
+                    return await Task.Factory.StartNew(() => sqlconnect.StartingProcedure(connection, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(connection, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand("4"))).ServiceWcfCommand.Command, listparametr));
                 case 3:
-                    return await Task.Factory.StartNew(() => startprocedure.StartingProcedure(connection, ProcedureReshenie.ProcedureStartIncass, listparametr));
+                    return await Task.Factory.StartNew(() => sqlconnect.StartingProcedure(connection, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(connection, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand("5"))).ServiceWcfCommand.Command, listparametr));
                 default:
                     return null;
             }
@@ -53,7 +51,7 @@ namespace SqlLibaryIfns.SqlEntytiCommand.TaskUse
         /// <returns></returns>
         public async Task<string> TaskSqlProcedureBdk(string connection, FullSetting seting)
         {
-            StartProcedure startprocedure = new StartProcedure();
+            var sqlconnect = new SqlConnectionType();
             GenerateParametrSql.GenerateParametrSql sql = new GenerateParametrSql.GenerateParametrSql();
             Dictionary<string, string> listparametr = null;
             if (seting.ParametrBdk.N269 != 0)
@@ -63,12 +61,41 @@ namespace SqlLibaryIfns.SqlEntytiCommand.TaskUse
             switch (seting.Id)
             {
                 case 1:
-                    return await Task.Factory.StartNew(() => startprocedure.StartingProcedure(connection, SqlSelect.SqlBdkIt.SqlBdkIt.StartAnalis, listparametr));
+                    return await Task.Factory.StartNew(() => sqlconnect.StartingProcedure(connection, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(connection, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand("8"))).ServiceWcfCommand.Command, listparametr));
                 case 2:
-                    return await Task.Factory.StartNew(() => startprocedure.StartingProcedure(connection, SqlSelect.SqlBdkIt.SqlBdkIt.StartBdk, listparametr));
+                    return await Task.Factory.StartNew(() => sqlconnect.StartingProcedure(connection, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(connection, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand("9"))).ServiceWcfCommand.Command, listparametr));
                default:
                     return null;
             }
         }
-  }
+        /// <summary>
+        /// Процедуры предпроверки
+        /// </summary>
+        /// <param name="connection">Строка соединения</param>
+        /// <param name="seting">Настройки</param>
+        /// <returns></returns>
+        public async Task<string> TaskSqlProcedureSoprovod(string connection, FullSetting seting)
+        {
+            var sqlconnect = new SqlConnectionType();
+            GenerateParametrSql.GenerateParametrSql sql = new GenerateParametrSql.GenerateParametrSql();
+            Dictionary<string, string> listparametr = null;
+            if (seting.ParamPredproverka.N441 != 0)
+            {
+                sql.CreateParamert(ref listparametr, seting.ParamPredproverka.GetType(), seting.ParamPredproverka);
+            }
+            switch (seting.Id)
+            {
+                case 1:
+                    return await Task.Factory.StartNew(() => sqlconnect.StartingProcedure(connection, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(connection, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand("15"))).ServiceWcfCommand.Command, listparametr));
+                case 2:
+                    return await Task.Factory.StartNew(() => sqlconnect.StartingProcedure(connection, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(connection, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand("16"))).ServiceWcfCommand.Command, listparametr));
+                case 3:
+                    return await Task.Factory.StartNew(() => sqlconnect.StartingProcedure(connection, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(connection, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand("17"))).ServiceWcfCommand.Command, listparametr));
+                default:
+                    return null;
+            }
+        }
+
+
+    }
 }

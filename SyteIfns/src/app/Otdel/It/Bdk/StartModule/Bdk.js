@@ -13,7 +13,7 @@ import { FullSetting } from '../../../../FullSetting/FullSetting';
 import { PostBdk } from '../../../../PostZaprosFull/PostFull';
 import { CreateSettingSelect } from '../../../../FullSetting/CreateSetting';
 import { BlocsInfoButton } from '../../../../FullSetting/ProcessFull';
-import { deserialize } from "class-transformer";
+import { deserialize } from 'class-transformer';
 var BdkIt = /** @class */ (function () {
     function BdkIt(dataservice) {
         this.dataservice = dataservice;

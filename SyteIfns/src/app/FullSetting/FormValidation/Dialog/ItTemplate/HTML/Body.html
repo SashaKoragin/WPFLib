@@ -1,0 +1,67 @@
+﻿<h2 mat-dialog-title>Добавление обзацов документа</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="formTemplateBody" #formDir="ngForm">
+        <div class="conteinerform">
+            <div class="cross-validation" [class.cross-validation-error]="formTemplateBody.errors?.identityRevealed && (formTemplateBody.touched || formTemplateBody.dirty)">
+                <div class="Inline">
+                    <mat-form-field class="textHeade">
+                        <input matInput placeholder="Абзац 1" type="text" class="form-control" [(ngModel)]="data.angulardate.Body.BodyGl1" formControlName="textBodyGl1" required>
+                    </mat-form-field>
+                    <div *ngIf="textBodyGl1.invalid && (textBodyGl1.dirty || textBodyGl1.touched)" class="alert alert-danger">
+                        <div *ngIf="textBodyGl1.errors.required">
+                            Не введен абзац 1!!!
+                        </div>
+                    </div>
+                </div>
+                <div class="Inline">
+                    <mat-form-field class="textHeade">
+                        <input matInput placeholder="Абзац 2" type="text" class="form-control" [(ngModel)]="data.angulardate.Body.BodyGl2" formControlName="textBodyGl2" required>
+                    </mat-form-field>
+                    <div *ngIf="textBodyGl2.invalid && (textBodyGl2.dirty || textBodyGl2.touched)" class="alert alert-danger">
+                        <div *ngIf="textBodyGl2.errors.required">
+                            Не введен абзац 2!!!
+                        </div>
+                    </div>
+                </div>
+                <div class="Inline">
+                    <mat-form-field class="textHeade">
+                        <input matInput placeholder="Абзац 3" type="text" class="form-control" [(ngModel)]="data.angulardate.Body.BodyGl3" formControlName="textBodyGl3" required>
+                    </mat-form-field>
+                    <div *ngIf="textBodyGl3.invalid && (textBodyGl3.dirty || textBodyGl3.touched)" class="alert alert-danger">
+                        <div *ngIf="textBodyGl3.errors.required">
+                            Не введен абзац 3!!!
+                        </div>
+                    </div>
+                </div>
+                <div class="Inline">
+                    <mat-form-field class="textHeade">
+                        <input matInput placeholder="Абзац 4" type="text" class="form-control" [(ngModel)]="data.angulardate.Body.BodyGl4" formControlName="textBodyGl4" required>
+                    </mat-form-field>
+                    <div *ngIf="textBodyGl4.invalid && (textBodyGl4.dirty || textBodyGl4.touched)" class="alert alert-danger">
+                        <div *ngIf="textBodyGl4.errors.required">
+                            Не введен абзац 4!!!
+                        </div>
+                    </div>
+                </div>
+                <div class="Inline">
+                    <mat-form-field class="textHeade">
+                        <input matInput placeholder="Абзац 5" type="text" class="form-control" [(ngModel)]="data.angulardate.Body.BodyGl5" formControlName="textBodyGl5" required>
+                    </mat-form-field>
+                    <div *ngIf="textBodyGl5.invalid && (textBodyGl5.dirty || textBodyGl5.touched)" class="alert alert-danger">
+                        <div *ngIf="textBodyGl5.errors.required">
+                            Не введен абзац 5!!!
+                        </div>
+                    </div>
+                </div>
+                <button mat-button mat-dialog-close type="submit" class="btn btn-default"
+                        [disabled]="formTemplateBody.invalid"
+                        (click)="addTempateBody();formDir.resetForm({})">
+                    Добавить шаблон
+                </button>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

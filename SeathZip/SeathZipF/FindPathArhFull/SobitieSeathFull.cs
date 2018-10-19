@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
+using System.Windows.Controls;
 using SevenZip;
-using System.Windows.Forms;
 
 namespace SeathZip.SeathZipF.FindPathArhFull
 {
@@ -24,7 +24,6 @@ namespace SeathZip.SeathZipF.FindPathArhFull
         }
 
         private bool _disposed;
-        public FileStream Stream;
         public FileStream Createnamefile;
         public SevenZipExtractor Strf;
         public StreamReader FileStrim;
@@ -54,16 +53,23 @@ namespace SeathZip.SeathZipF.FindPathArhFull
                             string[] filesarj = Arh.Seath.Seatharj(zn.FullPath);
                             var proc = (100.0f / filesarj.Length);
                     if (Capacity.Capacity.GetOsBit() == "x64")
-                    {SevenZipBase.SetLibraryPath(Configuration.Conf.PathDll64);}
+                    {
+                        SevenZipBase.SetLibraryPath(Configuration.Conf.PathDll64);
+                        P2.Dispatcher.Invoke( () => P2.BoxError.Items.Add(new ListBoxItem(){ Content = $"Информация поиск осуществляется по драйверу {Configuration.Conf.PathDll64}" }));
+                    }
                     else
-                    {SevenZipBase.SetLibraryPath(Configuration.Conf.PathDll32);}
+                    {
+                        SevenZipBase.SetLibraryPath(Configuration.Conf.PathDll32);
+                        P2.Dispatcher.Invoke(() =>P2.BoxError.Items.Add(new ListBoxItem(){Content =$"Информация поиск осуществляется по драйверу {Configuration.Conf.PathDll32}"}));
+                    }
                     foreach (var filearj in filesarj)
                             {
+                        try
+                        {
                                 Worker2.ReportProgress((int)(proc * 100.0f));
                                 P2.Dispatcher.Invoke(() => P2.StatusFull.Text = @"Осуществляем поиск файла!!!");
-                                Stream = File.OpenRead(filearj);
-                                Strf = new SevenZipExtractor(Stream);
-                                foreach (var entry in Strf.ArchiveFileNames)
+                                Strf = new SevenZipExtractor(filearj);
+                        foreach (var entry in Strf.ArchiveFileNames)
                                 {
                                     Createnamefile = new FileStream(Configuration.Conf.RunTimeDerectory + entry, FileMode.Create);
                                     Strf.ExtractFile(entry, Createnamefile);
@@ -82,8 +88,13 @@ namespace SeathZip.SeathZipF.FindPathArhFull
                                             }
                                         }
                                     }
-                                }
                             }
+                           }
+                        catch (Exception exception)
+                        {
+                            P2.Dispatcher.Invoke(() => P2.BoxError.Items.Add(new ListBoxItem() {Content = $"Ошибка в файле {filearj}: {exception.Message}" }));
+                        }
+                    }
                             SeathPath.PathSt.FilePath(sender, P2.Dispatcher.Invoke(() => P2.ListFileArhFull));
                             Arh.Seath.Delet();
                             Dispose();
@@ -91,7 +102,7 @@ namespace SeathZip.SeathZipF.FindPathArhFull
             }
             catch (Exception n)
             {
-                MessageBox.Show(n.ToString());
+                P2.Dispatcher.Invoke(() => P2.BoxError.Items.Add(new ListBoxItem() { Content = $"Глобальная ошибка: {n.Message}" }));
             }
         }
 
@@ -124,8 +135,6 @@ namespace SeathZip.SeathZipF.FindPathArhFull
                 {
                     if(FileStrim !=null)
                     { FileStrim.Dispose(); }
-                    if (Stream != null)
-                    { Stream.Dispose(); }
                     if (Strf != null)
                     { Strf.Dispose(); }
                     if (Createnamefile != null)
@@ -133,7 +142,6 @@ namespace SeathZip.SeathZipF.FindPathArhFull
                     if (Worker2 != null)
                     { Worker2.Dispose(); }
                     FileStrim = null;
-                    Stream = null;
                     Strf = null;
                     Createnamefile = null;
                 }

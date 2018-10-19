@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using LibaryXMLAuto.ModelXmlSql.Model.FullSetting;
-using LibaryXMLAutoReports.ReportsBdk;
-using LibaryXMLAutoReports.TemplateSheme;
-using SqlLibaryIfns.SqlZapros.ZaprosSelectNotParam;
-using SqlLibaryIfns.SqlZapros.ZaprosSelectParametr;
+using LibaryXMLAutoModelServiceWcfCommand.TestIfnsService;
+using LibaryXMLAutoReports.FullTemplateSheme;
+using SqlLibaryIfns.SqlSelect.ModelSqlFullService;
+using SqlLibaryIfns.SqlZapros.SqlConnections;
 
 namespace SqlLibaryIfns.SqlModelReport.SqlTemplate
 {
@@ -20,14 +17,14 @@ namespace SqlLibaryIfns.SqlModelReport.SqlTemplate
         /// <returns></returns>
         public Document Template(string conectionstring, FullSetting setting)
         {
-            SelectFullParametr selectmodel = new SelectFullParametr();
+            var sqlconnect = new SqlConnectionType();
             Dictionary<string, string> listparametr = null;
             GenerateParametrSql.GenerateParametrSql sql = new GenerateParametrSql.GenerateParametrSql();
             if (setting.UseTemplate.IdTemplate != 0)
             {
                 sql.CreateParamert(ref listparametr, setting.UseTemplate.GetType(), setting.UseTemplate);
             }
-            return (Document)selectmodel.SelectFullParametrSqlReader(conectionstring, SqlSelect.Report.Template.Template.SelectTemplate, typeof(Document), listparametr);
+            return (Document)sqlconnect.SelectFullParametrSqlReader(conectionstring, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(conectionstring, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand("10"))).ServiceWcfCommand.Command, typeof(Document), listparametr);
         }
     }
 }

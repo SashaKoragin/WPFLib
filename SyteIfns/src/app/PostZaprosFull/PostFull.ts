@@ -3,24 +3,29 @@ import { HttpClient, HttpHeaders, HttpParams,HttpErrorResponse,HttpResponse} fro
 import { AdressMerge } from '../AdressFullRest/AdresSservice';
 import { Observable } from 'rxjs';
 import { Face, FaceErrorField, FaceAdd } from '../Otdel/Analiticks/FaceMerge/Model/FaceError';
-import { FullSetting } from '../FullSetting/FullSetting'
+import { FullSetting } from '../FullSetting/FullSetting';
+import { ServiceWcf, AngularModel, AngularModelFileDonload } from '../ModelService/ModelService';
+import { AngularTemplate } from '../Otdel/It/AddTemplate/Model/ModelTemplate'
 
 const url: AdressMerge = new AdressMerge();
 const httpOptionsJson = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
-@Injectable()
 
+};
+
+const httpOptionsXml = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/xml' })
+};
+
+@Injectable()
 export class DataService {
-    
-    
     constructor(private http: HttpClient) { }
 
-    getfacepost(){
+    getfacepost() {
         return this.http.post(url.addresError, null);
     }
 
-    deleteface(face: FaceErrorField){
+    deleteface(face: FaceErrorField) {
         return this.http.post(url.addresDelFace, face.idField, httpOptionsJson);
     }
 
@@ -29,7 +34,7 @@ export class DataService {
             return this.http.post(url.addresFaceAdd, face, httpOptionsJson);
         } catch (e) {
             alert(e.toString());
-        } 
+        }
     }
 
 }
@@ -40,20 +45,12 @@ export class DataService {
 export class PostTrebovanie {
     constructor(private http: HttpClient) { }
 
-    modelreshenie(setting: FullSetting) {
-   try {
-       return this.http.post(url.loadreshenie, setting, httpOptionsJson);
-       } catch(e) {
-        alert(e.toString());
-    }
-    }
-
     procedurestart(setting: FullSetting) {
         try {
             return this.http.post(url.useprocedure, setting, httpOptionsJson);
         } catch (e) {
             alert(e.toString());
-        } 
+        }
     }
 }
 
@@ -72,9 +69,54 @@ export class PostBdk {
 
 @Injectable()
 export class LetterForm {
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient ) { }
 
     modelbdk(setting: FullSetting) {
         return this.http.post(url.startoutbdkletter, setting, httpOptionsJson);
+    }
+}
+
+@Injectable()
+export class PostSoprovod {
+    constructor(private http: HttpClient) { }
+
+    procedurestart(setting: FullSetting) {
+        try {
+            return this.http.post(url.startproceduresoprovod, setting, httpOptionsJson);
+        } catch (e) {
+            alert(e.toString());
+        }
+    }
+}
+
+
+@Injectable()
+export class ServiceModel {
+    constructor(private http: HttpClient) { }
+
+    modelservice(setting: FullSetting) {
+        return this.http.post(url.servicecommand, setting, httpOptionsJson);
+    }
+
+    datacommandserver(angular: AngularModel) {
+        return this.http.post(url.sqlcommand, angular, httpOptionsJson);
+    }
+
+    downloadFile(angular:AngularModelFileDonload) {
+        return this.http.post(url.donloadfileangular, angular,
+            { responseType: 'arraybuffer', headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+    }
+}
+
+@Injectable()
+export class TemplateAdd {
+    constructor(private http: HttpClient) { }
+
+   public addtemplate(template: AngularTemplate) {
+        try {
+            return this.http.post(url.addtemplate, template, httpOptionsJson);
+        } catch (e) {
+            alert(e.toString());
+        }
     }
 }
