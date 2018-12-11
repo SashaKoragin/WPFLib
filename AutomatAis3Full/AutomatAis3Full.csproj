@@ -38,6 +38,22 @@
     <ApplicationIcon>angry birds.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.87.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Nuget\ClosedXML.0.91.0\lib\net452\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>C:\Nuget\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>C:\Nuget\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FastMember.Signed, Version=1.3.0.0, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL">
+      <HintPath>C:\Nuget\FastMember.Signed.1.3.0\lib\net45\FastMember.Signed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=1.2.4.0, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\MahApps.Metro.1.2.4.0\lib\net45\MahApps.Metro.dll</HintPath>
       <Private>True</Private>
@@ -107,6 +123,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Okp4\PrintSnu\Print\UserPrintSnu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Registration\ActualStatus\UserControlStatus\ActualStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Registration\TehnicalUpdate\UserControlTechnical\TehnicalUpdate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Registration\TreatmentFPD\Zemly\UserControl\FpdZemly.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -172,6 +200,18 @@
     <Compile Include="Form\Automat\Okp4\PravoEdit\DataContext\PravoEditDataContext.cs" />
     <Compile Include="Form\Automat\Okp4\PravoEdit\PravoEdit\PravoEditForm.xaml.cs">
       <DependentUpon>PravoEditForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Okp4\PrintSnu\DataContext\UserPrintSnuDataContext.cs" />
+    <Compile Include="Form\Automat\Okp4\PrintSnu\Print\UserPrintSnu.xaml.cs">
+      <DependentUpon>UserPrintSnu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Registration\ActualStatus\DataContext\DataContextActual.cs" />
+    <Compile Include="Form\Automat\Registration\ActualStatus\UserControlStatus\ActualStatus.xaml.cs">
+      <DependentUpon>ActualStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Registration\TehnicalUpdate\DataContext\DataContextTehnical.cs" />
+    <Compile Include="Form\Automat\Registration\TehnicalUpdate\UserControlTechnical\TehnicalUpdate.xaml.cs">
+      <DependentUpon>TehnicalUpdate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Registration\TreatmentFPD\Zemly\DataContext\DataContextZemly.cs" />
     <Compile Include="Form\Automat\Registration\TreatmentFPD\Zemly\UserControl\FpdZemly.xaml.cs">
@@ -244,6 +284,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ExcelReport\" />
+    <Folder Include="PdfReport\" />
     <Folder Include="XmlFile\" />
     <Folder Include="XmlJurnal\" />
   </ItemGroup>

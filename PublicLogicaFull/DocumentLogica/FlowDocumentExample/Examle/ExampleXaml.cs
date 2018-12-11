@@ -48,5 +48,13 @@ namespace PublicLogicaFull.DocumentLogica.FlowDocumentExample.Examle
                                              "     <Fid FidZemlyOrImushestvo=\"72428058864\"/>\n" +
                                              "     <Fid FidZemlyOrImushestvo=\"71470728214\"/>\n" +
                                              "</FidFactZemlyOrImushestvo>";
+        /// <summary>
+        /// Образец ФИД ЛИЦА
+        /// </summary>
+        public static string FaceFid = "<?xml version =\"1.0\"encoding=\"UTF-8\"?>\n" +
+                                             "<Face xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"FaceFid.xsd\">\n" +
+                                             "     <Fid FidFace=\"100031408033\"/>\n" +
+                                             "     <Fid FidFace=\"100221670111\"/>\n" +
+                                             "</Face>";
     }
 }

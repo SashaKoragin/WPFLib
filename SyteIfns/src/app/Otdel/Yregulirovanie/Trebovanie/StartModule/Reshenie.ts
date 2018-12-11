@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit, ViewChild } from '@angular/core';
 import { GenerateParamService } from '../../../../FullSetting/CreateSetting';
-import { PostTrebovanie, ServiceModel } from '../../../../PostZaprosFull/PostFull';
+import { PostTrebovanie, ServiceModel, DonloadFileReport } from '../../../../PostZaprosFull/PostFull';
 import { CreateSettingSelect, DataBase } from '../../../../FullSetting/CreateSetting';
 import { FullSetting} from '../../../../FullSetting/FullSetting';
 import { SysNum, Reshenie, TableSysNumReshen, Incass} from '../Model/ModelSelect';
@@ -12,14 +12,16 @@ import { ParamLogica } from '../../../../FullSetting/SelectTable/LogicaSelect';
 import { ServiceWcf, AngularModel, AngularModelFileDonload } from '../../../../ModelService/ModelService';
 import { ParametrSelectMail, SelectParamMail } from '../../../../ModelService/SelectCommand';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { AdressMerge } from '../../../../AdressFullRest/AdresSservice';
+import { DonloadFile } from '../../../../FullSetting/DonloadFileServer/DonloadFile';
 @Component(({
     selector: 'my-treb',
     templateUrl: '../Template/Reshenie.html',
     styleUrls: ['../Template/Style.css'],
-    providers: [PostTrebovanie, ServiceModel]
+    providers: [PostTrebovanie, ServiceModel, DonloadFileReport]
 }) as any)
 export class ReshenieStart implements OnInit {
-
+    constructor(private dataservice: PostTrebovanie, private service: ServiceModel, public donloadreport: DonloadFileReport) { }
     wcf: ServiceWcf = null;
     table: TableReshenia = new TableReshenia();
     paramlogica: ParamLogica = new ParamLogica();
@@ -36,8 +38,8 @@ export class ReshenieStart implements OnInit {
     incass: Incass[] = null;
     errornull: boolean = true;
     filters: TableSysNumReshen = new TableSysNumReshen();
-
-    constructor(private dataservice: PostTrebovanie, private service: ServiceModel) {}
+    adress: AdressMerge = new AdressMerge();
+    donloadfile: DonloadFile = new DonloadFile(this.donloadreport);
 
     ngOnInit(): void {
         try {

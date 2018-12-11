@@ -1,12 +1,8 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
+using ClosedXML.Excel;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Prism.Mvvm;
 
 namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.StackPanelModel.ShemeSnuOneForm
@@ -154,7 +150,7 @@ namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.StackPanelModel.ShemeSn
         public void AddParseXsls(FileInfo file)
         {
             ShemeFull.Clear();
-            var worbook = new ClosedXML.Excel.XLWorkbook(file.FullName);
+            var worbook = new XLWorkbook(file.FullName);
             foreach (var workSneets in worbook.Worksheets)
             {
                 var excelcolumn = new NameColumn();

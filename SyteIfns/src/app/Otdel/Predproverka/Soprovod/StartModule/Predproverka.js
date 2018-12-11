@@ -8,8 +8,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, ViewChild } from '@angular/core';
-import { ServiceModel, PostSoprovod } from '../../../../PostZaprosFull/PostFull';
+import { ServiceModel, PostSoprovod, DonloadFileReport } from '../../../../PostZaprosFull/PostFull';
 import { GenerateParamService } from '../../../../FullSetting/CreateSetting';
+import { AdressMerge } from '../../../../AdressFullRest/AdresSservice';
+import { DonloadFile } from '../../../../FullSetting/DonloadFileServer/DonloadFile';
 import { ServiceWcf } from '../../../../ModelService/ModelService';
 import { deserialize } from 'class-transformer';
 import { FullSetting } from '../../../../FullSetting/FullSetting';
@@ -21,17 +23,20 @@ import { ParamLogica } from '../../../../FullSetting/SelectTable/LogicaSelect';
 import { PredproverkaTable } from '../../../../FullSetting/SelectTable/TableGenerator';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 var Predproverka = /** @class */ (function () {
-    function Predproverka(dataservice, service) {
+    function Predproverka(dataservice, service, donloadreport) {
         this.dataservice = dataservice;
         this.service = service;
+        this.donloadreport = donloadreport;
         this.status = new BlocsInfoButton();
         this.select = new CreateSettingSelect();
         this.predproverkatable = new PredproverkaTable();
         this.wcf = null;
+        this.adress = new AdressMerge();
         this.soprovod = null;
         this.setting = new FullSetting();
         this.paramlogica = new ParamLogica();
         this.selecting = new ParametrSelectMail();
+        this.donloadfile = new DonloadFile(this.donloadreport);
     }
     Predproverka.prototype.ngOnInit = function () {
         var _this = this;
@@ -124,9 +129,9 @@ var Predproverka = /** @class */ (function () {
             selector: 'soprovod',
             templateUrl: '../Template/Predproverka.html',
             styleUrls: ['../Template/Style.css'],
-            providers: [PostSoprovod, ServiceModel]
+            providers: [PostSoprovod, ServiceModel, DonloadFileReport]
         })),
-        __metadata("design:paramtypes", [PostSoprovod, ServiceModel])
+        __metadata("design:paramtypes", [PostSoprovod, ServiceModel, DonloadFileReport])
     ], Predproverka);
     return Predproverka;
 }());

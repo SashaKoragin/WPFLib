@@ -148,6 +148,7 @@ namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.ShemeXsd
             Shemefulllist.Add(new ShemeProperty() {Document = AddDocument.DocumentSnuOneForm(ExampleXaml.TreatmentFpd), Nameshemes = "Обработка ФПД", Shemes = "TreatmentFpd", UserContr = usercontrolmass[1]});
             Shemefulllist.Add(new ShemeProperty() { Document = AddDocument.DocumentSnuOneForm(ExampleXaml.CollectionInn), Nameshemes = "Формирование СНУ Массово", Shemes = "FullInnCount", UserContr = usercontrolmass[2] });
             Shemefulllist.Add(new ShemeProperty() { Document = AddDocument.DocumentSnuOneForm(ExampleXaml.ZemlyOrImyShestvoFid), Nameshemes = "ФИД факта владения земля имущество", Shemes = "FidZorI",UserContr = usercontrolmass[0]});
+            Shemefulllist.Add(new ShemeProperty() { Document = AddDocument.DocumentSnuOneForm(ExampleXaml.FaceFid), Nameshemes = "Фид лица", Shemes = "FidFace", UserContr = usercontrolmass[0] });
         }
     }
 }

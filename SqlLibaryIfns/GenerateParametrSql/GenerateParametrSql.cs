@@ -15,11 +15,9 @@ namespace SqlLibaryIfns.GenerateParametrSql
         /// <param name="ob">Сам класс в виде object</param>
         public void CreateParamert(ref Dictionary<string, string> listparametr, Type param, object ob)
         {
-            listparametr = new Dictionary<string, string>();
             if (param.IsClass)
             {
                 PropertyInfo[] property = param.GetProperties();
-
                 foreach (var prop in property)
                 {
                     var value = prop.GetValue(ob, null);

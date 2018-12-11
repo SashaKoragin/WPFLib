@@ -40,6 +40,12 @@ namespace SyteIfns.Controllers
             return View("Predproverka/PredproverkaSoprovod");
         }
 
+        public ActionResult AnalizNo()
+        {
+            ViewBag.Message = "Модуль преднозначен для анализа КРСБ прием!!!";
+            return View("Analitics/AnalizNo");
+        }
+
         /// <summary>
         /// Загрузка файла Требований
         /// </summary>

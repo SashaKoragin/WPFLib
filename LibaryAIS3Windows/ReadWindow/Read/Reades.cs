@@ -4,6 +4,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoIt;
 
 namespace LibaryAIS3Windows.ReadWindow.Read
 {
@@ -24,18 +25,19 @@ namespace LibaryAIS3Windows.ReadWindow.Read
             {
                 if (String.IsNullOrWhiteSpace(parametr))
                 {
-                    AutoIt.AutoItX.ControlFocus(element[0], "", element[1]);
-                    AutoIt.AutoItX.Sleep(500);
-                    AutoIt.AutoItX.Send(ButtonsClikcs.ButtonConstant.CtrlC);
-                    AutoIt.AutoItX.Send(ButtonsClikcs.ButtonConstant.CtrlC);
-                    parametr = AutoIt.AutoItX.ClipGet();
+                    AutoItX.ControlFocus(element[0], "", element[1]);
+                    AutoItX.Sleep(500);
+                    AutoItX.Send(ButtonsClikcs.ButtonConstant.CtrlC);
+                    AutoItX.Send(ButtonsClikcs.ButtonConstant.CtrlC);
+                    parametr = AutoItX.ClipGet();
                 }
                 else
                 {
-                    AutoIt.AutoItX.ClipPut(null);
+                    AutoItX.ClipPut(null);
                     break;
                 }
             }
+            AutoItX.ClipPut(""); //Очистка буфера обмена
             return parametr;
         }
 
@@ -59,6 +61,18 @@ namespace LibaryAIS3Windows.ReadWindow.Read
                 }
             }
             return parametr;
+        }
+
+        public static void ClearBuffer()
+        {
+            while (true)
+            {
+                if (String.IsNullOrWhiteSpace(AutoItX.ClipGet()))
+                {
+                    break;
+                }
+                    AutoItX.ClipPut(null);
+            }
         }
     }
 }

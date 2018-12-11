@@ -46,8 +46,15 @@
       <HintPath>C:\Nuget\FastMember.Signed.1.1.0\lib\net40\FastMember.Signed.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform">
+      <HintPath>C:\Nuget\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PdfiumViewer, Version=2.10.0.0, Culture=neutral, PublicKeyToken=91e4789cfb0609e0, processorArchitecture=MSIL">
+      <HintPath>C:\Nuget\PdfiumViewer.2.10.0.0\lib\net20\PdfiumViewer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -83,11 +90,13 @@
     <Compile Include="ModelTestAutoit\FullWindowAutoIt\FullWindowAutoIt.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\CheckBoxModel\CheckBoxModel.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\ListViewModelXml\ListViewModelXmlFileGenerateProperty.cs" />
+    <Compile Include="ModelTestAutoit\ModelFormirovanie\PdfModelPrint\PdfModelPrint.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\ShemeXsd\ShemeProperty.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\StackPanelModel\ShemeSnuOneForm\ModelSnuOneFormNameListProperty.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\TextBoxModel\TextBoxModelProperty.cs" />
     <Compile Include="ModelTestAutoit\ModelSnuOneAuto\DataXml\XmlUseProperty.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ButtonStartAutomat\StartOnStopProperty.cs" />
+    <Compile Include="ModelTestAutoit\PublicModel\DatePicker\DatePickerPub.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\QbeSelect\QbeClass.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ReportXlsx\ReportXlsx.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ReportXml\ReportJurnalProperty.cs" />
@@ -104,6 +113,7 @@
     <Compile Include="ViewModelPage\ViewModel\LinkCommutator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="ViewModelPage\packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +125,14 @@
       <Project>{3d408912-630f-4f37-bfc7-c63f7e8307ad}</Project>
       <Name>PublicLogicaFull</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="x64\pdfium.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\pdfium.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

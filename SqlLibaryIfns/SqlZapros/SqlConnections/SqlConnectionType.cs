@@ -33,6 +33,8 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
                         sqlreport.Fill(dataSet);
                     }
                 }
+                con.Close();
+                SqlConnection.ClearPool(con);
             }
             return dataSet;
         }
@@ -57,17 +59,19 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
                 {
                     SqlCommand command = new SqlCommand(procedure) { CommandType = CommandType.StoredProcedure, Connection = con, CommandTimeout = 0 };
                     con.InfoMessage += sobytie.Con_InfoMessage;
-                    if (listparametr != null)
+                    if (listparametr?.Count > 0)
                     {
                         GenerateParametrSql.GenerateParametrSql sql = new GenerateParametrSql.GenerateParametrSql();
                         command = sql.GenerateParametrs(command, listparametr);
                     }
                     con.Open();
+                   
                     using (command.ExecuteReader())
                     {
 
                     }
                     con.Close();
+                    SqlConnection.ClearPool(con);
                 }
                 return sobytie.Messages;
             }
@@ -91,7 +95,7 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
         {
             SqlDesirialization xmldesirealiz = new SqlDesirialization();
             object obj;
-            if (listparametr != null)
+            if (listparametr?.Count > 0)
             {
                 GenerateParametrSql.GenerateParametrSql sql = new GenerateParametrSql.GenerateParametrSql();
                 sql.GenerateStringParametr(ref select, listparametr);
@@ -110,6 +114,8 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
                         }
                     }
                 }
+                con.Close();
+                SqlConnection.ClearPool(con);
             }
             return obj;
         }

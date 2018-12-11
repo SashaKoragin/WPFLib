@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using AutoIt;
+using LibaryAIS3Windows.Window;
+
+namespace LibaryAIS3Windows.ButtonsClikcs.SelectQbe.EventReg
+{
+    public class EventReg
+    {
+        public delegate void ClickChecbox();
+
+        /// <summary>
+        /// Событие проставление галочки 
+        /// </summary>
+        public event ClickChecbox Check;
+
+        public void InvokeEvent()
+        {
+            Check?.Invoke();
+        }
+
+        /// <summary>
+        /// Само событие галочки на земле или имуществе
+        /// Налоговое администрирование\ПОН ИЛ\1. ПОН ИЛ (ПЭ). Организации и физические лица, внесенные в ПОН ИЛ\2.01. ФЛ. Актуальное состояние
+        /// </summary>
+        public void Chekerfid()
+        {
+            WindowsAis3 win = new WindowsAis3();
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 425, win.WindowsAis.Y + win.WinGrid.Y + 35);
+        }
+    }
+}

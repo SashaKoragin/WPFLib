@@ -64,7 +64,7 @@ export class CreateSettingSelect {
 //Генерация параметра для сервиса
 export class GenerateParamService {
 
-   public setting = new FullSetting;
+   public setting = new FullSetting();
     constructor(private id: number) {
         this.setting.ParamService.IdCommand = id;
     }

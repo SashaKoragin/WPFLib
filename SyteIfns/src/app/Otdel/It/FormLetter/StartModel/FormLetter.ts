@@ -108,10 +108,9 @@ export class BdkLetter implements OnInit {
             a.click();
             document.body.removeChild(a);
                 window.URL.revokeObjectURL(url);
-  
         });
         } catch (e) {
             alert(e.toString());
-        } 
+        }
     }
 }

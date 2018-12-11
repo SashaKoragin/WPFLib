@@ -1,4 +1,5 @@
-﻿<form id="form" (ngSubmit)="startprocedurepred(1)">
+﻿<p align="right"><button mat-button [disabled]="donloadfile.statusdonload" (click)="donloadfile.loadfile('Истребование.xlsx',adress.adressIstrebovanie)">Скачать файл не доделаных Истребований!!!</button></p>
+<form id="form" (ngSubmit)="startprocedurepred(1)">
     <div id="add">
         <label>Добавить ун документа:</label>
         <input id="IdDoc" placeholder="Ун. документа!!!" name="sysnum" [(ngModel)]="setting.ParamPredproverka.N441" type="number" />

@@ -37,6 +37,7 @@ namespace SqlLibaryIfns.ExcelReport.Report
                                await Task.Factory.StartNew<Stream>(
                                    () => DonloadFile(Path.Combine(path, filename)));
                     }
+                    xlsx.Dispose();
                     return null;
                 case "Истребование.xlsx":
                     xlsx.ReportSave(path,"Истребование","Не доделки по документам",sqlconnect.ReportQbe(conectionstring,((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(conectionstring,ModelSqlFullService.ProcedureSelectParametr,typeof(ServiceWcf),ModelSqlFullService.ParamCommand("18"))).ServiceWcfCommand.Command));
@@ -46,6 +47,7 @@ namespace SqlLibaryIfns.ExcelReport.Report
                                await Task.Factory.StartNew<Stream>(
                                    () => DonloadFile(Path.Combine(path, filename)));
                     }
+                    xlsx.Dispose();
                     return null;
                 default:
                     return null;

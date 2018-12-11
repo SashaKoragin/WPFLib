@@ -13,6 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 import { Component, ViewEncapsulation, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+//Проверка  Validation Head
 export var validatorHead = function (control) {
     var textHeade1 = control.get('textHeade1');
     var textHeade2 = control.get('textHeade2');
@@ -35,6 +36,7 @@ export var validatorHead = function (control) {
         && textHeade9.value === null
         && textHeade10.value === null ? { 'validatorHead': true } : null;
 };
+//Проверка  Validation Body
 export var validatorBody = function (control) {
     var textBodyGl1 = control.get('textBodyGl1');
     var textBodyGl2 = control.get('textBodyGl2');
@@ -47,6 +49,7 @@ export var validatorBody = function (control) {
         && textBodyGl4.value === null
         && textBodyGl5.value === null ? { 'validatorBody': true } : null;
 };
+//Проверка  Validation Stone
 export var validatorStone = function (control) {
     var textStone1 = control.get('textStone1');
     var textStone2 = control.get('textStone2');
@@ -67,6 +70,7 @@ var HeadersAdd = /** @class */ (function () {
     function HeadersAdd(MatDialogRef, data) {
         this.MatDialogRef = MatDialogRef;
         this.data = data;
+        //Реактивная форма Head
         this.formTemplateHeaders = new FormGroup({
             'textHeade1': new FormControl('', Validators.required),
             'textHeade2': new FormControl('', Validators.required),
@@ -130,6 +134,7 @@ var HeadersAdd = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    //Команда отправки и добавления на сервер БД Heade
     HeadersAdd.prototype.addTempateHeade = function () {
         this.data.adress.addtemplate(this.data.angulardate).subscribe(function (model) {
             alert(JSON.stringify(model));
@@ -138,11 +143,13 @@ var HeadersAdd = /** @class */ (function () {
     };
     HeadersAdd = __decorate([
         Component({
-            selector: 'dialog-content-example-dialog',
+            selector: 'dialog-template',
             templateUrl: '../HTML/Headers.html',
-            styleUrls: ['../HTML/FullDialogStyle.css'],
+            styleUrls: ['../../StyleDialog/FullDialogStyle.css'],
             encapsulation: ViewEncapsulation.None
-        }),
+        })
+        //Класс добавления Heade
+        ,
         __param(1, Inject(MAT_DIALOG_DATA)),
         __metadata("design:paramtypes", [MatDialogRef, Object])
     ], HeadersAdd);
@@ -153,6 +160,7 @@ var BodyAdd = /** @class */ (function () {
     function BodyAdd(MatDialogRef, data) {
         this.MatDialogRef = MatDialogRef;
         this.data = data;
+        //Реактивная форма Body
         this.formTemplateBody = new FormGroup({
             'textBodyGl1': new FormControl('', Validators.required),
             'textBodyGl2': new FormControl('', Validators.required),
@@ -186,6 +194,7 @@ var BodyAdd = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    //Команда отправки и добавления на сервер БД Body
     BodyAdd.prototype.addTempateBody = function () {
         this.data.adress.addtemplate(this.data.angulardate).subscribe(function (model) {
             alert(JSON.stringify(model));
@@ -194,11 +203,13 @@ var BodyAdd = /** @class */ (function () {
     };
     BodyAdd = __decorate([
         Component({
-            selector: 'dialog-content-example-dialog',
+            selector: 'dialog-template',
             templateUrl: '../HTML/Body.html',
-            styleUrls: ['../HTML/FullDialogStyle.css'],
+            styleUrls: ['../../StyleDialog/FullDialogStyle.css'],
             encapsulation: ViewEncapsulation.None
-        }),
+        })
+        //Класс добавления Body
+        ,
         __param(1, Inject(MAT_DIALOG_DATA)),
         __metadata("design:paramtypes", [MatDialogRef, Object])
     ], BodyAdd);
@@ -209,6 +220,7 @@ var StoneAdd = /** @class */ (function () {
     function StoneAdd(MatDialogRef, data) {
         this.MatDialogRef = MatDialogRef;
         this.data = data;
+        //Реактивная форма Stone
         this.formTemplateStone = new FormGroup({
             'textStone1': new FormControl('', Validators.required),
             'textStone2': new FormControl('', Validators.required),
@@ -254,6 +266,7 @@ var StoneAdd = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    //Команда отправки и добавления на сервер БД Stone
     StoneAdd.prototype.addTempateStone = function () {
         this.data.adress.addtemplate(this.data.angulardate).subscribe(function (model) {
             alert(JSON.stringify(model));
@@ -262,9 +275,9 @@ var StoneAdd = /** @class */ (function () {
     };
     StoneAdd = __decorate([
         Component({
-            selector: 'dialog-content-example-dialog',
+            selector: 'dialog-template',
             templateUrl: '../HTML/Stone.html',
-            styleUrls: ['../HTML/FullDialogStyle.css'],
+            styleUrls: ['../../StyleDialog/FullDialogStyle.css'],
             encapsulation: ViewEncapsulation.None
         }),
         __param(1, Inject(MAT_DIALOG_DATA)),

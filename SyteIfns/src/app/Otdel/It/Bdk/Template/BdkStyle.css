@@ -7,6 +7,7 @@
 }
 
 button {
+         
          background-color: green;
          color: white;
          cursor: pointer;
@@ -38,4 +39,8 @@ table.table thead {
   background: -webkit-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
   background: linear-gradient(to bottom, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
   border-bottom: 0px solid #444444;
+  
+}
+.btn {
+    margin-left:10px;
 }

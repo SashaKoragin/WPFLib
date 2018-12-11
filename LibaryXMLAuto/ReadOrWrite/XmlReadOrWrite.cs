@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -37,10 +33,10 @@ namespace LibaryXMLAuto.ReadOrWrite
         /// <param name="atribut"></param>
         public void DeleteAtributXml(string pathxml, string atribut)
         {
-            var doc = LogicaXml.LogicaXml.Document(pathxml);
-            XmlNode node = doc.SelectSingleNode(atribut);
-            node.ParentNode.RemoveChild(node);
-            doc.Save(pathxml);
+                var doc = LogicaXml.LogicaXml.Document(pathxml);
+                XmlNode node = doc.SelectSingleNode(atribut);
+                node.ParentNode.RemoveChild(node);
+                doc.Save(pathxml);
         }
         /// <summary>
         /// Метод Добавление в журнал ошибки по схеме ErrorJurnal.xsd

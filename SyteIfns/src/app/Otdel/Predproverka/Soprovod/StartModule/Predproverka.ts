@@ -1,6 +1,8 @@
 ﻿import { Component, OnInit, ViewChild } from '@angular/core';
-import { ServiceModel, PostSoprovod } from '../../../../PostZaprosFull/PostFull';
+import { ServiceModel, PostSoprovod, DonloadFileReport } from '../../../../PostZaprosFull/PostFull';
 import { GenerateParamService } from '../../../../FullSetting/CreateSetting';
+import { AdressMerge } from '../../../../AdressFullRest/AdresSservice';
+import { DonloadFile } from '../../../../FullSetting/DonloadFileServer/DonloadFile';
 import { ServiceWcf }  from '../../../../ModelService/ModelService';
 import { plainToClass, deserialize } from 'class-transformer';
 import { FullSetting } from '../../../../FullSetting/FullSetting';
@@ -16,22 +18,22 @@ import { MatTableDataSource, MatPaginator } from '@angular/material';
     selector: 'soprovod',
     templateUrl: '../Template/Predproverka.html',
     styleUrls: ['../Template/Style.css'],
-    providers: [PostSoprovod, ServiceModel]
+    providers: [PostSoprovod, ServiceModel, DonloadFileReport]
 }) as any)
 
 export class Predproverka implements OnInit {
-
+    constructor(private dataservice: PostSoprovod, private service: ServiceModel, public donloadreport: DonloadFileReport) { }
     status: BlocsInfoButton = new BlocsInfoButton();
     select = new CreateSettingSelect();
     predproverkatable: PredproverkaTable = new PredproverkaTable();
     wcf: ServiceWcf = null;
+    adress: AdressMerge = new AdressMerge();
     soprovod: Soprovod = null;
     @ViewChild(MatPaginator) paginatordataSource: MatPaginator;
     setting: FullSetting = new FullSetting();
     paramlogica: ParamLogica = new ParamLogica();
     selecting: ParametrSelectMail = new ParametrSelectMail();
-    constructor(private dataservice: PostSoprovod, private service: ServiceModel) { }
-
+    donloadfile: DonloadFile = new DonloadFile(this.donloadreport);
     ngOnInit(): void {
         try {
             var generate = new GenerateParamService(14);

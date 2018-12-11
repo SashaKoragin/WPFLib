@@ -57,7 +57,9 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
                             {
                                 try
                                 {
-                                    convert.ConvertListSnuOneForm(textboxfilemodel.Path,modelsnuone.SelectList.Listletter,modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.IsCheced, string.Join(null,path,"Inn.xml"));
+                                    convert.ConvertListSnuOneForm(textboxfilemodel.Path,
+                                        modelsnuone.SelectList.Listletter, modelsnuone.SelectColumnLetter.ColumnName,
+                                        checkBoxModel.IsCheced, string.Join(null, path, "Inn.xml"));
                                     xmlmodel.AddXmlFile(path);
                                     xmlmodel.UpdateOff();
                                 }
@@ -69,14 +71,17 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
                         }
                         break;
                     case "TreatmentFpd":
-                        if (textboxfilemodel.IsValidation() && modelsnuone.IsValidation() && checkBoxModel.IsValidation())
+                        if (textboxfilemodel.IsValidation() && modelsnuone.IsValidation() &&
+                            checkBoxModel.IsValidation())
                         {
                             xmlmodel.UpdateOn();
                             Task.Run((delegate
                             {
                                 try
                                 {
-                                    convert.ConvertListFpdReg(textboxfilemodel.Path, modelsnuone.SelectList.Listletter, modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.SelectIntRow, string.Join(null, path, "Fpd.xml"));
+                                    convert.ConvertListFpdReg(textboxfilemodel.Path, modelsnuone.SelectList.Listletter,
+                                        modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.SelectIntRow,
+                                        string.Join(null, path, "Fpd.xml"));
                                     xmlmodel.AddXmlFile(path);
                                     xmlmodel.UpdateOff();
                                 }
@@ -88,14 +93,17 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
                         }
                         break;
                     case "FullInnCount":
-                        if (textboxfilemodel.IsValidation() && modelsnuone.IsValidation() &&checkBoxModel.IsValidation())
+                        if (textboxfilemodel.IsValidation() && modelsnuone.IsValidation() &&
+                            checkBoxModel.IsValidation())
                         {
                             xmlmodel.UpdateOn();
                             Task.Run((delegate
                             {
                                 try
                                 {
-                                    convert.ConvertInnMassList(textboxfilemodel.Path, modelsnuone.SelectList.Listletter, modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.SelectIntRow,checkBoxModel.Colelementcollection, string.Join(null, path, "InnFull.xml"));
+                                    convert.ConvertInnMassList(textboxfilemodel.Path, modelsnuone.SelectList.Listletter,
+                                        modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.SelectIntRow,
+                                        checkBoxModel.Colelementcollection, string.Join(null, path, "InnFull.xml"));
                                     xmlmodel.AddXmlFile(path);
                                     xmlmodel.UpdateOff();
                                 }
@@ -114,7 +122,9 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
                             {
                                 try
                                 {
-                                    convert.SerializFidZorI(textboxfilemodel.Path,modelsnuone.SelectList.Listletter,modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.IsCheced, string.Join(null, path, "Fid.xml"));
+                                    convert.SerializFidZorI(textboxfilemodel.Path, modelsnuone.SelectList.Listletter,
+                                        modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.IsCheced,
+                                        string.Join(null, path, "Fid.xml"));
                                     xmlmodel.AddXmlFile(path);
                                     xmlmodel.UpdateOff();
                                 }
@@ -125,8 +135,29 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
                             }));
                         }
                         break;
+                    case "FidFace":
+                        if (textboxfilemodel.IsValidation() && modelsnuone.IsValidation())
+                        {
+                            xmlmodel.UpdateOn();
+                            Task.Run(delegate
+                            {
+                                try
+                                {
+                                    convert.ConvertFidFace(textboxfilemodel.Path, modelsnuone.SelectList.Listletter,
+                                        modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.IsCheced,
+                                        string.Join(null, path, "FidFace.xml"));
+                                    xmlmodel.AddXmlFile(path);
+                                    xmlmodel.UpdateOff();
+                                }
+                                catch (Exception e)
+                                {
+                                    MessageBox.Show(e.Message);
+                                }
+                            });
+                        }
+                        break;
                 }
+            }
             }
         }
     }
-}

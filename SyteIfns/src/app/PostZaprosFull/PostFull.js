@@ -71,6 +71,12 @@ var PostBdk = /** @class */ (function () {
     PostBdk.prototype.startprocedurebdk = function (setting) {
         return this.http.post(url.procedurebdk, setting, httpOptionsJson);
     };
+    PostBdk.prototype.createkrsb = function (setting) {
+        return this.http.post(url.createkrsb, setting, httpOptionsJson);
+    };
+    PostBdk.prototype.analizkrsb = function (setting) {
+        return this.http.post(url.analizkrsb, setting, httpOptionsJson);
+    };
     PostBdk = __decorate([
         Injectable(),
         __metadata("design:paramtypes", [HttpClient])
@@ -150,4 +156,18 @@ var TemplateAdd = /** @class */ (function () {
     return TemplateAdd;
 }());
 export { TemplateAdd };
+var DonloadFileReport = /** @class */ (function () {
+    function DonloadFileReport(http) {
+        this.http = http;
+    }
+    DonloadFileReport.prototype.downloadFile = function (geturl) {
+        return this.http.get(geturl, { responseType: 'arraybuffer' });
+    };
+    DonloadFileReport = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [HttpClient])
+    ], DonloadFileReport);
+    return DonloadFileReport;
+}());
+export { DonloadFileReport };
 //# sourceMappingURL=PostFull.js.map

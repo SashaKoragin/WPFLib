@@ -52,6 +52,10 @@ namespace LibaryAIS3Windows.Window
         /// </summary>
         internal Rectangle GridMain = AutoItX.ControlGetPos("АИС Налог-3 ПРОМ ", "", "[NAME:mainGrid]");
         /// <summary>
+        /// Контрольная панель
+        /// </summary>
+        internal Rectangle ControlPanel = AutoItX.ControlGetPos("АИС Налог-3 ПРОМ ", "", "[NAME:tsControlPanel]");
+        /// <summary>
         /// Проверка наличия окна АИС налог 3 
         /// если вернет 1 то окно существует если 0 то не существует!!!
         /// </summary>

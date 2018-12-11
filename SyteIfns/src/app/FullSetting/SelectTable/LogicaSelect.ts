@@ -11,7 +11,7 @@
     database: boolean = true;
     //Детализация
     detal: boolean = true;
-
+    //Переключение выборки select
     logicaselect() {
         if (this.select) {
             this.select = false;
@@ -19,7 +19,7 @@
             this.select = true;
         }
     }
-
+    //Переключение выборки progress
     logicaprogress() {
         if (this.progress) {
             this.progress = false;
@@ -27,7 +27,7 @@
             this.progress = true;
         }
     }
-
+    //Переключение выборки database
     logicadatabase() {
         if (this.database) {
             this.database = false;
@@ -35,7 +35,7 @@
             this.database = true;
         }
     }
-
+    //Логика детализации
     detalization() {
         if (this.detal) {
             this.detal = false;

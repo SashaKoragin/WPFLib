@@ -1,0 +1,334 @@
+﻿<div class="AtaretAnalis">
+    <mat-form-field>
+        <mat-select placeholder="Выбор Анализа!!!" [(ngModel)]="logica.logicaSelecting.logica" name="sel">
+            <mat-option *ngFor="let sel of logica.logicaSelecting.log" [value]="sel">
+                {{sel.param}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <label class="margin">{{logica.messageserver}}</label>
+    <div [style.display]="logica.logicaSelecting.logica.bool1 ? 'grid' : 'none'">
+        <form [formGroup]="logica.dateCreate" #formDir="ngForm">
+            <div class="cross-validation" [class.cross-validation-error]="logica.dateCreate.errors?.identityRevealed && (logica.dateCreate.touched || logica.dateCreate.dirty)">
+                <mat-form-field class="date">
+                    <input required matInput [matDatepicker]="picker" placeholder="Дата поступления дел!!!"
+                           [formControl]="logica.createDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="logica.createDate.invalid && (logica.createDate.dirty || logica.createDate.touched)" class="alert alert-danger">
+                        <mat-error *ngIf="logica.createDate.errors.required">Не введена дата!!!</mat-error>
+                        <mat-error *ngIf="logica.createDate.errors.DateError">Дата не может быть больше текущей!!!</mat-error>
+                    </mat-error>
+                </mat-form-field>
+                <button class="margin btn btn-default" mat-button type="submit"
+                        [disabled]="logica.dateCreate.invalid"
+                        (click)="logica.analiz(22);formDir.resetForm({})">
+                    Проанализировать!!!
+                </button>
+            </div>
+        </form>
+    </div>
+    <div [style.display]="logica.logicaSelecting.logica.bool2 ? 'grid' : 'none'">
+        <form [formGroup]="logica.idCreate" #formDir="ngForm">
+            <div class="cross-validation" [class.cross-validation-error]="logica.idCreate.errors?.identityRevealed && (logica.idCreate.touched || logica.idCreate.dirty)">
+                <mat-form-field class="dela-width">
+                    <textarea class="dela-height" matInput placeholder="Дела приема УН:" type="text" [formControl]="logica.id" required></textarea>
+                    <mat-error *ngIf="logica.id.invalid && (logica.id.dirty || logica.id.touched)" class="alert alert-danger">
+                        <mat-error *ngIf="logica.id.errors.required">Поле не может быть пустым!!!</mat-error>
+                        <mat-error *ngIf="logica.id.errors.forbiddenName">Не соответствует выражению /^((\d{{'{'}}4,6{{'}'}}\/{{'{'}}1{{'}'}})+(\d{{'{'}}4,6{{'}'}})|(\d{{'{'}}4,6{{'}'}}))$/!!!</mat-error>
+                    </mat-error>
+                </mat-form-field>
+                <button class="margin btn btn-default" mat-button type="submit"
+                        [disabled]="logica.idCreate.invalid"
+                        (click)="logica.analiz(22);formDir.resetForm({})">
+                    Проанализировать!!!
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="head" [style.display]="logica.paramlogica.select ? 'grid' : 'none'">
+    <div class="button"><button mat-button (click)="update()">Обновить</button></div>
+        <div class="grid-container2" *ngFor="let selectvalue of selectingviewmodel?.parametrdelo">
+            <div class="grid-item2">
+                <label>{{selectvalue.name}}</label>
+            </div>
+            <div class="grid-item2" [style.display]="selectvalue.template===2 ? 'grid' : 'none'">
+                <mat-form-field>
+                    <mat-select placeholder="Отбор данных!" [(ngModel)]="selectvalue.select" name="sel">
+                        <mat-option *ngFor="let sel of selectingmodel.selectparamString" [value]="sel">
+                            {{sel.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="grid-item2" [style.display]="selectvalue.template !== 2 ? 'grid' : 'none'">
+                <mat-form-field>
+                    <mat-select placeholder="Отбор данных!" [(ngModel)]="selectvalue.select" name="sel">
+                        <mat-option *ngFor="let sel of selectingmodel.selectparamNumber" [value]="sel">
+                            {{sel.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+                <div class="grid-item2" [style.display]="selectvalue.template === 1 ? 'grid' : 'none'">
+                    <mat-form-field class="select">
+                        <input matInput type="text" 
+                               #tooltip1="matTooltip"
+                               matTooltip={{selectvalue.paramvalue}}
+                               matTooltipPosition="right"
+                               [(ngModel)]="selectvalue.paramvalue" [formControl]="selectvalue.formTemplate" >
+                        <label *ngIf="selectvalue.formTemplate.invalid" [ngClass]="'error'">Не соответствует формату дате</label>
+                    </mat-form-field>
+                </div>
+                <div class="grid-item2" [style.display]="selectvalue.template === 2 ? 'grid' : 'none'">
+                    <mat-form-field class="select">
+                        <input matInput type="text" 
+                               #tooltip2="matTooltip"
+                               matTooltip={{selectvalue.paramvalue}}
+                               matTooltipPosition="right"
+                               [(ngModel)]="selectvalue.paramvalue" [formControl]="selectvalue.formTemplate">
+                        <label *ngIf="selectvalue.formTemplate.invalid" [ngClass]="'error'">Не соответствует формату строке</label>
+                    </mat-form-field>
+                </div>
+            <div class="grid-item2" [style.display]="selectvalue.template === 3 ? 'grid' : 'none'">
+                <mat-form-field class="select">
+                    <input matInput type="text" 
+                           #tooltip3="matTooltip"
+                           matTooltip={{selectvalue.paramvalue}}
+                           matTooltipPosition="right" [(ngModel)]="selectvalue.paramvalue" [formControl]="selectvalue.formTemplate">
+                    <label *ngIf="selectvalue.formTemplate.invalid" [ngClass]="'error'">Не соответствует формату цифр</label>
+                </mat-form-field>
+            </div>
+            </div>
+        </div>
+<div class="mat-app-background basic-container" [style.display]="logica.paramlogica.database ? 'none' : 'grid'">
+    <div class="button"><button mat-button (click)="back(1)">Назад</button></div>
+    <div class="tableslide mat-elevation-z8">
+        <table mat-table *ngIf="logica.paramlogica.errornull; else notfound" [dataSource]="logica.table.dataSourceDeloNo">
+            
+            <ng-container matColumnDef="Select" sticky>
+                <th class="head-cell" mat-header-cell *matHeaderCellDef>КРСБ</th>
+                <td class="cell" mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation();"
+                                  (change)="logica.table.selectionDelo.toggle(row);logica.table.selectiondelo()"
+                                  [checked]="logica.table.selectionDelo.isSelected(row)">
+                    </mat-checkbox>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="D3979">
+                <th class="head-cell" mat-header-cell *matHeaderCellDef>Ун дела приема</th>
+                <td class="cell" mat-cell *matCellDef="let element"> {{element.D3979}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="Status1Priem">
+                <th class="head-cell" mat-header-cell *matHeaderCellDef>Статус приема</th>
+                <td class="cell" mat-cell *matCellDef="let element"> {{element.Status1Priem}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="MessagePriem">
+                <th class="head-cell" mat-header-cell *matHeaderCellDef>Описание статуса приема</th>
+                <td class="cell" mat-cell *matCellDef="let element"> {{element.StatusPriem.MessagePriem}} </td>
+            </ng-container>
+            <!-- Weight Column -->
+
+            <ng-container matColumnDef="Status1Analiz">
+                <th class="head-cell" mat-header-cell *matHeaderCellDef>Статус общего анализа</th>
+                <td class="cell" mat-cell *matCellDef="let element">{{element.Status1Analiz}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="MessageAnaliz">
+                <th class="head-cell" mat-header-cell *matHeaderCellDef>Описание общего анализа</th>
+                <td class="cell" mat-cell *matCellDef="let element">{{element.StatusAnaliz.MessageAnaliz}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="DateCreate">
+                <th class="head-cell" mat-header-cell *matHeaderCellDef>Дата записи</th>
+                <td class="cell" mat-cell *matCellDef="let element">{{element.D85}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="Button">
+                <th class="head-cell" mat-header-cell *matHeaderCellDef>Действия</th>
+                <td class="cell" mat-cell *matCellDef="let element">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">Меню
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="logica.startprocedure(element.D3979,23)">
+                            <span>Создать крсб приема!!!</span>
+                        </button>
+                        <button mat-menu-item (click)="logica.startprocedure(element.D3979,24)">
+                            <span>Подтянуть крсб приема!!!</span>
+                        </button>
+                        <button mat-menu-item (click)="logica.startprocedure(element.D3979,25)">
+                            <span>Удалить анализ!!!</span>
+                        </button>
+                        <button mat-menu-item (click)="logica.opendialog.openDialogAddOkato(element.D3979,27)">
+                            <span>Проставить ОКАТО.</span>
+                        </button>
+                    </mat-menu>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="logica.table.displaydataDeloNo; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: logica.table.displaydataDeloNo;"></tr>
+        </table>
+    </div>
+    <mat-paginator class="Template" [pageSizeOptions]="[10, 50, 100,200]" showFirstLastButtons="true"></mat-paginator>
+</div>
+
+<div class="Detalization" [style.display]="logica.table.selectAnalizNo ? 'none' : 'grid'">
+    <div><label>Детализация налоговых обязательств!!!</label></div>
+    <div class="tableanaliz mat-elevation-z8">
+        <table mat-table [dataSource]="logica.table.dataSourceAnalizNo">
+
+            <ng-container matColumnDef="D3979">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Ун дела приема</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element"> {{element.D3979}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="D3972">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Ун записи</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element"> {{element.D3972}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Color">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Цвет</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element"><div [style.background]="element.Color===14 ? 'yellow' : 'red'">{{element.Color}}</div></td>
+            </ng-container>
+
+            <ng-container matColumnDef="DateAnaliz">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Статус даты</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.DateAnaliz}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="MessageDate1">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Описание анализа даты</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.MessageDate.MessageDate1}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="StrahovieAndOtkazAnaliz">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Страховые</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.StrahovieAndOtkazAnaliz}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="MessageStrahovieAndOtkaz1">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Описание страховых</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element?.MessageStrahovieAndOtkaz?.MessageStrahovieAndOtkaz1}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="StatusUhAnaliz">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Плательщик</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.StatusUhAnaliz}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="MessageStatusUh1">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Описание плательщика</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.MessageStatusUh.MessageStatusUh1}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="Vivod">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Вывод</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.Vivod}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="MessageVivod1">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Описание вывода</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.MessageVivod.MessageVivod1}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="D6">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Найденный налог</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.D6}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="D1560_2">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Н.О-предшественника</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.D1560_2}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="D1560_1">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Н.О-наследника</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.D1560_1}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="DatePeredachi">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Дата передачи</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.DatePeredachi}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="DateZakritia">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Дата закрытия</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.DateZakritia}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="N134">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>ИНН</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.N134}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="D3">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>КПП</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.D3}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="Kbk">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>КБК</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.Kbk}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="OKTMO_old">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>ОКТМО старое</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.OKTMO_old}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="D09_3">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Статус КРСБ</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.D09_3}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="N1_1">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Ун плательщика</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.N1_1}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="N279">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Постановка</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.N279}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="OKTMO_new">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>ОКТМО новое</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.OKTMO_new}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="DateCreate">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Дата записи</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.DateCreate}}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="Error">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Ошибка</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.Error}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="DateError">
+                <th class="head-cellAnaliz" mat-header-cell *matHeaderCellDef>Дата ошибки</th>
+                <td class="cellanaliz" mat-cell *matCellDef="let element">{{element.DateError}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="logica.table.displaydataAnalizNo; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: logica.table.displaydataAnalizNo;"></tr>
+        </table>
+    </div>
+</div>
+
+<div [style.display]="logica.paramlogica.progress ? 'none':'inline'">
+    <p>Идет загрузка данных подождите пожалуйста!!!</p>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<ng-template #notfound>
+    <h4>По данной выборки нет данных!!!</h4>
+</ng-template>

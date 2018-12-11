@@ -91,10 +91,11 @@ namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.ListViewModelXml
             XmlFiles.Clear();
             lock (Lock)
             {
-                    Directory.CreateDirectory(path);
+                var filelogica = new FileLogica();
+                Directory.CreateDirectory(path);
                     foreach (var file in FileLogica.FileinfoMass(path))
                     {
-                       XmlFiles.Add(new ListViewModelXmlFileGenerateProperty { Icon = FileLogica.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName });
+                       XmlFiles.Add(new ListViewModelXmlFileGenerateProperty { Icon = filelogica.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName });
                     }
             }
         }

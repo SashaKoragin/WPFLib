@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="AnalizNo" type="No">
+		<xs:annotation>
+			<xs:documentation>Схема для налоговых обязательств</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="No">
+		<xs:annotation>
+			<xs:documentation>Анализ налоговых обязательств</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="Delo" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Delo">
+		<xs:annotation>
+			<xs:documentation>Дело для анализа</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="StatusPriem"/>
+				<xs:element ref="StatusAnaliz"/>
+				<xs:element ref="AnalizNO" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер в таблице</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D3979" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун дела приема из БД</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Status1Priem" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Статус приема</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Status1Analiz" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Статус глобального анализа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D85" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата создания</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="StatusPriem">
+		<xs:annotation>
+			<xs:documentation>Статус приема дела (Справочник)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Priznak" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун  статуса</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessagePriem" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение в статусе</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="StatusAnaliz">
+		<xs:annotation>
+			<xs:documentation>Анализ приема дела (Справочник)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Priznak" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун сообщения </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageAnaliz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение для глобального анализа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AnalizNO">
+		<xs:annotation>
+			<xs:documentation>Налоговые обязательства после анализа</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MessageDate"/>
+				<xs:element ref="MessageStrahovieAndOtkaz" minOccurs="0"/>
+				<xs:element ref="MessageStatusUh"/>
+				<xs:element ref="MessageVivod"/>
+			</xs:sequence>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D3979" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун дела приема</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D3972" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун записи принимаемого КРСБ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Color" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Цвет КРСБ 14 Желтый 12 Красный</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateAnaliz" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Анализ по дате начала и закрытия</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="StrahovieAndOtkazAnaliz" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Анализ страховых или отказных</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="StatusUhAnaliz" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Статус плательщика наш; не наш</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Vivod" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Полный вывод по карточке справочник</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D6" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Налог если нашел в справочнике</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D1560_2" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун НО Предшественника</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D1560_1" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>УН НО Наследника если есть</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DatePeredachi" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата передачи дела</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateZakritia" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата закрытия карточки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N134" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D3" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kbk" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="OKTMO_old" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ОКТМО с чем пришел</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="D09_3" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус плательщика</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N1_1" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Плательщик в нашей БД</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="N279" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Постановка на учет</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="OKTMO_new" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наше ОКТМО</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата записи в данную таблицу</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Error" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Ошибки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateError" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата ошибки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MessageStrahovieAndOtkaz">
+		<xs:annotation>
+			<xs:documentation>Сообщение по КБК (Справочник)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Priznak" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун сообщения</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageStrahovieAndOtkaz" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение по страховым или отказ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MessageDate">
+		<xs:annotation>
+			<xs:documentation>Сообщение по дате приема (Справочник)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Priznak" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун сообщения</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageDate" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение по анализу даты принимаем или не принимаем</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MessageStatusUh">
+		<xs:annotation>
+			<xs:documentation>Сообщение по плательщику (Справочник)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Priznak" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун сообщения</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageStatusUh" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение принадлежности плательщика к нам</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MessageVivod">
+		<xs:annotation>
+			<xs:documentation>Вывод по карточке (Справочник)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Priznak" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун сообщения</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageVivod" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение вывода по карточке</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

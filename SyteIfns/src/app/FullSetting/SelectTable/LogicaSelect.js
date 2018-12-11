@@ -11,6 +11,7 @@ var ParamLogica = /** @class */ (function () {
         //Детализация
         this.detal = true;
     }
+    //Переключение выборки select
     ParamLogica.prototype.logicaselect = function () {
         if (this.select) {
             this.select = false;
@@ -19,6 +20,7 @@ var ParamLogica = /** @class */ (function () {
             this.select = true;
         }
     };
+    //Переключение выборки progress
     ParamLogica.prototype.logicaprogress = function () {
         if (this.progress) {
             this.progress = false;
@@ -27,6 +29,7 @@ var ParamLogica = /** @class */ (function () {
             this.progress = true;
         }
     };
+    //Переключение выборки database
     ParamLogica.prototype.logicadatabase = function () {
         if (this.database) {
             this.database = false;
@@ -35,6 +38,7 @@ var ParamLogica = /** @class */ (function () {
             this.database = true;
         }
     };
+    //Логика детализации
     ParamLogica.prototype.detalization = function () {
         if (this.detal) {
             this.detal = false;

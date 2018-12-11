@@ -17,7 +17,7 @@ import { MatDialog } from '@angular/material';
     providers: [ServiceModel, TemplateAdd, MatDialog]
 }) as any)
 
-
+    //Класс добавления шаблона
 export class AddTemplate {
 
     constructor(private service: ServiceModel, public dialog: MatDialog, public addtemp: TemplateAdd) { }
@@ -42,7 +42,7 @@ export class AddTemplate {
             alert(e.toString());
         }
     }
-
+    //Подгрузка всех шаблонов в БД
     fullTemplate() {
         this.service.datacommandserver(this.select.generatecommandnotparam(this.wcf)).subscribe((model) => {
             this.modelfull = deserialize(ModelFull, model.toString());
@@ -53,7 +53,7 @@ export class AddTemplate {
             this.template.dataSourceStone = new MatTableDataSource<Stone>(this.modelfull.Stone);
         });
     }
-
+    //Добавления документа в БД
     addtemplate() {
         alert(JSON.stringify(this.form.document));
         this.addtemp.addtemplate(this.form.document).subscribe(model => {

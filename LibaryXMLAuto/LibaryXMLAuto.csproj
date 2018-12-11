@@ -56,6 +56,9 @@
     <Compile Include="ModelXmlAuto\ListInnSheme\FullInnCount.cs">
       <DependentUpon>FullInnCount.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ModelXmlAuto\ModelFaceFid\FaceFid.cs">
+      <DependentUpon>FaceFid.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModelXmlAuto\ModelFidZorI\FidZemlyOrImushestvo.cs">
       <DependentUpon>FidZemlyOrImushestvo.xsd</DependentUpon>
     </Compile>
@@ -97,6 +100,12 @@
     <Compile Include="ReadOrWrite\LogicaXml\LogicaXml.cs" />
     <Compile Include="ReadOrWrite\SerializationJson\SerializeJson.cs" />
     <Compile Include="ReadOrWrite\XmlReadOrWrite.cs" />
+    <Compile Include="Reports\AnalizNo\AnalizNo.cs">
+      <DependentUpon>AnalizNo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DelaCreate\DelaCreate.cs">
+      <DependentUpon>DelaCreate.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\FullTemplateSheme\FullTemplate.cs" />
     <Compile Include="Reports\FullTemplateSheme\FullTemplateReport.cs">
       <DependentUpon>FullTemplateReport.xsd</DependentUpon>
@@ -114,6 +123,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ModelXmlAuto\ListInnSheme\FullInnCount.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ModelXmlAuto\ModelFaceFid\FaceFid.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="ModelXmlAuto\ModelFidZorI\FidZemlyOrImushestvo.xsd">
@@ -147,6 +159,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Reports\AnalizNo\AnalizNo.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\DelaCreate\DelaCreate.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Reports\FullTemplateSheme\FullTemplateReport.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -170,11 +188,14 @@
       <XsdFilesFpd Include="ModelXmlAuto\ModelFpdId\*.xsd" />
       <XsdFilessListInn Include="ModelXmlAuto\ListInnSheme\*.xsd" />
       <XsdFilesFid Include="ModelXmlAuto\ModelFidZorI\*.xsd" />
+      <XsdFilesFaceFid Include="ModelXmlAuto\ModelFaceFid\*.xsd" />
       <XsdXmlSql Include="ModelXmlSql\Model\FaceError\*.xsd" />
       <XsdXmlSqlTreb Include="ModelXmlSql\Model\Trebovanie\*.xsd" />
       <XsdXmlSqlBdk Include="ModelXmlSql\Model\Bdk\BdkIt\*.xsd" />
       <XsdXmlSqlReport Include="Reports\ReportsBdk\*.xsd" />
       <XsdXmlSqlFullTemplateReport Include="Reports\FullTemplateSheme\*.xsd" />
+      <XsdXmlSqlCreteDela Include="Reports\DelaCreate\*.xsd" />
+      <XsdXmlSqlAnalizNo Include="Reports\AnalizNo\*.xsd" />
       <XsdXmlSqlServiceWcfTestIfns Include="ModelServiceWcfCommand\TestIfnsService\*.xsd" />
       <XsdXmlSqlMail Include="ModelXmlSql\Model\ModelMail\*.xsd" />
       <XsdXmlSqlPredproverka Include="ModelXmlSql\Model\Predproverka\*.xsd" />
@@ -200,5 +221,8 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlMail.FullPath)&quot;  /classes /namespace:$(RootNamespace)ModelXmlSql.Model.ModelMail /outputdir:ModelXmlSql\Model\ModelMail\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlFullTemplateReport.FullPath)&quot; /classes /namespace:$(RootNamespace)Reports.FullTemplateSheme /outputdir:Reports\FullTemplateSheme\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlPredproverka.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.Model.Predproverka /outputdir:ModelXmlSql\Model\Predproverka\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlCreteDela.FullPath)&quot; /classes /namespace:$(RootNamespace)Reports.DelaCreate /outputdir:Reports\DelaCreate\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlAnalizNo.FullPath)&quot; /classes /namespace:$(RootNamespace)Reports.AnalizNo /outputdir:Reports\AnalizNo\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFilesFaceFid.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.ModelFaceFid /outputdir:ModelXmlAuto\ModelFaceFid" />
   </Target>
 </Project>

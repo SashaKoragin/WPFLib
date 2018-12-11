@@ -54,12 +54,13 @@ table {
 }
 
 .grid-container2 {
-      box-shadow: 0 0 5px rgba(0,0,0,0.5);
       display: grid;
       padding: 3px;
       grid-template-columns: 300px max-content 350px;
       grid-column-gap: 40px;
       width:inherit;
+      background: white;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .grid-item2 {

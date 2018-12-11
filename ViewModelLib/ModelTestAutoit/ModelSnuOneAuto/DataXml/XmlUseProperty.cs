@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.ServiceModel.PeerResolvers;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using Prism.Mvvm;
+using PublicLogicaFull.FileLogica.FileInfoLogica;
 
 namespace ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml
 {
@@ -70,11 +65,12 @@ namespace ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml
         {
             if (File.Exists(path))
             {
+                var filelogica = new FileLogica();
                 var xmllibary = new LibaryXMLAuto.ReadOrWrite.LogicaXml.LogicaXml();
                 FileInfo file = new FileInfo(path);
                 Name = file.Name;
                 Count = xmllibary.CountAtribute(LibaryXMLAuto.ReadOrWrite.LogicaXml.LogicaXml.Document(path));
-                Icon = PublicLogicaFull.FileLogica.FileInfoLogica.FileLogica.Extracticonfile(file.FullName);
+                Icon = filelogica.Extracticonfile(file.FullName);
             }
             else
             {

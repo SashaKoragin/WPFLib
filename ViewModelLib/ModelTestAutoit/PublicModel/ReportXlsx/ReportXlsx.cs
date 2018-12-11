@@ -60,10 +60,11 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ReportXlsx
         {
             if (Directory.Exists(pathdirectoryreport))
             {
+                var filelogica = new FileLogica();
                 ReportXlsxel.Clear();
                 foreach (var file in FileLogica.FileinfoMass(pathdirectoryreport))
                 {
-                    ReportXlsxel.Add(new ReportXlsxProperty { Icon = FileLogica.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName });
+                    ReportXlsxel.Add(new ReportXlsxProperty { Icon = filelogica.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName });
                 }
             }
         }

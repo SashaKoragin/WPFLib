@@ -5,12 +5,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TemplateAdd } from '../../../../../PostZaprosFull/PostFull';
 import { AddTemplate } from '../../../../../Otdel/It/AddTemplate/StartModel/AddTemplate';
 
+//Интерфейс передачи в диалоговое окно
 export interface IDialodData {
     angulardate: AngularTemplate;
     adress: TemplateAdd;
     addTemp: AddTemplate;
 }
-
+//Проверка  Validation Head
 export const validatorHead: ValidatorFn = (control: FormGroup): ValidationErrors => {
     const textHeade1 = control.get('textHeade1');
     const textHeade2 = control.get('textHeade2');
@@ -33,7 +34,7 @@ export const validatorHead: ValidatorFn = (control: FormGroup): ValidationErrors
         && textHeade9.value === null
         && textHeade10.value === null ? { 'validatorHead': true } : null;
 };
-
+//Проверка  Validation Body
 export const validatorBody: ValidatorFn = (control: FormGroup): ValidationErrors => {
     const textBodyGl1 = control.get('textBodyGl1');
     const textBodyGl2 = control.get('textBodyGl2');
@@ -46,7 +47,7 @@ export const validatorBody: ValidatorFn = (control: FormGroup): ValidationErrors
         && textBodyGl4.value === null
         && textBodyGl5.value === null ? { 'validatorBody': true } : null;
 };
-
+//Проверка  Validation Stone
 export const validatorStone: ValidatorFn = (control: FormGroup): ValidationErrors => {
     const textStone1 = control.get('textStone1');
     const textStone2 = control.get('textStone2');
@@ -65,16 +66,17 @@ export const validatorStone: ValidatorFn = (control: FormGroup): ValidationError
 };
 
 @Component({
-    selector: 'dialog-content-example-dialog',
+    selector: 'dialog-template',
     templateUrl: '../HTML/Headers.html',
-    styleUrls: ['../HTML/FullDialogStyle.css'],
+    styleUrls: ['../../StyleDialog/FullDialogStyle.css'],
     encapsulation: ViewEncapsulation.None
 })
+    //Класс добавления Heade
 export class HeadersAdd {
 
     constructor(private MatDialogRef: MatDialogRef<HeadersAdd>,
         @Inject(MAT_DIALOG_DATA) public data: IDialodData) { }
-
+    //Реактивная форма Head
     formTemplateHeaders = new FormGroup({
         'textHeade1': new FormControl('', Validators.required),
         'textHeade2': new FormControl('', Validators.required),
@@ -99,7 +101,7 @@ export class HeadersAdd {
     get textHeade8() { return this.formTemplateHeaders.get('textHeade8') }
     get textHeade9() { return this.formTemplateHeaders.get('textHeade9') }
     get textHeade10() { return this.formTemplateHeaders.get('textHeade10') }
-
+    //Команда отправки и добавления на сервер БД Heade
     addTempateHeade() {
         this.data.adress.addtemplate(this.data.angulardate).subscribe(model => {
             alert(JSON.stringify(model));
@@ -109,16 +111,17 @@ export class HeadersAdd {
 }
 
 @Component({
-    selector: 'dialog-content-example-dialog',
+    selector: 'dialog-template',
     templateUrl: '../HTML/Body.html',
-    styleUrls: ['../HTML/FullDialogStyle.css'],
+    styleUrls: ['../../StyleDialog/FullDialogStyle.css'],
     encapsulation: ViewEncapsulation.None
 })
+    //Класс добавления Body
 export class BodyAdd {
 
     constructor(private MatDialogRef: MatDialogRef<BodyAdd>,
         @Inject(MAT_DIALOG_DATA) public data: IDialodData) { }
-
+    //Реактивная форма Body
     formTemplateBody = new FormGroup({
         'textBodyGl1': new FormControl('', Validators.required),
         'textBodyGl2': new FormControl('', Validators.required),
@@ -133,7 +136,7 @@ export class BodyAdd {
     get textBodyGl3() { return this.formTemplateBody.get('textBodyGl3') }
     get textBodyGl4() { return this.formTemplateBody.get('textBodyGl4') }
     get textBodyGl5() { return this.formTemplateBody.get('textBodyGl5') }
-
+    //Команда отправки и добавления на сервер БД Body
     public addTempateBody(): void {
         this.data.adress.addtemplate(this.data.angulardate).subscribe(model => {
             alert(JSON.stringify(model));
@@ -143,16 +146,16 @@ export class BodyAdd {
 }
 
 @Component({
-    selector: 'dialog-content-example-dialog',
+    selector: 'dialog-template',
     templateUrl: '../HTML/Stone.html',
-    styleUrls: ['../HTML/FullDialogStyle.css'],
+    styleUrls: ['../../StyleDialog/FullDialogStyle.css'],
     encapsulation: ViewEncapsulation.None
 })
 export class StoneAdd {
 
     constructor(private MatDialogRef: MatDialogRef<StoneAdd>,
         @Inject(MAT_DIALOG_DATA) public data: IDialodData ) { }
-
+    //Реактивная форма Stone
     formTemplateStone = new FormGroup({
         'textStone1': new FormControl('', Validators.required),
         'textStone2': new FormControl('', Validators.required),
@@ -171,7 +174,7 @@ export class StoneAdd {
     get textStone5() { return this.formTemplateStone.get('textStone5') }
     get textStone6() { return this.formTemplateStone.get('textStone6') }
     get textStone7() { return this.formTemplateStone.get('textStone7') }
-
+    //Команда отправки и добавления на сервер БД Stone
     public addTempateStone(): void {
         this.data.adress.addtemplate(this.data.angulardate).subscribe(model => {
             alert(JSON.stringify(model));

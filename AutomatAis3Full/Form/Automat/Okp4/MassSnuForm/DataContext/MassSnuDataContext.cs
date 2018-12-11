@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using AutomatAis3Full.Config;
 using LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand;
 using Prism.Commands;
@@ -21,6 +16,7 @@ namespace AutomatAis3Full.Form.Automat.Okp4.MassSnuForm.DataContext
         public ICommand Yellow { get; }
         public MassSnuDataContext()
         {
+            
             var commandauto = new AutoCklicsAisCommand();
             StartButton = new StatusButtonMethod();
             Xml2 = new XmlUseMethod();

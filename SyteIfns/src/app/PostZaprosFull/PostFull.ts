@@ -65,6 +65,12 @@ export class PostBdk {
     startprocedurebdk(setting: FullSetting) {
             return this.http.post(url.procedurebdk, setting, httpOptionsJson);
     }
+    createkrsb(setting: FullSetting) {
+        return this.http.post(url.createkrsb, setting, httpOptionsJson);
+    }
+    analizkrsb(setting: FullSetting) {
+        return this.http.post(url.analizkrsb, setting, httpOptionsJson);
+    }
 }
 
 @Injectable()
@@ -118,5 +124,13 @@ export class TemplateAdd {
         } catch (e) {
             alert(e.toString());
         }
+    }
+}
+
+@Injectable()
+export class DonloadFileReport {
+    constructor(private http: HttpClient) { }
+   public downloadFile(geturl:string) {
+        return this.http.get(geturl, { responseType: 'arraybuffer' });
     }
 }

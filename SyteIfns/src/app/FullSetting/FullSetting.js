@@ -13,6 +13,10 @@ var FullSetting = /** @class */ (function () {
         this.ParametrBdkOut = new ParametrBdkOut();
         //Параметры предпроверки
         this.ParamPredproverka = new ParamPredproverka();
+        //Дела приема КРСБ
+        this.DeloPriem = new DeloPriem();
+        //Создание дел КРСБ
+        this.DeloCreate = new DeloCreate();
     }
     return FullSetting;
 }());
@@ -65,9 +69,28 @@ var ParametrBdkOut = /** @class */ (function () {
     }
     return ParametrBdkOut;
 }());
+// Подстановка параметра для выборки с сервиса данных выборки
 var ParamService = /** @class */ (function () {
     function ParamService() {
     }
     return ParamService;
+}());
+//Дела приема КРСБ
+var DeloPriem = /** @class */ (function () {
+    function DeloPriem() {
+    }
+    DeloPriem.prototype.addarraystring = function (mass) {
+        this.DelaPriem = mass;
+    };
+    return DeloPriem;
+}());
+//Создание карточек КРСБ
+var DeloCreate = /** @class */ (function () {
+    function DeloCreate() {
+    }
+    DeloCreate.prototype.datezaprosa = function (datedelo) {
+        this.DateDelo = "/Date(" + datedelo.getTime() + ")/";
+    };
+    return DeloCreate;
 }());
 //# sourceMappingURL=FullSetting.js.map

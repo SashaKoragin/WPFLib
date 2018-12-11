@@ -1,0 +1,111 @@
+﻿/deep/ .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background  {
+    background-color: green !important;
+}
+.button {
+    padding-bottom: 5px;
+}
+
+.Detalization {
+    margin-top: 10px;
+}
+.margin {
+    margin: 5px;
+}
+.date {
+    width: 280px;
+    margin: 5px;
+}
+.select {
+    width: 350px; 
+}
+.AtaretAnalis {
+    margin: 25px;
+}
+.head-cell{
+  background: linear-gradient(45deg, rgba(67, 233, 34, 0.801), rgb(120, 219, 100));
+  font-size: 12pt;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  margin: 5px;
+}
+.head-cellAnaliz {
+    background: linear-gradient(45deg, rgba(67, 233, 34, 0.801), rgb(120, 219, 100));
+    font-size: 14pt;
+    text-align: center;
+    font-style: italic;
+    width: auto;
+    
+    margin: 10px;
+    white-space: pre;
+}
+.cellanaliz {
+  background: #30d5c8;
+  align-items: center;
+  font-size: 12pt;
+  width: auto;
+  white-space: pre;
+  font-style: normal; 
+  text-align: center;
+}
+.Template {
+  width: 75%;
+}
+.cell{
+  background: gold;
+  align-items: center;
+  font-size: 12pt;
+  font-style: normal; 
+  text-align: center;
+  width: auto;
+}
+.head {
+    width:1000px;
+}
+.grid-container2 {
+      display: grid;
+      padding: 3px;
+      grid-template-columns: 300px max-content 350px;
+      grid-column-gap: 40px;
+      width:inherit;
+      background: white;
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+      
+.grid-item2 {
+     background-color: white;
+     padding: 0px;
+     font-size: 20px;
+     text-align: left;
+     align-self: center;
+}
+button {
+         background-color: green;
+         cursor: pointer;
+}
+button:hover {
+            background-color: orange;
+}
+.tableslide {
+    max-height: 400px;
+    width: 75%;
+    overflow: auto;
+}
+
+.tableanaliz {
+    max-height: 500px;
+    width: auto;
+    overflow: auto;
+}
+
+.dela-width {
+    width: 420px;
+    margin: 5px;
+}
+.dela-height {
+    height: 90px;
+}
+.margin{
+vertical-align: top;
+}

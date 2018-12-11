@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GalaSoft.MvvmLight.Threading;
 using LibaryAIS3Windows.ButtonsClikcs;
 using LibaryAIS3Windows.ExitLogica;
 using LibaryCommandPublic.EventQbe.OKp4;
-using LibaryCommandPublic.EventQbe.Reg;
 using LibaryXMLAutoModelXmlAuto.ModelFidZorI;
-using LibaryXMLAutoModelXmlAuto.ModelSnuOne;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
 namespace LibaryCommandPublic.TestAutoit.Okp4.EditPravo.Pravo

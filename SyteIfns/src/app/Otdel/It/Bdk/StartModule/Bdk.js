@@ -10,17 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { ModelBdk } from '../Model/BdkModel';
 import { FullSetting } from '../../../../FullSetting/FullSetting';
-import { PostBdk } from '../../../../PostZaprosFull/PostFull';
+import { PostBdk, DonloadFileReport } from '../../../../PostZaprosFull/PostFull';
 import { CreateSettingSelect } from '../../../../FullSetting/CreateSetting';
 import { BlocsInfoButton } from '../../../../FullSetting/ProcessFull';
 import { deserialize } from 'class-transformer';
+import { MatDialog } from '@angular/material';
+import { DialogOpenCreateDela } from '../../../../FullSetting/FormValidation/OpenDialog/OpenDialog';
+import { AdressMerge } from '../../../../AdressFullRest/AdresSservice';
+import { DonloadFile } from '../../../../FullSetting/DonloadFileServer/DonloadFile';
 var BdkIt = /** @class */ (function () {
-    function BdkIt(dataservice) {
+    function BdkIt(dataservice, dialog, donloadreport) {
         this.dataservice = dataservice;
+        this.dialog = dialog;
+        this.donloadreport = donloadreport;
         this.bloks = new BlocsInfoButton();
         this.bdk = null;
         this.setting = new FullSetting();
         this.select = new CreateSettingSelect();
+        this.dialogs = new DialogOpenCreateDela(this.dialog, this.setting, this.dataservice);
+        this.adress = new AdressMerge();
+        this.donloadfile = new DonloadFile(this.donloadreport);
     }
     //Старт блока
     BdkIt.prototype.ngOnInit = function () {
@@ -61,9 +70,9 @@ var BdkIt = /** @class */ (function () {
             selector: 'my-bdk',
             templateUrl: '../Template/Bdk.html',
             styleUrls: ['../Template/BdkStyle.css'],
-            providers: [PostBdk]
+            providers: [PostBdk, MatDialog, DonloadFileReport]
         })),
-        __metadata("design:paramtypes", [PostBdk])
+        __metadata("design:paramtypes", [PostBdk, MatDialog, DonloadFileReport])
     ], BdkIt);
     return BdkIt;
 }());

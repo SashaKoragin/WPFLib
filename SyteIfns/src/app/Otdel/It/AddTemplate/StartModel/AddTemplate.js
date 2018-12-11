@@ -44,6 +44,7 @@ var AddTemplate = /** @class */ (function () {
             alert(e.toString());
         }
     };
+    //Подгрузка всех шаблонов в БД
     AddTemplate.prototype.fullTemplate = function () {
         var _this = this;
         this.service.datacommandserver(this.select.generatecommandnotparam(this.wcf)).subscribe(function (model) {
@@ -55,11 +56,13 @@ var AddTemplate = /** @class */ (function () {
             _this.template.dataSourceStone = new MatTableDataSource(_this.modelfull.Stone);
         });
     };
+    //Добавления документа в БД
     AddTemplate.prototype.addtemplate = function () {
         alert(JSON.stringify(this.form.document));
         this.addtemp.addtemplate(this.form.document).subscribe(function (model) {
             alert(JSON.stringify(model));
         });
+        this.fullTemplate();
     };
     __decorate([
         ViewChild(MatPaginator),
@@ -71,7 +74,9 @@ var AddTemplate = /** @class */ (function () {
             templateUrl: '../Template/AddTemplate.html',
             styleUrls: ['../Template/AddTemplate.css'],
             providers: [ServiceModel, TemplateAdd, MatDialog]
-        })),
+        }))
+        //Класс добавления шаблона
+        ,
         __metadata("design:paramtypes", [ServiceModel, MatDialog, TemplateAdd])
     ], AddTemplate);
     return AddTemplate;

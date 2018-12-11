@@ -30,5 +30,9 @@ namespace LibaryAIS3Windows.Status
         /// Закончили обрабатывать пользовательское задание
         /// </summary>
        public const string Status6 = "Закончили обрабатывать пользовательское задание!!!";
-    }
+        /// <summary>
+        /// В файле нет значений для отработки
+        /// </summary>
+       public const string Status7 = "В файле нет значений для отработки!!!";
+   }
 }

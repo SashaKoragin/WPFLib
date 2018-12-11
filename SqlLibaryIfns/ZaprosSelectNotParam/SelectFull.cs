@@ -7,6 +7,7 @@ using LibaryXMLAutoModelXmlSql.Model.FaceError;
 using LibaryXMLAutoModelXmlSql.Model.ModelMail;
 using LibaryXMLAutoModelXmlSql.Model.Predproverka;
 using LibaryXMLAutoModelXmlSql.Model.Trebovanie;
+using LibaryXMLAutoReports.AnalizNo;
 using LibaryXMLAutoReports.FullTemplateSheme;
 using SqlLibaryIfns.SqlSelect.ModelSqlFullService;
 using SqlLibaryIfns.SqlZapros.SqlConnections;
@@ -72,6 +73,7 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                             (Soprovod)
                             sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, command.Command,
                                 typeof(Soprovod)));
+                case 21: return serializeJson.JsonLibary((No)sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, command.Command,typeof(No)));
                 default:
                     return "Данная комманда не определена!!!";
             }

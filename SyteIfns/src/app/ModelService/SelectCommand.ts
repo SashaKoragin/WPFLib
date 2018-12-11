@@ -49,14 +49,21 @@ export class ParametrSelectMail {
         { name: 'Статус поручения', nameparametr: 'TableSysNumReshen.IdStatus_2', paramvalue: '', select: null, numеrtemplate: 2 },
         { name: 'Ошибка поручения', nameparametr: 'TableSysNumReshen.ErrorIncass', paramvalue: '', select: null, numеrtemplate: 1 },
         { name: 'Ун плательщика', nameparametr: 'Reshenie.N1', paramvalue: '', select: null, numеrtemplate: 2 },
-        { name: 'Дата создания', nameparametr: 'TableSysNumReshen.DataCreate', paramvalue: '', select: null, numеrtemplate: 2 }
+        { name: 'Дата создания', nameparametr: 'TableSysNumReshen.DataCreate', paramvalue: '', select: null, numеrtemplate: 1 }
     ];
 
     public paramepredproverka: SelectParamMail[] = [
         { name: 'Ун документа', nameparametr: 'DocumentReglament.N441__1', paramvalue: '', select: null, numеrtemplate: 2 },
         { name: 'Ун статуса', nameparametr: 'DocumentReglament.Status1', paramvalue: '', select: null, numеrtemplate: 2 },
         { name: 'Сообщение об ошибке', nameparametr: 'DocumentReglament.MesErSt1', paramvalue: '', select: null, numеrtemplate: 1 },
-        { name: 'Дата записи', nameparametr: 'DocumentReglament.D85', paramvalue: '', select: null, numеrtemplate: 2 }
+        { name: 'Дата записи', nameparametr: 'DocumentReglament.D85', paramvalue: '', select: null, numеrtemplate: 1 }
+    ];
+
+    public parametrdelo: SelectParamMail[] = [
+        { name: 'Ун дела приема', nameparametr: 'Delo.D3979', paramvalue: '', select: null, numеrtemplate: 2 },
+        { name: 'Ун статуса приема', nameparametr: 'Delo.Status1Priem', paramvalue: '', select: null, numеrtemplate: 2 },
+        { name: 'Ун статуса анализа', nameparametr: 'Delo.Status1Analiz', paramvalue: '', select: null, numеrtemplate: 2 },
+        { name: 'Дата записи', nameparametr: 'DocumentReglament.D85', paramvalue: '', select: null, numеrtemplate: 1 }
     ];
 
     generatecommand(service: ServiceWcf, select: SelectParamMail[], numDb:number = 2): AngularModel {

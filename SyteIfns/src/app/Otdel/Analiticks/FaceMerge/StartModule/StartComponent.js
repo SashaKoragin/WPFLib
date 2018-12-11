@@ -7,10 +7,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Component } from "@angular/core";
-import { Face, FaceAdd } from "../Model/FaceError";
+import { Component } from '@angular/core';
+import { Face, FaceAdd } from '../Model/FaceError';
 import { DataService } from '../../../../PostZaprosFull/PostFull';
-import { plainToClass } from "class-transformer";
+import { plainToClass } from 'class-transformer';
 //По сути патерн MVVM только в рамках асинхронности
 var AppComponent = /** @class */ (function () {
     function AppComponent(dataservice) {

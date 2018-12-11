@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventQbe\OKp4\EventOkp.cs" />
+    <Compile Include="EventQbe\Reg\EventFid.cs" />
     <Compile Include="EventQbe\Reg\SelectEventQbe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestAutoit\Analitic\TheUserTask\AutoClikcsTask.cs" />
@@ -62,6 +63,8 @@
     <Compile Include="TestAutoit\Okp4\SnuOneAuto\AutoCommand\AutoCklicsAisCommand.cs" />
     <Compile Include="TestAutoit\PublicCommand\CommandFormirovanie.cs" />
     <Compile Include="TestAutoit\PublicCommand\CommandSnuOneAuto.cs" />
+    <Compile Include="TestAutoit\Reg\Status\StatusReg.cs" />
+    <Compile Include="TestAutoit\Reg\TechinicalUpdate\TchinicalUpdate.cs" />
     <Compile Include="TestAutoit\Reg\TreatmentFPD\Zemly\Zemly.cs" />
     <Compile Include="TestAutoit\Reg\YtochnenieSved\AutoCommand\YtochnenieSved.cs" />
   </ItemGroup>

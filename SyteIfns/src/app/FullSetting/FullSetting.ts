@@ -13,6 +13,10 @@ export class FullSetting {
     public ParametrBdkOut: ParametrBdkOut = new ParametrBdkOut();
     //Параметры предпроверки
     public ParamPredproverka: ParamPredproverka = new ParamPredproverka();
+    //Дела приема КРСБ
+    public DeloPriem: DeloPriem = new DeloPriem();
+    //Создание дел КРСБ
+    public DeloCreate: DeloCreate = new DeloCreate();
     //Принадлежность БД Тест или рабочая
     public Db: string;
     //Номер процедуры
@@ -69,6 +73,25 @@ class ParametrBdkOut {
     public D85DateFinish: string;
 }
 
+// Подстановка параметра для выборки с сервиса данных выборки
 class ParamService {
     IdCommand:number;
+}
+//Дела приема КРСБ
+class DeloPriem {
+    DelaPriem: Array<string>;
+
+   public addarraystring(mass: string[]) {
+        this.DelaPriem = mass;
+    }
+}
+//Создание карточек КРСБ
+class DeloCreate {
+    DateDelo: string;
+    D3979: number;
+    Okato:string;
+
+  public datezaprosa( datedelo: any) {
+      this.DateDelo = `/Date(${datedelo.getTime()})/`;
+  }
 }

@@ -1,8 +1,8 @@
-﻿import { Component, OnInit} from "@angular/core";
-import { Face, FaceErrorField, FaceAdd } from "../Model/FaceError";
+﻿import { Component, OnInit} from '@angular/core';
+import { Face, FaceErrorField, FaceAdd } from '../Model/FaceError';
 import { DataService } from '../../../../PostZaprosFull/PostFull';
 import { catchError, retry, map } from 'rxjs/operators';
-import { plainToClass } from "class-transformer";
+import { plainToClass } from 'class-transformer';
 
 //По сути патерн MVVM только в рамках асинхронности
 @Component(({
@@ -10,7 +10,7 @@ import { plainToClass } from "class-transformer";
     templateUrl: '../Template/MergeFace.html',
     providers: [DataService]
 })as any)
-    
+
 export class AppComponent implements OnInit { 
     facemodel: Face = null;
     faces: FaceAdd = new FaceAdd();
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
             if (this.facemodel.SqlFaceErrorResult != null) {
                 this.tableMode = true;
             }
-            } 
+            }
         );
     }
 
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
             });
         } catch (e) {
             alert(e.toString());
-        } 
+        }
     }
 
 }

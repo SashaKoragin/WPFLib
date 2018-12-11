@@ -13,7 +13,7 @@ namespace LibaryAIS3Windows.Mode.Okp4.SnuFormirovanie
         /// </summary>
         internal static string[] ButSrtnal =
         {
-            "по выбранным налогоплательщикам",
+            "по выбраным налогоплательщикам",
             "[NAME:rB1]"
         };
 
@@ -50,7 +50,14 @@ namespace LibaryAIS3Windows.Mode.Okp4.SnuFormirovanie
             "Создать заявку",
             "[NAME:but_Create]"
         };
-
+        /// <summary>
+        /// Галочка режим формирования СНУ закрытие
+        /// </summary>
+        internal static string[] ButClose =
+        {
+            "закрытие",
+            "[NAME:rB2_Close]"
+        };
     }
 }
 

@@ -1,0 +1,62 @@
+﻿.contenter {
+  min-width: 300px;
+  max-width: 100%;
+  min-height: 500px;
+  /*max-height: 2000px;*/
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.otdel {
+    margin: 20px;
+    font-size: 25px;
+    font-style: italic;
+    color: black;
+}
+.title {
+    text-align: center;
+    font-style: italic;
+    color: green;
+    background: black;
+}
+.sidenav {
+  display: flex;
+  height: 100%;
+   margin: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.tree-invisible {
+  display: none;
+}
+.mat-tree-node {
+    font-size: 25px;
+    font-style: italic;
+    color: black;
+}
+.tree ul,
+.tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.contentpage {
+    margin: 20px;
+    width: auto;
+    height: auto;
+}
+.title-black {
+    background: black;
+}
+.fullpath {
+    font-size: 20px;
+    font-style: italic;
+    color: black;
+    margin: 20px;
+}
+.model {
+    font-size: 20px;
+    font-style: italic;
+    color: black;
+    margin: 20px;
+}

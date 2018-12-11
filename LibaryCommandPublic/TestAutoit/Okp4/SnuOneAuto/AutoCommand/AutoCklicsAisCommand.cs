@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Threading;
+using LibaryAIS3Windows.Window;
 using LibaryAIS3Windows.ButtonsClikcs;
 using LibaryAIS3Windows.ExitLogica;
 using LibaryXMLAutoModelXmlAuto.ModelSnuOne;
@@ -11,6 +11,7 @@ using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 using System.Threading;
 using GalaSoft.MvvmLight.Threading;
 using LibaryXMLAutoModelXmlAuto.FullInnCount;
+using ViewModelLib.ModelTestAutoit.PublicModel.DatePicker;
 
 namespace LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
 {
@@ -36,7 +37,7 @@ namespace LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
                     DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                     KclicerButton clickerButton = new KclicerButton();
                     Exit exit = new Exit();
-                    LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                    WindowsAis3 ais3 = new WindowsAis3();
                     LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite read = new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
                     object obj = read.ReadXml(pathfileinn, typeof(SnuOneForm));
                     SnuOneForm snumodel = (SnuOneForm)obj;
@@ -92,7 +93,7 @@ namespace LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
                     DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                     KclicerButton clickerButton = new KclicerButton();
                     Exit exit = new Exit();
-                    LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                    WindowsAis3 ais3 = new WindowsAis3();
                     LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite read = new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
                     object obj = read.ReadXml(pathfileinn, typeof(INNList));
                     INNList snumodelmass = (INNList)obj;
@@ -103,7 +104,7 @@ namespace LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
                             if (statusButton.Iswork)
                             {
                                 clickerButton.Click4(pathjurnalerror, pathjurnalok, inn.MyInnn);
-                                read.DeleteAtributXml(pathfileinn, LibaryXMLAuto.GenerateAtribyte.GeneratorAtribute.GenerateAtributeMassNumCollection(inn.MyInnn));
+                                read.DeleteAtributXml(pathfileinn, LibaryXMLAuto.GenerateAtribyte.GeneratorAtribute.GenerateAtributeMassNumCollection(inn.NumColection.ToString()));
                                 statusButton.Count++;
                             }
                             else
@@ -126,6 +127,88 @@ namespace LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
             else
             {
                 MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status5);
+            }
+        }
+
+        /// <summary>
+        /// Печать документа с анализом есть ли ЛК2
+        /// </summary>
+        /// <param name="date">Дата регистрации СНУ</param>
+        /// <param name="statusButton">Кнопка контроля состояний</param>
+        /// <param name="pathfileinn">Путь к файлу с массовыми ИНН</param>
+        /// <param name="pathjurnalerror">Путь к журналу с ошибками</param>
+        /// <param name="pathjurnalok">Путь к отаботаным спискам</param>
+        /// <param name="conectionstring">Строка соединения с нашей БД</param>
+        public void PrintSnu(DatePickerPub date, StatusButtonMethod statusButton, string pathfileinn,
+            string pathjurnalerror, string pathjurnalok, string conectionstring)
+        {
+            try
+            {
+                if (date.IsValidation())
+                {
+                    DispatcherHelper.Initialize();
+                    if (File.Exists(pathfileinn))
+                    {
+                        Task.Run(delegate
+                        {
+                            LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite read =new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
+                            object obj = read.ReadXml(pathfileinn, typeof(INNList));
+                            INNList snumodelmass = (INNList) obj;
+                            if (snumodelmass.ListInn != null)
+                            {
+                                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                                KclicerButton clickerButton = new KclicerButton();
+                                Exit exit = new Exit();
+                                WindowsAis3 ais3 = new WindowsAis3();
+                                if (ais3.WinexistsAis3() == 1)
+                                {
+                                    foreach (var inn in snumodelmass.ListInn)
+                                    {
+                                        if (statusButton.Iswork)
+                                        {
+                                            clickerButton.Click7(date.Date, pathjurnalerror, pathjurnalok, inn.MyInnn,
+                                                conectionstring,statusButton.IsChekcs);
+                                            read.DeleteAtributXml(pathfileinn,
+                                                LibaryXMLAuto.GenerateAtribyte.GeneratorAtribute
+                                                    .GenerateAtributeMassNumCollection(inn.NumColection.ToString()));
+                                            statusButton.Count++;
+                                        }
+                                        else
+                                        {
+                                            break;
+                                        }
+                                            statusButton.IsCheker();
+                                    }
+                                    var status = exit.Exitfunc(statusButton.Count, snumodelmass.ListInn.Length,
+                                        statusButton.Iswork);
+                                    statusButton.Count = status.IsCount;
+                                    statusButton.Iswork = status.IsWork;
+                                    DispatcherHelper.CheckBeginInvokeOnUI(
+                                        delegate { statusButton.StatusGrinandYellow(status.Stat); });
+                                }
+                                else
+                                {
+                                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status7);
+                            }
+                        });
+
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status5);
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
             }
         }
     }

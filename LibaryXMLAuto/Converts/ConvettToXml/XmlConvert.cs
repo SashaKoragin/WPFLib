@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 using ClosedXML.Excel;
+//using LibaryXMLAutoModelXmlAuto.ModelFaceFid;
 using LibaryXMLAutoModelXmlAuto.FpdReg;
 using LibaryXMLAutoModelXmlAuto.FullInnCount;
+using LibaryXMLAutoModelXmlAuto.ModelFaceFid;
 using LibaryXMLAutoModelXmlAuto.ModelFidZorI;
 using LibaryXMLAutoModelXmlAuto.ModelJurnal;
 using LibaryXMLAutoModelXmlAuto.ModelSnuOne;
@@ -46,6 +44,7 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
         }
         /// <summary>
         /// Метод конвертации xlsx по xml sheme SnuOneForm.xsd
+        /// Убирает повторяющиеся значения
         /// </summary>
         /// <param name="pathFilexlsx">Путь к файлу xlsx</param>
         /// <param name="listfile">Выбранный лист</param>
@@ -56,12 +55,13 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
         {
             var ws = ListXlsx(pathFilexlsx, listfile);
             var countcell = CountUseRow(ws, letter);
+            
             List<string> listinn = new List<string>();
             for (int i = Convert.ToInt32(isOneUseRows) + 1; i <= countcell; i++)
             {
                 listinn.Add(ws.Cell(letter + i).Value.ToString());
             }
-            return listinn;
+            return listinn.Distinct().ToList();
         }
 
         /// <summary>
@@ -75,6 +75,18 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
         public void ConvertListSnuOneForm(string pathFilexlsx,string listfile,string letter,bool isOneUseRows,string path)
         {
             SerializSnuOneForm(ListRowExcel(pathFilexlsx,listfile,letter,isOneUseRows), path);
+        }
+        /// <summary>
+        /// Метод конвертации xlsx по xml sheme FaceFid.xsd
+        /// </summary>
+        /// <param name="pathFilexlsx">Путь к файлу xlsx</param>
+        /// <param name="listfile">Выбранный лист</param>
+        /// <param name="letter">Буква в xlsx</param>
+        /// <param name="isOneUseRows">Параметр указывающий Используем 1 строку или нет</param>
+        /// <param name="path">Параметр пути сохранения</param>
+        public void ConvertFidFace(string pathFilexlsx, string listfile, string letter, bool isOneUseRows, string path)
+        {
+            SerializFidFace(ListRowExcel(pathFilexlsx, listfile, letter, isOneUseRows), path);
         }
 
         ///<summary>
@@ -142,10 +154,10 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
         {
             List<string> liststringrow = ListRowExcel(pathFilexlsx, listfile, letter, isOneUseRows);
             int i = 0;
-            FidFactZemlyOrImushestvo fid = new FidFactZemlyOrImushestvo() {Fid = new Fid[liststringrow.Count]};
+            FidFactZemlyOrImushestvo fid = new FidFactZemlyOrImushestvo() {Fid = new LibaryXMLAutoModelXmlAuto.ModelFidZorI.Fid[liststringrow.Count]};
             foreach (var fidid in liststringrow)
             {
-                Fid f = new Fid() {FidZemlyOrImushestvo = fidid};
+                LibaryXMLAutoModelXmlAuto.ModelFidZorI.Fid f = new LibaryXMLAutoModelXmlAuto.ModelFidZorI.Fid() {FidZemlyOrImushestvo = fidid};
                 fid.Fid[i] = f;
                 i++;
             }
@@ -175,6 +187,31 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
             }
             SerializerClassToXml(path, snu, typeof(SnuOneForm));
         }
+
+        /// <summary>
+        /// Метод конвертации в xml файл по схеме SnuOneForm.xsd
+        /// <![CDATA[
+        /// <?xml version="1.0"?>
+        ///<Face xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        ///    <Fid FidFace="100031408033" />
+        ///    <Fid FidFace="100221670111" />
+        /// </Face> ]]>
+        /// </summary>
+        /// <param name="masivInnStrings">Параметр список</param>
+        /// <param name="path">Параметр пути сохранения</param>
+        public void SerializFidFace(List<string> masivInnStrings, string path)
+        {
+            int i = 0;
+            Face face = new Face() {Fid=new LibaryXMLAutoModelXmlAuto.ModelFaceFid.Fid[masivInnStrings.Count]};
+            foreach (var fid in masivInnStrings)
+            {
+                var f = new LibaryXMLAutoModelXmlAuto.ModelFaceFid.Fid() { FidFace = fid };
+                face.Fid[i] = f;
+                i++;
+            }
+            SerializerClassToXml(path, face, typeof(Face));
+        }
+
 
         /// <summary>
         /// Метод конвертации xlsx по xml sheme FpdReg.xsd

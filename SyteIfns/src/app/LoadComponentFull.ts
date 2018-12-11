@@ -1,4 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppRoutingModule } from './Navigate';
+import { Main } from './Otdel/Main/Main/Main';
 import { HeadersAdd, BodyAdd, StoneAdd } from './FullSetting/FormValidation/Dialog/ItTemplate/Class/Dialogs'
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -6,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './Otdel/Analiticks/FaceMerge/StartModule/StartComponent';
 import { ReshenieStart } from './Otdel/Yregulirovanie/Trebovanie/StartModule/Reshenie';
 import { Filter } from './Otdel/Yregulirovanie/Trebovanie/Model/Filter';
+import { DialogDela } from './FullSetting/FormValidation/Dialog/CreateDela/Class/DialogDela';
+import { DialogOkato } from './FullSetting/FormValidation/Dialog/AddOkato/Class/DialogOkato';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule,
     MatBadgeModule,
@@ -49,6 +54,7 @@ import { BdkIt } from './Otdel/It/Bdk/StartModule/Bdk';
 import { BdkLetter } from './Otdel/It/FormLetter/StartModel/FormLetter';
 import { AddTemplate } from './Otdel/It/AddTemplate/StartModel/AddTemplate';
 import { Predproverka } from './Otdel/Predproverka/Soprovod/StartModule/Predproverka';
+import { AnalizNo } from './Otdel/Analiticks/AnalizNo/StartModule/StartModuleAnaliz';
 
 @NgModule(({
     exports: [
@@ -110,9 +116,10 @@ export class Reshenie {
 }
 
 @NgModule(({
-    imports: [BrowserModule, FormsModule, HttpClientModule],
-    declarations: [BdkIt],
-    bootstrap: [BdkIt]
+    imports: [BrowserModule, FormsModule, HttpClientModule, AngularMaterialModule, BrowserAnimationsModule, ReactiveFormsModule],
+    declarations: [BdkIt, DialogDela],
+    bootstrap: [BdkIt],
+    entryComponents: [DialogDela]
 }) as any)
 export class Bdk {
 
@@ -142,3 +149,35 @@ export class Template { }
 }) as any)
 
 export class Soprovod { }
+
+@NgModule(({
+    imports: [BrowserModule, FormsModule, HttpClientModule, AngularMaterialModule, BrowserAnimationsModule, ReactiveFormsModule],
+    declarations: [AnalizNo, DialogOkato],
+    bootstrap: [AnalizNo],
+    entryComponents: [DialogOkato]
+}) as any)
+
+export class AnalizNaloga { }
+
+
+@NgModule(({
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        AngularMaterialModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        AppRoutingModule
+    ],
+    declarations: [
+        Main,
+        DialogOkato, HeadersAdd, BodyAdd, StoneAdd, DialogDela,
+        Predproverka, BdkIt, AnalizNo, BdkLetter, AddTemplate, ReshenieStart, AppComponent, AnalizNo
+    ],
+    bootstrap: [Main],
+    entryComponents: [DialogOkato, HeadersAdd, BodyAdd, StoneAdd, DialogDela]
+}) as any)
+
+export class AppModule {
+}

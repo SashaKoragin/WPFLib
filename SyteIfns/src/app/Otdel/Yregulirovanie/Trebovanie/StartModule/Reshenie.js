@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component, ViewChild } from '@angular/core';
 import { GenerateParamService } from '../../../../FullSetting/CreateSetting';
-import { PostTrebovanie, ServiceModel } from '../../../../PostZaprosFull/PostFull';
+import { PostTrebovanie, ServiceModel, DonloadFileReport } from '../../../../PostZaprosFull/PostFull';
 import { CreateSettingSelect, DataBase } from '../../../../FullSetting/CreateSetting';
 import { FullSetting } from '../../../../FullSetting/FullSetting';
 import { SysNum, TableSysNumReshen } from '../Model/ModelSelect';
@@ -21,10 +21,13 @@ import { ParamLogica } from '../../../../FullSetting/SelectTable/LogicaSelect';
 import { ServiceWcf } from '../../../../ModelService/ModelService';
 import { ParametrSelectMail } from '../../../../ModelService/SelectCommand';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { AdressMerge } from '../../../../AdressFullRest/AdresSservice';
+import { DonloadFile } from '../../../../FullSetting/DonloadFileServer/DonloadFile';
 var ReshenieStart = /** @class */ (function () {
-    function ReshenieStart(dataservice, service) {
+    function ReshenieStart(dataservice, service, donloadreport) {
         this.dataservice = dataservice;
         this.service = service;
+        this.donloadreport = donloadreport;
         this.wcf = null;
         this.table = new TableReshenia();
         this.paramlogica = new ParamLogica();
@@ -40,6 +43,8 @@ var ReshenieStart = /** @class */ (function () {
         this.incass = null;
         this.errornull = true;
         this.filters = new TableSysNumReshen();
+        this.adress = new AdressMerge();
+        this.donloadfile = new DonloadFile(this.donloadreport);
     }
     ReshenieStart.prototype.ngOnInit = function () {
         var _this = this;
@@ -138,9 +143,9 @@ var ReshenieStart = /** @class */ (function () {
             selector: 'my-treb',
             templateUrl: '../Template/Reshenie.html',
             styleUrls: ['../Template/Style.css'],
-            providers: [PostTrebovanie, ServiceModel]
+            providers: [PostTrebovanie, ServiceModel, DonloadFileReport]
         })),
-        __metadata("design:paramtypes", [PostTrebovanie, ServiceModel])
+        __metadata("design:paramtypes", [PostTrebovanie, ServiceModel, DonloadFileReport])
     ], ReshenieStart);
     return ReshenieStart;
 }());

@@ -1,4 +1,5 @@
-﻿<div id="db">
+﻿<p align="right"><button mat-button [disabled]="donloadfile.statusdonload" (click)="donloadfile.loadfile('Требования.xlsx',adress.adressTrebovanie)">Скачать файл выборки Требований!!!</button></p>
+<div id="db">
     <h2>База данных по умолчанию:  {{database.db.db}}</h2><br/>
     <b id="text">Выбор Базы Данных:</b>
     <mat-form-field>
@@ -25,7 +26,6 @@
         <button mat-button id="startincass" [disabled]="status.blocks" class="btn btn-sm" (click)="storeprocedurestart(3)">Запустить инкассовые поручения</button>
     </div>
 </div>
-
     <div class="head" [style.display]="paramlogica.select ? 'grid' : 'none'">
         <div class="button"><button mat-button (click)="update()">Обновить</button></div>
         <div class="grid-container2" *ngFor="let selectvalue of selecting?.parametrreshen">

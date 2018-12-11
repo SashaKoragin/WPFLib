@@ -27,6 +27,10 @@ namespace AutomatAis3Full.Form.Report.ReportXml.DataContext
 
         public DataContextReport()
         {
+            try
+            {
+
+           
             var command = new CommandSnuOneAuto();
             Report = new ReportXlsxMethod(ConfigFile.ExcelReportFile);
             ReportJurnalAndFile = new ReportJurnalMethod(ConfigFile.PathJurnal, ConfigFile.PathInn);
@@ -40,6 +44,12 @@ namespace AutomatAis3Full.Form.Report.ReportXml.DataContext
                 ReportJurnalAndFile.AddFileXml(ConfigFile.PathInn);
                 ReportJurnalAndFile.AddJurnal(ConfigFile.PathJurnal);
             });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

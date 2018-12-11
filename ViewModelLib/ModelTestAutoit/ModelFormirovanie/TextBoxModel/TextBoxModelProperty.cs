@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Prism.Mvvm;
+using PublicLogicaFull.FileLogica.FileInfoLogica;
 using ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml;
 
 namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.TextBoxModel
@@ -94,7 +95,8 @@ namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.TextBoxModel
         /// <param name="file">Файл</param>
         public void NewFileXsls(FileInfo file)
         {
-            Icon = PublicLogicaFull.FileLogica.FileInfoLogica.FileLogica.Extracticonfile(file.FullName);
+            var filelogica = new FileLogica();
+            Icon = filelogica.Extracticonfile(file.FullName);
             Name = file.Name;
             Path = file.FullName;
         }

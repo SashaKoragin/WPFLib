@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace LibaryXMLAuto.ModelXmlSql.Model.FullSetting
@@ -31,6 +32,14 @@ namespace LibaryXMLAuto.ModelXmlSql.Model.FullSetting
         /// Параметры для выбора комманды с сервиса данных
         /// </summary>
         public ParamService ParamService { get; set; }
+        /// <summary>
+        /// Настройки для анализа карточек КРСБ
+        /// </summary>
+        public DeloCreate DeloCreate { get; set; }
+        /// <summary>
+        /// Дела приема КРСБ
+        /// </summary>
+        public DeloPriem DeloPriem { get; set; }
         /// <summary>
         /// БД Тест или рабочая
         /// </summary>
@@ -120,6 +129,35 @@ namespace LibaryXMLAuto.ModelXmlSql.Model.FullSetting
         [DataMember(Name = "IdCommand")]
         public int IdCommand { get; set; }
     }
-
+    /// <summary>
+    /// Предворительно значения дел приема
+    /// </summary>
+    public class DeloPriem
+    {
+        /// <summary>
+        /// Значения дел приема
+        /// </summary>
+        [DataMember(Name = "DelaPriem")]
+        public List<string> DelaPriem { get; set; }
+    }
+    //Создание карточек КРСБ
+    public class DeloCreate
+    {
+        /// <summary>
+        /// Дата поступления дел приема
+        /// </summary>
+        [DataMember(Name = "DateDelo")]
+        public DateTime DateDelo { get; set; }
+        /// <summary>
+        /// Уникальный номер дела
+        /// </summary>
+        [DataMember(Name = "D3979")]
+        public int D3979 { get; set; }
+        /// <summary>
+        /// Уникальный номер дела
+        /// </summary>
+        [DataMember(Name = "Okato")]
+        public string Okato { get; set; }
+    }
 
 }

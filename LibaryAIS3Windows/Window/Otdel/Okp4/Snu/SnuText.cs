@@ -15,5 +15,9 @@ namespace LibaryAIS3Windows.Window.Otdel.Okp4.Snu
         internal static string DialogWin = "Создать заявку с параметрами";
 
         internal static string Snu = "СНУ";
+        /// <summary>
+        /// Диалоговое окно если список налогоплательщиков пуст
+        /// </summary>
+        internal static string Null = "Список налогоплательщиков пуст.";
     }
 }

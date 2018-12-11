@@ -1,0 +1,56 @@
+﻿<h2 mat-dialog-title>Создание дел КРСБ</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="delaCreate" #formDir="ngForm">
+        <div class="cross-validation" [class.cross-validation-error]="delaCreate.errors?.identityRevealed && (delaCreate.touched || delaCreate.dirty)">
+            <mat-form-field class="dela-width">
+                <textarea class="dela-height" matInput placeholder="Дела приема УН:" type="text" [(ngModel)]="delatext" formControlName="delaPriem" required></textarea>
+            </mat-form-field>
+            <div *ngIf="delaPriem.invalid && (delaPriem.dirty || delaPriem.touched)" class="alert alert-danger">
+                <div *ngIf="delaPriem.errors.required">
+                    <label>Не введен текст!!!</label> 
+                </div>
+                <div *ngIf="delaPriem.errors.forbiddenName">
+                    <label>Не соответствует выражению /^((\d{{'{'}}4,6{{'}'}}\/{{'{'}}1{{'}'}})+(\d{{'{'}}4,6{{'}'}})|(\d{{'{'}}4,6{{'}'}}))$/!!!</label>
+                </div>
+            </div>
+            <button mat-button type="submit" class="btn btn-default"
+                    [disabled]="delaCreate.invalid"
+                    (click)="addDeloCrete();formDir.resetForm({})">
+                Добавить/Создать дела КРСБ!!!
+            </button>
+        </div>
+    </form>
+    <table mat-table *ngIf="delop.yesdate; else notfound" [dataSource]="delop.dataSourceDeloCreate">
+
+        <ng-container matColumnDef="IdDelo">
+            <th mat-header-cell *matHeaderCellDef>Ун дела приема</th>
+            <td mat-cell *matCellDef="let element"> {{element.IdDelo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Id">
+            <th mat-header-cell *matHeaderCellDef>Start Task</th>
+            <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Id2">
+            <th mat-header-cell *matHeaderCellDef>Following Task</th>
+            <td mat-cell *matCellDef="let element"> {{element.Id2}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Command">
+            <th mat-header-cell *matHeaderCellDef>Описание</th>
+            <td mat-cell *matCellDef="let element"> {{element.Cmd}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="delop.displaydataDeloCreate"></tr>
+        <tr mat-row *matRowDef="let row; columns: delop.displaydataDeloCreate;"></tr>
+    </table>  
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
+
+<ng-template #notfound>
+    <h4>По данным делам нет созданных процессов!!!</h4>
+</ng-template>

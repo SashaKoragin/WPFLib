@@ -1,4 +1,5 @@
-﻿<div id="model">
+﻿<p align="right"><button mat-button [disabled]="donloadfile.statusdonload" (click)="donloadfile.loadfile('Бдк.xlsx',adress.adressBdk)">Сформировать и скачать файл выборки БДК!!!</button></p>
+<div id="model">
     <div class="user">
         <label>Пользователь Ун БД:  </label>
         <input id="N269" placeholder="УН пользователя!!!" name="n269" [(ngModel)]="setting.ParametrBdk.N269" type="number" />
@@ -11,10 +12,9 @@
     </div>
 </div>
 <label>{{bloks.messagestatus}}</label>
-<div>
     <button id="analis" [disabled]="bloks.blocks" class="btn btn-sm" (click)="storeprocedure(1,0,null)">Запустить анализ БДК</button>
     <button id="startingprocedure" [disabled]="bloks.blocks" class="btn btn-sm" (click)="storeprocedure(2,setting.ParametrBdk.N269,setting.ParametrBdk.D05)">Запустить создание БДК</button>
-</div>
+    <button id="createdela" class="btn btn-sm" (click)="dialogs.openDialogCreateDela()">Создать дела приема КРСБ</button> 
 <div>
     <h1>Анализ данных по БДК</h1>
     <table class="table table-striped">

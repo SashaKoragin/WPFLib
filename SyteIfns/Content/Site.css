@@ -59,7 +59,7 @@
 }
 .footer {
     width: auto;
-    height: 130px;
+    height: auto;
     border: 1px solid green;
 }
 

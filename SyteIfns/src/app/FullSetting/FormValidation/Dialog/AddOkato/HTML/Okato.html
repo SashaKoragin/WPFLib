@@ -1,0 +1,23 @@
+﻿<h2 mat-dialog-title>Добавление Окато для корректного анализа данных.</h2>
+    <label>Ун дела приема: {{data.delo}}</label><br/>
+    <form [formGroup]="delaOkato" #formDir="ngForm">
+        <div class="cross-validation" [class.cross-validation-error]="delaOkato.errors?.identityRevealed && (delaOkato.touched || delaOkato.dirty)">
+            <button class="margin btn btn-default"
+                    mat-button type="submit"
+                    [disabled]="delaOkato.invalid"
+                    (click)="addokato();formDir.resetForm({})">
+                Добавить ОКАТО
+            </button>
+                <mat-form-field class="okato-width">
+                <input class="inputokato" matInput placeholder="Ввод ОКАТО" type="text" formControlName="okato" required/>
+                <mat-error *ngIf="okato.invalid && (okato.dirty || okato.touched)" class="alert alert-danger">
+                    <mat-error *ngIf="okato.errors.required">Поле не может быть пустым!!!</mat-error>
+                    <mat-error *ngIf="okato.errors.forbiddenName">Не соответствует выражению /^(\d{{'{'}}11{{'}'}})$/!!!</mat-error>
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </form><br/>
+{{message}}
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

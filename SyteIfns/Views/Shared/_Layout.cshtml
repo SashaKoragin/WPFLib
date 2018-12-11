@@ -4,21 +4,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title – приложение ASP.NET</title>
-    <script language="javascript" type="text/javascript" src="~/Scripts/MyTestScript.js"></script>
+    @*<title>@ViewBag.Title – приложение ASP.NET</title>
+    <script language="javascript" type="text/javascript" src="~/Scripts/MyTestScript.js"></script>*@
     <link rel="stylesheet" href="~/public/vendor.css" asp-append-version="true" />
     <script src="~/public/vendor.js"></script>
-    @Styles.Render("~/Content/Site.css")
+    @*@Styles.Render("~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)*@
 </head>
 <body>
-
-<div class="header">
+    @*<base href="/">
+    <app-root></app-root>
+    <script src="~/public/polyfills.js"></script>
+    <script src="~/public/app.js"></script>*@
+@*<div class="header">
     <button type="button" class="buttonclass" onclick="test('menu')">Отделы</button>
     <button type="button" class="buttonclass" onclick="show('menu')">Скрыть</button>
 
 </div>
+
 <div id="menu" class="sildebar">
     <div class="treeview">
         <ul>
@@ -88,6 +92,13 @@
                                 </div>
                             </li>
                         </ul>
+                        <ul>
+                            <li>
+                                <div>
+                                    <p>@Html.ActionLink("Анализ КРСБ!!!", "AnalizNo", "Otdel")</p>
+                                </div>
+                            </li>
+                        </ul>
                     </li>
                     <li class="cl">
                         <div>
@@ -109,15 +120,14 @@
         </ul>
     </div>
 </div>
-
-<div class="content">
+<div class="content">*@
     @RenderBody()
-</div>
+@*</div>
 <div class="footer">
 
-</div>
-@Scripts.Render("~/bundles/jquery")
+</div>*@
+@*@Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
+@RenderSection("scripts", required: false)*@
 </body>
 </html>

@@ -50,5 +50,14 @@ namespace LibaryXMLAuto.GenerateAtribyte
         {
             return String.Format("/FidFactZemlyOrImushestvo/Fid[@FidZemlyOrImushestvo =\"{0}\"]", fid);
         }
+        /// <summary>
+        /// Данный метод генерит Атрибут для поиска в xml для схемы FaceFid.xsd
+        /// </summary>
+        /// <param name="fid">ФИД</param>
+        /// <returns>Сгенерированую строку для поиска Атрибута</returns>
+        public static string GenerateAtributeFaceFid(string fid)
+        {
+            return String.Format("/Face/Fid[@FidFace =\"{0}\"]", fid);
+        }
     }
 }

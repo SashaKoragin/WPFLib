@@ -29,7 +29,6 @@
                             Text="{Binding TextBoxFileModel.Name, ValidatesOnDataErrors=True}"
                             ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
                             Validation.ErrorTemplate="{StaticResource ValidationFailederror}" />
-
                     </WrapPanel>
                 </ControlTemplate>
             </TextBox.Template>

@@ -2,6 +2,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularTemplate, Headers, Stone, Body, Template, NameDocument } from '../../Otdel/It/AddTemplate/Model/ModelTemplate';
 import { SelectionModel } from '@angular/cdk/collections';
 import { HeadersAdd, BodyAdd, StoneAdd } from './Dialog/ItTemplate/Class/Dialogs';
+//Проверка Validation для добавления документа в БД
 export var identityRevealedValidator = function (control) {
     var nameDoc = control.get('nameDoc');
     var manualDoc = control.get('manualDoc');
@@ -14,6 +15,7 @@ export var identityRevealedValidator = function (control) {
         && body.value === null
         && stone.value === null ? { 'identityRevealed': true } : null;
 };
+//Класс контролов
 var ControlTemplate = /** @class */ (function () {
     function ControlTemplate(addTemp, dialog, addtemp) {
         this.addTemp = addTemp;
@@ -27,9 +29,13 @@ var ControlTemplate = /** @class */ (function () {
         this.bodys = new AngularTemplate(null, null, null, new Body);
         //Модель для основания
         this.stones = new AngularTemplate(null, null, null, null, new Stone);
+        //selector Body
         this.selectionBody = new SelectionModel(false, []);
+        //selector Header
         this.selectionHeaders = new SelectionModel(false, []);
+        //selector Stone
         this.selectionStone = new SelectionModel(false, []);
+        //Реактивная форма на документ
         this.formTemplate = new FormGroup({
             'nameDoc': new FormControl('', Validators.required),
             'manualDoc': new FormControl('', Validators.required),
@@ -63,6 +69,7 @@ var ControlTemplate = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    //Выбор из таблицы Header
     ControlTemplate.prototype.selectHeaders = function () {
         var _this = this;
         if (this.selectionHeaders.selected.length > 0) {
@@ -74,6 +81,7 @@ var ControlTemplate = /** @class */ (function () {
             this.document.Template.IdHeaders = null;
         }
     };
+    //Выбор из таблицы Body
     ControlTemplate.prototype.selectBody = function () {
         var _this = this;
         if (this.selectionBody.selected.length > 0) {
@@ -85,6 +93,7 @@ var ControlTemplate = /** @class */ (function () {
             this.document.Template.IdBody = null;
         }
     };
+    //Выбор из таблицы Stone
     ControlTemplate.prototype.selectStone = function () {
         var _this = this;
         if (this.selectionStone.selected.length > 0) {
@@ -96,18 +105,21 @@ var ControlTemplate = /** @class */ (function () {
             this.document.Template.IdStone = null;
         }
     };
+    //Открытие диалогового окна на добавления Header
     ControlTemplate.prototype.openDialogHead = function () {
         this.dialog.open(HeadersAdd, {
             width: '600px',
             data: { angulardate: this.head, adress: this.addtemp, addTemp: this.addTemp }
         });
     };
+    //Открытие диалогового окна на добавления Body
     ControlTemplate.prototype.openDialogBody = function () {
         this.dialog.open(BodyAdd, {
             width: '600px',
             data: { angulardate: this.bodys, adress: this.addtemp, addTemp: this.addTemp }
         });
     };
+    //Открытие диалогового окна на добавления Stone
     ControlTemplate.prototype.openDialogStone = function () {
         this.dialog.open(StoneAdd, {
             width: '600px',

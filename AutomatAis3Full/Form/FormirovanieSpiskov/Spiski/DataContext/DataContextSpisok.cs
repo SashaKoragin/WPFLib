@@ -1,10 +1,8 @@
-﻿using System.Diagnostics;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
 using AutomatAis3Full.Config;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie.PublicElement.SelectFile;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie.PublicElement.SelectList;
-using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormirovanieXml;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormirovanieXml.CountCollection;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormirovanieXml.DeleteTitle;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormirovanieXml.RowSelect;

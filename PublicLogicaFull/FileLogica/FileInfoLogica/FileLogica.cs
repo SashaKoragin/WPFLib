@@ -12,13 +12,22 @@ namespace PublicLogicaFull.FileLogica.FileInfoLogica
             var files = dir.GetFiles();
             return files;
         }
-
-        public static Icon Extracticonfile(string namefile)
+        /// <summary>
+        /// Операция поиска файлов в текущем каталоге
+        /// </summary>
+        /// <param name="paterns"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static FileInfo[] FileinfoMass(string paterns,string path)
         {
+            var dir = new DirectoryInfo(path);
+            var files = dir.GetFiles(paterns,SearchOption.TopDirectoryOnly);
+            return files;
+        }
 
-            var shell = ShellObject.FromParsingName(namefile);
-            ShellThumbnail sh = shell.Thumbnail;
-            return sh.MediumIcon;
+        public Icon Extracticonfile(string namefile)
+        {
+            return Icon.ExtractAssociatedIcon(namefile);
         }
 
         public static string FormatFile(string path)

@@ -110,10 +110,11 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ReportXml
             
             if (Directory.Exists(pathJurnalXml))
             {
+                var filelogica = new FileLogica();
                 XmlReportJurnal.Clear();
                 foreach (var file in FileLogica.FileinfoMass(pathJurnalXml))
                 {
-                    XmlReportJurnal.Add(new ReportJurnalProperty() { Icon = FileLogica.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName });
+                    XmlReportJurnal.Add(new ReportJurnalProperty() { Icon = filelogica.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName });
                 }
             }
         }
@@ -125,10 +126,11 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ReportXml
         {
             if (Directory.Exists(pathfileXml))
             {
+                var filelogica = new FileLogica();
                 XmlFileZnach.Clear();
                 foreach (var file in FileLogica.FileinfoMass(pathfileXml))
                 {
-                   XmlFileZnach.Add(new ReportJurnalProperty() {Icon = FileLogica.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName});
+                   XmlFileZnach.Add(new ReportJurnalProperty() {Icon = filelogica.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName});
                 }
             }
         }
