@@ -25,7 +25,6 @@ module.exports = {
         rules: [//загрузчик для ts
             {
                 test: /\.ts$/, // определяем тип файлов
-
                 use: [
                     {
                         loader: 'awesome-typescript-loader',
@@ -39,7 +38,29 @@ module.exports = {
             }, {
                 test: /\.css$/,
                 loader: 'raw-loader'
+            },
+            {
+                test: /.*\.(png|woff|woff2|eot|ttf|svg|jpg)(\?|$)/,
+                use: [
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                outputPath: './images/',
+                                name: '[name].[ext]'
+                            }
+                        }
+                ]
             }
+                                     //{
+                                     //    test: /\.(png|jp(e*)g|svg)$/,
+                                     //    use: [{
+                                     //        loader: 'url-loader',
+                                     //        options: {
+                                     //            limit: 8000, // Convert images < 8kb to base64 strings
+                                     //            name: 'images/[hash]-[name].[ext]'
+                                     //        }
+                                     //    }]
+                                     //}
         ]
     },
     plugins: [

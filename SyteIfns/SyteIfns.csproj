@@ -133,6 +133,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="public\images\wood-pane.jpg" />
+    <Content Include="src\app\Images\wood-pane.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="public\app.js" />
     <Content Include="public\polyfills.js" />
     <Content Include="public\vendor.css" />
@@ -204,6 +208,7 @@
     <TypeScriptCompile Include="src\app\FullSetting\ProcessFull.ts" />
     <TypeScriptCompile Include="src\app\FullSetting\SelectTable\LogicaSelect.ts" />
     <TypeScriptCompile Include="src\app\FullSetting\SelectTable\TableGenerator.ts" />
+    <TypeScriptCompile Include="src\app\Images\ImageConst.ts" />
     <TypeScriptCompile Include="src\app\LoadComponentFull.ts" />
     <TypeScriptCompile Include="src\app\ModelService\ModelService.ts" />
     <TypeScriptCompile Include="src\app\ModelService\SelectCommand.ts" />

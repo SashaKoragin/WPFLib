@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { Otdel, ModelOtdel} from '../ModelOtdel/ModelOtdel';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
+import * as images from '../../../Images/ImageConst';
 
 @Component(({
     selector: 'app-root',
@@ -12,7 +13,6 @@ import { MatTreeNestedDataSource } from '@angular/material/tree';
 }) as any)
 
 export class Main {
-
     fullpath: string = null;
     model: string = null;
     nestedTreeControl: NestedTreeControl<ModelOtdel>;

@@ -10,11 +10,10 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/, loader: 'url-loader?limit=100000' },
             {
                 test: /\.css(\?|$)/, loader: ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: "css-loader"
+                    use: "css-to-string-loader!css-loader"
                 })
             }
         ]
