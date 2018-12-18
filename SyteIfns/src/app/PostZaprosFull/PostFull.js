@@ -14,9 +14,6 @@ var url = new AdressMerge();
 var httpOptionsJson = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-var httpOptionsXml = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/xml' })
-};
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
@@ -122,7 +119,12 @@ var ServiceModel = /** @class */ (function () {
         this.http = http;
     }
     ServiceModel.prototype.modelservice = function (setting) {
-        return this.http.post(url.servicecommand, setting, httpOptionsJson);
+        try {
+            return this.http.post(url.servicecommand, setting, httpOptionsJson);
+        }
+        catch (e) {
+            alert(e.toString());
+        }
     };
     ServiceModel.prototype.datacommandserver = function (angular) {
         return this.http.post(url.sqlcommand, angular, httpOptionsJson);

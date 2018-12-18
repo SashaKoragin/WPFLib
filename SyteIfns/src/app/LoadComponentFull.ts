@@ -1,17 +1,17 @@
 ﻿import { NgModule } from '@angular/core';
-import { Router } from '@angular/router';
 import { AppRoutingModule } from './Navigate';
 import { Main } from './Otdel/Main/Main/Main';
-import { HeadersAdd, BodyAdd, StoneAdd } from './FullSetting/FormValidation/Dialog/ItTemplate/Class/Dialogs'
+import { HeadersAdd, BodyAdd, StoneAdd } from './FullSetting/FormValidation/Dialog/ItTemplate/Class/Dialogs';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './Otdel/Analiticks/FaceMerge/StartModule/StartComponent';
 import { ReshenieStart } from './Otdel/Yregulirovanie/Trebovanie/StartModule/Reshenie';
-import { Filter } from './Otdel/Yregulirovanie/Trebovanie/Model/Filter';
 import { DialogDela } from './FullSetting/FormValidation/Dialog/CreateDela/Class/DialogDela';
 import { DialogOkato } from './FullSetting/FormValidation/Dialog/AddOkato/Class/DialogOkato';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SignalRConfiguration, SignalRModule } from 'ng2-signalr';
+import { ChatComponent } from './Otdel/It/Chat/StartModule/Chat';
 import { MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
@@ -55,7 +55,6 @@ import { BdkLetter } from './Otdel/It/FormLetter/StartModel/FormLetter';
 import { AddTemplate } from './Otdel/It/AddTemplate/StartModel/AddTemplate';
 import { Predproverka } from './Otdel/Predproverka/Soprovod/StartModule/Predproverka';
 import { AnalizNo } from './Otdel/Analiticks/AnalizNo/StartModule/StartModuleAnaliz';
-
 @NgModule(({
     exports: [
         CdkTableModule,
@@ -99,65 +98,18 @@ import { AnalizNo } from './Otdel/Analiticks/AnalizNo/StartModule/StartModuleAna
 }) as any)
 export class AngularMaterialModule { }
 
-@NgModule({
-    get imports(): any[] { return [BrowserModule, FormsModule, HttpClientModule]; },
-    declarations: [AppComponent],
-    bootstrap: [AppComponent]
-})
 
-export class FaceError {}
-
-@NgModule(({
-    imports: [BrowserModule, FormsModule, HttpClientModule, AngularMaterialModule, BrowserAnimationsModule, ReactiveFormsModule],
-    declarations: [ReshenieStart],
-    bootstrap: [ReshenieStart]
-}) as any)
-export class Reshenie {
+export function createConfig(): SignalRConfiguration {
+    const c = new SignalRConfiguration();
+    c.hubName = 'ServiceMessage';
+    c.qs = { user: 'Donald' };
+    c.url = 'http://localhost:8059/signalr/hub';
+    c.logging = true;
+    c.executeEventsInZone = true; // optional, default is true
+    c.executeErrorsInZone = true; // optional, default is false
+    c.executeStatusChangeInZone = true; // optional, default is true
+    return c;
 }
-
-@NgModule(({
-    imports: [BrowserModule, FormsModule, HttpClientModule, AngularMaterialModule, BrowserAnimationsModule, ReactiveFormsModule],
-    declarations: [BdkIt, DialogDela],
-    bootstrap: [BdkIt],
-    entryComponents: [DialogDela]
-}) as any)
-export class Bdk {
-
-}
-
-@NgModule(({
-    imports: [BrowserModule, FormsModule, HttpClientModule, AngularMaterialModule, BrowserAnimationsModule, ReactiveFormsModule],
-    declarations: [BdkLetter],
-    bootstrap: [BdkLetter]
-}) as any)
-
-export class Letter {}
-
-@NgModule(({
-    imports: [BrowserModule, FormsModule, HttpClientModule, AngularMaterialModule, BrowserAnimationsModule, ReactiveFormsModule],
-    declarations: [AddTemplate, HeadersAdd, BodyAdd, StoneAdd],
-    bootstrap: [AddTemplate],
-    entryComponents: [HeadersAdd, BodyAdd, StoneAdd]
-}) as any)
-
-export class Template { }
-
-@NgModule(({
-    imports: [BrowserModule, FormsModule, HttpClientModule, AngularMaterialModule, BrowserAnimationsModule, ReactiveFormsModule],
-    declarations: [Predproverka],
-    bootstrap: [Predproverka]
-}) as any)
-
-export class Soprovod { }
-
-@NgModule(({
-    imports: [BrowserModule, FormsModule, HttpClientModule, AngularMaterialModule, BrowserAnimationsModule, ReactiveFormsModule],
-    declarations: [AnalizNo, DialogOkato],
-    bootstrap: [AnalizNo],
-    entryComponents: [DialogOkato]
-}) as any)
-
-export class AnalizNaloga { }
 
 
 @NgModule(({
@@ -168,12 +120,14 @@ export class AnalizNaloga { }
         AngularMaterialModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
-        AppRoutingModule
+        AppRoutingModule,
+        SignalRModule.forRoot(createConfig)
     ],
     declarations: [
         Main,
         DialogOkato, HeadersAdd, BodyAdd, StoneAdd, DialogDela,
-        Predproverka, BdkIt, AnalizNo, BdkLetter, AddTemplate, ReshenieStart, AppComponent, AnalizNo
+        Predproverka, BdkIt, AnalizNo, BdkLetter, AddTemplate, ReshenieStart, AppComponent, AnalizNo,
+        ChatComponent
     ],
     bootstrap: [Main],
     entryComponents: [DialogOkato, HeadersAdd, BodyAdd, StoneAdd, DialogDela]

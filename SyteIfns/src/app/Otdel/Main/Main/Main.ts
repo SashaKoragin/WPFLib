@@ -1,10 +1,9 @@
 ﻿import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { Otdel, ModelOtdel} from '../ModelOtdel/ModelOtdel';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import * as images from '../../../Images/ImageConst';
-
+import 'signalr/jquery.signalR.js';
 @Component(({
     selector: 'app-root',
     templateUrl: '../Html/Main.html',

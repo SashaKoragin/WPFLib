@@ -1,6 +1,6 @@
 ﻿export class AdressMerge {
-    public host = 'i7751-w00000745';
-   //public host = 'localhost';
+   // public host = 'i7751-w00000745';
+    public host = 'localhost';
     public addresError = `http://${this.host}:8181/ServiceRest/SqlFaceError`;
     public addresFaceAdd = `http://${this.host}:8181/ServiceRest/SqlFaceAdd`;
     public addresDelFace = `http://${this.host}:8181/ServiceRest/SqlFaceDel`;

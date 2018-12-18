@@ -151,6 +151,8 @@
     <Content Include="src\app\Otdel\Analiticks\AnalizNo\Template\StyleAnaliz.css" />
     <Content Include="src\app\Otdel\It\AddTemplate\Template\AddTemplate.css" />
     <Content Include="src\app\Otdel\It\AddTemplate\Template\AddTemplate.html" />
+    <Content Include="src\app\Otdel\It\Chat\Template\CssChat.css" />
+    <Content Include="src\app\Otdel\It\Chat\Template\HtmlChat.html" />
     <Content Include="src\app\Otdel\Main\Html\Main.html" />
     <Content Include="src\app\Otdel\Main\Html\MainStyle.css" />
     <Content Include="src\app\Otdel\Predproverka\Soprovod\Template\Predproverka.html" />
@@ -225,6 +227,8 @@
     <TypeScriptCompile Include="src\app\Otdel\It\AddTemplate\StartModel\AddTemplate.ts" />
     <TypeScriptCompile Include="src\app\Otdel\It\Bdk\Model\BdkModel.ts" />
     <TypeScriptCompile Include="src\app\Otdel\It\Bdk\StartModule\Bdk.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\It\Chat\Model\Resolved.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\It\Chat\StartModule\Chat.ts" />
     <TypeScriptCompile Include="src\app\Otdel\It\FormLetter\Model\ModelDataBase\ModelMail.ts" />
     <TypeScriptCompile Include="src\app\Otdel\It\FormLetter\StartModel\FormLetter.ts" />
     <TypeScriptCompile Include="src\app\Otdel\Main\Main\Main.ts" />
@@ -258,11 +262,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>33905</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:33905/</IISUrl>
+          <IISUrl>http://localhost:33905/Ifns/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

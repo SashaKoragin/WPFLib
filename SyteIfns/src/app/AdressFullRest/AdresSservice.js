@@ -1,7 +1,7 @@
 var AdressMerge = /** @class */ (function () {
     function AdressMerge() {
-        this.host = 'i7751-w00000745';
-        //public host = 'localhost';
+        // public host = 'i7751-w00000745';
+        this.host = 'localhost';
         this.addresError = "http://" + this.host + ":8181/ServiceRest/SqlFaceError";
         this.addresFaceAdd = "http://" + this.host + ":8181/ServiceRest/SqlFaceAdd";
         this.addresDelFace = "http://" + this.host + ":8181/ServiceRest/SqlFaceDel";

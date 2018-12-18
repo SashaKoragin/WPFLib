@@ -26,5 +26,10 @@ export class Otdel {
                                       },
                                       { otdelfunc: 'Отдел предпроверочного анализа',
                                           children: [{ otdelfunc: null, children: null, types: 'Поручение об истребовании!!!', pages: '/page7', fullpath: 'Отдел предпроверочного анализа\\Поручение об истребовании!!!', model: 'Модуль для предпроверки!!!' }], types: null, pages: null, fullpath: null, model: null
-            }], types: null, pages: null, fullpath:null,model:null }]);
+                                      },
+                                      { otdelfunc: 'Тестовый чат',
+                                          children: [{ otdelfunc: null, children: null, types: 'Чат', pages: '/page8', fullpath:'Тестовый чат\\Чат', model:'Общий чат'}], types:null, pages:null, fullpath:null, model:null
+                                      }
+        ], types: null, pages: null, fullpath: null, model: null
+    }]);
 }

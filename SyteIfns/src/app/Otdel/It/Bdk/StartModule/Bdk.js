@@ -18,11 +18,13 @@ import { MatDialog } from '@angular/material';
 import { DialogOpenCreateDela } from '../../../../FullSetting/FormValidation/OpenDialog/OpenDialog';
 import { AdressMerge } from '../../../../AdressFullRest/AdresSservice';
 import { DonloadFile } from '../../../../FullSetting/DonloadFileServer/DonloadFile';
+import { ActivatedRoute } from '@angular/router';
 var BdkIt = /** @class */ (function () {
-    function BdkIt(dataservice, dialog, donloadreport) {
+    function BdkIt(dataservice, dialog, donloadreport, route) {
         this.dataservice = dataservice;
         this.dialog = dialog;
         this.donloadreport = donloadreport;
+        this.route = route;
         this.bloks = new BlocsInfoButton();
         this.bdk = null;
         this.setting = new FullSetting();
@@ -72,7 +74,7 @@ var BdkIt = /** @class */ (function () {
             styleUrls: ['../Template/BdkStyle.css'],
             providers: [PostBdk, MatDialog, DonloadFileReport]
         })),
-        __metadata("design:paramtypes", [PostBdk, MatDialog, DonloadFileReport])
+        __metadata("design:paramtypes", [PostBdk, MatDialog, DonloadFileReport, ActivatedRoute])
     ], BdkIt);
     return BdkIt;
 }());

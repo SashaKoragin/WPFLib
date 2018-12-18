@@ -2,13 +2,14 @@
 import { ModelBdk } from '../Model/BdkModel';
 import { FullSetting } from '../../../../FullSetting/FullSetting';
 import { PostBdk, DonloadFileReport  } from '../../../../PostZaprosFull/PostFull';
-import { CreateSettingSelect, DataBase } from '../../../../FullSetting/CreateSetting';
+import { CreateSettingSelect} from '../../../../FullSetting/CreateSetting';
 import { BlocsInfoButton } from '../../../../FullSetting/ProcessFull';
-import { plainToClass, deserialize } from 'class-transformer';
+import { deserialize } from 'class-transformer';
 import { MatDialog } from '@angular/material';
 import { DialogOpenCreateDela } from '../../../../FullSetting/FormValidation/OpenDialog/OpenDialog'
 import { AdressMerge } from '../../../../AdressFullRest/AdresSservice';
 import { DonloadFile } from '../../../../FullSetting/DonloadFileServer/DonloadFile';
+
 @Component(({
     selector: 'my-bdk',
     templateUrl: '../Template/Bdk.html',

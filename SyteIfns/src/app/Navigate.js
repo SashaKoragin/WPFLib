@@ -13,6 +13,8 @@ import { BdkLetter } from './Otdel/It/FormLetter/StartModel/FormLetter';
 import { AddTemplate } from './Otdel/It/AddTemplate/StartModel/AddTemplate';
 import { ReshenieStart } from './Otdel/Yregulirovanie/Trebovanie/StartModule/Reshenie';
 import { AppComponent } from './Otdel/Analiticks/FaceMerge/StartModule/StartComponent';
+import { ChatComponent } from './Otdel/It/Chat/StartModule/Chat';
+import { ConnectionResolver } from './Otdel/It/Chat/Model/Resolved';
 var appRoutes = [
     {
         path: 'page1',
@@ -41,6 +43,11 @@ var appRoutes = [
     {
         path: 'page7',
         component: Predproverka
+    },
+    {
+        path: 'page8',
+        component: ChatComponent,
+        resolve: { connection: ConnectionResolver }
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -55,7 +62,7 @@ var AppRoutingModule = /** @class */ (function () {
             ],
             exports: [
                 RouterModule
-            ]
+            ], providers: [ConnectionResolver]
         })
     ], AppRoutingModule);
     return AppRoutingModule;

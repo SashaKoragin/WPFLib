@@ -1,9 +1,8 @@
 ﻿import { DialogDela } from '../Dialog/CreateDela/Class/DialogDela';
 import { DialogOkato } from '../Dialog/AddOkato/Class/DialogOkato';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { FullSetting } from '../../FullSetting';
 import { PostBdk } from '../../../PostZaprosFull/PostFull';
-import { LogicaAnaliz } from '../../../Otdel/Analiticks/AnalizNo/Model/LogicaAnalis';
 export class DialogOpenCreateDela {
 
     constructor(public dialog: MatDialog, public setting: FullSetting, private dataservice: PostBdk) { }

@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 import { Otdel } from '../ModelOtdel/ModelOtdel';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
+import 'signalr/jquery.signalR.js';
 var Main = /** @class */ (function () {
     function Main(database) {
         var _this = this;

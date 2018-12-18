@@ -1,5 +1,4 @@
-﻿/// <binding BeforeBuild='Run - Development' />
-var Path = require('path');
+﻿var Path = require('path');
 var Webpack = require('webpack');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // плагин минимизации
 //var MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -69,7 +68,12 @@ module.exports = {
             Path.resolve(__dirname, 'src'), // каталог с исходными файлами
             {} // карта маршрутов
         ),
-        new UglifyJsPlugin()
+        new UglifyJsPlugin(),
+        new Webpack.ProvidePlugin({
+          $:'jquery/dist/jquery.min.js',
+          jQuery: 'jquery/dist/jquery.min.js',
+          'window.jQuery': 'jquery/dist/jquery.min.js'
+        })
     ],
     devtool: 'source-map'
 };

@@ -1,20 +1,15 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams,HttpErrorResponse,HttpResponse} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AdressMerge } from '../AdressFullRest/AdresSservice';
-import { Observable } from 'rxjs';
-import { Face, FaceErrorField, FaceAdd } from '../Otdel/Analiticks/FaceMerge/Model/FaceError';
+import { FaceErrorField, FaceAdd } from '../Otdel/Analiticks/FaceMerge/Model/FaceError';
 import { FullSetting } from '../FullSetting/FullSetting';
-import { ServiceWcf, AngularModel, AngularModelFileDonload } from '../ModelService/ModelService';
+import { AngularModel, AngularModelFileDonload } from '../ModelService/ModelService';
 import { AngularTemplate } from '../Otdel/It/AddTemplate/Model/ModelTemplate'
 
 const url: AdressMerge = new AdressMerge();
 const httpOptionsJson = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 
-};
-
-const httpOptionsXml = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/xml' })
 };
 
 @Injectable()
@@ -101,7 +96,11 @@ export class ServiceModel {
     constructor(private http: HttpClient) { }
 
     modelservice(setting: FullSetting) {
-        return this.http.post(url.servicecommand, setting, httpOptionsJson);
+        try {
+            return this.http.post(url.servicecommand, setting, httpOptionsJson);
+        } catch (e) {
+            alert(e.toString());
+        }
     }
 
     datacommandserver(angular: AngularModel) {
