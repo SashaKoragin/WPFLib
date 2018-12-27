@@ -8,14 +8,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
+import { BroadcastEventListener } from 'ng2-signalr';
 import { ActivatedRoute } from '@angular/router';
+import { ChatMessage } from '../Model/ModelChat/MessageMethod';
 var ChatComponent = /** @class */ (function () {
     function ChatComponent(route) {
         this.route = route;
+        this.chatMessages = [];
+        this.connection = this.route.snapshot.data['connection'];
     }
     ChatComponent.prototype.ngOnInit = function () {
-        this.title = 'Привет мир!!!';
-        this.connection = this.route.snapshot.data['connection'];
+        var _this = this;
+        try {
+            var onMessageSent$ = new BroadcastEventListener('OnMessageSent');
+            this.connection.listen(onMessageSent$);
+            this.subscription = onMessageSent$.subscribe(function (sendChatMessage) {
+                _this.chatMessages.push(sendChatMessage);
+            });
+        }
+        catch (e) {
+            alert(e.toString());
+        }
+    };
+    ChatComponent.prototype.onChatMessage = function (message) {
+        try {
+            console.log('onChatMessage');
+            this.connection.invoke('Chat', new ChatMessage('Hannes', message));
+        }
+        catch (err) {
+            console.log('Welcome Error: ' + err);
+        }
+    };
+    //Выход
+    ChatComponent.prototype.ngOnDestroy = function () {
+        console.log('ngOnDestroy');
+        this.subscription.unsubscribe();
+        this.connection.stop();
     };
     ChatComponent = __decorate([
         Component(({

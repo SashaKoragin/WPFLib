@@ -149,8 +149,11 @@
     <Content Include="src\app\FullSetting\FormValidation\Dialog\ItTemplate\HTML\Stone.html" />
     <Content Include="src\app\Otdel\Analiticks\AnalizNo\Template\AnalizNo.html" />
     <Content Include="src\app\Otdel\Analiticks\AnalizNo\Template\StyleAnaliz.css" />
+    <Content Include="src\app\Otdel\Autification\Html\MySicurity.html" />
     <Content Include="src\app\Otdel\It\AddTemplate\Template\AddTemplate.css" />
     <Content Include="src\app\Otdel\It\AddTemplate\Template\AddTemplate.html" />
+    <Content Include="src\app\Otdel\It\Chat\Model\ModelChat\Chat.css" />
+    <Content Include="src\app\Otdel\It\Chat\Model\ModelChat\Chat.html" />
     <Content Include="src\app\Otdel\It\Chat\Template\CssChat.css" />
     <Content Include="src\app\Otdel\It\Chat\Template\HtmlChat.html" />
     <Content Include="src\app\Otdel\Main\Html\Main.html" />
@@ -222,12 +225,15 @@
     <TypeScriptCompile Include="src\app\Otdel\Analiticks\AnalizNo\StartModule\StartModuleAnaliz.ts" />
     <TypeScriptCompile Include="src\app\Otdel\Analiticks\FaceMerge\Model\FaceError.ts" />
     <TypeScriptCompile Include="src\app\Otdel\Analiticks\FaceMerge\StartModule\StartComponent.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\Autification\ModelSicurity\Model.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\Autification\Sicurity\Sicurity.ts" />
     <TypeScriptCompile Include="src\app\Otdel\It\AddTemplate\Model\ModelTemplate.ts" />
     <TypeScriptCompile Include="src\app\Otdel\It\AddTemplate\Model\Tables.ts" />
     <TypeScriptCompile Include="src\app\Otdel\It\AddTemplate\StartModel\AddTemplate.ts" />
     <TypeScriptCompile Include="src\app\Otdel\It\Bdk\Model\BdkModel.ts" />
     <TypeScriptCompile Include="src\app\Otdel\It\Bdk\StartModule\Bdk.ts" />
-    <TypeScriptCompile Include="src\app\Otdel\It\Chat\Model\Resolved.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\It\Chat\Model\ModelChat\Chat.ts" />
+    <TypeScriptCompile Include="src\app\Otdel\It\Chat\Model\ModelChat\MessageMethod.ts" />
     <TypeScriptCompile Include="src\app\Otdel\It\Chat\StartModule\Chat.ts" />
     <TypeScriptCompile Include="src\app\Otdel\It\FormLetter\Model\ModelDataBase\ModelMail.ts" />
     <TypeScriptCompile Include="src\app\Otdel\It\FormLetter\StartModel\FormLetter.ts" />
@@ -240,6 +246,7 @@
     <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\StartModule\Reshenie.ts" />
     <TypeScriptCompile Include="src\app\Navigate.ts" />
     <TypeScriptCompile Include="src\app\PostZaprosFull\PostFull.ts" />
+    <TypeScriptCompile Include="src\app\SignalRSignal\ConnectSignalR.ts" />
     <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
   </ItemGroup>

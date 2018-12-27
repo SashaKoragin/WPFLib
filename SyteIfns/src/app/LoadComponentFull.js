@@ -18,6 +18,8 @@ import { DialogOkato } from './FullSetting/FormValidation/Dialog/AddOkato/Class/
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignalRConfiguration, SignalRModule } from 'ng2-signalr';
 import { ChatComponent } from './Otdel/It/Chat/StartModule/Chat';
+import { Chat } from './Otdel/It/Chat/Model/ModelChat/Chat';
+import { Sicurity } from './Otdel/Autification/Sicurity/Sicurity';
 import { MatAutocompleteModule, MatBadgeModule, MatBottomSheetModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatStepperModule, MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatTreeModule } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
@@ -79,7 +81,7 @@ export function createConfig() {
     var c = new SignalRConfiguration();
     c.hubName = 'ServiceMessage';
     c.qs = { user: 'Donald' };
-    c.url = 'http://localhost:8059/signalr/hub';
+    c.url = 'http://localhost:8059/signalr';
     c.logging = true;
     c.executeEventsInZone = true; // optional, default is true
     c.executeErrorsInZone = true; // optional, default is false
@@ -105,7 +107,7 @@ var AppModule = /** @class */ (function () {
                 Main,
                 DialogOkato, HeadersAdd, BodyAdd, StoneAdd, DialogDela,
                 Predproverka, BdkIt, AnalizNo, BdkLetter, AddTemplate, ReshenieStart, AppComponent, AnalizNo,
-                ChatComponent
+                ChatComponent, Chat, Sicurity
             ],
             bootstrap: [Main],
             entryComponents: [DialogOkato, HeadersAdd, BodyAdd, StoneAdd, DialogDela]

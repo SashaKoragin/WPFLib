@@ -54,6 +54,7 @@ export class PostBdk {
     constructor(private http: HttpClient) { }
 
     modelbdk(setting: FullSetting) {
+        console.log(JSON.stringify(setting));
             return this.http.post(url.loadbdk, setting, httpOptionsJson);
     }
 

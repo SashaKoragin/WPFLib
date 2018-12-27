@@ -1,1 +1,25 @@
-﻿<label>{{title}}</label>
+﻿<button class="chat" type="button" mat-button (click)="drawer.toggle()">Пользователи чата</button>
+<mat-drawer-container class="contenter" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+        <div class="User">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Имя пользователя </mat-card-title>
+                    <mat-card-subtitle>Отдел</mat-card-subtitle>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">Меню</button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="logica.startprocedure(element.D3979,23)">
+                            <span>Написать сообщение</span>
+                        </button>
+                    </mat-menu>
+                </mat-card-header>
+            </mat-card>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div class="contentpage">
+            <chat-cmp (onMessage)="onChatMessage($event)" [messages]="chatMessages"></chat-cmp>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

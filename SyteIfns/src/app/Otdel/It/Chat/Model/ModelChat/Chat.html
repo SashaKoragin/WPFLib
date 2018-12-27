@@ -1,0 +1,35 @@
+﻿<div class=" card">
+    <div class="card-header">
+        <i>Общий чат</i> 
+    </div>
+    <!-- /.panel-heading -->
+    <div class="card-block">
+        <ul class="chat">
+            <li *ngFor="let message of messages" class="right clearfix">
+                <div class="chat-body clearfix">
+                    <div class="header">
+                        <small class="text-muted">
+                            <i class="fa fa-clock-o fa-fw">13 минут назад</i>
+                        </small>
+                        <strong class="pull-right primary-font">{{ message.Who }}</strong>
+                    </div>
+                    <p>
+                        {{ message.Message }}
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer">
+        <div class="input-group">
+            <input id="btn-input" type="text" class="form-control input-sm" [(ngModel)]="message" (ngModelChange)="onMessageChanged()" placeholder="Текст сообщения">
+            <span class="input-group-btn">
+                <button class="btn btn-warning btn-sm" id="btn-chat" (click)="send()">
+                    Отправить
+                </button>
+            </span>
+        </div>
+    </div>
+    <!-- /.card-footer -->
+</div>

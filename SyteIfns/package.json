@@ -121,6 +121,7 @@
     "popper.js": "1.14.4",
     "aspnet-prerendering": "3.0.1",
     "to-string-loader": "1.1.5",
-    "rxjs-compat": "6.3.2"
+    "rxjs-compat": "6.3.2",
+    "user-info": "2.0.0" 
   }
 }

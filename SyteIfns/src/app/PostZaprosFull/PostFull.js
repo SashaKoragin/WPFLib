@@ -63,6 +63,7 @@ var PostBdk = /** @class */ (function () {
         this.http = http;
     }
     PostBdk.prototype.modelbdk = function (setting) {
+        console.log(JSON.stringify(setting));
         return this.http.post(url.loadbdk, setting, httpOptionsJson);
     };
     PostBdk.prototype.startprocedurebdk = function (setting) {
