@@ -5,11 +5,13 @@ using AutomatAis3Full.Form.Automat.Okp4.FormSnuAuto.SnuFormAuto;
 using AutomatAis3Full.Form.Automat.Okp4.MassSnuForm.MassSnuForm;
 using AutomatAis3Full.Form.Automat.Okp4.PravoEdit.PravoEdit;
 using AutomatAis3Full.Form.Automat.Okp4.PrintSnu.Print;
+using AutomatAis3Full.Form.Automat.RaschetBudg.VedRazd1.VedRaz1;
 using AutomatAis3Full.Form.Automat.Registration.ActualStatus.UserControlStatus;
 using AutomatAis3Full.Form.Automat.Registration.TehnicalUpdate.UserControlTechnical;
 using AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.UserControl;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie;
 using AutomatAis3Full.Form.Report.ReportXml.ReportForm;
+using AutomatAis3Full.GlavnayLogika.Mvvm;
 using ViewModelLib.ModelTestAutoit.FullWindowAutoIt;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
@@ -26,6 +28,32 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
               FullWindowAutoItMethod autoit = new FullWindowAutoItMethod();
               ObservableCollection<FullWindowAutoIt> window = new ObservableCollection<FullWindowAutoIt>
               {
+                  new FullWindowAutoIt()
+                  {
+                      NameControl = "Расчеты с бюджетом",
+                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                      {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Расчеты с бюджетом",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Ведомость невыясненных поступлений",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Ведомость невыясненных поступлений. Раздел 1",
+                                              UserControl = new VedRaz1()
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
                   new FullWindowAutoIt()
                   {
                       NameControl = "Аналитический",

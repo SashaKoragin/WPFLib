@@ -1,6 +1,8 @@
 ﻿export class AdressMerge {
-   // public host = 'i7751-w00000745';
-    public host = 'localhost';
+    public host = 'i7751-w00000745';
+   // public host = 'localhost';
+    //Авторизация на сервере
+    public authservicedomain = `http://${this.host}:8181/ServiceRest/AuthServiceDomain`;
     public addresError = `http://${this.host}:8181/ServiceRest/SqlFaceError`;
     public addresFaceAdd = `http://${this.host}:8181/ServiceRest/SqlFaceAdd`;
     public addresDelFace = `http://${this.host}:8181/ServiceRest/SqlFaceDel`;
@@ -15,6 +17,7 @@
     public addtemplate = `http://${this.host}:8181/ServiceRest/AddTemplate`;
     public createkrsb = `http://${this.host}:8181/ServiceRest/CreteKrsb`;
     public analizkrsb = `http://${this.host}:8181/ServiceRest/ProcedureAnalizKrsb`;
+    public reportKam5 = `http://${this.host}:8181/ServiceRest/StoreProcedureKam5`;
 
     public adressTrebovanie = `http://${this.host}:8181/ServiceRest/ReportFile/Требования.xlsx`;
     public adressBdk = `http://${this.host}:8181/ServiceRest/ReportFile/Бдк.xlsx`;

@@ -4,10 +4,10 @@ import { FullSetting } from '../../../../FullSetting/FullSetting';
 import { GenerateParamService } from '../../../../FullSetting/CreateSetting';
 import { BlocsInfoButton } from '../../../../FullSetting/ProcessFull';
 import { DateModel } from '../../../../FullSetting/DateModelFull';
-import { ParametrSelectMail, SelectParamMail } from '../../../../ModelService/SelectCommand';
+import { ParametrSelectMail } from '../../../../ModelService/SelectCommand';
 import { Mail, WordDocument, UseTableTemplateBdk } from '../Model/ModelDataBase/ModelMail';
-import { ServiceWcf, AngularModel, AngularModelFileDonload } from '../../../../ModelService/ModelService';
-import { plainToClass, deserialize } from 'class-transformer';
+import { ServiceWcf, AngularModelFileDonload } from '../../../../ModelService/ModelService';
+import { deserialize } from 'class-transformer';
 import { TableLetter } from '../../../../FullSetting/SelectTable/TableGenerator'
 import { ParamLogica } from '../../../../FullSetting/SelectTable/LogicaSelect'
 import { MatTableDataSource, MatPaginator } from '@angular/material';

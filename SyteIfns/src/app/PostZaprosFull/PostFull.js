@@ -14,6 +14,35 @@ var url = new AdressMerge();
 var httpOptionsJson = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+var AuthServiceDomen = /** @class */ (function () {
+    function AuthServiceDomen(http) {
+        this.http = http;
+        this.isLoggedIn = false;
+    }
+    AuthServiceDomen.prototype.login = function (setting) {
+        setting.ModelUser.Error = null;
+        return this.http.post(url.authservicedomain, setting, httpOptionsJson);
+    };
+    AuthServiceDomen.prototype.result = function (setting) {
+        if (setting.ModelUser.Error === null) {
+            this.isLoggedIn = true;
+        }
+        else {
+            this.isLoggedIn = false;
+        }
+    };
+    AuthServiceDomen.prototype.logout = function () {
+        this.isLoggedIn = false;
+    };
+    AuthServiceDomen = __decorate([
+        Injectable({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [HttpClient])
+    ], AuthServiceDomen);
+    return AuthServiceDomen;
+}());
+export { AuthServiceDomen };
 var DataService = /** @class */ (function () {
     function DataService(http) {
         this.http = http;
@@ -63,7 +92,6 @@ var PostBdk = /** @class */ (function () {
         this.http = http;
     }
     PostBdk.prototype.modelbdk = function (setting) {
-        console.log(JSON.stringify(setting));
         return this.http.post(url.loadbdk, setting, httpOptionsJson);
     };
     PostBdk.prototype.startprocedurebdk = function (setting) {
@@ -173,4 +201,18 @@ var DonloadFileReport = /** @class */ (function () {
     return DonloadFileReport;
 }());
 export { DonloadFileReport };
+var Kam5Report = /** @class */ (function () {
+    function Kam5Report(http) {
+        this.http = http;
+    }
+    Kam5Report.prototype.reportFile = function (setting) {
+        return this.http.post(url.reportKam5, setting, { responseType: 'arraybuffer', headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+    };
+    Kam5Report = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [HttpClient])
+    ], Kam5Report);
+    return Kam5Report;
+}());
+export { Kam5Report };
 //# sourceMappingURL=PostFull.js.map

@@ -72,6 +72,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -94,7 +95,9 @@
     <Compile Include="ModelTestAutoit\ModelFormirovanie\ShemeXsd\ShemeProperty.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\StackPanelModel\ShemeSnuOneForm\ModelSnuOneFormNameListProperty.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\TextBoxModel\TextBoxModelProperty.cs" />
+    <Compile Include="ModelTestAutoit\ModelFormirovanie\Vedomosti\Vedomost1\ModelVedomost1.cs" />
     <Compile Include="ModelTestAutoit\ModelSnuOneAuto\DataXml\XmlUseProperty.cs" />
+    <Compile Include="ModelTestAutoit\PublicModel\ButtonStartAutomat\HotKey.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ButtonStartAutomat\StartOnStopProperty.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\DatePicker\DatePickerPub.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\QbeSelect\QbeClass.cs" />

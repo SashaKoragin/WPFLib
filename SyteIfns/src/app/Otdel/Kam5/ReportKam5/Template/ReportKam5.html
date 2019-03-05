@@ -1,0 +1,98 @@
+﻿<div class="Inline">
+    <mat-tab-group>
+        <mat-tab label="Отчет по страховым взносам.">
+            <form [formGroup]="formtemplateReport" #formDir="ngForm">
+                <div class="cross-validation" [class.cross-validation]="formtemplateReport.errors?.identityRevealed && (formtemplateReport.touched || formtemplateReport.dirty)">
+                    <div class="Inline">
+                        <mat-form-field class="width">
+                            <mat-select placeholder="Выбор квартала!!!" [(ngModel)]="parametr.qvartalone" formControlName="qvartal" name="qvartal">
+                                <mat-option *ngFor="let qv of parametr.qvartal" [value]="qv">
+                                    {{qv.qvartal}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="qvartal.invalid && (qvartal.dirty || qvartal.touched)" class="alert alert-danger">
+                                <mat-error *ngIf="qvartal.errors.required">Не выбран квартал!!!</mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                        <p class="info">{{parametr.qvartalone !== null ? parametr.qvartalone.qvartaltext : 'Квартал не определен'}}</p>
+                    </div>
+                    <div class="Inline">
+                        <mat-form-field class="width">
+                            <input matInput placeholder="Год" type="number" formControlName="god" [(ngModel)]="signalR.user.ReportRvs.God" />
+                            <mat-error *ngIf="god.invalid && (god.dirty || god.touched)" class="alert alert-danger">
+                                <mat-error *ngIf="god.errors.required">Год не введен!!!</mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                        <p class="info">Введен год: {{god.value}}</p>
+                    </div>
+                    <div class="Inline">
+                        <mat-form-field class="width">
+                            <mat-select placeholder="Статистика приема!!!" [(ngModel)]="parametr.reportVidone" formControlName="reportvid" name="reportVidone">
+                                <mat-option *ngFor="let vid of parametr.reportVid" [value]="vid">
+                                    {{vid.reportvid}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="reportvid.invalid && (reportvid.dirty || reportvid.touched)" class="alert alert-danger">
+                                <mat-error *ngIf="reportvid.errors.required">Не выбран вид!!!</mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                        <p class="info">{{parametr.reportVidone !== null ? parametr.reportVidone.reportvidtext : 'Вид не определен'}}</p>
+                    </div>
+                    <div class="Inline">
+                        <mat-form-field class="width">
+                            <mat-select placeholder="Алгоритм определения!!!" [(ngModel)]="parametr.opredelenieone" formControlName="p1" name="opredelenieone">
+                                <mat-option *ngFor="let opr of parametr.opredelenie" [value]="opr">
+                                    {{opr.opredelenie}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="p1.invalid && (p1.dirty || p1.touched)" class="alert alert-danger">
+                                <mat-error *ngIf="p1.errors.required">Не выбрано определение!!!</mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                        <p class="info">{{parametr.opredelenieone !== null ? parametr.opredelenieone.opredelenietext : 'Алгоритм не определен'}}</p>
+                    </div>
+                    <div class="Inline">
+                        <mat-form-field class="width">
+                            <input matInput [matDatepicker]="picker" placeholder="Отчетная дата!!!"
+                                   formControlName="date">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="date.invalid && (date.dirty || date.touched)" class="alert alert-danger">
+                                <mat-error *ngIf="date.errors.required">Не введена отчетная дата!!!</mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                        <p class="info"> Введена отчетная дата: {{convertDate.convertdate(date.value)}}</p>
+                    </div>
+                    <div class="Inline">
+                        <mat-form-field class="width">
+                            <mat-select placeholder="Детализация ошибок!!!" [(ngModel)]="parametr.errorone" formControlName="errdetal" name="errorone">
+                                <mat-option *ngFor="let err of parametr.error" [value]="err">
+                                    {{err.error}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="errdetal.invalid && (errdetal.dirty || errdetal.touched)" class="alert alert-danger">
+                                <mat-error *ngIf="errdetal.errors.required">Не выбрана степень ошибки!!!</mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                        <p class="info">{{parametr.errorone !== null ? parametr.errorone.errortext : 'Ошибки не определены'}}</p>
+                    </div>
+                </div>
+                <button mat-button type="submit" [disabled]="formtemplateReport.invalid"
+                        (click)="reportstart(date.value)">
+                    Запустить отчет по страховым.
+                </button>
+            </form>
+        </mat-tab>
+    </mat-tab-group>
+    <div class="card-block">
+        <ul class="chat">
+            <li *ngFor="let message of serverMessages" class="right clearfix">
+                <div class="chat-body clearfix">
+                    <p>
+                        {{ message }}
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

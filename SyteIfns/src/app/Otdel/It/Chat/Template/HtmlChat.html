@@ -9,7 +9,7 @@
                     <mat-card-subtitle>Отдел</mat-card-subtitle>
                     <button mat-icon-button [matMenuTriggerFor]="menu">Меню</button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item (click)="logica.startprocedure(element.D3979,23)">
+                        <button mat-menu-item>
                             <span>Написать сообщение</span>
                         </button>
                     </mat-menu>
@@ -19,7 +19,7 @@
     </mat-drawer>
     <mat-drawer-content>
         <div class="contentpage">
-            <chat-cmp (onMessage)="onChatMessage($event)" [messages]="chatMessages"></chat-cmp>
+            <chat-cmp (onMessage)="onChatMessage($event)" [messages]="signalR.chatMessages"></chat-cmp>
         </div>
     </mat-drawer-content>
 </mat-drawer-container>

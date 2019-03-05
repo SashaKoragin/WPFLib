@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
+using System.Net.NetworkInformation;
 using System.Reflection;
 
 namespace SqlLibaryIfns.GenerateParametrSql
@@ -26,7 +29,7 @@ namespace SqlLibaryIfns.GenerateParametrSql
                     if (prop.PropertyType != typeof(DateTime))
                         listparametr.Add("@" + name, value.ToString());
                     else
-                        listparametr.Add("@" + name, "'" + value + "'");
+                        listparametr.Add("@" + name, "Date:" + value);
                 }
             }
         }
@@ -43,7 +46,10 @@ namespace SqlLibaryIfns.GenerateParametrSql
         {
             foreach (var param in listparametr)
             {
-                command.Parameters.AddWithValue(param.Key.ToString(), param.Value);
+                if (param.Value.ToString().Contains("Date:"))
+                    command.Parameters.Add(param.Key.ToString(), SqlDbType.SmallDateTime).Value = DateTime.Parse(param.Value.ToString().Replace("Date:", "")).Date;
+                else
+                    command.Parameters.AddWithValue(param.Key.ToString(), param.Value);
             }
             return command;
         }
@@ -54,12 +60,12 @@ namespace SqlLibaryIfns.GenerateParametrSql
         /// <typeparam name="TValue">Значение параметра</typeparam>
         /// <param name="sqlSelect">Выборка  с подставными значениями Например @D85</param>
         /// <param name="listparametr">Параметры замены значения Например TKey =@D85,TValue = 10.01.2018</param>
-        /// <returns>Возвращает выборку с заменненными параметрами</returns>
+        /// <returns>Возвращает выборку с заменненными параметрами Работает только со строковыми параметрами</returns>
         public void GenerateStringParametr<TKey, TValue>(ref string sqlSelect, Dictionary<TKey, TValue> listparametr)
         {
             foreach (var value in listparametr)
             {
-                sqlSelect = sqlSelect.Replace(value.Key.ToString(), value.Value.ToString());
+                sqlSelect = sqlSelect.Replace(value.Key.ToString(), value.Value.ToString().Contains("Date:") ? "'" + value.Value.ToString().Replace("Date:", "") + "'" : value.Value.ToString());
             }
         }
     }

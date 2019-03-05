@@ -126,7 +126,7 @@ namespace LotusNotes.ModelDialogs
             FormulsOtdel = Lotuslib.LoadingModel.LoadingFormuls.Formuls();
             Status = Lotuslib.LoadingModel.LoadStatus.Status();
             ShemeZg = new ModelZg();
-            GetChange = new DelegateCommand(()=>Dispatcher.CurrentDispatcher.Invoke(() => FormulaSwithFormul.FormulSwith(ShemeZg, Zg, Sheme, Calendar, Status, FormulsOtdel)));
+            GetChange = new DelegateCommand(()=>Dispatcher.CurrentDispatcher.Invoke(() => FormulaSwithFormul.FormulSwith(ShemeZg, Zg, Sheme, Calendar, Status, FormulsOtdel,Load)));
             Calendar = new CalendarModel();
             Load = new Loading("", 0);
         }

@@ -1,5 +1,5 @@
-﻿import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
-import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
+﻿import { Component, ViewEncapsulation, Inject } from '@angular/core';
+import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors } from '@angular/forms';
 import { AngularTemplate  } from '../../../../../Otdel/It/AddTemplate/Model/ModelTemplate';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TemplateAdd } from '../../../../../PostZaprosFull/PostFull';

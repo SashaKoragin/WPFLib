@@ -40,31 +40,33 @@
             Grid.ColumnSpan="2"
             IsLeftDrawerOpen="{Binding FullWindow.IsCheck}">
             <materialDesign:DrawerHost.LeftDrawerContent>
-                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <StackPanel>
-                        <ToggleButton
+                <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="UIElement_OnMouseWheel">
+                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <StackPanel>
+                            <ToggleButton
                             Margin="16"
                             HorizontalAlignment="Right"
                             IsChecked="{Binding FullWindow.IsCheck}"
                             Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
-                        <TreeView
+                            <TreeView
                             x:Name="TreeView"
                             ItemsSource="{Binding FullWindow.CollectionUserControl}"
                             SelectedValuePath="{Binding FullWindow.UseContent}">
-                            <TreeView.ItemTemplate>
-                                <HierarchicalDataTemplate ItemsSource="{Binding CollectionUserControl}">
-                                    <TextBlock Text="{Binding NameControl}">
+                                <TreeView.ItemTemplate>
+                                    <HierarchicalDataTemplate ItemsSource="{Binding CollectionUserControl}">
+                                        <TextBlock Text="{Binding NameControl}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
                                                 <i:InvokeCommandAction Command="{Binding DataContext.OpenForms, ElementName=TreeView}" CommandParameter="{Binding SelectedItem, ElementName=TreeView}" />
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>
-                                    </TextBlock>
-                                </HierarchicalDataTemplate>
-                            </TreeView.ItemTemplate>
-                        </TreeView>
+                                        </TextBlock>
+                                    </HierarchicalDataTemplate>
+                                </TreeView.ItemTemplate>
+                            </TreeView>
+                        </StackPanel>
                     </StackPanel>
-                </StackPanel>
+                </ScrollViewer>
             </materialDesign:DrawerHost.LeftDrawerContent>
         </materialDesign:DrawerHost>
         <materialDesign:ColorZone

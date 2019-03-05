@@ -15,8 +15,6 @@ import { ReshenieStart } from './Otdel/Yregulirovanie/Trebovanie/StartModule/Res
 import { AppComponent } from './Otdel/Analiticks/FaceMerge/StartModule/StartComponent';
 import { ChatComponent } from './Otdel/It/Chat/StartModule/Chat';
 import { ConnectionResolver } from './SignalRSignal/ConnectSignalR';
-import { Sicurity } from './Otdel/Autification/Sicurity/Sicurity';
-import { AuthGuard } from './Otdel/Autification/ModelSicurity/Model';
 var appRoutes = [
     {
         path: 'page1',
@@ -46,28 +44,27 @@ var appRoutes = [
         path: 'page7',
         component: Predproverka
     },
-    //{
-    //    path: 'page8',
-    //    component: ChatComponent,
-    //    resolve: { connection: ConnectionResolver }
-    //}
     {
-        path: 'login',
-        component: Sicurity,
-        canActivate: [AuthGuard],
-        children: [
-            {
-                path: '',
-                children: [
-                    {
-                        path: 'page8',
-                        component: ChatComponent,
-                        resolve: { connection: ConnectionResolver }
-                    }
-                ]
-            }
-        ]
+        path: 'page8',
+        component: ChatComponent,
+        resolve: { connection: ConnectionResolver }
     }
+    //{
+    //    path: 'login',
+    //    component: Sicurity,
+    //    canActivate: [AuthGuard],
+    //    children: [
+    //        {
+    //            path: '',
+    //            children:[
+    //            {
+    //                    path: 'page8',
+    //                    component: ChatComponent,
+    //                    resolve: { connection: ConnectionResolver }
+    //            }]
+    //    }
+    //    ]
+    //}
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

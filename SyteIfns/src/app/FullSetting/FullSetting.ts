@@ -1,22 +1,38 @@
-﻿//Настройки общие если что сюда добавлять
-export class FullSetting {
-    //Параметры для решения
-    public ParametrReshen: ParametrReshen = new ParametrReshen();
-    //Параметры для БДК
-    public ParametrBdk: ParametrBdk = new ParametrBdk();
+﻿export class FullSetting {
 
+    constructor() {
+        this.ParametrReshen = new ParametrReshen();
+        this.ParametrBdk = new ParametrBdk();
+        this.UseTemplate = new UseTemplate();
+        this.ParamService = new ParamService();
+        this.ParametrBdkOut = new ParametrBdkOut();
+        this.ParamPredproverka = new ParamPredproverka();
+        this.DeloPriem = new DeloPriem();
+        this.DeloCreate = new DeloCreate();
+        this.DeloCreate = new DeloCreate();
+        this.ReportRvs = new ReportRvs();
+        this.ModelUser = new ModelUser();
+    }
+    //Параметры для решения
+    public ParametrReshen: ParametrReshen;
+    //Параметры для БДК
+    public ParametrBdk: ParametrBdk;
     //Шаблон для печати
-    public UseTemplate: UseTemplate = new UseTemplate();
+    public UseTemplate: UseTemplate;
     //Параметр для выбора данных с сервиса
-    public ParamService: ParamService = new ParamService();
+    public ParamService: ParamService;
     //Параметры отправки БДК
-    public ParametrBdkOut: ParametrBdkOut = new ParametrBdkOut();
+    public ParametrBdkOut: ParametrBdkOut;
     //Параметры предпроверки
-    public ParamPredproverka: ParamPredproverka = new ParamPredproverka();
+    public ParamPredproverka: ParamPredproverka;
     //Дела приема КРСБ
-    public DeloPriem: DeloPriem = new DeloPriem();
+    public DeloPriem: DeloPriem;
     //Создание дел КРСБ
-    public DeloCreate: DeloCreate = new DeloCreate();
+    public DeloCreate: DeloCreate;
+    //Отчеты Камеральный 5
+    public ReportRvs: ReportRvs;
+    //Модель пользователя
+    public ModelUser: ModelUser;
     //Принадлежность БД Тест или рабочая
     public Db: string;
     //Номер процедуры
@@ -94,4 +110,34 @@ class DeloCreate {
   public datezaprosa( datedelo: any) {
       this.DateDelo = `/Date(${datedelo.getTime()})/`;
   }
+}
+//Настройки для камерального 5 Страховые взносы
+class ReportRvs {
+    Qvartal: number;
+    God: number;
+    ReportVid: number;
+    P1: number;
+    Data: string;
+    ErrDetal: number;
+    //Метод конвертации даты в string
+    public datezaprosa(data: any) {
+        this.Data = `/Date(${data.getTime()})/`;
+    }
+}
+//Модель пользователя
+export class ModelUser {
+
+    Login: string = null;
+    Password: string = null;
+    UserName: string = null;
+    Guid: string = this.newGuid();
+    UserNameGuide: string = this.UserName + this.Guid;
+    ///Ошибка с сервера
+    Error: string = null;
+     newGuid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
 }

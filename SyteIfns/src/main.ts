@@ -1,7 +1,7 @@
 ﻿import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { enableProdMode } from '@angular/core';
-import { AppModule } from './app/LoadComponentFull';
+import { Maining } from './app/NgModule/Main/NgMain';
 
 const platform = platformBrowserDynamic();
 enableProdMode();
-platform.bootstrapModule(AppModule);
+platform.bootstrapModule(Maining);

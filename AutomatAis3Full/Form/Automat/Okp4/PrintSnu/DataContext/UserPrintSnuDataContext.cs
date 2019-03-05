@@ -21,8 +21,6 @@ namespace AutomatAis3Full.Form.Automat.Okp4.PrintSnu.DataContext
         public StatusButtonMethod StartButton { get; }
         public DatePickerPub Date { get; }
         public ICommand Update { get; }
-        public ICommand Green { get; }
-        public ICommand Yellow { get; }
         public ICommand Validate { get; }
         public ICommand Validate2 { get; }
         public ICommand Moving { get; }
@@ -40,19 +38,8 @@ namespace AutomatAis3Full.Form.Automat.Okp4.PrintSnu.DataContext
             Validate2 = new DelegateCommand(()=> {PdfModel.CountPdfWork(ConfigFile.PathPdfWork);});
             Moving = new DelegateCommand((() => {PdfModel.MoveWork(ConfigFile.PathPdfWork);}));
             DeleteTemp = new DelegateCommand((() => {PdfModel.DeleteTemp();}));
-            Yellow = new DelegateCommand(() => { Yellows(StartButton); });
-            Green = new DelegateCommand(() => { Greens(StartButton); });
             Update = new DelegateCommand(() => { Xml.UpdateFileXml(ConfigFile.FileInnFull); });
             PrintPdf = new DelegateCommand(() => { PdfModel.PrintAllFile(ConfigFile.PathPdfWork); });
-        }
-
-        public void Yellows(StatusButtonMethod status)
-        {
-            status.StatusYellow();
-        }
-        public void Greens(StatusButtonMethod status)
-        {
-            status.StatusGrin();
         }
     }
 }

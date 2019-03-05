@@ -1,5 +1,4 @@
-﻿import { DonloadFileReport } from '../../PostZaprosFull/PostFull'
-import { HttpClient } from '@angular/common/http';
+﻿import { DonloadFileReport } from '../../PostZaprosFull/PostFull';
 export class DonloadFile {
 
     constructor(public donloadservice: DonloadFileReport) { }

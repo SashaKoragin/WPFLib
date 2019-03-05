@@ -11,12 +11,7 @@
     font-style: italic;
     color: black;
 }
-.title {
-    text-align: center;
-    font-style: italic;
-    color: green;
-    background: black;
-}
+
 .sidenav {
   display: flex;
   height: 100%;
@@ -44,9 +39,6 @@
     padding: 20px;
     width: auto;
     height: auto;
-}
-.title-black {
-    background: black;
 }
 .fullpath {
     font-size: 20px;

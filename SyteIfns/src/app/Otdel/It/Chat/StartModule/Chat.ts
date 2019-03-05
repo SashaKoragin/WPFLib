@@ -1,9 +1,6 @@
-﻿import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ISignalRConnection, BroadcastEventListener } from 'ng2-signalr';
-import { ActivatedRoute } from '@angular/router';
+﻿import { Component } from '@angular/core';
 import { ChatMessage } from '../Model/ModelChat/MessageMethod';
-import { Subscription } from 'rxjs/Subscription';
-
+import { ConnectionResolver } from '../../../../SignalRSignal/ConnectSignalR';
 
 @Component(({
     selector: 'my-chat',
@@ -11,44 +8,14 @@ import { Subscription } from 'rxjs/Subscription';
     styleUrls: ['../Template/CssChat.css']
 }) as any)
 
-export class ChatComponent implements OnInit, OnDestroy {
-    constructor(private route: ActivatedRoute) {
-        this.connection = this.route.snapshot.data['connection'];
-    }
-    public chatMessages: ChatMessage[]=[];
-    public connection: ISignalRConnection;
-    public subscription: Subscription;
-    ngOnInit() {
-        try {
-            let onMessageSent$ = new BroadcastEventListener<ChatMessage>('OnMessageSent');
-            this.connection.listen(onMessageSent$);
-            this.subscription = onMessageSent$.subscribe((sendChatMessage: ChatMessage) => {
-                this.chatMessages.push(sendChatMessage);
-            });
-        } catch (e) {
-            alert(e.toString());
-        }
+export class ChatComponent {
+    constructor(public signalR: ConnectionResolver) { }
 
-    }
+    public chatMessages: ChatMessage[] = [];
 
     onChatMessage(message: string) {
-        try {
-            console.log('onChatMessage');
-            this.connection.invoke('Chat', new ChatMessage('Hannes', message));
-        } catch (err) {
-            console.log('Welcome Error: ' + err);
-        }
+        this.signalR.conect.invoke('Chat', new ChatMessage(this.signalR.user.ModelUser.UserName, message));
     }
 
 
-
-
-
-
-    //Выход
-    ngOnDestroy(): void {
-        console.log('ngOnDestroy');
-        this.subscription.unsubscribe();
-        this.connection.stop();
-    }
 }

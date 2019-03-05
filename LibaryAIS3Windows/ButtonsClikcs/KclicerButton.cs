@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using SqlLibaryIfns.AutoItSelect.Sql;
 using LibaryAIS3Windows.Window.Otdel.Analitic.TeskText;
 using AutoIt;
@@ -8,10 +9,12 @@ using LibaryAIS3Windows.Function.PublicFunc;
 using LibaryAIS3Windows.Mode.Okp4.PravoZorI;
 using LibaryAIS3Windows.Mode.Okp4.SnuFormirovanie;
 using LibaryAIS3Windows.Mode.Reg.StatusReg;
+using LibaryAIS3Windows.RegxFull.RaschetBudg;
 using LibaryAIS3Windows.Window;
 using LibaryAIS3Windows.Window.Otdel.Okp4.PravoZorI;
 using LibaryAIS3Windows.Window.Otdel.Okp4.Print;
 using LibaryAIS3Windows.Window.Otdel.Okp4.Snu;
+using LibaryAIS3Windows.Window.Otdel.RaschetBudg.Vedomost1;
 using LibaryAIS3Windows.Window.Otdel.Reg.ActualStatus;
 using LibaryAIS3Windows.Window.Otdel.Reg.Fpd;
 
@@ -19,6 +22,9 @@ namespace LibaryAIS3Windows.ButtonsClikcs
 {
    public class KclicerButton
    {
+
+
+       private const string ModeBranchVedomost1 = @"Налоговое администрирование\Расчеты с бюджетом\Ведомость невыясненных поступлений\Ведомость невыясненных поступлений. Раздел 1";
         /// <summary>
         /// Константа название ветки которую обрабатываем Основная
         /// </summary>
@@ -59,7 +65,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
            while (true)
            {
             WindowsAis3 win = new WindowsAis3();
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinRequest.X + 180, win.WindowsAis.Y + win.WinRequest.Y + 120);
+                win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 180, win.WindowsAis.Y + win.Y1 + 120);
             AutoItX.WinWait(WindowsAis3.Text, WindowsAis3.WinWait, 3);
             if (AutoItX.WinExists(WindowsAis3.Text, WindowsAis3.WinWait) == 1)
                  {
@@ -116,12 +123,14 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                 WindowsAis3 win = new WindowsAis3();
                 if (usefilter)
                 {
-                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.GridMain.X + 70, win.WindowsAis.Y + win.GridMain.Y + 55,2);
+                    win.ControlGetPos1(WindowsAis3.GridMain[0], WindowsAis3.GridMain[1], WindowsAis3.GridMain[2]);
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 55,2);
                     AutoItX.WinWait(WindowsAis3.Text, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFid, 30);
                 }
                 else
                 {
-                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinRequest.X + 355, win.WindowsAis.Y + win.WinRequest.Y + 80);
+                    win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 355, win.WindowsAis.Y + win.Y1 + 80);
                     AutoItX.WinWait(WindowsAis3.Text, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFid, 30);
                 }
                 if (AutoItX.WinExists(WindowsAis3.Text, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFid) == 1)
@@ -188,7 +197,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         {
             string copyfio = null;
             WindowsAis3 win = new WindowsAis3();
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 70, win.WindowsAis.Y + win.WinGrid.Y + 35);
+            win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 35);
             AutoItX.ClipPut(fpd);
             AutoItX.Send(ButtonConstant.Down9);
             AutoItX.Send(ButtonConstant.Right5);
@@ -352,7 +362,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         public void Click5(string pathjurnalerror, string pathjurnalok, string fid)
         {
             WindowsAis3 win = new WindowsAis3();
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 70, win.WindowsAis.Y + win.WinGrid.Y + 35);
+            win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 35);
             AutoItX.ClipPut(fid);
             AutoItX.Send(ButtonConstant.Right5);
             AutoItX.Send(ButtonConstant.Enter);
@@ -430,7 +441,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             WindowsAis3 win = new WindowsAis3();
             while (true)
             {
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinRequest.X + 355, win.WindowsAis.Y + win.WinRequest.Y + 80);
+                win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 355, win.WindowsAis.Y + win.Y1 + 80);
                 AutoItX.WinWait(WindowsAis3.AisNalog3, ZachetVozvrat.Nachalnic, 10);
                 if (AutoItX.WinExists(WindowsAis3.AisNalog3, ZachetVozvrat.Nachalnic) == 1)
                 {
@@ -446,7 +458,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             var countdocstring = ReadWindow.Read.Reades.ReadFormNotActiv(Mode.Analitic.Task.TaskZn.Signature);
             while (true)
             {
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinRequest.X + 550, win.WindowsAis.Y + win.WinRequest.Y + 75);
+                win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 550, win.WindowsAis.Y + win.Y1 + 75);
                 var countdocstringcontrol = ReadWindow.Read.Reades.ReadFormNotActiv(Mode.Analitic.Task.TaskZn.Signature);
                 if (!countdocstring.Equals(countdocstringcontrol))
                 {
@@ -455,7 +468,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             }
             while (true)
             {
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinRequest.X + 205, win.WindowsAis.Y + win.WinRequest.Y + 85);
+                win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 205, win.WindowsAis.Y + win.Y1 + 85);
                 AutoItX.WinWait(ZachetVozvrat.TitleClose, ZachetVozvrat.TextWin, 10);
                 if (AutoItX.WinExists(ZachetVozvrat.TitleClose, ZachetVozvrat.TextWin) == 1)
                 {
@@ -479,7 +493,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// <param name="inn">Список ИНН</param>
         /// <param name="conectionstring">Строка соединения с БД</param>
         /// <param name="ischec">Простановка даты true ,false</param>
-        public void Click7(DateTime date, string pathjurnalerror, string pathjurnalok, string inn,string conectionstring,bool ischec)
+        /// <param name="islk2">Проверять ли ЛК2 или нет?</param>
+        public void Click7(DateTime date, string pathjurnalerror, string pathjurnalok, string inn,string conectionstring,bool ischec, bool islk2)
         {
             var listinn = new List<string>();
             string copyinn = null;
@@ -487,14 +502,16 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             WindowsAis3 win = new WindowsAis3();
             if (ischec)
             {
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 70, win.WindowsAis.Y + win.WinGrid.Y + 35);
+                win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 35);
                 AutoItX.ClipPut(date.ToString("dd.MM.yyyy"));
                 AutoItX.Send(ButtonConstant.Down10);
                 AutoItX.Send(ButtonConstant.Right5);
                 AutoItX.Send(ButtonConstant.Enter);
                 AutoItX.Send(ButtonConstant.CtrlV);
             }
-           AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 70,win.WindowsAis.Y + win.WinGrid.Y + 35);
+            win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70,win.WindowsAis.Y + win.Y1 + 35);
            AutoItX.ClipPut(inn);
            AutoItX.Send(ButtonConstant.Down20);
            AutoItX.Send(ButtonConstant.Right5);
@@ -519,24 +536,42 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                         AutoItX.Send(ButtonConstant.F3);
                         break;
                     }
-                        Lk2 lk2 = new Lk2();
-                   if (lk2.SqlLk(conectionstring, innais))
+                   if (islk2)
                    {
-                       LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, innais, PrintBranch,PrintSnu.NotLk2);
-                   }
+                        Lk2 lk2 = new Lk2();
+                        if (lk2.SqlLk(conectionstring, innais))
+                        {
+                            LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, innais, PrintBranch, PrintSnu.NotLk2);
+                        }
+                        else
+                        {
+                            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 180, win.WindowsAis.Y + 90);
+                            AutoItX.WinWait(PrintSnu.ErrorElectronSys[0], PrintSnu.ErrorElectronSys[1], 2);
+                            if (AutoItX.WinExists(PrintSnu.ErrorElectronSys[0], PrintSnu.ErrorElectronSys[1]) == 1)
+                            {
+                                LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, innais, PrintBranch, PrintSnu.ErrorElectronSys[1]);
+                                AutoItX.Send(ButtonConstant.Enter);
+                            }
+                            else
+                            {
+                                LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, innais, PrintSnu.Woked);
+                                Process.ProcessLibary.Process("FoxitPhantom.exe", 12000);
+                            }
+                        }
+                    }
                    else
                    {
-                       AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 180, win.WindowsAis.Y + 90);
-                       AutoItX.WinWait(PrintSnu.ErrorElectronSys[0], PrintSnu.ErrorElectronSys[1], 2);
-                       if (AutoItX.WinExists(PrintSnu.ErrorElectronSys[0], PrintSnu.ErrorElectronSys[1]) == 1)
-                       {
+                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 180, win.WindowsAis.Y + 90);
+                        AutoItX.WinWait(PrintSnu.ErrorElectronSys[0], PrintSnu.ErrorElectronSys[1], 2);
+                        if (AutoItX.WinExists(PrintSnu.ErrorElectronSys[0], PrintSnu.ErrorElectronSys[1]) == 1)
+                        {
                             LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, innais, PrintBranch, PrintSnu.ErrorElectronSys[1]);
                             AutoItX.Send(ButtonConstant.Enter);
-                       }
-                       else
-                       {
+                        }
+                        else
+                        {
                             LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, innais, PrintSnu.Woked);
-                            Process.ProcessLibary.Process("FoxitPhantom.exe",12000);
+                            Process.ProcessLibary.Process("FoxitPhantom.exe", 12000);
                         }
                     }
                    AutoItX.ControlFocus(Mode.Okp4.PrintSnu.PrintSnuControl.GridText[0], "", Mode.Okp4.PrintSnu.PrintSnuControl.GridText[1]);
@@ -558,7 +593,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             AutoItX.WinActivate(WindowsAis3.AisNalog3);
             ReadWindow.Read.Reades.ClearBuffer();
             WindowsAis3 win = new WindowsAis3();
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 70, win.WindowsAis.Y + win.WinGrid.Y + 35);
+            win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 35);
             AutoItX.ClipPut(fid);
             AutoItX.Send(ButtonConstant.Right6);
             AutoItX.Send(ButtonConstant.Enter);
@@ -614,7 +650,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                                         AutoItX.Send(ButtonConstant.Enter);
                                         LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, fid, StatusText.FidOk);
                                         AutoItX.Sleep(2000);
-                                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.ControlPanel.X + 85, win.WindowsAis.Y + win.ControlPanel.Y + 10, 2);
+                                        win.ControlGetPos1(WindowsAis3.ControlPanel[0], WindowsAis3.ControlPanel[1], WindowsAis3.ControlPanel[2]);
+                                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 85, win.WindowsAis.Y + win.Y1 + 10, 2);
                                         break;
                                     }
                                 }
@@ -644,7 +681,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         {
             ReadWindow.Read.Reades.ClearBuffer();
             WindowsAis3 win = new WindowsAis3();
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 70, win.WindowsAis.Y + win.WinGrid.Y + 35);
+            win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 35);
             AutoItX.ClipPut(fid);
             AutoItX.Send(ButtonConstant.Down1);
             AutoItX.Send(ButtonConstant.Right6);
@@ -670,10 +708,43 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                         AutoItX.Send(ButtonConstant.Enter);
                         LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, fid, StatusText.FidOk);
                         AutoItX.Sleep(3000);
-                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.ControlPanel.X + 85, win.WindowsAis.Y + win.ControlPanel.Y + 10, 2);
+                        win.ControlGetPos1(WindowsAis3.ControlPanel[0], WindowsAis3.ControlPanel[1], WindowsAis3.ControlPanel[2]);
+                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 85, win.WindowsAis.Y + win.Y1 + 10, 2);
                         break;
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Уточнение платежей
+        /// </summary>
+       public void Click10(string pathjurnalerror, string pathjurnalok)
+        {
+            WindowsAis3 win = new WindowsAis3();
+            RegxStart regxstart = new RegxStart();
+            while (true)
+            {
+                var fulltext = ReadWindow.Read.Reades.HidenTextReturn(WindowsAis3.AisNalog3);
+                regxstart.Parse(fulltext);
+                if (regxstart.IsNulable)
+                {
+                    LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, regxstart.RaschDoc, ModeBranchVedomost1, regxstart.Error);
+                    break;
+                }
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 45, win.WindowsAis.Y + 95);
+                AutoItX.WinWait(Vedomost1Win.ViesneniePl[0], Vedomost1Win.ViesneniePl[1]);
+                AutoItX.Send(ButtonConstant.Enter);
+                regxstart.UseNalog();
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 120, win.WindowsAis.Y + 80);
+                AutoItX.WinWait(Vedomost1Win.Utoch[0], Vedomost1Win.Utoch[1]);
+                AutoItX.Sleep(500);
+                AutoItX.Send(ButtonConstant.Enter);
+                AutoItX.WinWaitClose("АИС Налог-3 ПРОМ ", "Проведение уточнения");
+                AutoItX.Send(ButtonConstant.Tab);
+                LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, regxstart.RaschDoc + " Подставили КБК: " + regxstart.KbkIfns + " вместо " + regxstart.Kbk100, "Удалось спарсить");
+                AutoItX.Sleep(1000);
+                break;
             }
         }
     }

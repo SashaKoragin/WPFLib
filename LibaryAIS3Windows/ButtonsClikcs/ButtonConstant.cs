@@ -22,8 +22,12 @@ namespace LibaryAIS3Windows.ButtonsClikcs
        internal const string CtrlC = "^c";
        internal const string Wheel = "up";
        internal const string Down9 = "{Down 9}";
+       internal const string Down6 = "{Down 6}";
+       internal const string Down11 = "{Down 11}";
+       internal const string Down18 = "{Down 18}";
        internal const string F5 = "{F5}";
        internal const string F3 = "{F3}";
        internal const string Tab = "{Tab}";
-   }
+       internal const string Tab2 = "{Tab 2}";
+    }
 }

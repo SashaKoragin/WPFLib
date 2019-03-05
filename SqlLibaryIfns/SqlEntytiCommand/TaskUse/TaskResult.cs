@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 using EfDatabase.AddTable.AddKrsb;
 using LibaryXMLAuto.ModelXmlSql.Model.FullSetting;
@@ -136,6 +137,24 @@ namespace SqlLibaryIfns.SqlEntytiCommand.TaskUse
                     return await Task.Factory.StartNew(() => sqlconnect.StartingProcedure(connection, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(connection, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand(seting.ParamService.IdCommand.ToString()))).ServiceWcfCommand.Command, listparametr));
                 case 27:
                     return await Task.Factory.StartNew(() => sqlconnect.StartingProcedure(connection, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(connection, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand(seting.ParamService.IdCommand.ToString()))).ServiceWcfCommand.Command, listparametr));
+                default:
+                    return null;
+            }
+        }
+
+        public async Task<DataSet> TaskSqlProcedureKam5(string connection, FullSetting seting)
+        {
+            var sqlconnect = new SqlConnectionType();
+            GenerateParametrSql.GenerateParametrSql sql = new GenerateParametrSql.GenerateParametrSql();
+            Dictionary<string, string> listparametr = new Dictionary<string, string>();
+            if (seting.ReportRvs.Qvartal != 0)
+            {
+                sql.CreateParamert(ref listparametr, seting.ReportRvs.GetType(), seting.ReportRvs);
+            }
+            switch (seting.ParamService.IdCommand)
+            {
+                case 28:
+                    return await Task.Factory.StartNew(() => sqlconnect.ProcedureReturnTable(connection, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(connection, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand(seting.ParamService.IdCommand.ToString()))).ServiceWcfCommand.Command,seting.ModelUser.UserNameGuide, listparametr));
                 default:
                     return null;
             }

@@ -1,8 +1,7 @@
-﻿<div class=" card">
+﻿<div class="card">
     <div class="card-header">
         <i>Общий чат</i> 
     </div>
-    <!-- /.panel-heading -->
     <div class="card-block">
         <ul class="chat">
             <li *ngFor="let message of messages" class="right clearfix">
@@ -20,7 +19,6 @@
             </li>
         </ul>
     </div>
-    <!-- /.card-body -->
     <div class="card-footer">
         <div class="input-group">
             <input id="btn-input" type="text" class="form-control input-sm" [(ngModel)]="message" (ngModelChange)="onMessageChanged()" placeholder="Текст сообщения">
@@ -31,5 +29,5 @@
             </span>
         </div>
     </div>
-    <!-- /.card-footer -->
+
 </div>

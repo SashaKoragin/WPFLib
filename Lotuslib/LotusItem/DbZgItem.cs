@@ -53,6 +53,10 @@ namespace Lotuslib.LotusItem
         /// </summary>
         public const string NamePerson = "IO_InPersonFIO";
         /// <summary>
+        /// ИНН пользователя
+        /// </summary>
+        public const string IoInn = "IO_INN";
+        /// <summary>
         /// Дата регистрации ЗГ
         /// </summary>
         public const string DataReg = "InCard_RgDate";

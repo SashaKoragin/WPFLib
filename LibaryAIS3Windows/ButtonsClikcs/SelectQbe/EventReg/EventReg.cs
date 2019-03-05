@@ -29,7 +29,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs.SelectQbe.EventReg
         public void Chekerfid()
         {
             WindowsAis3 win = new WindowsAis3();
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 425, win.WindowsAis.Y + win.WinGrid.Y + 35);
+            win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 425, win.WindowsAis.Y + win.Y1 + 35);
         }
     }
 }

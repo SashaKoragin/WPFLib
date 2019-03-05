@@ -167,7 +167,7 @@ namespace LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
                                         if (statusButton.Iswork)
                                         {
                                             clickerButton.Click7(date.Date, pathjurnalerror, pathjurnalok, inn.MyInnn,
-                                                conectionstring,statusButton.IsChekcs);
+                                                conectionstring,statusButton.IsChekcs,statusButton.IsLk2);
                                             read.DeleteAtributXml(pathfileinn,
                                                 LibaryXMLAuto.GenerateAtribyte.GeneratorAtribute
                                                     .GenerateAtributeMassNumCollection(inn.NumColection.ToString()));

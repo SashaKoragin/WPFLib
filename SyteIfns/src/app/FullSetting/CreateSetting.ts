@@ -65,7 +65,7 @@ export class CreateSettingSelect {
 export class GenerateParamService {
 
    public setting = new FullSetting();
-    constructor(private id: number) {
+    constructor(id: number) {
         this.setting.ParamService.IdCommand = id;
     }
 }

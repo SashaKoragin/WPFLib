@@ -4,13 +4,13 @@ import { PostTrebovanie, ServiceModel, DonloadFileReport } from '../../../../Pos
 import { CreateSettingSelect, DataBase } from '../../../../FullSetting/CreateSetting';
 import { FullSetting} from '../../../../FullSetting/FullSetting';
 import { SysNum, Reshenie, TableSysNumReshen, Incass} from '../Model/ModelSelect';
-import { plainToClass, deserialize } from 'class-transformer';
+import { deserialize } from 'class-transformer';
 import { BlocsInfoButton } from '../../../../FullSetting/ProcessFull';
 import { DateModel } from '../../../../FullSetting/DateModelFull';
 import { TableReshenia } from '../../../../FullSetting/SelectTable/TableGenerator';
 import { ParamLogica } from '../../../../FullSetting/SelectTable/LogicaSelect';
-import { ServiceWcf, AngularModel, AngularModelFileDonload } from '../../../../ModelService/ModelService';
-import { ParametrSelectMail, SelectParamMail } from '../../../../ModelService/SelectCommand';
+import { ServiceWcf } from '../../../../ModelService/ModelService';
+import { ParametrSelectMail } from '../../../../ModelService/SelectCommand';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { AdressMerge } from '../../../../AdressFullRest/AdresSservice';
 import { DonloadFile } from '../../../../FullSetting/DonloadFileServer/DonloadFile';

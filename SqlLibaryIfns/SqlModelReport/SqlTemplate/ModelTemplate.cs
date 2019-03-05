@@ -18,7 +18,7 @@ namespace SqlLibaryIfns.SqlModelReport.SqlTemplate
         public Document Template(string conectionstring, FullSetting setting)
         {
             var sqlconnect = new SqlConnectionType();
-            Dictionary<string, string> listparametr = null;
+            Dictionary<string, string> listparametr = new Dictionary<string, string>();
             GenerateParametrSql.GenerateParametrSql sql = new GenerateParametrSql.GenerateParametrSql();
             if (setting.UseTemplate.IdTemplate != 0)
             {

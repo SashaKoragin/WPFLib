@@ -1,22 +1,16 @@
-//Настройки общие если что сюда добавлять
 var FullSetting = /** @class */ (function () {
     function FullSetting() {
-        //Параметры для решения
         this.ParametrReshen = new ParametrReshen();
-        //Параметры для БДК
         this.ParametrBdk = new ParametrBdk();
-        //Шаблон для печати
         this.UseTemplate = new UseTemplate();
-        //Параметр для выбора данных с сервиса
         this.ParamService = new ParamService();
-        //Параметры отправки БДК
         this.ParametrBdkOut = new ParametrBdkOut();
-        //Параметры предпроверки
         this.ParamPredproverka = new ParamPredproverka();
-        //Дела приема КРСБ
         this.DeloPriem = new DeloPriem();
-        //Создание дел КРСБ
         this.DeloCreate = new DeloCreate();
+        this.DeloCreate = new DeloCreate();
+        this.ReportRvs = new ReportRvs();
+        this.ModelUser = new ModelUser();
     }
     return FullSetting;
 }());
@@ -93,4 +87,34 @@ var DeloCreate = /** @class */ (function () {
     };
     return DeloCreate;
 }());
+//Настройки для камерального 5 Страховые взносы
+var ReportRvs = /** @class */ (function () {
+    function ReportRvs() {
+    }
+    //Метод конвертации даты в string
+    ReportRvs.prototype.datezaprosa = function (data) {
+        this.Data = "/Date(" + data.getTime() + ")/";
+    };
+    return ReportRvs;
+}());
+//Модель пользователя
+var ModelUser = /** @class */ (function () {
+    function ModelUser() {
+        this.Login = null;
+        this.Password = null;
+        this.UserName = null;
+        this.Guid = this.newGuid();
+        this.UserNameGuide = this.UserName + this.Guid;
+        ///Ошибка с сервера
+        this.Error = null;
+    }
+    ModelUser.prototype.newGuid = function () {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    };
+    return ModelUser;
+}());
+export { ModelUser };
 //# sourceMappingURL=FullSetting.js.map

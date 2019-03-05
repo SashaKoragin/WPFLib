@@ -68,7 +68,6 @@ export { CreateSettingSelect };
 //Генерация параметра для сервиса
 var GenerateParamService = /** @class */ (function () {
     function GenerateParamService(id) {
-        this.id = id;
         this.setting = new FullSetting();
         this.setting.ParamService.IdCommand = id;
     }

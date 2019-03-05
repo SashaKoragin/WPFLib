@@ -80,7 +80,6 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
                 return e.Message;
             }
         }
-
         /// <summary>
         /// Выполнение выборки Sql на сервере касательно сериализации десериализации
         /// </summary>
@@ -118,6 +117,53 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
                 SqlConnection.ClearPool(con);
             }
             return obj;
+        }
+        /// <summary>
+        /// Выполнение процедур возвращающие таблицу
+        /// и подписывание его на событие SignalR для возврата сообщений пользователю с сервера!!!
+        /// </summary>
+        /// <typeparam name="TKey">ключ как правило string</typeparam>
+        /// <typeparam name="TValue">Параметр как правило string</typeparam>
+        /// <param name="conectionstring">Строка соединения с сервером</param>
+        /// <param name="procedure">Процедура</param>
+        /// <param name="usernameguid">Имя пользователя для возврата сообщений</param>
+        /// <param name="listparametr">Лист параметров для процедуры!!!</param>
+        /// <returns></returns>
+        public DataSet ProcedureReturnTable<TKey, TValue>(string conectionstring, string procedure,string usernameguid = null, Dictionary<TKey, TValue> listparametr = null)
+        {
+            try
+            {
+                DataSet dataset = new DataSet();
+                Sobytie sobytie = new Sobytie(usernameguid) { Messages = null };
+                using (var con = new SqlConnection(conectionstring))
+                {
+                    var cmd = new SqlCommand(procedure)
+                    {
+                        CommandType = CommandType.StoredProcedure,
+                        Connection = con,
+                        CommandTimeout = 0
+                    };
+                   con.InfoMessage += sobytie.Con_InfoMessageSignalR;
+                    if (listparametr?.Count > 0)
+                      {
+                        GenerateParametrSql.GenerateParametrSql sql = new GenerateParametrSql.GenerateParametrSql();
+                        cmd = sql.GenerateParametrs(cmd, listparametr);
+                      }
+                        con.Open();
+                      using (var sqlreport = new SqlDataAdapter(cmd))
+                      {
+                            sqlreport.Fill(dataset);
+                      }
+                    con.Close();
+                    SqlConnection.ClearPool(con);
+                }
+                return dataset;
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+                return null;
+            }
         }
     }
 }

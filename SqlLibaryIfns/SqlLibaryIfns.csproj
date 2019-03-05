@@ -45,6 +45,9 @@
     <Reference Include="LibaryXMLAuto">
       <HintPath>..\LibaryXMLAuto\bin\Debug\LibaryXMLAuto.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>C:\Nuget\Microsoft.AspNet.SignalR.Core.2.4.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -85,6 +88,10 @@
     <ProjectReference Include="..\..\..\MyStudio\Обучение\Loggers\Loggers.csproj">
       <Project>{9bac233e-ed3d-493e-b7f6-f26f8091968d}</Project>
       <Name>Loggers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\MyStudio\Обучение\SignalRLibary\SignalRLibary.csproj">
+      <Project>{381752f0-f34d-4d3e-96ad-92b7ba6cf213}</Project>
+      <Name>SignalRLibary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

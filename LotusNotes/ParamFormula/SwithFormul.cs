@@ -8,6 +8,7 @@ using Lotuslib.Formula.Otdel;
 using Lotuslib.LotusModel;
 using Lotuslib.StatusZG;
 using ViewModelLib.ViewModelPage.CalendarModel;
+using ViewModelLib.ViewModelPage.LoadingString;
 
 namespace LotusNotes.ParamFormula
 {
@@ -15,7 +16,7 @@ namespace LotusNotes.ParamFormula
    {
 
 
-       public void FormulSwith(ModelZg modelZg, string databasepath, ModelImnsOtdel otdel, CalendarModel calendar, Status status, OtdelFormul formul)
+       public void FormulSwith(ModelZg modelZg, string databasepath, ModelImnsOtdel otdel, CalendarModel calendar, Status status, OtdelFormul formul, Loading Load)
        {
            SeathZg seathzg = new SeathZg();
            if ( !formul.IsValidation())
@@ -30,14 +31,14 @@ namespace LotusNotes.ParamFormula
                         { break; }
                         {
                          seathzg.SeathZgOtdel(databasepath, modelZg, Formula.GenerateFormula(formul.SelectfFormul.Formula, otdel.SelectOtdel.OtdelDepartament,
-                               calendar.Stardatetime, calendar.EndDateTime)); break;
+                               calendar.Stardatetime, calendar.EndDateTime), Load); break;
                         }
                     case 2:
                         if ( !otdel.IsValidation() || !calendar.IsValidation() ||  !status.IsValidation())
                         { break; }
                         {
                           seathzg.SeathZgOtdel(databasepath, modelZg, Formula.GenerateFormula(formul.SelectfFormul.Formula, otdel.SelectOtdel.OtdelDepartament,
-                              calendar.Stardatetime, calendar.EndDateTime, status.Selectstatus.StatusZg)); break;
+                              calendar.Stardatetime, calendar.EndDateTime, status.Selectstatus.StatusZg), Load); break;
                         }
                 }
             }

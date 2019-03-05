@@ -36,14 +36,4 @@
             FontWeight="Bold"
             IsChecked="{Binding StartButton1.IsChekcs}" />
     </Grid>
-    <UserControl.InputBindings>
-        <KeyBinding
-            Key="A"
-            Command="{Binding Green}"
-            Modifiers="Shift" />
-        <KeyBinding
-            Key="S"
-            Command="{Binding Yellow}"
-            Modifiers="Shift" />
-    </UserControl.InputBindings>
 </UserControl>

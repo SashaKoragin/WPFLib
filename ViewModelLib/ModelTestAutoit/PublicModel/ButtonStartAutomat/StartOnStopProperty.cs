@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using Prism.Commands;
 using Prism.Interactivity;
 using Prism.Mvvm;
+using Button = System.Windows.Controls.Button;
 
 namespace ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat
 {
@@ -13,6 +14,7 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat
    {
 
         private bool _isChecs;
+        private bool _islk2;
         private int _count;
         private bool _iswork;
         private Button _button = new Button();
@@ -20,7 +22,7 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat
         /// <summary>
         /// Логика галочки 
         /// </summary>
-       public bool IsChekcs
+        public bool IsChekcs
        {
            get
            {
@@ -32,6 +34,21 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat
                RaisePropertyChanged();
            }
        }
+        /// <summary>
+        /// Свойство для задачи печати ЛК2 проверять или нет 
+        /// </summary>
+       public bool IsLk2
+       {
+            get
+            {
+                return _islk2;
+            }
+            set
+            {
+                _islk2 = value;
+                RaisePropertyChanged();
+            }
+        }
 
        public Button Button
         {
@@ -73,8 +90,13 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat
         public StatusButtonMethod()
         {
             StatusGrin();
+            HotKeyStart.HotKeyPressed += (start) => StatusGrin();
+            HotKeyStop.HotKeyPressed += (stop) => StatusYellow();
+
         }
 
+        public static HotKey  HotKeyStop = new HotKey(ModifierKeys.Shift, Keys.S, IntPtr.Zero);
+        public static HotKey HotKeyStart = new HotKey(ModifierKeys.Shift, Keys.A, IntPtr.Zero);
         public void StatusGrin()
         {
             //FrameworkElementFactory button = new FrameworkElementFactory(typeof(Button));
@@ -88,6 +110,7 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat
             Button.Background = Brushes.Green;
             Button.IsEnabled = true;
             Iswork = true;
+            
             Count = 0;
         }
 

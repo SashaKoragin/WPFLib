@@ -24,8 +24,6 @@ namespace AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.DataConte
         public DelegateCommand<object> SelectAddF { get; }
         public DelegateCommand<object> RemoveAddF { get; }
         public StatusButtonMethod StartButton2 { get; }
-        public ICommand Green { get; }
-        public ICommand Yellow { get; }
         public QbeClassMethod QbeStatus { get; }
         public Branch Branch { get; }
         public DataContextZemly()
@@ -36,23 +34,11 @@ namespace AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.DataConte
             StartButton2 = new StatusButtonMethod();
             Xml1 = new XmlUseMethod();
             StartButton2.Button.Command = new DelegateCommand(() => { commandauto.ZemlyAuto(QbeStatus,Branch,StartButton2,ConfigFile.FileFpd, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
-            Yellow = new DelegateCommand(() => { Yellows(StartButton2); });
-            Green = new DelegateCommand(() => { Greens(StartButton2); });
             Update = new DelegateCommand(() => { Xml1.UpdateFileXml(ConfigFile.FileFpd); });
             SelectAddC = new DelegateCommand<object>(param=> {QbeStatus.SelectStatusAddC(param);});
             RemoveAddC = new DelegateCommand<object>(param=> {QbeStatus.DeleteStatusAddC(param);});
             SelectAddF = new DelegateCommand<object>(param => { QbeStatus.SelectStatusAddF(param);});
             RemoveAddF = new DelegateCommand<object>(param => { QbeStatus.DeleteStatusAddF(param); });
-        }
-
-        public void Yellows(StatusButtonMethod status)
-        {
-            status.StatusYellow();
-        }
-
-        public void Greens(StatusButtonMethod status)
-        {
-            status.StatusGrin();
         }
     }
 }

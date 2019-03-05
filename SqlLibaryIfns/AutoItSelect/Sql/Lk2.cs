@@ -14,6 +14,8 @@ namespace SqlLibaryIfns.AutoItSelect.Sql
         /// Анализ есть ЛК2 или нет
         /// </summary>
         private bool Yeslk { get; set; }
+
+
         /// <summary>
         /// Выборка проверки Личного кабинета у плательщика.
         /// </summary>

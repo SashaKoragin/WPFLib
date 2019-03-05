@@ -28,7 +28,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs.SelectQbe.EventOkp
         public void Checking()
         {
             WindowsAis3 win = new WindowsAis3();
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 440, win.WindowsAis.Y + win.WinGrid.Y + 30);
+            win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 440, win.WindowsAis.Y + win.Y1 + 30);
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿import { PostBdk } from  '../../../../../PostZaprosFull/PostFull';
-import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
+import { Component, ViewEncapsulation, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { GenerateParamService, CreateSettingSelect } from '../../../../CreateSetting';
-import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { forbiddenNameValidator } from '../../../../FunctionValidation';
 
 export interface IDialodOkato {

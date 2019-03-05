@@ -53,7 +53,29 @@ namespace LibaryAIS3Windows.ReadWindow.Read
             {
                 if (String.IsNullOrWhiteSpace(parametr))
                 {
-                    parametr = AutoIt.AutoItX.ControlGetText(element[0], "", element[1]);
+                    parametr = AutoItX.ControlGetText(element[0], "", element[1]);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return parametr;
+        }
+        /// <summary>
+        /// Получаем не видимый текст с окна
+        /// </summary>
+        /// <param name="namewinactive">Наименование заголовка окна</param>
+        /// <returns></returns>
+        public static string HidenTextReturn(string namewinactive)
+        {
+            string parametr = null;
+            AutoItX.AutoItSetOption("WinDetectHiddenText", 1);
+            while (true)
+            {
+                if (String.IsNullOrWhiteSpace(parametr))
+                {
+                    parametr = AutoItX.WinGetText(namewinactive, "");
                 }
                 else
                 {
@@ -63,6 +85,9 @@ namespace LibaryAIS3Windows.ReadWindow.Read
             return parametr;
         }
 
+        /// <summary>
+        /// Очистка буфера
+        /// </summary>
         public static void ClearBuffer()
         {
             while (true)

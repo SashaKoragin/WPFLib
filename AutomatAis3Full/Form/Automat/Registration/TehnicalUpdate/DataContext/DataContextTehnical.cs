@@ -12,8 +12,6 @@ namespace AutomatAis3Full.Form.Automat.Registration.TehnicalUpdate.DataContext
         public XmlUseMethod Xml { get; }
         public StatusButtonMethod StartButton { get; }
         public ICommand Update { get; }
-        public ICommand Green { get; }
-        public ICommand Yellow { get; }
 
         public DataContextTehnical()
         {
@@ -21,18 +19,7 @@ namespace AutomatAis3Full.Form.Automat.Registration.TehnicalUpdate.DataContext
             StartButton = new StatusButtonMethod();
             Xml = new XmlUseMethod();
             StartButton.Button.Command = new DelegateCommand((() => { commandauto.Update(StartButton, ConfigFile.FidFace, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); }));
-            Yellow = new DelegateCommand(() => { Yellows(StartButton); });
-            Green = new DelegateCommand(() => { Greens(StartButton); });
             Update = new DelegateCommand(() => { Xml.UpdateFileXml(ConfigFile.FidFace); });
-        }
-
-        public void Yellows(StatusButtonMethod status)
-        {
-            status.StatusYellow();
-        }
-        public void Greens(StatusButtonMethod status)
-        {
-            status.StatusGrin();
         }
     }
 }

@@ -12,6 +12,38 @@ const httpOptionsJson = {
 
 };
 
+@Injectable({
+    providedIn: 'root'
+})
+    export class AuthServiceDomen {
+    constructor(private http: HttpClient) { }
+
+
+    isLoggedIn = false;
+
+    // store the URL so we can redirect after logging in
+    redirectUrl: string;
+
+    login(setting: FullSetting) {
+        setting.ModelUser.Error = null;
+        return this.http.post(url.authservicedomain, setting, httpOptionsJson);
+    }
+
+    result(setting: FullSetting) {
+        if (setting.ModelUser.Error === null) {
+            this.isLoggedIn = true;
+        } else {
+            this.isLoggedIn = false;
+        }
+    }
+
+
+
+    logout(): void {
+        this.isLoggedIn = false;
+    }
+}
+
 @Injectable()
 export class DataService {
     constructor(private http: HttpClient) { }
@@ -54,7 +86,6 @@ export class PostBdk {
     constructor(private http: HttpClient) { }
 
     modelbdk(setting: FullSetting) {
-        console.log(JSON.stringify(setting));
             return this.http.post(url.loadbdk, setting, httpOptionsJson);
     }
 
@@ -132,5 +163,16 @@ export class DonloadFileReport {
     constructor(private http: HttpClient) { }
    public downloadFile(geturl:string) {
         return this.http.get(geturl, { responseType: 'arraybuffer' });
+    }
+}
+
+@Injectable()
+export class Kam5Report {
+    constructor(private http: HttpClient) { }
+
+    public reportFile(setting: FullSetting) {
+        return this.http.post(url.reportKam5,
+            setting,
+            { responseType: 'arraybuffer', headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
     }
 }

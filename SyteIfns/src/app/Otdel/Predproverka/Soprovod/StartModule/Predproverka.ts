@@ -4,12 +4,12 @@ import { GenerateParamService } from '../../../../FullSetting/CreateSetting';
 import { AdressMerge } from '../../../../AdressFullRest/AdresSservice';
 import { DonloadFile } from '../../../../FullSetting/DonloadFileServer/DonloadFile';
 import { ServiceWcf }  from '../../../../ModelService/ModelService';
-import { plainToClass, deserialize } from 'class-transformer';
+import { deserialize } from 'class-transformer';
 import { FullSetting } from '../../../../FullSetting/FullSetting';
 import { CreateSettingSelect } from '../../../../FullSetting/CreateSetting';
 import { Soprovod,DocumentDetalization,DocumentReglament } from '../Model/Model'
 import { BlocsInfoButton } from '../../../../FullSetting/ProcessFull';
-import { ParametrSelectMail, SelectParamMail } from '../../../../ModelService/SelectCommand';
+import { ParametrSelectMail } from '../../../../ModelService/SelectCommand';
 import { ParamLogica } from '../../../../FullSetting/SelectTable/LogicaSelect';
 import { PredproverkaTable } from '../../../../FullSetting/SelectTable/TableGenerator';
 import { MatTableDataSource, MatPaginator } from '@angular/material';

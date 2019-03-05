@@ -1,5 +1,5 @@
 ﻿import { ServiceWcf, AngularModel } from './ModelService';
-import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { forbiddenNameValidator } from '../FullSetting/FunctionValidation';
 import { moment } from '../FullSetting/FormatDate';
 

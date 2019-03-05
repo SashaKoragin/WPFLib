@@ -12,9 +12,6 @@ namespace AutomatAis3Full.Form.Automat.Okp4.PravoEdit.DataContext
         public XmlUseMethod Xml { get; }
         public ICommand Update { get; }
         public StatusButtonMethod StartButton { get; }
-        public ICommand Green { get; }
-        public ICommand Yellow { get; }
-
 
         public PravoEditDataContext()
         {
@@ -22,19 +19,7 @@ namespace AutomatAis3Full.Form.Automat.Okp4.PravoEdit.DataContext
             StartButton = new StatusButtonMethod();
             Xml = new XmlUseMethod();
             StartButton.Button.Command = new DelegateCommand((() => { commandauto.AutoClicerEditPravo(StartButton, ConfigFile.FileFid, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); }));
-            Yellow = new DelegateCommand(() => { Yellows(StartButton); });
-            Green = new DelegateCommand(() => { Greens(StartButton); });
             Update = new DelegateCommand(() => { Xml.UpdateFileXml(ConfigFile.FileFid); });
-        }
-
-        public void Yellows(StatusButtonMethod status)
-        {
-            status.StatusYellow();
-        }
-
-        public void Greens(StatusButtonMethod status)
-        {
-            status.StatusGrin();
         }
     }
 }

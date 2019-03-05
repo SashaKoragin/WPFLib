@@ -22,7 +22,7 @@ namespace SqlLibaryIfns.SqlModelReport.Bdk
             try
             {
                 var sqlconnect = new SqlConnectionType();
-                Dictionary<string, string> listparametr = null;
+                Dictionary<string, string> listparametr = new Dictionary<string, string>();
             GenerateParametrSql.GenerateParametrSql sql = new GenerateParametrSql.GenerateParametrSql();
             if (setting.ParametrBdkOut.D85DateStart!= DateTime.MinValue)
             {

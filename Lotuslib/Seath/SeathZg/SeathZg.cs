@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Threading;
 using ClosedXML.Excel;
 using Lotuslib.LotusModel;
+using ViewModelLib.ViewModelPage.LoadingString;
 
 namespace Lotuslib.Seath.SeathZg
 {
@@ -24,7 +25,7 @@ namespace Lotuslib.Seath.SeathZg
         /// <param name="databasepath">Путь кбазе в Lotus</param>
         /// <param name="shemezg">Наша модель отражения элементов для манипуляции </param>
         /// <param name="formula">Заранее сгенерированая формула поиска ЗГ</param>
-        public void SeathZgOtdel(string databasepath, ModelZg shemezg, string formula)
+        public void SeathZgOtdel(string databasepath, ModelZg shemezg, string formula, Loading Load)
         {
             try
             {
@@ -33,31 +34,39 @@ namespace Lotuslib.Seath.SeathZg
                 shemezg.UpdateOn();
                 Task.Run(() =>
                 {
+                    //var db = ConectDb.ConectDb.Databaseconect(ConectionString.ConectionString.Pass,
+                    //ConectionString.ConectionString.ServerLocal, databasepath, false);
                     var db = ConectDb.ConectDb.Databaseconect(ConectionString.ConectionString.Pass,
-                    ConectionString.ConectionString.ServerLocal, databasepath, false);
-                    var col = db.Search(formula, null, 0);
+ConectionString.ConectionString.ServerLocal, "IFNS\\Комутатор_архивов\\Arhiv2018\\2017\\ZG_Arhiv_2017.nsf", false);
+                    
+                   // var col = db.Search(formula, null, 0);
+                    var col = db.Search("Select @All", null, 0);
+                    var count = col.Count;
                     var docum = col.GetFirstDocument();
                     var i = 1;
                     var workbook1 = new XLWorkbook();
                     var worksheet1 = workbook1.Worksheets.Add("Отчет Lotus");
                     while (docum != null)
                     {
-                    var docum1 = docum;
+                        Load.Text = "Обработано " + i + " из " + count;
+                    //var docum1 = docum;
                         //Task.Run(async () =>
                         //{
                         //    await Task.Run(() =>
                         //    {
-                                var a = docum1.GetItemValue(LotusItem.DbZgItem.NamePerson)[0].ToString();
-                                var a1 = docum1.GetItemValue(LotusItem.DbZgItem.NumZg)[0].ToString();
-                                var a2 = docum1.GetItemValue(LotusItem.DbZgItem.StatusZg)[0].ToString();
-                                var a3 = docum1.GetItemValue(LotusItem.DbZgItem.DataregZg)[0].ToString();
-                                var a4 = docum1.GetItemValue(LotusItem.DbZgItem.InCardRespOutNum)[0].ToString();
+                                var a = docum.GetItemValue(LotusItem.DbZgItem.NamePerson)[0].ToString();
+                                var a1 = docum.GetItemValue(LotusItem.DbZgItem.NumZg)[0].ToString();
+                                var a2 = docum.GetItemValue(LotusItem.DbZgItem.StatusZg)[0].ToString();
+                                var a3 = docum.GetItemValue(LotusItem.DbZgItem.DataregZg)[0].ToString();
+                                var a4 = docum.GetItemValue(LotusItem.DbZgItem.InCardRespOutNum)[0].ToString();
+                                var a5 = docum.GetItemValue(LotusItem.DbZgItem.IoInn)[0].ToString();
                                 worksheet1.Cell($"A{i}").Value = a;
                                 worksheet1.Cell($"B{i}").Value = a1;
                                 worksheet1.Cell($"C{i}").Value = a2;
                                 worksheet1.Cell($"D{i}").Value = a3;
                                 worksheet1.Cell($"E{i}").Value = a4;
-                                i++;
+                                worksheet1.Cell($"F{i}").Value = a5;
+                        i++;
                                 //lock (shemezg._lock)
                                 //shemezg.ShemeDbZg.Add(new ModelZg
                                 //{
@@ -72,7 +81,7 @@ namespace Lotuslib.Seath.SeathZg
                                 //});
                         //    });
                         //});
-                        docum = col.GetNextDocument(docum1);
+                        docum = col.GetNextDocument(docum);
                     }
                     workbook1.SaveAs("C:\\Отчет.xlsx");
                     // ExportToExcel(shemezg);

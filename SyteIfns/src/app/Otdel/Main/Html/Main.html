@@ -1,14 +1,13 @@
-﻿<div class="title-black"></div><h1 class="title">Автоматизация различных задач отделов!!!</h1>
-       <button class="otdel" type="button" mat-button (click)="drawer.toggle()">Отделы</button>
+﻿       <button class="otdel" type="button" mat-button (click)="drawer.toggle()">Отделы</button>
        <label class="fullpath" >{{fullpath}}</label>
-       <label class="model">{{model}}</label>
+<label class="model">{{model}}</label>
     <mat-drawer-container class="contenter" autosize>
         <mat-drawer #drawer class="sidenav" mode="side">
             <mat-tree [dataSource]="nestedDataSource" [treeControl]="nestedTreeControl" class="tree">
                 <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
                     <li class="mat-tree-node">
                         <nav>
-                            <a routerLink={{node.pages}} (click)="selectmodel(node);drawer.toggle()" routerLinkActive="active">{{node.types}}</a>
+                            <a routerLink={{node.pages}} (click)="selectmodel(node);drawer.toggle()"  routerLinkActive="active">{{node.types}}</a>
                         </nav>
                     </li>
                 </mat-tree-node>

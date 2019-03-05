@@ -42,13 +42,14 @@
                     Content="{Binding PdfModel.StatusPrint, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True}" />
             </Grid>
             <WrapPanel>
-                <Label Content="Количество документов:"></Label>
-                <TextBox Width="50" 
-                         FontWeight="Black"
-                         MaxLength="3" 
-                         ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
-                         Validation.ErrorTemplate="{StaticResource ValidationFailederror}"
-                         Text="{Binding PdfModel.MaxPrintDoc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}"></TextBox>
+                <Label Content="Количество документов:" />
+                <TextBox
+                    Width="50"
+                    FontWeight="Black"
+                    MaxLength="3"
+                    Text="{Binding PdfModel.MaxPrintDoc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}"
+                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                    Validation.ErrorTemplate="{StaticResource ValidationFailederror}" />
             </WrapPanel>
         </ToolBar>
         <Grid>
@@ -67,6 +68,7 @@
                     VerticalAlignment="Top"
                     Content="{Binding StartButton.Button}" />
                 <CheckBox Content="Проставить дату формирования." IsChecked="{Binding StartButton.IsChekcs}" />
+                <CheckBox Content="Проверять ли на наличие ЛК2?" IsChecked="{Binding StartButton.IsLk2}" />
                 <WrapPanel>
                     <Label Content="Дата формирования:" />
                     <DatePicker
@@ -213,15 +215,5 @@
             </StackPanel>
         </Grid>
     </StackPanel>
-    <UserControl.InputBindings>
-        <KeyBinding
-            Key="A"
-            Command="{Binding Green}"
-            Modifiers="Shift" />
-        <KeyBinding
-            Key="S"
-            Command="{Binding Yellow}"
-            Modifiers="Shift" />
-    </UserControl.InputBindings>
 </UserControl>
 

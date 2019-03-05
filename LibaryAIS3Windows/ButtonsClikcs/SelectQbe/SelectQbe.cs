@@ -43,7 +43,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs.SelectQbe
         public void QbeZemlyOnImushestvo()
         {
             WindowsAis3 win = new WindowsAis3();
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 400, win.WindowsAis.Y + win.WinGrid.Y + 55);
+            win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 400, win.WindowsAis.Y + win.Y1 + 55);
         }
 
         /// <summary>
@@ -52,9 +53,10 @@ namespace LibaryAIS3Windows.ButtonsClikcs.SelectQbe
         public void QbeTransport()
         {
             WindowsAis3 win = new WindowsAis3();
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 450, win.WindowsAis.Y + win.WinGrid.Y + 55);
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 450, win.WindowsAis.Y + win.WinGrid.Y + 300);
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 450, win.WindowsAis.Y + win.WinGrid.Y + 320);
+            win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 450, win.WindowsAis.Y + win.Y1 + 55);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 450, win.WindowsAis.Y + win.Y1 + 300);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 450, win.WindowsAis.Y + win.Y1 + 320);
         }
 
         /// <summary>
@@ -64,7 +66,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs.SelectQbe
         public void SelectC(string str)
         {
             WindowsAis3 win = new WindowsAis3();
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 70, win.WindowsAis.Y + win.WinGrid.Y + 35);
+            win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 35);
             AutoItX.ClipPut(str);
             AutoItX.Send(ButtonConstant.Down1);
             AutoItX.Send(ButtonConstant.Right5);
@@ -79,7 +82,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs.SelectQbe
         public void SelectF(string str)
         {
             WindowsAis3 win = new WindowsAis3();
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WinGrid.X + 70, win.WindowsAis.Y + win.WinGrid.Y + 35);
+            win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 35);
             AutoItX.ClipPut(str);
             AutoItX.Send(ButtonConstant.Down2);
             AutoItX.Send(ButtonConstant.Right5);

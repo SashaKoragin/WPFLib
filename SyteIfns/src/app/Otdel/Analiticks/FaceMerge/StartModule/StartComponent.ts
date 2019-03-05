@@ -1,7 +1,6 @@
 ﻿import { Component, OnInit} from '@angular/core';
 import { Face, FaceErrorField, FaceAdd } from '../Model/FaceError';
 import { DataService } from '../../../../PostZaprosFull/PostFull';
-import { catchError, retry, map } from 'rxjs/operators';
 import { plainToClass } from 'class-transformer';
 
 //По сути патерн MVVM только в рамках асинхронности
@@ -11,7 +10,7 @@ import { plainToClass } from 'class-transformer';
     providers: [DataService]
 })as any)
 
-export class AppComponent implements OnInit { 
+export class AppComponent implements OnInit {
     facemodel: Face = null;
     faces: FaceAdd = new FaceAdd();
     server: string = null;

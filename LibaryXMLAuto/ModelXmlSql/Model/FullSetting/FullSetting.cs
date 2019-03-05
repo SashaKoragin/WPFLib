@@ -41,6 +41,14 @@ namespace LibaryXMLAuto.ModelXmlSql.Model.FullSetting
         /// </summary>
         public DeloPriem DeloPriem { get; set; }
         /// <summary>
+        /// Параметры для процедуры страховые взносы
+        /// </summary>
+        public ReportRvs ReportRvs { get; set; }
+        /// <summary>
+        /// Модель пользователя
+        /// </summary>
+        public ModelUser ModelUser { get; set; }
+        /// <summary>
         /// БД Тест или рабочая
         /// </summary>
         [DataMember(Name = "Db")]
@@ -160,4 +168,83 @@ namespace LibaryXMLAuto.ModelXmlSql.Model.FullSetting
         public string Okato { get; set; }
     }
 
+    public class ReportRvs
+    {
+        /// <summary>
+        /// отчетный квартал (1, 2, 3, 4)
+        /// </summary>
+        [DataMember(Name= "Qvartal")]
+        public int Qvartal { get; set; }
+        /// <summary>
+        /// отчетный год
+        /// </summary>
+        [DataMember(Name = "God")]
+        public int God { get; set; }
+        /// <summary>
+        /// -- вид отчета:
+        ///	   -- 0 - статистика приема по НО,
+        ///	   -- 1 - статистика в разрезе НП,
+        ///	   -- 2 - ошибки приема в разрезе НП, 
+        ///	   -- 3 - сводный отчет о результатах приема
+        /// </summary>
+        [DataMember(Name = "ReportVid")]
+        public int ReportVid { get; set; }
+
+        /// <summary>
+        /// по умолчанию 1
+        ///-- алгоритм определения успешно представленного расчета:
+        ///-- 1 - любой успешно представленный расчет 
+        ///       за аналогичный отчетный период
+        ///-- 0 - только расчет, представленный с номером корректировки 
+        ///       больше ошибочного или представленнный позже ошибочного
+        /// </summary>
+        [DataMember(Name = "P1")]
+        public int P1 { get; set; }
+        /// <summary>
+        ///  отчетная дата (по-умолчанию = текущая дата)
+        /// </summary>
+        [DataMember(Name = "Data")]
+        public DateTime Data { get; set; }
+        /// <summary>
+        /// --По умолчанию 1
+        /// -- 1 - учитывать ошибки с кодами 2* 
+        ///	-- 0 - не учитывать ошибки с кодами 2*
+        /// </summary>
+        [DataMember(Name = "ErrDetal")]
+        public int ErrDetal { get; set; }
+    }
+
+    public class ModelUser
+    {
+        /// <summary>
+        /// Логин пользователя
+        /// </summary>
+        [DataMember(Name = "Login")]
+        public string Login { get; set; }
+        /// <summary>
+        /// Пароль пользователя
+        /// </summary>
+        [DataMember(Name = "Password")]
+        public string Password { get; set; }
+        /// <summary>
+        /// Имя пользователя
+        /// </summary>
+        [DataMember(Name= "UserName")]
+        public string UserName { get; set; }
+        /// <summary>
+        /// Номер пользователя
+        /// </summary>
+        [DataMember(Name = "Guid")]
+        public string Guid { get; set; }
+        /// <summary>
+        /// Совмещенный Имя пользователя и Номер пользователя
+        /// </summary>
+        [DataMember(Name = "UserNameGuide")]
+        public string UserNameGuide { get; set; }
+        /// <summary>
+        /// Ошибка при авторизации
+        /// </summary>
+        [DataMember(Name = "Error")]
+        public string Error { get; set; }
+    }
 }

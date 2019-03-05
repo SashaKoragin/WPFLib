@@ -50,14 +50,4 @@
             </StackPanel>
         </WrapPanel>
     </Grid>
-    <UserControl.InputBindings>
-        <KeyBinding
-            Key="A"
-            Command="{Binding Green}"
-            Modifiers="Shift" />
-        <KeyBinding
-            Key="S"
-            Command="{Binding Yellow}"
-            Modifiers="Shift" />
-    </UserControl.InputBindings>
 </UserControl>

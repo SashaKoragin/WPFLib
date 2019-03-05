@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.FullWindowAutoIt;
+using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
+using System.Windows.Forms;
 
 namespace AutomatAis3Full.GlavnayLogika.Mvvm
 {
    public class WindowsMvvmAuto
     {
-
         public ICommand OpenForms { get; }
         public FullWindowAutoItMethod FullWindow { get; }
         public WindowsMvvmAuto()
@@ -22,4 +23,5 @@ namespace AutomatAis3Full.GlavnayLogika.Mvvm
             OpenForms = new DelegateCommand<object>(parametr => { FullWindow.IsCheked(parametr); });
         }
     }
+
 }
