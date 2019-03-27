@@ -134,8 +134,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="public\images\wood-pane.jpg" />
+    <Content Include="src\app\Autification\Html\Inventarization.css" />
+    <Content Include="src\app\Autification\Html\Inventarization.html" />
     <Content Include="src\app\Autification\Html\MySecurity.css" />
     <Content Include="src\app\Autification\Html\MySecurity.html" />
+    <Content Include="src\app\Images\network.jpg" />
     <Content Include="src\app\Images\wood-pane.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -149,6 +152,16 @@
     <Content Include="src\app\FullSetting\FormValidation\Dialog\StyleDialog\FullDialogStyle.css" />
     <Content Include="src\app\FullSetting\FormValidation\Dialog\ItTemplate\HTML\Headers.html" />
     <Content Include="src\app\FullSetting\FormValidation\Dialog\ItTemplate\HTML\Stone.html" />
+    <Content Include="src\app\Inventarka\Equipment\Html\Equipment.html" />
+    <Content Include="src\app\Inventarka\Equipment\Html\Equipment.css" />
+    <Content Include="src\app\Inventarka\Invent\Html\Invent.html" />
+    <Content Include="src\app\Inventarka\Invent\Html\Invent.css" />
+    <Content Include="src\app\Inventarka\Main\Html\Inventarization.css" />
+    <Content Include="src\app\Inventarka\Main\Html\Inventarization.html" />
+    <Content Include="src\app\Inventarka\ModelTable\HtmlTable\HtmlTable.css" />
+    <Content Include="src\app\Inventarka\ModelTable\HtmlTable\HtmlTable.html" />
+    <Content Include="src\app\Inventarka\User\Html\User.css" />
+    <Content Include="src\app\Inventarka\User\Html\User.html" />
     <Content Include="src\app\Main\Html\Main.css" />
     <Content Include="src\app\Main\Html\Main.html" />
     <Content Include="src\app\Otdel\Analiticks\AnalizNo\Template\AnalizNo.html" />
@@ -202,9 +215,12 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="src\app\AdressFullRest\AdressInventarka.ts" />
     <TypeScriptCompile Include="src\app\AdressFullRest\AdresSservice.ts" />
     <TypeScriptCompile Include="src\app\Autification\ModelSecuriti\AuthGuard.ts" />
+    <TypeScriptCompile Include="src\app\Autification\ModelSecuriti\AuthInventarization.ts" />
     <TypeScriptCompile Include="src\app\Autification\Securiti\Security.ts" />
+    <TypeScriptCompile Include="src\app\Autification\Securiti\SecurityInventarization.ts" />
     <TypeScriptCompile Include="src\app\FullSetting\CreateSetting.ts" />
     <TypeScriptCompile Include="src\app\FullSetting\DateModelFull.ts" />
     <TypeScriptCompile Include="src\app\FullSetting\DonloadFileServer\DonloadFile.ts" />
@@ -221,6 +237,15 @@
     <TypeScriptCompile Include="src\app\FullSetting\SelectTable\LogicaSelect.ts" />
     <TypeScriptCompile Include="src\app\FullSetting\SelectTable\TableGenerator.ts" />
     <TypeScriptCompile Include="src\app\Images\ImageConst.ts" />
+    <TypeScriptCompile Include="src\app\Inventarka\Equipment\View\Equepment.ts" />
+    <TypeScriptCompile Include="src\app\Inventarka\Invent\View\Invent.ts" />
+    <TypeScriptCompile Include="src\app\Inventarka\Main\Main\MainInventarization.ts" />
+    <TypeScriptCompile Include="src\app\Inventarka\Main\Model\ModelInventarization.ts" />
+    <TypeScriptCompile Include="src\app\Inventarka\ModelInventarization\Inventarization.ts" />
+    <TypeScriptCompile Include="src\app\Inventarka\ModelInventarization\Parametr.ts" />
+    <TypeScriptCompile Include="src\app\Inventarka\ModelTable\Model\ModelTable.ts" />
+    <TypeScriptCompile Include="src\app\Inventarka\ModelTable\View\ViewModelTable.ts" />
+    <TypeScriptCompile Include="src\app\Inventarka\User\View\User.ts" />
     <TypeScriptCompile Include="src\app\Main\ModelMain\Main.ts" />
     <TypeScriptCompile Include="src\app\ModelService\ModelService.ts" />
     <TypeScriptCompile Include="src\app\ModelService\SelectCommand.ts" />
@@ -228,6 +253,8 @@
     <TypeScriptCompile Include="src\app\ModelService\ViewModelSelect.ts" />
     <TypeScriptCompile Include="src\app\NgModule\Auth\NgAuth.ts" />
     <TypeScriptCompile Include="src\app\NgModule\Auth\RoutingAuth.ts" />
+    <TypeScriptCompile Include="src\app\NgModule\Main\Inventarization\Inventarka.ts" />
+    <TypeScriptCompile Include="src\app\NgModule\Main\Inventarization\Navigate.ts" />
     <TypeScriptCompile Include="src\app\NgModule\Main\MaterialLibary\MaterialLibary.ts" />
     <TypeScriptCompile Include="src\app\NgModule\Main\NgMain.ts" />
     <TypeScriptCompile Include="src\app\NgModule\Main\Otdel\Navigate.ts" />
@@ -259,6 +286,7 @@
     <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\Model\ModelSelect.ts" />
     <TypeScriptCompile Include="src\app\Otdel\Yregulirovanie\Trebovanie\StartModule\Reshenie.ts" />
     <TypeScriptCompile Include="src\app\PostZaprosFull\PostFull.ts" />
+    <TypeScriptCompile Include="src\app\PostZaprosFull\PostInventarization.ts" />
     <TypeScriptCompile Include="src\app\SignalRSignal\ConnectSignalR.ts" />
     <TypeScriptCompile Include="src\main.ts" />
     <TypeScriptCompile Include="src\polyfills.ts" />
@@ -266,6 +294,9 @@
   <ItemGroup>
     <Folder Include="Content\" />
     <Folder Include="fonts\" />
+    <Folder Include="src\app\Inventarka\Equipment\Model\" />
+    <Folder Include="src\app\Inventarka\Invent\Model\" />
+    <Folder Include="src\app\Inventarka\User\Model\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

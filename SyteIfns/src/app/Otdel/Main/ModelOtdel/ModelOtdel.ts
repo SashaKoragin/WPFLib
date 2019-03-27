@@ -9,6 +9,7 @@ export class ModelOtdel {
     public fullpath: string;
     public model: string;
 }
+
 @Injectable()
 export class Otdel {
     dataChange = new BehaviorSubject<ModelOtdel[]>([{otdelfunc: 'Выбор отдела',

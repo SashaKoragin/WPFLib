@@ -6,11 +6,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { LoginInventarization } from '../../Autification/Securiti/SecurityInventarization';
 import { LoginComponent } from '../../Autification/Securiti/Security';
 var authRoutes = [
     {
         path: 'login',
         component: LoginComponent
+    },
+    {
+        path: 'inventarlogin',
+        component: LoginInventarization
     }
 ];
 var AuthRoutingModule = /** @class */ (function () {

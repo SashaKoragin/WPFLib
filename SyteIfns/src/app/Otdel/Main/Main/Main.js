@@ -11,7 +11,9 @@ import { Component } from '@angular/core';
 import { Otdel } from '../ModelOtdel/ModelOtdel';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
+import * as images from '../../../Images/ImageConst';
 import 'signalr/jquery.signalR.js';
+var img = images; //Для WebPack
 var Main = /** @class */ (function () {
     function Main(database) {
         var _this = this;

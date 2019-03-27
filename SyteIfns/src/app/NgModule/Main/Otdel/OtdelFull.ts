@@ -34,7 +34,7 @@ import { ReportKam5 } from '../../../Otdel/Kam5/ReportKam5/StartModule/Report'
         Predproverka, BdkIt, AnalizNo, BdkLetter, AddTemplate, ReshenieStart, AppComponent, AnalizNo, ReportKam5,
         ChatComponent, Chat
     ],
-    entryComponents: [DialogOkato, HeadersAdd, BodyAdd, StoneAdd, DialogDela],
+    entryComponents: [DialogOkato, HeadersAdd, BodyAdd, StoneAdd, DialogDela]
 }) as any)
 
 export class AppModule {}

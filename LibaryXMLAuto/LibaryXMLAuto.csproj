@@ -49,6 +49,12 @@
   <ItemGroup>
     <Compile Include="Converts\ConvertXmlToXslx\ConvertXmltoXlsx.cs" />
     <Compile Include="Converts\ConvettToXml\XmlConvert.cs" />
+    <Compile Include="Inventarization\Model\ModelProcedure\SelectProcedure.cs">
+      <DependentUpon>SelectProcedure.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventarization\Model\ModelSelectAll\SelectUsers.cs">
+      <DependentUpon>SelectUsers.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModelServiceWcfCommand\AngularModel\AngularModel.cs" />
     <Compile Include="ModelServiceWcfCommand\TestIfnsService\WcfServiiceFull.cs">
       <DependentUpon>WcfServiiceFull.xsd</DependentUpon>
@@ -119,6 +125,12 @@
     <Folder Include="ModelXmlSql\Model\Bdk\BdkNo\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Inventarization\Model\ModelProcedure\SelectProcedure.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Inventarization\Model\ModelSelectAll\SelectUsers.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ModelServiceWcfCommand\TestIfnsService\WcfServiiceFull.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -188,8 +200,8 @@
       <XsdFilesFpd Include="ModelXmlAuto\ModelFpdId\*.xsd" />
       <XsdFilessListInn Include="ModelXmlAuto\ListInnSheme\*.xsd" />
       <XsdFilesFid Include="ModelXmlAuto\ModelFidZorI\*.xsd" />
-      <XsdFilesFaceFid Include="ModelXmlAuto\ModelFaceFid\*.xsd" />
       <XsdXmlSql Include="ModelXmlSql\Model\FaceError\*.xsd" />
+      <XsdFilesFaceFid Include="ModelXmlAuto\ModelFaceFid\*.xsd" />
       <XsdXmlSqlTreb Include="ModelXmlSql\Model\Trebovanie\*.xsd" />
       <XsdXmlSqlBdk Include="ModelXmlSql\Model\Bdk\BdkIt\*.xsd" />
       <XsdXmlSqlReport Include="Reports\ReportsBdk\*.xsd" />
@@ -199,6 +211,8 @@
       <XsdXmlSqlServiceWcfTestIfns Include="ModelServiceWcfCommand\TestIfnsService\*.xsd" />
       <XsdXmlSqlMail Include="ModelXmlSql\Model\ModelMail\*.xsd" />
       <XsdXmlSqlPredproverka Include="ModelXmlSql\Model\Predproverka\*.xsd" />
+      <XsdXmlSqlInventar Include="Inventarization\Model\ModelProcedure\*.xsd" />
+      <XsdXmlSqlInventarSelect Include="Inventarization\Model\ModelSelectAll\*.xsd" />
     </ItemGroup>
     <Message Importance="high" Text="CreateXsd" />
     <GetFrameworkSdkPath>
@@ -224,5 +238,7 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlCreteDela.FullPath)&quot; /classes /namespace:$(RootNamespace)Reports.DelaCreate /outputdir:Reports\DelaCreate\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlAnalizNo.FullPath)&quot; /classes /namespace:$(RootNamespace)Reports.AnalizNo /outputdir:Reports\AnalizNo\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFilesFaceFid.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.ModelFaceFid /outputdir:ModelXmlAuto\ModelFaceFid" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlInventar.FullPath)&quot; /classes /namespace:$(RootNamespace)Inventarization.Model.ModelProcedure /outputdir:Inventarization\Model\ModelProcedure\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlInventarSelect.FullPath)&quot; /classes /namespace:$(RootNamespace)Inventarization.Model.ModelSelectAll /outputdir:Inventarization\Model\ModelSelectAll\" />
   </Target>
 </Project>

@@ -95,12 +95,12 @@
     <Compile Include="ModelTestAutoit\ModelFormirovanie\ShemeXsd\ShemeProperty.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\StackPanelModel\ShemeSnuOneForm\ModelSnuOneFormNameListProperty.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\TextBoxModel\TextBoxModelProperty.cs" />
-    <Compile Include="ModelTestAutoit\ModelFormirovanie\Vedomosti\Vedomost1\ModelVedomost1.cs" />
     <Compile Include="ModelTestAutoit\ModelSnuOneAuto\DataXml\XmlUseProperty.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ButtonStartAutomat\HotKey.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ButtonStartAutomat\StartOnStopProperty.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\DatePicker\DatePickerPub.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\QbeSelect\QbeClass.cs" />
+    <Compile Include="ModelTestAutoit\PublicModel\RaschetBuh\SelectVibor.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ReportXlsx\ReportXlsx.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ReportXml\ReportJurnalProperty.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\SelectBranch\Branch.cs" />

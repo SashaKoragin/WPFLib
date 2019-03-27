@@ -4,6 +4,7 @@ import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import * as images from '../../../Images/ImageConst';
 import 'signalr/jquery.signalR.js';
+const img = images;  //Для WebPack
 
 @Component(({
     selector: 'app-root',

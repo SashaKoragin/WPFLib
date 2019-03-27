@@ -44,5 +44,14 @@ namespace LibaryAIS3Windows.Mode.RaschetBudg.VedRazd1
             "[NAME:_btnOk]"
         };
 
+        /// <summary>
+        /// Выбор ТП
+        /// </summary>
+        internal static string[] SelectTp =
+        {
+            "АИС Налог-3 ПРОМ ",
+            "[NAME:taddDecisionTaxPaymentReason]"
+        };
+
     }
 }

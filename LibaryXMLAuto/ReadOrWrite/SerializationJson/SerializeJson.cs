@@ -20,10 +20,11 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
         /// <returns>JSON string</returns>
         public string JsonLibary(object model)
         {
+
          return  JsonConvert.SerializeObject(model,new JsonSerializerSettings()
           {
             NullValueHandling = NullValueHandling.Ignore,
-            DateFormatString = "dd-MM-yyyy"
+            DateFormatString = "dd-MM-yyyy",
           });
         }
      }

@@ -15,6 +15,7 @@ import { AngularMaterialModule} from './MaterialLibary/MaterialLibary';
 
 import { ConnectionResolver } from '../../SignalRSignal/ConnectSignalR';
 import { SignalRConfiguration, SignalRModule } from 'ng2-signalr';
+import { LoginInventarization } from '../../Autification/Securiti/SecurityInventarization';
 
 export function createConfig(): SignalRConfiguration {
     const c = new SignalRConfiguration();
@@ -36,7 +37,7 @@ export function createConfig(): SignalRConfiguration {
         SignalRModule.forRoot(createConfig)
     ],
     declarations: [
-        Root, LoginComponent
+        Root, LoginComponent, LoginInventarization
     ],
     bootstrap: [Root],
     providers: [ConnectionResolver]

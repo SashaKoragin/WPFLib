@@ -9,7 +9,6 @@
 
 .shapka {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
@@ -24,10 +23,11 @@
 .navigate1 {
     text-align: left;
     align-items: center;
+    display: grid;
 }
 .navigate2 {
-    display: inline;
-    text-align: right;
+    display: grid;
+    text-align: left;
     align-items: center;
 }
 .style {

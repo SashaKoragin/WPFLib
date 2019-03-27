@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using SqlLibaryIfns.AutoItSelect.Sql;
 using LibaryAIS3Windows.Window.Otdel.Analitic.TeskText;
 using AutoIt;
@@ -719,7 +718,10 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// <summary>
         /// Уточнение платежей
         /// </summary>
-       public void Click10(string pathjurnalerror, string pathjurnalok)
+        /// <param name="pathjurnalerror">Путь к журналу ошибок</param>
+        /// <param name="pathjurnalok">Путь к журналу Ок</param>
+        /// <param name="logica">Логика анализа</param>
+        public void Click10(string pathjurnalerror, string pathjurnalok, int logica)
         {
             WindowsAis3 win = new WindowsAis3();
             RegxStart regxstart = new RegxStart();
@@ -735,7 +737,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 45, win.WindowsAis.Y + 95);
                 AutoItX.WinWait(Vedomost1Win.ViesneniePl[0], Vedomost1Win.ViesneniePl[1]);
                 AutoItX.Send(ButtonConstant.Enter);
-                regxstart.UseNalog();
+                regxstart.UseNalog(logica);
                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 120, win.WindowsAis.Y + 80);
                 AutoItX.WinWait(Vedomost1Win.Utoch[0], Vedomost1Win.Utoch[1]);
                 AutoItX.Sleep(500);

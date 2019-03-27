@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="AllUsers">
+		<xs:annotation>
+			<xs:documentation>Все пользователи</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Users" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Users">
+		<xs:annotation>
+			<xs:documentation>Пользователь</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Rules" minOccurs="0"/>
+				<xs:element ref="Otdel" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="IdUser" type="xs:int"/>
+			<xs:attribute name="Name" type="xs:string"/>
+			<xs:attribute name="TabelNumber" type="xs:string"/>
+			<xs:attribute name="Telephon" type="xs:string"/>
+			<xs:attribute name="TelephonUndeground" type="xs:string"/>
+			<xs:attribute name="IpTelephon" type="xs:string"/>
+			<xs:attribute name="MacTelephon" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Otdel">
+		<xs:annotation>
+			<xs:documentation>Отдел</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="NameOtdel" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Rules">
+		<xs:annotation>
+			<xs:documentation>Роль</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="NameRules" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

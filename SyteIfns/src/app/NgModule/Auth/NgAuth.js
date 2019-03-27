@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from '../../Autification/Securiti/Security';
 import { AuthRoutingModule } from './RoutingAuth';
 import { AngularMaterialModule } from '../Main/MaterialLibary/MaterialLibary';
+import { LoginInventarization } from '../../Autification/Securiti/SecurityInventarization';
 var AuthModule = /** @class */ (function () {
     function AuthModule() {
     }
@@ -22,7 +23,7 @@ var AuthModule = /** @class */ (function () {
                 AngularMaterialModule
             ],
             declarations: [
-                LoginComponent
+                LoginComponent, LoginInventarization
             ]
         })
     ], AuthModule);

@@ -7,12 +7,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from '../../Autification/ModelSecuriti/AuthGuard';
+import { AuthInventar } from '../../Autification/ModelSecuriti/AuthInventarization';
 import { AppModule } from './Otdel/OtdelFull';
+import { InventarModule } from './Inventarization/Inventarka';
 var appRoutes = [
     {
         path: 'admin',
         loadChildren: function () { return AppModule; },
         canLoad: [AuthGuard]
+    },
+    {
+        path: 'inventarization',
+        loadChildren: function () { return InventarModule; },
+        canLoad: [AuthInventar]
     }
 ];
 var AppRoutingModule = /** @class */ (function () {

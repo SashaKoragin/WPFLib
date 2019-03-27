@@ -23,3 +23,4 @@
     public adressBdk = `http://${this.host}:8181/ServiceRest/ReportFile/Бдк.xlsx`;
     public adressIstrebovanie = `http://${this.host}:8181/ServiceRest/ReportFile/Истребование.xlsx`;
 }
+

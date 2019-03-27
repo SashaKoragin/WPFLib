@@ -14,7 +14,17 @@ using LibaryAIS3Windows.Window;
 namespace LibaryAIS3Windows.RegxFull.RaschetBudg
 {
    public class RegxStart
-    {
+   {
+       private static string[] _imusistvo =
+       {
+           "18210601010031000110",
+           "18210601010032100110",
+           "18210604012021000110",
+           "18210604012022100110",
+           "18210606041031000110",
+           "18210606041032100110"
+       };
+
         /// <summary>
         /// Парсим расчетный документ
         /// </summary>
@@ -99,8 +109,11 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
                 IsNulable = true;
             }
         }
-
-        public void UseNalog()
+        /// <summary>
+        /// Анализ простановки налдогов 
+        /// </summary>
+        /// <param name="logica">Как будет идти анализ данных</param>
+        public void UseNalog(int logica)
         {
             ParsTp();
             while (true)
@@ -118,23 +131,45 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
                     AutoItX.Send(ButtonConstant.Tab);
                     AutoItX.Send(ButtonConstant.Tab);
                     AutoItX.ControlClick(VedRazd1.WinNalog[0], VedRazd1.SelectKbkStart[0], VedRazd1.SelectKbkStart[1]);
-                    Status();
+                    Status(logica);
                     break;
                 }
             }
+
         }
 
-
-        public void Status()
+        /// <summary>
+        /// Анализ 100 Иностранцы
+        /// </summary>
+        /// <param name="logica">Какой анализ делаем</param>
+        public void Status(int logica)
         {
-            string status = "13";
-            if (Inn == "ИНН:7707083893" && Kpp== "КПП:526002001")
+            string status = "01";
+            string tp = "ТП";
+            switch (logica)
             {
-                status = "15";
+                case 1:
+                     status = "13";
+                    if (Inn == "ИНН:7707083893" && Kpp == "КПП:526002001")
+                    {
+                        status = "15";
+                    }
+                    AutoItX.ControlClick(VedRazd1.Status[0], "", VedRazd1.Status[1]);
+                    AutoItX.Send(status);
+                    break;
+                case 2:
+                    AutoItX.ControlClick(VedRazd1.SelectTp[0], "", VedRazd1.SelectTp[1]);
+                    AutoItX.Send(tp);
+                    break;
+                case 3:
+                    AutoItX.ControlClick(VedRazd1.Status[0], "", VedRazd1.Status[1]);
+                    AutoItX.Send(status);
+                    AutoItX.ControlClick(VedRazd1.SelectTp[0], "", VedRazd1.SelectTp[1]);
+                    AutoItX.Send(tp);
+                    break;
             }
-            AutoItX.ControlClick(VedRazd1.Status[0], "", VedRazd1.Status[1]);
-            AutoItX.Send(status);
         }
+
 
         public void ParsTp()
         {

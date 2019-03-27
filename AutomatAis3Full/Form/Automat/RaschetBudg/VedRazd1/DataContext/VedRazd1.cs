@@ -1,25 +1,22 @@
-﻿using System.Windows.Forms;
-using System.Windows.Input;
-using AutomatAis3Full.Config;
-using AutomatAis3Full.GlavnayLogika.Mvvm;
+﻿using AutomatAis3Full.Config;
 using LibaryCommandPublic.TestAutoit.RaschBydj.Vedomost1;
 using Prism.Commands;
-using ViewModelLib.ModelTestAutoit.ModelFormirovanie.Vedomosti.Vedomost1;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
+using ViewModelLib.ModelTestAutoit.PublicModel.RaschetBuh;
 
 namespace AutomatAis3Full.Form.Automat.RaschetBudg.VedRazd1.DataContext
 {
    public class VedRazd1
     {
-
-        public ModelVedomost1 ModelVedomost1 { get; }
         public StatusButtonMethod Start { get; }
+
+        public SelectVibor Select { get; }
         public VedRazd1()
         {
+            Select = new SelectVibor();
             var ved1 = new  StartVedomost1();
-            ModelVedomost1 = new ModelVedomost1();
             Start = new StatusButtonMethod();
-            Start.Button.Command = new DelegateCommand(()=> { ved1.AutoClicsVed1(Start, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
+            Start.Button.Command = new DelegateCommand(()=> { ved1.AutoClicsVed1(Start,Select, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
         }
     }
 }

@@ -42,7 +42,7 @@ var AppModule = /** @class */ (function () {
                 Predproverka, BdkIt, AnalizNo, BdkLetter, AddTemplate, ReshenieStart, AppComponent, AnalizNo, ReportKam5,
                 ChatComponent, Chat
             ],
-            entryComponents: [DialogOkato, HeadersAdd, BodyAdd, StoneAdd, DialogDela],
+            entryComponents: [DialogOkato, HeadersAdd, BodyAdd, StoneAdd, DialogDela]
         }))
     ], AppModule);
     return AppModule;

@@ -8,8 +8,8 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="{d:DesignInstance {x:Type dataContext:VedRazd1}}"
-    d:DesignHeight="300"
-    d:DesignWidth="300"
+    d:DesignHeight="700"
+    d:DesignWidth="700"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -25,45 +25,36 @@
                 Margin="5,5,5,5"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Content="{Binding Start.Button}" />
-            <CheckBox Content="Проставить выборку?" IsChecked="{Binding ModelVedomost1.IsCheced}" />
-            <Label Content="Комманда приостановить Shift+S" />
-            <Label Content="Комманда возобновить Shift+A" />
+                Content="{Binding Start.Button}"
+                FontSize="16" />
+            <DockPanel>
+                <Label Content="Выбор обработки анализа:" FontSize="14"/>
+                <ComboBox ItemsSource="{Binding Select.SelectQbe}" SelectedItem="{Binding Select.Sel, Mode=TwoWay, ValidatesOnDataErrors=True}"
+                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                    Validation.ErrorTemplate="{StaticResource ValidationFailederror}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Text}" FontSize="14"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </DockPanel>
+            <Label Content="Комманда приостановить Shift+S" FontSize="16" />
+            <Label Content="Комманда возобновить Shift+A" FontSize="16" />
         </StackPanel>
-        <WrapPanel Grid.Row="0" Grid.Column="1">
-            <StackPanel>
-                <Label Content="Дата зачисления" />
-                <Label Content="Сумма" />
-                <Label Content="Статус платежа" />
-                <Label Content="КБК" />
-                <Label Content="КБК по распределению УФК" />
-            </StackPanel>
-            <StackPanel>
-                <DatePicker
-                    SelectedDate="{Binding ModelVedomost1.Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                    Text="{Binding StringFormat='dd MMM yyyy', RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
-                    Validation.ErrorTemplate="{StaticResource ValidationFailederror}" />
-                <TextBox
-                    Width="100"
-                    Text="{Binding ModelVedomost1.Summ, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}"
-                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
-                    Validation.ErrorTemplate="{StaticResource ValidationFailederror}" />
-                <TextBox
-                    Width="100"
-                    Text="{Binding ModelVedomost1.StatusPl, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}"
-                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
-                    Validation.ErrorTemplate="{StaticResource ValidationFailederror}" />
-                <TextBox
-                    Width="100"
-                    Text="{Binding ModelVedomost1.Kbk, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}"
-                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
-                    Validation.ErrorTemplate="{StaticResource ValidationFailederror}" />
-                <TextBox
-                    Width="100"
-                    Text="{Binding ModelVedomost1.KbkRaspr, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True, ValidatesOnDataErrors=True}"
-                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
-                    Validation.ErrorTemplate="{StaticResource ValidationFailederror}" />
-            </StackPanel>
-        </WrapPanel>
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="10,0,0,0">
+            <Label Content="Логика обработки:" />
+            <TextBlock
+                Name="Block"
+                Width="360"
+                Background="{Binding Select.Sel.ColorNum}"
+                FontSize="16"
+                Text="{Binding Select.Sel.Discription}"
+                TextWrapping="Wrap">
+            </TextBlock>
+        </StackPanel>
     </Grid>
 </UserControl>
