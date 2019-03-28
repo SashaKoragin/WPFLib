@@ -123,14 +123,18 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
                 AutoItX.WinWait(VedRazd1.WinNalog[0], VedRazd1.WinNalog[1], 60);
                 if (AutoItX.WinExists(VedRazd1.WinNalog[0], VedRazd1.WinNalog[1]) == 1)
                 {
+                    
+
                     WindowsAis3 win = new WindowsAis3();
                     win.ControlGetPos1(WindowsAis3.Nalog[0], WindowsAis3.Nalog[1], WindowsAis3.Nalog[2]);
                     AutoItX.MouseClick(ButtonConstant.MouseLeft, win.X1 +win.WinNalog.X+ 40, win.Y1 + win.WinNalog.Y + 60, 1);
                     AutoItX.Send(KbkIfns);
-                    AutoItX.Sleep(1000);
+                    AutoItX.Sleep(2000);
                     AutoItX.Send(ButtonConstant.Tab);
                     AutoItX.Send(ButtonConstant.Tab);
                     AutoItX.ControlClick(VedRazd1.WinNalog[0], VedRazd1.SelectKbkStart[0], VedRazd1.SelectKbkStart[1]);
+                    
+
                     Status(logica);
                     break;
                 }

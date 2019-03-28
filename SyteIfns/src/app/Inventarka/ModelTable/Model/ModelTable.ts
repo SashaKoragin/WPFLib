@@ -1,5 +1,5 @@
 ﻿import { MatTableDataSource} from '@angular/material';
-import { Users, Rules, Otdels } from '../../ModelInventarization/Inventarization';
+import { Users } from '../../ModelInventarization/Inventarization';
 
 
 export class ModelColumns {
@@ -26,7 +26,7 @@ export class ModelsTable {
     { key: 'macTelephon', header: 'Мак адрес', cell: (row: Users) => `${row.MacTelephon}` },
     { key: 'nameRules', header: 'Наименование роли', cell: (row: Users) => `${typeof row.Rules === 'undefined' ? null : row.Rules.NameRules}` },
     { key: 'nameOtdel', header: 'Наименование отдела', cell: (row: Users) => `${typeof row.Otdel === 'undefined' ? null : row.Otdel.NameOtdel}` },
-    { key: 'button', header: 'Наименование отдела', cell:(row:string) =>'<edit></edit>' }
+        { key: 'button', header: 'Наименование отдела', cell: (row: string) =>'<button></button>' }
     ];
 }
 

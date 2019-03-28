@@ -237,6 +237,8 @@
     <TypeScriptCompile Include="src\app\FullSetting\SelectTable\LogicaSelect.ts" />
     <TypeScriptCompile Include="src\app\FullSetting\SelectTable\TableGenerator.ts" />
     <TypeScriptCompile Include="src\app\Images\ImageConst.ts" />
+    <TypeScriptCompile Include="src\app\Inventarka\AddFullModel\ModelTable\TableModel.ts" />
+    <TypeScriptCompile Include="src\app\Inventarka\AddFullModel\ValidationModel\ValidateTableForm.ts" />
     <TypeScriptCompile Include="src\app\Inventarka\Equipment\View\Equepment.ts" />
     <TypeScriptCompile Include="src\app\Inventarka\Invent\View\Invent.ts" />
     <TypeScriptCompile Include="src\app\Inventarka\Main\Main\MainInventarization.ts" />

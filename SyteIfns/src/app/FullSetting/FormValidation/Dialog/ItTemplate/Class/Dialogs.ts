@@ -77,7 +77,7 @@ export class HeadersAdd {
     constructor(private MatDialogRef: MatDialogRef<HeadersAdd>,
         @Inject(MAT_DIALOG_DATA) public data: IDialodData) { }
     //Реактивная форма Head
-    formTemplateHeaders = new FormGroup({
+    formTemplateHeaders: FormGroup = new FormGroup({
         'textHeade1': new FormControl('', Validators.required),
         'textHeade2': new FormControl('', Validators.required),
         'textHeade3': new FormControl({ value: '' }, [Validators.required]),
@@ -122,7 +122,7 @@ export class BodyAdd {
     constructor(private MatDialogRef: MatDialogRef<BodyAdd>,
         @Inject(MAT_DIALOG_DATA) public data: IDialodData) { }
     //Реактивная форма Body
-    formTemplateBody = new FormGroup({
+    formTemplateBody: FormGroup = new FormGroup({
         'textBodyGl1': new FormControl('', Validators.required),
         'textBodyGl2': new FormControl('', Validators.required),
         'textBodyGl3': new FormControl({ value: '' }, [Validators.required]),
@@ -156,7 +156,7 @@ export class StoneAdd {
     constructor(private MatDialogRef: MatDialogRef<StoneAdd>,
         @Inject(MAT_DIALOG_DATA) public data: IDialodData ) { }
     //Реактивная форма Stone
-    formTemplateStone = new FormGroup({
+    formTemplateStone: FormGroup = new FormGroup({
         'textStone1': new FormControl('', Validators.required),
         'textStone2': new FormControl('', Validators.required),
         'textStone3': new FormControl({ value: '' }, [Validators.required]),

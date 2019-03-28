@@ -1,11 +1,11 @@
 ﻿import { MatTableDataSource } from '@angular/material';
-import { AngularTemplate , NameDocument, Headers, Stone, Body } from '../../Otdel/It/AddTemplate/Model/ModelTemplate';
+import { NameDocument, Headers, Stone, Body } from '../../Otdel/It/AddTemplate/Model/ModelTemplate';
 import { WordDocument, UseTableTemplateBdk } from '../../Otdel/It/FormLetter/Model/ModelDataBase/ModelMail';
-import { SysNum, Reshenie, TableSysNumReshen, Incass } from '../../Otdel/Yregulirovanie/Trebovanie/Model/ModelSelect';
+import { Reshenie, TableSysNumReshen, Incass } from '../../Otdel/Yregulirovanie/Trebovanie/Model/ModelSelect';
 import { DocumentReglament, DocumentDetalization } from '../../Otdel/Predproverka/Soprovod/Model/Model';
-import { ViewChild } from '@angular/core';
+
 import { SelectionModel } from '@angular/cdk/collections';
-import { ServiceModel} from '../../PostZaprosFull/PostFull';
+
 import { TableInfoDelo } from '../FormValidation/Dialog/CreateDela/Class/ModelDelaPriem';
 import { Delo, AnalizNO } from '../../Otdel/Analiticks/AnalizNo/Model/ModelAnaliz';
 //Класс таблиц Создания писем

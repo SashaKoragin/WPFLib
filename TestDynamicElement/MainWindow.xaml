@@ -1,0 +1,40 @@
+﻿<Window
+    x:Class="TestDynamicElement.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dataContext="clr-namespace:TestDynamicElement.ViewModel"
+    xmlns:local="clr-namespace:TestDynamicElement"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="525"
+    Height="350"
+    d:DataContext="{d:DesignInstance {x:Type dataContext:VieWModel}}"
+    mc:Ignorable="d">
+    <Grid>
+        <StackPanel>
+            <Canvas></Canvas>
+            <Button
+                Width="200"
+                Command="{Binding Update}"
+                Content="Добавить кнопку в модель" />
+            <ListView ItemsSource="{Binding Model.User, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                <!--  Контекстное меню в данном элементе находится в словаре и тригер тоже в словаре на выбор элемента!!!!  -->
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="Auto" Header="Кнопки">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <WrapPanel HorizontalAlignment="Stretch">
+                                        <ContentControl Content="{Binding Control}" />
+
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Window>

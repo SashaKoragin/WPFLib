@@ -95,6 +95,8 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat
 
         }
 
+        
+
         public static HotKey  HotKeyStop = new HotKey(ModifierKeys.Shift, Keys.S, IntPtr.Zero);
         public static HotKey HotKeyStart = new HotKey(ModifierKeys.Shift, Keys.A, IntPtr.Zero);
         public void StatusGrin()

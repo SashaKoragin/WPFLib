@@ -9,15 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { PostInventar } from '../../../PostZaprosFull/PostInventarization';
-import { ModelColumns, ModelsTable, Table } from '../../ModelTable/Model/ModelTable';
 import { AllSelected } from '../../ModelInventarization/Inventarization';
+import { UserValidation } from '../../AddFullModel/ValidationModel/ValidateTableForm';
+import { UserTableModel } from '../../AddFullModel/ModelTable/TableModel';
+//import { TableDataSource, ValidatorService } from 'angular4-material-table';
 import { deserialize } from 'class-transformer';
 var User = /** @class */ (function () {
-    function User(httpclient) {
+    function User(httpclient, uservalid) {
         this.httpclient = httpclient;
-        this.name = null;
-        this.model = new ModelsTable();
-        this.table = null;
+        this.uservalid = uservalid;
+        this.user = new UserTableModel();
         this.select = null;
     }
     User.prototype.ngOnInit = function () {
@@ -25,8 +26,9 @@ var User = /** @class */ (function () {
         this.httpclient.alluser(1).subscribe(function (model) {
             if (model) {
                 _this.select = deserialize(AllSelected, model.toString());
-                _this.table = new Table(_this.select.Users, _this.model.modelusers);
-                _this.name = new ModelColumns(_this.table.models);
+                _this.user.addtableModel(_this.select.Users);
+                // this.table = new Table<Users>(this.select.Users, this.model.modelusers);
+                // this.name= new ModelColumns(this.table.models);
             }
         });
     };
@@ -35,9 +37,9 @@ var User = /** @class */ (function () {
             selector: 'equepment',
             templateUrl: '../Html/User.html',
             styleUrls: ['../Html/User.css'],
-            providers: [PostInventar]
+            providers: [PostInventar, UserValidation]
         })),
-        __metadata("design:paramtypes", [PostInventar])
+        __metadata("design:paramtypes", [PostInventar, UserValidation])
     ], User);
     return User;
 }());

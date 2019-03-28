@@ -17,9 +17,9 @@ var ModelsTable = /** @class */ (function () {
             { key: 'telephonUndeground', header: 'Телефон городской', cell: function (row) { return "" + row.TelephonUndeground; } },
             { key: 'ipTelephon', header: 'IP Телефона', cell: function (row) { return "" + row.IpTelephon; } },
             { key: 'macTelephon', header: 'Мак адрес', cell: function (row) { return "" + row.MacTelephon; } },
-            { key: 'nameRules', header: 'Наименование роли', cell: function (row) { return "" + (typeof row.Rule === 'undefined' ? null : row.Rule.NameRules); } },
+            { key: 'nameRules', header: 'Наименование роли', cell: function (row) { return "" + (typeof row.Rules === 'undefined' ? null : row.Rules.NameRules); } },
             { key: 'nameOtdel', header: 'Наименование отдела', cell: function (row) { return "" + (typeof row.Otdel === 'undefined' ? null : row.Otdel.NameOtdel); } },
-            { key: 'button', header: 'Наименование отдела', cell: function (row) { return '<edit></edit>'; } }
+            { key: 'button', header: 'Наименование отдела', cell: function (row) { return '<button></button>'; } }
         ];
     }
     return ModelsTable;

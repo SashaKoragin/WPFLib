@@ -1,11 +1,11 @@
-﻿import { Component, OnInit, ViewChild } from '@angular/core';
-import { AngularTemplate, ModelFull, NameDocument, Headers, Stone, Body } from '../Model/ModelTemplate'
+﻿import { Component, ViewChild } from '@angular/core';
+import { ModelFull, NameDocument, Headers, Stone, Body } from '../Model/ModelTemplate'
 import { LogicaTemplate} from '../Model/Tables'
-import { ServiceWcf, AngularModel, AngularModelFileDonload } from '../../../../ModelService/ModelService';
+import { ServiceWcf } from '../../../../ModelService/ModelService';
 import { GenerateParamService } from '../../../../FullSetting/CreateSetting';
 import { TemplateAdd, ServiceModel } from '../../../../PostZaprosFull/PostFull';
-import { plainToClass, deserialize } from 'class-transformer';
-import { ParametrSelectMail, SelectParamMail } from '../../../../ModelService/SelectCommand';
+import { deserialize } from 'class-transformer';
+import { ParametrSelectMail } from '../../../../ModelService/SelectCommand';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { TableTemplate } from '../../../../FullSetting/SelectTable/TableGenerator';
 import { ControlTemplate } from '../../../../FullSetting/FormValidation/FormValidation'
