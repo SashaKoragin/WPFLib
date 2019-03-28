@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using TestDynamicElement.Model;
 
 namespace TestDynamicElement.ViewModel
 {
@@ -14,9 +15,12 @@ namespace TestDynamicElement.ViewModel
 
         public ICommand Update { get; }
 
+        public ModelElem Elem { get; }
+
         public VieWModel()
         {
             Model = new Model.Model();
+            Elem = new ModelElem();
             Model.AddModel();
             Update = new DelegateCommand(() => { Model.AddElement(); });
         }

@@ -21,25 +21,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0">
-            <TabControl>
-            
-                <Style>
-                    <Setter Property="sdsds">
-                        <Setter.Value>
-                          <DataTemplate DataType="TabControl" >
-                              
-                          </DataTemplate>
-                            <ContentPresenter>
-                                <ContentPresenter.LayoutTransform>
-                                    <RotateTransform/>
-                                </ContentPresenter.LayoutTransform>
-                            </ContentPresenter>
-                          
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-           
-            </TabControl>
             <ContentControl
                 Margin="5,5,5,5"
                 HorizontalAlignment="Left"

@@ -13,7 +13,7 @@
     mc:Ignorable="d">
     <Grid>
         <StackPanel>
-            <Canvas></Canvas>
+            <Canvas />
             <Button
                 Width="200"
                 Command="{Binding Update}"
@@ -27,7 +27,6 @@
                                 <DataTemplate>
                                     <WrapPanel HorizontalAlignment="Stretch">
                                         <ContentControl Content="{Binding Control}" />
-
                                     </WrapPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -35,6 +34,14 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+
+            <StackPanel>
+                <Label>БОНУС Реализация передачи из одного xaml в другой в патерне mvvm</Label>
+                <WrapPanel>
+                    <ContentControl Content="{Binding Elem.Xaml[0]}" />
+                    <ContentControl Content="{Binding Elem.Xaml[1]}" />
+                </WrapPanel>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

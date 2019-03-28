@@ -58,7 +58,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bonus\Model\ModelElem.cs" />
+    <Compile Include="Bonus\ViewModel\ElemViewModel.cs" />
+    <Compile Include="Bonus\Xaml1.xaml.cs">
+      <DependentUpon>Xaml1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bonus\Xaml2.xaml.cs">
+      <DependentUpon>Xaml2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ModelElem.cs" />
     <Compile Include="ViewModel\VieWModel.cs" />
+    <Page Include="Bonus\Xaml1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bonus\Xaml2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
