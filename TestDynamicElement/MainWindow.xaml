@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:dataContext="clr-namespace:TestDynamicElement.ViewModel"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:local="clr-namespace:TestDynamicElement"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
@@ -13,7 +14,6 @@
     mc:Ignorable="d">
     <Grid>
         <StackPanel>
-            <Canvas />
             <Button
                 Width="200"
                 Command="{Binding Update}"
@@ -34,7 +34,6 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-
             <StackPanel>
                 <Label>БОНУС Реализация передачи из одного xaml в другой в патерне mvvm</Label>
                 <WrapPanel>
@@ -42,6 +41,21 @@
                     <ContentControl Content="{Binding Elem.Xaml[1]}" />
                 </WrapPanel>
             </StackPanel>
+
+            <Label Content="События в паттерне MVVM на наведение мыши DelegateCommand - object "></Label>
+            <Button x:Name="Button">
+                <Button.Template>
+                    <ControlTemplate>
+                        <TextBlock x:Name="Block" Text="Событие MVVM">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseMove">
+                                    <i:InvokeCommandAction Command="{Binding DataContext.Event, ElementName=Button}" CommandParameter="{Binding ElementName=Block}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBlock>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

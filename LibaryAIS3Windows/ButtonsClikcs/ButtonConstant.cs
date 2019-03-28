@@ -29,5 +29,6 @@ namespace LibaryAIS3Windows.ButtonsClikcs
        internal const string F3 = "{F3}";
        internal const string Tab = "{Tab}";
        internal const string Tab2 = "{Tab 2}";
+       internal const string TabCountClick = "{{Tab {0} }}";
     }
 }

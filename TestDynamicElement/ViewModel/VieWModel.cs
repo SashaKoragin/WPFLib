@@ -15,6 +15,8 @@ namespace TestDynamicElement.ViewModel
 
         public ICommand Update { get; }
 
+        public ICommand Event { get; }
+
         public ModelElem Elem { get; }
 
         public VieWModel()
@@ -23,6 +25,7 @@ namespace TestDynamicElement.ViewModel
             Elem = new ModelElem();
             Model.AddModel();
             Update = new DelegateCommand(() => { Model.AddElement(); });
+            Event = new DelegateCommand<object>(parametr => { Model.Event(parametr);});
         }
 
 

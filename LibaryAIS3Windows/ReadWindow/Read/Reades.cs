@@ -16,9 +16,11 @@ namespace LibaryAIS3Windows.ReadWindow.Read
         /// <summary>
         /// Функция считывает данные с активного поданного контрола 
         /// </summary>
-        /// <param name="element">Наш контол Название ,идентификатор Name</param>
+        /// <param name="element">Наш контол Название ,идентификатор Name если numberbutton>0 то нажимается количество Tabov и парсится
+        /// элемент после всех табов от ближайшего element</param>
+        /// <param name="numberbutton">Количество нажатий Tab</param>
         /// <returns></returns>
-        public static string ReadForm(string[] element)
+        public static string ReadForm(string[] element,int numberbutton = 0)
         {
             string parametr = null;
             while (true)
@@ -26,6 +28,10 @@ namespace LibaryAIS3Windows.ReadWindow.Read
                 if (String.IsNullOrWhiteSpace(parametr))
                 {
                     AutoItX.ControlFocus(element[0], "", element[1]);
+                    if (numberbutton > 0)
+                    {
+                        AutoItX.Send(String.Format(ButtonsClikcs.ButtonConstant.TabCountClick,numberbutton));
+                    }
                     AutoItX.Sleep(500);
                     AutoItX.Send(ButtonsClikcs.ButtonConstant.CtrlC);
                     AutoItX.Send(ButtonsClikcs.ButtonConstant.CtrlC);

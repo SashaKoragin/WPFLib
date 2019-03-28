@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -38,7 +39,13 @@ namespace TestDynamicElement.Model
         {
             user.Add(new Model() { Control = new UserControl() { Content = new Button() { Background = Brushes.Aqua, Content = "3" } } });
             user.Add(new Model() { Control = new UserControl() { Content = new Button() { Background = Brushes.Azure, Content = "4" } } });
-            user.Add(new Model() { Control = new UserControl() { Content = new Canvas() { Width = 30, Height = 30, Background = Brushes.Black} } });
+            user.Add(new Model() { Control = new UserControl() { Content = new Canvas() { Width = 30, Height = 30, Background = Brushes.Black } } });
+        }
+
+        public void Event(object obj)
+        {
+            var t = (TextBlock)obj;
+            t.Background = Brushes.Red;
         }
     }
 }

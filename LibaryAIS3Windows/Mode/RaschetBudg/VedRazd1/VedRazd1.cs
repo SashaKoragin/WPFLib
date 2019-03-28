@@ -43,6 +43,14 @@ namespace LibaryAIS3Windows.Mode.RaschetBudg.VedRazd1
             "Выбрать",
             "[NAME:_btnOk]"
         };
+        /// <summary>
+        /// Ближайший элемент от которого отталкиваемся
+        /// </summary>
+        internal static string[] Ifns =
+        {
+            "",
+            "[NAME:txtDecision_IFNS_Recipient]"
+        };
 
         /// <summary>
         /// Выбор ТП
