@@ -42,7 +42,7 @@
                 </WrapPanel>
             </StackPanel>
 
-            <Label Content="События в паттерне MVVM на наведение мыши DelegateCommand - object "></Label>
+            <Label Content="События в паттерне MVVM на наведение мыши DelegateCommand - object " />
             <Button x:Name="Button">
                 <Button.Template>
                     <ControlTemplate>
@@ -50,6 +50,13 @@
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="MouseMove">
                                     <i:InvokeCommandAction Command="{Binding DataContext.Event, ElementName=Button}" CommandParameter="{Binding ElementName=Block}" />
+                                </i:EventTrigger>
+                                <!--
+                                    Вот что я имел ввиду под событиями что я в них не силен EventName (Событие LostFocus не работает нужно думать)
+                                    (но идея понятна события должны обрабатываться в model)
+                                -->
+                                <i:EventTrigger EventName="LostFocus">
+                                    <i:InvokeCommandAction Command="{Binding DataContext.Event2, ElementName=Button}" CommandParameter="{Binding ElementName=Block}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </TextBlock>

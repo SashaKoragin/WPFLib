@@ -47,5 +47,11 @@ namespace TestDynamicElement.Model
             var t = (TextBlock)obj;
             t.Background = Brushes.Red;
         }
+
+        public void Event2(object obj)
+        {
+            var t = (TextBlock)obj;
+            t.Background = null;
+        }
     }
 }
