@@ -73,12 +73,14 @@ namespace TestDynamicElement.Model
         {
             if (IsMoveXaml)
             {
+                //ModelXaml[4].Xaml = ModelXaml[5].Xaml; Такая реализация тоже возможна
                 ModelXaml[4].Xaml = (UserControl)CloneXaml(ModelXaml[5].Xaml);
                 ModelXaml[5].Xaml = null;
                 IsMoveXaml = false;
             }
             else
             {
+                //ModelXaml[5].Xaml = ModelXaml[4].Xaml; Такая реализация тоже возможна
                 ModelXaml[5].Xaml = (UserControl)CloneXaml(ModelXaml[4].Xaml);
                 ModelXaml[4].Xaml = null;
                 IsMoveXaml = true;

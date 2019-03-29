@@ -134,7 +134,7 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
                         AutoItX.Send(ButtonConstant.Tab);
                         AutoItX.ControlClick(VedRazd1.WinNalog[0], VedRazd1.SelectKbkStart[0], VedRazd1.SelectKbkStart[1]);
                         var kbkparse = ReadWindow.Read.Reades.ReadForm(VedRazd1.Ifns,1);
-                        if (KbkIfns.Equals(kbkparse))
+                        if (String.Equals(KbkIfns,kbkparse))
                         {
                             break;
                         }

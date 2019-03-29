@@ -48,7 +48,7 @@ namespace LibaryAIS3Windows.Mode.RaschetBudg.VedRazd1
         /// </summary>
         internal static string[] Ifns =
         {
-            "",
+            "АИС Налог-3 ПРОМ ",
             "[NAME:txtDecision_IFNS_Recipient]"
         };
 
