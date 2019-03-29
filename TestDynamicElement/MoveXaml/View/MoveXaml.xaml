@@ -1,0 +1,25 @@
+﻿<UserControl
+    x:Class="TestDynamicElement.MoveXaml.View.MoveXaml"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:datacontext="clr-namespace:TestDynamicElement.MoveXaml.ViewModel"
+    xmlns:local="clr-namespace:TestDynamicElement.MoveXaml.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance {x:Type datacontext:ViewModel}, IsDesignTimeCreatable=False}"
+    d:DesignHeight="300"
+    d:DesignWidth="300"
+    mc:Ignorable="d">
+    <StackPanel>
+        <Button Command="{Binding Command}" Content="Перенести модель" />
+        <ItemsControl ItemsSource="{Binding Model.User, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <ContentControl Content="{Binding Control}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>

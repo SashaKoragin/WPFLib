@@ -71,6 +71,17 @@
       <DependentUpon>Xaml2.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ModelElem.cs" />
+    <Compile Include="MoveXaml\Model\Model.cs" />
+    <Compile Include="MoveXaml\ViewModel\ViewModel.cs" />
+    <Compile Include="MoveXaml\View\MoveXaml.xaml.cs">
+      <DependentUpon>MoveXaml.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MoveXaml\View\MoveXaml1.xaml.cs">
+      <DependentUpon>MoveXaml1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MoveXaml\View\TestMoveXaml.xaml.cs">
+      <DependentUpon>TestMoveXaml.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\VieWModel.cs" />
     <Page Include="Bonus\Xaml1.xaml">
       <SubType>Designer</SubType>
@@ -92,6 +103,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MoveXaml\View\MoveXaml.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MoveXaml\View\MoveXaml1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MoveXaml\View\TestMoveXaml.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Model.cs" />

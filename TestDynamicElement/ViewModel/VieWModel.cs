@@ -20,6 +20,8 @@ namespace TestDynamicElement.ViewModel
 
         public ModelElem Elem { get; }
 
+        public ICommand MoveFullXaml { get; }
+
         public VieWModel()
         {
             Model = new Model.Model();
@@ -28,6 +30,8 @@ namespace TestDynamicElement.ViewModel
             Update = new DelegateCommand(() => { Model.AddElement(); });
             Event = new DelegateCommand<object>(parametr => { Model.Event(parametr);});
             Event2 = new DelegateCommand<object>(parametr => { Model.Event2(parametr); });
+            MoveFullXaml = new DelegateCommand(() => Elem.MoveFullXaml());
+            Elem.AddColection();
         }
 
 
