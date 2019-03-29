@@ -21,7 +21,7 @@ namespace TestDynamicElement.Model
     {
 
         /// <summary>
-        /// Добавление
+        /// Добавление View
         /// </summary>
         public void AddColection()
         {
@@ -32,9 +32,13 @@ namespace TestDynamicElement.Model
             ModelXaml.Add(new ModelElem() { Xaml = null });
             ModelXaml.Add(new ModelElem() { Xaml = new MoveXaml.View.TestMoveXaml() });
         }
-
+        /// <summary>
+        /// ViewModel для дочерних xaml
+        /// </summary>
         internal ElemViewModel ViewModel = new ElemViewModel();
-
+        /// <summary>
+        /// ViewModel для дочерних xaml
+        /// </summary>
         internal MoveXaml.ViewModel.ViewModel View = new MoveXaml.ViewModel.ViewModel();
 
 
@@ -86,9 +90,6 @@ namespace TestDynamicElement.Model
                 IsMoveXaml = true;
 
             }
-            //ModelXaml[4].Xaml = (UserControl) CloneXaml(ModelXaml[5].Xaml);
-            //ModelXaml.RemoveAt(4);
-
         }
         /// <summary>
         /// Сереализация
