@@ -1,8 +1,8 @@
-﻿var isDevBuild = process.argv.indexOf('--env.prod') < 0;
-var path = require('path');
-var webpack = require('webpack');
+﻿var IsDevBuild = process.argv.indexOf('--env.prod') < 0;
+var Path = require('path');
+var Webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var ExtractCSS = new ExtractTextPlugin('vendor.css');
+var ExtractCss = new ExtractTextPlugin('vendor.css');
 
 module.exports = {
     resolve: {
@@ -41,20 +41,20 @@ module.exports = {
         ]
     },
     output: {
-        path: path.join(__dirname, 'public'),
+        path: Path.join(__dirname, 'public'),
         filename: '[name].js',
         library: '[name]_[hash]'
     },
     plugins: [
-        ExtractCSS,
-        new webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }), // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.DllPlugin({
-            path: path.join(__dirname, 'public', '[name]-manifest.json'),
+        ExtractCss,
+        new Webpack.ProvidePlugin({ $: 'jquery', jQuery: 'jquery' }), // Maps these identifiers to the jQuery package (because Bootstrap expects it to be a global variable)
+        new Webpack.optimize.OccurrenceOrderPlugin(),
+        new Webpack.DllPlugin({
+            path: Path.join(__dirname, 'public', '[name]-manifest.json'),
             name: '[name]_[hash]'
         })
-    ].concat(isDevBuild ? [] : [
-        new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
+    ].concat(IsDevBuild ? [] : [
+        new Webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
     ]),
 
 };

@@ -8,7 +8,6 @@
     xmlns:local="clr-namespace:TestDynamicElement"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
-
     d:DataContext="{d:DesignInstance {x:Type dataContext:VieWModel}}"
     mc:Ignorable="d">
     <Grid>
@@ -54,8 +53,8 @@
                                     Вот что я имел ввиду под событиями что я в них не силен EventName (Событие LostFocus не работает нужно думать)
                                     (но идея понятна события должны обрабатываться в model)
                                 -->
-                                <i:EventTrigger EventName="LostFocus">
-                                    <i:InvokeCommandAction Command="{Binding DataContext.Event2, ElementName=Button}" CommandParameter="{Binding ElementName=Block}" />
+                                <i:EventTrigger EventName="Click">
+                                    <i:InvokeCommandAction Command="{Binding  PlacementTarget.Tag.Event2,  RelativeSource={RelativeSource AncestorType={x:Type Button}}}" CommandParameter="{Binding ElementName=Block}" />
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </TextBlock>

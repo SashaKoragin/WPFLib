@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TestDynamicElement.Model;
 
@@ -34,6 +35,10 @@ namespace TestDynamicElement.ViewModel
             Elem.AddColection();
         }
 
+        private void Button_OnLostFocus_(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Потеряли");
+        }
 
     }
 }

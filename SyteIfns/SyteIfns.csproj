@@ -180,7 +180,6 @@
     <Content Include="src\app\Otdel\Predproverka\Soprovod\Template\Style.css" />
     <Content Include="webpack.ts.css.html.js" />
     <Content Include="Global.asax" />
-    <Content Include="package.json" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
@@ -193,6 +192,7 @@
     <Content Include="src\app\Otdel\Yregulirovanie\Trebovanie\Template\Style.css" />
     <Content Include="webpack.config.js" />
     <Content Include="webpack.config.vendor.js" />
+    <Content Include="package.json" />
     <None Include="Properties\PublishProfiles\Sasha.pubxml" />
     <Content Include="public\vendor-manifest.json" />
     <Content Include="Scripts\MyTestScript.js" />

@@ -52,6 +52,7 @@ namespace TestDynamicElement.Model
         {
             var t = (TextBlock)obj;
             t.Background = null;
+            MessageBox.Show("Элемент потерял фокус!!!");
         }
     }
 }

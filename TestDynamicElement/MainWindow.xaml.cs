@@ -25,5 +25,10 @@ namespace TestDynamicElement
             InitializeComponent();
             DataContext = new ViewModel.VieWModel();
         }
+
+        private void Button_OnLostFocus_(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Потеряли");
+        }
     }
 }
