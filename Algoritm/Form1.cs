@@ -12,17 +12,33 @@ namespace Algoritm
             InitializeComponent();
         }
 
-        private int[] bases = { 1,2,3 };
-        private int[] spliters = {  4};
-       // private int[] bases = {1,3,4,6,7,9,13,18,20};
-      //  private int[] spliters = { 1,4,9,15,21,22,23,34 };
+        /// <summary>
+        /// test
+        /// </summary>
+      //  private int[] bases = { 1,2,3 };
+     //   private int[] spliters = { 4 };
+      //  private int[] bases = { 1, 2, 3 };
+      //  private int[] spliters = { 2,10 };
+        /// <summary>
+        /// Исходные данные
+        /// </summary>
+           private int[] bases = {3,6,7,9,13,18,20};
+           private int[] spliters = { 1,4,9,15 };
+
+        /// <summary>
+        /// Решение 2
+        /// </summary>
         private List<List<int>> result1 = new List<List<int>>();
-        private List<int> prom = new List<int>();
+        private List<int> newList = new List<int>();
+
+        /// <summary>
+        /// Решение 1
+        /// </summary>
         private List<int[]> result  = new List<int[]>();
         private void button1_Click(object sender, EventArgs e)
         {
             int i = 0;
-            int[] newNumber = new int[]{};
+            int[] newArray = new int[]{};
             var maxspliteelem = spliters.ElementAt(spliters.Length - 1);
                 for (int j = 0; j < spliters.Length; j++)
                 {
@@ -30,26 +46,28 @@ namespace Algoritm
                     {
                         if (spliters[j] >= bas)
                         {
-                            Array.Resize(ref newNumber, newNumber.Length + 1);
-                            newNumber[i] = bas;
+                            Array.Resize(ref newArray, newArray.Length + 1);
+                            newArray[i] = bas;
+                            ////Можно индекс запоминать
                             bases = bases.Where(val => val != bases[0]).ToArray();
                             i++;
                         }
                         if (spliters[j] <= bas)
                         {
-                          if (spliters[j] == maxspliteelem)
-                              {
-                                  Array.Resize(ref newNumber, bases.Length);
-                                  newNumber = bases;
-                               }
                             i = 0;
                             break;
                         }
                     }
-                if (newNumber.Length > 0)
+                if (newArray.Length > 0)
                 {
-                    result.Add(newNumber);
-                    newNumber = new int[] { };
+                    result.Add(newArray);
+                    newArray = new int[] { };
+                    if (spliters[j] == maxspliteelem)
+                    {
+                        Array.Resize(ref newArray, bases.Length);
+                        newArray = bases;
+                        result.Add(newArray);
+                    }
                 }
             }
             var s =  result;
@@ -64,13 +82,13 @@ namespace Algoritm
             {
                 while (base_index<bases.Length && (splitter_index>=spliters.Length||bases[base_index]<=spliters[splitter_index]))
                 {
-                prom.Add(bases[base_index]);
+                    newList.Add(bases[base_index]);
                     base_index++;
                 }
-                if (prom.Count > 0)
+                if (newList.Count > 0)
                 {
-                    result1.Add(prom);
-                    prom =new List<int>();
+                    result1.Add(newList);
+                    newList = new List<int>();
                 }
                 splitter_index++;
             }
