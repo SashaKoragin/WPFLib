@@ -210,6 +210,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="tsconfig.json" />
+    <Content Include="public\fonts\MaterialIcons-Regular.eot" />
+    <Content Include="public\fonts\MaterialIcons-Regular.ttf" />
+    <Content Include="public\fonts\MaterialIcons-Regular.woff" />
+    <Content Include="public\fonts\MaterialIcons-Regular.woff2" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

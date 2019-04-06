@@ -1,4 +1,10 @@
-﻿export class AllSelected {
+﻿export interface ILogicaUser<T> {
+    add(user: T): void
+}
+
+
+
+export class AllSelected {
     Users: Users[];
 }
 

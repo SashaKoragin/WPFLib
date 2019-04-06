@@ -4,7 +4,7 @@
   "description": "First Angular 5 Project",
   "author": "Eugene Popov <metanit.com>",
   "scripts": {
-    "dev": "webpack -dev-server --mode development --open",
+    "dev": "webpack-dev-server",
     "build": "webpack --mode production"
   },
   "dependencies": {
@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~6.1.7",
     "@angular/platform-browser-dynamic": "~6.1.7",
     "angular2-template-loader": "0.6.2",
+    "material-design-icons": "3.0.1",
     "web-animations-js": "2.3.1",
     "bootstrap": "4.0.0-beta",
     "popper.js": "1.14.4",

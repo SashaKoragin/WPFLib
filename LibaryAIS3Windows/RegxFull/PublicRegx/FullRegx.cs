@@ -33,13 +33,21 @@ namespace LibaryAIS3Windows.RegxFull.PublicRegx
         /// </summary>
         public string Platelsik = @"(Плательщик. \w+:\d+\s\w+:\d+)";
         /// <summary>
-        /// ИНН
+        /// ИНН грязный
         /// </summary>
         public string Inn = @"(ИНН:\d+)";
+        /// <summary>
+        /// Вытаскиваем чисто числа
+        /// </summary>
+        public string Number = @"(\d+)";
         /// <summary>
         /// КПП
         /// </summary>
         public string Kpp = @"(КПП:\d+)";
+        /// <summary>
+        /// Парсим ОКТМО по распределению
+        /// </summary>
+        public string Oktmo = @"(ОКТМО:\d+)";
         /// <summary>
         /// Парсинг ТП
         /// </summary>

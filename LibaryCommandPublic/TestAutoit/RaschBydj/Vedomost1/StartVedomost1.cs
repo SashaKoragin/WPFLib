@@ -32,10 +32,12 @@ namespace LibaryCommandPublic.TestAutoit.RaschBydj.Vedomost1
                         ais3.StartNavigate();
                         while (statusButton.Iswork)
                         {
-                            clickerButton.Click10(pathjurnalerror, pathjurnalok, uslovie.Sel.Num);
+                          var isnull =  clickerButton.Click10(pathjurnalerror, pathjurnalok, uslovie.Sel.Num);
+                            if (isnull)
+                            {
+                                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusYellow);
+                            }
                         }
-                        DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
-
                     }
                     else
                     {

@@ -35,6 +35,8 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.RaschetBuh
                                                                                                                        "\n18210501021011000110/18210501021012100110"+
                                                                                                                        "\n18210501011011000110/18210501011012100110"+
                                                                                                                        "\n18210101011011000110/18210101011012100110"});
+            SelectQbe.Add(new Select() {  Num = 4, ColorNum = Brushes.CadetBlue, Text = "НДФЛ",Discription = "Обработка:\nНДФЛ по КБК:" +
+                                                                                                           "\n18210102010011000110/18210102010012100110"});
         }
 
         public string Error { get; set; }

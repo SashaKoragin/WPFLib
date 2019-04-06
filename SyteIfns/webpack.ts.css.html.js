@@ -3,6 +3,7 @@ var Webpack = require('webpack');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin'); // плагин минимизации
 //var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 //var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
 module.exports = {
     mode: "development",
     devServer: {

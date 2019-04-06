@@ -15,6 +15,18 @@ module.exports = {
                     fallback: "style-loader",
                     use: "css-to-string-loader!css-loader"
                 })
+            },
+            {
+                test: /.*\.(woff|woff2|eot|ttf)(\?|$)/,
+                 use: [
+                        {
+                         loader: 'file-loader',
+                         options: {
+                            outputPath: './fonts/',
+                            name: '[name].[ext]'
+                                   }
+                         }
+                      ]
             }
         ]
     },
@@ -31,6 +43,7 @@ module.exports = {
                 '@angular/router',
                 '@angular/material',
                 '@angular/material/prebuilt-themes/deeppurple-amber.css',
+                'material-design-icons/iconfont/material-icons.css',
                 'bootstrap',
                 'bootstrap/dist/css/bootstrap.css',
                 'es6-shim',

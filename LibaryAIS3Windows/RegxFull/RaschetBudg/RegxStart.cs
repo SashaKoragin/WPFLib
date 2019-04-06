@@ -15,16 +15,10 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
 {
    public class RegxStart
    {
-       private static string[] _imusistvo =
-       {
-           "18210601010031000110",
-           "18210601010032100110",
-           "18210604012021000110",
-           "18210604012022100110",
-           "18210606041031000110",
-           "18210606041032100110"
-       };
-
+        /// <summary>
+        /// Инн плательщика по определению
+        /// </summary>
+        public string InnPlatel { get; set; }
         /// <summary>
         /// Парсим расчетный документ
         /// </summary>
@@ -58,6 +52,10 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
         /// </summary>
         public string Kpp { get; set; }
         /// <summary>
+        /// Октмо по рапределению
+        /// </summary>
+        public string Oktmo { get; set; }
+        /// <summary>
         /// Парсим ТП для определения входа а вкладку уточнение
         /// </summary>
         public string Tp { get; set; }
@@ -76,7 +74,7 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
         /// <param name="paternstring">Патерн поиска</param>
         /// <param name="text">Весь текст на окне любой скрытый и нет</param>
         /// <returns></returns>
-        private string IsMathRegx(string paternstring,string text)
+        public string IsMathRegx(string paternstring,string text)
         {
             Regex regex = new Regex(paternstring, RegexOptions.Multiline);
             var math = regex.Match(text);
@@ -98,9 +96,11 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
                 Platej = IsMathRegx(pattern.Platej, text);
                 Platelsik = IsMathRegx(pattern.Platelsik, text);
                 Kbk100 = IsMathRegx(pattern.Kbk, RaspredPl);
+                Oktmo = IsMathRegx(pattern.Number, IsMathRegx(pattern.Oktmo, RaspredPl));
                 KbkIfns = IsMathRegx(pattern.Kbk, Platej);
                 Inn = IsMathRegx(pattern.Inn, Platelsik);
                 Kpp = IsMathRegx(pattern.Kpp, Platelsik);
+                InnPlatel = IsMathRegx(pattern.Number, Inn);
                 IsNulable = false;
             }
             catch (Exception e)
@@ -170,11 +170,38 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
                     AutoItX.Send(tp);
                     break;
                 case 3:
+                    if (InnPlatel.Length != 12)
+                    {
+                        if (Inn == "ИНН:7707083893" && Kpp == "КПП:526002001")
+                        {
+                            status = "15";
+                        }
+                        AutoItX.ControlClick(VedRazd1.Status[0], "", VedRazd1.Status[1]);
+                        AutoItX.Send(status);
+                        AutoItX.ControlClick(VedRazd1.SelectTp[0], "", VedRazd1.SelectTp[1]);
+                        AutoItX.Send(tp);
+                    }
+                    else
+                    {
+                        status = "09";
+                        AutoItX.ControlClick(VedRazd1.Status[0], "", VedRazd1.Status[1]);
+                        AutoItX.Send(status);
+                        AutoItX.ControlClick(VedRazd1.SelectTp[0], "", VedRazd1.SelectTp[1]);
+                        AutoItX.Send(tp);
+                    }
+                    break;
+                case 4:
+                    status = "02";
+                    if (Inn == "ИНН:7707083893" && Kpp == "КПП:526002001")
+                    {
+                        status = "15";
+                    }
                     AutoItX.ControlClick(VedRazd1.Status[0], "", VedRazd1.Status[1]);
                     AutoItX.Send(status);
                     AutoItX.ControlClick(VedRazd1.SelectTp[0], "", VedRazd1.SelectTp[1]);
                     AutoItX.Send(tp);
                     break;
+                    
             }
         }
 

@@ -1,7 +1,13 @@
-﻿import { Users } from '../../ModelInventarization/Inventarization';
+﻿import { Users, ILogicaUser } from '../../ModelInventarization/Inventarization';
 import { MatTableDataSource } from '@angular/material';
 
-export class UserTableModel {
+
+export class UserTableModel implements ILogicaUser<Users> {
+
+    add(user: Users): void {
+        alert(user.Otdel.NameOtdel);
+    }
+
     dataSource: MatTableDataSource<Users>;
     displayedColumns = ['IdUser', 'Name', 'TabelNumber', 'Telephon', 'TelephonUndeground', 'IpTelephon', 'NameRules', 'NameOtdel', 'ActionsColumn'];
 

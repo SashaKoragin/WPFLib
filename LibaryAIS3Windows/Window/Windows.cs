@@ -190,6 +190,7 @@ namespace LibaryAIS3Windows.Window
             AutoItX.MouseMove(WindowsAis.X + X1 + 40, WindowsAis.Y + Y1 + 15);
             ControlGetPos1(WindowsAis3.Journal[0], WindowsAis3.Journal[1], WindowsAis3.Journal[2]);
             AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 30, WindowsAis.Y + Y1 + 285, 2);
+            AutoItX.Sleep(1000);
         }
     }
 }

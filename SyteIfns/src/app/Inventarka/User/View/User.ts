@@ -22,6 +22,7 @@ export class User implements OnInit {
         this.httpclient.alluser(1).subscribe((model)=> {
             if (model) {
                 this.select = deserialize(AllSelected, model.toString());
+                
                 this.user.addtableModel(this.select.Users);
                // this.table = new Table<Users>(this.select.Users, this.model.modelusers);
                // this.name= new ModelColumns(this.table.models);

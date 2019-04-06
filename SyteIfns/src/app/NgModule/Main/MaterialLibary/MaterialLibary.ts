@@ -15,6 +15,7 @@ import {
     MatGridListModule,
     MatIconModule,
     MatInputModule,
+    MatIconRegistry,
     MatListModule,
     MatMenuModule,
     MatNativeDateModule,

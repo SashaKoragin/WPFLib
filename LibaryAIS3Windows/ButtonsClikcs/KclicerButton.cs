@@ -721,7 +721,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// <param name="pathjurnalerror">Путь к журналу ошибок</param>
         /// <param name="pathjurnalok">Путь к журналу Ок</param>
         /// <param name="logica">Логика анализа</param>
-        public void Click10(string pathjurnalerror, string pathjurnalok, int logica)
+        public bool Click10(string pathjurnalerror, string pathjurnalok, int logica)
         {
             WindowsAis3 win = new WindowsAis3();
             RegxStart regxstart = new RegxStart();
@@ -734,6 +734,12 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, regxstart.RaschDoc, ModeBranchVedomost1, regxstart.Error);
                     break;
                 }
+                if (string.Equals(regxstart.IsMathRegx("(0{6})",regxstart.Oktmo),"000000"))
+                {
+                    LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, regxstart.RaschDoc, ModeBranchVedomost1, "Не опознано ОКТМО надо проверять");
+                    AutoItX.Send(ButtonConstant.Tab);
+                    break;
+                }
                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 45, win.WindowsAis.Y + 95);
                 AutoItX.WinWait(Vedomost1Win.ViesneniePl[0], Vedomost1Win.ViesneniePl[1]);
                 AutoItX.Send(ButtonConstant.Enter);
@@ -742,12 +748,20 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                 AutoItX.WinWait(Vedomost1Win.Utoch[0], Vedomost1Win.Utoch[1]);
                 AutoItX.Sleep(500);
                 AutoItX.Send(ButtonConstant.Enter);
+                if (regxstart.Platelsik.Length != 10)
+                {
+                    AutoItX.WinWait(Vedomost1Win.IsData[0], Vedomost1Win.IsData[1], 20);
+                    AutoItX.Sleep(500);
+                    AutoItX.Send(ButtonConstant.Enter);
+                }
                 AutoItX.WinWaitClose("АИС Налог-3 ПРОМ ", "Проведение уточнения");
                 AutoItX.Send(ButtonConstant.Tab);
                 LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, regxstart.RaschDoc + " Подставили КБК: " + regxstart.KbkIfns + " вместо " + regxstart.Kbk100, "Удалось спарсить");
                 AutoItX.Sleep(1000);
                 break;
             }
+            return regxstart.IsNulable;
         }
+
     }
 }

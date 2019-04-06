@@ -1,90 +1,99 @@
 ﻿<h1>Пользователи</h1>
 <mat-tab-group>
     <mat-tab label="Все пользователи">
-        <mat-table class="table-margin-bottom" #table [dataSource]="user.dataSource">
-            
+        <table mat-table class="mat-elevation-z8" [dataSource]="user.dataSource">
+
             <ng-container matColumnDef="IdUser">
-                <mat-header-cell *matHeaderCellDef>Id Пользователя</mat-header-cell>
-                <mat-cell *matCellDef="let row">
+                <th mat-header-cell *matHeaderCellDef>Id</th>
+                <td mat-cell *matCellDef="let row">
                     {{row.IdUser}}
                     <!--<mat-form-field>
-                        <input matInput [formControl]="row.validator.controls['IdUser']" [readonly]="!row.editing" placeholder="Id пользователя" [(ngModel)]="row.currentData.IdUser"/>
-                    </mat-form-field>-->
-                </mat-cell>
+                    <input matInput [formControl]="row.validator.controls['IdUser']" [readonly]="!row.editing" placeholder="Id пользователя" [(ngModel)]="row.currentData.IdUser"/>
+                </mat-form-field>-->
+                </td>
             </ng-container>
-            
+
             <ng-container matColumnDef="Name">
-                <mat-header-cell *matHeaderCellDef>Имя пользователя</mat-header-cell>
-                <mat-cell *matCellDef="let row">
+                <th mat-header-cell *matHeaderCellDef>Имя пользователя</th>
+                <td mat-cell *matCellDef="let row">
                     {{row.Name}}
                     <!--<mat-form-field>
-                        <input matInput [formControl]="row.validator.controls['Name']" [readonly]="!row.editing" placeholder="Имя пользователя" [(ngModel)]="row.currentData.Name"/>
-                    </mat-form-field>-->
-                </mat-cell>
+                    <input matInput [formControl]="row.validator.controls['Name']" [readonly]="!row.editing" placeholder="Имя пользователя" [(ngModel)]="row.currentData.Name"/>
+                </mat-form-field>-->
+                </td>
             </ng-container>
-            
+
             <ng-container matColumnDef="TabelNumber">
-                <mat-header-cell *matHeaderCellDef>Табельный номер</mat-header-cell>
-                <mat-cell *matCellDef="let row">
+                <th mat-header-cell *matHeaderCellDef>Табельный номер</th>
+                <td mat-cell *matCellDef="let row">
                     {{row.TabelNumber}}
                     <!--<mat-form-field>
-                        <input matInput [formControl]="row.validator.controls['TabelNumber']" [readonly]="!row.editing" placeholder="Табельный номер" [(ngModel)]="row.currentData.TabelNumber"/>
-                    </mat-form-field>-->
-                </mat-cell>
+                    <input matInput [formControl]="row.validator.controls['TabelNumber']" [readonly]="!row.editing" placeholder="Табельный номер" [(ngModel)]="row.currentData.TabelNumber"/>
+                </mat-form-field>-->
+                </td>
             </ng-container>
-            
+
             <ng-container matColumnDef="Telephon">
-                <mat-header-cell *matHeaderCellDef>Внутренний номер</mat-header-cell>
-                <mat-cell *matCellDef="let row">
+                <th mat-header-cell *matHeaderCellDef>Внутренний номер</th>
+                <td mat-cell *matCellDef="let row">
                     {{row.Telephon}}
                     <!--<mat-form-field >
-                        <input matInput [formControl]="row.validator.controls['Telephon']" [readonly]="!row.editing" placeholder="Внутренний номер" [(ngModel)]="row.currentData.Telephon"/>
-                    </mat-form-field>-->
-                </mat-cell>
+                    <input matInput [formControl]="row.validator.controls['Telephon']" [readonly]="!row.editing" placeholder="Внутренний номер" [(ngModel)]="row.currentData.Telephon"/>
+                </mat-form-field>-->
+                </td>
             </ng-container>
-            
+
             <ng-container matColumnDef="TelephonUndeground">
-                <mat-header-cell *matHeaderCellDef>Городской номер</mat-header-cell>
-                <mat-cell *matCellDef="let row">
+                <th mat-header-cell *matHeaderCellDef>Городской номер</th>
+                <td mat-cell *matCellDef="let row">
                     {{row.TelephonUndeground}}
                     <!--<mat-form-field>
-                        <input matInput [formControl]="row.validator.controls['TelephonUndeground']" [readonly]="!row.editing" placeholder="Городской номер" [(ngModel)]="row.currentData.TelephonUndeground"/>
-                    </mat-form-field>-->
-                </mat-cell>
+                    <input matInput [formControl]="row.validator.controls['TelephonUndeground']" [readonly]="!row.editing" placeholder="Городской номер" [(ngModel)]="row.currentData.TelephonUndeground"/>
+                </mat-form-field>-->
+                </td>
             </ng-container>
-            
+
             <ng-container matColumnDef="IpTelephon">
-                <mat-header-cell *matHeaderCellDef>IP телефона</mat-header-cell>
-                <mat-cell *matCellDef="let row">
+                <th mat-header-cell *matHeaderCellDef>IP телефона</th>
+                <td mat-cell *matCellDef="let row">
                     {{row.IpTelephon}}
                     <!--<mat-form-field>
-                        <input matInput [formControl]="row.validator.controls['IpTelephon']" [readonly]="!row.editing" placeholder="Ip Телефона" [(ngModel)]="row.currentData.IpTelephon"/>
-                    </mat-form-field>-->
-                </mat-cell>
+                    <input matInput [formControl]="row.validator.controls['IpTelephon']" [readonly]="!row.editing" placeholder="Ip Телефона" [(ngModel)]="row.currentData.IpTelephon"/>
+                </mat-form-field>-->
+                </td>
             </ng-container>
-            
-            <ng-container matColumnDef="NameRules">
-                <mat-header-cell *matHeaderCellDef>Наименование роли</mat-header-cell>
-                <mat-cell *matCellDef="let row">
-                    {{row.Rules.NameRules}}
-                    <!--<mat-form-field >
-                        <input matInput [formControl]="row.validator.controls['NameRules']" [readonly]="!row.editing" placeholder="Наименование роли" [(ngModel)]="row.currentData.Rules.NameRules"/>
-                    </mat-form-field>-->
-                </mat-cell>
-            </ng-container>
-            
+
+
             <ng-container matColumnDef="NameOtdel">
-                <mat-header-cell *matHeaderCellDef>Наименование отдела</mat-header-cell>
-                <mat-cell *matCellDef="let row">
-                    {{row.Otdel.NameOtdel}}
+                <th mat-header-cell *matHeaderCellDef>Наименование отдела</th>
+                <td mat-cell *matCellDef="let row">
+                    {{row.Otdel?.NameOtdel}}
                     <!--<mat-form-field >
-                        <input matInput [formControl]="row.validator.controls['NameOtdel']" [readonly]="!row.editing" placeholder="Наименование отдела" [(ngModel)]="row.currentData.Otdel.NameOtdel"/>
-                    </mat-form-field>-->
-                </mat-cell>
+                    <input matInput [formControl]="row.validator.controls['NameOtdel']" [readonly]="!row.editing" placeholder="Наименование отдела" [(ngModel)]="row.currentData.Otdel.NameOtdel"/>
+                </mat-form-field>-->
+                </td>
             </ng-container>
-            
-            <!--<ng-container matColumnDef="ActionsColumn">
-                <mat-header-cell *matHeaderCellDef>
+
+            <ng-container matColumnDef="NameRules">
+                <th mat-header-cell *matHeaderCellDef>Наименование роли</th>
+                <td mat-cell *matCellDef="let row">
+                    {{row.Rules?.NameRules}}
+                    <!--<mat-form-field >
+                    <input matInput [formControl]="row.validator.controls['NameRules']" [readonly]="!row.editing" placeholder="Наименование роли" [(ngModel)]="row.currentData.Rules.NameRules"/>
+                </mat-form-field>-->
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ActionsColumn">
+                <th mat-header-cell *matHeaderCellDef>Проверка</th>
+                <td mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="primary" focusable="false" (click)="user.add(row)">
+                        <i class="material-icons">clear</i>
+                    </button>
+
+                </td>
+
+                <!--<mat-header-cell *matHeaderCellDef>
                     <button mat-icon-button color="accent" (click)="dataSource.createNew()"><i class="fa fa-plus mat-icon"></i></button>
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row">
@@ -97,12 +106,14 @@
                     <button mat-icon-button color="primary" focusable="false" (click)="row.cancelOrDelete()">
                         <i class="fa fa-times mat-icon"></i>
                     </button>
-                </mat-cell>
-            </ng-container>-->
-            <mat-header-row *matHeaderRowDef="user.displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: user.displayedColumns;"></mat-row>
-</mat-table>
-
+                </mat-cell>-->
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="user.displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: user.displayedColumns;"></tr>
+        </table>
+        <i class="material-icons md-48">face</i>
+        <i class="material-icons">add</i>
+        <i class="material-icons">clear</i>
         <!--<mat-toolbar>
 
         </mat-toolbar>
@@ -111,4 +122,6 @@
 
 </mat-tab>
     <mat-tab label="Роли/Доступы"></mat-tab>
+    
+
 </mat-tab-group>
