@@ -146,6 +146,26 @@ namespace LibaryAIS3Windows.Window
             "[NAME:tsControlPanel]"
         };
         /// <summary>
+        /// Grid Дата Миграции
+        /// </summary>
+        internal static string[] GridDataMigration =
+        {
+            "АИС Налог-3 ПРОМ ",
+            "",
+            "[NAME:gridData]"
+        };
+
+        /// <summary>
+        /// Grid Внутри Ultra Дата Миграции
+        /// </summary>
+        internal static string[] UltraGridDataMigration =
+        {
+            "АИС Налог-3 ПРОМ ",
+            "",
+            "[NAME:ultraGrid1]"
+        };
+
+        /// <summary>
         /// Проверка наличия окна АИС налог 3 
         /// если вернет 1 то окно существует если 0 то не существует!!!
         /// </summary>
@@ -190,6 +210,16 @@ namespace LibaryAIS3Windows.Window
             AutoItX.MouseMove(WindowsAis.X + X1 + 40, WindowsAis.Y + Y1 + 15);
             ControlGetPos1(WindowsAis3.Journal[0], WindowsAis3.Journal[1], WindowsAis3.Journal[2]);
             AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 30, WindowsAis.Y + Y1 + 285, 2);
+            AutoItX.Sleep(1000);
+        }
+
+        /// <summary>
+        /// Первоначальная навигация для миграции"
+        /// </summary>
+        public void StartNMigration()
+        {
+            ControlGetPos1(GridDataMigration[0], GridDataMigration[1], GridDataMigration[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 60, WindowsAis.Y + Y1 + 470);
             AutoItX.Sleep(1000);
         }
     }

@@ -1,0 +1,92 @@
+﻿<div class="stake">
+    <div class="table">
+        <table mat-table [dataSource]="server.dataSourceServerIfns">
+            <!-- Position Column -->
+            <ng-container matColumnDef="Id">
+                <th mat-header-cell *matHeaderCellDef>Id</th>
+                <td mat-cell *matCellDef="let element" [style.background]="stylecolor(element)"> {{element.Id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ServerName">
+                <th mat-header-cell *matHeaderCellDef>Имя сервера</th>
+                <td mat-cell *matCellDef="let element" [style.background]="stylecolor(element)"> {{element.ServerName}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="ServerDiscription">
+                <th mat-header-cell *matHeaderCellDef>Описание</th>
+                <td mat-cell *matCellDef="let element" [style.background]="stylecolor(element)"> {{element.ServerDiscription}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Children">
+                <th mat-header-cell *matHeaderCellDef>Отношение к VM</th>
+                <td mat-cell *matCellDef="let element" [style.background]="stylecolor(element)"> {{element.Children}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ServerIp">
+                <th mat-header-cell *matHeaderCellDef>Ip</th>
+                <td mat-cell *matCellDef="let element" [style.background]="stylecolor(element)"> {{element.ServerIp}} </td>
+            </ng-container>
+            <!-- Weight Column -->
+
+            <ng-container matColumnDef="DataCreate">
+                <th mat-header-cell *matHeaderCellDef>Дата записи</th>
+                <td mat-cell *matCellDef="let element" [style.background]="stylecolor(element)">{{element.DataCreate}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Status">
+                <th mat-header-cell *matHeaderCellDef>Статусы</th>
+                <td mat-cell *matCellDef="let element" [style.background]="stylecolor(element)">{{element.Status}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="server.displaydataServerIfns"></tr>
+            <tr mat-row *matRowDef="let row; columns: server.displaydataServerIfns;"></tr>
+        </table>
+    </div>
+        <div class="image">
+            <label>Серверная 3 этаж</label>
+            <div class="info">
+                <mat-icon svgIcon="DepoStorm 3606" style="height: 80px;"></mat-icon>
+                <i [style.display]="servermodel.app040==='' ? 'none' : 'grid'" class="material-icons" [matTooltip]="servermodel.app040">priority_high</i> 
+            </div>
+            <div class="info">
+                <mat-icon svgIcon="DepoStorm 3606" style="height: 80px;"></mat-icon>
+                <i [style.display]="servermodel.app041==='' ? 'none' : 'grid'" class="material-icons" [matTooltip]="servermodel.app041">priority_high</i> 
+            </div>
+            <div class="info">
+                <mat-icon svgIcon="Acvarius Server"></mat-icon>
+                <i [style.display]="servermodel.app001==='' ? 'none' : 'grid'" class="material-icons" [matTooltip]="servermodel.app001">priority_high</i> 
+            </div>
+                <mat-icon svgIcon="SHD Acvariuse" style="height: 60px;"></mat-icon>
+                <mat-icon svgIcon="SHD P2000" style="height: 60px;"></mat-icon>
+                <mat-icon svgIcon="DL360"></mat-icon>
+            <mat-icon svgIcon="DL360"></mat-icon>
+            <div class="info">
+                <mat-icon svgIcon="DL580" style="height: 66px;"></mat-icon>
+                <i [style.display]="servermodel.app025==='' ? 'none' : 'grid'" class="material-icons" [matTooltip]="servermodel.app025">priority_high</i> 
+            </div>
+            </div>
+        
+        <div class="image">
+            <label>Серверная 2 этаж</label>
+            <mat-icon svgIcon="DL360"></mat-icon>
+            <mat-icon svgIcon="SHD P2000"></mat-icon>
+            <div class="info">
+                <mat-icon svgIcon="IBM 3000"></mat-icon>
+                <i [style.display]="servermodel.app007==='' ? 'none' : 'grid'" class="material-icons" [matTooltip]="servermodel.app007">priority_high</i>
+            </div>
+            <div class="info">
+                <mat-icon svgIcon="IBM 3000"></mat-icon>
+                <i [style.display]="servermodel.app007==='' ? 'none' : 'grid'" class="material-icons" [matTooltip]="servermodel.app007">priority_high</i>
+            </div>
+                <mat-icon svgIcon="SHD P2000"></mat-icon>
+            <mat-icon svgIcon="SHD P2000"></mat-icon>
+            <div class="info">
+                <mat-icon svgIcon="IBM 3000"></mat-icon>
+                <i [style.display]="servermodel.app051==='' ? 'none' : 'grid'" class="material-icons" [matTooltip]="servermodel.app051">priority_high</i>
+            </div>
+                <mat-icon svgIcon="SHD P2000"></mat-icon>
+                <mat-icon svgIcon="SHD P2000"></mat-icon>
+                <mat-icon svgIcon="SHD P2000"></mat-icon>
+            </div>
+    </div>

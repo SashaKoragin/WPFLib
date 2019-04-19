@@ -16,7 +16,8 @@ export class Otdel {
                             children: [{ otdelfunc: 'Информационный отдел',
                                 children: [{ otdelfunc: null, children: null, types: 'Бдк!!!', pages: './page1', fullpath: 'Информационный отдел\\Бдк!!!', model: 'Модуль для работы с Бдк!!!'},
                                     { otdelfunc: null, children: null, types: 'Формированмирование писем', pages: './page2', fullpath: 'Информационный отдел\\Формированмирование писем', model: 'Модуль для формирование писем Бдк!!!'},
-                                    { otdelfunc: null, children: null, types: 'Создание шаблонов', pages: './page3', fullpath: 'Информационный отдел\\Создание шаблонов', model: 'Модуль для создания шаблонов!!!' }], types: null, pages: null, fullpath: null, model: null
+                                    { otdelfunc: null, children: null, types: 'Создание шаблонов', pages: './page3', fullpath: 'Информационный отдел\\Создание шаблонов', model: 'Модуль для создания шаблонов!!!' },
+                                    { otdelfunc: null, children: null, types: 'Проверка серверов', pages: './page10', fullpath: 'Информационный отдел\\Проверка серверов', model: 'Модуль для проверки серверов!!!' }], types: null, pages: null, fullpath: null, model: null
                                       },
                                       { otdelfunc: 'Урегулирование задолженности',
                                           children: [{ otdelfunc: null, children: null, types: 'Решения!!!', pages: './page4', fullpath: 'Урегулирование задолженности\\Решения!!!', model: 'Модуль для Решений!!!' }], types: null, pages: null, fullpath: null, model: null

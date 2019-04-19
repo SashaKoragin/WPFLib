@@ -1,1 +1,1 @@
-{"version":3,"file":"ImageConst.js","sourceRoot":"","sources":["ImageConst.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,IAAM,KAAK,GAAG,OAAO,CAAC,iBAAiB,CAAC,CAAC;AAChD,MAAM,CAAC,IAAM,MAAM,GAAG,OAAO,CAAC,eAAe,CAAC,CAAC","sourcesContent":["export const image = require('./wood-pane.jpg');\r\nexport const image1 = require('./network.jpg');"]}
+{"version":3,"file":"ImageConst.js","sourceRoot":"","sources":["ImageConst.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,IAAM,KAAK,GAAG,OAAO,CAAC,iBAAiB,CAAC,CAAC","sourcesContent":["export const image = require('./wood-pane.jpg');"]}

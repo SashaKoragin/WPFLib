@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using SqlLibaryIfns.AutoItSelect.Sql;
 using LibaryAIS3Windows.Window.Otdel.Analitic.TeskText;
 using AutoIt;
@@ -7,6 +8,7 @@ using LibaryAIS3Windows.ExitLogica.ExitTaskFull;
 using LibaryAIS3Windows.Function.PublicFunc;
 using LibaryAIS3Windows.Mode.Okp4.PravoZorI;
 using LibaryAIS3Windows.Mode.Okp4.SnuFormirovanie;
+using LibaryAIS3Windows.Mode.RaschetBudg.Migration;
 using LibaryAIS3Windows.Mode.Reg.StatusReg;
 using LibaryAIS3Windows.RegxFull.RaschetBudg;
 using LibaryAIS3Windows.Window;
@@ -750,7 +752,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                 AutoItX.Send(ButtonConstant.Enter);
                 if (regxstart.Platelsik.Length != 10)
                 {
-                    AutoItX.WinWait(Vedomost1Win.IsData[0], Vedomost1Win.IsData[1], 20);
+                    AutoItX.WinWait(Vedomost1Win.IsData[0], Vedomost1Win.IsData[1], 2);
                     AutoItX.Sleep(500);
                     AutoItX.Send(ButtonConstant.Enter);
                 }
@@ -763,5 +765,38 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             return regxstart.IsNulable;
         }
 
+        /// <summary>
+        /// Функция обработку миграции НП
+        /// </summary>
+        /// <param name="pathjurnalerror">Путь к файлу с ошибкой</param>
+        /// <param name="pathjurnalok">Путь к отработаным</param>
+        /// <param name="copyid">Ун миграции условие выхода</param>
+       public string Click11(string pathjurnalerror, string pathjurnalok,string copyid)
+       {
+            WindowsAis3 win = new WindowsAis3();
+            copyid = ReadWindow.Read.Reades.ReadForm(Mode.RaschetBudg.Migration.Migration.Identity);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 180, win.WindowsAis.Y + 75);
+           AutoItX.WinWait(WindowsAis3.AisNalog3,Migration.MigrationNp, 2);
+            while (true)
+            {
+              AutoItX.Sleep(1000);
+              var isEnable =  AutoItX.ControlCommand(AutoItX.WinGetHandle(Migration.Button[0]), AutoItX.ControlGetHandle(AutoItX.WinGetHandle(Migration.Button[0]), Migration.Button[2]), "IsEnabled","");
+                if (isEnable == "1")
+                {
+                    AutoItX.ControlClick(Migration.Button[0], Migration.Button[1], Migration.Button[2]);
+                    break;
+                }
+                win.ControlGetPos1(WindowsAis3.UltraGridDataMigration[0], WindowsAis3.UltraGridDataMigration[1], WindowsAis3.UltraGridDataMigration[2]);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 45, win.WindowsAis.Y + win.Y1 + 35);
+            }
+            AutoItX.WinWait(Window.Otdel.RaschetBudg.Migration.TextMigration.WindiwWarning[0], Window.Otdel.RaschetBudg.Migration.TextMigration.WindiwWarning[1]);
+            AutoItX.Send(ButtonConstant.Enter);
+            AutoItX.WinWait(Window.Otdel.RaschetBudg.Migration.TextMigration.WindiwInfo[0], Window.Otdel.RaschetBudg.Migration.TextMigration.WindiwInfo[1]);
+            AutoItX.Send(ButtonConstant.Enter);
+            AutoItX.WinWait("АИС Налог-3 ПРОМ ", "Обновление данных. Пожалуйста подождите...");
+            AutoItX.WinActivate("АИС Налог-3 ПРОМ ", "Обновление данных. Пожалуйста подождите...");
+            AutoItX.Send(ButtonConstant.Tab2);
+            return copyid;
+       }
     }
 }

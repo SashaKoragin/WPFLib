@@ -176,3 +176,12 @@ export class Kam5Report {
             { responseType: 'arraybuffer', headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
     }
 }
+
+@Injectable()
+export class ServersSqlAll {
+    constructor(private http: HttpClient) { }
+    public sqlServer(setting: FullSetting) {
+        return this.http.post(url.serversFullSql, setting, httpOptionsJson);
+    }
+
+}

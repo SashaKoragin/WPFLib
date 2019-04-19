@@ -1,0 +1,52 @@
+﻿table {
+    border: groove;
+}
+.stake {
+    display: inline-flex;
+}
+th.mat-header-cell{
+   text-align: center;
+   white-space: pre-wrap;
+   padding-left: 10px;
+   padding-right: 10px;
+   border: groove;
+   background: cadetblue;  
+   font-family: 'Times New Roman';
+   font-size: 20px;
+   font-weight: bold;
+}
+
+td.mat-cell{
+  text-align: left;
+  white-space: nowrap;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: groove;
+  font-family: 'Times New Roman';
+ font-size: 14px;
+ font-weight: bold;
+}
+.mat-icon {
+    width: 300px;
+    height: auto;
+
+}
+.image {
+    height: 100%;
+    display: grid;
+    padding: 5px;
+    margin: 10px;
+    border: black;
+    border-width: 2px 2px 2px 2px;
+    border-style: groove
+}
+
+.info {
+    display: flex;
+}
+
+.material-icons {
+    color: red;
+    font-size: 30px;
+
+}

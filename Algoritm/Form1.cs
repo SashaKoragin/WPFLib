@@ -16,14 +16,14 @@ namespace Algoritm
         /// test
         /// </summary>
       //  private int[] bases = { 1,2,3 };
-     //   private int[] spliters = { 4 };
-      //  private int[] bases = { 1, 2, 3 };
+    //   private int[] spliters = { 4 };
+     //   private int[] bases = { 1, 2, 3 };
       //  private int[] spliters = { 2,10 };
         /// <summary>
         /// Исходные данные
         /// </summary>
            private int[] bases = {3,6,7,9,13,18,20};
-           private int[] spliters = { 1,4,9,15 };
+           private int[] spliters = { 1,4,9,15,20,23,24 };
 
         /// <summary>
         /// Решение 2
@@ -32,9 +32,12 @@ namespace Algoritm
         private List<int> newList = new List<int>();
 
         /// <summary>
-        /// Решение 1
+        /// Решение 1 и Решение 3
         /// </summary>
         private List<int[]> result  = new List<int[]>();
+
+        private int[] mass = null;
+
         private void button1_Click(object sender, EventArgs e)
         {
             int i = 0;
@@ -94,7 +97,30 @@ namespace Algoritm
             }
             var u = result1;
         }
-        
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var borderBase = 0;
+            var maxBase = bases.Max();
+            var maxSplit = spliters.Max();
+            for (int i = 0; i < spliters.Length; i++)
+            {
+                    mass = bases.Where(val => val <= spliters[i] && val > borderBase).ToArray();
+                    borderBase = spliters[i];
+                     if (mass.Length > 0)
+                     {
+                        result.Add(mass);
+                        mass = null;
+                     }
+                    //Обработка остатков если есть
+                    if (maxSplit == spliters[i] && maxBase > borderBase)
+                    {
+                        mass = bases.Where(val => val > borderBase).ToArray();
+                        result.Add(mass);
+                    }
+            }
+            var е = result;
+        }
     }
 
 }

@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from '../../Autification/Securiti/Security';
 import { AuthRoutingModule } from './RoutingAuth';
 import { AngularMaterialModule } from '../Main/MaterialLibary/MaterialLibary';
-import { LoginInventarization } from '../../Autification/Securiti/SecurityInventarization';
 
 
 @NgModule({
@@ -16,7 +15,7 @@ import { LoginInventarization } from '../../Autification/Securiti/SecurityInvent
         AngularMaterialModule
     ],
     declarations: [
-        LoginComponent, LoginInventarization
+        LoginComponent
     ]
 })
 export class AuthModule { }

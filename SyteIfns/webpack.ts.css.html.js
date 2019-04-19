@@ -42,25 +42,36 @@ module.exports = {
             {
                 test: /.*\.(png|woff|woff2|eot|ttf|svg|jpg)(\?|$)/,
                 use: [
-                        {
-                            loader: 'file-loader',
-                            options: {
-                                outputPath: './images/',
-                                name: '[name].[ext]'
-                            }
+                {
+                      loader: 'file-loader',
+                       options: {
+                           outputPath: './images/',
+                           name: '[name].[ext]'
+                    }
+                },
+                {
+                    loader: 'image-webpack-loader',
+                    options: {
+                        svgo: {
+                            plugins: [
+                              {
+                                  removeViewBox: false,
+                                  removeEmptyAttrs: true,
+                                  cleanupAttrs: true,
+                                  removeEmptyText: true,
+                                  removeComments: true,
+                                  removeXMLProcInst: true,
+                                  removeMetadata:true
+                              }
+                            ]
+                        },
+                        optipng: {
+                            enabled: true
                         }
+                    }
+                }
                 ]
             }
-                                     //{
-                                     //    test: /\.(png|jp(e*)g|svg)$/,
-                                     //    use: [{
-                                     //        loader: 'url-loader',
-                                     //        options: {
-                                     //            limit: 8000, // Convert images < 8kb to base64 strings
-                                     //            name: 'images/[hash]-[name].[ext]'
-                                     //        }
-                                     //    }]
-                                     //}
         ]
     },
     plugins: [
@@ -78,4 +89,3 @@ module.exports = {
     ],
     devtool: 'source-map'
 };
-

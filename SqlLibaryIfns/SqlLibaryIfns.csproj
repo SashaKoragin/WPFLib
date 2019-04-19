@@ -65,6 +65,7 @@
     <Compile Include="Inventarization\ModelParametr\ModelParametr.cs" />
     <Compile Include="Inventarization\ModelProcedure\ModelProcedure.cs" />
     <Compile Include="Inventarization\Select\SelectInventarization.cs" />
+    <Compile Include="PingIp\PingIp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlEntytiCommand\TaskUse\TaskResult.cs" />
     <Compile Include="SqlModelReport\Bdk\ModelFull.cs" />

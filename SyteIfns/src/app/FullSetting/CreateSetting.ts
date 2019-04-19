@@ -17,6 +17,15 @@ class DataBases {
 
 //Класс для генерации настроек для процедур
 export class CreateSettingSelect {
+
+    generateSql(sqlcommand: number, db: string='Work'): FullSetting {
+        var setting: FullSetting = new FullSetting();
+        setting.Id = sqlcommand;
+        setting.Db = db;
+        return setting;
+    }
+
+
     //Выбор БД
     workandtest(num: number, setting: FullSetting): FullSetting {
         switch (num) {

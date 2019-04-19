@@ -11,11 +11,28 @@ using LibaryXMLAutoReports.AnalizNo;
 using LibaryXMLAutoReports.FullTemplateSheme;
 using SqlLibaryIfns.SqlSelect.ModelSqlFullService;
 using SqlLibaryIfns.SqlZapros.SqlConnections;
+using LibaryXMLAutoModelXmlSql.Model.ServerAndComputer;
 
 namespace SqlLibaryIfns.ZaprosSelectNotParam
 {
    public class SelectFull
     {
+        /// <summary>
+        /// Вытаскиваем внутреннею команду с сайта
+        /// </summary>
+        /// <param name="conectionstring">Строка соединения</param>
+        /// <param name="setting">Параметры</param>
+        /// <returns></returns>
+        private ServiceWcf Service(string conectionstring, FullSetting setting)
+        {
+            var sqlconnect = new SqlConnectionType();
+            return 
+                  (ServiceWcf) 
+                  sqlconnect.SelectFullParametrSqlReader(conectionstring, ModelSqlFullService.ProcedureSelectParametr,
+                  typeof(ServiceWcf), ModelSqlFullService.ParamCommand(setting.Id.ToString()));
+        }
+
+
         /// <summary>
         /// Данный блок относится к слиянию лиц
         /// </summary>
@@ -54,7 +71,12 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                   sqlconnect.SelectFullParametrSqlReader(conectionstring, ModelSqlFullService.ProcedureSelectParametr,
                   typeof(ServiceWcf), ModelSqlFullService.ParamCommand(setting.ParamService.IdCommand.ToString())));
         }
-
+        /// <summary>
+        /// Выполнение команд с генерацией параметров на ФРОНТЕ
+        /// </summary>
+        /// <param name="conectionstring">Строка соединения</param>
+        /// <param name="command">Команда</param>
+        /// <returns></returns>
         public string SqlSelect(string conectionstring, AngularModel command)
         {
             var sqlconnect = new SqlConnectionType();
@@ -74,10 +96,35 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                             sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, command.Command,
                                 typeof(Soprovod)));
                 case 21: return serializeJson.JsonLibary((No)sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, command.Command,typeof(No)));
+                case 29: return serializeJson.JsonLibary((ServerAndComputer)sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, command.Command, typeof(ServerAndComputer)));
                 default:
                     return "Данная комманда не определена!!!";
             }
         }
 
+        /// <summary>
+        /// Выполнение команды на сервере под номером
+        /// </summary>
+        /// <param name="conectionstring">Строка соединения</param>
+        /// <param name="setting">Параметры</param>
+        /// <returns></returns>
+        public string SqlSelect(string conectionstring,FullSetting setting)
+        {
+            var sqlconnect = new SqlConnectionType();
+            SerializeJson serializeJson = new SerializeJson();
+            var ping =new PingIp.PingIp();
+            switch (setting.Id)
+            {
+                case 29:
+                    var server =
+                        ping.Ping(
+                            (ServerAndComputer)
+                            sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring,
+                                Service(conectionstring, setting).ServiceWcfCommand.Command, typeof(ServerAndComputer)));
+                    return serializeJson.JsonLibary(server);
+                default:
+                    return "Данная комманда не определена!!!";
+            }
+        }
     }
 }

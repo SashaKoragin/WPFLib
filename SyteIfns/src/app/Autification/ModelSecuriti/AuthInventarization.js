@@ -32,6 +32,7 @@ var AuthInventar = /** @class */ (function () {
         }
         this.authService.redirectUrl = url;
         this.router.navigate(['/inventarlogin']);
+        console.log(this.router.url);
         return false;
     };
     AuthInventar = __decorate([

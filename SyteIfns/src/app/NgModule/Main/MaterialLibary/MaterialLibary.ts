@@ -4,7 +4,6 @@ import {
     MatBadgeModule,
     MatBottomSheetModule,
     MatButtonModule,
-    MatButtonToggleModule,
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
@@ -50,7 +49,7 @@ import { CdkTreeModule } from '@angular/cdk/tree';
         MatBadgeModule,
         MatBottomSheetModule,
         MatButtonModule,
-        MatButtonToggleModule,
+       
         MatCardModule,
         MatCheckboxModule,
         MatChipsModule,

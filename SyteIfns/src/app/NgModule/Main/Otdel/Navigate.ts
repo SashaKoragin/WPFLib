@@ -11,6 +11,7 @@ import { ChatComponent } from '../../../Otdel/It/Chat/StartModule/Chat';
 import { Main } from '../../../Otdel/Main/Main/Main';
 import { AuthGuard} from '../../../Autification/ModelSecuriti/AuthGuard';
 import { ReportKam5 } from '../../../Otdel/Kam5/ReportKam5/StartModule/Report';
+import { Server} from '../../../Otdel/It/Server/View/Servers';
 const appRoutes: Routes = [
     {
         path: '',
@@ -52,6 +53,10 @@ const appRoutes: Routes = [
             {
                 path: 'page9',
                 component: ReportKam5
+            },
+            {
+                path: 'page10',
+                component: Server
             }
             ]
     }

@@ -215,4 +215,18 @@ var Kam5Report = /** @class */ (function () {
     return Kam5Report;
 }());
 export { Kam5Report };
+var ServersSqlAll = /** @class */ (function () {
+    function ServersSqlAll(http) {
+        this.http = http;
+    }
+    ServersSqlAll.prototype.sqlServer = function (setting) {
+        return this.http.post(url.serversFullSql, setting, httpOptionsJson);
+    };
+    ServersSqlAll = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [HttpClient])
+    ], ServersSqlAll);
+    return ServersSqlAll;
+}());
+export { ServersSqlAll };
 //# sourceMappingURL=PostFull.js.map

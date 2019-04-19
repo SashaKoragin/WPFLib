@@ -8,6 +8,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 
 import { TableInfoDelo } from '../FormValidation/Dialog/CreateDela/Class/ModelDelaPriem';
 import { Delo, AnalizNO } from '../../Otdel/Analiticks/AnalizNo/Model/ModelAnaliz';
+
+import { ServerIfns } from '../../Otdel/It/Server/Model/ServersModel';
 //Класс таблиц Создания писем
 export class TableLetter {
     displaydataSource: string[] = ['id', 'iddoc', 'name', 'date', 'detal', 'vig'];
@@ -95,6 +97,17 @@ export class NoAnalizTable {
             this.addTableAnaliz(null);
             this.selectAnalizNo = true;
         }
+    }
+
+}
+
+export class ServersTable{
+
+    displaydataServerIfns: string[] = ['Id', 'ServerName', 'ServerDiscription','Children', 'ServerIp', 'DataCreate', 'Status'];
+    dataSourceServerIfns: MatTableDataSource<ServerIfns>;
+
+    addServers(server: ServerIfns[]) {
+        this.dataSourceServerIfns = new MatTableDataSource<ServerIfns>(server);
     }
 
 }

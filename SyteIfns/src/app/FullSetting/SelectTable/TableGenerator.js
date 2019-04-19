@@ -91,4 +91,14 @@ var NoAnalizTable = /** @class */ (function () {
     return NoAnalizTable;
 }());
 export { NoAnalizTable };
+var ServersTable = /** @class */ (function () {
+    function ServersTable() {
+        this.displaydataServerIfns = ['Id', 'ServerName', 'ServerDiscription', 'Children', 'ServerIp', 'DataCreate', 'Status'];
+    }
+    ServersTable.prototype.addServers = function (server) {
+        this.dataSourceServerIfns = new MatTableDataSource(server);
+    };
+    return ServersTable;
+}());
+export { ServersTable };
 //# sourceMappingURL=TableGenerator.js.map

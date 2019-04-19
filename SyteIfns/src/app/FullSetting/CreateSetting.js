@@ -20,6 +20,13 @@ var DataBases = /** @class */ (function () {
 var CreateSettingSelect = /** @class */ (function () {
     function CreateSettingSelect() {
     }
+    CreateSettingSelect.prototype.generateSql = function (sqlcommand, db) {
+        if (db === void 0) { db = 'Work'; }
+        var setting = new FullSetting();
+        setting.Id = sqlcommand;
+        setting.Db = db;
+        return setting;
+    };
     //Выбор БД
     CreateSettingSelect.prototype.workandtest = function (num, setting) {
         switch (num) {

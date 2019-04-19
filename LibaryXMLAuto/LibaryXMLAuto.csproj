@@ -85,6 +85,9 @@
     <Compile Include="ModelXmlSql\Model\Predproverka\Soprovod.cs">
       <DependentUpon>Soprovod.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ModelXmlSql\Model\ServerAndComputer\Server.cs">
+      <DependentUpon>Server.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModelXmlSql\Model\Trebovanie\Reshenie.cs">
       <SubType>code</SubType>
       <DependentUpon>Reshenie.xsd</DependentUpon>
@@ -167,6 +170,9 @@
     <None Include="ModelXmlSql\Model\Predproverka\Soprovod.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ModelXmlSql\Model\ServerAndComputer\Server.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ModelXmlSql\Model\Trebovanie\Reshenie.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -213,6 +219,7 @@
       <XsdXmlSqlPredproverka Include="ModelXmlSql\Model\Predproverka\*.xsd" />
       <XsdXmlSqlInventar Include="Inventarization\Model\ModelProcedure\*.xsd" />
       <XsdXmlSqlInventarSelect Include="Inventarization\Model\ModelSelectAll\*.xsd" />
+      <XsdXmlSqlServer Include="ModelXmlSql\Model\ServerAndComputer\*.xsd" />
     </ItemGroup>
     <Message Importance="high" Text="CreateXsd" />
     <GetFrameworkSdkPath>
@@ -240,5 +247,6 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFilesFaceFid.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.ModelFaceFid /outputdir:ModelXmlAuto\ModelFaceFid" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlInventar.FullPath)&quot; /classes /namespace:$(RootNamespace)Inventarization.Model.ModelProcedure /outputdir:Inventarization\Model\ModelProcedure\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlInventarSelect.FullPath)&quot; /classes /namespace:$(RootNamespace)Inventarization.Model.ModelSelectAll /outputdir:Inventarization\Model\ModelSelectAll\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlServer.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.Model.ServerAndComputer /outputdir:ModelXmlSql\Model\ServerAndComputer\" />
   </Target>
 </Project>

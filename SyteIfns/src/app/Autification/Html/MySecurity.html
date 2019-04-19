@@ -9,7 +9,7 @@
                     <input matInput placeholder="Введите логин:" type="text" [(ngModel)]="signalR.user.ModelUser.Login" />
                 </mat-form-field>
                 <mat-form-field  class="width">
-                    <input matInput placeholder="Введите пароль:" type="password" [(ngModel)]="signalR.user.ModelUser.Password" />
+                    <input matInput *ngIf="!authService.isLoggedIn" placeholder="Введите пароль:" type="password" [(ngModel)]="signalR.user.ModelUser.Password" (keydown.enter)="login()" />
                 </mat-form-field>
             </div>
         </div>

@@ -63,6 +63,7 @@
     <Compile Include="TestAutoit\Okp4\SnuOneAuto\AutoCommand\AutoCklicsAisCommand.cs" />
     <Compile Include="TestAutoit\PublicCommand\CommandFormirovanie.cs" />
     <Compile Include="TestAutoit\PublicCommand\CommandSnuOneAuto.cs" />
+    <Compile Include="TestAutoit\RaschBydj\Migration\MigrationCKlikCommand.cs" />
     <Compile Include="TestAutoit\RaschBydj\Vedomost1\StartVedomost1.cs" />
     <Compile Include="TestAutoit\Reg\Status\StatusReg.cs" />
     <Compile Include="TestAutoit\Reg\TechinicalUpdate\TchinicalUpdate.cs" />
@@ -87,7 +88,9 @@
       <Name>ViewModelLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

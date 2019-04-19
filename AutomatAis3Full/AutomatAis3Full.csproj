@@ -128,6 +128,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\RaschetBudg\Migration\Migration\Migration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\RaschetBudg\VedRazd1\VedRaz1\VedRaz1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -209,6 +213,10 @@
     <Compile Include="Form\Automat\Okp4\PrintSnu\DataContext\UserPrintSnuDataContext.cs" />
     <Compile Include="Form\Automat\Okp4\PrintSnu\Print\UserPrintSnu.xaml.cs">
       <DependentUpon>UserPrintSnu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\RaschetBudg\Migration\DataContext\MigrationContext.cs" />
+    <Compile Include="Form\Automat\RaschetBudg\Migration\Migration\Migration.xaml.cs">
+      <DependentUpon>Migration.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\RaschetBudg\VedRazd1\DataContext\VedRazd1.cs" />
     <Compile Include="Form\Automat\RaschetBudg\VedRazd1\VedRaz1\VedRaz1.xaml.cs">

@@ -21,7 +21,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularMaterialModule } from './MaterialLibary/MaterialLibary';
 import { ConnectionResolver } from '../../SignalRSignal/ConnectSignalR';
 import { SignalRConfiguration, SignalRModule } from 'ng2-signalr';
-import { LoginInventarization } from '../../Autification/Securiti/SecurityInventarization';
 export function createConfig() {
     var c = new SignalRConfiguration();
     c.logging = true;
@@ -46,7 +45,7 @@ var Maining = /** @class */ (function () {
                 SignalRModule.forRoot(createConfig)
             ],
             declarations: [
-                Root, LoginComponent, LoginInventarization
+                Root, LoginComponent
             ],
             bootstrap: [Root],
             providers: [ConnectionResolver]

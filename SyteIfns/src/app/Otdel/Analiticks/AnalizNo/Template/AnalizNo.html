@@ -152,7 +152,8 @@
             <ng-container matColumnDef="Button">
                 <th class="head-cell" mat-header-cell *matHeaderCellDef>Действия</th>
                 <td class="cell" mat-cell *matCellDef="let element">
-                    <button mat-icon-button [matMenuTriggerFor]="menu">Меню
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <i class="material-icons">menu</i>
                     </button>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item (click)="logica.startprocedure(element.D3979,23)">

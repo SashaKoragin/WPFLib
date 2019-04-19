@@ -17,8 +17,8 @@ import { AddTemplate } from '../../../Otdel/It/AddTemplate/StartModel/AddTemplat
 import { Predproverka } from '../../../Otdel/Predproverka/Soprovod/StartModule/Predproverka';
 import { AnalizNo } from '../../../Otdel/Analiticks/AnalizNo/StartModule/StartModuleAnaliz';
 import { FormsModule } from '@angular/forms';
-import { ReportKam5 } from '../../../Otdel/Kam5/ReportKam5/StartModule/Report'
-
+import { ReportKam5 } from '../../../Otdel/Kam5/ReportKam5/StartModule/Report';
+import { Server } from '../../../Otdel/It/Server/View/Servers';
 
 @NgModule(({
     imports: [
@@ -32,7 +32,7 @@ import { ReportKam5 } from '../../../Otdel/Kam5/ReportKam5/StartModule/Report'
         Main,
         DialogOkato, HeadersAdd, BodyAdd, StoneAdd, DialogDela,
         Predproverka, BdkIt, AnalizNo, BdkLetter, AddTemplate, ReshenieStart, AppComponent, AnalizNo, ReportKam5,
-        ChatComponent, Chat
+        ChatComponent, Chat, Server
     ],
     entryComponents: [DialogOkato, HeadersAdd, BodyAdd, StoneAdd, DialogDela]
 }) as any)

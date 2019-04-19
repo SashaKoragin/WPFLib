@@ -5,6 +5,7 @@ using AutomatAis3Full.Form.Automat.Okp4.FormSnuAuto.SnuFormAuto;
 using AutomatAis3Full.Form.Automat.Okp4.MassSnuForm.MassSnuForm;
 using AutomatAis3Full.Form.Automat.Okp4.PravoEdit.PravoEdit;
 using AutomatAis3Full.Form.Automat.Okp4.PrintSnu.Print;
+using AutomatAis3Full.Form.Automat.RaschetBudg.Migration.Migration;
 using AutomatAis3Full.Form.Automat.RaschetBudg.VedRazd1.VedRaz1;
 using AutomatAis3Full.Form.Automat.Registration.ActualStatus.UserControlStatus;
 using AutomatAis3Full.Form.Automat.Registration.TehnicalUpdate.UserControlTechnical;
@@ -49,6 +50,26 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                               UserControl = new VedRaz1()
                                           }
                                       }
+                                  }
+                              }
+                          },
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "ПОН Координация",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Миграция НП",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Журнал миграции НП",
+                                              UserControl = new Migration()
+                                          }
+                                      }
+                                      
                                   }
                               }
                           }

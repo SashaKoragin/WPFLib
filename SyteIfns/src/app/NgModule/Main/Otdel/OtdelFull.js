@@ -24,6 +24,7 @@ import { Predproverka } from '../../../Otdel/Predproverka/Soprovod/StartModule/P
 import { AnalizNo } from '../../../Otdel/Analiticks/AnalizNo/StartModule/StartModuleAnaliz';
 import { FormsModule } from '@angular/forms';
 import { ReportKam5 } from '../../../Otdel/Kam5/ReportKam5/StartModule/Report';
+import { Server } from '../../../Otdel/It/Server/View/Servers';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -40,7 +41,7 @@ var AppModule = /** @class */ (function () {
                 Main,
                 DialogOkato, HeadersAdd, BodyAdd, StoneAdd, DialogDela,
                 Predproverka, BdkIt, AnalizNo, BdkLetter, AddTemplate, ReshenieStart, AppComponent, AnalizNo, ReportKam5,
-                ChatComponent, Chat
+                ChatComponent, Chat, Server
             ],
             entryComponents: [DialogOkato, HeadersAdd, BodyAdd, StoneAdd, DialogDela]
         }))

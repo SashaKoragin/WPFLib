@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ServerAndComputer">
+		<xs:annotation>
+			<xs:documentation>Серверы и Компьютеры</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ServerIfns" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ServerIfns">
+		<xs:annotation>
+			<xs:documentation>Сервера</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" type="xs:int"/>
+			<xs:attribute name="ServerName" type="xs:string"/>
+			<xs:attribute name="ServerDiscription" type="xs:string"/>
+			<xs:attribute name="Children" type="xs:string"/>
+			<xs:attribute name="ServerIp" type="xs:string"/>
+			<xs:attribute name="DataCreate" type="xs:dateTime"/>
+			<xs:attribute name="Status" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
