@@ -36,10 +36,10 @@ namespace SqlLibaryIfns.SqlZapros.SobytieSql
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void Con_InfoMessageSignalR(object sender, SqlInfoMessageEventArgs e)
+        public async void Con_InfoMessageSignalR(object sender, SqlInfoMessageEventArgs e)
         {
             Messages = e.Message;
-            ServiceMessage.SqlServer(UserNameGuid, Messages);
+            await ServiceMessage.SqlServer(UserNameGuid, Messages);
         }
     }
 }

@@ -89,17 +89,7 @@ var ReportKam5 = /** @class */ (function () {
         this.signalR.user.Db = 'Work';
         this.signalR.user.ParamService.IdCommand = 28;
         this.parametr.createModelPost(this.signalR.user, this.convertDate.convertDateToServer(date));
-        this.httpclient.reportFile(this.signalR.user).subscribe(function (data) {
-            var blob = new Blob([data], { type: 'application/octet-stream' });
-            var url = window.URL.createObjectURL(blob);
-            var a = document.createElement('a');
-            a.href = url;
-            a.download = 'Отчет.xlsx';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        });
+        this.httpclient.reportFile(this.signalR.user);
         this.qvartal.reset();
     };
     ReportKam5.prototype.ngOnDestroy = function () {

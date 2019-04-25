@@ -1,7 +1,7 @@
 var AdressMerge = /** @class */ (function () {
     function AdressMerge() {
-        this.host = 'i7751-w00000745';
-        //  public host = 'localhost';
+        // public host = 'i7751-w00000745';
+        this.host = 'localhost';
         //Авторизация на сервере
         this.authservicedomain = "http://" + this.host + ":8181/ServiceRest/AuthServiceDomain";
         this.addresError = "http://" + this.host + ":8181/ServiceRest/SqlFaceError";
@@ -23,6 +23,7 @@ var AdressMerge = /** @class */ (function () {
         this.adressTrebovanie = "http://" + this.host + ":8181/ServiceRest/ReportFile/\u0422\u0440\u0435\u0431\u043E\u0432\u0430\u043D\u0438\u044F.xlsx";
         this.adressBdk = "http://" + this.host + ":8181/ServiceRest/ReportFile/\u0411\u0434\u043A.xlsx";
         this.adressIstrebovanie = "http://" + this.host + ":8181/ServiceRest/ReportFile/\u0418\u0441\u0442\u0440\u0435\u0431\u043E\u0432\u0430\u043D\u0438\u0435.xlsx";
+        this.adressKam5Report = "http://" + this.host + ":8181/ServiceRest/ReportFile/\u041A\u0430\u043C\u0435\u0440\u0430\u043B\u044C\u043D\u044B\u0439 5.xlsx";
     }
     return AdressMerge;
 }());

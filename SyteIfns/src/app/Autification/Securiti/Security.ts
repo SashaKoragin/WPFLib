@@ -17,7 +17,9 @@ export class LoginComponent {
     constructor(public authService: AuthServiceDomen, public router: Router, private signalR: ConnectionResolver) { }
     public connection: ISignalRConnection;
     login() {
+        console.log("Прошли 1");
         this.authService.login(this.signalR.user).subscribe((model) => {
+            console.log("Прошли 3");
             this.signalR.user.ModelUser = plainToClass(ModelUser, model as Object);
             this.authService.result(this.signalR.user);
                     if (this.authService.isLoggedIn) {

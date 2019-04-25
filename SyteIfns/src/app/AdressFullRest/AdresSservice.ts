@@ -1,6 +1,6 @@
 ﻿export class AdressMerge {
-    public host = 'i7751-w00000745';
-  //  public host = 'localhost';
+   // public host = 'i7751-w00000745';
+    public host = 'localhost';
     //Авторизация на сервере
     public authservicedomain = `http://${this.host}:8181/ServiceRest/AuthServiceDomain`;
     public addresError = `http://${this.host}:8181/ServiceRest/SqlFaceError`;
@@ -23,5 +23,6 @@
     public adressTrebovanie = `http://${this.host}:8181/ServiceRest/ReportFile/Требования.xlsx`;
     public adressBdk = `http://${this.host}:8181/ServiceRest/ReportFile/Бдк.xlsx`;
     public adressIstrebovanie = `http://${this.host}:8181/ServiceRest/ReportFile/Истребование.xlsx`;
+    public adressKam5Report = `http://${this.host}:8181/ServiceRest/ReportFile/Камеральный 5.xlsx`;
 }
 

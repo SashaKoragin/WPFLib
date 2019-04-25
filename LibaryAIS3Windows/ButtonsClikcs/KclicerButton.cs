@@ -18,6 +18,7 @@ using LibaryAIS3Windows.Window.Otdel.Okp4.Snu;
 using LibaryAIS3Windows.Window.Otdel.RaschetBudg.Vedomost1;
 using LibaryAIS3Windows.Window.Otdel.Reg.ActualStatus;
 using LibaryAIS3Windows.Window.Otdel.Reg.Fpd;
+using LibaryAIS3Windows.Window.Otdel.Reg.IdFace;
 
 namespace LibaryAIS3Windows.ButtonsClikcs
 {
@@ -57,6 +58,11 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// Техническое исправление
         /// </summary>
         private const string TechnicalUpdate = @"Налоговое администрирование\Централизованный учет налогоплательщиков\15.02.02. Служебные. Технические исправления\ Физические лица\15.02.02.01. Служебные. Технические исправления. Физические лица";
+        /// <summary>
+        /// Росреестр Визуальная идентификация
+        /// </summary>
+        private const string FaceRosreestr = @"Налоговое администрирование\Собственность\14. Работа с лицами – правообладателями объектов, по которым требуется визуальная обработка";
+
         /// <summary>
         /// Созданный блок для автоматизации Создание заявки на формирование СНУ ФЛ
         /// Ветка Налоговое администрирование\Физические лица\1.06. Формирование и печать CНУ\1. Создание заявки на формирование СНУ для единичной печати
@@ -723,7 +729,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// <param name="pathjurnalerror">Путь к журналу ошибок</param>
         /// <param name="pathjurnalok">Путь к журналу Ок</param>
         /// <param name="logica">Логика анализа</param>
-        public bool Click10(string pathjurnalerror, string pathjurnalok, int logica)
+        /// <param name="isTp">Проставлять ТП</param>
+        public bool Click10(string pathjurnalerror, string pathjurnalok, int logica,bool isTp)
         {
             WindowsAis3 win = new WindowsAis3();
             RegxStart regxstart = new RegxStart();
@@ -745,11 +752,14 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 45, win.WindowsAis.Y + 95);
                 AutoItX.WinWait(Vedomost1Win.ViesneniePl[0], Vedomost1Win.ViesneniePl[1]);
                 AutoItX.Send(ButtonConstant.Enter);
-                regxstart.UseNalog(logica);
+                regxstart.UseNalog(logica,isTp);
+                AutoItX.Sleep(1000);
                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 120, win.WindowsAis.Y + 80);
-                AutoItX.WinWait(Vedomost1Win.Utoch[0], Vedomost1Win.Utoch[1]);
-                AutoItX.Sleep(500);
-                AutoItX.Send(ButtonConstant.Enter);
+                if ((AutoItX.WinWait(Vedomost1Win.Utoch[0], Vedomost1Win.Utoch[1], 1) == 1) || (AutoItX.WinWait(Vedomost1Win.Utoch2[0], Vedomost1Win.Utoch2[0], 1) == 1))
+                {
+                    AutoItX.Sleep(500);
+                    AutoItX.Send(ButtonConstant.Enter);
+                }
                 if (regxstart.Platelsik.Length != 10)
                 {
                     AutoItX.WinWait(Vedomost1Win.IsData[0], Vedomost1Win.IsData[1], 2);
@@ -798,5 +808,94 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             AutoItX.Send(ButtonConstant.Tab2);
             return copyid;
        }
+
+        /// <summary>
+        /// Обработка ветоки Налоговое администрирование\Собственность\14. Работа с лицами – правообладателями объектов, по которым требуется визуальная обработка\01. Росреестр - ФЛ, по которым требуется  визуальная  идентификация с витриной лиц ЦУН
+        /// Налоговое администрирование\Собственность\14. Работа с лицами – правообладателями объектов, по которым требуется визуальная обработка\11. Росреестр – Запросы на обработку ФЛ, по которым переданы сведения об отчуждении существующих в ПОН КС прав на ОН
+        /// </summary>
+        /// <param name="idvisual">УН параметра</param>
+        /// <param name="pathjurnalerror">Путь к журналу с ошибками</param>
+        /// <param name="pathjurnalok">Путь к журналу с обработанными</param>
+        /// <param name="ischeked">Проставить галочку</param>
+        /// <param name="isbranch">Обработка ветки 11</param>
+        public void Click12(string idvisual, string pathjurnalerror, string pathjurnalok,  bool ischeked, bool isbranch)
+        {
+
+            WindowsAis3 win = new WindowsAis3();
+            win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
+            if (ischeked)
+            {
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 362, win.WindowsAis.Y + win.Y1 + 50);
+            }
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 35);
+            AutoItX.ClipPut(idvisual);
+            AutoItX.Send(ButtonConstant.Down1);
+            AutoItX.Send(ButtonConstant.Right5);
+            AutoItX.Send(ButtonConstant.Enter);
+            AutoItX.Send(ButtonConstant.CtrlV);
+            AutoItX.Send(ButtonConstant.F5);
+            while (true)
+            {
+                if (AutoItX.WinExists(WindowsAis3.Text, WindowsAis3.DataNotFound) == 1)
+                {
+                    AutoItX.Send(ButtonConstant.F3);
+                    LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, idvisual, FaceRosreestr,
+                        WindowsAis3.DataNotFound);
+                    break;
+                }
+                if ((AutoItX.WinExists(WindowsAis3.AisNalog3, IdFace.IdVisual) == 1)|| (AutoItX.WinExists(WindowsAis3.AisNalog3, IdFace.IdVisualTs) == 1))
+                {
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 330, win.WindowsAis.Y + 90);
+                    AutoItX.Send(ButtonConstant.Down1);
+                    AutoItX.Send(ButtonConstant.Enter);
+                    AutoItX.WinWait(WindowsAis3.AisNalog3, WindowsAis3.WinWait, 10);
+                    if (AutoItX.WinExists(WindowsAis3.AisNalog3, WindowsAis3.WinWait) == 1)
+                    {
+                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 655, win.WindowsAis.Y + win.Y1 + 55);
+                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 35);
+                        if (!isbranch)
+                        {
+                            AutoItX.Send(ButtonConstant.Down13);
+                            AutoItX.Send(ButtonConstant.Right5);
+                            AutoItX.Send(ButtonConstant.Enter);
+                            AutoItX.Send(ButtonConstant.Delete);
+                            AutoItX.Send(ButtonConstant.Enter);
+                            AutoItX.Send(ButtonConstant.Down1);
+                            AutoItX.Send(ButtonConstant.Enter);
+                            AutoItX.Send(ButtonConstant.Delete);
+                            AutoItX.Send(ButtonConstant.Enter);
+                        }
+                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 95, win.WindowsAis.Y + 40);
+                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 240, win.WindowsAis.Y + 80);
+                        while (true)
+                        {
+                            if (AutoItX.WinExists(WindowsAis3.Text, WindowsAis3.DataNotFound) == 1)
+                            {
+                              
+                                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                                LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, idvisual, FaceRosreestr,WindowsAis3.DataNotFound);
+                                break;
+                            }
+                            if (AutoItX.WinExists(WindowsAis3.AisNalog3, IdFace.IdFl) == 1)
+                            {
+                                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 330, win.WindowsAis.Y + 80);
+                                AutoItX.Send(ButtonConstant.Down1);
+                                AutoItX.Send(ButtonConstant.Enter);
+                                AutoItX.WinWait(IdFace.WinInfo[0], IdFace.WinInfo[1]);
+                                if (AutoItX.WinExists(IdFace.WinInfo[0], IdFace.WinInfo[1]) == 1)
+                                {
+                                    AutoItX.Send(ButtonConstant.Enter);
+                                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                                    break;
+                                }
+                            }
+                        }
+                        AutoItX.Send(ButtonConstant.F3);
+                        break;
+                    }
+                }
+            }
+
+        }
     }
 }

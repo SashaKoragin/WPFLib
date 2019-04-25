@@ -51,6 +51,6 @@ namespace LibaryAIS3Windows.RegxFull.PublicRegx
         /// <summary>
         /// Парсинг ТП
         /// </summary>
-        public string Tp = @"((\n0\n)|(\nТП\n))";
+        public string Tp = @"((\n0\n)|(\nТП\n)|(\nТР\n))";
     }
 }

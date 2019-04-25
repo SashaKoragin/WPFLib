@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 using ClosedXML.Excel;
+using LibaryXMLAutoModelXmlAuto.FileVisualId;
 //using LibaryXMLAutoModelXmlAuto.ModelFaceFid;
 using LibaryXMLAutoModelXmlAuto.FpdReg;
 using LibaryXMLAutoModelXmlAuto.FullInnCount;
@@ -87,6 +88,19 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
         public void ConvertFidFace(string pathFilexlsx, string listfile, string letter, bool isOneUseRows, string path)
         {
             SerializFidFace(ListRowExcel(pathFilexlsx, listfile, letter, isOneUseRows), path);
+        }
+
+        /// <summary>
+        /// Метод конвертации xlsx по xml sheme FaceFid.xsd
+        /// </summary>
+        /// <param name="pathFilexlsx">Путь к файлу xlsx</param>
+        /// <param name="listfile">Выбранный лист</param>
+        /// <param name="letter">Буква в xlsx</param>
+        /// <param name="isOneUseRows">Параметр указывающий Используем 1 строку или нет</param>
+        /// <param name="path">Параметр пути сохранения</param>
+        public void ConvertIdVisual(string pathFilexlsx, string listfile, string letter, bool isOneUseRows, string path)
+        {
+            SerializIdVisual(ListRowExcel(pathFilexlsx, listfile, letter, isOneUseRows), path);
         }
 
         ///<summary>
@@ -211,7 +225,29 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
             }
             SerializerClassToXml(path, face, typeof(Face));
         }
-
+        /// <summary>
+        /// Метод конвертации в xml файл по схеме SnuOneForm.xsd
+        /// <![CDATA[
+        /// <?xml version =\"1.0\"encoding=\"UTF-8\"?>\n" +
+        ///   <VisualIdent xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"VisualId.xsd\">\n" +
+        ///        <IdZapros VisualId=\"98781525\"/>\n" +
+        ///        <IdZapros VisualId=\"98781577\"/>\n" +
+        ///   </VisualIdent>]]>
+        /// </summary>
+        /// <param name="masivInnStrings">Параметр список</param>
+        /// <param name="path">Параметр пути сохранения</param>
+        private void SerializIdVisual(List<string> masivInnStrings, string path)
+        {
+            int i = 0;
+            VisualIdent ident = new VisualIdent() {IdZapros = new IdZapros[masivInnStrings.Count]};
+            foreach (var fid in masivInnStrings)
+            {
+                var f = new IdZapros() { VisualId = fid };
+                ident.IdZapros[i] = f;
+                i++;
+            }
+            SerializerClassToXml(path, ident, typeof(VisualIdent));
+        }
 
         /// <summary>
         /// Метод конвертации xlsx по xml sheme FpdReg.xsd
@@ -244,7 +280,7 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
         /// </summary>
         /// <param name="masivFpdStrings">Параметр список ФПД </param>
         /// <param name="path">Параметр пути сохранения</param>
-        public void SerializFpdReg(List<string> masivFpdStrings, string path)
+        private void SerializFpdReg(List<string> masivFpdStrings, string path)
         {
             int i = 0;
             TreatmentFPD znfpd = new TreatmentFPD() { Fpd  = new Fpd[masivFpdStrings.Count] };

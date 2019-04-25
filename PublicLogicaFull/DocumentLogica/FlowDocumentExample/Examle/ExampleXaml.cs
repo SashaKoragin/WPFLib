@@ -56,5 +56,13 @@ namespace PublicLogicaFull.DocumentLogica.FlowDocumentExample.Examle
                                              "     <Fid FidFace=\"100031408033\"/>\n" +
                                              "     <Fid FidFace=\"100221670111\"/>\n" +
                                              "</Face>";
+        /// <summary>
+        /// Образец 14-Работа с лицами правообладателями (01,11)
+        /// </summary>
+        public static string VisualIdentId = "<?xml version =\"1.0\"encoding=\"UTF-8\"?>\n" +
+                                             "<VisualIdent xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"VisualId.xsd\">\n" +
+                                             "     <IdZapros VisualId=\"98781525\"/>\n" +
+                                             "     <IdZapros VisualId=\"98781577\"/>\n" +
+                                             "</VisualIdent>";
     }
 }

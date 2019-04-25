@@ -154,7 +154,7 @@ namespace SqlLibaryIfns.SqlEntytiCommand.TaskUse
             switch (seting.ParamService.IdCommand)
             {
                 case 28:
-                    return await Task.Factory.StartNew(() => sqlconnect.ProcedureReturnTable(connection, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(connection, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand(seting.ParamService.IdCommand.ToString()))).ServiceWcfCommand.Command,seting.ModelUser.UserNameGuide, listparametr));
+                    return await await Task.Factory.StartNew(() => sqlconnect.ProcedureReturnTable(connection, ((ServiceWcf)sqlconnect.SelectFullParametrSqlReader(connection, ModelSqlFullService.ProcedureSelectParametr, typeof(ServiceWcf), ModelSqlFullService.ParamCommand(seting.ParamService.IdCommand.ToString()))).ServiceWcfCommand.Command, seting.ModelUser.UserNameGuide, listparametr));
                 default:
                     return null;
             }

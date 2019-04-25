@@ -8,6 +8,7 @@ using AutomatAis3Full.Form.Automat.Okp4.PrintSnu.Print;
 using AutomatAis3Full.Form.Automat.RaschetBudg.Migration.Migration;
 using AutomatAis3Full.Form.Automat.RaschetBudg.VedRazd1.VedRaz1;
 using AutomatAis3Full.Form.Automat.Registration.ActualStatus.UserControlStatus;
+using AutomatAis3Full.Form.Automat.Registration.Rosreestr.UserControl;
 using AutomatAis3Full.Form.Automat.Registration.TehnicalUpdate.UserControlTechnical;
 using AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.UserControl;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie;
@@ -178,6 +179,18 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                           {
                                               NameControl = "05.03,06-03,07-02 Обработка данных веток",
                                               UserControl = new FpdZemly()
+                                          }
+                                      }
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "14. Работа с лицами – правообладателями объектов, по которым требуется визуальная обработка",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "01. Росреестр - ФЛ, 11. Росреестр - Запросы на обработку",
+                                              UserControl = new UserControlRosreestr()
                                           }
                                       }
                                   }

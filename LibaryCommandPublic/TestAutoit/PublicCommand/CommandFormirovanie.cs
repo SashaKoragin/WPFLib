@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using LibaryXMLAuto.Converts.ConvettToXml;
@@ -156,8 +155,29 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
                             });
                         }
                         break;
+                    case "IdZaprosVisual":
+                        if (textboxfilemodel.IsValidation() && modelsnuone.IsValidation())
+                        {
+                            xmlmodel.UpdateOn();
+                            Task.Run(delegate
+                            {
+                                try
+                                {
+                                    convert.ConvertIdVisual(textboxfilemodel.Path, modelsnuone.SelectList.Listletter,
+                                        modelsnuone.SelectColumnLetter.ColumnName, checkBoxModel.IsCheced,
+                                        string.Join(null, path, "IdZaprosVisual.xml"));
+                                    xmlmodel.AddXmlFile(path);
+                                    xmlmodel.UpdateOff();
+                                }
+                                catch (Exception e)
+                                {
+                                    MessageBox.Show(e.Message);
+                                }
+                            });
+                        }
+                        break;
                 }
             }
-            }
         }
-    }
+        }
+}

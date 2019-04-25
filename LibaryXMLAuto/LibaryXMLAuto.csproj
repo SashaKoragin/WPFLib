@@ -71,6 +71,9 @@
     <Compile Include="ModelXmlAuto\ModelFpdId\FpdReg.cs">
       <DependentUpon>FpdReg.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ModelXmlAuto\ModelIdVisual\VisualId.cs">
+      <DependentUpon>VisualId.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModelXmlSql\ConvertModel\DesirializationSql\SqlDesirialization.cs" />
     <Compile Include="ModelXmlSql\Model\Bdk\BdkIt\AnalisBdk.cs">
       <DependentUpon>AnalisBdk.xsd</DependentUpon>
@@ -149,6 +152,9 @@
     <None Include="ModelXmlAuto\ModelFpdId\FpdReg.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ModelXmlAuto\ModelIdVisual\VisualId.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ModelXmlAuto\ModelJurnal\ErrorJurnal.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -204,6 +210,7 @@
       <XsdFiles Include="ModelXmlAuto\ModelSnuOne\*.xsd" />
       <XsdFiless Include="ModelXmlAuto\ModelJurnal\*.xsd" />
       <XsdFilesFpd Include="ModelXmlAuto\ModelFpdId\*.xsd" />
+      <XsdFileVisualId Include="ModelXmlAuto\ModelIdVisual\*.xsd" />
       <XsdFilessListInn Include="ModelXmlAuto\ListInnSheme\*.xsd" />
       <XsdFilesFid Include="ModelXmlAuto\ModelFidZorI\*.xsd" />
       <XsdXmlSql Include="ModelXmlSql\Model\FaceError\*.xsd" />
@@ -248,5 +255,6 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlInventar.FullPath)&quot; /classes /namespace:$(RootNamespace)Inventarization.Model.ModelProcedure /outputdir:Inventarization\Model\ModelProcedure\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlInventarSelect.FullPath)&quot; /classes /namespace:$(RootNamespace)Inventarization.Model.ModelSelectAll /outputdir:Inventarization\Model\ModelSelectAll\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlServer.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.Model.ServerAndComputer /outputdir:ModelXmlSql\Model\ServerAndComputer\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFileVisualId.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.FileVisualId /outputdir:ModelXmlAuto\ModelIdVisual\" />
   </Target>
 </Project>

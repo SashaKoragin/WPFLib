@@ -25,7 +25,7 @@ var ConnectionResolver = /** @class */ (function () {
             var options = {
                 hubName: 'ServiceMessage',
                 qs: { user: this.user.ModelUser.UserName, guid: this.user.ModelUser.Guid },
-                url: 'http://i7751-w00000745:8059/signalr',
+                url: 'http://localhost:8059/signalr',
                 executeErrorsInZone: true,
                 executeEventsInZone: true,
                 executeStatusChangeInZone: true

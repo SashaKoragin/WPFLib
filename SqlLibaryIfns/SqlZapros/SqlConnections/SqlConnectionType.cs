@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml;
 using LibaryXMLAuto.ModelXmlSql.ConvertModel.DesirializationSql;
 using SqlLibaryIfns.SqlZapros.SobytieSql;
@@ -112,8 +114,8 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
                             Loggers.Log4NetLogger.Error(new Exception($"Объект {type.FullName} вернул NULL"));
                         }
                     }
+                    cmd.Connection.Close();
                 }
-                con.Close();
                 SqlConnection.ClearPool(con);
             }
             return obj;
@@ -129,35 +131,39 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
         /// <param name="usernameguid">Имя пользователя для возврата сообщений</param>
         /// <param name="listparametr">Лист параметров для процедуры!!!</param>
         /// <returns></returns>
-        public DataSet ProcedureReturnTable<TKey, TValue>(string conectionstring, string procedure,string usernameguid = null, Dictionary<TKey, TValue> listparametr = null)
+        public async Task<DataSet> ProcedureReturnTable<TKey, TValue>(string conectionstring, string procedure,string usernameguid = null, Dictionary<TKey, TValue> listparametr = null)
         {
             try
             {
                 DataSet dataset = new DataSet();
                 Sobytie sobytie = new Sobytie(usernameguid) { Messages = null };
-                using (var con = new SqlConnection(conectionstring))
-                {
-                    var cmd = new SqlCommand(procedure)
+                return await Task<DataSet>.Factory.StartNew(() =>
                     {
-                        CommandType = CommandType.StoredProcedure,
-                        Connection = con,
-                        CommandTimeout = 0
-                    };
-                   con.InfoMessage += sobytie.Con_InfoMessageSignalR;
-                    if (listparametr?.Count > 0)
-                      {
-                        GenerateParametrSql.GenerateParametrSql sql = new GenerateParametrSql.GenerateParametrSql();
-                        cmd = sql.GenerateParametrs(cmd, listparametr);
-                      }
-                        con.Open();
-                      using (var sqlreport = new SqlDataAdapter(cmd))
-                      {
-                            sqlreport.Fill(dataset);
-                      }
-                    con.Close();
-                    SqlConnection.ClearPool(con);
-                }
-                return dataset;
+                        using (var con = new SqlConnection(conectionstring))
+                        {
+                            var cmd = new SqlCommand(procedure)
+                            {
+                                CommandType = CommandType.StoredProcedure,
+                                Connection = con,
+                                CommandTimeout = 0
+                            };
+                            con.InfoMessage += sobytie.Con_InfoMessageSignalR;
+                            if (listparametr?.Count > 0)
+                            {
+                                GenerateParametrSql.GenerateParametrSql sql =
+                                    new GenerateParametrSql.GenerateParametrSql();
+                                cmd = sql.GenerateParametrs(cmd, listparametr);
+                            }
+                            con.Open();
+                            using ( var sqlreport = new SqlDataAdapter(cmd))
+                            {
+                                sqlreport.Fill(dataset);
+                            }
+                            con.Close();
+                            SqlConnection.ClearPool(con);
+                            return dataset;
+                        }
+                    });
             }
             catch (Exception e)
             {

@@ -41,6 +41,11 @@ namespace LibaryXMLAuto.GenerateAtribyte
             return String.Format("/TreatmentFPD/Fpd[@FpdId =\"{0}\"]", fpd);
         }
 
+        public static string GenerateAtributeIdIden(string idIden)
+        {
+            return String.Format("/VisualIdent/IdZapros[@VisualId =\"{0}\"]", idIden);
+        }
+
         /// <summary>
         /// Данный метод генерит Атрибут для поиска в xml для схемы FidZemlyOrImushestvo.xsd
         /// </summary>

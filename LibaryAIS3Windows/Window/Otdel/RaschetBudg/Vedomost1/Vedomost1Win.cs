@@ -26,6 +26,12 @@ namespace LibaryAIS3Windows.Window.Otdel.RaschetBudg.Vedomost1
             "Уточнение будет выполнено через УФК"
         };
 
+        internal static string[] Utoch2 =
+        {
+            "Создание решения об уточнении",
+            "Платёж будет уточнён в рамках налогового органа."
+        };
+
         internal static string[] IsData =
         {
             "Проверка данных",

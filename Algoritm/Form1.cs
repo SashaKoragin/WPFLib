@@ -121,6 +121,30 @@ namespace Algoritm
             }
             var е = result;
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var s = new Sample();
+            s.Print();
+            ISample i = s;
+            i.Print();
+        }
     }
 
+    public interface ISample
+    {
+        void Print(string val = "1");
+    }
+    public class Sample : ISample
+    {
+        public void Print(string val = "2")
+        {
+            System.Console.Write(val);
+        }
+
+        public void S()
+        {
+            
+        }
+    }
 }

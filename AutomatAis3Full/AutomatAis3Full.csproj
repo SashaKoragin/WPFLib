@@ -140,6 +140,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Registration\Rosreestr\UserControl\UserControlRosreestr.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Registration\TehnicalUpdate\UserControlTechnical\TehnicalUpdate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -225,6 +229,10 @@
     <Compile Include="Form\Automat\Registration\ActualStatus\DataContext\DataContextActual.cs" />
     <Compile Include="Form\Automat\Registration\ActualStatus\UserControlStatus\ActualStatus.xaml.cs">
       <DependentUpon>ActualStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Registration\Rosreestr\DataContext\RosreestrContext.cs" />
+    <Compile Include="Form\Automat\Registration\Rosreestr\UserControl\UserControlRosreestr.xaml.cs">
+      <DependentUpon>UserControlRosreestr.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Registration\TehnicalUpdate\DataContext\DataContextTehnical.cs" />
     <Compile Include="Form\Automat\Registration\TehnicalUpdate\UserControlTechnical\TehnicalUpdate.xaml.cs">

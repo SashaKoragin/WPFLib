@@ -83,6 +83,7 @@
     <Compile Include="Window\Otdel\RaschetBudg\Vedomost1\Vedomost1Win.cs" />
     <Compile Include="Window\Otdel\Reg\ActualStatus\StatusText.cs" />
     <Compile Include="Window\Otdel\Reg\Fpd\FpdText.cs" />
+    <Compile Include="Window\Otdel\Reg\IdFace\IdFace.cs" />
     <Compile Include="Window\Otdel\Reg\Yvedomlenie\TextYvedomlenie.cs" />
     <Compile Include="Window\Windows.cs" />
   </ItemGroup>

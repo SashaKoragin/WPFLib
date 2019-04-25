@@ -68,6 +68,7 @@
     <Compile Include="TestAutoit\Reg\Status\StatusReg.cs" />
     <Compile Include="TestAutoit\Reg\TechinicalUpdate\TchinicalUpdate.cs" />
     <Compile Include="TestAutoit\Reg\TreatmentFPD\Zemly\Zemly.cs" />
+    <Compile Include="TestAutoit\Reg\VisualTreatmentFace\VisualTreatmentFace.cs" />
     <Compile Include="TestAutoit\Reg\YtochnenieSved\AutoCommand\YtochnenieSved.cs" />
   </ItemGroup>
   <ItemGroup>

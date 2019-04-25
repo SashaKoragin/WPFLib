@@ -21,7 +21,9 @@ var LoginComponent = /** @class */ (function () {
     }
     LoginComponent.prototype.login = function () {
         var _this = this;
+        console.log("Прошли 1");
         this.authService.login(this.signalR.user).subscribe(function (model) {
+            console.log("Прошли 3");
             _this.signalR.user.ModelUser = plainToClass(ModelUser, model);
             _this.authService.result(_this.signalR.user);
             if (_this.authService.isLoggedIn) {

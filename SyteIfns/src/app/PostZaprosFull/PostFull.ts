@@ -18,14 +18,14 @@ const httpOptionsJson = {
     export class AuthServiceDomen {
     constructor(private http: HttpClient) { }
 
-
     isLoggedIn = false;
 
     // store the URL so we can redirect after logging in
     redirectUrl: string;
 
-    login(setting: FullSetting) {
+   login(setting: FullSetting) {
         setting.ModelUser.Error = null;
+        console.log("Прошли 2");
         return this.http.post(url.authservicedomain, setting, httpOptionsJson);
     }
 
@@ -170,10 +170,21 @@ export class DonloadFileReport {
 export class Kam5Report {
     constructor(private http: HttpClient) { }
 
-    public reportFile(setting: FullSetting) {
-        return this.http.post(url.reportKam5,
+    public async reportFile(setting: FullSetting) {
+        return await this.http.post(url.reportKam5,
             setting,
-            { responseType: 'arraybuffer', headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+            { responseType: 'arraybuffer', headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).toPromise().then(data => {
+                var blob = new Blob([data], { type: 'application/octet-stream' });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'Отчет.xlsx';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            }
+            );
     }
 }
 

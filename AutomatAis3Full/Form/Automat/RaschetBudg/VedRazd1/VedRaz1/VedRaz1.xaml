@@ -28,17 +28,25 @@
                 Content="{Binding Start.Button}"
                 FontSize="16" />
             <DockPanel>
-                <Label Content="Выбор обработки анализа:" FontSize="14"/>
-                <ComboBox ItemsSource="{Binding Select.SelectQbe}" SelectedItem="{Binding Select.Sel, Mode=TwoWay, ValidatesOnDataErrors=True}"
+                <Label Content="Выбор обработки анализа:" FontSize="14" />
+                <ComboBox
+                    ItemsSource="{Binding Select.SelectQbe}"
+                    SelectedItem="{Binding Select.Sel, Mode=TwoWay, ValidatesOnDataErrors=True}"
                     ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
                     Validation.ErrorTemplate="{StaticResource ValidationFailederror}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Text}" FontSize="14"/>
+                            <TextBlock FontSize="14" Text="{Binding Text}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </DockPanel>
+            <CheckBox
+                VerticalAlignment="Top"
+                Content="Не проставлять КБК и ТП в хороший платеж?"
+                FontSize="16"
+                FontWeight="Bold"
+                IsChecked="{Binding Start.IsChekcs}" />
             <Label Content="Комманда приостановить Shift+S" FontSize="16" />
             <Label Content="Комманда возобновить Shift+A" FontSize="16" />
         </StackPanel>
@@ -53,8 +61,7 @@
                 Background="{Binding Select.Sel.ColorNum}"
                 FontSize="16"
                 Text="{Binding Select.Sel.Discription}"
-                TextWrapping="Wrap">
-            </TextBlock>
+                TextWrapping="Wrap" />
         </StackPanel>
     </Grid>
 </UserControl>

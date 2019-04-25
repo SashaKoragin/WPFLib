@@ -9,6 +9,7 @@ namespace SqlLibaryIfns.ExcelReport.Report
 {
     public class DonloadsFile
     {
+
         /// <summary>
         /// Выбор файла для передачи
         /// </summary>

@@ -113,95 +113,80 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
         /// Анализ простановки налдогов 
         /// </summary>
         /// <param name="logica">Как будет идти анализ данных</param>
-        public void UseNalog(int logica)
+        /// /// <param name="isTp"></param>
+        public void UseNalog(int logica, bool isTp)
         {
             ParsTp();
-            while (true)
+            if (!isTp)
             {
-                AutoItX.WinActivate(WindowsAis3.AisNalog3);
-                AutoItX.ControlClick(WindowsAis3.AisNalog3, VedRazd1.SelectKbk[0], VedRazd1.SelectKbk[1]);
-                AutoItX.WinWait(VedRazd1.WinNalog[0], VedRazd1.WinNalog[1], 60);
-                if (AutoItX.WinExists(VedRazd1.WinNalog[0], VedRazd1.WinNalog[1]) == 1)
+                while (true)
                 {
-                    while (true)
+                    AutoItX.WinActivate(WindowsAis3.AisNalog3);
+                    AutoItX.ControlClick(WindowsAis3.AisNalog3, VedRazd1.SelectKbk[0], VedRazd1.SelectKbk[1]);
+                    AutoItX.WinWait(VedRazd1.WinNalog[0], VedRazd1.WinNalog[1], 60);
+                    if (AutoItX.WinExists(VedRazd1.WinNalog[0], VedRazd1.WinNalog[1]) == 1)
                     {
-                        WindowsAis3 win = new WindowsAis3();
-                        win.ControlGetPos1(WindowsAis3.Nalog[0], WindowsAis3.Nalog[1], WindowsAis3.Nalog[2]);
-                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.X1 + win.WinNalog.X + 40, win.Y1 + win.WinNalog.Y + 60, 1);
-                        AutoItX.Send(KbkIfns);
-                        AutoItX.Sleep(2000);
-                        AutoItX.Send(ButtonConstant.Tab);
-                        AutoItX.Send(ButtonConstant.Tab);
-                        AutoItX.ControlClick(VedRazd1.WinNalog[0], VedRazd1.SelectKbkStart[0], VedRazd1.SelectKbkStart[1]);
-                        var kbkparse = ReadWindow.Read.Reades.ReadForm(VedRazd1.Ifns,1);
-                        if (String.Equals(KbkIfns,kbkparse))
+
+                        while (true)
                         {
-                            break;
+                            WindowsAis3 win = new WindowsAis3();
+                            win.ControlGetPos1(WindowsAis3.Nalog[0], WindowsAis3.Nalog[1], WindowsAis3.Nalog[2]);
+                            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.X1 + win.WinNalog.X + 40,
+                                win.Y1 + win.WinNalog.Y + 60, 1);
+                            AutoItX.Send(KbkIfns);
+                            AutoItX.Sleep(2000);
+                            AutoItX.Send(ButtonConstant.Tab);
+                            AutoItX.Send(ButtonConstant.Tab);
+                            AutoItX.ControlClick(VedRazd1.WinNalog[0], VedRazd1.SelectKbkStart[0],
+                                VedRazd1.SelectKbkStart[1]);
+                            var kbkparse = ReadWindow.Read.Reades.ReadForm(VedRazd1.Ifns, 1);
+                            if (String.Equals(KbkIfns, kbkparse))
+                            {
+                                break;
+                            }
                         }
                     }
-                    Status(logica);
-                    break;
+
                 }
             }
-
+            Status(logica, isTp);
         }
 
         /// <summary>
         /// Анализ 100 Иностранцы
         /// </summary>
         /// <param name="logica">Какой анализ делаем</param>
-        public void Status(int logica)
+        /// <param name="isTp"></param>
+        public void Status(int logica,bool isTp)
         {
             string status = "01";
-            string tp = "ТП";
             switch (logica)
             {
                 case 1:
-                     status = "13";
-                    if (Inn == "ИНН:7707083893" && Kpp == "КПП:526002001")
-                    {
-                        status = "15";
-                    }
-                    AutoItX.ControlClick(VedRazd1.Status[0], "", VedRazd1.Status[1]);
-                    AutoItX.Send(status);
+                    status = "13";
+                    SendsStatus(IsSberbank(status));
                     break;
                 case 2:
-                    AutoItX.ControlClick(VedRazd1.SelectTp[0], "", VedRazd1.SelectTp[1]);
-                    AutoItX.Send(tp);
+                    SendsTp(isTp);
                     break;
                 case 3:
                     if (InnPlatel.Length != 12)
                     {
-                        if (Inn == "ИНН:7707083893" && Kpp == "КПП:526002001")
-                        {
-                            status = "15";
-                        }
-                        AutoItX.ControlClick(VedRazd1.Status[0], "", VedRazd1.Status[1]);
-                        AutoItX.Send(status);
-                        AutoItX.ControlClick(VedRazd1.SelectTp[0], "", VedRazd1.SelectTp[1]);
-                        AutoItX.Send(tp);
+                        SendsStatus(IsSberbank(status));
+                        SendsTp(isTp);
                     }
                     else
                     {
                         status = "09";
-                        AutoItX.ControlClick(VedRazd1.Status[0], "", VedRazd1.Status[1]);
-                        AutoItX.Send(status);
-                        AutoItX.ControlClick(VedRazd1.SelectTp[0], "", VedRazd1.SelectTp[1]);
-                        AutoItX.Send(tp);
+                        SendsStatus(status);
+                        SendsTp(isTp);
                     }
                     break;
                 case 4:
                     status = "02";
-                    if (Inn == "ИНН:7707083893" && Kpp == "КПП:526002001")
-                    {
-                        status = "15";
-                    }
-                    AutoItX.ControlClick(VedRazd1.Status[0], "", VedRazd1.Status[1]);
-                    AutoItX.Send(status);
-                    AutoItX.ControlClick(VedRazd1.SelectTp[0], "", VedRazd1.SelectTp[1]);
-                    AutoItX.Send(tp);
+                    SendsStatus(IsSberbank(status));
+                    SendsTp(isTp);
                     break;
-                    
             }
         }
 
@@ -225,6 +210,42 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
                     // ignored
                 }
             }
+        }
+
+        /// <summary>
+        /// Функция проверки Сбербанка
+        /// </summary>
+        /// <param name="status">Статус изменится или нет</param>
+        /// <returns></returns>
+       public string IsSberbank(string status)
+       {
+            if (Inn == "ИНН:7707083893" && Kpp == "КПП:526002001")
+            {
+                status = "15";
+            }
+           return status;
+       }
+        /// <summary>
+        /// Функция простановки статуса
+        /// </summary>
+        /// <param name="status">Статус</param>
+       public void SendsStatus(string status)
+       {
+            AutoItX.ControlClick(VedRazd1.Status[0], "", VedRazd1.Status[1]);
+            AutoItX.Send(status);
+       }
+        /// <summary>
+        /// Постановка ТП в поле
+        /// </summary>
+        /// <param name="isTp"></param>
+       public void SendsTp(bool isTp)
+       {
+           if (!isTp)
+           {
+                string tp = "ТП";
+                AutoItX.ControlClick(VedRazd1.SelectTp[0], "", VedRazd1.SelectTp[1]);
+                AutoItX.Send(tp);
+           }
         }
     }
 }
