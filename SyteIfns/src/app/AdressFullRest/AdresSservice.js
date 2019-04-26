@@ -1,7 +1,7 @@
 var AdressMerge = /** @class */ (function () {
     function AdressMerge() {
-        // public host = 'i7751-w00000745';
-        this.host = 'localhost';
+        this.host = 'i7751-w00000745';
+        // public host = 'localhost';
         //Авторизация на сервере
         this.authservicedomain = "http://" + this.host + ":8181/ServiceRest/AuthServiceDomain";
         this.addresError = "http://" + this.host + ":8181/ServiceRest/SqlFaceError";

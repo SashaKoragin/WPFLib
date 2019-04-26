@@ -129,6 +129,11 @@ namespace Algoritm
             ISample i = s;
             i.Print();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+           MessageBox.Show(comboBox1.SelectedItem.ToString());
+        }
     }
 
     public interface ISample
@@ -143,8 +148,13 @@ namespace Algoritm
         }
 
         public void S()
-        {
-            
+        {   
+            ComboBox com =new ComboBox();
+            com.Controls.Add(new TextBox());
+            com.Controls[0].Text = "sasasa";
+            com.Items.Add(com.Controls[0].Text);
+
         }
     }
+    
 }

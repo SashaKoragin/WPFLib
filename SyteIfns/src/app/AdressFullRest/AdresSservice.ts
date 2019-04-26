@@ -1,6 +1,6 @@
 ﻿export class AdressMerge {
-   // public host = 'i7751-w00000745';
-    public host = 'localhost';
+    public host = 'i7751-w00000745';
+   // public host = 'localhost';
     //Авторизация на сервере
     public authservicedomain = `http://${this.host}:8181/ServiceRest/AuthServiceDomain`;
     public addresError = `http://${this.host}:8181/ServiceRest/SqlFaceError`;
