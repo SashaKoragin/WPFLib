@@ -34,4 +34,6 @@ export class DateModel {
         setting.ParametrReshen.D85DateStart = `/Date(${dateStart.getTime()})/`;
         setting.ParametrReshen.D85DateFinish = `/Date(${dateFinis.getTime()})/`;
     }
+
+
 }

@@ -75,7 +75,8 @@ export class ReportKam5 implements OnInit, OnDestroy {
         this.signalR.user.ParamService.IdCommand = 28;
         this.parametr.createModelPost(this.signalR.user, this.convertDate.convertDateToServer(date));
        this.httpclient.reportFile(this.signalR.user);
-        this.qvartal.reset();
+       this.qvartal.reset();
+       this.formtemplateReport.reset();
     }
 
     ngOnDestroy(): void {

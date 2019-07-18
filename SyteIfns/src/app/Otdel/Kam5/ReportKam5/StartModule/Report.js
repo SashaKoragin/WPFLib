@@ -91,6 +91,7 @@ var ReportKam5 = /** @class */ (function () {
         this.parametr.createModelPost(this.signalR.user, this.convertDate.convertDateToServer(date));
         this.httpclient.reportFile(this.signalR.user);
         this.qvartal.reset();
+        this.formtemplateReport.reset();
     };
     ReportKam5.prototype.ngOnDestroy = function () {
         this.onMessageSent = null;

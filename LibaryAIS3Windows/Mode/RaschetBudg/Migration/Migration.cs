@@ -30,5 +30,50 @@ namespace LibaryAIS3Windows.Mode.RaschetBudg.Migration
             "Разблокировать",
             "[NAME:unlockButton]"
        };
+        /// <summary>
+        /// Поле ФИД
+        /// </summary>
+        public static string[] FidMemo =
+        {
+            "АИС Налог-3 ПРОМ ",
+            "[NAME:fidTE]"
+        };
+
+        /// <summary>
+        /// Поле ИНН
+        /// </summary>
+        public static string[] InnMemo =
+        {
+            "АИС Налог-3 ПРОМ ",
+            "[NAME:innTE]"
+        };
+
+        /// <summary>
+        /// Поле КПП
+        /// </summary>
+        public static string[] KppMemo =
+        {
+            "АИС Налог-3 ПРОМ ",
+            "[NAME:kppTE]"
+        };
+
+        /// <summary>
+        /// Наименование организации
+        /// </summary>
+        public static string[] NameOrganization =
+        {
+            "АИС Налог-3 ПРОМ ",
+            "[NAME:txtTP_NAME]"
+        };
+
+        /// <summary>
+        /// Наименование организации
+        /// </summary>
+        public static string[] CodeIfns =
+        {
+            "АИС Налог-3 ПРОМ ",
+            "[NAME:txtIFNS_SENDER]"
+        };
+
     }
 }

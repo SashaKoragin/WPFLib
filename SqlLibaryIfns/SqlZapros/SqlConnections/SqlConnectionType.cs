@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
@@ -170,6 +171,34 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
                 Loggers.Log4NetLogger.Error(e);
                 return null;
             }
+        }
+        /// <summary>
+        /// Возврат string из for xml command
+        /// </summary>
+        /// <param name="connectionstring">Строка соединения с БД</param>
+        /// <param name="sqlforxmlcommand">Комманда возврата string</param>
+        /// <returns></returns>
+        public string XmlString(string connectionstring, string sqlforxmlcommand)
+        {
+            StringBuilder sb = new StringBuilder();
+            using (var con = new SqlConnection(connectionstring))
+            {
+                using (var cmd = new SqlCommand(sqlforxmlcommand, con))
+                {
+                    cmd.Connection.Open();
+                    using (XmlReader reader = cmd.ExecuteXmlReader())
+                    {
+                        if (reader != null)
+                        {
+                            while (reader.Read())
+                                sb.AppendLine(reader.ReadOuterXml());
+                        }
+                    }
+                    cmd.Connection.Close();
+                }
+                SqlConnection.ClearPool(con);
+            }
+            return sb.ToString();
         }
     }
 }

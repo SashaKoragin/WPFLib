@@ -1,30 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GalaSoft.MvvmLight.Threading;
 using LibaryAIS3Windows.ButtonsClikcs;
-using LibaryAIS3Windows.ExitLogica;
 using LibaryAIS3Windows.Window;
-using LibaryXMLAutoModelXmlAuto.ModelSnuOne;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
+using ViewModelLib.ModelTestAutoit.PublicModel.RaschetBuh;
 
 namespace LibaryCommandPublic.TestAutoit.RaschBydj.Migration
 {
    public class MigrationCKlikCommand
     {
 
-
-        public void AutoCklikMigration(StatusButtonMethod statusButton, string pathfileinn, string pathjurnalerror, string pathjurnalok)
+        /// <summary>
+        /// Миграция НП
+        /// </summary>
+        /// <param name="statusButton">Кнопка передачи старта</param>
+        /// <param name="reportMigration">Путь к отчету парсинга миграции</param>
+        public void AutoCklikMigration(StatusButtonMethod statusButton, string reportMigration)
         {
             DispatcherHelper.Initialize();
                 Task.Run(delegate
                 {
                     string copyid = null;
                     DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    if (File.Exists(reportMigration)){ File.Delete(reportMigration);}
                         KclicerButton clickerButton = new KclicerButton();
                         WindowsAis3 ais3 = new WindowsAis3();
                         ais3.StartNMigration();
@@ -32,7 +32,7 @@ namespace LibaryCommandPublic.TestAutoit.RaschBydj.Migration
                         {
                            while (statusButton.Iswork)
                            {
-                              var id = clickerButton.Click11(pathjurnalerror, pathjurnalok,copyid);
+                              var id = clickerButton.Click11(statusButton.IsChekcs, reportMigration, copyid);
                                if (id.Equals(copyid))
                                {
                                   DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusYellow);
@@ -49,5 +49,20 @@ namespace LibaryCommandPublic.TestAutoit.RaschBydj.Migration
             
         }
 
+        public void SendParametr(SelectVibor select)
+        {
+            if (select.IsValidation())
+            {
+                WindowsAis3 ais3 = new WindowsAis3();
+                if (select.Sel.Num == 1)
+                {
+                    ais3.SendParametrsPriem();
+                }
+                else
+                {
+                    ais3.SendParametrsPeredahca();
+                }
+            }
+        }
     }
 }

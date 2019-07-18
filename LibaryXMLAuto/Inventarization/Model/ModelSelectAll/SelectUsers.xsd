@@ -6,43 +6,62 @@
 			<xs:documentation>Все пользователи</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="Users" maxOccurs="unbounded"/>
+			<xs:sequence minOccurs="0">
+				<xs:element ref="Users" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Users">
+	<xs:element name="Users" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Пользователь</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:sequence>
+			<xs:sequence minOccurs="0">
 				<xs:element ref="Rules" minOccurs="0"/>
 				<xs:element ref="Otdel" minOccurs="0"/>
+				<xs:element ref="Position" minOccurs="0"/>
 			</xs:sequence>
 			<xs:attribute name="IdUser" type="xs:int"/>
 			<xs:attribute name="Name" type="xs:string"/>
+			<xs:attribute name="IdOtdel" type="xs:int" use="optional"/>
+			<xs:attribute name="IdPosition" type="xs:int" use="optional"/>
+			<xs:attribute name="IdRule" type="xs:int" use="optional"/>
 			<xs:attribute name="TabelNumber" type="xs:string"/>
 			<xs:attribute name="Telephon" type="xs:string"/>
 			<xs:attribute name="TelephonUndeground" type="xs:string"/>
 			<xs:attribute name="IpTelephon" type="xs:string"/>
 			<xs:attribute name="MacTelephon" type="xs:string"/>
+			<xs:attribute name="NameUser" type="xs:string"/>
+			<xs:attribute name="Passwords" type="xs:string"/>
+			<xs:attribute name="StatusActual" type="xs:byte"/>
+			<xs:attribute name="IdHistory" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Otdel">
+	<xs:element name="Otdel" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Отдел</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
+			<xs:attribute name="IdOtdel" type="xs:int"/>
 			<xs:attribute name="NameOtdel" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Rules">
+	<xs:element name="Rules" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Роль</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
+			<xs:attribute name="IdRule" type="xs:int"/>
 			<xs:attribute name="NameRules" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Position" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Должность</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IdOtdel" type="xs:int"/>
+			<xs:attribute name="NamePosition" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

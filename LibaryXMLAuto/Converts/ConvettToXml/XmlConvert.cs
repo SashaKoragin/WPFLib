@@ -321,7 +321,7 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
         /// <param name="path">Полный путь к файлу xml</param>
         /// <param name="objserialize">Объект для сериализациии как правило класс</param>
         /// <param name="objType">Тип объекта по которому будем сериализовывать</param>
-        private void SerializerClassToXml(string path,object objserialize, Type objType)
+        public void SerializerClassToXml(string path,object objserialize, Type objType)
         {
             XmlSerializer formatter = new XmlSerializer(objType);
             using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
@@ -329,6 +329,21 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
                 formatter.Serialize(fs,objserialize);
             }
         }
-
+        /// <summary>
+        /// Десериализация xml to object
+        /// вернуть object
+        /// </summary>
+        /// <param name="path">Путь к xml файлу</param>
+        /// <param name="objType">Тип объекта по которому будем сериализовывать</param>
+        public object DeserializationXmlToClass(string path, Type objType)
+        {
+            object obj;
+            XmlSerializer serializer = new XmlSerializer(objType);
+            using (Stream reader = new FileStream(path, FileMode.Open))
+            {
+                obj = serializer.Deserialize(reader);
+            }
+            return obj;
+        }
     }
 }

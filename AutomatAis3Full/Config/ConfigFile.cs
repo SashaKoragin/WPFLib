@@ -16,6 +16,9 @@ namespace AutomatAis3Full.Config
         public static string FileFid = ConfigurationManager.AppSettings["FileFid"];
         public static string FidFace = ConfigurationManager.AppSettings["FidFace"];
         public static string VisualId = ConfigurationManager.AppSettings["IdZaprosVisual"];
+        public static string ReportMigration = ConfigurationManager.AppSettings["ReportMigration"];
+        public static string ServerReport = ConfigurationManager.AppSettings["ServerReport"];
+        public static string ServiceAndIpComputer = ConfigurationManager.AppSettings["ServiceAndIpComputer"];
         /// <summary>
         /// Строка соединения с нашей БД
         /// </summary>

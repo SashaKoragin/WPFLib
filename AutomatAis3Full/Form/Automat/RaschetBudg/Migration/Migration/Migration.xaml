@@ -35,6 +35,24 @@
                 VerticalAlignment="Top"
                 Content="{Binding Start.Button}"
                 FontSize="16" />
+            <WrapPanel>
+                <Button
+                    Margin="5,5,5,5"
+                    Command="{Binding Vibor}"
+                    Content="Проставить выборку" />
+                <ComboBox
+                    ItemsSource="{Binding Select.SelectQbe}"
+                    SelectedItem="{Binding Select.Sel, Mode=TwoWay, ValidatesOnDataErrors=True}"
+                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                    Validation.ErrorTemplate="{StaticResource ValidationFailederror}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock FontSize="14" Text="{Binding Text}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </WrapPanel>
+            <CheckBox Content="Вытаскивать ошибки по сообщениям" IsChecked="{Binding Start.IsChekcs}" />
             <Label Content="Комманда приостановить Shift+S" FontSize="16" />
             <Label Content="Комманда возобновить Shift+A" FontSize="16" />
         </StackPanel>

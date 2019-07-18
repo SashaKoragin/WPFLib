@@ -42,9 +42,5 @@ namespace LibaryCommandPublic.TestAutoit.Analitic.TheUserTask
                 }
             });
         }
-        public void SigZacetVozvratNo()
-        {
-
-        }
     }
 }

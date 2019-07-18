@@ -145,6 +145,7 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
                                 break;
                             }
                         }
+                        break;
                     }
 
                 }

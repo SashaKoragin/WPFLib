@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using AutomatAis3Full.Form.Automat.Analitic.Zadanie.ZacetVozvrat.Signature;
+using AutomatAis3Full.Form.Automat.Okp3.UsnSend.UsnSend;
 using AutomatAis3Full.Form.Automat.Okp4.FormSnuAuto.SnuFormAuto;
 using AutomatAis3Full.Form.Automat.Okp4.MassSnuForm.MassSnuForm;
 using AutomatAis3Full.Form.Automat.Okp4.PravoEdit.PravoEdit;
 using AutomatAis3Full.Form.Automat.Okp4.PrintSnu.Print;
+using AutomatAis3Full.Form.Automat.Orn.ConfirmationNbo.ConfirmationNbo;
 using AutomatAis3Full.Form.Automat.RaschetBudg.Migration.Migration;
 using AutomatAis3Full.Form.Automat.RaschetBudg.VedRazd1.VedRaz1;
 using AutomatAis3Full.Form.Automat.Registration.ActualStatus.UserControlStatus;
@@ -13,7 +14,6 @@ using AutomatAis3Full.Form.Automat.Registration.TehnicalUpdate.UserControlTechni
 using AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.UserControl;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie;
 using AutomatAis3Full.Form.Report.ReportXml.ReportForm;
-using AutomatAis3Full.GlavnayLogika.Mvvm;
 using ViewModelLib.ModelTestAutoit.FullWindowAutoIt;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
@@ -30,6 +30,41 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
               FullWindowAutoItMethod autoit = new FullWindowAutoItMethod();
               ObservableCollection<FullWindowAutoIt> window = new ObservableCollection<FullWindowAutoIt>
               {
+                  new FullWindowAutoIt()
+                  {
+                      NameControl = "ОКП3",
+                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                      {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Общие задания",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Контрольная работа налоговые проверки",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Применение упрощенной системы налогооблажения",
+                                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                              {
+                                                  new FullWindowAutoIt()
+                                                  {
+                                                      NameControl = "Применение УСН",
+                                                      UserControl = new FormUsnSend()
+                                                  }
+                                              }
+                                              
+                                          }
+                                      }
+
+                                  }
+                              }
+                          }
+                      }
+                  },
                   new FullWindowAutoIt()
                   {
                       NameControl = "Расчеты с бюджетом",
@@ -98,6 +133,32 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                           }
                                       }
                                   }
+                              }
+                          }
+                      }
+                  },
+                  new FullWindowAutoIt()
+                  {
+                      NameControl = "ОРН",
+                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                      {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Контрольная работа (налоговые проверки)",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                               new FullWindowAutoIt()
+                               {
+                                   NameControl = "Обработка документов НБО",
+                                   CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                   {
+                                       new FullWindowAutoIt()
+                                       {
+                                           NameControl = "Подтверждение ввода документов",
+                                           UserControl = new ConfirmationNbo()
+                                       }
+                                   }
+                               }   
                               }
                           }
                       }

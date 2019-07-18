@@ -32,7 +32,7 @@ namespace SqlLibaryIfns.Inventarization.Select
         }
 
         /// <summary>
-        /// Выборка Всех из БД B зависимости от номера 1: Пользователи и т д
+        /// Выборка Всех из БД B зависимости от номера 1: Пользователи 2: Отделы и т д
         /// </summary>
         /// <returns></returns>
         public  string SelectFull(ModelParametr.ModelParametr parametr)

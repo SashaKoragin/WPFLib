@@ -14,6 +14,56 @@ namespace LibaryAIS3Windows.ReadWindow.Read
    public class Reades
     {
         /// <summary>
+        /// Парсинг явной строки преобразование
+        /// </summary>
+        /// <returns></returns>
+        public static string ReadCtrlC()
+        {
+            string parametr = null;
+            ClearBuffer();
+            while (true)
+            {
+                if (String.IsNullOrWhiteSpace(parametr))
+                {
+                    AutoItX.Send(ButtonsClikcs.ButtonConstant.CtrlC);
+                    parametr = AutoItX.ClipGet();
+                }
+                else
+                {
+                    break;
+                }
+            }
+            ClearBuffer();
+            return parametr;
+        }
+
+        /// <summary>
+        /// Парсинг не явной строки преобразование
+        /// </summary>
+        /// <returns></returns>
+        public static string ReadCtrlCno()
+        {
+            string parametr = null;
+            ClearBuffer();
+            while (true)
+            {
+                if (parametr==null)
+                {
+                    AutoItX.Send(ButtonsClikcs.ButtonConstant.CtrlC);
+                    parametr = AutoItX.ClipGet();
+                }
+                else
+                {
+                    break;
+                }
+            }
+            ClearBuffer();
+            return parametr;
+        }
+
+
+
+        /// <summary>
         /// Функция считывает данные с активного поданного контрола 
         /// </summary>
         /// <param name="element">Наш контол Название ,идентификатор Name если numberbutton>0 то нажимается количество Tabov и парсится

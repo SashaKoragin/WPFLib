@@ -76,9 +76,12 @@
     <Compile Include="RegxFull\RaschetBudg\RegxStart.cs" />
     <Compile Include="Status\StatusAis.cs" />
     <Compile Include="Window\Otdel\Analitic\TeskText\ZachetVozvrat.cs" />
+    <Compile Include="Window\Otdel\Okp3\Usn\CardDeclr.cs" />
+    <Compile Include="Window\Otdel\Okp3\Usn\UsnText.cs" />
     <Compile Include="Window\Otdel\Okp4\PravoZorI\PravoZorI.cs" />
     <Compile Include="Window\Otdel\Okp4\Print\PrintSnu.cs" />
     <Compile Include="Window\Otdel\Okp4\Snu\SnuText.cs" />
+    <Compile Include="Window\Otdel\Orn\Nbo\NboText.cs" />
     <Compile Include="Window\Otdel\RaschetBudg\Migration\TextMigration.cs" />
     <Compile Include="Window\Otdel\RaschetBudg\Vedomost1\Vedomost1Win.cs" />
     <Compile Include="Window\Otdel\Reg\ActualStatus\StatusText.cs" />

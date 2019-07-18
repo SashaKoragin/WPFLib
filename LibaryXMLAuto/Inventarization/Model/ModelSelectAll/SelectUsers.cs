@@ -27,7 +27,7 @@ namespace LibaryXMLAutoInventarization.Model.ModelSelectAll {
         private Users[] usersField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Users")]
+        [System.Xml.Serialization.XmlElementAttribute("Users", IsNullable=true)]
         public Users[] Users {
             get {
                 return this.usersField;
@@ -44,18 +44,32 @@ namespace LibaryXMLAutoInventarization.Model.ModelSelectAll {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=true)]
     public partial class Users {
         
         private Rules rulesField;
         
         private Otdel otdelField;
         
+        private Position positionField;
+        
         private int idUserField;
         
         private bool idUserFieldSpecified;
         
         private string nameField;
+        
+        private int idOtdelField;
+        
+        private bool idOtdelFieldSpecified;
+        
+        private int idPositionField;
+        
+        private bool idPositionFieldSpecified;
+        
+        private int idRuleField;
+        
+        private bool idRuleFieldSpecified;
         
         private string tabelNumberField;
         
@@ -67,7 +81,18 @@ namespace LibaryXMLAutoInventarization.Model.ModelSelectAll {
         
         private string macTelephonField;
         
+        private string nameUserField;
+        
+        private string passwordsField;
+        
+        private sbyte statusActualField;
+        
+        private bool statusActualFieldSpecified;
+        
+        private string idHistoryField;
+        
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public Rules Rules {
             get {
                 return this.rulesField;
@@ -78,12 +103,24 @@ namespace LibaryXMLAutoInventarization.Model.ModelSelectAll {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public Otdel Otdel {
             get {
                 return this.otdelField;
             }
             set {
                 this.otdelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public Position Position {
+            get {
+                return this.positionField;
+            }
+            set {
+                this.positionField = value;
             }
         }
         
@@ -117,6 +154,72 @@ namespace LibaryXMLAutoInventarization.Model.ModelSelectAll {
             }
             set {
                 this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdOtdel {
+            get {
+                return this.idOtdelField;
+            }
+            set {
+                this.idOtdelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdOtdelSpecified {
+            get {
+                return this.idOtdelFieldSpecified;
+            }
+            set {
+                this.idOtdelFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdPosition {
+            get {
+                return this.idPositionField;
+            }
+            set {
+                this.idPositionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdPositionSpecified {
+            get {
+                return this.idPositionFieldSpecified;
+            }
+            set {
+                this.idPositionFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdRule {
+            get {
+                return this.idRuleField;
+            }
+            set {
+                this.idRuleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdRuleSpecified {
+            get {
+                return this.idRuleFieldSpecified;
+            }
+            set {
+                this.idRuleFieldSpecified = value;
             }
         }
         
@@ -174,6 +277,61 @@ namespace LibaryXMLAutoInventarization.Model.ModelSelectAll {
                 this.macTelephonField = value;
             }
         }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameUser {
+            get {
+                return this.nameUserField;
+            }
+            set {
+                this.nameUserField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Passwords {
+            get {
+                return this.passwordsField;
+            }
+            set {
+                this.passwordsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public sbyte StatusActual {
+            get {
+                return this.statusActualField;
+            }
+            set {
+                this.statusActualField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool StatusActualSpecified {
+            get {
+                return this.statusActualFieldSpecified;
+            }
+            set {
+                this.statusActualFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string IdHistory {
+            get {
+                return this.idHistoryField;
+            }
+            set {
+                this.idHistoryField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -182,10 +340,36 @@ namespace LibaryXMLAutoInventarization.Model.ModelSelectAll {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=true)]
     public partial class Rules {
         
+        private int idRuleField;
+        
+        private bool idRuleFieldSpecified;
+        
         private string nameRulesField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdRule {
+            get {
+                return this.idRuleField;
+            }
+            set {
+                this.idRuleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdRuleSpecified {
+            get {
+                return this.idRuleFieldSpecified;
+            }
+            set {
+                this.idRuleFieldSpecified = value;
+            }
+        }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -205,10 +389,36 @@ namespace LibaryXMLAutoInventarization.Model.ModelSelectAll {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=true)]
     public partial class Otdel {
         
+        private int idOtdelField;
+        
+        private bool idOtdelFieldSpecified;
+        
         private string nameOtdelField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdOtdel {
+            get {
+                return this.idOtdelField;
+            }
+            set {
+                this.idOtdelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdOtdelSpecified {
+            get {
+                return this.idOtdelFieldSpecified;
+            }
+            set {
+                this.idOtdelFieldSpecified = value;
+            }
+        }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -218,6 +428,55 @@ namespace LibaryXMLAutoInventarization.Model.ModelSelectAll {
             }
             set {
                 this.nameOtdelField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=true)]
+    public partial class Position {
+        
+        private int idOtdelField;
+        
+        private bool idOtdelFieldSpecified;
+        
+        private string namePositionField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdOtdel {
+            get {
+                return this.idOtdelField;
+            }
+            set {
+                this.idOtdelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdOtdelSpecified {
+            get {
+                return this.idOtdelFieldSpecified;
+            }
+            set {
+                this.idOtdelFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NamePosition {
+            get {
+                return this.namePositionField;
+            }
+            set {
+                this.namePositionField = value;
             }
         }
     }

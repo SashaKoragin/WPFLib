@@ -38,6 +38,9 @@
     <ApplicationIcon>angry birds.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoItX3.Assembly">
+      <HintPath>C:\Nuget\AutoItX.Dotnet.3.3.14.5\lib\AutoItX3.Assembly.dll</HintPath>
+    </Reference>
     <Reference Include="ClosedXML, Version=0.87.0.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Nuget\ClosedXML.0.91.0\lib\net452\ClosedXML.dll</HintPath>
@@ -112,6 +115,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Okp3\UsnSend\UsnSend\FormUsnSend.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Okp4\FormSnuAuto\SnuFormAuto\FormSnuAuto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Okp4\PrintSnu\Print\UserPrintSnu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Orn\ConfirmationNbo\ConfirmationNbo\ConfirmationNbo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,6 +213,10 @@
     <Compile Include="Form\Automat\Analitic\Zadanie\ZacetVozvrat\Signature\SigZacetVozvrat.xaml.cs">
       <DependentUpon>SigZacetVozvrat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\Okp3\UsnSend\DataContext\DataContextUsnSend.cs" />
+    <Compile Include="Form\Automat\Okp3\UsnSend\UsnSend\FormUsnSend.xaml.cs">
+      <DependentUpon>FormUsnSend.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\Okp4\FormSnuAuto\DataContext\DataContextSnuAuto.cs" />
     <Compile Include="Form\Automat\Okp4\FormSnuAuto\SnuFormAuto\FormSnuAuto.xaml.cs">
       <DependentUpon>FormSnuAuto.xaml</DependentUpon>
@@ -218,6 +233,10 @@
     <Compile Include="Form\Automat\Okp4\PrintSnu\Print\UserPrintSnu.xaml.cs">
       <DependentUpon>UserPrintSnu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\Orn\ConfirmationNbo\ConfirmationNbo\ConfirmationNbo.xaml.cs">
+      <DependentUpon>ConfirmationNbo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Orn\ConfirmationNbo\DataContext\DataContextConfirmationNbo.cs" />
     <Compile Include="Form\Automat\RaschetBudg\Migration\DataContext\MigrationContext.cs" />
     <Compile Include="Form\Automat\RaschetBudg\Migration\Migration\Migration.xaml.cs">
       <DependentUpon>Migration.xaml</DependentUpon>
@@ -325,6 +344,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="angry birds.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AutoItX3Lib">
+      <Guid>{F8937E53-D444-4E71-9275-35B64210CC3B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

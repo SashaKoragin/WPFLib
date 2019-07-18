@@ -2,6 +2,7 @@
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using LibaryXMLAutoModelXmlAuto.MigrationReport;
 
 namespace LibaryXMLAuto.ReadOrWrite
 {
@@ -72,6 +73,27 @@ namespace LibaryXMLAuto.ReadOrWrite
             okey.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Message", ok));
             okey.Attributes.Append(CreateElement.CreteElement.AtributeAddDateNow(doc, "DateTimeUse"));
             xRoot.AppendChild(okey);
+            doc.Save(path);
+        }
+        /// <summary>
+        /// Отчет ошибок по миграции НП
+        /// </summary>
+        /// <param name="path">Путь к xml отчету</param>
+        /// <param name="report">Модель добавления в отчет</param>
+        public void AddReportMigrationElemrnt(string path, MigrationParse report)
+        {
+            var doc = LogicaXml.LogicaXml.Document(path);
+            XmlElement xRoot = doc.DocumentElement;
+            XmlElement reportMigration = doc.CreateElement("ReportMigration");
+            reportMigration.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "NameOrg", report.ReportMigration[0].NameOrg));
+            reportMigration.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Inn", report.ReportMigration[0].Inn));
+            reportMigration.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Kpp", report.ReportMigration[0].Kpp));
+            reportMigration.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "CodeIfns", report.ReportMigration[0].CodeIfns));
+            reportMigration.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Fid", report.ReportMigration[0].Fid));
+            reportMigration.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Date", report.ReportMigration[0].Date));
+            reportMigration.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Stage", report.ReportMigration[0].Stage));
+            reportMigration.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Problem", report.ReportMigration[0].Problem));
+            xRoot.AppendChild(reportMigration);
             doc.Save(path);
         }
     }

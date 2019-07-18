@@ -23,7 +23,7 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.RaschetBuh
             }
         }
         public ObservableCollection<Select> SelectQbe { get; set; } = new ObservableCollection<Select>();
-        public SelectVibor()
+        public void SelectViborVedomosty()
         {
             SelectQbe.Add(new Select() {Num = 1, ColorNum = Brushes.Aquamarine, Text = "Имущественные налоги", Discription = "Обработка:\nИмущественные налоги по КБК:\n18210601010031000110/18210601010032100110\n18210604012021000110/18210604012022100110\n18210606041031000110/18210606041032100110" });
             SelectQbe.Add(new Select() { Num = 2, ColorNum = Brushes.Aqua, Text = "Иностранцы", Discription = "Обработка:\nИностранцы по КБК:\n18210102040011000110" });
@@ -37,6 +37,12 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.RaschetBuh
                                                                                                                        "\n18210101011011000110/18210101011012100110"});
             SelectQbe.Add(new Select() {  Num = 4, ColorNum = Brushes.CadetBlue, Text = "НДФЛ",Discription = "Обработка:\nНДФЛ по КБК:" +
                                                                                                            "\n18210102010011000110/18210102010012100110"});
+        }
+
+        public void SelectMigrationVibor()
+        {
+            SelectQbe.Add(new Select() { Num = 1, ColorNum = Brushes.Aquamarine, Text = "Выборка НО принимающий данные", Discription = "" });
+            SelectQbe.Add(new Select() { Num = 2, ColorNum = Brushes.Aquamarine, Text = "Выборка НО передающий данные", Discription = "" });
         }
 
         public string Error { get; set; }

@@ -16,7 +16,7 @@ namespace LibaryAIS3Windows.Window.Otdel.RaschetBudg.Migration
        };
 
         public static string[] WindiwInfo =
-{
+       {
            "Сообщение",
            "Задания на снятие блокировок отправлено"
        };

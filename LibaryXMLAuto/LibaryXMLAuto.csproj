@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Converts\ConvertXmlToXslx\ConvertXmltoXlsx.cs" />
     <Compile Include="Converts\ConvettToXml\XmlConvert.cs" />
+    <Compile Include="ErrorJurnal\ReportMigration.cs" />
     <Compile Include="Inventarization\Model\ModelProcedure\SelectProcedure.cs">
       <DependentUpon>SelectProcedure.xsd</DependentUpon>
     </Compile>
@@ -58,6 +59,9 @@
     <Compile Include="ModelServiceWcfCommand\AngularModel\AngularModel.cs" />
     <Compile Include="ModelServiceWcfCommand\TestIfnsService\WcfServiiceFull.cs">
       <DependentUpon>WcfServiiceFull.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ModelXmlAuto\Inspection\Inspection.cs">
+      <DependentUpon>Inspection.xsd</DependentUpon>
     </Compile>
     <Compile Include="ModelXmlAuto\ListInnSheme\FullInnCount.cs">
       <DependentUpon>FullInnCount.xsd</DependentUpon>
@@ -73,6 +77,9 @@
     </Compile>
     <Compile Include="ModelXmlAuto\ModelIdVisual\VisualId.cs">
       <DependentUpon>VisualId.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ModelXmlAuto\ReportMigration\ReportMigration.cs">
+      <DependentUpon>ReportMigration.xsd</DependentUpon>
     </Compile>
     <Compile Include="ModelXmlSql\ConvertModel\DesirializationSql\SqlDesirialization.cs" />
     <Compile Include="ModelXmlSql\Model\Bdk\BdkIt\AnalisBdk.cs">
@@ -140,6 +147,9 @@
     <None Include="ModelServiceWcfCommand\TestIfnsService\WcfServiiceFull.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ModelXmlAuto\Inspection\Inspection.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ModelXmlAuto\ListInnSheme\FullInnCount.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -162,6 +172,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ModelXmlAuto\ModelSnuOne\SnuOneForm.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ModelXmlAuto\ReportMigration\ReportMigration.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="ModelXmlSql\Model\Bdk\BdkIt\AnalisBdk.xsd">
@@ -227,6 +240,8 @@
       <XsdXmlSqlInventar Include="Inventarization\Model\ModelProcedure\*.xsd" />
       <XsdXmlSqlInventarSelect Include="Inventarization\Model\ModelSelectAll\*.xsd" />
       <XsdXmlSqlServer Include="ModelXmlSql\Model\ServerAndComputer\*.xsd" />
+      <XsdXmlMigration Include="ModelXmlAuto\ReportMigration\*.xsd" />
+      <XsdXmlInspection Include="ModelXmlAuto\Inspection\*.xsd" />
     </ItemGroup>
     <Message Importance="high" Text="CreateXsd" />
     <GetFrameworkSdkPath>
@@ -256,5 +271,7 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlInventarSelect.FullPath)&quot; /classes /namespace:$(RootNamespace)Inventarization.Model.ModelSelectAll /outputdir:Inventarization\Model\ModelSelectAll\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlServer.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.Model.ServerAndComputer /outputdir:ModelXmlSql\Model\ServerAndComputer\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFileVisualId.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.FileVisualId /outputdir:ModelXmlAuto\ModelIdVisual\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlMigration.FullPath)&quot; /classes /f /namespace:$(RootNamespace)ModelXmlAuto.MigrationReport /outputdir:ModelXmlAuto\ReportMigration\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlInspection.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.Inspection /outputdir:ModelXmlAuto\Inspection\" />
   </Target>
 </Project>

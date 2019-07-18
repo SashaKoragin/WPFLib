@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using SqlLibaryIfns.AutoItSelect.Sql;
 using LibaryAIS3Windows.Window.Otdel.Analitic.TeskText;
 using AutoIt;
@@ -12,13 +11,17 @@ using LibaryAIS3Windows.Mode.RaschetBudg.Migration;
 using LibaryAIS3Windows.Mode.Reg.StatusReg;
 using LibaryAIS3Windows.RegxFull.RaschetBudg;
 using LibaryAIS3Windows.Window;
+using LibaryAIS3Windows.Window.Otdel.Okp3.Usn;
 using LibaryAIS3Windows.Window.Otdel.Okp4.PravoZorI;
 using LibaryAIS3Windows.Window.Otdel.Okp4.Print;
 using LibaryAIS3Windows.Window.Otdel.Okp4.Snu;
+using LibaryAIS3Windows.Window.Otdel.Orn.Nbo;
+using LibaryAIS3Windows.Window.Otdel.RaschetBudg.Migration;
 using LibaryAIS3Windows.Window.Otdel.RaschetBudg.Vedomost1;
 using LibaryAIS3Windows.Window.Otdel.Reg.ActualStatus;
 using LibaryAIS3Windows.Window.Otdel.Reg.Fpd;
 using LibaryAIS3Windows.Window.Otdel.Reg.IdFace;
+using LibaryXMLAutoModelXmlAuto.MigrationReport;
 
 namespace LibaryAIS3Windows.ButtonsClikcs
 {
@@ -63,6 +66,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// </summary>
         private const string FaceRosreestr = @"Налоговое администрирование\Собственность\14. Работа с лицами – правообладателями объектов, по которым требуется визуальная обработка";
 
+       private const string Usn = @"Общие задания\Контрольная работа налоговые проверки\Применение упрощенной системы налогооблажения\Применение УСН";
         /// <summary>
         /// Созданный блок для автоматизации Создание заявки на формирование СНУ ФЛ
         /// Ветка Налоговое администрирование\Физические лица\1.06. Формирование и печать CНУ\1. Создание заявки на формирование СНУ для единичной печати
@@ -450,7 +454,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             {
                 win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 355, win.WindowsAis.Y + win.Y1 + 80);
-                AutoItX.WinWait(WindowsAis3.AisNalog3, ZachetVozvrat.Nachalnic, 10);
+                AutoItX.WinWait(WindowsAis3.AisNalog3, ZachetVozvrat.Nachalnic, 5);
                 if (AutoItX.WinExists(WindowsAis3.AisNalog3, ZachetVozvrat.Nachalnic) == 1)
                 {
                     break;
@@ -778,35 +782,61 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// <summary>
         /// Функция обработку миграции НП
         /// </summary>
-        /// <param name="pathjurnalerror">Путь к файлу с ошибкой</param>
-        /// <param name="pathjurnalok">Путь к отработаным</param>
+        /// <param name="isparse">Смена направления кода </param>
+        /// <param name="reportMigration">Путь к файлу с миграцией</param>
         /// <param name="copyid">Ун миграции условие выхода</param>
-       public string Click11(string pathjurnalerror, string pathjurnalok,string copyid)
+        public string Click11(bool isparse,string reportMigration,string copyid)
        {
             WindowsAis3 win = new WindowsAis3();
-            copyid = ReadWindow.Read.Reades.ReadForm(Mode.RaschetBudg.Migration.Migration.Identity);
+            MigrationParse model = new MigrationParse() {ReportMigration = new ReportMigration[1]};
+            ReportMigration report = new ReportMigration();
+            copyid = ReadWindow.Read.Reades.ReadForm(Migration.Identity);
+            report.NameOrg = ReadWindow.Read.Reades.ReadForm(Migration.NameOrganization);
+            report.CodeIfns = ReadWindow.Read.Reades.ReadForm(Migration.CodeIfns);
             AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 180, win.WindowsAis.Y + 75);
-           AutoItX.WinWait(WindowsAis3.AisNalog3,Migration.MigrationNp, 2);
-            while (true)
+            AutoItX.WinWait(WindowsAis3.AisNalog3,Migration.MigrationNp, 2);
+           if (!isparse)
+           {
+               while (true)
+               {
+                   AutoItX.Sleep(5000);
+                   var isEnable = AutoItX.ControlCommand(AutoItX.WinGetHandle(Migration.Button[0]), AutoItX.ControlGetHandle(AutoItX.WinGetHandle(Migration.Button[0]), Migration.Button[2]), "IsEnabled", "");
+                   if (isEnable == "1")
+                   {
+                       AutoItX.ControlClick(Migration.Button[0], Migration.Button[1], Migration.Button[2]);
+                       break;
+                   }
+                   win.ControlGetPos1(WindowsAis3.UltraGridDataMigration[0], WindowsAis3.UltraGridDataMigration[1], WindowsAis3.UltraGridDataMigration[2]);
+                   AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 45, win.WindowsAis.Y + win.Y1 + 35);
+               }
+               AutoItX.WinWait(TextMigration.WindiwWarning[0],TextMigration.WindiwWarning[1]);
+               AutoItX.Send(ButtonConstant.Enter);
+               AutoItX.WinWait(TextMigration.WindiwInfo[0],TextMigration.WindiwInfo[1]);
+               AutoItX.Send(ButtonConstant.Enter);
+               AutoItX.WinWait("АИС Налог-3 ПРОМ ", "Обновление данных. Пожалуйста подождите...");
+               AutoItX.WinActivate("АИС Налог-3 ПРОМ ", "Обновление данных. Пожалуйста подождите...");
+               AutoItX.Send(ButtonConstant.Tab2);
+               return copyid;
+           }
+           else
             {
-              AutoItX.Sleep(1000);
-              var isEnable =  AutoItX.ControlCommand(AutoItX.WinGetHandle(Migration.Button[0]), AutoItX.ControlGetHandle(AutoItX.WinGetHandle(Migration.Button[0]), Migration.Button[2]), "IsEnabled","");
-                if (isEnable == "1")
-                {
-                    AutoItX.ControlClick(Migration.Button[0], Migration.Button[1], Migration.Button[2]);
-                    break;
-                }
+                report.Fid = ReadWindow.Read.Reades.ReadForm(Migration.FidMemo);
+                report.Inn = ReadWindow.Read.Reades.ReadForm(Migration.InnMemo);
+                AutoItX.Send(ButtonConstant.Tab);
+                report.Kpp = ReadWindow.Read.Reades.ReadCtrlCno();
                 win.ControlGetPos1(WindowsAis3.UltraGridDataMigration[0], WindowsAis3.UltraGridDataMigration[1], WindowsAis3.UltraGridDataMigration[2]);
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 45, win.WindowsAis.Y + win.Y1 + 35);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 90,win.WindowsAis.Y + win.Y1 + 35,2);
+                report.Date = ReadWindow.Read.Reades.ReadCtrlC();
+                AutoItX.Send(ButtonConstant.Tab2);
+                report.Stage = ReadWindow.Read.Reades.ReadCtrlC();
+                AutoItX.Send(ButtonConstant.Tab2);
+                report.Problem = ReadWindow.Read.Reades.ReadCtrlC();
+                model.ReportMigration[0] = report;
+                LibaryXMLAuto.ErrorJurnal.ReportMigration.CreateReportMigration(reportMigration,model);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                AutoItX.Send(ButtonConstant.Tab4);
+                return copyid;
             }
-            AutoItX.WinWait(Window.Otdel.RaschetBudg.Migration.TextMigration.WindiwWarning[0], Window.Otdel.RaschetBudg.Migration.TextMigration.WindiwWarning[1]);
-            AutoItX.Send(ButtonConstant.Enter);
-            AutoItX.WinWait(Window.Otdel.RaschetBudg.Migration.TextMigration.WindiwInfo[0], Window.Otdel.RaschetBudg.Migration.TextMigration.WindiwInfo[1]);
-            AutoItX.Send(ButtonConstant.Enter);
-            AutoItX.WinWait("АИС Налог-3 ПРОМ ", "Обновление данных. Пожалуйста подождите...");
-            AutoItX.WinActivate("АИС Налог-3 ПРОМ ", "Обновление данных. Пожалуйста подождите...");
-            AutoItX.Send(ButtonConstant.Tab2);
-            return copyid;
        }
 
         /// <summary>
@@ -896,6 +926,149 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                 }
             }
 
+        }
+        ///  <summary>
+        /// Атоматизация ветки 
+        /// Общие задания\Контрольная работа (налоговые проверки)\Обработка документов НБО\Подтверждение ввода документов
+        /// </summary>
+        public string Click13()
+        {
+            int i = 0;
+            WindowsAis3 win = new WindowsAis3();
+            AutoItX.Sleep(2000);
+            while (true)
+            {
+                win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 355, win.WindowsAis.Y + win.Y1 + 80);
+                AutoItX.WinWait(WindowsAis3.AisNalog3, NboText.TitelList, 15);
+                if (AutoItX.WinExists(WindowsAis3.AisNalog3, NboText.TitelList) == 1)
+                {
+                    break;
+                }
+                if (i == Proverka.Controlnumer)
+                {
+                    return Status.StatusAis.Status6;
+                }
+                i++;
+            }
+            //Расчитываем
+            win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 45, win.WindowsAis.Y + win.Y1 + 80);
+            AutoItX.WinWait(WindowsAis3.AisNalog3, NboText.TitelList, 15);
+            while (true)
+            {
+                AutoItX.WinWait(NboText.Protokol[0], NboText.Protokol[1], 2);
+                var texthieden = ReadWindow.Read.Reades.HidenTextReturn(WindowsAis3.AisNalog3);
+                if (AutoItX.WinExists(NboText.Protokol[0], NboText.Protokol[1]) == 1)
+                {
+                    AutoItX.Send(ButtonConstant.Enter);
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                    break;
+                }
+                if (AutoItX.WinExists(NboText.TitleError2[0], NboText.TitleError2[1]) == 1)
+                {
+                    AutoItX.Send(ButtonConstant.Enter);
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                    break;
+                }
+                if (texthieden.Contains(NboText.Strfind)|| texthieden.Contains(NboText.Strfind2))
+                {
+                    win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 815, win.WindowsAis.Y + win.Y1 + 80, 1);
+                    while (true)
+                    {
+
+                        if (AutoItX.WinExists(NboText.TitleOk[0], NboText.TitleOk[1]) == 1)
+                        {
+                            AutoItX.WinActivate(NboText.TitleOk[0]);
+                            AutoItX.Send(ButtonConstant.Enter);
+                            break;
+                        }
+                        if (AutoItX.WinExists(NboText.TitleError[0], NboText.TitleError[1]) == 1)
+                        {
+                            AutoItX.Send(ButtonConstant.Enter);
+                            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            //Перенос в КРСБ
+
+            return Status.StatusAis.Status3;
+        }
+
+        ///  <summary>
+        /// Атоматизация ветки 
+        /// Общие задания\Контрольная работа налоговые проверки\Применение упрощенной системы налогооблажения\Применение УСН
+        /// </summary>
+        public string Click14(bool coordinete, string pathjurnalerror, string pathjurnalok)
+        {
+            int i = 0;
+            UsnText usn = new UsnText();
+            usn.Coordinate(coordinete);
+            WindowsAis3 win = new WindowsAis3();
+            CardDeclr card = new CardDeclr();
+            AutoItX.Sleep(2000);
+            while (true)
+            {
+                win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 355, win.WindowsAis.Y + win.Y1 + 80);
+                AutoItX.WinWait(WindowsAis3.AisNalog3, UsnText.ElemHost, 15);
+                if (AutoItX.WinExists(WindowsAis3.AisNalog3, UsnText.ElemHost) == 1)
+                {
+                    break;
+                }
+                if (i == Proverka.Controlnumer)
+                {
+                    return Status.StatusAis.Status6;
+                }
+                i++;
+            }
+            while (true)
+            {
+    
+                win.ControlGetPos1(UsnText.WinSnr[0], UsnText.WinSnr[1], UsnText.WinSnr[2]);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 790, win.WindowsAis.Y + win.Y1 + usn.IsOpen);
+                AutoItX.WinWait(WindowsAis3.AisNalog3, UsnText.TitleUsn, 15);
+                if (AutoItX.WinExists(WindowsAis3.AisNalog3, UsnText.TitleUsn) == 1)
+                {
+                    AutoItX.Send(ButtonConstant.Down1);
+                    card.Id = ReadWindow.Read.Reades.ReadCtrlC();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 45, win.WindowsAis.Y + 86);
+                    AutoItX.Sleep(2000);
+                    AutoItX.Send(ButtonConstant.Right1);
+                    card.Error = ReadWindow.Read.Reades.ReadCtrlCno();
+                    AutoItX.Send(ButtonConstant.Right1);
+                    card.DescriptionError = ReadWindow.Read.Reades.ReadCtrlCno();
+                    if (card.Error == "Ошибка")
+                    {
+                        LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, card.Id, Usn, card.DescriptionError);
+                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                        AutoItX.Sleep(1000);
+                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                        AutoItX.WinWait(UsnText.UserWork[0], UsnText.UserWork[1], 5);
+                        AutoItX.Send(ButtonConstant.Enter);
+                        break;
+                    }
+                    else
+                    {
+                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 120, win.WindowsAis.Y + 80);
+                        AutoItX.WinWaitClose(WindowsAis3.AisNalog3, UsnText.TitleUsn, 15);
+                        AutoItX.Sleep(1000);
+                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 170, win.WindowsAis.Y + win.Y1 + usn.Sender);
+                        AutoItX.WinWait(UsnText.VvodVxod[0], UsnText.VvodVxod[1], 15);
+                        AutoItX.Send(ButtonConstant.Enter);
+                        AutoItX.Sleep(3000);
+                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 160, win.WindowsAis.Y + win.Y1 + usn.Finish);
+                        AutoItX.Sleep(3000);
+                        LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok,card.Id,"Обработали без ошибок!!!");
+                        break;
+                    }
+                }
+            }
+            return Status.StatusAis.Status3; ;
         }
     }
 }

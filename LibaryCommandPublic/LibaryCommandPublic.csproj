@@ -39,11 +39,13 @@
     <Reference Include="GalaSoft.MvvmLight.Platform">
       <HintPath>C:\Nuget\MvvmLightLibs.5.4.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -59,8 +61,10 @@
     <Compile Include="EventQbe\Reg\SelectEventQbe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestAutoit\Analitic\TheUserTask\AutoClikcsTask.cs" />
+    <Compile Include="TestAutoit\Okp3\UsnSend\CommandUsn.cs" />
     <Compile Include="TestAutoit\Okp4\EditPravo\Pravo\CommandPravo.cs" />
     <Compile Include="TestAutoit\Okp4\SnuOneAuto\AutoCommand\AutoCklicsAisCommand.cs" />
+    <Compile Include="TestAutoit\Orn\TaskOrn\TaskOrn.cs" />
     <Compile Include="TestAutoit\PublicCommand\CommandFormirovanie.cs" />
     <Compile Include="TestAutoit\PublicCommand\CommandSnuOneAuto.cs" />
     <Compile Include="TestAutoit\RaschBydj\Migration\MigrationCKlikCommand.cs" />
