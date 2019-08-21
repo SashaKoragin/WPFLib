@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using SqlLibaryIfns.AutoItSelect.Sql;
 using LibaryAIS3Windows.Window.Otdel.Analitic.TeskText;
 using AutoIt;
@@ -785,14 +787,22 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// <param name="isparse">Смена направления кода </param>
         /// <param name="reportMigration">Путь к файлу с миграцией</param>
         /// <param name="copyid">Ун миграции условие выхода</param>
-        public string Click11(bool isparse,string reportMigration,string copyid)
-       {
+        /// <param name="collectionExeption">Коллекция ИНН исключения</param>
+        public string Click11(bool isparse,string reportMigration,string copyid,ObservableCollection<string> collectionExeption)
+        {
+            string ident = copyid;
             WindowsAis3 win = new WindowsAis3();
             MigrationParse model = new MigrationParse() {ReportMigration = new ReportMigration[1]};
             ReportMigration report = new ReportMigration();
+            copyid = null;
             copyid = ReadWindow.Read.Reades.ReadForm(Migration.Identity);
+            if (copyid.Equals(ident))
+            {
+              return copyid;
+            }
             report.NameOrg = ReadWindow.Read.Reades.ReadForm(Migration.NameOrganization);
-            report.CodeIfns = ReadWindow.Read.Reades.ReadForm(Migration.CodeIfns);
+
+            report.CodeIfns = ReadWindow.Read.Reades.ReadForm(AutoItX.WinExists(Migration.PeredachaOrPriem[0], Migration.PeredachaOrPriem[1]) == 1 ? Migration.CodeIfnsPeredacha : Migration.CodeIfnsPriem);
             AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 180, win.WindowsAis.Y + 75);
             AutoItX.WinWait(WindowsAis3.AisNalog3,Migration.MigrationNp, 2);
            if (!isparse)
@@ -818,26 +828,28 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                AutoItX.Send(ButtonConstant.Tab2);
                return copyid;
            }
-           else
+            report.Fid = ReadWindow.Read.Reades.ReadForm(Migration.FidMemo);
+            report.Inn = ReadWindow.Read.Reades.ReadForm(Migration.InnMemo);
+            var find = collectionExeption.Where(i => i == report.Inn);
+            if (!find.Any())
             {
-                report.Fid = ReadWindow.Read.Reades.ReadForm(Migration.FidMemo);
-                report.Inn = ReadWindow.Read.Reades.ReadForm(Migration.InnMemo);
                 AutoItX.Send(ButtonConstant.Tab);
                 report.Kpp = ReadWindow.Read.Reades.ReadCtrlCno();
                 win.ControlGetPos1(WindowsAis3.UltraGridDataMigration[0], WindowsAis3.UltraGridDataMigration[1], WindowsAis3.UltraGridDataMigration[2]);
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 90,win.WindowsAis.Y + win.Y1 + 35,2);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 90, win.WindowsAis.Y + win.Y1 + 35, 2);
                 report.Date = ReadWindow.Read.Reades.ReadCtrlC();
                 AutoItX.Send(ButtonConstant.Tab2);
                 report.Stage = ReadWindow.Read.Reades.ReadCtrlC();
                 AutoItX.Send(ButtonConstant.Tab2);
                 report.Problem = ReadWindow.Read.Reades.ReadCtrlC();
                 model.ReportMigration[0] = report;
-                LibaryXMLAuto.ErrorJurnal.ReportMigration.CreateReportMigration(reportMigration,model);
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
-                AutoItX.Send(ButtonConstant.Tab4);
-                return copyid;
+                LibaryXMLAuto.ErrorJurnal.ReportMigration.CreateReportMigration(reportMigration, model);
             }
-       }
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+            AutoItX.Sleep(500);
+            AutoItX.Send(ButtonConstant.Tab4);
+            return copyid;
+        }
 
         /// <summary>
         /// Обработка ветоки Налоговое администрирование\Собственность\14. Работа с лицами – правообладателями объектов, по которым требуется визуальная обработка\01. Росреестр - ФЛ, по которым требуется  визуальная  идентификация с витриной лиц ЦУН
@@ -1015,6 +1027,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             {
                 win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 355, win.WindowsAis.Y + win.Y1 + 80);
+               // Console.Write(string.Format(win.WindowsAis.X +";"+ win.X1 + ";" + 355 +";"+win.WindowsAis.Y + ";" + win.Y1 + ";" + 80)); //Для Debug
                 AutoItX.WinWait(WindowsAis3.AisNalog3, UsnText.ElemHost, 15);
                 if (AutoItX.WinExists(WindowsAis3.AisNalog3, UsnText.ElemHost) == 1)
                 {

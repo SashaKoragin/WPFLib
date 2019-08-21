@@ -7,8 +7,8 @@
     xmlns:local="clr-namespace:AutomatAis3Full.Form.Automat.RaschetBudg.Migration.Migration"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="{d:DesignInstance {x:Type dataContext:MigrationContext}}"
-    d:DesignHeight="300"
-    d:DesignWidth="300"
+    d:DesignHeight="700"
+    d:DesignWidth="700"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -28,7 +28,10 @@
             FontSize="20"
             FontWeight="Bold"
             Foreground="Red" />
-        <StackPanel Grid.Row="1" Grid.Column="0">
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="0,0,150,0">
             <ContentControl
                 Margin="5,5,5,5"
                 HorizontalAlignment="Left"
@@ -55,6 +58,61 @@
             <CheckBox Content="Вытаскивать ошибки по сообщениям" IsChecked="{Binding Start.IsChekcs}" />
             <Label Content="Комманда приостановить Shift+S" FontSize="16" />
             <Label Content="Комманда возобновить Shift+A" FontSize="16" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="Исключение организаций"
+                FontSize="16" />
+            <WrapPanel>
+                <TextBox>
+                    <TextBox.Template>
+                        <ControlTemplate>
+                            <WrapPanel>
+                                <Label Content="Исключение ИНН:" FontSize="16" />
+                                <TextBox
+                                    Width="100"
+                                    Margin="5,0,5,0"
+                                    FontSize="16"
+                                    MaxLength="12"
+                                    Text="{Binding EditConfig.Ifns, Mode=TwoWay, ValidatesOnDataErrors=True}"
+                                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                    Validation.ErrorTemplate="{StaticResource ValidationFailederror}" />
+                                <Button Command="{Binding AddExeption}" Content="Добавить" />
+                            </WrapPanel>
+                        </ControlTemplate>
+                    </TextBox.Template>
+                </TextBox>
+            </WrapPanel>
+            <ListView
+                x:Name="View"
+                Height="150"
+                Margin="5,5,5,5"
+                ItemsSource="{Binding EditConfig.ExeptionsIfns}"
+                SelectionMode="Single">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Исключенные ИНН организаций">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock FontSize="16" Text="{Binding Mode=OneWay}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Удаление">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button
+                                        Command="{Binding ElementName=View, Path=DataContext.DeleteExeption}"
+                                        CommandParameter="{Binding}"
+                                        Content="Удалить" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </StackPanel>
     </Grid>
 </UserControl>

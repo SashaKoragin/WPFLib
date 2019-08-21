@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using System.Xml.Xsl;
 using ClosedXML.Excel;
 using LibaryXMLAutoModelXmlAuto.FileVisualId;
 //using LibaryXMLAutoModelXmlAuto.ModelFaceFid;
@@ -341,6 +342,7 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
             XmlSerializer serializer = new XmlSerializer(objType);
             using (Stream reader = new FileStream(path, FileMode.Open))
             {
+
                 obj = serializer.Deserialize(reader);
             }
             return obj;

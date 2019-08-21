@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <UI Id="WixUI_InstallAutomatAis3">
+      
+      <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+      <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+      <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+      <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+      <Property Id="WixUI_Mode" Value="InstallDir" />
+      <DialogRef Id="BrowseDlg" />
+      <DialogRef Id="CancelInstal" />
+      <DialogRef Id="DiskCostDlg" />
+      <DialogRef Id="ErrorDlg" />
+      <DialogRef Id="FatalError" />
+      <DialogRef Id="FilesInUse" />
+      <DialogRef Id="MsiRMFilesInUse" />
+      <DialogRef Id="PrepareDlg" />
+      <DialogRef Id="ProgressDlg" />
+      <DialogRef Id="ResumeDlg" />
+      <DialogRef Id="Ais3Settings" />
+      <DialogRef Id="UserExit" />
+      <Publish Dialog="BrowseDlg" Control="OK" Event="DoAction" Value="WixUIValidatePath" Order="3">1</Publish>
+      <Publish Dialog="BrowseDlg" Control="OK" Event="SpawnDialog" Value="InvalidDirDlg" Order="4"><![CDATA[WIXUI_INSTALLDIR_VALID<>"1"]]></Publish>
+      <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="LicenseAgreementDlg">NOT Installed</Publish>
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">Installed AND PATCH</Publish>
+      <Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+      <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg">LicenseAccepted = "1"</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="LicenseAgreementDlg">1</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="SetTargetPath" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="DoAction" Value="WixUIValidatePath" Order="2">NOT WIXUI_DONTVALIDATEPATH</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="SpawnDialog" Value="InvalidDirDlg" Order="3"><![CDATA[NOT WIXUI_DONTVALIDATEPATH AND WIXUI_INSTALLDIR_VALID<>"1"]]></Publish>
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="NewDialog" Value="Ais3Settings" Order="4">WIXUI_DONTVALIDATEPATH OR WIXUI_INSTALLDIR_VALID="1"</Publish>
+      <Publish Dialog="InstallDirDlg" Control="ChangeFolder" Property="_BrowseProperty" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
+      <Publish Dialog="InstallDirDlg" Control="ChangeFolder" Event="SpawnDialog" Value="BrowseDlg" Order="2">1</Publish>
+      <!--Начало моего окна-->
+      <Dialog Id="Ais3Settings" Width="370" Height="270" Title="Глобальные настройки программы!!!">
+        <Control Id="IfnsInfo" Type="Text" X="10" Y="10" Width="105" Height="15" Transparent="yes" NoPrefix="yes" Text="Код ИФНС:"></Control>
+        <Control Id="Ifns" Type="Edit" X="110" Y="10" Width="50" Height="15" Property="IFNS" Text="[IFNS]" ToolTip="Код инспекции!">
+          <Property Id="IFNS" Value="7751" />
+        </Control>
+        <Control Id="PathTemp" Type="Text" X="10" Y="35" Width="105" Height="15" Transparent="yes" NoPrefix="yes" Text="Путь к папки Temp:"></Control>
+        <Control Id="PathTemp51" Type="Edit" X="110" Y="35" Width="110" Height="15" Property="ADDPATHTEMP" Text="[ADDPATHTEMP]" ToolTip="Путь где АИС 3 Выгружает PDF:" >
+          <Property Id="ADDPATHTEMP" Value="C:\Windows\Temp\" />
+        </Control>
+        <!--Закончил на сервере надо делать-->
+        <Control Id="SettingServers" Type="Text" X="40" Y="55" Width="300" Height="15" Transparent="yes" NoPrefix="yes" Text="Настройки серверной части для генерации писем:"></Control>
+        <Control Id="Service" Type="Text" X="10" Y="75" Width="105" Height="15" Transparent="yes" NoPrefix="yes" Text="Наименование сервера:"></Control>
+        <Control Id="Service51" Type="Edit" X="110" Y="75" Width="110" Height="15" Property="SERVICE" Text="[SERVICE]"  ToolTip="Наименование сервера:" >
+          <Property Id="SERVICE" Value="i7751-w00000745" />
+        </Control>
+        <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)">
+          <Publish Event="NewDialog" Value="VerifyReadyDlg" Order="10" />
+        </Control>
+        <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)">
+          <Publish Event="NewDialog" Value="InstallDirDlg" Order="10" />
+        </Control>
+        <Control Id="buttonCancelRequest" Type="PushButton" X="304" Y="243" Width="56" Height="17" Default="yes" Text="Отмена">
+          <Publish Event="SpawnDialog" Value="CancelInstal" Order="2">1</Publish>
+        </Control>
+
+      </Dialog>
+      <Dialog Id="CancelInstal" Width="200" Height="80" Title="Внимание">
+        <Control Type="Text" Id="textQ" Width="128" Height="17" X="28" Y="15" Text="Прервать установку?" />
+        <Control Type="PushButton" Id="buttonOk" Width="69" Height="17" X="22" Y="52" Text="OK">
+          <Publish Event="EndDialog" Value="Exit" />
+        </Control>
+        <Control Type="PushButton" Id="buttonCancel" Width="70" Height="17" X="109" Y="52" Text="Отмена">
+          <Publish Event="EndDialog" Value="Return" />
+        </Control>
+      </Dialog>
+      <!--Конец моего окна-->
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="InstallDirDlg" Order="1">NOT Installed</Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="2">Installed AND NOT PATCH</Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">Installed AND PATCH</Publish>
+      <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+      <Property Id="ARPNOMODIFY" Value="1" />
+    </UI>
+    <UIRef Id="WixUI_Common" />
+	</Fragment>
+</Wix>

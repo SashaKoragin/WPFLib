@@ -74,7 +74,7 @@ Patch dialog sequence:
           <Dialog Id="NDFLConect" Width="370" Height="270" Title="Выбор пути к папке BANK!!!">
             <Control Id="Title" Type="Text" X="15" Y="6" Width="300" Height="15" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Title}В данном окне пишется путь к папке BANK"/>
             <Control Id="Title1" Type="Text" X="20" Y="50" Width="200" Height="15" Transparent="yes" NoPrefix="yes" Text="Папка BANK Расположена:"/>
-            <Control Id="SimpleEdit" Type="Edit" X="20" Y="80" Width="200" Height="16" Property="SimpleEditProperty" Sunken="no">
+            <Control Id="SimpleEdit" Type="Edit" X="20" Y="80" Width="200" Height="16" Property="SimpleEditProperty" Text="[SimpleEditProperty]" Sunken="no">
               <Property Id="SimpleEditProperty" Value="\\i7751-app001\BANK\"/>
             </Control>
             

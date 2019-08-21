@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GalaSoft.MvvmLight.Threading;
@@ -17,12 +18,14 @@ namespace LibaryCommandPublic.TestAutoit.RaschBydj.Migration
         /// </summary>
         /// <param name="statusButton">Кнопка передачи старта</param>
         /// <param name="reportMigration">Путь к отчету парсинга миграции</param>
-        public void AutoCklikMigration(StatusButtonMethod statusButton, string reportMigration)
+        /// <param name="collectionExeption">Исключенные ИНН</param>
+        public void AutoCklikMigration(StatusButtonMethod statusButton, string reportMigration, ObservableCollection<string> collectionExeption)
         {
             DispatcherHelper.Initialize();
                 Task.Run(delegate
                 {
                     string copyid = null;
+         
                     DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                     if (File.Exists(reportMigration)){ File.Delete(reportMigration);}
                         KclicerButton clickerButton = new KclicerButton();
@@ -32,12 +35,14 @@ namespace LibaryCommandPublic.TestAutoit.RaschBydj.Migration
                         {
                            while (statusButton.Iswork)
                            {
-                              var id = clickerButton.Click11(statusButton.IsChekcs, reportMigration, copyid);
-                               if (id.Equals(copyid))
-                               {
-                                  DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusYellow);
-                               }
-                               copyid = id;
+
+                                var id = clickerButton.Click11(statusButton.IsChekcs, reportMigration, copyid, collectionExeption);
+                                if (id.Equals(copyid))
+                                {
+                                   DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusYellow);
+                                   return;
+                                }
+                                copyid = id;
                            }
                         }
                         else
@@ -48,19 +53,23 @@ namespace LibaryCommandPublic.TestAutoit.RaschBydj.Migration
                 });
             
         }
-
-        public void SendParametr(SelectVibor select)
+        /// <summary>
+        /// Выборки 
+        /// </summary>
+        /// <param name="select">Параметры выборки</param>
+        /// <param name="ifns">Номер инспекции из Конфига</param>
+        public void SendParametr(SelectVibor select,string ifns)
         {
             if (select.IsValidation())
             {
                 WindowsAis3 ais3 = new WindowsAis3();
                 if (select.Sel.Num == 1)
                 {
-                    ais3.SendParametrsPriem();
+                    ais3.SendParametrsPriem(ifns);
                 }
                 else
                 {
-                    ais3.SendParametrsPeredahca();
+                    ais3.SendParametrsPeredahca(ifns);
                 }
             }
         }

@@ -102,6 +102,7 @@
     <Compile Include="ModelTestAutoit\PublicModel\ButtonStartAutomat\StartOnStopProperty.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\DatePicker\DatePickerPub.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\LableAndErrorModel\LableModel.cs" />
+    <Compile Include="ModelTestAutoit\PublicModel\PdfHelp\PdfHelp.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\QbeSelect\QbeClass.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\RaschetBuh\SelectVibor.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ReportXlsx\ReportXlsx.cs" />

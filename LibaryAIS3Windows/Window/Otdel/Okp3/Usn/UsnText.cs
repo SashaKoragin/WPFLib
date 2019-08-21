@@ -65,7 +65,7 @@ namespace LibaryAIS3Windows.Window.Otdel.Okp3.Usn
             }
             else
             {
-                IsOpen = 580;
+                IsOpen = 565;
                 Sender = 283;
                 Finish = 260;
             }

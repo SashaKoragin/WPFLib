@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
+     xmlns:net="http://schemas.microsoft.com/wix/NetFxExtension">
+  <?define AutomatAis3Full_TargetDir=$(var.AutomatAis3Full.TargetDir)?>
+  <?define CurrentVersion="!(bind.fileVersion.AutomatAis3Full.exe)"?>
+	<Product Id="*" Name="AutomatAis3Full $(var.CurrentVersion)" Codepage="1251" Language="1049"  Version="$(var.CurrentVersion)" Manufacturer="AutomatAis3Full" UpgradeCode="b1045be5-b9a0-4aeb-8793-dabc3e5132b4">
+		<Package InstallerVersion="405" Compressed="yes" InstallScope="perMachine" />
+
+    
+    <PropertyRef Id="NETFRAMEWORK45"/>
+    <PropertyRef Id="NETFRAMEWORK40FULL"/>
+
+    <Condition Message='This setup requires Microsoft .NET Framework 4.0 Full or 4.5 package or greater needs to be installed for this installation to continue.'>
+      <![CDATA[Installed OR (NETFRAMEWORK40FULL AND NETFRAMEWORK45)]]>
+    </Condition>
+    
+        <!--Для обновления программы и наката новой версии-->
+    <Upgrade Id="561EFBEE-AD31-427B-92F1-9E202429B693">
+      <UpgradeVersion OnlyDetect='yes' MigrateFeatures='yes' Minimum='1.0.0.0' IncludeMinimum='yes' Maximum='$(var.CurrentVersion)' IncludeMaximum='no' Property='PREVIOUSFOUND' Language='1049' IgnoreRemoveFailure='no' />
+    </Upgrade>
+    
+    
+		<MajorUpgrade Schedule="afterInstallInitialize" DowngradeErrorMessage="Уже установлена более новая версия продукта [ProductName]." />
+		<MediaTemplate EmbedCab="yes" />
+
+    <WixVariable Id="WixUIBunnersBmp" Value="bmp\installer_banner_wix.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="bmp\installer_background_wix.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="License\License.rtf" />
+    
+        <!--Диалоговые окна по ссылкам UI-->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UIRef Id="WixUI_InstallAutomatAis3" />
+      
+		<Feature Id="ProductFeature" Title="AutomatAis3Full" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="CreateFolderx86"/>
+      <ComponentRef Id="CreateFolderx64"/>
+      <ComponentRef Id="ClearAll" />
+      <ComponentRef Id="ClearUnistallation"/>
+      <ComponentRef Id="CreateFolderXmlFile"/>
+      <ComponentRef Id="CreateFolderHelp"/>
+      <ComponentRef Id="CreateFolderXmlJurnal"/>
+      <ComponentRef Id="CreateFolderFormXml"/>
+      <ComponentRef Id="CreateFolderExcelReport"/>
+      <ComponentRef Id="CreateFolderPdfReport"/>
+      <ComponentRef Id="ApplicationShortcut" />
+      <ComponentRef Id="AppShortcutDesktop" />
+      <ComponentRef Id="Helpers"/>
+      <ComponentRef Id="x64pdfium.dll"/>
+      <ComponentRef Id="x86pdfium.dll"/>
+		</Feature>
+
+    <!--<InstallExecuteSequence>
+      <Custom Action="Register" After='InstallFiles'/>
+    </InstallExecuteSequence>-->
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="AutomatAis3Full">
+        </Directory>
+			</Directory>
+      <Directory Id="ProgramMenuFolder" >
+        <Directory Id="ProgramMenuDirr" Name="AutomatAis3Full"/>
+      </Directory>
+        <Directory Id="DesktopFolder" Name="Desktop"/>
+		</Directory>
+	</Fragment>
+
+  
+      <Fragment>
+    <DirectoryRef Id="ProgramMenuDirr">
+      <Component Id="ApplicationShortcut" Guid="63308B96-3A13-4DFC-904A-3990919D442B">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="AutomatAis3Full" Description="Автоматы для АИС НАЛОГ 3" Target="[INSTALLFOLDER]AutomatAis3Full.exe" WorkingDirectory="APPLICATIONROOTDIRECTORY"/>
+        <RemoveFolder Id="CleanUpShortCut" Directory="ProgramMenuDirr" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\AutomatAis3Full" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="AppShortcutDesktop" Guid="7ED68615-AD0B-439B-BD2D-EB2C34602C24">
+        <Shortcut Id="AppStartDesktopShortcut" WorkingDirectory="INSTALLFOLDER" Name="AutomatAis3Full" Description="Автоматы для АИС НАЛОГ 3" Target="[INSTALLFOLDER]AutomatAis3Full.exe"/>
+        <RemoveFolder Id="RemoveDesktopFolder" Directory="DesktopFolder" On="uninstall"/>
+        <RegistryValue Root="HKCU" Key="Software\AutomatAis3Full" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+    
+      
+     <Fragment>
+       <DirectoryRef Id="INSTALLFOLDER">
+         <Directory Id="PathXmlFile" Name="XmlFile">
+           <Component Id="CreateFolderXmlFile" Guid="8F0172B4-C441-4E01-8C5A-5A12E8FA6FE0">
+             <CreateFolder />
+           </Component>
+         </Directory>
+       </DirectoryRef>
+       <DirectoryRef Id="INSTALLFOLDER">
+          <Directory Id="Help" Name="Help">
+            <Component Id="CreateFolderHelp" Guid="6236342C-7449-4ADA-B9C2-C3CE4BC241E8">
+              <CreateFolder />
+            </Component>
+          </Directory>
+       </DirectoryRef>
+       <DirectoryRef Id="INSTALLFOLDER">
+          <Directory Id="XmlJurnal" Name="XmlJurnal">
+            <Component Id="CreateFolderXmlJurnal" Guid="8E0FD549-A3FF-426B-9360-1696AD18D23E">
+              <CreateFolder />
+            </Component>
+          </Directory>
+       </DirectoryRef>
+       <DirectoryRef Id="INSTALLFOLDER">
+          <Directory Id="FormXml" Name="FormXml">
+            <Component Id="CreateFolderFormXml" Guid="F70DAFBC-E595-4B1A-A5BA-F84E9644C0CA">
+              <CreateFolder />
+            </Component>
+          </Directory>
+        </DirectoryRef>
+        <DirectoryRef Id="INSTALLFOLDER">
+          <Directory Id="ExcelReport" Name="ExcelReport">
+            <Component Id="CreateFolderExcelReport" Guid="46956D6E-08AF-4C34-AB77-FE2243A5717B">
+              <CreateFolder />
+            </Component>
+          </Directory>
+        </DirectoryRef>
+        <DirectoryRef Id="INSTALLFOLDER">
+          <Directory Id="PdfReport" Name="PdfReport">
+            <Component Id="CreateFolderPdfReport" Guid="C4E7A67A-6800-4003-8686-BACD6937AE0D">
+              <CreateFolder />
+            </Component>
+          </Directory>
+        </DirectoryRef>
+       <DirectoryRef Id="INSTALLFOLDER">
+         <Directory Id="x86dll" Name="x86">
+           <Component Id="CreateFolderx86" Guid="126810C5-FB82-4A34-9241-C972CC659244">
+             <CreateFolder />
+           </Component>
+         </Directory>
+       </DirectoryRef>
+       <DirectoryRef Id="INSTALLFOLDER">
+         <Directory Id="x64dll" Name="x64">
+           <Component Id="CreateFolderx64" Guid="B0E5ED2D-F126-4F9A-9579-BAAB454E10BC">
+             <CreateFolder />
+           </Component>
+         </Directory>
+       </DirectoryRef>
+     </Fragment>
+    
+      
+    <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="ClearUnistallation" Guid="50C8948D-61DD-4F9B-A1F2-04BE77187F26">
+        <CreateFolder Directory="INSTALLFOLDER" />
+        <RemoveFile Id="RemoveFilePathXmlFile" On="uninstall" Name="*.*" Directory="PathXmlFile" />
+        <RemoveFolder Id="RemoveFolderPathXmlFile" On="uninstall" Directory="PathXmlFile" />
+        <RemoveFile Id="RemoveFileHelp" On="uninstall" Name="*.*" Directory="Help" />
+        <RemoveFolder Id="RemoveFolderHelp" On="uninstall" Directory="Help" />
+        <RemoveFile Id="RemoveFileXmlJurnal" On="uninstall" Name="*.*" Directory="XmlJurnal" />
+        <RemoveFolder Id="RemoveFolderXmlJurnal" On="uninstall" Directory="XmlJurnal" />
+        <RemoveFile Id="RemoveFileFormXml" On="uninstall" Name="*.*" Directory="FormXml" />
+        <RemoveFolder Id="RemoveFolderFormXml" On="uninstall" Directory="FormXml" />
+        <RemoveFile Id="RemoveFileExcelReport" On="uninstall" Name="*.*" Directory="ExcelReport" />
+        <RemoveFolder Id="RemoveFolderExcelReport" On="uninstall" Directory="ExcelReport" />
+        <RemoveFile Id="RemoveFilePdfReport" On="uninstall" Name="*.*" Directory="PdfReport" />
+        <RemoveFolder Id="RemoveFolderPdfReport" On="uninstall" Directory="PdfReport" />
+        <RemoveFile Id="RemoveFilex86" On="uninstall" Name="*.*" Directory="x86dll" />
+        <RemoveFolder Id="RemoveFolderx86" On="uninstall" Directory="x86dll" />
+        <RemoveFile Id="RemoveFilex64" On="uninstall" Name="*.*" Directory="x64dll" />
+        <RemoveFolder Id="RemoveFolderx64" On="uninstall" Directory="x64dll" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  
+  
+    <Fragment>
+  <DirectoryRef Id="INSTALLFOLDER">
+    <Component Id="ClearAll" Guid="C97D7263-D34E-4EC1-9003-650CD3CA455A">
+      <RemoveFile Id="RemoveFileAll" Directory="INSTALLFOLDER" Name="*.*" On="uninstall" />
+      <RemoveFolder Id="Removeall" On="uninstall" Directory="INSTALLFOLDER" />
+    </Component>
+  </DirectoryRef>
+</Fragment>
+
+ 
+  <!--<Fragment>   
+      <CustomAction Id="Register" Directory="INSTALLFOLDER" Execute="deferred" Impersonate="no" ExeCommand="[WindowsFolder]System32\regsvr32 &quot;[INSTALLFOLDER]AutoItX3.Assembly.dll&quot;" Return="check" />
+      <CustomAction Id="Unregister" Directory="INSTALLFOLDER" Execute="deferred" Impersonate="no" ExeCommand="[WindowsFolder]System32\regsvr32 /u &quot;[INSTALLFOLDER]AutoItX3.Assembly.dll&quot;" Return="check" />
+  </Fragment>-->
+      
+	<Fragment>
+	  <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+	    <Component Id="AutomatAis3Full.exe" Guid="d6b457a4-f691-4527-ad2b-fe932a8ddab0">
+	      <File Id="AutomatAis3Full.exe" Name="AutomatAis3Full.exe" Source="$(var.AutomatAis3Full_TargetDir)AutomatAis3Full.exe" />
+	    </Component>
+	    <Component Id="MaterialDesignThemes.Wpf.dll" Guid="5563fb9b-9ca5-489c-a908-5207c1e2d203">
+	      <File Id="MaterialDesignThemes.Wpf.dll" Name="MaterialDesignThemes.Wpf.dll" Source="$(var.AutomatAis3Full_TargetDir)MaterialDesignThemes.Wpf.dll" />
+	    </Component>
+	    <Component Id="AutomatAis3Full.exe.config" Guid="2efdc2eb-9e01-49a6-8204-b7f99614a513" > 
+	      <File Id="AutomatAis3Full.exe.config" Name="AutomatAis3Full.exe.config" Source="$(var.AutomatAis3Full_TargetDir)AutomatAis3Full.exe.config" KeyPath="yes" Vital="yes"/>
+        <util:XmlFile Id="AutomatAis3FullSet1" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='Ifns'[\]]//@value" Value="[IFNS]" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="AutomatAis3FullSet2" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServiceAndIpComputer'[\]]//@value" Value="ServiceTestIfns,[SERVICE]" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="AutomatAis3FullSet4" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServerReport'[\]]//@value" Value="http://[SERVICE]:8181/ServiceRest/MigrationError" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="AutomatAis3FullSet3" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathPdfTemp'[\]]//@value" Value="[ADDPATHTEMP]" SelectionLanguage="XPath" Sequence="1" />
+      </Component>
+	    <Component Id="MaterialDesignThemes.MahApps.dll" Guid="6c5e4642-dae0-4322-8ca5-96b32b5a83a9">
+	      <File Id="MaterialDesignThemes.MahApps.dll" Name="MaterialDesignThemes.MahApps.dll" Source="$(var.AutomatAis3Full_TargetDir)MaterialDesignThemes.MahApps.dll" />
+	    </Component>
+	    <Component Id="System.Windows.Interactivity.dll" Guid="09899775-2e57-4061-bbb6-47bd0dbd30b0">
+	      <File Id="System.Windows.Interactivity.dll" Name="System.Windows.Interactivity.dll" Source="$(var.AutomatAis3Full_TargetDir)System.Windows.Interactivity.dll" />
+	    </Component>
+	    <Component Id="ViewModelLib.dll" Guid="e6dcb71c-90b7-4576-95f3-875b701dd36e">
+	      <File Id="ViewModelLib.dll" Name="ViewModelLib.dll" Source="$(var.AutomatAis3Full_TargetDir)ViewModelLib.dll" />
+	    </Component>
+	    <Component Id="LibaryCommandPublic.dll" Guid="db4b5693-3aa3-41fd-a9ce-3a6be5b13d9c">
+	      <File Id="LibaryCommandPublic.dll" Name="LibaryCommandPublic.dll" Source="$(var.AutomatAis3Full_TargetDir)LibaryCommandPublic.dll" />
+	    </Component>
+	    <Component Id="Prism.dll" Guid="5eab3abe-4eb5-47a3-8d2e-331367bf21a5">
+	      <File Id="Prism.dll" Name="Prism.dll" Source="$(var.AutomatAis3Full_TargetDir)Prism.dll" />
+	    </Component>
+	    <Component Id="MaterialDesignColors.dll" Guid="349a8fe7-3aa1-4914-bc3c-840b929e9030">
+	      <File Id="MaterialDesignColors.dll" Name="MaterialDesignColors.dll" Source="$(var.AutomatAis3Full_TargetDir)MaterialDesignColors.dll" />
+	    </Component>
+	    <Component Id="PublicLogicaFull.dll" Guid="feda9afe-c5ca-4295-81f4-68d79bcb0b2b">
+	      <File Id="PublicLogicaFull.dll" Name="PublicLogicaFull.dll" Source="$(var.AutomatAis3Full_TargetDir)PublicLogicaFull.dll" />
+	    </Component>
+	    <Component Id="LibaryXMLAuto.dll" Guid="9b4804c2-52a6-4b10-97e5-dff9672c2a21">
+	      <File Id="LibaryXMLAuto.dll" Name="LibaryXMLAuto.dll" Source="$(var.AutomatAis3Full_TargetDir)LibaryXMLAuto.dll" />
+	    </Component>
+	    <Component Id="ClosedXML.dll" Guid="81b2e1d6-e075-4ff7-b7dc-5b605fa5fc3f">
+	      <File Id="ClosedXML.dll" Name="ClosedXML.dll" Source="$(var.AutomatAis3Full_TargetDir)ClosedXML.dll" />
+	    </Component>
+	    <Component Id="DocumentFormat.OpenXml.dll" Guid="90b4a79b-adfc-4d7e-b1d7-91e36a263d01">
+	      <File Id="DocumentFormat.OpenXml.dll" Name="DocumentFormat.OpenXml.dll" Source="$(var.AutomatAis3Full_TargetDir)DocumentFormat.OpenXml.dll" />
+	    </Component>
+	    <Component Id="ExcelNumberFormat.dll" Guid="a094d961-318e-440c-9727-595c950ded0d">
+	      <File Id="ExcelNumberFormat.dll" Name="ExcelNumberFormat.dll" Source="$(var.AutomatAis3Full_TargetDir)ExcelNumberFormat.dll" />
+	    </Component>
+	    <Component Id="FastMember.Signed.dll" Guid="36a8ddd4-3127-49c9-a7d7-86bc7efee195">
+	      <File Id="FastMember.Signed.dll" Name="FastMember.Signed.dll" Source="$(var.AutomatAis3Full_TargetDir)FastMember.Signed.dll" />
+	    </Component>
+	    <Component Id="LibaryAIS3Windows.dll" Guid="02370789-664b-410f-8d64-dfabac31262f">
+	      <File Id="LibaryAIS3Windows.dll" Name="LibaryAIS3Windows.dll" Source="$(var.AutomatAis3Full_TargetDir)LibaryAIS3Windows.dll" />
+	    </Component>
+	    <Component Id="SqlLibaryIfns.dll" Guid="3cdb9677-0a35-4ccd-8863-c34e1be5587d">
+	      <File Id="SqlLibaryIfns.dll" Name="SqlLibaryIfns.dll" Source="$(var.AutomatAis3Full_TargetDir)SqlLibaryIfns.dll" />
+	    </Component>
+	    <Component Id="AutoItX3.Assembly.dll" Guid="dc59767a-55a0-40c5-acc5-19c5b2ee05e4">
+	      <File Id="AutoItX3.Assembly.dll" Name="AutoItX3.Assembly.dll" Source="$(var.AutomatAis3Full_TargetDir)AutoItX3.Assembly.dll" />
+	    </Component>
+      <Component Id="AutoItX3.dll" Guid="7F20C218-1E71-4EFC-9485-82B455B93A38">
+	      <File Id="AutoItX3.dll" Name="AutoItX3.dll" Source="$(var.AutomatAis3Full_TargetDir)AutoItX3.dll" />
+	    </Component>
+      <Component Id="AutoItX3_x64.dll" Guid="B3711A14-5F67-402E-A518-50A292C1F9DE">
+	      <File Id="AutoItX3_x64.dll" Name="AutoItX3_x64.dll" Source="$(var.AutomatAis3Full_TargetDir)AutoItX3_x64.dll" />
+	    </Component>
+      <Component Id="GalaSoft.MvvmLight.dll" Guid="8C0BEB1A-655E-47CC-ABE8-CBFB7012423F">
+        <File Id="GalaSoft.MvvmLight.dll" Name="GalaSoft.MvvmLight.dll" Source="$(var.AutomatAis3Full_TargetDir)GalaSoft.MvvmLight.dll" />
+      </Component>
+      <Component Id="GalaSoft.MvvmLight.Platform.dll" Guid="195BAC38-F578-4AD9-BF93-1A738708046A">
+        <File Id="GalaSoft.MvvmLight.Platform.dll" Name="GalaSoft.MvvmLight.Platform.dll" Source="$(var.AutomatAis3Full_TargetDir)GalaSoft.MvvmLight.Platform.dll" />
+      </Component>
+      <Component Id="Newtonsoft.Json.dll" Guid="C699E208-3133-4C9E-BD15-4A3D17B7189A">
+        <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="$(var.AutomatAis3Full_TargetDir)Newtonsoft.Json.dll" />
+      </Component>
+      <Component Id="PdfiumViewer.dll" Guid="7A76CAA9-7257-4BC4-9F3E-92694CD5ABC6">
+        <File Id="PdfiumViewer.dll" Name="PdfiumViewer.dll" Source="$(var.AutomatAis3Full_TargetDir)PdfiumViewer.dll" />
+      </Component>
+	  </ComponentGroup>
+    <Component Id="Helpers" Guid="2ABEDCD4-5B6E-44F6-B6D6-18C41026CD68" Directory="Help">
+        <File Id="AutomateAis3Full.pdf" Name="AutomateAis3Full.pdf" Source="$(var.AutomatAis3Full_TargetDir)Help\AutomateAis3Full.pdf"/>
+    </Component>
+    <Component Id="x64pdfium.dll" Guid="6B8A9A92-11AC-4ABA-B413-75B85FDC4BBC" Directory="x64dll">
+      <File Id="x64pdfium.dll" Name="pdfium.dll" Source="$(var.AutomatAis3Full_TargetDir)x64\pdfium.dll" />
+    </Component>
+    <Component Id="x86pdfium.dll" Guid="30D7346B-2CDA-435B-AACD-036C52065844" Directory="x86dll">
+      <File Id="x86pdfium.dll" Name="pdfium.dll" Source="$(var.AutomatAis3Full_TargetDir)x86\pdfium.dll" />
+    </Component>
+	</Fragment>
+</Wix>

@@ -70,8 +70,8 @@
     <Compile Include="SqlEntytiCommand\TaskUse\TaskResult.cs" />
     <Compile Include="SqlModelReport\Bdk\ModelFull.cs" />
     <Compile Include="SqlModelReport\SqlTemplate\ModelTemplate.cs" />
+    <Compile Include="SqlSelect\ImnsKadrsSelect\SelectImns.cs" />
     <Compile Include="SqlSelect\ModelSqlFullService\ModelSqlFullService.cs" />
-    <Compile Include="SqlSelect\SelectImnsKadr\ImnsKadr.cs" />
     <Compile Include="SqlSelect\SqlFaceMergin\FaceSelectError.cs" />
     <Compile Include="SqlSelect\SqlLk2\SelectSqlLk2.cs" />
     <Compile Include="SqlZapros\SobytieSql\Sobytie.cs" />

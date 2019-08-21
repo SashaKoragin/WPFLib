@@ -8,7 +8,7 @@
     xmlns:local="clr-namespace:AutomatAis3Full.GlavnayLogika.Window"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
+    Title="AutomatAis3Full"
     HorizontalContentAlignment="Stretch"
     VerticalContentAlignment="Stretch"
     d:DataContext="{d:DesignInstance {x:Type dataContext:WindowsMvvmAuto}}"
@@ -28,10 +28,13 @@
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="3"
-            Height="30"
-            VerticalAlignment="Top">
-            <MenuItem Header="File">
-                <MenuItem Header="Exit" />
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Выход" />
+            </MenuItem>
+            <MenuItem VerticalAlignment="Center" Header="Помощь">
+                <MenuItem Command="{Binding OpenPdfHelp}" Header="Помощь пользователю" />
             </MenuItem>
         </Menu>
         <materialDesign:DrawerHost
@@ -40,26 +43,26 @@
             Grid.ColumnSpan="2"
             IsLeftDrawerOpen="{Binding FullWindow.IsCheck}">
             <materialDesign:DrawerHost.LeftDrawerContent>
-                <ScrollViewer VerticalScrollBarVisibility="Auto" PreviewMouseWheel="UIElement_OnMouseWheel">
+                <ScrollViewer PreviewMouseWheel="UIElement_OnMouseWheel" VerticalScrollBarVisibility="Auto">
                     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <StackPanel>
                             <ToggleButton
-                            Margin="16"
-                            HorizontalAlignment="Right"
-                            IsChecked="{Binding FullWindow.IsCheck}"
-                            Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                                Margin="16"
+                                HorizontalAlignment="Right"
+                                IsChecked="{Binding FullWindow.IsCheck}"
+                                Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
                             <TreeView
-                            x:Name="TreeView"
-                            ItemsSource="{Binding FullWindow.CollectionUserControl}"
-                            SelectedValuePath="{Binding FullWindow.UseContent}">
+                                x:Name="TreeView"
+                                ItemsSource="{Binding FullWindow.CollectionUserControl}"
+                                SelectedValuePath="{Binding FullWindow.UseContent}">
                                 <TreeView.ItemTemplate>
                                     <HierarchicalDataTemplate ItemsSource="{Binding CollectionUserControl}">
                                         <TextBlock Text="{Binding NameControl}">
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
-                                                <i:InvokeCommandAction Command="{Binding DataContext.OpenForms, ElementName=TreeView}" CommandParameter="{Binding SelectedItem, ElementName=TreeView}" />
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.OpenForms, ElementName=TreeView}" CommandParameter="{Binding SelectedItem, ElementName=TreeView}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
                                         </TextBlock>
                                     </HierarchicalDataTemplate>
                                 </TreeView.ItemTemplate>
@@ -91,5 +94,6 @@
             Grid.Column="2"
             Margin="5,5,5,5"
             Content="{Binding ElementName=TreeView, Path=SelectedItem.UserControl}" />
+
     </Grid>
 </Window>

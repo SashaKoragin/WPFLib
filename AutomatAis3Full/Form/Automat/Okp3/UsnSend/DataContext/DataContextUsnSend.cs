@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using AutomatAis3Full.Config;
 using LibaryCommandPublic.TestAutoit.Okp3.UsnSend;
 using Prism.Commands;
@@ -19,7 +20,7 @@ namespace AutomatAis3Full.Form.Automat.Okp3.UsnSend.DataContext
         {
             var command = new CommandUsn();
             StartButton = new StatusButtonMethod();
-            StartButton.Button.Command = new DelegateCommand(() => { command.UsnStart(StartButton,  ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk);  });
+            StartButton.Button.Command = new DelegateCommand(() => { command.UsnStart(StartButton, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
         }
     }
 }

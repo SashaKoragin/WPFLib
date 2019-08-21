@@ -190,15 +190,19 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
                     {
                         if (reader != null)
                         {
-                            while (reader.Read())
-                                sb.AppendLine(reader.ReadOuterXml());
+                            string str = null;
+                            reader.Read();
+                            while (str != "")
+                            {
+                                str = reader.ReadOuterXml();
+                                sb.AppendLine(str);
+                            }
+                            return sb.ToString();
                         }
                     }
-                    cmd.Connection.Close();
                 }
-                SqlConnection.ClearPool(con);
             }
-            return sb.ToString();
+            return string.Empty;
         }
     }
 }

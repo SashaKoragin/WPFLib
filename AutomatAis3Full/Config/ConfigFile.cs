@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
 
 namespace AutomatAis3Full.Config
 {
@@ -19,6 +20,8 @@ namespace AutomatAis3Full.Config
         public static string ReportMigration = ConfigurationManager.AppSettings["ReportMigration"];
         public static string ServerReport = ConfigurationManager.AppSettings["ServerReport"];
         public static string ServiceAndIpComputer = ConfigurationManager.AppSettings["ServiceAndIpComputer"];
+        public static string Ifns = ConfigurationManager.AppSettings["Ifns"];
+        public static string Help = ConfigurationManager.AppSettings["Help"];
         /// <summary>
         /// Строка соединения с нашей БД
         /// </summary>
@@ -31,5 +34,6 @@ namespace AutomatAis3Full.Config
         /// Путь к PDF файлам сохранение Work
         /// </summary>
         public static string PathPdfWork = ConfigurationManager.AppSettings["PathPdfWork"];
+
     }
 }

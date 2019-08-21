@@ -13,15 +13,22 @@ namespace SqlLibaryIfns.PingIp
 
         public ServerAndComputer Ping(ServerAndComputer server)
         {
+            try
+            {
             Ping ping = new Ping();
             PingReply pingReply = null;
             foreach (var servers in server.ServerIfns)
             {
                 pingReply = ping.Send(servers.ServerIp);
-                servers.Status = pingReply.Status.ToString();
-
+                if (pingReply != null) servers.Status = pingReply.Status.ToString();
             }
             return server;
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+            }
+            return null;
         }
 
     }

@@ -134,7 +134,7 @@ namespace LibaryAIS3Windows.Window
         {
             "АИС Налог-3 ПРОМ ",
             "",
-            "[NAME:Conditions]"
+            "[NAME:mainGrid]"
         };
         /// <summary>
         /// Контрольная панель
@@ -222,25 +222,11 @@ namespace LibaryAIS3Windows.Window
             AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 62, WindowsAis.Y + Y1 + 93);
             AutoItX.Sleep(1000);
         }
-
-        public void SendParametrsPriem()
-        {
-            ControlGetPos1(WinGrid[0], WinGrid[1], WinGrid[2]);
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 40, WindowsAis.Y + Y1 + 35);
-            AutoItX.Send(ButtonConstant.Right5);
-            AutoItX.Send(ButtonConstant.Enter);
-            AutoItX.Send("10");
-            AutoItX.Send(ButtonConstant.Enter);
-            AutoItX.Send(ButtonConstant.Down16);
-            AutoItX.Send(ButtonConstant.Enter);
-            AutoItX.Send("7751");
-            AutoItX.Send(ButtonConstant.Enter);
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 1011, WindowsAis.Y + Y1 + 55);
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 1011, WindowsAis.Y + Y1 + 101);
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 1011, WindowsAis.Y + Y1 + 366);
-        }
-
-        public void SendParametrsPeredahca()
+        /// <summary>
+        /// Выборка прием 
+        /// </summary>
+        /// <param name="ifns">Номер инспекции</param>
+        public void SendParametrsPriem(string ifns)
         {
             ControlGetPos1(WinGrid[0], WinGrid[1], WinGrid[2]);
             AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 40, WindowsAis.Y + Y1 + 35);
@@ -250,7 +236,27 @@ namespace LibaryAIS3Windows.Window
             AutoItX.Send(ButtonConstant.Enter);
             AutoItX.Send(ButtonConstant.Down15);
             AutoItX.Send(ButtonConstant.Enter);
-            AutoItX.Send("7751");
+            AutoItX.Send(ifns);
+            AutoItX.Send(ButtonConstant.Enter);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 1011, WindowsAis.Y + Y1 + 55);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 1011, WindowsAis.Y + Y1 + 101);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 1011, WindowsAis.Y + Y1 + 386);
+        }
+        /// <summary>
+        /// Выборка передача
+        /// </summary>
+        /// <param name="ifns">Номер инспекции</param>
+        public void SendParametrsPeredahca(string ifns)
+        {
+            ControlGetPos1(WinGrid[0], WinGrid[1], WinGrid[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 40, WindowsAis.Y + Y1 + 35);
+            AutoItX.Send(ButtonConstant.Right5);
+            AutoItX.Send(ButtonConstant.Enter);
+            AutoItX.Send("10");
+            AutoItX.Send(ButtonConstant.Enter);
+            AutoItX.Send(ButtonConstant.Down16);
+            AutoItX.Send(ButtonConstant.Enter);
+            AutoItX.Send(ifns);
             AutoItX.Send(ButtonConstant.Enter);
             AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 1011, WindowsAis.Y + Y1 + 55);
             AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 1011, WindowsAis.Y + Y1 + 101);

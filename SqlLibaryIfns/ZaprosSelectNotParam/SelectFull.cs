@@ -190,11 +190,17 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                             sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
                                 typeof(Documents)));
                 case 6:
-                    return  serializeJson.JsonLibary(
+                    return serializeJson.JsonLibary(
                             (FullError)
                             sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
                                 typeof(FullError)));
                 case 7:
+                    return
+                        serializeJson.JsonLibary(
+                            (FullError)
+                            sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
+                                typeof(FullError)));
+                case 8:
                     return
                         serializeJson.JsonLibary(
                             (FullError)
