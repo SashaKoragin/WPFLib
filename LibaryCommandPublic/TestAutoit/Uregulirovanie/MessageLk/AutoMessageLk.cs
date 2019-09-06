@@ -1,21 +1,18 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Threading;
 using LibaryAIS3Windows.ButtonsClikcs;
-using LibaryAIS3Windows.ExitLogica;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
-namespace LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand
+namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
 {
-   public class YtochnenieSved
+  public class AutoMessageLk
     {
-        /// <summary>
-        /// Команда отработки пользовательского задания Регистрациии 
-        /// </summary>
-        /// <param name="statusButton">Модель кнопки </param>
-        /// <param name="pathjurnalerror">Журнал ошибок</param>
-        /// <param name="pathjurnalok">Журнал ОК</param>
-        public void Ytochnenie(StatusButtonMethod statusButton, string pathjurnalerror, string pathjurnalok)
+        public void MessageLk(StatusButtonMethod statusButton, string pathjurnalerror, string pathjurnalok)
         {
             DispatcherHelper.Initialize();
             Task.Run(delegate
@@ -27,10 +24,14 @@ namespace LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand
                 {
                     while (statusButton.Iswork)
                     {
-                        clickerButton.Click2(pathjurnalerror, pathjurnalok,statusButton.IsChekcs);
+                        var strexit = clickerButton.Click16(pathjurnalerror, pathjurnalok);
+                        
+                        if (strexit.Equals(LibaryAIS3Windows.Status.StatusAis.Status6))
+                        {
+                            DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                        }
                     }
 
-                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusYellow);
                 }
                 else
                 {

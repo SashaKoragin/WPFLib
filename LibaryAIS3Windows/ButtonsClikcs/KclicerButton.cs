@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
+using System.Windows.Automation;
 using SqlLibaryIfns.AutoItSelect.Sql;
 using LibaryAIS3Windows.Window.Otdel.Analitic.TeskText;
 using AutoIt;
@@ -23,6 +25,7 @@ using LibaryAIS3Windows.Window.Otdel.RaschetBudg.Vedomost1;
 using LibaryAIS3Windows.Window.Otdel.Reg.ActualStatus;
 using LibaryAIS3Windows.Window.Otdel.Reg.Fpd;
 using LibaryAIS3Windows.Window.Otdel.Reg.IdFace;
+using LibaryAIS3Windows.Window.Otdel.Uregulirovanie.UtverzdenieSz;
 using LibaryXMLAutoModelXmlAuto.MigrationReport;
 
 namespace LibaryAIS3Windows.ButtonsClikcs
@@ -1083,5 +1086,69 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             }
             return Status.StatusAis.Status3; ;
         }
+        ///  <summary>
+        /// Автоматизация ветки
+        /// Общие задания\Урегулирование задолженности\05.08.09.02. Взыскание задолженности за счет имущества НП ФЛ. Формирование Служебной записки и Заявлений о взыскании за счет имущества ФЛ\05.08.09.02.02 Утверждение и подписание Служебных записок\05.08.09.02.02.04. Утверждение Служебной записки
+        /// </summary>
+        public string Click15(string pathjurnalerror, string pathjurnalok)
+        {
+
+           // AutomationElement g = new AutomationElement(AutoItX);
+         //   int i = 0;
+         //   WindowsAis3 win = new WindowsAis3();
+
+            //while (true)
+            //{
+            //    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 355, win.WindowsAis.Y + 80);
+            //    AutoItX.WinWait(WindowsAis3.AisNalog3, SluzZ.Total, 10);
+            //    if (AutoItX.WinExists(WindowsAis3.AisNalog3, SluzZ.Total) == 1)
+            //    {
+            //        break;
+            //    }
+            //    if (i == Proverka.Controlnumer)
+            //    {
+
+            //        return Status.StatusAis.Status6;
+            //    }
+            //    i++;
+            //}
+            return null;
+        }
+
+        ///  <summary>
+        /// Автоматизация ветки
+        /// Общие задания\Урегулирование задолженности\05.09 Уведомление о необходимости выгрузки документов в ЛК\05.09 Сообщения о принятом решении о зачете (возврате) подлежащие выгрузке в ЛК
+        /// </summary>
+        public string Click16(string pathjurnalerror, string pathjurnalok)
+        {
+            int i = 0;
+            WindowsAis3 win = new WindowsAis3();
+            while (true)
+            {
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 355, win.WindowsAis.Y + 80);
+                AutoItX.WinWait(WindowsAis3.AisNalog3, SluzZ.WinLk, 10);
+                if (AutoItX.WinExists(WindowsAis3.AisNalog3, SluzZ.WinLk) == 1)
+                {
+                    break;
+                }
+                if (i == Proverka.Controlnumer)
+                {
+                    return Status.StatusAis.Status6;
+                }
+                i++;
+            }
+            if (AutoItX.WinExists(WindowsAis3.AisNalog3, SluzZ.WinLk) == 1)
+            {
+                AutoItX.Sleep(500);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 250, win.WindowsAis.Y + 80);
+                AutoItX.Sleep(1000);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 580, win.WindowsAis.Y + 80);
+                AutoItX.WinWait(SluzZ.WinClose[0], SluzZ.WinClose[1]);
+                AutoItX.Send(ButtonConstant.Enter);
+                AutoItX.Sleep(1000);
+            }
+            return "Обработали!!!";
+        }
+
     }
 }

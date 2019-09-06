@@ -4,8 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Threading;
+using System.Windows.Automation;
 using System.Windows.Forms;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
@@ -52,41 +51,7 @@ namespace Algoritm
         private int[] mass = null;
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            int i = 0;
-            int[] newArray = new int[]{};
-            var maxspliteelem = spliters.ElementAt(spliters.Length - 1);
-                for (int j = 0; j < spliters.Length; j++)
-                {
-                    foreach (var bas in bases)
-                    {
-                        if (spliters[j] >= bas)
-                        {
-                            Array.Resize(ref newArray, newArray.Length + 1);
-                            newArray[i] = bas;
-                            ////Можно индекс запоминать
-                            bases = bases.Where(val => val != bases[0]).ToArray();
-                            i++;
-                        }
-                        if (spliters[j] <= bas)
-                        {
-                            i = 0;
-                            break;
-                        }
-                    }
-                if (newArray.Length > 0)
-                {
-                    result.Add(newArray);
-                    newArray = new int[] { };
-                    if (spliters[j] == maxspliteelem)
-                    {
-                        Array.Resize(ref newArray, bases.Length);
-                        newArray = bases;
-                        result.Add(newArray);
-                    }
-                }
-            }
-            var s =  result;
+        { 
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -113,26 +78,6 @@ namespace Algoritm
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var borderBase = 0;
-            var maxBase = bases.Max();
-            var maxSplit = spliters.Max();
-            for (int i = 0; i < spliters.Length; i++)
-            {
-                    mass = bases.Where(val => val <= spliters[i] && val > borderBase).ToArray();
-                    borderBase = spliters[i];
-                     if (mass.Length > 0)
-                     {
-                        result.Add(mass);
-                        mass = null;
-                     }
-                    //Обработка остатков если есть
-                    if (maxSplit == spliters[i] && maxBase > borderBase)
-                    {
-                        mass = bases.Where(val => val > borderBase).ToArray();
-                        result.Add(mass);
-                    }
-            }
-            var е = result;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -367,6 +312,14 @@ namespace Algoritm
 
             // Append the reference to body, the element should be in a Run.
            return new Paragraph(new Run(element));
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+          //  var process = Process.S  //.GetProcessesByName("CommonComponents.UnifiedClient.exe");
+            AutomationElement targetApp = AutomationElement.FromHandle() //FromHandle(process[0].MainWindowHandle);
+
+
         }
     }
     }

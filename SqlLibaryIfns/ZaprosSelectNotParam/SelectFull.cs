@@ -206,6 +206,12 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                             (FullError)
                             sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
                                 typeof(FullError)));
+                case 9:
+                    return
+                        serializeJson.JsonLibary(
+                            (FullError)
+                            sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
+                                typeof(FullError)));
                 default:
                     return "Дагнная комманда не определена!!!";
             }

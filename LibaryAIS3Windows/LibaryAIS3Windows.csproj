@@ -47,6 +47,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationTypes" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ButtonsClikcs\ButtonConstant.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="Window\Otdel\Reg\Fpd\FpdText.cs" />
     <Compile Include="Window\Otdel\Reg\IdFace\IdFace.cs" />
     <Compile Include="Window\Otdel\Reg\Yvedomlenie\TextYvedomlenie.cs" />
+    <Compile Include="Window\Otdel\Uregulirovanie\UtverzdenieSz\SluzZ.cs" />
     <Compile Include="Window\Windows.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,8 @@ using AutomatAis3Full.Form.Automat.Registration.ActualStatus.UserControlStatus;
 using AutomatAis3Full.Form.Automat.Registration.Rosreestr.UserControl;
 using AutomatAis3Full.Form.Automat.Registration.TehnicalUpdate.UserControlTechnical;
 using AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.MessageLk.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.UtverzdenieSz.UserControl;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie;
 using AutomatAis3Full.Form.Report.ReportXml.ReportForm;
 using ViewModelLib.ModelTestAutoit.FullWindowAutoIt;
@@ -30,6 +32,31 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
               FullWindowAutoItMethod autoit = new FullWindowAutoItMethod();
               ObservableCollection<FullWindowAutoIt> window = new ObservableCollection<FullWindowAutoIt>
               {
+                  new FullWindowAutoIt()
+                  {
+                      NameControl = "Урегулирование задолжености",
+                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                      {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Общие задания",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                               new FullWindowAutoIt()
+                               {
+                                    NameControl = "05.08.09.02.02.04. Утверждение Служебной записки",
+                                    UserControl = new UtverzdenieSz()
+                               },
+                               new FullWindowAutoIt()
+                               {
+                                   NameControl = "05.09 Сообщения о принятом решении о зачете (возврате) подлежащие выгрузке в ЛК",
+                                   UserControl = new MessageLk()
+                               }
+                              }
+                          }
+
+                      }
+                  },
                   new FullWindowAutoIt()
                   {
                       NameControl = "ОКП3",
