@@ -1,4 +1,4 @@
-п»їusing System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -28,187 +28,186 @@ using LibaryAIS3Windows.Window.Otdel.Reg.IdFace;
 using LibaryAIS3Windows.Window.Otdel.Uregulirovanie.UtverzdenieSz;
 using LibaryXMLAutoModelXmlAuto.MigrationReport;
 
+
 namespace LibaryAIS3Windows.ButtonsClikcs
 {
-   public class KclicerButton
-   {
-
-
-       private const string ModeBranchVedomost1 = @"РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\Р Р°СЃС‡РµС‚С‹ СЃ Р±СЋРґР¶РµС‚РѕРј\Р’РµРґРѕРјРѕСЃС‚СЊ РЅРµРІС‹СЏСЃРЅРµРЅРЅС‹С… РїРѕСЃС‚СѓРїР»РµРЅРёР№\Р’РµРґРѕРјРѕСЃС‚СЊ РЅРµРІС‹СЏСЃРЅРµРЅРЅС‹С… РїРѕСЃС‚СѓРїР»РµРЅРёР№. Р Р°Р·РґРµР» 1";
+    public class KclicerButton
+    {
+        private const string ModeBranchVedomost1 = @"Налоговое администрирование\Расчеты с бюджетом\Ведомость невыясненных поступлений\Ведомость невыясненных поступлений. Раздел 1";
         /// <summary>
-        /// РљРѕРЅСЃС‚Р°РЅС‚Р° РЅР°Р·РІР°РЅРёРµ РІРµС‚РєРё РєРѕС‚РѕСЂСѓСЋ РѕР±СЂР°Р±Р°С‚С‹РІР°РµРј РћСЃРЅРѕРІРЅР°СЏ
+        /// Константа название ветки которую обрабатываем Основная
         /// </summary>
-        private const string ModeBranch = @"Р’РµС‚РєР° РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\Р¤РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°\1.06. Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ Рё РїРµС‡Р°С‚СЊ CРќРЈ\1. РЎРѕР·РґР°РЅРёРµ Р·Р°СЏРІРєРё РЅР° С„РѕСЂРјРёСЂРѕРІР°РЅРёРµ РЎРќРЈ РґР»СЏ РµРґРёРЅРёС‡РЅРѕР№ РїРµС‡Р°С‚Рё";
+        private const string ModeBranch = @"Ветка Налоговое администрирование\Физические лица\1.06. Формирование и печать CНУ\1. Создание заявки на формирование СНУ для единичной печати";
 
         /// <summary>
-        /// Р’РµС‚РєР° РєРѕС‚РѕСЂСѓСЋ РѕР±СЂР°Р±Р°С‚С‹РІР°РµРј РџРѕР»СЊР·РѕРІР°С‚РµР»СЊР·РєРѕРµ Р·Р°РґР°РЅРёРµ
+        /// Ветка которую обрабатываем Пользовательзкое задание
         /// </summary>
-        private const string ModeBranchUser = @"Р¤РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°/1.08. РЎРѕРѕР±С‰РµРЅРёРµ Р¤Р› РѕР± РѕР±СЉРµРєС‚Р°С… СЃРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚Рё\РЈС‚РѕС‡РЅРµРЅРёРµ СЃРІРµРґРµРЅРёР№ Рѕ Р¤Р›";
-        
-        /// <summary>
-        /// РљРѕСЂСЂРµРєС‚РёСЂРѕРІРєР° СЃРІРµРґРµРЅРёР№ Рѕ РїСЂР°РІР°С…
-        /// </summary>
-        private const string Okp4Pravo =@"РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\РЎРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚СЊ\02. Р”РѕРѕРїСЂРµРґРµР»РµРЅРёРµ РґР°РЅРЅС‹С… РѕР± РѕР±СЉРµРєС‚Р°С… СЃРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚Рё\14. РљРЎ вЂ“ РљРѕСЂСЂРµРєС‚РёСЂРѕРІРєР° СЃРІРµРґРµРЅРёР№ Рѕ РїСЂР°РІР°С… РЅРµ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹С…  РІ РѕСЂРіР°РЅР°С… Р РѕСЃСЂРµРµСЃС‚СЂР° Рё РїСЂР°РІР°С… РЅР°СЃР»РµРґРѕРІР°РЅРёСЏ РЅР° РћРќ Рё Р—РЈ";
-        private const string ModeBranchUserRegZemla = @"РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\РЎРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚СЊ\05. Р’Р·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ СЃ РѕСЂРіР°РЅР°РјРё Р РѕСЃСЂРµРµСЃС‚СЂР° вЂ“ Р—РµРјРµР»СЊРЅС‹Рµ СѓС‡Р°СЃС‚РєРё\03. РћР±СЂР°Р±РѕС‚РєР° Р¤РџР”  РѕС‚ Р Р  - Р¤Р› - РђРЅР°Р»РёР· СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РѕР±СЂР°Р±РѕС‚РєРё РґРѕРєСѓРјРµРЅС‚РѕРІ";
-       /// <summary>
-       /// РЎРѕР·РґР°РЅРёРµ Р·Р°СЏРІРєРё РЅР° С„РѕСЂРјРёСЂРѕРІР°РЅРёСЏ РЎРќРЈ
-       /// </summary>
-       private const string SnuZayvki = @"РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\Р¤РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°\1.06. Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ Рё РїРµС‡Р°С‚СЊ CРќРЈ\1. РЎРѕР·РґР°РЅРёРµ Р·Р°СЏРІРєРё РЅР° С„РѕСЂРјРёСЂРѕРІР°РЅРёРµ РЎРќРЈ РґР»СЏ РµРґРёРЅРёС‡РЅРѕР№ РїРµС‡Р°С‚Рё";
-       /// <summary>
-       /// РџРµС‡Р°С‚СЊ СѓРІРµРґРѕРјР»РµРЅРёР№
-       /// </summary>
-       private const string PrintBranch =@"РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\Р¤РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°\1.06. Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ Рё РїРµС‡Р°С‚СЊ CРќРЈ\2. РџСЂРѕСЃРјРѕС‚СЂ РЎРќРЈ";
-        /// <summary>
-        /// РђРєС‚СѓР°Р»СЊРЅС‹Р№ СЃС‚Р°С‚СѓСЃ
-        /// </summary>
-       private const string ActualStatus =@"РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\РџРћРќ РР›\1. РџРћРќ РР› (РџР­). РћСЂРіР°РЅРёР·Р°С†РёРё Рё С„РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°, РІРЅРµСЃРµРЅРЅС‹Рµ РІ РџРћРќ РР›\2.01. Р¤Р›. РђРєС‚СѓР°Р»СЊРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ";
-        /// <summary>
-        /// РўРµС…РЅРёС‡РµСЃРєРѕРµ РёСЃРїСЂР°РІР»РµРЅРёРµ
-        /// </summary>
-        private const string TechnicalUpdate = @"РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\Р¦РµРЅС‚СЂР°Р»РёР·РѕРІР°РЅРЅС‹Р№ СѓС‡РµС‚ РЅР°Р»РѕРіРѕРїР»Р°С‚РµР»СЊС‰РёРєРѕРІ\15.02.02. РЎР»СѓР¶РµР±РЅС‹Рµ. РўРµС…РЅРёС‡РµСЃРєРёРµ РёСЃРїСЂР°РІР»РµРЅРёСЏ\ Р¤РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°\15.02.02.01. РЎР»СѓР¶РµР±РЅС‹Рµ. РўРµС…РЅРёС‡РµСЃРєРёРµ РёСЃРїСЂР°РІР»РµРЅРёСЏ. Р¤РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°";
-        /// <summary>
-        /// Р РѕСЃСЂРµРµСЃС‚СЂ Р’РёР·СѓР°Р»СЊРЅР°СЏ РёРґРµРЅС‚РёС„РёРєР°С†РёСЏ
-        /// </summary>
-        private const string FaceRosreestr = @"РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\РЎРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚СЊ\14. Р Р°Р±РѕС‚Р° СЃ Р»РёС†Р°РјРё вЂ“ РїСЂР°РІРѕРѕР±Р»Р°РґР°С‚РµР»СЏРјРё РѕР±СЉРµРєС‚РѕРІ, РїРѕ РєРѕС‚РѕСЂС‹Рј С‚СЂРµР±СѓРµС‚СЃСЏ РІРёР·СѓР°Р»СЊРЅР°СЏ РѕР±СЂР°Р±РѕС‚РєР°";
-
-       private const string Usn = @"РћР±С‰РёРµ Р·Р°РґР°РЅРёСЏ\РљРѕРЅС‚СЂРѕР»СЊРЅР°СЏ СЂР°Р±РѕС‚Р° РЅР°Р»РѕРіРѕРІС‹Рµ РїСЂРѕРІРµСЂРєРё\РџСЂРёРјРµРЅРµРЅРёРµ СѓРїСЂРѕС‰РµРЅРЅРѕР№ СЃРёСЃС‚РµРјС‹ РЅР°Р»РѕРіРѕРѕР±Р»Р°Р¶РµРЅРёСЏ\РџСЂРёРјРµРЅРµРЅРёРµ РЈРЎРќ";
-        /// <summary>
-        /// РЎРѕР·РґР°РЅРЅС‹Р№ Р±Р»РѕРє РґР»СЏ Р°РІС‚РѕРјР°С‚РёР·Р°С†РёРё РЎРѕР·РґР°РЅРёРµ Р·Р°СЏРІРєРё РЅР° С„РѕСЂРјРёСЂРѕРІР°РЅРёРµ РЎРќРЈ Р¤Р›
-        /// Р’РµС‚РєР° РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\Р¤РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°\1.06. Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ Рё РїРµС‡Р°С‚СЊ CРќРЈ\1. РЎРѕР·РґР°РЅРёРµ Р·Р°СЏРІРєРё РЅР° С„РѕСЂРјРёСЂРѕРІР°РЅРёРµ РЎРќРЈ РґР»СЏ РµРґРёРЅРёС‡РЅРѕР№ РїРµС‡Р°С‚Рё
-        /// </summary>
-        public void Click1(string pathjurnalerror,string pathjurnalok,string inn)
-       {
-           while (true)
-           {
-            WindowsAis3 win = new WindowsAis3();
-                win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 180, win.WindowsAis.Y + win.Y1 + 120);
-            AutoItX.WinWait(WindowsAis3.Text, WindowsAis3.WinWait, 3);
-            if (AutoItX.WinExists(WindowsAis3.Text, WindowsAis3.WinWait) == 1)
-                 {
-                    break;
-                 }           
-           }
-           AutoItX.Sleep(1000);
-           AutoItX.WinActivate(WindowsAis3.Text, WindowsAis3.WinWait);
-           AutoItX.ClipPut(inn);
-           AutoItX.Send(ButtonConstant.Down2);
-           AutoItX.Send(ButtonConstant.Right5);
-           AutoItX.Send(ButtonConstant.Enter);
-           AutoItX.Send(ButtonConstant.CtrlV);
-           AutoItX.ControlClick(WindowsAis3.Text, SnuForm.ButUpdate[0], SnuForm.ButUpdate[1],ButtonConstant.MouseLeft);
-           AutoItX.Sleep(3000);
-           while (true)
-           {
-               if (AutoItX.WinExists(WindowsAis3.Text, WindowsAis3.DataNotFound) == 1)
-               {
-                   AutoItX.ControlClick(WindowsAis3.Text, SnuForm.ButCancel[0], SnuForm.ButCancel[1],ButtonConstant.MouseLeft);
-                   LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror,inn, ModeBranch, WindowsAis3.DataNotFound);
-                   break;
-               }
-               if (AutoItX.WinExists(WindowsAis3.Text, WindowsAis3.UpdateDataSource) == 1)
-               {
-                   AutoItX.Send(ButtonConstant.CtrlA);
-                   AutoItX.ControlClick(WindowsAis3.Text, SnuForm.ButNext[0], SnuForm.ButNext[1],ButtonConstant.MouseLeft);
-                   AutoItX.WinActivate(WindowsAis3.AisNalog3, WindowsAis3.Text);
-                   AutoItX.ControlClick(WindowsAis3.AisNalog3, SnuForm.ButCreateZ[0], SnuForm.ButCreateZ[1],ButtonConstant.MouseLeft);
-                   AutoItX.WinWait(SnuText.DialogWin);
-                   AutoItX.WinActivate(SnuText.DialogWin);
-                   AutoItX.Send(ButtonConstant.Enter);
-                   LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok,inn,"РћС‚СЂР°Р±РѕС‚Р°Р»Рё");
-                   break;
-               }
-           }
-       }
+        private const string ModeBranchUser = @"Физические лица/1.08. Сообщение ФЛ об объектах собственности\Уточнение сведений о ФЛ";
 
         /// <summary>
-        /// РЎРѕР·РґР°РЅРЅС‹Р№ Р±Р»РѕРє РґР»СЏ Р°РІС‚РѕРјР°С‚РёР·Р°С†РёРё РЈС‚РѕС‡РЅРµРЅРёРµ СЃРІРµРґРµРЅРёР№ Рѕ Р¤Р› РћС‚РґРµР» СЂРµРіРёСЃС‚СЂР°С†РёРё
-        /// РџРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёРµ Р·Р°РґР°РЅРёСЏ
-        /// Р’РµС‚РєР° Р¤РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°/1.08. РЎРѕРѕР±С‰РµРЅРёРµ Р¤Р› РѕР± РѕР±СЉРµРєС‚Р°С… СЃРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚Рё\РЈС‚РѕС‡РЅРµРЅРёРµ СЃРІРµРґРµРЅРёР№ Рѕ Р¤Р›
+        /// Корректировка сведений о правах
         /// </summary>
-        /// <param name="pathjurnalerror">РџСѓС‚СЊ Рє Р¶СѓСЂРЅР°Р»Сѓ СЃ РѕС€РёР±РєР°РјРё</param>
-        /// <param name="pathjurnalok">РџСѓС‚СЊ Рє РѕС‚СЂР°Р±РѕС‚Р°РЅС‹Рј Р·Р°РїРёСЃСЏРј</param>
-        /// <param name="usefilter">РџРµСЂРµРєР»СЋС‡Р°С‚РµР»СЊ РµСЃР»Рё Р»РѕР¶СЊ РґРµР»Р°РµРј РєР°Рє РѕР±С‹С‡РЅРѕ РµСЃР»Рё РїСЂР°РІРґР° С‚Рѕ РЅР° РІС‚РѕСЂСѓСЋ СЃС‚СЂРѕРєСѓ</param>
-        public void Click2(string pathjurnalerror, string pathjurnalok,bool usefilter)
-       {
-           try
-           {
+        private const string Okp4Pravo = @"Налоговое администрирование\Собственность\02. Доопределение данных об объектах собственности\14. КС – Корректировка сведений о правах не зарегистрированных  в органах Росреестра и правах наследования на ОН и ЗУ";
+        private const string ModeBranchUserRegZemla = @"Налоговое администрирование\Собственность\05. Взаимодействие с органами Росреестра – Земельные участки\03. Обработка ФПД  от РР - ФЛ - Анализ результатов обработки документов";
+        /// <summary>
+        /// Создание заявки на формирования СНУ
+        /// </summary>
+        private const string SnuZayvki = @"Налоговое администрирование\Физические лица\1.06. Формирование и печать CНУ\1. Создание заявки на формирование СНУ для единичной печати";
+        /// <summary>
+        /// Печать уведомлений
+        /// </summary>
+        private const string PrintBranch = @"Налоговое администрирование\Физические лица\1.06. Формирование и печать CНУ\2. Просмотр СНУ";
+        /// <summary>
+        /// Актуальный статус
+        /// </summary>
+        private const string ActualStatus = @"Налоговое администрирование\ПОН ИЛ\1. ПОН ИЛ (ПЭ). Организации и физические лица, внесенные в ПОН ИЛ\2.01. ФЛ. Актуальное состояние";
+        /// <summary>
+        /// Техническое исправление
+        /// </summary>
+        private const string TechnicalUpdate = @"Налоговое администрирование\Централизованный учет налогоплательщиков\15.02.02. Служебные. Технические исправления\ Физические лица\15.02.02.01. Служебные. Технические исправления. Физические лица";
+        /// <summary>
+        /// Росреестр Визуальная идентификация
+        /// </summary>
+        private const string FaceRosreestr = @"Налоговое администрирование\Собственность\14. Работа с лицами – правообладателями объектов, по которым требуется визуальная обработка";
 
+        private const string Usn = @"Общие задания\Контрольная работа налоговые проверки\Применение упрощенной системы налогооблажения\Применение УСН";
+        /// <summary>
+        /// Созданный блок для автоматизации Создание заявки на формирование СНУ ФЛ
+        /// Ветка Налоговое администрирование\Физические лица\1.06. Формирование и печать CНУ\1. Создание заявки на формирование СНУ для единичной печати
+        /// </summary>
+        public void Click1(string pathjurnalerror, string pathjurnalok, string inn)
+        {
             while (true)
             {
                 WindowsAis3 win = new WindowsAis3();
-                if (usefilter)
-                {
-                    win.ControlGetPos1(WindowsAis3.GridMain[0], WindowsAis3.GridMain[1], WindowsAis3.GridMain[2]);
-                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 55,2);
-                    AutoItX.WinWait(WindowsAis3.Text, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFid, 30);
-                }
-                else
-                {
-                    win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
-                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 355, win.WindowsAis.Y + win.Y1 + 80);
-                    AutoItX.WinWait(WindowsAis3.Text, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFid, 30);
-                }
-                if (AutoItX.WinExists(WindowsAis3.Text, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFid) == 1)
+                win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 180, win.WindowsAis.Y + win.Y1 + 120);
+                AutoItX.WinWait(WindowsAis3.Text, WindowsAis3.WinWait, 3);
+                if (AutoItX.WinExists(WindowsAis3.Text, WindowsAis3.WinWait) == 1)
                 {
                     break;
                 }
-
             }
-            var fid = ReadWindow.Read.Reades.ReadForm(Mode.Reg.Yvedomlenie.Yvedomlenia.FidText);
+            AutoItX.Sleep(1000);
+            AutoItX.WinActivate(WindowsAis3.Text, WindowsAis3.WinWait);
+            AutoItX.ClipPut(inn);
+            AutoItX.Send(ButtonConstant.Down2);
+            AutoItX.Send(ButtonConstant.Right5);
+            AutoItX.Send(ButtonConstant.Enter);
+            AutoItX.Send(ButtonConstant.CtrlV);
+            AutoItX.ControlClick(WindowsAis3.Text, SnuForm.ButUpdate[0], SnuForm.ButUpdate[1], ButtonConstant.MouseLeft);
+            AutoItX.Sleep(3000);
             while (true)
             {
-                AutoItX.ControlClick(WindowsAis3.Text, Mode.Reg.Yvedomlenie.Yvedomlenia.Visual[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Visual[1], ButtonConstant.MouseLeft);
-                AutoItX.WinWait(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.UpdateText, 10);
-                if (AutoItX.WinExists(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.UpdateText) == 1)
+                if (AutoItX.WinExists(WindowsAis3.Text, WindowsAis3.DataNotFound) == 1)
                 {
+                    AutoItX.ControlClick(WindowsAis3.Text, SnuForm.ButCancel[0], SnuForm.ButCancel[1], ButtonConstant.MouseLeft);
+                    LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, inn, ModeBranch, WindowsAis3.DataNotFound);
                     break;
                 }
-            }
-            AutoItX.Sleep(2000);
-            ClikcCheker.Cheker.Chekerfid();
-            AutoItX.ControlClick(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, Mode.Reg.Yvedomlenie.Yvedomlenia.Update[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Update[1], ButtonConstant.MouseLeft);
-            while (true)
-            {
-                if (AutoItX.WinExists(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, WindowsAis3.DataNotFound) == 1)
+                if (AutoItX.WinExists(WindowsAis3.Text, WindowsAis3.UpdateDataSource) == 1)
                 {
-                      AutoItX.ControlClick(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, Mode.Reg.Yvedomlenie.Yvedomlenia.Select[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Select[1], ButtonConstant.MouseLeft);
-                      LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, fid, ModeBranchUser, WindowsAis3.DataNotFound);
-                      AutoItX.ControlClick(WindowsAis3.Text, Mode.Reg.Yvedomlenie.Yvedomlenia.Close[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Close[1], ButtonConstant.MouseLeft);
-                      break;
-                }
-                if (AutoItX.WinExists(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFidUser) == 1)
-                {
-                    AutoItX.ControlClick(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, Mode.Reg.Yvedomlenie.Yvedomlenia.Select[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Select[1], ButtonConstant.MouseLeft);
-                    AutoItX.MouseWheel(ButtonConstant.Wheel,2);
-                    AutoItX.ControlClick(WindowsAis3.Text, Mode.Reg.Yvedomlenie.Yvedomlenia.ComboboxSelect[0], Mode.Reg.Yvedomlenie.Yvedomlenia.ComboboxSelect[1], ButtonConstant.MouseLeft);
-                    AutoItX.Send(ButtonConstant.Down2);
+                    AutoItX.Send(ButtonConstant.CtrlA);
+                    AutoItX.ControlClick(WindowsAis3.Text, SnuForm.ButNext[0], SnuForm.ButNext[1], ButtonConstant.MouseLeft);
+                    AutoItX.WinActivate(WindowsAis3.AisNalog3, WindowsAis3.Text);
+                    AutoItX.ControlClick(WindowsAis3.AisNalog3, SnuForm.ButCreateZ[0], SnuForm.ButCreateZ[1], ButtonConstant.MouseLeft);
+                    AutoItX.WinWait(SnuText.DialogWin);
+                    AutoItX.WinActivate(SnuText.DialogWin);
                     AutoItX.Send(ButtonConstant.Enter);
-                    AutoItX.ControlClick(WindowsAis3.Text, Mode.Reg.Yvedomlenie.Yvedomlenia.Save[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Save[1], ButtonConstant.MouseLeft);
-                    AutoItX.Sleep(500);
-                    AutoItX.Send(ButtonConstant.Enter);
-                    AutoItX.ControlClick(WindowsAis3.Text, Mode.Reg.Yvedomlenie.Yvedomlenia.Close[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Close[1], ButtonConstant.MouseLeft);
-                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, fid, "РћС‚СЂР°Р±РѕС‚Р°Р»Рё");
+                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, inn, "Отработали");
                     break;
                 }
-            }
-
-            }
-            catch (Exception e)
-            {
-                LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, "РћС€РёР±РєР° РёСЃРєР»СЋС‡РµРЅРёСЏ РЅР°РґРѕ СЃРјРѕС‚СЂРµС‚СЊ!!!", ModeBranchUser, e.Message);
             }
         }
 
         /// <summary>
-        /// РЎРѕР·РґР°РЅРЅС‹Р№ Р±Р»РѕРє РґР»СЏ Р°РІС‚РѕРјР°С‚РёР·Р°С†РёРё РЈС‚РѕС‡РЅРµРЅРёРµ СЃРІРµРґРµРЅРёР№ Рѕ Р¤Р› РћС‚РґРµР» СЂРµРіРёСЃС‚СЂР°С†РёРё
-        /// РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\РЎРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚СЊ\05. Р’Р·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ СЃ РѕСЂРіР°РЅР°РјРё Р РѕСЃСЂРµРµСЃС‚СЂР° вЂ“ Р—РµРјРµР»СЊРЅС‹Рµ СѓС‡Р°СЃС‚РєРё\03. РћР±СЂР°Р±РѕС‚РєР° Р¤РџР”  РѕС‚ Р Р  - Р¤Р› - РђРЅР°Р»РёР· СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РѕР±СЂР°Р±РѕС‚РєРё РґРѕРєСѓРјРµРЅС‚РѕРІ
-        /// Р° С‚Р°Рє-Р¶Рµ РґР°РЅРЅР°СЏ С„СѓРЅРєС†РёСЏ СЂР°Р±РѕС‚Р°РµС‚ РґР»СЏ РІРµС‚РєРё
-        /// РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\РЎРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚СЊ\06. Р’Р·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ СЃ РѕСЂРіР°РЅР°РјРё Р РѕСЃСЂРµРµСЃС‚СЂР° вЂ“ РћР±СЉРµРєС‚С‹ РЅРµРґРІРёР¶РёРјРѕСЃС‚Рё\03. РћР±СЂР°Р±РѕС‚РєР° Р¤РџР”  РѕС‚ Р Р  - Р¤Р› - РђРЅР°Р»РёР· СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РѕР±СЂР°Р±РѕС‚РєРё РґРѕРєСѓРјРµРЅС‚РѕРІ
+        /// Созданный блок для автоматизации Уточнение сведений о ФЛ Отдел регистрации
+        /// Пользовательские задания
+        /// Ветка Физические лица/1.08. Сообщение ФЛ об объектах собственности\Уточнение сведений о ФЛ
         /// </summary>
-        /// <param name="pathjurnalerror">Р–СѓСЂРЅР°Р» РѕС€РёР±РѕРє</param>
-        /// <param name="pathjurnalok">Р–СѓСЂРЅР°Р» СЃРґРµР»Р°РЅС‹С…</param>
-        /// <param name="fpd">Р¤РџР” Р·РЅР°С‡РµРЅРёРµ</param>
+        /// <param name="pathjurnalerror">Путь к журналу с ошибками</param>
+        /// <param name="pathjurnalok">Путь к отработаным записям</param>
+        /// <param name="usefilter">Переключатель если ложь делаем как обычно если правда то на вторую строку</param>
+        public void Click2(string pathjurnalerror, string pathjurnalok, bool usefilter)
+        {
+            try
+            {
+
+                while (true)
+                {
+                    WindowsAis3 win = new WindowsAis3();
+                    if (usefilter)
+                    {
+                        win.ControlGetPos1(WindowsAis3.GridMain[0], WindowsAis3.GridMain[1], WindowsAis3.GridMain[2]);
+                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 55, 2);
+                        AutoItX.WinWait(WindowsAis3.Text, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFid, 30);
+                    }
+                    else
+                    {
+                        win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
+                        AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 355, win.WindowsAis.Y + win.Y1 + 80);
+                        AutoItX.WinWait(WindowsAis3.Text, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFid, 30);
+                    }
+                    if (AutoItX.WinExists(WindowsAis3.Text, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFid) == 1)
+                    {
+                        break;
+                    }
+
+                }
+                var fid = ReadWindow.Read.Reades.ReadForm(Mode.Reg.Yvedomlenie.Yvedomlenia.FidText);
+                while (true)
+                {
+                    AutoItX.ControlClick(WindowsAis3.Text, Mode.Reg.Yvedomlenie.Yvedomlenia.Visual[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Visual[1], ButtonConstant.MouseLeft);
+                    AutoItX.WinWait(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.UpdateText, 10);
+                    if (AutoItX.WinExists(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.UpdateText) == 1)
+                    {
+                        break;
+                    }
+                }
+                AutoItX.Sleep(2000);
+                ClikcCheker.Cheker.Chekerfid();
+                AutoItX.ControlClick(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, Mode.Reg.Yvedomlenie.Yvedomlenia.Update[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Update[1], ButtonConstant.MouseLeft);
+                while (true)
+                {
+                    if (AutoItX.WinExists(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, WindowsAis3.DataNotFound) == 1)
+                    {
+                        AutoItX.ControlClick(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, Mode.Reg.Yvedomlenie.Yvedomlenia.Select[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Select[1], ButtonConstant.MouseLeft);
+                        LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, fid, ModeBranchUser, WindowsAis3.DataNotFound);
+                        AutoItX.ControlClick(WindowsAis3.Text, Mode.Reg.Yvedomlenie.Yvedomlenia.Close[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Close[1], ButtonConstant.MouseLeft);
+                        break;
+                    }
+                    if (AutoItX.WinExists(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.TextFidUser) == 1)
+                    {
+                        AutoItX.ControlClick(Window.Otdel.Reg.Yvedomlenie.TextYvedomlenie.VisualVindow, Mode.Reg.Yvedomlenie.Yvedomlenia.Select[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Select[1], ButtonConstant.MouseLeft);
+                        AutoItX.MouseWheel(ButtonConstant.Wheel, 2);
+                        AutoItX.ControlClick(WindowsAis3.Text, Mode.Reg.Yvedomlenie.Yvedomlenia.ComboboxSelect[0], Mode.Reg.Yvedomlenie.Yvedomlenia.ComboboxSelect[1], ButtonConstant.MouseLeft);
+                        AutoItX.Send(ButtonConstant.Down2);
+                        AutoItX.Send(ButtonConstant.Enter);
+                        AutoItX.ControlClick(WindowsAis3.Text, Mode.Reg.Yvedomlenie.Yvedomlenia.Save[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Save[1], ButtonConstant.MouseLeft);
+                        AutoItX.Sleep(500);
+                        AutoItX.Send(ButtonConstant.Enter);
+                        AutoItX.ControlClick(WindowsAis3.Text, Mode.Reg.Yvedomlenie.Yvedomlenia.Close[0], Mode.Reg.Yvedomlenie.Yvedomlenia.Close[1], ButtonConstant.MouseLeft);
+                        LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, fid, "Отработали");
+                        break;
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, "Ошибка исключения надо смотреть!!!", ModeBranchUser, e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Созданный блок для автоматизации Уточнение сведений о ФЛ Отдел регистрации
+        /// Налоговое администрирование\Собственность\05. Взаимодействие с органами Росреестра – Земельные участки\03. Обработка ФПД  от РР - ФЛ - Анализ результатов обработки документов
+        /// а так-же данная функция работает для ветки
+        /// Налоговое администрирование\Собственность\06. Взаимодействие с органами Росреестра – Объекты недвижимости\03. Обработка ФПД  от РР - ФЛ - Анализ результатов обработки документов
+        /// </summary>
+        /// <param name="pathjurnalerror">Журнал ошибок</param>
+        /// <param name="pathjurnalok">Журнал сделаных</param>
+        /// <param name="fpd">ФПД значение</param>
         public void Click3(string fpd, string pathjurnalerror, string pathjurnalok)
         {
             string copyfio = null;
@@ -241,7 +240,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                             AutoItX.Send(ButtonConstant.F3);
                             break;
                         }
-                        if (id.Equals(FpdText.TextUslovie)||id.Equals(FpdText.Text4)||id.Equals(FpdText.Text11))  //Р”Р»СЏ С‚СЂР°РЅСЃРїРѕСЂС‚Р° РЅСѓР¶РЅРѕ СѓСЃР»РѕРІРёРµ РєРѕС‚РѕСЂРѕРµ РјС‹ РёС‰РµРј !!!!!!!!!!!!!!!!
+                        if (id.Equals(FpdText.TextUslovie) || id.Equals(FpdText.Text4) || id.Equals(FpdText.Text11))  //Для транспорта нужно условие которое мы ищем !!!!!!!!!!!!!!!!
                         {
                             while (true)
                             {
@@ -280,7 +279,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                                                 {
                                                     AutoItX.WinActivate(FpdText.TextVnimanie, FpdText.TextOk);
                                                     AutoItX.Send(ButtonConstant.Enter);
-                                                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, fpd, "РћС‚СЂР°Р±РѕС‚Р°Р»Рё");
+                                                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, fpd, "Отработали");
                                                     AutoItX.MouseClick(ButtonConstant.MouseLeft, fpdtext.WinCoordinat.X + fpdtext.WinCoordinat.Width - 15, fpdtext.WinCoordinat.Y + 160);
                                                     break;
                                                 }
@@ -290,7 +289,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                                         }
                                         if (AutoItX.WinExists(WindowsAis3.Text, WindowsAis3.DataNotFound) == 1)
                                         {
-                                            LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, fpd +"/"+ fio, "Р’РёС‚СЂРёРЅР° Р¦РЈРќ РїСЂРё РІС‹Р±РѕСЂРµ РїР»Р°С‚РµР»СЊС‰РёРєР°", WindowsAis3.DataNotFound);
+                                            LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, fpd + "/" + fio, "Витрина ЦУН при выборе плательщика", WindowsAis3.DataNotFound);
                                             AutoItX.MouseClick(ButtonConstant.MouseLeft, fpdtext.WinCoordinat.X + fpdtext.WinCoordinat.Width - 15, fpdtext.WinCoordinat.Y + 160);
                                             break;
                                         }
@@ -308,7 +307,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                         }
                         else
                         {
-                            LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, fpd+"/"+fio, ModeBranchUserRegZemla, id);
+                            LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, fpd + "/" + fio, ModeBranchUserRegZemla, id);
                         }
                         AutoItX.Sleep(1000);
                         AutoItX.ControlFocus(WindowsAis3.AisNalog3, WindowsAis3.Text, WindowsAis3.GridWinAis3);
@@ -324,19 +323,19 @@ namespace LibaryAIS3Windows.ButtonsClikcs
 
 
         /// <summary>
-        /// РђС‚РѕРјР°С‚РёР·Р°С†РёСЏ РІРµС‚РєРё 
-        /// РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\Р¤РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°\1.06. Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ Рё РїРµС‡Р°С‚СЊ CРќРЈ\1. РЎРѕР·РґР°РЅРёРµ Р·Р°СЏРІРєРё РЅР° С„РѕСЂРјРёСЂРѕРІР°РЅРёРµ РЎРќРЈ РґР»СЏ РµРґРёРЅРёС‡РЅРѕР№ РїРµС‡Р°С‚Рё
+        /// Атоматизация ветки 
+        /// Налоговое администрирование\Физические лица\1.06. Формирование и печать CНУ\1. Создание заявки на формирование СНУ для единичной печати
         /// </summary>
-        /// <param name="pathjurnalerror">РџСѓС‚СЊ Рє Р¶СѓСЂРЅР°Р»Сѓ СЃ РѕС€РёР±РєР°РјРё</param>
-        /// <param name="pathjurnalok">РџСѓС‚СЊ Рє РѕС‚СЂР°Р±РѕС‚Р°РЅС‹Рј РРЅРЅ</param>
-        /// <param name="massinn">РњР°СЃСЃРѕРІС‹Рµ РРќРќ</param>
+        /// <param name="pathjurnalerror">Путь к журналу с ошибками</param>
+        /// <param name="pathjurnalok">Путь к отработаным Инн</param>
+        /// <param name="massinn">Массовые ИНН</param>
         public void Click4(string pathjurnalerror, string pathjurnalok, string massinn)
         {
             while (true)
             {
                 AutoItX.WinActivate(WindowsAis3.AisNalog3);
                 AutoItX.ControlClick(WindowsAis3.AisNalog3, SnuForm.ButSrtnal[0], SnuForm.ButSrtnal[1], ButtonConstant.MouseLeft);
-                AutoItX.WinWait(WindowsAis3.Text,WindowsAis3.WinWait, 5);
+                AutoItX.WinWait(WindowsAis3.Text, WindowsAis3.WinWait, 5);
                 if (AutoItX.WinExists(WindowsAis3.Text, WindowsAis3.WinWait) == 1)
                 {
                     AutoItX.WinActivate(WindowsAis3.Text, WindowsAis3.WinWait);
@@ -354,7 +353,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             AutoItX.ControlClick(WindowsAis3.Text, SnuForm.ButNext[0], SnuForm.ButNext[1], ButtonConstant.MouseLeft);
             AutoItX.Sleep(500);
             AutoItX.WinActivate(WindowsAis3.AisNalog3);
-            AutoItX.ControlClick(WindowsAis3.AisNalog3, SnuForm.ButClose[0], SnuForm.ButClose[1],ButtonConstant.MouseLeft);
+            AutoItX.ControlClick(WindowsAis3.AisNalog3, SnuForm.ButClose[0], SnuForm.ButClose[1], ButtonConstant.MouseLeft);
             AutoItX.ControlClick(WindowsAis3.AisNalog3, SnuForm.ButCreateZ[0], SnuForm.ButCreateZ[1], ButtonConstant.MouseLeft);
             AutoItX.WinWait(SnuText.DialogWin, SnuText.Snu, 10);
             if (AutoItX.WinExists(SnuText.DialogWin, SnuText.Snu) != 0)
@@ -365,16 +364,16 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             if (AutoItX.WinExists(WindowsAis3.Text, SnuText.Null) != 0)
             {
                 AutoItX.Send(ButtonConstant.Enter);
-                LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, massinn, SnuZayvki, "РЎРїРёСЃРѕРє РЅР°Р»РѕРіРѕРїР»Р°С‚РµР»СЊС‰РёРєРѕРІ РїСѓСЃС‚!!!");
+                LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, massinn, SnuZayvki, "Список налогоплательщиков пуст!!!");
             }
         }
         /// <summary>
-        /// РђС‚РѕРјР°С‚РёР·Р°С†РёСЏ РІРµС‚РєРё 
-        /// РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\РЎРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚СЊ\07. Р’Р·Р°РёРјРѕРґРµР№СЃС‚РІРёРµ СЃ РѕСЂРіР°РЅР°РјРё Р“РР‘Р”Р”, Р“РѕСЃС‚РµС…РЅР°РґР·РѕСЂР° вЂ“ РќР°Р·РµРјРЅС‹Рµ РўРЎ
+        /// Атоматизация ветки 
+        /// Налоговое администрирование\Собственность\07. Взаимодействие с органами ГИБДД, Гостехнадзора – Наземные ТС
         /// </summary>
-        /// <param name="pathjurnalerror">РџСѓС‚СЊ Рє Р¶СѓСЂРЅР°Р»Сѓ СЃ РѕС€РёР±РєР°РјРё</param>
-        /// <param name="pathjurnalok">РџСѓС‚СЊ Рє Р¶СѓСЂРЅР°Р»Сѓ РѕС‚СЂР°Р±РѕС‚Р°РЅС‹С…</param>
-        /// <param name="fid">Р—РЅР°С‡РµРЅРёРµ Р¤РР”</param>
+        /// <param name="pathjurnalerror">Путь к журналу с ошибками</param>
+        /// <param name="pathjurnalok">Путь к журналу отработаных</param>
+        /// <param name="fid">Значение ФИД</param>
         public void Click5(string pathjurnalerror, string pathjurnalok, string fid)
         {
             WindowsAis3 win = new WindowsAis3();
@@ -410,9 +409,9 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                         }
                         if (AutoItX.WinExists(PravoZorI.WinRemoveSved) == 1)
                         {
-                            AutoItX.ControlSend(PravoZorI.WinRemoveSved, PravoZorI.Exlusive, Pravo.EditDate,DateTime.Now.ToString("d"));
+                            AutoItX.ControlSend(PravoZorI.WinRemoveSved, PravoZorI.Exlusive, Pravo.EditDate, DateTime.Now.ToString("d"));
                             AutoItX.ControlFocus(PravoZorI.WinRemoveSved, Pravo.EditNum[0], Pravo.EditNum[1]);
-                            AutoItX.Send(PravoZorI.EditString,1);
+                            AutoItX.Send(PravoZorI.EditString, 1);
                             AutoItX.ControlClick(PravoZorI.WinRemoveSved, Pravo.ComboboxEdit[0], Pravo.ComboboxEdit[1], ButtonConstant.MouseLeft);
                             AutoItX.Send(ButtonConstant.Down3);
                             AutoItX.Send(ButtonConstant.Enter);
@@ -432,7 +431,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                                     AutoItX.Sleep(1000);
                                     AutoItX.WinActivate(PravoZorI.WinTitle);
                                     AutoItX.Send(ButtonConstant.Enter);
-                                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, fid, "РћС‚СЂР°Р±РѕС‚Р°Р»Рё С„РёРґ РїСЂР°РІР°");
+                                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, fid, "Отработали фид права");
                                     AutoItX.Send(ButtonConstant.F3);
                                     break;
                                 }
@@ -446,10 +445,10 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         }
 
         ///  <summary>
-        /// РђС‚РѕРјР°С‚РёР·Р°С†РёСЏ РІРµС‚РєРё 
-        /// РћР±С‰РёРµ Р·Р°РґР°РЅРёСЏ\РЈСЂРµРіСѓР»РёСЂРѕРІР°РЅРёРµ Р·Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚Рё\05.09 Р СѓС‡РЅРѕРµ С„РѕСЂРјРёСЂРѕРІР°РЅРёРµ СЂРµС€РµРЅРёР№ РЅР° Р·Р°С‡РµС‚/РІРѕР·РІСЂР°С‚/РІРѕР·РІСЂР°С‚ РїСЂРѕС†РµРЅС‚РѕРІ\05.09 РџРѕРґРїРёСЃСЊ РїСЂРѕРµРєС‚РѕРІ СЂРµС€РµРЅРёР№ РЅР° Р·Р°С‡РµС‚/РІРѕР·РІСЂР°С‚/РІРѕР·РІСЂР°С‚ РїСЂРѕС†РµРЅС‚РѕРІ\РџРѕРґРїРёСЃСЊ РЅР°С‡Р°Р»СЊРЅРёРєРѕРј Р°РЅР°Р»РёС‚РёС‡РµСЃРєРѕРіРѕ РѕС‚РґРµР»Р°
-        /// Р° С‚Р°РєР¶Рµ РІРµС‚РєР° 
-        /// РћР±С‰РёРµ Р·Р°РґР°РЅРёСЏ\РЈСЂРµРіСѓР»РёСЂРѕРІР°РЅРёРµ Р·Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚Рё\05.09.01(06.01) Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ Рѕ С„Р°РєС‚Рµ РёР·Р»РёС€РЅРµР№ СѓРїР»Р°С‚С‹ (РёР·Р»РёС€РЅРµРіРѕ РІР·С‹СЃРєР°РЅРёСЏ)\05.09.01(06.01) Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ РѕР± РёР·Р»РёС€РЅРµР№ СѓРїР»Р°С‚Рµ (РІР·С‹СЃРєР°РЅРёРё)\05.09.01(06.01) Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ СЂРµС€РµРЅРёР№ Рѕ Р·Р°С‡РµС‚Рµ РїРѕ РёРЅРёС†РёР°С‚РёРІРµ РќРћ\РџРѕРґРїРёСЃСЊ РЅР°С‡Р°Р»СЊРЅРёРєРѕРј Р°РЅР°Р»РёС‚РёС‡РµСЃРєРѕРіРѕ РѕС‚РґРµР»Р°
+        /// Атоматизация ветки 
+        /// Общие задания\Урегулирование задолженности\05.09 Ручное формирование решений на зачет/возврат/возврат процентов\05.09 Подпись проектов решений на зачет/возврат/возврат процентов\Подпись начальником аналитического отдела
+        /// а также ветка 
+        /// Общие задания\Урегулирование задолженности\05.09.01(06.01) Формирование сообщения о факте излишней уплаты (излишнего взыскания)\05.09.01(06.01) Формирование сообщения об излишней уплате (взыскании)\05.09.01(06.01) Формирование решений о зачете по инициативе НО\Подпись начальником аналитического отдела
         /// </summary>
         public string Click6()
         {
@@ -470,7 +469,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                 }
                 i++;
             }
-            //РџРѕРґРїРёСЃС‹РІР°РµРј РїСЂРѕРІРµСЂСЏРµРј РµСЃР»Рё РћРє СЃРѕС…СЂР°РЅСЏРµРј
+            //Подписываем проверяем если Ок сохраняем
             var countdocstring = ReadWindow.Read.Reades.ReadFormNotActiv(Mode.Analitic.Task.TaskZn.Signature);
             while (true)
             {
@@ -500,17 +499,17 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         }
 
         /// <summary>
-        /// РџРµС‡Р°С‚СЊ СѓРІРµРґРѕРјР»РµРЅРёР№ СЃ Р°РЅР°Р»РёР·РѕРј РІ Р›Рљ2
-        /// Р’РµС‚РєР° : РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\Р¤РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°\1.06. Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ Рё РїРµС‡Р°С‚СЊ CРќРЈ\2. РџСЂРѕСЃРјРѕС‚СЂ РЎРќРЈ
+        /// Печать уведомлений с анализом в ЛК2
+        /// Ветка : Налоговое администрирование\Физические лица\1.06. Формирование и печать CНУ\2. Просмотр СНУ
         /// </summary>
-        /// <param name="date">Р”Р°С‚Р° СѓРІРµРґРѕРјР»РµРЅРёСЏ</param>
-        /// <param name="pathjurnalerror">РџСѓС‚СЊ Рє Р¶СѓСЂРЅР°Р»Сѓ СЃ РѕС€РёР±РєР°РјРё</param>
-        /// <param name="pathjurnalok">Р Р°СЃРїРµС‡Р°С‚Р°РЅРЅС‹Рµ СѓРІРµРґРѕРјР»РµРЅРёСЏ</param>
-        /// <param name="inn">РЎРїРёСЃРѕРє РРќРќ</param>
-        /// <param name="conectionstring">РЎС‚СЂРѕРєР° СЃРѕРµРґРёРЅРµРЅРёСЏ СЃ Р‘Р”</param>
-        /// <param name="ischec">РџСЂРѕСЃС‚Р°РЅРѕРІРєР° РґР°С‚С‹ true ,false</param>
-        /// <param name="islk2">РџСЂРѕРІРµСЂСЏС‚СЊ Р»Рё Р›Рљ2 РёР»Рё РЅРµС‚?</param>
-        public void Click7(DateTime date, string pathjurnalerror, string pathjurnalok, string inn,string conectionstring,bool ischec, bool islk2)
+        /// <param name="date">Дата уведомления</param>
+        /// <param name="pathjurnalerror">Путь к журналу с ошибками</param>
+        /// <param name="pathjurnalok">Распечатанные уведомления</param>
+        /// <param name="inn">Список ИНН</param>
+        /// <param name="conectionstring">Строка соединения с БД</param>
+        /// <param name="ischec">Простановка даты true ,false</param>
+        /// <param name="islk2">Проверять ли ЛК2 или нет?</param>
+        public void Click7(DateTime date, string pathjurnalerror, string pathjurnalok, string inn, string conectionstring, bool ischec, bool islk2)
         {
             var listinn = new List<string>();
             string copyinn = null;
@@ -527,24 +526,24 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                 AutoItX.Send(ButtonConstant.CtrlV);
             }
             win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70,win.WindowsAis.Y + win.Y1 + 35);
-           AutoItX.ClipPut(inn);
-           AutoItX.Send(ButtonConstant.Down20);
-           AutoItX.Send(ButtonConstant.Right5);
-           AutoItX.Send(ButtonConstant.Enter);
-           AutoItX.Send(ButtonConstant.CtrlV);
-           AutoItX.Send(ButtonConstant.F5);
-           while (true)
-           {
-               if (AutoItX.WinExists(WindowsAis3.Text, WindowsAis3.DataNotFound) == 1)
-               {
-                   AutoItX.Send(ButtonConstant.F3);
-                   LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, inn, PrintBranch, WindowsAis3.DataNotFound);
-                   break;
-               }
-               if (AutoItX.WinExists(WindowsAis3.AisNalog3, PrintSnu.Inn) == 1)
-               {
-                   string innais = ReadWindow.Read.Reades.ReadForm(Mode.Okp4.PrintSnu.PrintSnuControl.InnText);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 35);
+            AutoItX.ClipPut(inn);
+            AutoItX.Send(ButtonConstant.Down20);
+            AutoItX.Send(ButtonConstant.Right5);
+            AutoItX.Send(ButtonConstant.Enter);
+            AutoItX.Send(ButtonConstant.CtrlV);
+            AutoItX.Send(ButtonConstant.F5);
+            while (true)
+            {
+                if (AutoItX.WinExists(WindowsAis3.Text, WindowsAis3.DataNotFound) == 1)
+                {
+                    AutoItX.Send(ButtonConstant.F3);
+                    LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, inn, PrintBranch, WindowsAis3.DataNotFound);
+                    break;
+                }
+                if (AutoItX.WinExists(WindowsAis3.AisNalog3, PrintSnu.Inn) == 1)
+                {
+                    string innais = ReadWindow.Read.Reades.ReadForm(Mode.Okp4.PrintSnu.PrintSnuControl.InnText);
                     if (innais.Equals(copyinn))
                     {
                         LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, PublicFunc.NotArray(listinn, inn), PrintBranch, PrintSnu.InnNotSnu);
@@ -552,8 +551,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                         AutoItX.Send(ButtonConstant.F3);
                         break;
                     }
-                   if (islk2)
-                   {
+                    if (islk2)
+                    {
                         Lk2 lk2 = new Lk2();
                         if (lk2.SqlLk(conectionstring, innais))
                         {
@@ -575,8 +574,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                             }
                         }
                     }
-                   else
-                   {
+                    else
+                    {
                         AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 180, win.WindowsAis.Y + 90);
                         AutoItX.WinWait(PrintSnu.ErrorElectronSys[0], PrintSnu.ErrorElectronSys[1], 2);
                         if (AutoItX.WinExists(PrintSnu.ErrorElectronSys[0], PrintSnu.ErrorElectronSys[1]) == 1)
@@ -590,21 +589,21 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                             Process.ProcessLibary.Process("FoxitPhantom.exe", 12000);
                         }
                     }
-                   AutoItX.ControlFocus(Mode.Okp4.PrintSnu.PrintSnuControl.GridText[0], "", Mode.Okp4.PrintSnu.PrintSnuControl.GridText[1]);
-                   AutoItX.Send("{Tab}");
-                   listinn.Add(innais); //Р”РѕР±Р°РІР»РµРЅРёРµ РµР»РµРјРµРЅС‚Р° РІ РјР°СЃСЃРёРІ
-                   copyinn = innais;
+                    AutoItX.ControlFocus(Mode.Okp4.PrintSnu.PrintSnuControl.GridText[0], "", Mode.Okp4.PrintSnu.PrintSnuControl.GridText[1]);
+                    AutoItX.Send("{Tab}");
+                    listinn.Add(innais); //Добавление елемента в массив
+                    copyinn = innais;
                 }
-           }
-       }
+            }
+        }
         /// <summary>
-        /// РђРІС‚РѕРјР°С‚РёР·Р°С†РёСЏ РІРµС‚РєРё 
-        /// РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\РџРћРќ РР›\1. РџРћРќ РР› (РџР­). РћСЂРіР°РЅРёР·Р°С†РёРё Рё С„РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°, РІРЅРµСЃРµРЅРЅС‹Рµ РІ РџРћРќ РР›\2.01. Р¤Р›. РђРєС‚СѓР°Р»СЊРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
+        /// Автоматизация ветки 
+        /// Налоговое администрирование\ПОН ИЛ\1. ПОН ИЛ (ПЭ). Организации и физические лица, внесенные в ПОН ИЛ\2.01. ФЛ. Актуальное состояние
         /// </summary>
-        /// <param name="pathjurnalerror">РџСѓС‚СЊ Рє Р¶СѓСЂРЅР°Р»Сѓ СЃ РѕС€РёР±РєР°РјРё</param>
-        /// <param name="pathjurnalok">РџСѓС‚СЊ Рє РѕС‚СЂР°Р±РѕС‚Р°РЅС‹Рј</param>
-        /// <param name="fid">Р¤РёРґ Р·РЅР°С‡РµРЅРёСЏ</param>
-       public void Click8(string pathjurnalerror, string pathjurnalok, string fid)
+        /// <param name="pathjurnalerror">Путь к журналу с ошибками</param>
+        /// <param name="pathjurnalok">Путь к отработаным</param>
+        /// <param name="fid">Фид значения</param>
+        public void Click8(string pathjurnalerror, string pathjurnalok, string fid)
         {
             AutoItX.WinActivate(WindowsAis3.AisNalog3);
             ReadWindow.Read.Reades.ClearBuffer();
@@ -687,12 +686,12 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             }
         }
         /// <summary>
-        /// РђРІС‚РѕРјР°С‚РёР·Р°С†РёСЏ РІРµС‚РєРё 
-        /// РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\Р¦РµРЅС‚СЂР°Р»РёР·РѕРІР°РЅРЅС‹Р№ СѓС‡РµС‚ РЅР°Р»РѕРіРѕРїР»Р°С‚РµР»СЊС‰РёРєРѕРІ\15.02.02. РЎР»СѓР¶РµР±РЅС‹Рµ. РўРµС…РЅРёС‡РµСЃРєРёРµ РёСЃРїСЂР°РІР»РµРЅРёСЏ\ Р¤РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°\15.02.02.01. РЎР»СѓР¶РµР±РЅС‹Рµ. РўРµС…РЅРёС‡РµСЃРєРёРµ РёСЃРїСЂР°РІР»РµРЅРёСЏ. Р¤РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°
+        /// Автоматизация ветки 
+        /// Налоговое администрирование\Централизованный учет налогоплательщиков\15.02.02. Служебные. Технические исправления\ Физические лица\15.02.02.01. Служебные. Технические исправления. Физические лица
         /// </summary>
-        /// <param name="pathjurnalerror">РџСѓС‚СЊ Рє Р¶СѓСЂРЅР°Р»Сѓ СЃ РѕС€РёР±РєР°РјРё</param>
-        /// <param name="pathjurnalok">РџСѓС‚СЊ Рє РѕС‚СЂР°Р±РѕС‚Р°РЅС‹Рј</param>
-        /// <param name="fid">Р¤РёРґ Р·РЅР°С‡РµРЅРёСЏ</param>
+        /// <param name="pathjurnalerror">Путь к журналу с ошибками</param>
+        /// <param name="pathjurnalok">Путь к отработаным</param>
+        /// <param name="fid">Фид значения</param>
         public void Click9(string pathjurnalerror, string pathjurnalok, string fid)
         {
             ReadWindow.Read.Reades.ClearBuffer();
@@ -733,13 +732,13 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         }
 
         /// <summary>
-        /// РЈС‚РѕС‡РЅРµРЅРёРµ РїР»Р°С‚РµР¶РµР№
+        /// Уточнение платежей
         /// </summary>
-        /// <param name="pathjurnalerror">РџСѓС‚СЊ Рє Р¶СѓСЂРЅР°Р»Сѓ РѕС€РёР±РѕРє</param>
-        /// <param name="pathjurnalok">РџСѓС‚СЊ Рє Р¶СѓСЂРЅР°Р»Сѓ РћРє</param>
-        /// <param name="logica">Р›РѕРіРёРєР° Р°РЅР°Р»РёР·Р°</param>
-        /// <param name="isTp">РџСЂРѕСЃС‚Р°РІР»СЏС‚СЊ РўРџ</param>
-        public bool Click10(string pathjurnalerror, string pathjurnalok, int logica,bool isTp)
+        /// <param name="pathjurnalerror">Путь к журналу ошибок</param>
+        /// <param name="pathjurnalok">Путь к журналу Ок</param>
+        /// <param name="logica">Логика анализа</param>
+        /// <param name="isTp">Проставлять ТП</param>
+        public bool Click10(string pathjurnalerror, string pathjurnalok, int logica, bool isTp)
         {
             WindowsAis3 win = new WindowsAis3();
             RegxStart regxstart = new RegxStart();
@@ -752,16 +751,16 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, regxstart.RaschDoc, ModeBranchVedomost1, regxstart.Error);
                     break;
                 }
-                if (string.Equals(regxstart.IsMathRegx("(0{6})",regxstart.Oktmo),"000000"))
+                if (string.Equals(regxstart.IsMathRegx("(0{6})", regxstart.Oktmo), "000000"))
                 {
-                    LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, regxstart.RaschDoc, ModeBranchVedomost1, "РќРµ РѕРїРѕР·РЅР°РЅРѕ РћРљРўРњРћ РЅР°РґРѕ РїСЂРѕРІРµСЂСЏС‚СЊ");
+                    LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, regxstart.RaschDoc, ModeBranchVedomost1, "Не опознано ОКТМО надо проверять");
                     AutoItX.Send(ButtonConstant.Tab);
                     break;
                 }
                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 45, win.WindowsAis.Y + 95);
                 AutoItX.WinWait(Vedomost1Win.ViesneniePl[0], Vedomost1Win.ViesneniePl[1]);
                 AutoItX.Send(ButtonConstant.Enter);
-                regxstart.UseNalog(logica,isTp);
+                regxstart.UseNalog(logica, isTp);
                 AutoItX.Sleep(1000);
                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 120, win.WindowsAis.Y + 80);
                 if ((AutoItX.WinWait(Vedomost1Win.Utoch[0], Vedomost1Win.Utoch[1], 1) == 1) || (AutoItX.WinWait(Vedomost1Win.Utoch2[0], Vedomost1Win.Utoch2[0], 1) == 1))
@@ -775,9 +774,9 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     AutoItX.Sleep(500);
                     AutoItX.Send(ButtonConstant.Enter);
                 }
-                AutoItX.WinWaitClose("РђРРЎ РќР°Р»РѕРі-3 РџР РћРњ ", "РџСЂРѕРІРµРґРµРЅРёРµ СѓС‚РѕС‡РЅРµРЅРёСЏ");
+                AutoItX.WinWaitClose("АИС Налог-3 ПРОМ ", "Проведение уточнения");
                 AutoItX.Send(ButtonConstant.Tab);
-                LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, regxstart.RaschDoc + " РџРѕРґСЃС‚Р°РІРёР»Рё РљР‘Рљ: " + regxstart.KbkIfns + " РІРјРµСЃС‚Рѕ " + regxstart.Kbk100, "РЈРґР°Р»РѕСЃСЊ СЃРїР°СЂСЃРёС‚СЊ");
+                LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, regxstart.RaschDoc + " Подставили КБК: " + regxstart.KbkIfns + " вместо " + regxstart.Kbk100, "Удалось спарсить");
                 AutoItX.Sleep(1000);
                 break;
             }
@@ -785,52 +784,52 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         }
 
         /// <summary>
-        /// Р¤СѓРЅРєС†РёСЏ РѕР±СЂР°Р±РѕС‚РєСѓ РјРёРіСЂР°С†РёРё РќРџ
+        /// Функция обработку миграции НП
         /// </summary>
-        /// <param name="isparse">РЎРјРµРЅР° РЅР°РїСЂР°РІР»РµРЅРёСЏ РєРѕРґР° </param>
-        /// <param name="reportMigration">РџСѓС‚СЊ Рє С„Р°Р№Р»Сѓ СЃ РјРёРіСЂР°С†РёРµР№</param>
-        /// <param name="copyid">РЈРЅ РјРёРіСЂР°С†РёРё СѓСЃР»РѕРІРёРµ РІС‹С…РѕРґР°</param>
-        /// <param name="collectionExeption">РљРѕР»Р»РµРєС†РёСЏ РРќРќ РёСЃРєР»СЋС‡РµРЅРёСЏ</param>
-        public string Click11(bool isparse,string reportMigration,string copyid,ObservableCollection<string> collectionExeption)
+        /// <param name="isparse">Смена направления кода </param>
+        /// <param name="reportMigration">Путь к файлу с миграцией</param>
+        /// <param name="copyid">Ун миграции условие выхода</param>
+        /// <param name="collectionExeption">Коллекция ИНН исключения</param>
+        public string Click11(bool isparse, string reportMigration, string copyid, ObservableCollection<string> collectionExeption)
         {
             string ident = copyid;
             WindowsAis3 win = new WindowsAis3();
-            MigrationParse model = new MigrationParse() {ReportMigration = new ReportMigration[1]};
+            MigrationParse model = new MigrationParse() { ReportMigration = new ReportMigration[1] };
             ReportMigration report = new ReportMigration();
             copyid = null;
             copyid = ReadWindow.Read.Reades.ReadForm(Migration.Identity);
             if (copyid.Equals(ident))
             {
-              return copyid;
+                return copyid;
             }
             report.NameOrg = ReadWindow.Read.Reades.ReadForm(Migration.NameOrganization);
 
             report.CodeIfns = ReadWindow.Read.Reades.ReadForm(AutoItX.WinExists(Migration.PeredachaOrPriem[0], Migration.PeredachaOrPriem[1]) == 1 ? Migration.CodeIfnsPeredacha : Migration.CodeIfnsPriem);
             AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 180, win.WindowsAis.Y + 75);
-            AutoItX.WinWait(WindowsAis3.AisNalog3,Migration.MigrationNp, 2);
-           if (!isparse)
-           {
-               while (true)
-               {
-                   AutoItX.Sleep(5000);
-                   var isEnable = AutoItX.ControlCommand(AutoItX.WinGetHandle(Migration.Button[0]), AutoItX.ControlGetHandle(AutoItX.WinGetHandle(Migration.Button[0]), Migration.Button[2]), "IsEnabled", "");
-                   if (isEnable == "1")
-                   {
-                       AutoItX.ControlClick(Migration.Button[0], Migration.Button[1], Migration.Button[2]);
-                       break;
-                   }
-                   win.ControlGetPos1(WindowsAis3.UltraGridDataMigration[0], WindowsAis3.UltraGridDataMigration[1], WindowsAis3.UltraGridDataMigration[2]);
-                   AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 45, win.WindowsAis.Y + win.Y1 + 35);
-               }
-               AutoItX.WinWait(TextMigration.WindiwWarning[0],TextMigration.WindiwWarning[1]);
-               AutoItX.Send(ButtonConstant.Enter);
-               AutoItX.WinWait(TextMigration.WindiwInfo[0],TextMigration.WindiwInfo[1]);
-               AutoItX.Send(ButtonConstant.Enter);
-               AutoItX.WinWait("РђРРЎ РќР°Р»РѕРі-3 РџР РћРњ ", "РћР±РЅРѕРІР»РµРЅРёРµ РґР°РЅРЅС‹С…. РџРѕР¶Р°Р»СѓР№СЃС‚Р° РїРѕРґРѕР¶РґРёС‚Рµ...");
-               AutoItX.WinActivate("РђРРЎ РќР°Р»РѕРі-3 РџР РћРњ ", "РћР±РЅРѕРІР»РµРЅРёРµ РґР°РЅРЅС‹С…. РџРѕР¶Р°Р»СѓР№СЃС‚Р° РїРѕРґРѕР¶РґРёС‚Рµ...");
-               AutoItX.Send(ButtonConstant.Tab2);
-               return copyid;
-           }
+            AutoItX.WinWait(WindowsAis3.AisNalog3, Migration.MigrationNp, 2);
+            if (!isparse)
+            {
+                while (true)
+                {
+                    AutoItX.Sleep(5000);
+                    var isEnable = AutoItX.ControlCommand(AutoItX.WinGetHandle(Migration.Button[0]), AutoItX.ControlGetHandle(AutoItX.WinGetHandle(Migration.Button[0]), Migration.Button[2]), "IsEnabled", "");
+                    if (isEnable == "1")
+                    {
+                        AutoItX.ControlClick(Migration.Button[0], Migration.Button[1], Migration.Button[2]);
+                        break;
+                    }
+                    win.ControlGetPos1(WindowsAis3.UltraGridDataMigration[0], WindowsAis3.UltraGridDataMigration[1], WindowsAis3.UltraGridDataMigration[2]);
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 45, win.WindowsAis.Y + win.Y1 + 35);
+                }
+                AutoItX.WinWait(TextMigration.WindiwWarning[0], TextMigration.WindiwWarning[1]);
+                AutoItX.Send(ButtonConstant.Enter);
+                AutoItX.WinWait(TextMigration.WindiwInfo[0], TextMigration.WindiwInfo[1]);
+                AutoItX.Send(ButtonConstant.Enter);
+                AutoItX.WinWait("АИС Налог-3 ПРОМ ", "Обновление данных. Пожалуйста подождите...");
+                AutoItX.WinActivate("АИС Налог-3 ПРОМ ", "Обновление данных. Пожалуйста подождите...");
+                AutoItX.Send(ButtonConstant.Tab2);
+                return copyid;
+            }
             report.Fid = ReadWindow.Read.Reades.ReadForm(Migration.FidMemo);
             report.Inn = ReadWindow.Read.Reades.ReadForm(Migration.InnMemo);
             var find = collectionExeption.Where(i => i == report.Inn);
@@ -855,15 +854,15 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         }
 
         /// <summary>
-        /// РћР±СЂР°Р±РѕС‚РєР° РІРµС‚РѕРєРё РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\РЎРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚СЊ\14. Р Р°Р±РѕС‚Р° СЃ Р»РёС†Р°РјРё вЂ“ РїСЂР°РІРѕРѕР±Р»Р°РґР°С‚РµР»СЏРјРё РѕР±СЉРµРєС‚РѕРІ, РїРѕ РєРѕС‚РѕСЂС‹Рј С‚СЂРµР±СѓРµС‚СЃСЏ РІРёР·СѓР°Р»СЊРЅР°СЏ РѕР±СЂР°Р±РѕС‚РєР°\01. Р РѕСЃСЂРµРµСЃС‚СЂ - Р¤Р›, РїРѕ РєРѕС‚РѕСЂС‹Рј С‚СЂРµР±СѓРµС‚СЃСЏ  РІРёР·СѓР°Р»СЊРЅР°СЏ  РёРґРµРЅС‚РёС„РёРєР°С†РёСЏ СЃ РІРёС‚СЂРёРЅРѕР№ Р»РёС† Р¦РЈРќ
-        /// РќР°Р»РѕРіРѕРІРѕРµ Р°РґРјРёРЅРёСЃС‚СЂРёСЂРѕРІР°РЅРёРµ\РЎРѕР±СЃС‚РІРµРЅРЅРѕСЃС‚СЊ\14. Р Р°Р±РѕС‚Р° СЃ Р»РёС†Р°РјРё вЂ“ РїСЂР°РІРѕРѕР±Р»Р°РґР°С‚РµР»СЏРјРё РѕР±СЉРµРєС‚РѕРІ, РїРѕ РєРѕС‚РѕСЂС‹Рј С‚СЂРµР±СѓРµС‚СЃСЏ РІРёР·СѓР°Р»СЊРЅР°СЏ РѕР±СЂР°Р±РѕС‚РєР°\11. Р РѕСЃСЂРµРµСЃС‚СЂ вЂ“ Р—Р°РїСЂРѕСЃС‹ РЅР° РѕР±СЂР°Р±РѕС‚РєСѓ Р¤Р›, РїРѕ РєРѕС‚РѕСЂС‹Рј РїРµСЂРµРґР°РЅС‹ СЃРІРµРґРµРЅРёСЏ РѕР± РѕС‚С‡СѓР¶РґРµРЅРёРё СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёС… РІ РџРћРќ РљРЎ РїСЂР°РІ РЅР° РћРќ
+        /// Обработка ветоки Налоговое администрирование\Собственность\14. Работа с лицами – правообладателями объектов, по которым требуется визуальная обработка\01. Росреестр - ФЛ, по которым требуется  визуальная  идентификация с витриной лиц ЦУН
+        /// Налоговое администрирование\Собственность\14. Работа с лицами – правообладателями объектов, по которым требуется визуальная обработка\11. Росреестр – Запросы на обработку ФЛ, по которым переданы сведения об отчуждении существующих в ПОН КС прав на ОН
         /// </summary>
-        /// <param name="idvisual">РЈРќ РїР°СЂР°РјРµС‚СЂР°</param>
-        /// <param name="pathjurnalerror">РџСѓС‚СЊ Рє Р¶СѓСЂРЅР°Р»Сѓ СЃ РѕС€РёР±РєР°РјРё</param>
-        /// <param name="pathjurnalok">РџСѓС‚СЊ Рє Р¶СѓСЂРЅР°Р»Сѓ СЃ РѕР±СЂР°Р±РѕС‚Р°РЅРЅС‹РјРё</param>
-        /// <param name="ischeked">РџСЂРѕСЃС‚Р°РІРёС‚СЊ РіР°Р»РѕС‡РєСѓ</param>
-        /// <param name="isbranch">РћР±СЂР°Р±РѕС‚РєР° РІРµС‚РєРё 11</param>
-        public void Click12(string idvisual, string pathjurnalerror, string pathjurnalok,  bool ischeked, bool isbranch)
+        /// <param name="idvisual">УН параметра</param>
+        /// <param name="pathjurnalerror">Путь к журналу с ошибками</param>
+        /// <param name="pathjurnalok">Путь к журналу с обработанными</param>
+        /// <param name="ischeked">Проставить галочку</param>
+        /// <param name="isbranch">Обработка ветки 11</param>
+        public void Click12(string idvisual, string pathjurnalerror, string pathjurnalok, bool ischeked, bool isbranch)
         {
 
             WindowsAis3 win = new WindowsAis3();
@@ -888,7 +887,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                         WindowsAis3.DataNotFound);
                     break;
                 }
-                if ((AutoItX.WinExists(WindowsAis3.AisNalog3, IdFace.IdVisual) == 1)|| (AutoItX.WinExists(WindowsAis3.AisNalog3, IdFace.IdVisualTs) == 1))
+                if ((AutoItX.WinExists(WindowsAis3.AisNalog3, IdFace.IdVisual) == 1) || (AutoItX.WinExists(WindowsAis3.AisNalog3, IdFace.IdVisualTs) == 1))
                 {
                     AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 330, win.WindowsAis.Y + 90);
                     AutoItX.Send(ButtonConstant.Down1);
@@ -916,9 +915,9 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                         {
                             if (AutoItX.WinExists(WindowsAis3.Text, WindowsAis3.DataNotFound) == 1)
                             {
-                              
+
                                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
-                                LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, idvisual, FaceRosreestr,WindowsAis3.DataNotFound);
+                                LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, idvisual, FaceRosreestr, WindowsAis3.DataNotFound);
                                 break;
                             }
                             if (AutoItX.WinExists(WindowsAis3.AisNalog3, IdFace.IdFl) == 1)
@@ -943,8 +942,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
 
         }
         ///  <summary>
-        /// РђС‚РѕРјР°С‚РёР·Р°С†РёСЏ РІРµС‚РєРё 
-        /// РћР±С‰РёРµ Р·Р°РґР°РЅРёСЏ\РљРѕРЅС‚СЂРѕР»СЊРЅР°СЏ СЂР°Р±РѕС‚Р° (РЅР°Р»РѕРіРѕРІС‹Рµ РїСЂРѕРІРµСЂРєРё)\РћР±СЂР°Р±РѕС‚РєР° РґРѕРєСѓРјРµРЅС‚РѕРІ РќР‘Рћ\РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РІРІРѕРґР° РґРѕРєСѓРјРµРЅС‚РѕРІ
+        /// Атоматизация ветки 
+        /// Общие задания\Контрольная работа (налоговые проверки)\Обработка документов НБО\Подтверждение ввода документов
         /// </summary>
         public string Click13()
         {
@@ -966,7 +965,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                 }
                 i++;
             }
-            //Р Р°СЃС‡РёС‚С‹РІР°РµРј
+            //Расчитываем
             win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
             AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 45, win.WindowsAis.Y + win.Y1 + 80);
             AutoItX.WinWait(WindowsAis3.AisNalog3, NboText.TitelList, 15);
@@ -986,7 +985,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
                     break;
                 }
-                if (texthieden.Contains(NboText.Strfind)|| texthieden.Contains(NboText.Strfind2))
+                if (texthieden.Contains(NboText.Strfind) || texthieden.Contains(NboText.Strfind2))
                 {
                     win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
                     AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 815, win.WindowsAis.Y + win.Y1 + 80, 1);
@@ -1009,14 +1008,14 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     break;
                 }
             }
-            //РџРµСЂРµРЅРѕСЃ РІ РљР РЎР‘
+            //Перенос в КРСБ
 
             return Status.StatusAis.Status3;
         }
 
         ///  <summary>
-        /// РђС‚РѕРјР°С‚РёР·Р°С†РёСЏ РІРµС‚РєРё 
-        /// РћР±С‰РёРµ Р·Р°РґР°РЅРёСЏ\РљРѕРЅС‚СЂРѕР»СЊРЅР°СЏ СЂР°Р±РѕС‚Р° РЅР°Р»РѕРіРѕРІС‹Рµ РїСЂРѕРІРµСЂРєРё\РџСЂРёРјРµРЅРµРЅРёРµ СѓРїСЂРѕС‰РµРЅРЅРѕР№ СЃРёСЃС‚РµРјС‹ РЅР°Р»РѕРіРѕРѕР±Р»Р°Р¶РµРЅРёСЏ\РџСЂРёРјРµРЅРµРЅРёРµ РЈРЎРќ
+        /// Атоматизация ветки 
+        /// Общие задания\Контрольная работа налоговые проверки\Применение упрощенной системы налогооблажения\Применение УСН
         /// </summary>
         public string Click14(bool coordinete, string pathjurnalerror, string pathjurnalok)
         {
@@ -1030,7 +1029,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             {
                 win.ControlGetPos1(WindowsAis3.WinRequest[0], WindowsAis3.WinRequest[1], WindowsAis3.WinRequest[2]);
                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 355, win.WindowsAis.Y + win.Y1 + 80);
-               // Console.Write(string.Format(win.WindowsAis.X +";"+ win.X1 + ";" + 355 +";"+win.WindowsAis.Y + ";" + win.Y1 + ";" + 80)); //Р”Р»СЏ Debug
+                // Console.Write(string.Format(win.WindowsAis.X +";"+ win.X1 + ";" + 355 +";"+win.WindowsAis.Y + ";" + win.Y1 + ";" + 80)); //Для Debug
                 AutoItX.WinWait(WindowsAis3.AisNalog3, UsnText.ElemHost, 15);
                 if (AutoItX.WinExists(WindowsAis3.AisNalog3, UsnText.ElemHost) == 1)
                 {
@@ -1044,7 +1043,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             }
             while (true)
             {
-    
+
                 win.ControlGetPos1(UsnText.WinSnr[0], UsnText.WinSnr[1], UsnText.WinSnr[2]);
                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 790, win.WindowsAis.Y + win.Y1 + usn.IsOpen);
                 AutoItX.WinWait(WindowsAis3.AisNalog3, UsnText.TitleUsn, 15);
@@ -1058,7 +1057,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     card.Error = ReadWindow.Read.Reades.ReadCtrlCno();
                     AutoItX.Send(ButtonConstant.Right1);
                     card.DescriptionError = ReadWindow.Read.Reades.ReadCtrlCno();
-                    if (card.Error == "РћС€РёР±РєР°")
+                    if (card.Error == "Ошибка")
                     {
                         LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, card.Id, Usn, card.DescriptionError);
                         AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
@@ -1079,7 +1078,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                         AutoItX.Sleep(3000);
                         AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 160, win.WindowsAis.Y + win.Y1 + usn.Finish);
                         AutoItX.Sleep(3000);
-                        LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok,card.Id,"РћР±СЂР°Р±РѕС‚Р°Р»Рё Р±РµР· РѕС€РёР±РѕРє!!!");
+                        LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, card.Id, "Обработали без ошибок!!!");
                         break;
                     }
                 }
@@ -1087,15 +1086,15 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             return Status.StatusAis.Status3; ;
         }
         ///  <summary>
-        /// РђРІС‚РѕРјР°С‚РёР·Р°С†РёСЏ РІРµС‚РєРё
-        /// РћР±С‰РёРµ Р·Р°РґР°РЅРёСЏ\РЈСЂРµРіСѓР»РёСЂРѕРІР°РЅРёРµ Р·Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚Рё\05.08.09.02. Р’Р·С‹СЃРєР°РЅРёРµ Р·Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚Рё Р·Р° СЃС‡РµС‚ РёРјСѓС‰РµСЃС‚РІР° РќРџ Р¤Р›. Р¤РѕСЂРјРёСЂРѕРІР°РЅРёРµ РЎР»СѓР¶РµР±РЅРѕР№ Р·Р°РїРёСЃРєРё Рё Р—Р°СЏРІР»РµРЅРёР№ Рѕ РІР·С‹СЃРєР°РЅРёРё Р·Р° СЃС‡РµС‚ РёРјСѓС‰РµСЃС‚РІР° Р¤Р›\05.08.09.02.02 РЈС‚РІРµСЂР¶РґРµРЅРёРµ Рё РїРѕРґРїРёСЃР°РЅРёРµ РЎР»СѓР¶РµР±РЅС‹С… Р·Р°РїРёСЃРѕРє\05.08.09.02.02.04. РЈС‚РІРµСЂР¶РґРµРЅРёРµ РЎР»СѓР¶РµР±РЅРѕР№ Р·Р°РїРёСЃРєРё
+        /// Автоматизация ветки
+        /// Общие задания\Урегулирование задолженности\05.08.09.02. Взыскание задолженности за счет имущества НП ФЛ. Формирование Служебной записки и Заявлений о взыскании за счет имущества ФЛ\05.08.09.02.02 Утверждение и подписание Служебных записок\05.08.09.02.02.04. Утверждение Служебной записки
         /// </summary>
         public string Click15(string pathjurnalerror, string pathjurnalok)
         {
 
-           // AutomationElement g = new AutomationElement(AutoItX);
-         //   int i = 0;
-         //   WindowsAis3 win = new WindowsAis3();
+            // AutomationElement g = new AutomationElement(AutoItX);
+            //   int i = 0;
+            //   WindowsAis3 win = new WindowsAis3();
 
             //while (true)
             //{
@@ -1116,8 +1115,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         }
 
         ///  <summary>
-        /// РђРІС‚РѕРјР°С‚РёР·Р°С†РёСЏ РІРµС‚РєРё
-        /// РћР±С‰РёРµ Р·Р°РґР°РЅРёСЏ\РЈСЂРµРіСѓР»РёСЂРѕРІР°РЅРёРµ Р·Р°РґРѕР»Р¶РµРЅРЅРѕСЃС‚Рё\05.09 РЈРІРµРґРѕРјР»РµРЅРёРµ Рѕ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РІС‹РіСЂСѓР·РєРё РґРѕРєСѓРјРµРЅС‚РѕРІ РІ Р›Рљ\05.09 РЎРѕРѕР±С‰РµРЅРёСЏ Рѕ РїСЂРёРЅСЏС‚РѕРј СЂРµС€РµРЅРёРё Рѕ Р·Р°С‡РµС‚Рµ (РІРѕР·РІСЂР°С‚Рµ) РїРѕРґР»РµР¶Р°С‰РёРµ РІС‹РіСЂСѓР·РєРµ РІ Р›Рљ
+        /// Автоматизация ветки
+        /// Общие задания\Урегулирование задолженности\05.09 Уведомление о необходимости выгрузки документов в ЛК\05.09 Сообщения о принятом решении о зачете (возврате) подлежащие выгрузке в ЛК
         /// </summary>
         public string Click16(string pathjurnalerror, string pathjurnalok)
         {
@@ -1147,8 +1146,53 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                 AutoItX.Send(ButtonConstant.Enter);
                 AutoItX.Sleep(1000);
             }
-            return "РћР±СЂР°Р±РѕС‚Р°Р»Рё!!!";
+            return "Обработали!!!";
         }
 
+        public string Click17(string pathjurnalerror, string pathjurnalok)
+        {
+            int num = 0;
+            WindowsAis3 windowsAis = new WindowsAis3();
+            while (true)
+            {
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, windowsAis.WindowsAis.X + 355, windowsAis.WindowsAis.Y + 80, 1, -1);
+                AutoItX.WinWait(WindowsAis3.AisNalog3, SluzZ.Utb, 10);
+                if (AutoItX.WinExists(WindowsAis3.AisNalog3, SluzZ.Utb) != 1)
+                {
+                    if (num == Proverka.Controlnumer)
+                    {
+                        return "Закончили обрабатывать пользовательское задание!!!";
+                    }
+                    num++;
+                    continue;
+                }
+                break;
+            }
+            if (AutoItX.WinExists(WindowsAis3.AisNalog3, SluzZ.Utb) == 1)
+            {
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, windowsAis.WindowsAis.X + 330, windowsAis.WindowsAis.Y + 60, 1, -1);
+                AutoItX.Sleep(500);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, windowsAis.WindowsAis.X + 240, windowsAis.WindowsAis.Y + 78, 1, -1);
+                AutoItX.WinWait(SluzZ.WinCloseNalog[0], SluzZ.WinCloseNalog[1], 0);
+                AutoItX.Sleep(500);
+                AutoItX.Send(ButtonConstant.Enter);
+            }
+            return "Обработали!!!";
+        }
+
+        //public void Click18(string pathjurnalerror, string pathjurnalok)
+        //{
+        //    LibaryAutomations libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
+        //    libaryAutomations.FindFirstElement(TextRuleParse.PanelDocksCountRow, null);
+        //    libaryAutomations.SetValuePattern("100");
+        //    libaryAutomations.FindFirstElement(TextRuleParse.PanelDocksDbStart, null);
+        //    libaryAutomations.SetValuePattern("01.08.2019");
+        //    libaryAutomations.FindFirstElement(TextRuleParse.PanelDocksDbFinish, null);
+        //    libaryAutomations.SetValuePattern("01.09.2019");
+        //    AutoItX.WinActivate(WindowsAis3.AisNalog3, "");
+        //    AutoItX.Send("{F5}", 0);
+        //    libaryAutomations.FindFirstElement(TextRuleParse.GridJurnal, null);
+        //    AutomationElement findElement = libaryAutomations.FindElement;
+        //}
     }
 }

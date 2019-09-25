@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using AutomatAis3Full.Form.Automat.Analitic.Zadanie.ZacetVozvrat.Signature;
+using AutomatAis3Full.Form.Automat.It.Rule.UserControl;
 using AutomatAis3Full.Form.Automat.Okp3.UsnSend.UsnSend;
 using AutomatAis3Full.Form.Automat.Okp4.FormSnuAuto.SnuFormAuto;
 using AutomatAis3Full.Form.Automat.Okp4.MassSnuForm.MassSnuForm;
@@ -12,6 +13,7 @@ using AutomatAis3Full.Form.Automat.Registration.ActualStatus.UserControlStatus;
 using AutomatAis3Full.Form.Automat.Registration.Rosreestr.UserControl;
 using AutomatAis3Full.Form.Automat.Registration.TehnicalUpdate.UserControlTechnical;
 using AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.FormTrebUplNaloga.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.MessageLk.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.UtverzdenieSz.UserControl;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie;
@@ -34,6 +36,32 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
               {
                   new FullWindowAutoIt()
                   {
+                      NameControl = "Отдел информатизации",
+                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                      {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "ЦСУД",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Управление ролевой принадлежностью",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Журнал заявок",
+                                              UserControl = new RuleParse()
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  new FullWindowAutoIt()
+                  {
                       NameControl = "Урегулирование задолжености",
                       CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                       {
@@ -42,6 +70,11 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                               NameControl = "Общие задания",
                               CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                               {
+                               new FullWindowAutoIt()
+                               {
+                                   NameControl = "05.08.03.0X.03. Утверждение требований об уплате",
+                                   UserControl = new FormTrebUplNaloga()
+                               },
                                new FullWindowAutoIt()
                                {
                                     NameControl = "05.08.09.02.02.04. Утверждение Служебной записки",

@@ -118,6 +118,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\It\Rule\UserControl\RuleParse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Okp3\UsnSend\UsnSend\FormUsnSend.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -167,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Registration\UtochneneeSved\UserControl\YtochnenieSved.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\UserControl\FormTrebUplNaloga.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -225,6 +233,10 @@
     <Compile Include="Form\Automat\Analitic\Zadanie\ZacetVozvrat\Signature\SigZacetVozvrat.xaml.cs">
       <DependentUpon>SigZacetVozvrat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\It\Rule\DataContext\RuleDataContext.cs" />
+    <Compile Include="Form\Automat\It\Rule\UserControl\RuleParse.xaml.cs">
+      <DependentUpon>RuleParse.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\Okp3\UsnSend\DataContext\DataContextUsnSend.cs" />
     <Compile Include="Form\Automat\Okp3\UsnSend\UsnSend\FormUsnSend.xaml.cs">
       <DependentUpon>FormUsnSend.xaml</DependentUpon>
@@ -276,6 +288,10 @@
     <Compile Include="Form\Automat\Registration\UtochneneeSved\DataContext\DataContextReg.cs" />
     <Compile Include="Form\Automat\Registration\UtochneneeSved\UserControl\YtochnenieSved.xaml.cs">
       <DependentUpon>YtochnenieSved.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\DataContext\DataContextFormTrebUplNaloga.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\UserControl\FormTrebUplNaloga.xaml.cs">
+      <DependentUpon>FormTrebUplNaloga.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Uregulirovanie\MessageLk\DataContext\DataContextMessageLk.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\MessageLk\UserControl\MessageLk.xaml.cs">

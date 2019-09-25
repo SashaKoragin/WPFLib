@@ -28,5 +28,6 @@
             <Label Content="Комманда приостановить Shift+S" />
             <Label Content="Комманда возобновить Shift+A" />
         </StackPanel>
+        
     </Grid>
 </UserControl>

@@ -314,13 +314,6 @@ namespace Algoritm
            return new Paragraph(new Run(element));
         }
 
-        private void button9_Click(object sender, EventArgs e)
-        {
-          //  var process = Process.S  //.GetProcessesByName("CommonComponents.UnifiedClient.exe");
-            AutomationElement targetApp = AutomationElement.FromHandle() //FromHandle(process[0].MainWindowHandle);
-
-
-        }
     }
     }
 

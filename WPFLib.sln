@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algoritm", "Algoritm\Algori
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "SetupAutomatAis3Full", "SetupAutomatAis3Full\SetupAutomatAis3Full.wixproj", "{8922F6BF-FFC1-4011-82F5-3E9C38948671}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibaryAIS3Windows.Tests", "LibaryAIS3Windows.Tests\LibaryAIS3Windows.Tests.csproj", "{E281F2D4-8C07-4525-B88A-77DC39EAC826}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -381,6 +383,22 @@ Global
 		{8922F6BF-FFC1-4011-82F5-3E9C38948671}.Release|x64.ActiveCfg = Release|x86
 		{8922F6BF-FFC1-4011-82F5-3E9C38948671}.Release|x86.ActiveCfg = Release|x86
 		{8922F6BF-FFC1-4011-82F5-3E9C38948671}.Release|x86.Build.0 = Release|x86
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Debug|ARM.Build.0 = Debug|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Debug|x64.Build.0 = Debug|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Debug|x86.Build.0 = Debug|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Release|ARM.Build.0 = Release|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Release|x64.ActiveCfg = Release|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Release|x64.Build.0 = Release|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Release|x86.ActiveCfg = Release|Any CPU
+		{E281F2D4-8C07-4525-B88A-77DC39EAC826}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

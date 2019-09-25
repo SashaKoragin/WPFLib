@@ -1,7 +1,9 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Collections.Generic;
 using EfDatabaseErrorInventory;
 using EfDatabaseInvoice;
 using EfDatabaseParametrsModel;
+using EfDatabaseTelephoneHelp;
+using EfDatabaseXsdBookAccounting;
 using LibaryXMLAuto.ModelServiceWcfCommand.AngularModel;
 using LibaryXMLAuto.ModelXmlSql.Model.FullSetting;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
@@ -159,6 +161,7 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                     return "Данная комманда не определена!!!";
             }
         }
+
         /// <summary>
         /// Это для инвенторизации выборка
         /// </summary>
@@ -191,9 +194,9 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                                 typeof(Documents)));
                 case 6:
                     return serializeJson.JsonLibary(
-                            (FullError)
-                            sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
-                                typeof(FullError)));
+                        (FullError)
+                        sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
+                            typeof(FullError)));
                 case 7:
                     return
                         serializeJson.JsonLibary(
@@ -212,8 +215,50 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                             (FullError)
                             sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
                                 typeof(FullError)));
+                case 11:
+                    return
+                        serializeJson.JsonLibary(
+                            (Book)
+                            sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
+                                typeof(Book)));
                 default:
                     return "Дагнная комманда не определена!!!";
+            }
+        }
+
+        /// <summary>
+        /// Выгрузка модели телефонного справочника
+        /// </summary>
+        /// <param name="conectionstring">Строка соединения с БД</param>
+        /// <param name="logica">Логика выборки</param>
+        /// <param name="listparametr"></param>
+        /// <returns>Возвращает объект для превращения его в схему</returns>
+        public object GenerateShemeXsdSql<TKey, TValue>(string conectionstring, LogicaSelect logica, Dictionary<TKey, TValue> listparametr = null)
+        {
+            var sqlconnect = new SqlConnectionType();
+            switch (logica.Id)
+            {
+                case 10:
+                    TelephoneHelp telephoneHelp = new TelephoneHelp
+                    {
+                        TelephonHeaders =
+                            ((TelephoneHelp)sqlconnect.SelectFullParametrSqlReader(conectionstring, logica.SelectUser,
+                                typeof(TelephoneHelp), ModelSqlFullService.ParamCommand("1"))).TelephonHeaders,
+                        TelephonBody =
+                            ((TelephoneHelp)
+                            sqlconnect.SelectFullParametrSqlReader(conectionstring, logica.SelectUser,
+                                typeof(TelephoneHelp), ModelSqlFullService.ParamCommand("2"))).TelephonBody
+                    };
+                    return telephoneHelp;
+                case 12:
+                    Book book = new Book
+                    {
+                        BareCodeBook = new BareCodeBook(),
+                        Organization = ((Book)sqlconnect.SelectFullParametrSqlReader(conectionstring,logica.SelectUser,typeof(Book),listparametr)).Organization
+                    };
+                    return book;
+                default:
+                    return null;
             }
         }
     }

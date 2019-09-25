@@ -49,8 +49,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationClient" />
     <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutomationsUI\LibaryAutomations\LibaryAutomations.cs" />
     <Compile Include="ButtonsClikcs\ButtonConstant.cs" />
     <Compile Include="ButtonsClikcs\ClikcCheker\Cheker.cs" />
     <Compile Include="ButtonsClikcs\KclicerButton.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="RegxFull\RaschetBudg\RegxStart.cs" />
     <Compile Include="Status\StatusAis.cs" />
     <Compile Include="Window\Otdel\Analitic\TeskText\ZachetVozvrat.cs" />
+    <Compile Include="Window\Otdel\It\RuleParse\TextRuleParse.cs" />
     <Compile Include="Window\Otdel\Okp3\Usn\CardDeclr.cs" />
     <Compile Include="Window\Otdel\Okp3\Usn\UsnText.cs" />
     <Compile Include="Window\Otdel\Okp4\PravoZorI\PravoZorI.cs" />

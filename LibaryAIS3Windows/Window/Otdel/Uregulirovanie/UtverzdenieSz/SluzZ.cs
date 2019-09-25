@@ -25,5 +25,18 @@ namespace LibaryAIS3Windows.Window.Otdel.Uregulirovanie.UtverzdenieSz
         /// Total
         /// </summary>
         public static string Total = "ВСЕГО:";
+        
+        /// <summary>
+        /// Утвержденно 
+        /// </summary>
+        public static string Utb = "Утверждено:";
+        /// <summary>
+        /// Завершение обработки задания
+        /// </summary>
+        public static string[] WinCloseNalog =
+        {
+            "Завершение работы",
+            "Работа с документами завершена успешно!"
+        };
     }
 }

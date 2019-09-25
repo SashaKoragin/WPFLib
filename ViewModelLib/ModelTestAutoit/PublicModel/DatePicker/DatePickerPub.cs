@@ -61,7 +61,6 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.DatePicker
                             { IsValid = true; break; }
                         }
                         { Error = "Не выбрана дата в календаре!!!"; break; }
-
                 }
             return Error;
         }
