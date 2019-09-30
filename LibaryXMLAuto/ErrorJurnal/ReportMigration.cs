@@ -24,5 +24,23 @@ namespace LibaryXMLAuto.ErrorJurnal
                 convert.SerializerClassToXml(reportMigration, report, typeof(MigrationParse));
             }
         }
+        /// <summary>
+        /// Сохранение Отчета по миграции
+        /// </summary>
+        /// <param name="pathreport">Путь сохранения файла с ролями</param>
+        /// <param name="userrule">Роли и пользователи</param>
+        public static void CreateFileRule(string pathreport, UserRule userrule)
+        {
+            if (File.Exists(pathreport))
+            {
+                XmlReadOrWrite read = new XmlReadOrWrite();
+                read.AddRuleUsers(pathreport, userrule);
+            }
+            else
+            {
+                var convert = new Converts.ConvettToXml.XmlConvert();
+                convert.SerializerClassToXml(pathreport, userrule, typeof(UserRule));
+            }
+        }
     }
 }

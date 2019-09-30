@@ -23,7 +23,7 @@ namespace AutomatAis3Full.Form.Automat.It.Rule.DataContext
             DataPickerSettings = new DataPickerRuleItModel();
             var command = new ItRuleParse();
             StartButton = new StatusButtonMethod();
-            StartButton.Button.Command = new DelegateCommand(() => { command.RuleUsers(StartButton, DataPickerSettings, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
+            StartButton.Button.Command = new DelegateCommand(() => { command.RuleUsers(StartButton, DataPickerSettings, ConfigFile.UserRule); });
         }
     }
 }

@@ -15,7 +15,6 @@ using AutomatAis3Full.Form.Automat.Registration.TehnicalUpdate.UserControlTechni
 using AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.FormTrebUplNaloga.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.MessageLk.UserControl;
-using AutomatAis3Full.Form.Automat.Uregulirovanie.UtverzdenieSz.UserControl;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie;
 using AutomatAis3Full.Form.Report.ReportXml.ReportForm;
 using ViewModelLib.ModelTestAutoit.FullWindowAutoIt;
@@ -74,11 +73,6 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                {
                                    NameControl = "05.08.03.0X.03. Утверждение требований об уплате",
                                    UserControl = new FormTrebUplNaloga()
-                               },
-                               new FullWindowAutoIt()
-                               {
-                                    NameControl = "05.08.09.02.02.04. Утверждение Служебной записки",
-                                    UserControl = new UtverzdenieSz()
                                },
                                new FullWindowAutoIt()
                                {

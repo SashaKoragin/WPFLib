@@ -57,7 +57,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 {
                     while (statusButton.Iswork)
                     {
-                        var strexit = clickerButton.Click17(pathjurnalerror, pathjurnalok);
+                        var strexit = clickerButton.Click17();
 
                         if (strexit.Equals(LibaryAIS3Windows.Status.StatusAis.Status6))
                         {

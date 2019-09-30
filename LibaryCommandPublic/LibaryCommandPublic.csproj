@@ -76,7 +76,6 @@
     <Compile Include="TestAutoit\Reg\VisualTreatmentFace\VisualTreatmentFace.cs" />
     <Compile Include="TestAutoit\Reg\YtochnenieSved\AutoCommand\YtochnenieSved.cs" />
     <Compile Include="TestAutoit\Uregulirovanie\MessageLk\AutoMessageLk.cs" />
-    <Compile Include="TestAutoit\Uregulirovanie\UtverzdenieSz\AutoStart.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LibaryAIS3Windows\LibaryAIS3Windows.csproj">

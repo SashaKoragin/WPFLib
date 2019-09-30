@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="nameAutomationId"></param>
         /// <param name="auto">Поиск по циклу по формуле если нет в корневом элементе то ищем потомка</param>
         /// <returns></returns>
-        public void FindFirstElement(string nameAutomationId, AutomationElement auto = null)
+        public AutomationElement FindFirstElement(string nameAutomationId, AutomationElement auto = null)
         {
             var recursion = nameAutomationId.Split('\\');
             foreach (var str in recursion)
@@ -49,6 +50,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                                   FindElement.FindFirst(TreeScope.Subtree, Conditions);
                 }
             }
+            return FindElement;
         }
         /// <summary>
         /// Поиск всех дочерних элементов у ветке
@@ -61,17 +63,36 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             {
                 throw new ArgumentException();
             }
+       //     AutomationElement auto = null;
             List<AutomationElement> result = new List<AutomationElement>();
-            TreeWalker tw = TreeWalker.ControlViewWalker;
-            AutomationElement child = tw.GetLastChild(parent);
+            TreeWalker tw = TreeWalker.RawViewWalker;
+            
+            AutomationElement child = tw.GetFirstChild(parent);
             while (child != null)
             {
                 result.Add(child);
+                string path = @"c:\MyTest.txt";
+                using (StreamWriter sw = new StreamWriter(path, true))
+                {
+                    var values = ParseElement(child);
+                    sw.WriteLine(child.Current.Name + ":"+child.Current.AutomationId + ":" + values);
+                 }
                 child = tw.GetNextSibling(child);
+                
+
+
+            }
+            foreach (var automationElement in result)
+            {
+                GetChildren(automationElement);
             }
             return result;
         }
 
+        public AutomationElementCollection SelectAutomationColrction(AutomationElement element)
+        {
+           return element.FindAll(TreeScope.Children, Condition.TrueCondition);
+        }
 
         /// <summary>
         /// Поставить фокус на элемент
@@ -82,6 +103,18 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             var valueauto = (InvokePattern)pattrn;
             valueauto.Invoke();
         }
+
+        /// <summary>
+        /// Поставить фокус на элемент
+        /// </summary>
+        public void ExpandCollapsePattern(AutomationElement element)
+        {
+            var pattrn = element.GetCurrentPattern(ExpandCollapsePatternIdentifiers.Pattern); //  pattern.(pattern.);
+            var valueauto = (ExpandCollapsePattern)pattrn;
+            valueauto.Expand();
+        }
+
+
         /// <summary>
         /// Проставить значение в найденный элемент
         /// </summary>
@@ -104,6 +137,23 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             }
             return null;
         }
+        /// <summary>
+        /// Проверяет доступен ли элемент и записывает его  в  FindElement
+        /// </summary>
+        /// <param name="nameAutomationId"></param>
+        public void IsEnableElements(string nameAutomationId)
+        {
+            var isenable = false;
+            while (!isenable)
+            {
+                FindFirstElement(nameAutomationId);
+                if (FindElement != null)
+                {
+                    isenable = FindElement.Current.IsEnabled;
+                }
+            }
+        }
+
 
 
 
@@ -127,6 +177,14 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                 return new AndCondition(
                   new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
                   new PropertyCondition(AutomationElement.AutomationIdProperty, parametr[1]));
+            }
+            if (parametr[0] == "ControlType")
+            {
+                return new AndCondition(
+                  new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
+                  new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.ToolBar),
+                  new PropertyCondition(AutomationElement.AutomationIdProperty, parametr[1])
+                  );
             }
             return null;
         }

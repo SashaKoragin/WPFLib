@@ -81,6 +81,9 @@
     <Compile Include="ModelXmlAuto\ReportMigration\ReportMigration.cs">
       <DependentUpon>ReportMigration.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ModelXmlAuto\ReportMigration\UserRule.cs">
+      <DependentUpon>UserRule.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModelXmlSql\ConvertModel\DesirializationSql\SqlDesirialization.cs" />
     <Compile Include="ModelXmlSql\Model\Bdk\BdkIt\AnalisBdk.cs">
       <DependentUpon>AnalisBdk.xsd</DependentUpon>
@@ -175,6 +178,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ModelXmlAuto\ReportMigration\ReportMigration.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ModelXmlAuto\ReportMigration\UserRule.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="ModelXmlSql\Model\Bdk\BdkIt\AnalisBdk.xsd">

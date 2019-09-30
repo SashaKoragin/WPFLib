@@ -15,6 +15,7 @@ using PIC = DocumentFormat.OpenXml.Drawing.Pictures;
 using ZXing;
 using ZXing.Common;
 using System.Windows.Media.Imaging;
+
 namespace Algoritm
 {
     public partial class Form1 : Form
@@ -51,7 +52,7 @@ namespace Algoritm
         private int[] mass = null;
 
         private void button1_Click(object sender, EventArgs e)
-        { 
+        {
         }
 
         private void button2_Click(object sender, EventArgs e)

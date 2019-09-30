@@ -96,5 +96,38 @@ namespace LibaryXMLAuto.ReadOrWrite
             xRoot.AppendChild(reportMigration);
             doc.Save(path);
         }
+        /// <summary>
+        /// Модель пользователей и ролей xml
+        /// </summary>
+        /// <param name="path">Путь к файлу</param>
+        /// <param name="userrule">Модель парсинга</param>
+        public void AddRuleUsers(string path, UserRule userrule)
+        {
+             var doc = LogicaXml.LogicaXml.Document(path);
+            XmlElement xRoot = doc.DocumentElement;
+            XmlElement userrules = doc.CreateElement("User");
+            foreach (var user in userrule.User)
+            {
+                userrules.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Number",user.Number));
+                userrules.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Dates", user.Dates));
+                userrules.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Fio", user.Fio));
+                userrules.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Dolj", user.Dolj));
+                userrules.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Otdel", user.Otdel));
+                userrules.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "SysName", user.SysName));
+                foreach (var rule in user.Rule)
+                {
+                    var rulexml = doc.CreateElement("Rule");
+                    rulexml.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Name", rule.Name));
+                    rulexml.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Types", rule.Types));
+                    rulexml.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Pushed", rule.Pushed));
+                    rulexml.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "DateStart", rule.DateStart));
+                    rulexml.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "DateFinish", rule.DateFinish));
+                    rulexml.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Context", rule.Context));
+                    userrules.AppendChild(rulexml);
+                }
+                xRoot.AppendChild(userrules);
+            }
+            doc.Save(path);
+        }
     }
 }

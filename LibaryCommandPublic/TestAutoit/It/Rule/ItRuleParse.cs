@@ -13,9 +13,15 @@ namespace LibaryCommandPublic.TestAutoit.It.Rule
 {
    public class ItRuleParse
     {
-        public void RuleUsers(StatusButtonMethod statusButton, DataPickerRuleItModel DataPickerSettings, string pathjurnalerror, string pathjurnalok)
+        /// <summary>
+        /// Парсим роли
+        /// </summary>
+        /// <param name="statusButton">Кнопка статуса</param>
+        /// <param name="dataPickerSettings">Шаблон параметров</param>
+        /// <param name="pathjurnalok">Путь к файлу сохранения</param>
+        public void RuleUsers(StatusButtonMethod statusButton, DataPickerRuleItModel dataPickerSettings, string pathjurnalok)
         {
-            if (DataPickerSettings.IsValidation())
+            if (dataPickerSettings.IsValidation())
             {
                DispatcherHelper.Initialize();
               Task.Run(delegate
@@ -27,13 +33,13 @@ namespace LibaryCommandPublic.TestAutoit.It.Rule
                   {
                       while (statusButton.Iswork)
                       {
-                         clickerButton.Click18(pathjurnalerror, pathjurnalok);
-
-                        //if (strexit.Equals(LibaryAIS3Windows.Status.StatusAis.Status6))
-                        //{
-                        //    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
-                        //}
-                      }
+                           var result = clickerButton.Click15(pathjurnalok,dataPickerSettings.CountRow,dataPickerSettings.DateStart,dataPickerSettings.DateFinish);
+                           if (result.Equals(LibaryAIS3Windows.Status.StatusAis.Status6))
+                           {
+                               DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                               break;
+                           }
+                       }
                   }
                 else
                 {

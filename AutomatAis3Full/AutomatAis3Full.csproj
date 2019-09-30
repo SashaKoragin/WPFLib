@@ -182,10 +182,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Form\Automat\Uregulirovanie\UtverzdenieSz\UserControl\UtverzdenieSz.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Form\FormirovanieSpiskov\Spiski\FormFormirovanie\FormSpisok.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -296,10 +292,6 @@
     <Compile Include="Form\Automat\Uregulirovanie\MessageLk\DataContext\DataContextMessageLk.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\MessageLk\UserControl\MessageLk.xaml.cs">
       <DependentUpon>MessageLk.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Form\Automat\Uregulirovanie\UtverzdenieSz\DataContext\DataContextUtverzdenieSz.cs" />
-    <Compile Include="Form\Automat\Uregulirovanie\UtverzdenieSz\UserControl\UtverzdenieSz.xaml.cs">
-      <DependentUpon>UtverzdenieSz.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\FormirovanieSpiskov\Spiski\DataContext\DataContextSpisok.cs" />
     <Compile Include="Form\FormirovanieSpiskov\Spiski\FormFormirovanie\FormSpisok.xaml.cs">
