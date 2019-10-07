@@ -10,6 +10,7 @@ using AutomatAis3Full.Form.Automat.Orn.ConfirmationNbo.ConfirmationNbo;
 using AutomatAis3Full.Form.Automat.RaschetBudg.Migration.Migration;
 using AutomatAis3Full.Form.Automat.RaschetBudg.VedRazd1.VedRaz1;
 using AutomatAis3Full.Form.Automat.Registration.ActualStatus.UserControlStatus;
+using AutomatAis3Full.Form.Automat.Registration.Journal.ReceivedDocument.ReceivedDocuments;
 using AutomatAis3Full.Form.Automat.Registration.Rosreestr.UserControl;
 using AutomatAis3Full.Form.Automat.Registration.TehnicalUpdate.UserControlTechnical;
 using AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.UserControl;
@@ -17,6 +18,7 @@ using AutomatAis3Full.Form.Automat.Uregulirovanie.FormTrebUplNaloga.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.MessageLk.UserControl;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie;
 using AutomatAis3Full.Form.Report.ReportXml.ReportForm;
+using LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand;
 using ViewModelLib.ModelTestAutoit.FullWindowAutoIt;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
@@ -31,6 +33,7 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
           public FullWindowAutoItMethod FullWindowAdd()
           {
               FullWindowAutoItMethod autoit = new FullWindowAutoItMethod();
+              var ytochnenieSved = new YtochnenieSved();
               ObservableCollection<FullWindowAutoIt> window = new ObservableCollection<FullWindowAutoIt>
               {
                   new FullWindowAutoIt()
@@ -274,9 +277,7 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                       new FullWindowAutoIt()
                                       {
                                           NameControl = "Уточнение сведений о ФЛ",
-                                          UserControl =
-                                              new Form.Automat.Registration.UtochneneeSved.UserControl.
-                                                  YtochnenieSved()
+                                          UserControl = new Form.Automat.Registration.UtochneneeSved.UserControl.YtochnenieSved(ytochnenieSved)
                                       }
                                   }
                           },
@@ -348,17 +349,27 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                               {
                                                   new FullWindowAutoIt()
                                                   {
-                                                      NameControl =
-                                                          "15.02.02.01. Служебные. Технические исправления. Физические лица",
+                                                      NameControl = "15.02.02.01. Служебные. Технические исправления. Физические лица",
                                                       UserControl = new TehnicalUpdate()
-                                                  }
+                                                  },
                                               }
                                           }
                                       }
-                                  }
+                                  },
+                                new FullWindowAutoIt()
+                                {
+                                   NameControl = "07. Учет физических лиц",
+                                   CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                    {
+                                      new FullWindowAutoIt()
+                                        {
+                                         NameControl = "1.01. Журнал поступивших документов",
+                                         UserControl = new ReceivedDocuments(ytochnenieSved)
+                                        }
+                                    }
+                                 }
                               }
                           }
-
                       }
                   },
                   new FullWindowAutoIt()

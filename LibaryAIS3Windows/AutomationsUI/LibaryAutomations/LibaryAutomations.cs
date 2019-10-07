@@ -32,10 +32,13 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// </summary>
         /// <param name="nameAutomationId"></param>
         /// <param name="auto">Поиск по циклу по формуле если нет в корневом элементе то ищем потомка</param>
+        /// <param name="isSubtree">Искать в Subtree последний элемент</param>
         /// <returns></returns>
-        public AutomationElement FindFirstElement(string nameAutomationId, AutomationElement auto = null)
+        public AutomationElement FindFirstElement(string nameAutomationId, AutomationElement auto = null,bool isSubtree=false)
         {
             var recursion = nameAutomationId.Split('\\');
+            FindElement = auto;
+            var i = 1;
             foreach (var str in recursion)
             {
                 Conditions = AddCondition(str);
@@ -46,9 +49,17 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                 }
                 else
                 {
-                    FindElement = FindElement.FindFirst(TreeScope.Children, Conditions) ??
-                                  FindElement.FindFirst(TreeScope.Subtree, Conditions);
+                    if (isSubtree)
+                    {
+                        if (recursion.Length == i)
+                        {
+                            FindElement = FindElement.FindFirst(TreeScope.Children, Conditions);
+                            return FindElement;
+                        }
+                    }
+                   FindElement = FindElement.FindFirst(TreeScope.Children, Conditions) ?? FindElement.FindFirst(TreeScope.Subtree, Conditions);
                 }
+                i++;
             }
             return FindElement;
         }
@@ -63,7 +74,6 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             {
                 throw new ArgumentException();
             }
-       //     AutomationElement auto = null;
             List<AutomationElement> result = new List<AutomationElement>();
             TreeWalker tw = TreeWalker.RawViewWalker;
             
@@ -140,22 +150,28 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <summary>
         /// Проверяет доступен ли элемент и записывает его  в  FindElement
         /// </summary>
-        /// <param name="nameAutomationId"></param>
-        public void IsEnableElements(string nameAutomationId)
+        /// <param name="nameAutomationId">Поиск элемента</param>
+        /// <param name="auto">Есть ли элемент</param>
+        /// <param name = "isSubtree" >Искать в Subtree последний элемент</param>
+        public AutomationElement IsEnableElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false)
         {
             var isenable = false;
+            var i = 0;
             while (!isenable)
             {
-                FindFirstElement(nameAutomationId);
+                FindFirstElement(nameAutomationId, auto, isSubtree);
                 if (FindElement != null)
                 {
                     isenable = FindElement.Current.IsEnabled;
                 }
+                if (i == 25)
+                {
+                    return null;
+                }
+                i++;
             }
+            return FindElement;
         }
-
-
-
 
 
         /// <summary>

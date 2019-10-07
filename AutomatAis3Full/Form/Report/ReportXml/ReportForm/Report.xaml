@@ -74,6 +74,7 @@
                                                     <MenuItem Command="{Binding PlacementTarget.Tag.OpenFile, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Открыть файл!!!" />
                                                     <MenuItem Command="{Binding PlacementTarget.Tag.DeleteJurnal, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Удалить журнал!!!" />
                                                     <MenuItem Command="{Binding PlacementTarget.Tag.SendFileToServer, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Выгрузить письмо!!!" />
+                                                    <MenuItem Command="{Binding PlacementTarget.Tag.SenderDepartment, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Заявка на доступ!!!" />
                                                 </ContextMenu>
                                             </WrapPanel.ContextMenu>
                                             <Image

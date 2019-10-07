@@ -47,11 +47,18 @@
       <Project>{92017569-2991-4B9A-BFA2-6B41CFA72B83}</Project>
       <Name>LibaryAIS3Windows</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ViewModelLib\ViewModelLib.csproj">
+      <Project>{08BB509F-EAD1-4666-A539-6D60F464DB2F}</Project>
+      <Name>ViewModelLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="KclicerButtonTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\PexAssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">

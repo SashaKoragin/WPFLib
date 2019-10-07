@@ -36,6 +36,10 @@
       <HintPath>C:\Nuget\AutoItX.Dotnet.3.3.14.5\lib\AutoItX3.Assembly.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>C:\Nuget\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -104,6 +108,10 @@
     <ProjectReference Include="..\SqlLibaryIfns\SqlLibaryIfns.csproj">
       <Project>{128c2bf1-de92-4bb8-bda0-eefc5eab66d2}</Project>
       <Name>SqlLibaryIfns</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ViewModelLib\ViewModelLib.csproj">
+      <Project>{08bb509f-ead1-4666-a539-6d60f464db2f}</Project>
+      <Name>ViewModelLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

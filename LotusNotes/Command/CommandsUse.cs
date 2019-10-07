@@ -25,7 +25,7 @@ namespace LotusNotes.Command
                     case "Канцелярия ЗГ 2012":
                         var view = new Dialogs.Local.Zg.Global.Zg
                         {
-                            DataContext = new ModelDialogs.ZgDialogModel("IFNS\\2012\\Arhiv2016\\ZG_Arhiv_2017.nsf") //"IFNS\\2012\\Arhiv2016\\ZG_Arhiv_2017.nsf"
+                            DataContext = new ModelDialogs.ZgDialogModel(item.Path) //"IFNS\\2012\\Arhiv2016\\ZG_Arhiv_2017.nsf"
                         };
                          DialogHost.Show(view);
                         break;

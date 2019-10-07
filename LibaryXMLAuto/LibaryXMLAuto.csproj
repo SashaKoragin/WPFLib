@@ -78,6 +78,9 @@
     <Compile Include="ModelXmlAuto\ModelIdVisual\VisualId.cs">
       <DependentUpon>VisualId.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ModelXmlAuto\OtdelRuleUsers\OtdelRuleUsers.cs">
+      <DependentUpon>OtdelRuleUsers.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModelXmlAuto\ReportMigration\ReportMigration.cs">
       <DependentUpon>ReportMigration.xsd</DependentUpon>
     </Compile>
@@ -177,6 +180,9 @@
     <None Include="ModelXmlAuto\ModelSnuOne\SnuOneForm.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ModelXmlAuto\OtdelRuleUsers\OtdelRuleUsers.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ModelXmlAuto\ReportMigration\ReportMigration.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -248,6 +254,7 @@
       <XsdXmlSqlServer Include="ModelXmlSql\Model\ServerAndComputer\*.xsd" />
       <XsdXmlMigration Include="ModelXmlAuto\ReportMigration\*.xsd" />
       <XsdXmlInspection Include="ModelXmlAuto\Inspection\*.xsd" />
+      <XsdXmlOtdelRuleUsers Include="ModelXmlAuto\OtdelRuleUsers\*.xsd" />
     </ItemGroup>
     <Message Importance="high" Text="CreateXsd" />
     <GetFrameworkSdkPath>
@@ -279,5 +286,6 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFileVisualId.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.FileVisualId /outputdir:ModelXmlAuto\ModelIdVisual\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlMigration.FullPath)&quot; /classes /f /namespace:$(RootNamespace)ModelXmlAuto.MigrationReport /outputdir:ModelXmlAuto\ReportMigration\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlInspection.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.Inspection /outputdir:ModelXmlAuto\Inspection\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlOtdelRuleUsers.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.OtdelRuleUsers /outputdir:ModelXmlAuto\OtdelRuleUsers\" />
   </Target>
 </Project>

@@ -158,6 +158,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Registration\Journal\ReceivedDocument\ReceivedDocuments\ReceivedDocuments.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Registration\Rosreestr\UserControl\UserControlRosreestr.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -268,6 +272,10 @@
     <Compile Include="Form\Automat\Registration\ActualStatus\DataContext\DataContextActual.cs" />
     <Compile Include="Form\Automat\Registration\ActualStatus\UserControlStatus\ActualStatus.xaml.cs">
       <DependentUpon>ActualStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Registration\Journal\ReceivedDocument\DataContext\DataContextReceivedDocuments.cs" />
+    <Compile Include="Form\Automat\Registration\Journal\ReceivedDocument\ReceivedDocuments\ReceivedDocuments.xaml.cs">
+      <DependentUpon>ReceivedDocuments.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Registration\Rosreestr\DataContext\RosreestrContext.cs" />
     <Compile Include="Form\Automat\Registration\Rosreestr\UserControl\UserControlRosreestr.xaml.cs">

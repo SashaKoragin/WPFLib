@@ -31,15 +31,8 @@ namespace LibaryCommandPublic.TestAutoit.It.Rule
                   LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
                   if (ais3.WinexistsAis3() == 1)
                   {
-                      while (statusButton.Iswork)
-                      {
-                           var result = clickerButton.Click15(pathjurnalok,dataPickerSettings.CountRow,dataPickerSettings.DateStart,dataPickerSettings.DateFinish);
-                           if (result.Equals(LibaryAIS3Windows.Status.StatusAis.Status6))
-                           {
-                               DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
-                               break;
-                           }
-                       }
+                    clickerButton.Click15(pathjurnalok, dataPickerSettings,statusButton);
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                   }
                 else
                 {

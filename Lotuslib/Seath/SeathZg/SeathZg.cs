@@ -37,10 +37,10 @@ namespace Lotuslib.Seath.SeathZg
                     //var db = ConectDb.ConectDb.Databaseconect(ConectionString.ConectionString.Pass,
                     //ConectionString.ConectionString.ServerLocal, databasepath, false);
                     var db = ConectDb.ConectDb.Databaseconect(ConectionString.ConectionString.Pass,
-ConectionString.ConectionString.ServerLocal, "IFNS\\Комутатор_архивов\\Arhiv2018\\2017\\ZG_Arhiv_2017.nsf", false);
+ConectionString.ConectionString.ServerLocal, databasepath, false);
                     
                    // var col = db.Search(formula, null, 0);
-                    var col = db.Search("Select @All", null, 0);
+                    var col = db.Search(formula, null, 0);
                     var count = col.Count;
                     var docum = col.GetFirstDocument();
                     var i = 1;

@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Media;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using LibaryXMLAutoModelXmlAuto.MigrationReport;
+using LibaryXMLAutoModelXmlAuto.OtdelRuleUsers;
 using ViewModelLib.ModelTestAutoit.PublicModel.LableAndErrorModel;
 
 namespace LibaryCommandPublic.TestAutoit.PublicCommand
@@ -99,6 +100,54 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
             model.MessageReport = $"Для формирования писем возможно отправить только ReportMigration.xml";
             model.Color = Brushes.Red;
         }
+
+        public void DepartmentDocumentSenders(LableModel model, string nameservice, string serverReport, ReportJurnalMethod reportjurnal)
+        {
+
+            if (reportjurnal.XmlFile.Name == "UserRule.xml")
+            {
+                var service = nameservice.Split(',');
+                ServiceController sc = new ServiceController(service[0], service[1]);
+                if (sc.Status != ServiceControllerStatus.Stopped)
+                {
+                    try
+                    {
+                        string resultserver = null;
+                        XmlConvert xmlconverter = new XmlConvert();
+                        var reports = (RuleTemplate)xmlconverter.DeserializationXmlToClass(reportjurnal.XmlFile.Path, typeof(RuleTemplate));
+                        var body = Encoding.UTF8.GetBytes(new SerializeJson().JsonLibary(reports));
+                        var request = (HttpWebRequest)WebRequest.Create(serverReport);
+                        request.Method = "POST";
+
+                        request.ContentType = "application/json";
+                        request.ContentLength = body.Length;
+                        using (Stream stream = request.GetRequestStream())
+                        {
+                            stream.Write(body, 0, body.Length);
+                            stream.Close();
+                        }
+                        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                        using (StreamReader rdr = new StreamReader(response.GetResponseStream()))
+                        {
+                            resultserver = rdr.ReadToEnd();
+                        }
+                        model.MessageReport = resultserver;
+                        model.Color = Brushes.Green;
+                        return;
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.ToString());
+                    }
+                }
+                model.MessageReport = $"Служба: {service[0]} на компьютере {service[1]} остановлена!";
+                model.Color = Brushes.Red;
+                return;
+            }
+            model.MessageReport = $"Для формирования писем возможно отправить только UserRule.xml";
+            model.Color = Brushes.Red;
+        }
+
     }
 
    

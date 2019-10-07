@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
-using Prism.Commands;
-using Prism.Interactivity;
 using Prism.Mvvm;
 using Button = System.Windows.Controls.Button;
 
@@ -72,7 +69,7 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat
             }
         }
 
-        public bool Iswork
+        public bool  Iswork
         {
             get
             {

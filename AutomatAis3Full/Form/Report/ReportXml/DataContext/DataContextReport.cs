@@ -27,6 +27,9 @@ namespace AutomatAis3Full.Form.Report.ReportXml.DataContext
 
         public ICommand OpenReport { get; }
 
+        public ICommand SenderDepartment { get; }
+
+
         public DataContextReport()
         {
             try
@@ -39,7 +42,8 @@ namespace AutomatAis3Full.Form.Report.ReportXml.DataContext
             DeleteReport = new DelegateCommand(() => { Report.DeleteReportFile(); });
             OpenReport = new DelegateCommand(() => { Report.OpenReport(); });
             OpenFile = new DelegateCommand(() => { command.ConvertXslToXmlAndOpen(Report, ReportJurnalAndFile, ConfigFile.ExcelReportFile); });
-            SendFileToServer = new DelegateCommand((() => command.SenderServerReport(LableModel,ConfigFile.ServiceAndIpComputer, ConfigFile.ServerReport,ReportJurnalAndFile)));
+            SendFileToServer = new DelegateCommand(() => command.SenderServerReport(LableModel,ConfigFile.ServiceAndIpComputer, ConfigFile.ServerReport,ReportJurnalAndFile));
+            SenderDepartment = new DelegateCommand(()=>command.DepartmentDocumentSenders(LableModel, ConfigFile.ServiceAndIpComputer, ConfigFile.ServerRuleUsersWordTemplate, ReportJurnalAndFile));
             Update = new DelegateCommand(() =>
             {
                 ReportJurnalAndFile.AddFileXml(ConfigFile.PathInn);

@@ -20,6 +20,7 @@ namespace AutomatAis3Full.Config
         public static string ReportMigration = ConfigurationManager.AppSettings["ReportMigration"];
         public static string UserRule = ConfigurationManager.AppSettings["UserRule"];
         public static string ServerReport = ConfigurationManager.AppSettings["ServerReport"];
+        public static string ServerRuleUsersWordTemplate = ConfigurationManager.AppSettings["ServerRuleUsersWordTemplate"];
         public static string ServiceAndIpComputer = ConfigurationManager.AppSettings["ServiceAndIpComputer"];
         public static string Ifns = ConfigurationManager.AppSettings["Ifns"];
         public static string Help = ConfigurationManager.AppSettings["Help"];

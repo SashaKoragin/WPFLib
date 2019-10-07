@@ -1,5 +1,5 @@
 ﻿using Prism.Commands;
-using System.Windows.Input;
+using LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand;
 using AutomatAis3Full.Config;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
@@ -7,12 +7,11 @@ namespace AutomatAis3Full.Form.Automat.Registration.UtochneneeSved.DataContext
 {
    public class DataContextReg
     {
-        public StatusButtonMethod StartButton1 { get; }
-        public DataContextReg()
+        public StatusButtonMethod StartButton { get; }
+        public DataContextReg(YtochnenieSved ytochnenieSved)
         {
-            var commandauto = new LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand.YtochnenieSved();
-            StartButton1 = new StatusButtonMethod();
-            StartButton1.Button.Command = new DelegateCommand(() => { commandauto.Ytochnenie(StartButton1, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
+            StartButton = new StatusButtonMethod();
+            StartButton.Button.Command = new DelegateCommand(() => { ytochnenieSved.Ytochnenie(StartButton, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
         }
     }
 }
