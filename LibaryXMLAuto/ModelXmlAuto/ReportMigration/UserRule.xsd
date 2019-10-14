@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by Sasha (IFNS) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xs:element name="UserRule" type="UserRule">
+	<xs:element name="UserRule" type="UserRules">
 		<xs:annotation>
 			<xs:documentation>Роли пользователя </xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:complexType name="UserRule">
+	<xs:complexType name="UserRules">
 		<xs:annotation>
 			<xs:documentation>Роли пользователя</xs:documentation>
 		</xs:annotation>
@@ -22,32 +22,32 @@
 			<xs:sequence>
 				<xs:element ref="Rule" maxOccurs="unbounded"/>
 			</xs:sequence>
-			<xs:attribute name="Number" type="xs:string">
+			<xs:attribute name="Number" type="xs:string" default="">
 				<xs:annotation>
 					<xs:documentation>Номер заявки</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="Dates" type="xs:string">
+			<xs:attribute name="Dates" type="xs:string" default="">
 				<xs:annotation>
 					<xs:documentation>Дата</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="Fio" type="xs:string">
+			<xs:attribute name="Fio" type="xs:string" default="">
 				<xs:annotation>
 					<xs:documentation>ФИО</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="Dolj" type="xs:string">
+			<xs:attribute name="Dolj" type="xs:string" default="">
 				<xs:annotation>
 					<xs:documentation>Должность</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="Otdel" type="xs:string">
+			<xs:attribute name="Otdel" type="xs:string" default="">
 				<xs:annotation>
 					<xs:documentation>Отдел</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="SysName">
+			<xs:attribute name="SysName" type="xs:string" default="">
 				<xs:annotation>
 					<xs:documentation>Системное имя</xs:documentation>
 				</xs:annotation>
@@ -59,32 +59,32 @@
 			<xs:documentation>Роли</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:attribute name="Name" type="xs:string">
+			<xs:attribute name="Name" type="xs:string" default="">
 				<xs:annotation>
 					<xs:documentation>Наименование роли</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="Types" type="xs:string">
+			<xs:attribute name="Types" type="xs:string" default="">
 				<xs:annotation>
 					<xs:documentation>Тип роли</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="Pushed" type="xs:string">
+			<xs:attribute name="Pushed" type="xs:string" default="">
 				<xs:annotation>
 					<xs:documentation>Действие</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="DateStart" type="xs:string">
+			<xs:attribute name="DateStart" type="xs:string" default="">
 				<xs:annotation>
 					<xs:documentation>Дата начала</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="DateFinish" type="xs:string">
+			<xs:attribute name="DateFinish" type="xs:string" default="">
 				<xs:annotation>
 					<xs:documentation>Дата окончания</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="Context" type="xs:string">
+			<xs:attribute name="Context" type="xs:string" default="">
 				<xs:annotation>
 					<xs:documentation>Контекст</xs:documentation>
 				</xs:annotation>

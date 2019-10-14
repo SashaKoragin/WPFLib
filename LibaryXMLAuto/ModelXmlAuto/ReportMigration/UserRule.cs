@@ -20,8 +20,8 @@ namespace LibaryXMLAutoModelXmlAuto.MigrationReport {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
-    public partial class UserRule {
+    [System.Xml.Serialization.XmlRootAttribute("UserRule", Namespace="", IsNullable=false)]
+    public partial class UserRules {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("User")]
@@ -43,27 +43,42 @@ namespace LibaryXMLAutoModelXmlAuto.MigrationReport {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("")]
         public string Number;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("")]
         public string Dates;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("")]
         public string Fio;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("")]
         public string Dolj;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("")]
         public string Otdel;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("")]
         public string SysName;
+        
+        public User() {
+            this.Number = "";
+            this.Dates = "";
+            this.Fio = "";
+            this.Dolj = "";
+            this.Otdel = "";
+            this.SysName = "";
+        }
     }
     
     /// <remarks/>
@@ -77,26 +92,41 @@ namespace LibaryXMLAutoModelXmlAuto.MigrationReport {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("")]
         public string Name;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("")]
         public string Types;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("")]
         public string Pushed;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("")]
         public string DateStart;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("")]
         public string DateFinish;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("")]
         public string Context;
+        
+        public Rule() {
+            this.Name = "";
+            this.Types = "";
+            this.Pushed = "";
+            this.DateStart = "";
+            this.DateFinish = "";
+            this.Context = "";
+        }
     }
 }

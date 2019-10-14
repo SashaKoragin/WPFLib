@@ -101,7 +101,7 @@ namespace LibaryXMLAuto.ReadOrWrite
         /// </summary>
         /// <param name="path">Путь к файлу</param>
         /// <param name="userrule">Модель парсинга</param>
-        public void AddRuleUsers(string path, UserRule userrule)
+        public void AddRuleUsers(string path, UserRules userrule)
         {
              var doc = LogicaXml.LogicaXml.Document(path);
             XmlElement xRoot = doc.DocumentElement;

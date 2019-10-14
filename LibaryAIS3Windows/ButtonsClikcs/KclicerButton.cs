@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Automation;
-using System.Windows.Forms;
 using SqlLibaryIfns.AutoItSelect.Sql;
 using LibaryAIS3Windows.Window.Otdel.Analitic.TeskText;
 using AutoIt;
 using LibaryAIS3Windows.AutomationsUI.LibaryAutomations;
+using LibaryAIS3Windows.AutomationsUI.Otdels.It;
+using LibaryAIS3Windows.AutomationsUI.Otdels.Registration;
+using LibaryAIS3Windows.AutomationsUI.PublicElement;
 using LibaryAIS3Windows.ExitLogica.ExitTaskFull;
 using LibaryAIS3Windows.Function.PublicFunc;
 using LibaryAIS3Windows.Mode.Okp4.PravoZorI;
@@ -16,7 +18,6 @@ using LibaryAIS3Windows.Mode.RaschetBudg.Migration;
 using LibaryAIS3Windows.Mode.Reg.StatusReg;
 using LibaryAIS3Windows.RegxFull.RaschetBudg;
 using LibaryAIS3Windows.Window;
-using LibaryAIS3Windows.Window.Otdel.It.RuleParse;
 using LibaryAIS3Windows.Window.Otdel.Okp3.Usn;
 using LibaryAIS3Windows.Window.Otdel.Okp4.PravoZorI;
 using LibaryAIS3Windows.Window.Otdel.Okp4.Print;
@@ -1114,66 +1115,51 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         public void Click15(string pathjurnalok, DataPickerRuleItModel dataPickerSettings, StatusButtonMethod statusButton)
         {
             string dates = null;
-            UserRule userRule = new UserRule();
+            UserRules userRule = new UserRules();
             int j = 0;
-            WindowsAis3 windowsAis = new WindowsAis3();
             LibaryAutomations libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
-            libaryAutomations.FindFirstElement(TextRuleParse.PanelDocksCountRow);
+            libaryAutomations.FindFirstElement(ItElementName.PanelDocksCountRow);
             libaryAutomations.SetValuePattern(dataPickerSettings.CountRow);
-            libaryAutomations.FindFirstElement(TextRuleParse.PanelDocksDbStart);
+            libaryAutomations.FindFirstElement(ItElementName.PanelDocksDbStart);
             libaryAutomations.SetValuePattern(dataPickerSettings.DateStart.ToString("dd.MM.yyyy"));
-            libaryAutomations.FindFirstElement(TextRuleParse.PanelDocksDbFinish);
+            libaryAutomations.FindFirstElement(ItElementName.PanelDocksDbFinish);
             libaryAutomations.SetValuePattern(dataPickerSettings.DateFinish.ToString("dd.MM.yyyy"));
-            AutoItX.WinActivate(WindowsAis3.AisNalog3);
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, windowsAis.WindowsAis.X + 35, windowsAis.WindowsAis.Y + 75);
-            libaryAutomations.IsEnableElements(TextRuleParse.GridJournal);
-            var listelementgrid = libaryAutomations.SelectAutomationColrction(libaryAutomations.FindElement).Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("List")).GroupBy(x => x.Current.Name).Select(g => g.First());
-            foreach (AutomationElement automationElement in listelementgrid)
+            libaryAutomations.FindFirstElement(PublicElementName.UpdateButton);
+            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
+            libaryAutomations.IsEnableElements(ItElementName.GridJournal);
+            var i = 1;
+            while (libaryAutomations.FindFirstElement(string.Format(ItElementName.GridJournalRows,i))!=null)
             {
+                i++;
                 if (statusButton.Iswork)
                 {
-                    var listmemo = libaryAutomations.SelectAutomationColrction(automationElement);
+                    var listmemo = libaryAutomations.SelectAutomationColrction(libaryAutomations.FindElement);
                     foreach (AutomationElement element in listmemo)
                     {
                         if (element.Current.Name == "Дата")
                         {
-                            dates = libaryAutomations.ParseElement(element);
+                            dates = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(element);
                         }
                         if (element.Current.Name == "Номер")
                         {
-                            libaryAutomations.InvekePattern(element);
-                            AutoItX.Sleep(1000);
-                            AutoItX.Send(ButtonConstant.F3);
-                            libaryAutomations.IsEnableElements(TextRuleParse.HistoryJournal);
-                            var historyjurnals =
-                                libaryAutomations.SelectAutomationColrction(libaryAutomations.FindElement)
-                                    .Cast<AutomationElement>()
-                                    .Where(elem => elem.Current.Name.Contains("List"));
+                            libaryAutomations.FindFirstElement(PublicElementName.ViewButton);
+                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
+                            libaryAutomations.IsEnableElements(ItElementName.HistoryJournal);
+                            var historyjurnals = libaryAutomations.SelectAutomationColrction(libaryAutomations.FindElement).Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("List"));
                             foreach (var history in historyjurnals)
                             {
                                 var historyrule = libaryAutomations.SelectAutomationColrction(history);
-                                if (
-                                    historyrule.Cast<AutomationElement>()
-                                        .Any(elem => elem.Current.Name.Contains("Appointments")))
+                                if (historyrule.Cast<AutomationElement>().Any(elem => elem.Current.Name.Contains("Appointments")))
                                 {
                                     userRule.User = new User[1];
                                     userRule.User[0] = new User
                                     {
-                                        Dolj =
-                                            libaryAutomations.ParseElement(
-                                                libaryAutomations.FindFirstElement(TextRuleParse.Doljnost)),
-                                        Fio =
-                                            libaryAutomations.ParseElement(
-                                                libaryAutomations.FindFirstElement(TextRuleParse.Name)),
-                                        Otdel =
-                                            libaryAutomations.ParseElement(
-                                                libaryAutomations.FindFirstElement(TextRuleParse.Department)),
-                                        SysName =
-                                            libaryAutomations.ParseElement(
-                                                libaryAutomations.FindFirstElement(TextRuleParse.Logon)),
-                                        Number = libaryAutomations.ParseElement(element),
+                                        Dolj = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.FindFirstElement(ItElementName.Doljnost)),
+                                        Fio = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.FindFirstElement(ItElementName.Name)),
+                                        Otdel = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.FindFirstElement(ItElementName.Department)),
+                                        SysName = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.FindFirstElement(ItElementName.Logon)),
+                                        Number = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(element),
                                         Dates = dates
-
                                     };
                                     var listhistory = historyrule.Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("Appointments"));
                                     foreach (AutomationElement rule in listhistory)
@@ -1191,7 +1177,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                                                 userRule.User[0].Rule[j] = new Rule();
                                             }
                                             //Разбор ролей
-                                            var valueruele = libaryAutomations.ParseElement(rules);
+                                            var valueruele = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(rules);
                                             switch (rules.Current.Name)
                                             {
                                                 case "Наименование":
@@ -1217,8 +1203,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                                         j++;
                                     }
                                 }
-                                AutoItX.MouseClick(ButtonConstant.MouseLeft, windowsAis.WindowsAis.X + 25,
-                                    windowsAis.WindowsAis.Y + 70);
+                                libaryAutomations.FindFirstElement(PublicElementName.BackButton);
+                                libaryAutomations.InvekePattern(libaryAutomations.FindElement);
                                 break;
                             }
                             j = 0;
@@ -1227,14 +1213,13 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     }
                     LibaryXMLAuto.ErrorJurnal.ReportMigration.CreateFileRule(pathjurnalok, userRule);
                     userRule.User = null;
-                    //Переключаем запись Tab повторяем процессс и так до конца
                 }
                 else
                 {
                     break;
                 }
+                AutoItX.Send(ButtonConstant.Tab);
             }
-            //Закончили
         }
 
         ///  <summary>
@@ -1313,29 +1298,29 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// <param name="statusButton">Кнопка статуса чтобы остановить</param>
         public void Click18(string pathjurnalok, StatusButtonMethod statusButton)
         {
-            WindowsAis3 windowsAis = new WindowsAis3();
             LibaryAutomations libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
             AutomationElement elementauto;
-            while ((elementauto = libaryAutomations.IsEnableElements(IdFace.JurnalsDocumentsFirstElement,null,true)) != null)
+            while ((elementauto = libaryAutomations.IsEnableElements(RegistrationElementName.JurnalsDocumentsFirstElement,null,true)) != null)
             {
                         if (statusButton.Iswork)
                         {
-                            libaryAutomations.IsEnableElements(IdFace.Doc, elementauto);
+                            libaryAutomations.IsEnableElements(RegistrationElementName.Doc, elementauto);
+                            libaryAutomations.FindElement.SetFocus();
+                            var id = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.FindElement);
+                            libaryAutomations.FindFirstElement(RegistrationElementName.IsErrorDocument);
+                            var clickablePoint = libaryAutomations.FindElement.GetClickablePoint();
+                            AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint.X, (int)clickablePoint.Y);
+                            libaryAutomations.IsEnableElements(RegistrationElementName.Qweshions);
                             libaryAutomations.InvekePattern(libaryAutomations.FindElement);
-                            var id = libaryAutomations.ParseElement(libaryAutomations.FindElement);
-                            AutoItX.Sleep(500);
-                            AutoItX.MouseClick(ButtonConstant.MouseLeft, windowsAis.WindowsAis.X + 510, windowsAis.WindowsAis.Y + 90);
-                            libaryAutomations.IsEnableElements(IdFace.Qweshions);
+                            libaryAutomations.IsEnableElements(RegistrationElementName.ErrorsCreate);
                             libaryAutomations.InvekePattern(libaryAutomations.FindElement);
-                            libaryAutomations.IsEnableElements(IdFace.ErrorsCreate);
+                            libaryAutomations.IsEnableElements(RegistrationElementName.ErrorsOk);
                             libaryAutomations.InvekePattern(libaryAutomations.FindElement);
-                            libaryAutomations.IsEnableElements(IdFace.ErrorsOk);
+                            libaryAutomations.IsEnableElements(RegistrationElementName.ErrorsCancel);
                             libaryAutomations.InvekePattern(libaryAutomations.FindElement);
-                            libaryAutomations.IsEnableElements(IdFace.ErrorsCancel);
+                            libaryAutomations.IsEnableElements(RegistrationElementName.Qweshions);
                             libaryAutomations.InvekePattern(libaryAutomations.FindElement);
-                            libaryAutomations.IsEnableElements(IdFace.Qweshions);
-                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
-                            libaryAutomations.IsEnableElements(IdFace.WinOk);
+                            libaryAutomations.IsEnableElements(RegistrationElementName.WinOk);
                             libaryAutomations.InvekePattern(libaryAutomations.FindElement);
                             LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, id, "Отработали Ун входящего без ошибок");
                         }
@@ -1344,13 +1329,6 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                             break;
                         }
             }
-        }
-
-        public void Click19()
-        {
-            LibaryAutomations libaryAutomations = new LibaryAutomations("Справочник судебных органов");
-         //   libaryAutomations.FindFirstElement(@"Name:Справочник судебных органов");
-            libaryAutomations.GetChildren(libaryAutomations.RootAutomationElements);
         }
     }
     

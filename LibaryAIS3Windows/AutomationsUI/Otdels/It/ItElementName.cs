@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibaryAIS3Windows.Window.Otdel.It.RuleParse
+namespace LibaryAIS3Windows.AutomationsUI.Otdels.It
 {
-   public class TextRuleParse
+   public class ItElementName
     {
         /// <summary>
         /// Колличество строк
@@ -20,12 +20,14 @@ namespace LibaryAIS3Windows.Window.Otdel.It.RuleParse
         /// Дата старт
         /// </summary>
         public static string PanelDocksDbStart = "Name:DockTop\\AutomationId:gbFilter\\AutomationId:dtStart";
-
-        public static string GridJurnal = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandJrnlView\\AutomationId:gbAll\\AutomationId:grdJournal";
         /// <summary>
         /// Журнал
         /// </summary>
         public static string GridJournal = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandJrnlView\\AutomationId:gbAll\\AutomationId:grdJournal";
+        /// <summary>
+        /// Журнал Дата
+        /// </summary>
+        public static string GridJournalRows = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandJrnlView\\AutomationId:gbAll\\AutomationId:grdJournal\\Name:List`1 row {0}";
         /// <summary>
         /// История ролей
         /// </summary>
@@ -46,6 +48,5 @@ namespace LibaryAIS3Windows.Window.Otdel.It.RuleParse
         /// Логин
         /// </summary>
         public static string Logon = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandHistoryView\\AutomationId:gbUser\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:userInfoCtrl\\AutomationId:groupBox\\AutomationId:txtLogon";
-
     }
 }

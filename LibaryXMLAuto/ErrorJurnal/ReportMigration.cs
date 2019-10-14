@@ -29,7 +29,7 @@ namespace LibaryXMLAuto.ErrorJurnal
         /// </summary>
         /// <param name="pathreport">Путь сохранения файла с ролями</param>
         /// <param name="userrule">Роли и пользователи</param>
-        public static void CreateFileRule(string pathreport, UserRule userrule)
+        public static void CreateFileRule(string pathreport, UserRules userrule)
         {
             if (File.Exists(pathreport))
             {
@@ -39,7 +39,7 @@ namespace LibaryXMLAuto.ErrorJurnal
             else
             {
                 var convert = new Converts.ConvettToXml.XmlConvert();
-                convert.SerializerClassToXml(pathreport, userrule, typeof(UserRule));
+                convert.SerializerClassToXml(pathreport, userrule, typeof(UserRules));
             }
         }
     }

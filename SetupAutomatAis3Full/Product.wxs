@@ -201,6 +201,7 @@
         <util:XmlFile Id="AutomatAis3FullSet1" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='Ifns'[\]]//@value" Value="[IFNS]" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSet2" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServiceAndIpComputer'[\]]//@value" Value="ServiceTestIfns,[SERVICE]" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSet4" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServerReport'[\]]//@value" Value="http://[SERVICE]:8181/ServiceRest/MigrationError" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="AutomatAis3FullSet5" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServerRuleUsersWordTemplate'[\]]//@value" Value="http://[SERVICE]:8181/ServiceRest/GenerateTemplateRule" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSet3" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathPdfTemp'[\]]//@value" Value="[ADDPATHTEMP]" SelectionLanguage="XPath" Sequence="1" />
       </Component>
 	    <Component Id="MaterialDesignThemes.MahApps.dll" Guid="6c5e4642-dae0-4322-8ca5-96b32b5a83a9">
@@ -262,6 +263,12 @@
       </Component>
       <Component Id="Newtonsoft.Json.dll" Guid="C699E208-3133-4C9E-BD15-4A3D17B7189A">
         <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="$(var.AutomatAis3Full_TargetDir)Newtonsoft.Json.dll" />
+      </Component>
+      <Component Id="Interop.UIAutomationClient.dll" Guid="DD066EE1-5556-4EB0-BE20-95C3B6BF5B39">
+        <File Id="Interop.UIAutomationClient.dll" Name="Interop.UIAutomationClient.dll" Source="$(var.AutomatAis3Full_TargetDir)Interop.UIAutomationClient.dll" />
+      </Component>
+      <Component Id="UIAComWrapper.dll" Guid="8A462885-1497-4AE9-A053-4DD9CFCF3A5B">
+        <File Id="UIAComWrapper.dll" Name="UIAComWrapper.dll" Source="$(var.AutomatAis3Full_TargetDir)UIAComWrapper.dll" />
       </Component>
       <Component Id="PdfiumViewer.dll" Guid="7A76CAA9-7257-4BC4-9F3E-92694CD5ABC6">
         <File Id="PdfiumViewer.dll" Name="PdfiumViewer.dll" Source="$(var.AutomatAis3Full_TargetDir)PdfiumViewer.dll" />

@@ -1,10 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.DirectoryServices;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Windows.Automation;
+using System.Net;
+using System.Net.NetworkInformation;
+using Dhcp;
+using System.DirectoryServices.ActiveDirectory;
+using System.Linq;
+using System.Net.Sockets;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
@@ -15,6 +22,7 @@ using PIC = DocumentFormat.OpenXml.Drawing.Pictures;
 using ZXing;
 using ZXing.Common;
 using System.Windows.Media.Imaging;
+using SimpleImpersonation;
 
 namespace Algoritm
 {
@@ -81,12 +89,30 @@ namespace Algoritm
         {
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private async void button4_Click(object sender, EventArgs e)
         {
-            var s = new Sample();
-            s.Print();
-            ISample i = s;
-            i.Print();
+            await Task.Run(() =>
+            {
+                System.Net.
+                DirectoryEntry directoryEntry = new DirectoryEntry("LDAP://regions.tax.nalog.ru");
+                directoryEntry.Path = "LDAP://OU=WorkStations,OU=IFNS7751,OU=UFNS77,DC=regions,DC=tax,DC=nalog,DC=ru";
+                DirectorySearcher searcher = new DirectorySearcher(directoryEntry);
+                searcher.Filter = "CN=i7751-*";
+                var cot = searcher.FindAll();
+                foreach (SearchResult find in cot)
+                {
+                    var namecomputers = find.GetDirectoryEntry().Name.Replace("CN=", "");
+                    try
+                    {
+                        IPAddress[] adress = Dns.GetHostAddresses(namecomputers);
+                        Console.WriteLine($"Имя компьютера:{namecomputers}  Ip Адресс:{adress[0]}");
+                    }
+                    catch (Exception exception)
+                    {
+                        Console.WriteLine($"Исключение не работает:{namecomputers}  Статус: {exception.Message}");
+                    }
+                }
+            });
         }
 
         private void button5_Click(object sender, EventArgs e)

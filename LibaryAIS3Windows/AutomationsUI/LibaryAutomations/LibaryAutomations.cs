@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Automation;
 using AutoIt;
-using LibaryAIS3Windows.Window;
+
 
 namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
 {
@@ -84,7 +84,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                 string path = @"c:\MyTest.txt";
                 using (StreamWriter sw = new StreamWriter(path, true))
                 {
-                    var values = ParseElement(child);
+                    var values = ParseElementLegacyIAccessiblePatternIdentifiers(child);
                     sw.WriteLine(child.Current.Name + ":"+child.Current.AutomationId + ":" + values);
                  }
                 child = tw.GetNextSibling(child);
@@ -98,6 +98,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             }
             return result;
         }
+
 
         public AutomationElementCollection SelectAutomationColrction(AutomationElement element)
         {
@@ -119,6 +120,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// </summary>
         public void ExpandCollapsePattern(AutomationElement element)
         {
+            
             var pattrn = element.GetCurrentPattern(ExpandCollapsePatternIdentifiers.Pattern); //  pattern.(pattern.);
             var valueauto = (ExpandCollapsePattern)pattrn;
             valueauto.Expand();
@@ -135,14 +137,14 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             valueauto.SetValue(value);
         }
         /// <summary>
-        /// Получить значение элемента
+        /// Получить значение элемента из патерна LegacyIAccessiblePatternIdentifiers
         /// </summary>
-        public string ParseElement(AutomationElement element)
+        public string ParseElementLegacyIAccessiblePatternIdentifiers(AutomationElement element)
         {
             object patternObj;
-            if (element.TryGetCurrentPattern(ValuePatternIdentifiers.Pattern, out patternObj))
+            if (element.TryGetCurrentPattern(LegacyIAccessiblePatternIdentifiers.Pattern, out patternObj))
             {
-                var valuePattern = (ValuePattern) patternObj;
+                var valuePattern = (LegacyIAccessiblePattern)patternObj;
                 return  valuePattern.Current.Value;
             }
             return null;
@@ -198,7 +200,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             {
                 return new AndCondition(
                   new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
-                  new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.ToolBar),
+                  new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Pane),
                   new PropertyCondition(AutomationElement.AutomationIdProperty, parametr[1])
                   );
             }

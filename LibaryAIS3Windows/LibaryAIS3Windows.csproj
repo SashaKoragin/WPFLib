@@ -36,6 +36,11 @@
       <HintPath>C:\Nuget\AutoItX.Dotnet.3.3.14.5\lib\AutoItX3.Assembly.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Interop.UIAutomationClient, Version=12.0.20617.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>C:\Nuget\UIAComWrapper.1.1.0.14\lib\net40\Interop.UIAutomationClient.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
       <Private>True</Private>
@@ -51,12 +56,17 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UIAutomationClient" />
-    <Reference Include="UIAutomationTypes" />
+    <Reference Include="UIAComWrapper, Version=1.1.0.14, Culture=neutral, PublicKeyToken=78cbcf77433a85e5, processorArchitecture=MSIL">
+      <HintPath>C:\Nuget\UIAComWrapper.1.1.0.14\lib\net40\UIAComWrapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutomationsUI\LibaryAutomations\LibaryAutomations.cs" />
+    <Compile Include="AutomationsUI\Otdels\It\ItElementName.cs" />
+    <Compile Include="AutomationsUI\Otdels\Registration\RegistrationElementName.cs" />
+    <Compile Include="AutomationsUI\PublicElement\PublicElementName.cs" />
     <Compile Include="ButtonsClikcs\ButtonConstant.cs" />
     <Compile Include="ButtonsClikcs\ClikcCheker\Cheker.cs" />
     <Compile Include="ButtonsClikcs\KclicerButton.cs" />
@@ -84,7 +94,6 @@
     <Compile Include="RegxFull\RaschetBudg\RegxStart.cs" />
     <Compile Include="Status\StatusAis.cs" />
     <Compile Include="Window\Otdel\Analitic\TeskText\ZachetVozvrat.cs" />
-    <Compile Include="Window\Otdel\It\RuleParse\TextRuleParse.cs" />
     <Compile Include="Window\Otdel\Okp3\Usn\CardDeclr.cs" />
     <Compile Include="Window\Otdel\Okp3\Usn\UsnText.cs" />
     <Compile Include="Window\Otdel\Okp4\PravoZorI\PravoZorI.cs" />
@@ -96,8 +105,8 @@
     <Compile Include="Window\Otdel\Reg\ActualStatus\StatusText.cs" />
     <Compile Include="Window\Otdel\Reg\Fpd\FpdText.cs" />
     <Compile Include="Window\Otdel\Reg\IdFace\IdFace.cs" />
-    <Compile Include="Window\Otdel\Reg\Yvedomlenie\TextYvedomlenie.cs" />
-    <Compile Include="Window\Otdel\Uregulirovanie\UtverzdenieSz\SluzZ.cs" />
+    <Compile Include="Window\Otdel\Uregulirovanie\Yvedomlenie\TextYvedomlenie.cs" />
+    <Compile Include="Window\Otdel\Reg\UtverzdenieSz\SluzZ.cs" />
     <Compile Include="Window\Windows.cs" />
   </ItemGroup>
   <ItemGroup>

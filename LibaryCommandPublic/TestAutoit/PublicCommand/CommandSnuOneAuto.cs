@@ -114,8 +114,9 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
                     {
                         string resultserver = null;
                         XmlConvert xmlconverter = new XmlConvert();
-                        var reports = (RuleTemplate)xmlconverter.DeserializationXmlToClass(reportjurnal.XmlFile.Path, typeof(RuleTemplate));
-                        var body = Encoding.UTF8.GetBytes(new SerializeJson().JsonLibary(reports));
+                        var reports = (UserRules)xmlconverter.DeserializationXmlToClass(reportjurnal.XmlFile.Path, typeof(UserRules));
+                        var js = new SerializeJson().JsonLibary(reports);
+                        var body = Encoding.UTF8.GetBytes(js);
                         var request = (HttpWebRequest)WebRequest.Create(serverReport);
                         request.Method = "POST";
 
@@ -126,7 +127,8 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
                             stream.Write(body, 0, body.Length);
                             stream.Close();
                         }
-                        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                        //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                        WebResponse response = request.GetResponse();
                         using (StreamReader rdr = new StreamReader(response.GetResponseStream()))
                         {
                             resultserver = rdr.ReadToEnd();
