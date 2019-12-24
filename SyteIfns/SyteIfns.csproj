@@ -231,6 +231,7 @@
     <Content Include="public\fonts\MaterialIcons-Regular.ttf" />
     <Content Include="public\fonts\MaterialIcons-Regular.woff" />
     <Content Include="public\fonts\MaterialIcons-Regular.woff2" />
+    <None Include="Properties\PublishProfiles\SyteIfns.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
