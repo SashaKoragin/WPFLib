@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Automation;
 using AutoIt;
+using LibaryAIS3Windows.ButtonsClikcs;
 
 
 namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
@@ -41,25 +39,32 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             var i = 1;
             foreach (var str in recursion)
             {
-                Conditions = AddCondition(str);
-                if (auto == null)
-                {
-                    FindElement = RootAutomationElements.FindFirst(TreeScope.Children, Conditions);
-                    auto = FindElement;
-                }
-                else
-                {
-                    if (isSubtree)
-                    {
-                        if (recursion.Length == i)
-                        {
-                            FindElement = FindElement.FindFirst(TreeScope.Children, Conditions);
-                            return FindElement;
-                        }
-                    }
-                   FindElement = FindElement.FindFirst(TreeScope.Children, Conditions) ?? FindElement.FindFirst(TreeScope.Subtree, Conditions);
-                }
-                i++;
+             try
+               {
+                 Conditions = AddCondition(str);
+                  if (auto == null)
+                  {
+                      FindElement = RootAutomationElements.FindFirst(TreeScope.Children, Conditions);
+                      auto = FindElement;
+                  }
+                  else
+                  {
+                      if (isSubtree)
+                      {
+                          if (recursion.Length == i)
+                          {
+                              FindElement = FindElement.FindFirst(TreeScope.Children, Conditions);
+                              return FindElement;
+                          }
+                      }
+                     FindElement = FindElement.FindFirst(TreeScope.Children, Conditions) ?? FindElement.FindFirst(TreeScope.Subtree, Conditions);
+                  }
+                  i++;
+              }
+              catch (Exception e)
+              {
+                    return null;
+              }
             }
             return FindElement;
         }
@@ -120,7 +125,6 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// </summary>
         public void ExpandCollapsePattern(AutomationElement element)
         {
-            
             var pattrn = element.GetCurrentPattern(ExpandCollapsePatternIdentifiers.Pattern); //  pattern.(pattern.);
             var valueauto = (ExpandCollapsePattern)pattrn;
             valueauto.Expand();
@@ -137,15 +141,38 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             valueauto.SetValue(value);
         }
         /// <summary>
+        /// Select Combobox count Down
+        /// </summary>
+        /// <param name="countdown">Количество прокрутов вниз</param>
+        public void ComboBoxPatternDown(int countdown)
+        {
+            FindElement.SetFocus();
+            AutoItX.Send(string.Format(ButtonConstant.DownCountClick,countdown));
+        }
+
+        /// <summary>
+        /// Select Combobox count Up
+        /// </summary>
+        /// <param name="countup">Количество прокрутов вверх</param>
+        public void ComboBoxPatternUp(int countup)
+        {
+            FindElement.SetFocus();
+            AutoItX.Send(string.Format(ButtonConstant.UpCountClick, countup));
+        }
+
+        /// <summary>
         /// Получить значение элемента из патерна LegacyIAccessiblePatternIdentifiers
         /// </summary>
         public string ParseElementLegacyIAccessiblePatternIdentifiers(AutomationElement element)
         {
-            object patternObj;
-            if (element.TryGetCurrentPattern(LegacyIAccessiblePatternIdentifiers.Pattern, out patternObj))
+            if (element != null)
             {
-                var valuePattern = (LegacyIAccessiblePattern)patternObj;
-                return  valuePattern.Current.Value;
+               object patternObj;
+               if (element.TryGetCurrentPattern(LegacyIAccessiblePatternIdentifiers.Pattern, out patternObj))
+               {
+                  var valuePattern = (LegacyIAccessiblePattern)patternObj;
+                  return  valuePattern.Current.Value;
+               }
             }
             return null;
         }
@@ -155,10 +182,12 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="nameAutomationId">Поиск элемента</param>
         /// <param name="auto">Есть ли элемент</param>
         /// <param name = "isSubtree" >Искать в Subtree последний элемент</param>
-        public AutomationElement IsEnableElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false)
+        /// <param name="countsecond">Колличество обращений к элементу</param>
+        public AutomationElement IsEnableElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,int countsecond =25)
         {
             var isenable = false;
             var i = 0;
+            
             while (!isenable)
             {
                 FindFirstElement(nameAutomationId, auto, isSubtree);
@@ -166,7 +195,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                 {
                     isenable = FindElement.Current.IsEnabled;
                 }
-                if (i == 25)
+                if (i == countsecond)
                 {
                     return null;
                 }
@@ -174,7 +203,24 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             }
             return FindElement;
         }
-
+        /// <summary>
+        /// Поиск и нажатие на элемент!!!
+        /// </summary>
+        /// <param name="nameAutomationId">Поиск элемента</param>
+        /// <param name="auto">Есть ли элемент</param>
+        /// <param name = "isSubtree" >Искать в Subtree последний элемент</param>
+        /// <param name="countsecond">Колличество обращений к элементу</param>
+        public bool CliksElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,int countsecond = 25)
+        {
+            var isClicks = false;
+            if (IsEnableElements(nameAutomationId, auto, isSubtree, countsecond) != null)
+            {
+                var clickablePoint = FindElement.GetClickablePoint();
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint.X, (int)clickablePoint.Y);
+                isClicks = true;
+            }
+            return isClicks;
+        }
 
         /// <summary>
         /// Функция Id окна

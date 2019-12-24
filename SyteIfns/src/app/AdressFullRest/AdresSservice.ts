@@ -1,5 +1,5 @@
 ﻿export class AdressMerge {
-    public host = 'i7751-w00000745';
+    public host = 'I7751-W40204180';
    // public host = 'localhost';
     //Авторизация на сервере
     public authservicedomain = `http://${this.host}:8181/ServiceRest/AuthServiceDomain`;

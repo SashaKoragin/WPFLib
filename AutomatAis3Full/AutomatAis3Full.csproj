@@ -91,6 +91,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -178,11 +179,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Registration\VisualBank\UserControl\VisualBank.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\UserControl\FormTrebUplNaloga.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Uregulirovanie\MessageLk\UserControl\MessageLk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\RequirementsLog\UserControl\RequirementsLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\SenderReshenia\UserControl\SenderReshenia.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\SenderSpravk\UserControl\SenderSpravk.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -293,6 +310,10 @@
     <Compile Include="Form\Automat\Registration\UtochneneeSved\UserControl\YtochnenieSved.xaml.cs">
       <DependentUpon>YtochnenieSved.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\Registration\VisualBank\DataContext\DataContextVisualBank.cs" />
+    <Compile Include="Form\Automat\Registration\VisualBank\UserControl\VisualBank.xaml.cs">
+      <DependentUpon>VisualBank.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\DataContext\DataContextFormTrebUplNaloga.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\UserControl\FormTrebUplNaloga.xaml.cs">
       <DependentUpon>FormTrebUplNaloga.xaml</DependentUpon>
@@ -300,6 +321,18 @@
     <Compile Include="Form\Automat\Uregulirovanie\MessageLk\DataContext\DataContextMessageLk.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\MessageLk\UserControl\MessageLk.xaml.cs">
       <DependentUpon>MessageLk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\RequirementsLog\DataContext\DataContextRequirementsLog.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\RequirementsLog\UserControl\RequirementsLog.xaml.cs">
+      <DependentUpon>RequirementsLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\SenderReshenia\DataContext\DataContextSenderReshenia.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\SenderReshenia\UserControl\SenderReshenia.xaml.cs">
+      <DependentUpon>SenderReshenia.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\SenderSpravk\DataContext\DataContextSenderSpravk.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\SenderSpravk\UserControl\SenderSpravk.xaml.cs">
+      <DependentUpon>SenderSpravk.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\FormirovanieSpiskov\Spiski\DataContext\DataContextSpisok.cs" />
     <Compile Include="Form\FormirovanieSpiskov\Spiski\FormFormirovanie\FormSpisok.xaml.cs">
@@ -367,6 +400,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ExcelReport\" />
+    <Folder Include="Form\Automat\Predproverka\" />
     <Folder Include="PdfReport\" />
     <Folder Include="XmlFile\" />
     <Folder Include="XmlJurnal\" />

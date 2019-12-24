@@ -48,7 +48,7 @@
         <Control Id="SettingServers" Type="Text" X="40" Y="55" Width="300" Height="15" Transparent="yes" NoPrefix="yes" Text="Настройки серверной части для генерации писем:"></Control>
         <Control Id="Service" Type="Text" X="10" Y="75" Width="105" Height="15" Transparent="yes" NoPrefix="yes" Text="Наименование сервера:"></Control>
         <Control Id="Service51" Type="Edit" X="110" Y="75" Width="110" Height="15" Property="SERVICE" Text="[SERVICE]"  ToolTip="Наименование сервера:" >
-          <Property Id="SERVICE" Value="i7751-w00000745" />
+          <Property Id="SERVICE" Value="I7751-W40204180" />
         </Control>
         <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)">
           <Publish Event="NewDialog" Value="VerifyReadyDlg" Order="10" />

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,6 +28,7 @@ namespace LibaryCommandPublic.TestAutoit.It.Rule
                DispatcherHelper.Initialize();
               Task.Run(delegate
                {
+                  File.Delete(pathjurnalok);
                   DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                   KclicerButton clickerButton = new KclicerButton();
                   LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();

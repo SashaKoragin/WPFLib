@@ -14,8 +14,12 @@ using AutomatAis3Full.Form.Automat.Registration.Journal.ReceivedDocument.Receive
 using AutomatAis3Full.Form.Automat.Registration.Rosreestr.UserControl;
 using AutomatAis3Full.Form.Automat.Registration.TehnicalUpdate.UserControlTechnical;
 using AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.UserControl;
+using AutomatAis3Full.Form.Automat.Registration.VisualBank.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.FormTrebUplNaloga.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.MessageLk.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.RequirementsLog.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.SenderReshenia.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.SenderSpravk.UserControl;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie;
 using AutomatAis3Full.Form.Report.ReportXml.ReportForm;
 using LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand;
@@ -69,9 +73,38 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                       {
                           new FullWindowAutoIt()
                           {
+                              NameControl = "Требования об уплате",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Журнал требований об уплате",
+                                      UserControl = new RequirementsLog()
+                                  }
+                              }
+                          },
+                          new FullWindowAutoIt()
+                          {
                               NameControl = "Общие задания",
                               CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                               {
+                               new FullWindowAutoIt()
+                               {
+                                   NameControl = "05.08.10.01 Списание задолженности",
+                                   CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                   {
+                                     new FullWindowAutoIt()
+                                     {
+                                         NameControl  = "05.08.10.01.0X.01.02. Подписание Справки о суммах недоимки и задолженности",
+                                         UserControl = new SenderSpravk()
+                                     },
+                                     new FullWindowAutoIt()
+                                     {
+                                         NameControl = "05.08.10.01.0X.02. Подписание решения. Создание операций в КРСБ",
+                                         UserControl = new SenderReshenia()
+                                     }
+                                   }
+                               },
                                new FullWindowAutoIt()
                                {
                                    NameControl = "05.08.03.0X.03. Утверждение требований об уплате",
@@ -254,20 +287,36 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                               {
                                   new FullWindowAutoIt()
                                   {
-                                      NameControl =
-                                          "14.КС–Корректировка сведений о правах не зарегистрированных  в органах Росреестра и правах наследования на ОН и ЗУ",
+                                      NameControl = "14.КС–Корректировка сведений о правах не зарегистрированных  в органах Росреестра и правах наследования на ОН и ЗУ",
                                       UserControl = new PravoEditForm()
                                   }
                               }
                           }
                       }
-
                   },
                   new FullWindowAutoIt()
                   {
                       NameControl = "Регистрация",
                       CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                       {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Банковские и лицевые счета",                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "06. Журналы принятых файлов БС",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "01. Визуальный анализ сообщений банка",
+                                              UserControl = new VisualBank()
+                                          }
+                                      }
+                                  }
+                              }
+                          },
                           new FullWindowAutoIt()
                           {
                               NameControl = "Общие задания",

@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Automation;
-using SqlLibaryIfns.AutoItSelect.Sql;
 using LibaryAIS3Windows.Window.Otdel.Analitic.TeskText;
 using AutoIt;
 using LibaryAIS3Windows.AutomationsUI.LibaryAutomations;
 using LibaryAIS3Windows.AutomationsUI.Otdels.It;
+using LibaryAIS3Windows.AutomationsUI.Otdels.RaschetBud;
 using LibaryAIS3Windows.AutomationsUI.Otdels.Registration;
+using LibaryAIS3Windows.AutomationsUI.Otdels.Uregulirovanie;
 using LibaryAIS3Windows.AutomationsUI.PublicElement;
 using LibaryAIS3Windows.ExitLogica.ExitTaskFull;
 using LibaryAIS3Windows.Function.PublicFunc;
@@ -17,6 +20,7 @@ using LibaryAIS3Windows.Mode.Okp4.SnuFormirovanie;
 using LibaryAIS3Windows.Mode.RaschetBudg.Migration;
 using LibaryAIS3Windows.Mode.Reg.StatusReg;
 using LibaryAIS3Windows.RegxFull.RaschetBudg;
+using LibaryAIS3Windows.SqlModel.SqlLk2;
 using LibaryAIS3Windows.Window;
 using LibaryAIS3Windows.Window.Otdel.Okp3.Usn;
 using LibaryAIS3Windows.Window.Otdel.Okp4.PravoZorI;
@@ -40,6 +44,12 @@ namespace LibaryAIS3Windows.ButtonsClikcs
     {
         private const string ModeBranchVedomost1 = @"Налоговое администрирование\Расчеты с бюджетом\Ведомость невыясненных поступлений\Ведомость невыясненных поступлений. Раздел 1";
 
+
+        private const string LogTreb = @"Налоговое администрирование\Урегулирование задолженности\Требования об уплате\Журнал требований об уплате";
+        /// <summary>
+        /// Ветка идентификации банковских счетов
+        /// </summary>
+        private const string VisualBank = @"Налоговое администрирование\Банковские и лицевые счета\06. Журналы принятых файлов БС\01. Визуальный анализ сообщений банка";
         /// <summary>
         /// Константа название ветки которую обрабатываем Основная
         /// </summary>
@@ -753,56 +763,87 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// <summary>
         /// Уточнение платежей
         /// </summary>
+        /// <param name="statusButton">Кнопка</param>
         /// <param name="pathjurnalerror">Путь к журналу ошибок</param>
         /// <param name="pathjurnalok">Путь к журналу Ок</param>
         /// <param name="logica">Логика анализа</param>
         /// <param name="isTp">Проставлять ТП</param>
-        public bool Click10(string pathjurnalerror, string pathjurnalok, int logica, bool isTp)
+        public void Click10(StatusButtonMethod statusButton, string pathjurnalerror, string pathjurnalok, int logica, bool isTp)
         {
-            WindowsAis3 win = new WindowsAis3();
-            RegxStart regxstart = new RegxStart();
-            while (true)
+            var libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
+            libaryAutomations.FindFirstElement(RashetBudElementName.DateGrid);
+            var listmemo = libaryAutomations.SelectAutomationColrction(libaryAutomations.FindElement).Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("List"));
+            foreach (var automationElement in listmemo)
             {
-                var fulltext = ReadWindow.Read.Reades.HidenTextReturn(WindowsAis3.AisNalog3);
-                regxstart.Parse(fulltext);
-                if (regxstart.IsNulable)
+                if (statusButton.Iswork)
                 {
-                    LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, regxstart.RaschDoc, ModeBranchVedomost1, regxstart.Error);
-                    break;
+                    automationElement.SetFocus();
+                    RegxStart regxstart = new RegxStart();
+                    regxstart.RaschDoc = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                                     .SelectAutomationColrction(automationElement)
+                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Расчетный документ")));
+                    regxstart.RaspredPl = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                                     .SelectAutomationColrction(automationElement)
+                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КБК")));
+                    regxstart.InnPlatel = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                                   .SelectAutomationColrction(automationElement)
+                                   .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН плательщика (60)")));
+                    regxstart.Inn = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                                     .SelectAutomationColrction(automationElement)
+                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН получателя (61)")));
+                    regxstart.Kpp = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                                     .SelectAutomationColrction(automationElement)
+                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КПП получателя (103)")));
+                    regxstart.Platej = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                                     .SelectAutomationColrction(automationElement)
+                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Сумма (7)")));
+                    regxstart.Kbk100 = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                                       .SelectAutomationColrction(automationElement)
+                                       .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КБК")));
+                    regxstart.KbkIfns = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                                      .SelectAutomationColrction(automationElement)
+                                      .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КБК (104)")));
+                    regxstart.Oktmo = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                                     .SelectAutomationColrction(automationElement)
+                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ОКТМО (ОКАТО) (105)")));
+                    if (String.IsNullOrWhiteSpace(regxstart.Oktmo) || string.Equals(regxstart.IsMathRegx("(0{6})", regxstart.Oktmo), "000000"))
+                    {
+                        LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, regxstart.RaschDoc,ModeBranchVedomost1, "Не опознано ОКТМО надо проверять");
+                    }
+                    else
+                    {
+                        while (true)
+                        {
+                            if (libaryAutomations.IsEnableElements(RashetBudElementName.StartUtoch) == null) continue;
+                            libaryAutomations.CliksElements(RashetBudElementName.StartUtoch);
+                            break;
+                        }
+                        AutoItX.WinWait(Vedomost1Win.ViesneniePl[0], Vedomost1Win.ViesneniePl[1]);
+                        AutoItX.Send(ButtonConstant.Enter);
+                        regxstart.UseNalog(logica, isTp);
+                        while (true)
+                        {
+                            if (libaryAutomations.IsEnableElements(RashetBudElementName.Utverjdenie) == null) continue;
+                            libaryAutomations.CliksElements(RashetBudElementName.Utverjdenie);
+                            break;
+                        }
+                        if ((AutoItX.WinWait(Vedomost1Win.Utoch[0], Vedomost1Win.Utoch[1], 1) == 1) || (AutoItX.WinWait(Vedomost1Win.Utoch2[0], Vedomost1Win.Utoch2[0], 1) == 1))
+                        {
+                            AutoItX.Sleep(500);
+                            AutoItX.Send(ButtonConstant.Enter);
+                        }
+                        if (regxstart.InnPlatel.Length != 10)
+                        {
+                            AutoItX.WinWait(Vedomost1Win.IsData[0], Vedomost1Win.IsData[1], 2);
+                            AutoItX.Sleep(500);
+                            AutoItX.Send(ButtonConstant.Enter);
+                        }
+                        AutoItX.WinWaitClose("АИС Налог-3 ПРОМ ", "Проведение уточнения");
+                        LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, regxstart.RaschDoc + " Подставили КБК: " + regxstart.KbkIfns + " вместо " + regxstart.Kbk100, "Удалось спарсить");
+                    }
                 }
-                if (string.Equals(regxstart.IsMathRegx("(0{6})", regxstart.Oktmo), "000000"))
-                {
-                    LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, regxstart.RaschDoc, ModeBranchVedomost1, "Не опознано ОКТМО надо проверять");
-                    AutoItX.Send(ButtonConstant.Tab);
-                    break;
-                }
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 45, win.WindowsAis.Y + 95);
-                AutoItX.WinWait(Vedomost1Win.ViesneniePl[0], Vedomost1Win.ViesneniePl[1]);
-                AutoItX.Send(ButtonConstant.Enter);
-                regxstart.UseNalog(logica, isTp);
-                AutoItX.Sleep(1000);
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + 120, win.WindowsAis.Y + 80);
-                if ((AutoItX.WinWait(Vedomost1Win.Utoch[0], Vedomost1Win.Utoch[1], 1) == 1) ||
-                    (AutoItX.WinWait(Vedomost1Win.Utoch2[0], Vedomost1Win.Utoch2[0], 1) == 1))
-                {
-                    AutoItX.Sleep(500);
-                    AutoItX.Send(ButtonConstant.Enter);
-                }
-                if (regxstart.Platelsik.Length != 10)
-                {
-                    AutoItX.WinWait(Vedomost1Win.IsData[0], Vedomost1Win.IsData[1], 2);
-                    AutoItX.Sleep(500);
-                    AutoItX.Send(ButtonConstant.Enter);
-                }
-                AutoItX.WinWaitClose("АИС Налог-3 ПРОМ ", "Проведение уточнения");
-                AutoItX.Send(ButtonConstant.Tab);
-                LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, regxstart.RaschDoc + " Подставили КБК: " + regxstart.KbkIfns + " вместо " + regxstart.Kbk100, "Удалось спарсить");
-                AutoItX.Sleep(1000);
-                break;
             }
-            return regxstart.IsNulable;
         }
-
         /// <summary>
         /// Функция обработку миграции НП
         /// </summary>
@@ -1330,6 +1371,282 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                         }
             }
         }
+        /// <summary>
+        /// Подписание решения урегулирование задолженности 05.08.10.01.0X.02 Подписание решения.
+        /// </summary>
+        /// <param name="pathjurnalok">Путь к отработанным значениям</param>
+        /// <param name="statusButton">Кнопка статуса</param>
+        public void Click19(string pathjurnalok, StatusButtonMethod statusButton)
+        {
+            var libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
+            while (libaryAutomations.IsEnableElements(UregulirovanieElementName.JurnalsUserOperationSpravki) !=null)
+            {
+                if (statusButton.Iswork)
+                {
+                    var clickablerows = libaryAutomations.SelectAutomationColrction(libaryAutomations.FindElement).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Имя задания")).GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablerows.X, (int)clickablerows.Y);
+                    libaryAutomations.FindFirstElement(PublicElementName.StartUser);
+                    var clickablePoint = libaryAutomations.FindElement.GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint.X, (int)clickablePoint.Y);
+                    AutoItX.WinWait("АИС Налог-3 ПРОМ ", "ИНН:");
+                    var inn = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.IsEnableElements(UregulirovanieElementName.InnResh));
+                    var fio = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.IsEnableElements(UregulirovanieElementName.FioResh));
+                    var summ = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.IsEnableElements(UregulirovanieElementName.SummResh));
+                    libaryAutomations.IsEnableElements(UregulirovanieElementName.SaveUser);
+                    var clickablePoint1 = libaryAutomations.FindElement.GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint1.X, (int)clickablePoint1.Y);
+                    while (true)
+                    {
+                        if (libaryAutomations.IsEnableElements(UregulirovanieElementName.WinOk, null, true, 1) != null)
+                        {
+                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
+                            break;
+                        }
+                        if (libaryAutomations.IsEnableElements(UregulirovanieElementName.SendSenderZadoljenost, null,true, 1) != null)
+                        {
+                            var clickablePoint2 = libaryAutomations.FindElement.GetClickablePoint();
+                            AutoItX.MouseClick(ButtonConstant.MouseLeft, (int) clickablePoint2.X,(int) clickablePoint2.Y);
+                        }
+                    }
+                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, $"{summ} {inn} {fio}", "Отработали Подписание решения о признании недоимки и задолжености безнадежными к взысканию");
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Подписание справки урегулирование задолженности 05.08.10.01.0X.02 Подписание справок.
+        /// </summary>
+        /// <param name="pathjurnalok">Путь к отработанным значениям</param>
+        /// <param name="statusButton">Кнопка статуса</param>
+        public void Click20(string pathjurnalok, StatusButtonMethod statusButton)
+        {
+            var libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
+   
+            while (libaryAutomations.IsEnableElements(UregulirovanieElementName.JurnalsUserOperationSpravki) != null)
+            {
+                if (statusButton.Iswork)
+                {
+                    var clickablerows = libaryAutomations.SelectAutomationColrction(libaryAutomations.FindElement).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Имя задания")).GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablerows.X, (int)clickablerows.Y);
+                    libaryAutomations.FindFirstElement(PublicElementName.StartUser);
+                    var clickablePoint = libaryAutomations.FindElement.GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint.X, (int)clickablePoint.Y);
+                    AutoItX.WinWait("АИС Налог-3 ПРОМ ", "ИНН:");
+                    var num = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.IsEnableElements(UregulirovanieElementName.Number));
+                    var inn = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.IsEnableElements(UregulirovanieElementName.Inn));
+                    var fio = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.IsEnableElements(UregulirovanieElementName.Fio));
+                    libaryAutomations.IsEnableElements(UregulirovanieElementName.SaveUser);
+                    AutoItX.Sleep(500);
+                    var clickablePoint1 = libaryAutomations.FindElement.GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint1.X, (int)clickablePoint1.Y);
+                    while (true)
+                    {
+                        if (libaryAutomations.IsEnableElements(UregulirovanieElementName.SendSender,null,true,1) != null)
+                        {
+                            break;
+                        }
+                        if (libaryAutomations.IsEnableElements(UregulirovanieElementName.SaveProject, null, true,1) != null)
+                        {
+                            var clickablePoint2 = libaryAutomations.FindElement.GetClickablePoint();
+                            AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint2.X, (int)clickablePoint2.Y);
+                        }
+                    }
+                    while (true)
+                    {
+                        if (libaryAutomations.IsEnableElements(UregulirovanieElementName.WinOkExeptions, null, true, 1) != null)
+                        {
+                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
+                        }
+                        if (libaryAutomations.IsEnableElements(UregulirovanieElementName.WinOk, null, true, 1) != null)
+                        {
+                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
+                            break;
+                        }
+                        if (libaryAutomations.IsEnableElements(UregulirovanieElementName.SendSender, null, true,1) != null)
+                        {
+                            var clickablePoint3 = libaryAutomations.FindElement.GetClickablePoint();
+                            AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint3.X, (int)clickablePoint3.Y);
+                        }
+                    }
+                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, $"{num} {inn} {fio}", "Отработали Подписание справки о суммах недоимки");
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Налоговое администрирование\Банковские и лицевые счета\06. Журналы принятых файлов БС\01. Визуальный анализ сообщений банка
+        /// </summary>
+        /// <param name="id">ФПД значение</param>
+        /// <param name="pathjurnalerror">Журнал ошибок</param>
+        /// <param name="pathjurnalok">Журнал сделаных</param>
+        public void Click21(string id, string pathjurnalerror, string pathjurnalok)
+        {
+            WindowsAis3 win = new WindowsAis3();
+            var libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
+            win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 35);
+            AutoItX.ClipPut(id);
+            AutoItX.Send(ButtonConstant.Down3);
+            AutoItX.Send(ButtonConstant.Right5);
+            AutoItX.Send(ButtonConstant.Enter);
+            AutoItX.Send(ButtonConstant.CtrlV);
+            while (true)
+            {
+                if (libaryAutomations.CliksElements(RegistrationElementNameVisualBank.UpdateButton, null, false, 1))
+                {
+                    if (libaryAutomations.IsEnableElements(RegistrationElementNameVisualBank.JurnalsDocumentsFirstElementBank, null, true) != null)
+                    {
+                        libaryAutomations.FindElement.SetFocus();
+                        if (libaryAutomations.CliksElements(RegistrationElementNameVisualBank.Identification, null, false, 5))
+                        {
+                            while (true)
+                            {
+                                if (libaryAutomations.CliksElements(RegistrationElementNameVisualBank.StartIdentification))
+                                {
+                                    while (true)
+                                    {
+                                        if (libaryAutomations.IsEnableElements(RegistrationElementNameVisualBank.WinOk, null, true, 1) != null)
+                                        {
+                                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
+                                        }
+                                        if (libaryAutomations.IsEnableElements(RegistrationElementNameVisualBank.WinOkEnd, null, true, 1) != null)
+                                        {
+                                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
+                                            if (libaryAutomations.CliksElements(RegistrationElementNameVisualBank.Return))
+                                            {
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, id, VisualBank, "Не удаётся идентифицировать лицо. Лицо не найдено!");
+                                    libaryAutomations.CliksElements(RegistrationElementNameVisualBank.ReturnList, null, false, 10);
+                                    if (libaryAutomations.CliksElements(RegistrationElementNameVisualBank.Return, null,false, 10))
+                                    {
+                                        return;
+                                    }
+                                }
+                                break;
+                            }
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, id, VisualBank, "Не найдено значение для идентификации");
+                        if (libaryAutomations.CliksElements(RegistrationElementNameVisualBank.Return, null, false, 10))
+                        {
+                            return;
+                        }
+                    }
+                }
+            }
+            LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, id, "Отработали идентификацию успешно!");
+        }
+        /// <summary>
+        /// Налоговое администрирование\Урегулирование задолженности\Требования об уплате\Журнал требований об уплате
+        /// Проставление информации о вручкении +3 дня от подачи
+        /// </summary>
+        /// <param name="pathjurnalerror">Журнал ошибок</param>
+        /// <param name="pathjurnalok">Журнал отработанных</param>
+        /// <param name="statusButton">Запуск остановка</param>
+        /// string pathjurnalerror, string pathjurnalok, StatusButtonMethod statusButton
+        public void Click22(string pathjurnalerror,string pathjurnalok, StatusButtonMethod statusButton)
+        {
+            var libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
+            libaryAutomations.FindFirstElement(Trebovanie.JurnalsTrebovanie);
+            var listmemo = libaryAutomations.SelectAutomationColrction(libaryAutomations.FindElement).Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("select0 row"));
+            foreach (var automationElement in listmemo)
+            {
+                if (statusButton.Iswork)
+                {
+                    automationElement.SetFocus();
+                    var valuesdate = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                                     .SelectAutomationColrction(automationElement)
+                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата ТУ")));
+
+                    var valuesnumber = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                                       .SelectAutomationColrction(automationElement)
+                                       .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Номер ТУ")));
+
+                    var valuesinn = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                                    .SelectAutomationColrction(automationElement)
+                                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
+
+                    var valuetypenp = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                                     .SelectAutomationColrction(automationElement)
+                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Тип НП")));
+
+                    var valuestatussend = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                                          .SelectAutomationColrction(automationElement)
+                                          .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Способ вручения")));
+
+                    libaryAutomations.CliksElements(Trebovanie.ListPanel);
+                    if (libaryAutomations.CliksElements(Trebovanie.Open, null, false, 5))
+                    {
+                        while (true)
+                        {
+                            if (libaryAutomations.IsEnableElements(Trebovanie.Save) != null)
+                            {
+                                libaryAutomations.CliksElements(Trebovanie.TabIfo, null, false, 10);
+                                libaryAutomations.IsEnableElements(Trebovanie.ComboBoxSelect);
+                                libaryAutomations.ComboBoxPatternDown(1);
+                                var datevruch = Convert.ToDateTime(valuesdate).AddDays(valuetypenp == "ФЛ" ? 5 : 3);
+                                if (datevruch.DayOfWeek == DayOfWeek.Saturday)
+                                    datevruch = datevruch.AddDays(2);
+                                if (datevruch.DayOfWeek == DayOfWeek.Sunday)
+                                    datevruch = datevruch.AddDays(1);
+                                while (true)
+                                {
+                                    if (libaryAutomations.IsEnableElements(Trebovanie.Date) == null) continue;
+                                    libaryAutomations.SetValuePattern(datevruch.ToString("dd.MM.yy"));
+                                    break;
+                                }
+                                if (valuestatussend == "Массовая печать и рассылка" & valuetypenp == "ФЛ")
+                                {
+                                  libaryAutomations.IsEnableElements(Trebovanie.ComboboxSend);
+                                  libaryAutomations.ComboBoxPatternUp(3);
+                                }
+                                while (true)
+                                {
+                                    if (libaryAutomations.IsEnableElements(Trebovanie.Save) == null) continue;
+                                    libaryAutomations.CliksElements(Trebovanie.Save);
+                                    break;
+                                }
+                                while (true)
+                                {
+                                    if (libaryAutomations.IsEnableElements(Trebovanie.Back) == null) continue;
+                                    libaryAutomations.CliksElements(Trebovanie.Back);
+                                    break;
+                                }
+                                LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok,$"Номер ТУ: {valuesnumber}; Тип лица:{valuetypenp} Дата ТУ: {valuesdate}; Дата вручения: {datevruch}; ИНН Налогоплательщика: {valuesinn}","Проставили врчение успешно!");
+                                // Debug.WriteLine(valuesdate + " " + datevruch + "  " + valuesnumber + "  " + valuesinn);
+                                break;
+                            }
+                            if (libaryAutomations.IsEnableElements(Trebovanie.Back) != null)
+                            {
+                                //Запись лога что сохранили не достуно
+                                //Debug.WriteLine(valuesdate + "  " + valuesnumber + "  " + valuesinn);
+                                LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, valuesnumber, LogTreb, "Не активна кнопка сохранить!");
+                                libaryAutomations.CliksElements(Trebovanie.Back, null, false, 10);
+                                break;
+                            }
+                        }
+                    }
+                }
+                //  Debug.WriteLine(valuesdate + "  "+ valuesnumber + "  " + valuesinn);
+            }
+        }
     }
-    
 }

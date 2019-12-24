@@ -39,10 +39,7 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
         /// КБК наш где платеж
         /// </summary>
         public string KbkIfns { get; set; }
-        /// <summary>
-        /// Плательщик
-        /// </summary>
-        public string Platelsik { get; set; }
+
         /// <summary>
         /// Инн плательщика банка
         /// </summary>
@@ -59,14 +56,6 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
         /// Парсим ТП для определения входа а вкладку уточнение
         /// </summary>
         public string Tp { get; set; }
-        /// <summary>
-        /// Проверка на заполнение строк платежа
-        /// </summary>
-        public bool IsNulable { get; set; }
-        /// <summary>
-        /// Ошибка проверки
-        /// </summary>
-        public string Error { get; set; }
 
         /// <summary>
         /// Возврат результата
@@ -81,33 +70,6 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
             if (math.Success)
                 return math.Value;
             return null;
-        }
-        /// <summary>
-        /// Функция парсинга модели
-        /// </summary>
-        /// <param name="text">Текст для разбора</param>
-        public void Parse(string text)
-        {
-            try
-            {
-                var pattern = new FullRegx();
-                RaschDoc = IsMathRegx(pattern.RegxRasch, text);
-                RaspredPl = IsMathRegx(pattern.RaspredPl, text);
-                Platej = IsMathRegx(pattern.Platej, text);
-                Platelsik = IsMathRegx(pattern.Platelsik, text);
-                Kbk100 = IsMathRegx(pattern.Kbk, RaspredPl);
-                Oktmo = IsMathRegx(pattern.Number, IsMathRegx(pattern.Oktmo, RaspredPl));
-                KbkIfns = IsMathRegx(pattern.Kbk, Platej);
-                Inn = IsMathRegx(pattern.Inn, Platelsik);
-                Kpp = IsMathRegx(pattern.Kpp, Platelsik);
-                InnPlatel = IsMathRegx(pattern.Number, Inn);
-                IsNulable = false;
-            }
-            catch (Exception e)
-            {
-                Error = "Выход из модели не можем спарсить данные строку!!!";
-                IsNulable = true;
-            }
         }
         /// <summary>
         /// Анализ простановки налдогов 
@@ -191,7 +153,6 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
             }
         }
 
-
         public void ParsTp()
         {
             while(true)
@@ -220,7 +181,7 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
         /// <returns></returns>
        public string IsSberbank(string status)
        {
-            if (Inn == "ИНН:7707083893" && Kpp == "КПП:526002001")
+            if (Inn == "7707083893" && Kpp == "526002001")
             {
                 status = "15";
             }

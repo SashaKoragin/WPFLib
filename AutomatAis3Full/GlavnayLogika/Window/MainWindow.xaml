@@ -8,7 +8,7 @@
     xmlns:local="clr-namespace:AutomatAis3Full.GlavnayLogika.Window"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="AutomatAis3Full"
+    x:Name="Window"
     HorizontalContentAlignment="Stretch"
     VerticalContentAlignment="Stretch"
     d:DataContext="{d:DesignInstance {x:Type dataContext:WindowsMvvmAuto}}"

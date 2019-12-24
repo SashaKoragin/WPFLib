@@ -34,7 +34,9 @@ namespace LibaryAIS3Windows.ButtonsClikcs
        internal const string Tab = "{Tab}";
        internal const string Tab2 = "{Tab 2}";
        internal const string Tab3 = "{Tab 3}";
-        internal const string Tab4 = "{Tab 4}";
-        internal const string TabCountClick = "{{Tab {0} }}";
+       internal const string Tab4 = "{Tab 4}";
+       internal const string TabCountClick = "{{Tab {0} }}";
+       internal const string DownCountClick = "{{Down {0}}}";
+       internal const string UpCountClick = "{{Up {0}}}";
     }
 }

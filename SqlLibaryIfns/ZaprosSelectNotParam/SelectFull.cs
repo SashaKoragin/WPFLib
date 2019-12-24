@@ -239,8 +239,38 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                             (FullError)
                             sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
                                 typeof(FullError)));
+                case 17:
+                    return
+                        serializeJson.JsonLibary(
+                            (FullError)
+                            sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
+                                typeof(FullError)));
+                case 18:
+                    return
+                        serializeJson.JsonLibary(
+                            (FullError)
+                            sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
+                                typeof(FullError)));
+                case 20:
+                    return
+                        serializeJson.JsonLibary(
+                            (FullError)
+                            sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
+                                typeof(FullError)));
+                case 21:
+                    return
+                        serializeJson.JsonLibary(
+                            (FullError)
+                            sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
+                                typeof(FullError)));
+                case 22:
+                    return
+                        serializeJson.JsonLibary(
+                            (FullError)
+                            sqlconnect.SelectFullParametrSqlReader<string, string>(conectionstring, logica.SelectUser,
+                                typeof(FullError)));
                 default:
-                    return "Дагнная комманда не определена!!!";
+                    return "Данная комманда не определена!!!";
             }
         }
 

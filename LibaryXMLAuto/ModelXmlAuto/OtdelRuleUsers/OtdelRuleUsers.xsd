@@ -95,6 +95,11 @@
 					<xs:documentation>Шаблон пользователя</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
+			<xs:attribute name="Pushed" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Отзыв или назначение</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="Security">
@@ -137,9 +142,27 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="Security"/>
-				<xs:element ref="ItOtdel"/>
+				<xs:element ref="Security" minOccurs="0"/>
+				<xs:element ref="ItOtdel" minOccurs="0"/>
+				<xs:element ref="SenderRukovodstvo" minOccurs="0"/>
 			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SenderRukovodstvo">
+		<xs:annotation>
+			<xs:documentation>Подписывающий руководитель</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="RnameOrganization" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="SmallName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Имя согласовавшего</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using GalaSoft.MvvmLight.Threading;
 using LibaryAIS3Windows.ButtonsClikcs;
@@ -18,34 +19,34 @@ namespace LibaryCommandPublic.TestAutoit.RaschBydj.Vedomost1
         /// <param name="pathjurnalok">Путь к журналу с отработанными</param>
         public void AutoClicsVed1(StatusButtonMethod statusButton, SelectVibor uslovie, string pathjurnalerror, string pathjurnalok)
         {
-           DispatcherHelper.Initialize();
-            if (uslovie.IsValidation())
+            try
             {
-                Task.Run(delegate
+                DispatcherHelper.Initialize();
+                if (uslovie.IsValidation())
                 {
-                    LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
-                    if (ais3.WinexistsAis3() == 1)
+                    Task.Run(delegate
                     {
-
-                        DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
-                        KclicerButton clickerButton = new KclicerButton();
-                        ais3.StartNavigate();
-                        while (statusButton.Iswork)
+                        LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                        if (ais3.WinexistsAis3() == 1)
                         {
-                          var isnull =  clickerButton.Click10(pathjurnalerror, pathjurnalok, uslovie.Sel.Num,statusButton.IsChekcs);
-                            if (isnull)
-                            {
-                                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusYellow);
-                            }
+
+                            DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                            KclicerButton clickerButton = new KclicerButton();
+                            clickerButton.Click10(statusButton, pathjurnalerror, pathjurnalok, uslovie.Sel.Num,statusButton.IsChekcs);
+                            DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusYellow);
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
-                        DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
-                    }
-                });
+                        else
+                        {
+                            MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                            DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
+                        }
+                    });
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
             }
         }
-    }
+}
 }

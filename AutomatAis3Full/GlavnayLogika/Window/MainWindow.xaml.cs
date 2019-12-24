@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Deployment.Application;
+using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -16,6 +18,7 @@ namespace AutomatAis3Full.GlavnayLogika.Window
         public MainWindow()
         {
             InitializeComponent();
+            Window.Title = $"AutomatAis3Full - версия продукта {GetRunningVersion()}";
             DataContext = new Mvvm.WindowsMvvmAuto();
         }
 
@@ -26,5 +29,16 @@ namespace AutomatAis3Full.GlavnayLogika.Window
             e.Handled = true;
         }
 
+        private Version GetRunningVersion()
+        {
+            try
+            {
+                return ApplicationDeployment.CurrentDeployment.CurrentVersion;
+            }
+            catch (Exception)
+            {
+                return Assembly.GetExecutingAssembly().GetName().Version;
+            }
+        }
     }
 }

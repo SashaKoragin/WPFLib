@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using AutomatAis3Full.Config;
 using LibaryCommandPublic.TestAutoit.PublicCommand;
 using Prism.Commands;
-using ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml;
 using ViewModelLib.ModelTestAutoit.PublicModel.LableAndErrorModel;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXlsx;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXml;

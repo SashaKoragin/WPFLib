@@ -57,7 +57,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoItSelect\Sql\Lk2.cs" />
     <Compile Include="DataTables\BulkCopyToSql\CopyServer.cs" />
     <Compile Include="DataTables\GenerateTableToSql\GenerateTableToSql.cs" />
     <Compile Include="ExcelReport\Report\DonloadsFile.cs" />

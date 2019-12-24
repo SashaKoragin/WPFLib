@@ -1,6 +1,6 @@
 var AdressMerge = /** @class */ (function () {
     function AdressMerge() {
-        this.host = 'i7751-w00000745';
+        this.host = 'I7751-W40204180';
         // public host = 'localhost';
         //Авторизация на сервере
         this.authservicedomain = "http://" + this.host + ":8181/ServiceRest/AuthServiceDomain";

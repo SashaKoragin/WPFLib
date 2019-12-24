@@ -45,4 +45,42 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.Registration
         /// </summary>
         public static string IsErrorDocument = "Name:DockTop\\Name:Ribbon\\Name:Журнал поступивших документов ФЛ\\Name:Работа с документами\\Name:Признать документ ошибочно зарегистрированным";
     }
+
+    public class RegistrationElementNameVisualBank
+    {
+        /// <summary>
+        /// Вернутся к списку
+        /// </summary>
+        public static string ReturnList = "Name:DockTop\\Name:Ribbon\\Name:Документ\\Name:Вернуться к списку";
+        /// <summary>
+        /// Вернутся к поиску
+        /// </summary>
+        public static string Return = "Name:DockTop\\Name:Ribbon\\Name:Документ\\Name:Вернуться к поиску";
+        /// <summary>
+        /// Кнопка обновить элемент на панеле Ribiorn
+        /// </summary>
+        public static string UpdateButton = "Name:DockTop\\Name:Ribbon\\Name:Документ\\Name:Обновить";
+        /// <summary>
+        /// Приступить к идентификации
+        /// </summary>
+        public static string Identification = "Name:DockTop\\Name:Ribbon\\Name:Документ\\Name:Приступить к идентификации";
+        /// <summary>
+        /// Идентифицировать лицо
+        /// </summary>
+        public static string StartIdentification = "Name:DockTop\\Name:Ribbon\\Name:Документ\\Name:Идентифицировать лицо";
+        /// <summary>
+        /// Not Found Grid
+        /// </summary>
+        public static string JurnalsDocumentsFirstElementBank = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:ViewUT_BankSoobDefFID\\AutomationId:utcTab\\AutomationId:ultraTabPageControl1\\AutomationId:navigatorQueue\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row 1";
+        //Окна
+        /// <summary>
+        /// Нажать Ок
+        /// </summary>
+        public static string WinOk = "Name:Завершение визуального анализа\\Name:Да";
+        /// <summary>
+        /// Завершение анализа
+        /// </summary>
+        public static string WinOkEnd = "Name:Завершение визуального анализа\\Name:ОК";
+
+    }
 }

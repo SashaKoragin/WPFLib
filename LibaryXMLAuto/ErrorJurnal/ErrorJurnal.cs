@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using LibaryXMLAuto.ReadOrWrite;
 
 namespace LibaryXMLAuto.ErrorJurnal
@@ -17,16 +18,16 @@ namespace LibaryXMLAuto.ErrorJurnal
         /// <param name="error">Ошибка</param>
         public static void JurnalError(string pathjurnal, string znacenie,string branch,string error)
         {
-            if (File.Exists(pathjurnal))
-            {
-                XmlReadOrWrite read = new XmlReadOrWrite();
-                read.AddElementError(pathjurnal,znacenie,branch,error);
-            }
-            else
-            {
-                var convert =new Converts.ConvettToXml.XmlConvert();
-                convert.CreateJurnalError(pathjurnal,znacenie,branch,error);
-            }
+                if (File.Exists(pathjurnal))
+                {
+                    XmlReadOrWrite read = new XmlReadOrWrite();
+                    read.AddElementError(pathjurnal, znacenie, branch, error);
+                }
+                else
+                {
+                    var convert = new Converts.ConvettToXml.XmlConvert();
+                    convert.CreateJurnalError(pathjurnal, znacenie, branch, error);
+                }
         }
     }
 }

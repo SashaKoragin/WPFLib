@@ -173,6 +173,8 @@ namespace LibaryXMLAutoModelXmlAuto.OtdelRuleUsers {
         
         private string ruleTemplateField;
         
+        private string pushedField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Name {
@@ -249,6 +251,17 @@ namespace LibaryXMLAutoModelXmlAuto.OtdelRuleUsers {
                 this.ruleTemplateField = value;
             }
         }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Pushed {
+            get {
+                return this.pushedField;
+            }
+            set {
+                this.pushedField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -263,6 +276,8 @@ namespace LibaryXMLAutoModelXmlAuto.OtdelRuleUsers {
         private Security securityField;
         
         private ItOtdel itOtdelField;
+        
+        private SenderRukovodstvo senderRukovodstvoField;
         
         /// <remarks/>
         public Security Security {
@@ -281,6 +296,16 @@ namespace LibaryXMLAutoModelXmlAuto.OtdelRuleUsers {
             }
             set {
                 this.itOtdelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public SenderRukovodstvo SenderRukovodstvo {
+            get {
+                return this.senderRukovodstvoField;
+            }
+            set {
+                this.senderRukovodstvoField = value;
             }
         }
     }
@@ -353,6 +378,42 @@ namespace LibaryXMLAutoModelXmlAuto.OtdelRuleUsers {
             }
             set {
                 this.namePositionField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.81.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class SenderRukovodstvo {
+        
+        private string rnameOrganizationField;
+        
+        private string smallNameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string RnameOrganization {
+            get {
+                return this.rnameOrganizationField;
+            }
+            set {
+                this.rnameOrganizationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string SmallName {
+            get {
+                return this.smallNameField;
+            }
+            set {
+                this.smallNameField = value;
             }
         }
     }

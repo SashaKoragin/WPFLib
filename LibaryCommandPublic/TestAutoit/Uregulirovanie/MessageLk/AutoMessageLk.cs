@@ -58,13 +58,11 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                     while (statusButton.Iswork)
                     {
                         var strexit = clickerButton.Click17();
-
                         if (strexit.Equals(LibaryAIS3Windows.Status.StatusAis.Status6))
                         {
                             DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                         }
                     }
-
                 }
                 else
                 {
@@ -72,6 +70,31 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
             });
         }
-
+        /// <summary>
+        /// Проставка даты вручения в ветке 
+        /// Налоговое администрирование\Урегулирование задолженности\Требования об уплате\Журнал требований об уплате
+        /// </summary>
+        /// <param name="statusButton"></param>
+        /// <param name="pathjurnalerror"></param>
+        /// <param name="pathjurnalok"></param>
+        public void AutoRequirementsLog(StatusButtonMethod statusButton, string pathjurnalerror, string pathjurnalok)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                KclicerButton clickerButton = new KclicerButton();
+                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                if (ais3.WinexistsAis3() == 1)
+                {
+                    clickerButton.Click22(pathjurnalerror,pathjurnalok,statusButton);
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                }
+                else
+                {
+                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                }
+            });
+        }
     }
 }

@@ -65,7 +65,9 @@
   <ItemGroup>
     <Compile Include="AutomationsUI\LibaryAutomations\LibaryAutomations.cs" />
     <Compile Include="AutomationsUI\Otdels\It\ItElementName.cs" />
+    <Compile Include="AutomationsUI\Otdels\RaschetBud\RashetBudElementName.cs" />
     <Compile Include="AutomationsUI\Otdels\Registration\RegistrationElementName.cs" />
+    <Compile Include="AutomationsUI\Otdels\Uregulirovanie\UregulirovanieElementName.cs" />
     <Compile Include="AutomationsUI\PublicElement\PublicElementName.cs" />
     <Compile Include="ButtonsClikcs\ButtonConstant.cs" />
     <Compile Include="ButtonsClikcs\ClikcCheker\Cheker.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="ReadWindow\Read\Reades.cs" />
     <Compile Include="RegxFull\PublicRegx\FullRegx.cs" />
     <Compile Include="RegxFull\RaschetBudg\RegxStart.cs" />
+    <Compile Include="SqlModel\SqlLk2\Lk2.cs" />
     <Compile Include="Status\StatusAis.cs" />
     <Compile Include="Window\Otdel\Analitic\TeskText\ZachetVozvrat.cs" />
     <Compile Include="Window\Otdel\Okp3\Usn\CardDeclr.cs" />
@@ -113,10 +116,6 @@
     <ProjectReference Include="..\LibaryXMLAuto\LibaryXMLAuto.csproj">
       <Project>{a2bc3ae2-4a61-4e9e-9fa4-96a02677c79c}</Project>
       <Name>LibaryXMLAuto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SqlLibaryIfns\SqlLibaryIfns.csproj">
-      <Project>{128c2bf1-de92-4bb8-bda0-eefc5eab66d2}</Project>
-      <Name>SqlLibaryIfns</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewModelLib\ViewModelLib.csproj">
       <Project>{08bb509f-ead1-4666-a539-6d60f464db2f}</Project>

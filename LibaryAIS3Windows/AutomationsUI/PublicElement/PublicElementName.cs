@@ -8,11 +8,10 @@ namespace LibaryAIS3Windows.AutomationsUI.PublicElement
 {
    public class PublicElementName
    {
-
-       /// <summary>
-       /// Кнопка обновить элемент на панеле Ribiorn
-       /// </summary>
-       public static string UpdateButton = "Name:DockTop\\Name:Ribbon\\Name:Обновить";
+        /// <summary>
+        /// Кнопка обновить элемент на панеле Ribiorn
+        /// </summary>
+        public static string UpdateButton = "Name:DockTop\\Name:Ribbon\\Name:Обновить";
         /// <summary>
         /// Кнопка просмотр элемент на панеле Ribiorn
         /// </summary>
@@ -21,5 +20,9 @@ namespace LibaryAIS3Windows.AutomationsUI.PublicElement
         /// Кнопка просмотр элемент на панеле Ribiorn
         /// </summary>
        public static string BackButton = "Name:DockTop\\Name:Ribbon\\Name:История заявок\\Name:Назад";
-    }
+       /// <summary>
+       /// Запустить полдьзовательское задание
+       /// </summary>
+       public static string StartUser = "Name:DockTop\\Name:Ribbon\\Name:Пользовательские задания\\Name:Управление заданиями\\Name:Запустить пользовательское задание";
+   }
 }

@@ -201,17 +201,6 @@ namespace LibaryAIS3Windows.Window
             X2 = param.X;
             Y2 = param.Y;
         }
-        /// <summary>
-        /// Первоначальная навигация для уточнение 100 "Расчеты с бюджетом"
-        /// </summary>
-        public void StartNavigate()
-        {
-            ControlGetPos1(JournalStatusBar[0], JournalStatusBar[1], JournalStatusBar[2]);
-            AutoItX.MouseMove(WindowsAis.X + X1 + 40, WindowsAis.Y + Y1 + 15);
-            ControlGetPos1(WindowsAis3.Journal[0], WindowsAis3.Journal[1], WindowsAis3.Journal[2]);
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, WindowsAis.X + X1 + 30, WindowsAis.Y + Y1 + 285, 2);
-            AutoItX.Sleep(1000);
-        }
 
         /// <summary>
         /// Первоначальная навигация для миграции"

@@ -243,9 +243,6 @@
 	    <Component Id="LibaryAIS3Windows.dll" Guid="02370789-664b-410f-8d64-dfabac31262f">
 	      <File Id="LibaryAIS3Windows.dll" Name="LibaryAIS3Windows.dll" Source="$(var.AutomatAis3Full_TargetDir)LibaryAIS3Windows.dll" />
 	    </Component>
-	    <Component Id="SqlLibaryIfns.dll" Guid="3cdb9677-0a35-4ccd-8863-c34e1be5587d">
-	      <File Id="SqlLibaryIfns.dll" Name="SqlLibaryIfns.dll" Source="$(var.AutomatAis3Full_TargetDir)SqlLibaryIfns.dll" />
-	    </Component>
 	    <Component Id="AutoItX3.Assembly.dll" Guid="dc59767a-55a0-40c5-acc5-19c5b2ee05e4">
 	      <File Id="AutoItX3.Assembly.dll" Name="AutoItX3.Assembly.dll" Source="$(var.AutomatAis3Full_TargetDir)AutoItX3.Assembly.dll" />
 	    </Component>

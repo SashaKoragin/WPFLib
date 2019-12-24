@@ -56,7 +56,6 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-
                 <ListView
                     x:Name="ListView1"
                     Height="150"
