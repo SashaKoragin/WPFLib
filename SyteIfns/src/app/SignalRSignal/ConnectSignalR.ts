@@ -21,7 +21,7 @@ export class ConnectionResolver {
             var options: IConnectionOptions = {
                 hubName: 'ServiceMessage',
                 qs: { user: this.user.ModelUser.UserName, guid: this.user.ModelUser.Guid},
-                url: 'http://i7751-w00000745:8059/signalr',
+                url: 'http://I7751-W40204180:8059/signalr',
                 executeErrorsInZone: true,
                 executeEventsInZone: true,
                 executeStatusChangeInZone: true
