@@ -112,6 +112,7 @@ var GenerateFullCommand = /** @class */ (function () {
                         break;
                 }
             }
+            //  alert(arraycommand);
         }
         if (arraycommand !== '') {
             command = service.ServiceWcfCommand.Command.replace('/*{@}*/', where.concat(arraycommand));

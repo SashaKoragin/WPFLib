@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeathZip", "SeathZip\SeathZip.csproj", "{CB05DD7F-B8DB-47AA-A4F5-C3403373501F}"
 EndProject
@@ -40,8 +40,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlLibaryIfns", "SqlLibaryIfns\SqlLibaryIfns.csproj", "{128C2BF1-DE92-4BB8-BDA0-EEFC5EAB66D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyteIfns", "SyteIfns\SyteIfns.csproj", "{E00609FA-9644-4243-B8B4-3E6A7EC7A562}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algoritm", "Algoritm\Algoritm.csproj", "{4AD0F799-160A-4A67-943E-54EFD481D8FF}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "SetupAutomatAis3Full", "SetupAutomatAis3Full\SetupAutomatAis3Full.wixproj", "{8922F6BF-FFC1-4011-82F5-3E9C38948671}"
 EndProject
@@ -357,22 +355,6 @@ Global
 		{E00609FA-9644-4243-B8B4-3E6A7EC7A562}.Release|x64.Build.0 = Release|Any CPU
 		{E00609FA-9644-4243-B8B4-3E6A7EC7A562}.Release|x86.ActiveCfg = Release|Any CPU
 		{E00609FA-9644-4243-B8B4-3E6A7EC7A562}.Release|x86.Build.0 = Release|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Debug|ARM.Build.0 = Debug|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Debug|x64.Build.0 = Debug|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Debug|x86.Build.0 = Debug|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Release|ARM.ActiveCfg = Release|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Release|ARM.Build.0 = Release|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Release|x64.ActiveCfg = Release|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Release|x64.Build.0 = Release|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Release|x86.ActiveCfg = Release|Any CPU
-		{4AD0F799-160A-4A67-943E-54EFD481D8FF}.Release|x86.Build.0 = Release|Any CPU
 		{8922F6BF-FFC1-4011-82F5-3E9C38948671}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{8922F6BF-FFC1-4011-82F5-3E9C38948671}.Debug|ARM.ActiveCfg = Debug|x86
 		{8922F6BF-FFC1-4011-82F5-3E9C38948671}.Debug|x64.ActiveCfg = Debug|x86
@@ -402,5 +384,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5F317AAC-FA0F-4303-A254-EBF5DCC2277B}
 	EndGlobalSection
 EndGlobal

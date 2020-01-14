@@ -245,7 +245,7 @@
       <Output TaskParameter="Path" PropertyName="WindowsSdkPath" />
     </GetFrameworkSdkPath>
     <PropertyGroup>
-      <XsdToolPath>$(WindowsSdkPath)bin\NETFX 4.6 Tools</XsdToolPath>
+      <XsdToolPath>$(WindowsSdkPath)bin\NETFX 4.7 Tools</XsdToolPath>
     </PropertyGroup>
     <Message Importance="high" Text="Processing XSD schemas" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFiles.FullPath)&quot; /classes /namespace:$(RootNamespace).XSDSheme.SummNedoim.XML /outputdir:XSDSheme\SummNedoim\XML\" />
