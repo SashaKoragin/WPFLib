@@ -46,7 +46,7 @@
       <HintPath>..\LibaryXMLAuto\bin\Debug\LibaryXMLAuto.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core">
-      <HintPath>C:\Nuget\Microsoft.AspNet.SignalR.Core.2.4.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <HintPath>C:\Nuget\Microsoft.AspNet.SignalR.Core.2.4.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -86,15 +86,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\MyStudio\Обучение\EfDatabase\EfDatabase.csproj">
+    <ProjectReference Include="..\..\..\My\EfDatabase\EfDatabase.csproj">
       <Project>{578cf45e-310b-4e2e-9c94-5a9f16b736ae}</Project>
       <Name>EfDatabase</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\MyStudio\Обучение\Loggers\Loggers.csproj">
+    <ProjectReference Include="..\..\..\My\Loggers\Loggers.csproj">
       <Project>{9bac233e-ed3d-493e-b7f6-f26f8091968d}</Project>
       <Name>Loggers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\MyStudio\Обучение\SignalRLibary\SignalRLibary.csproj">
+    <ProjectReference Include="..\..\..\My\SignalRLibary\SignalRLibary.csproj">
       <Project>{381752f0-f34d-4d3e-96ad-92b7ba6cf213}</Project>
       <Name>SignalRLibary</Name>
     </ProjectReference>
