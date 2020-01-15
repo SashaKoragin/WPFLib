@@ -83,4 +83,37 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.Registration
         public static string WinOkEnd = "Name:Завершение визуального анализа\\Name:ОК";
 
     }
+
+    public class SettlementDebts
+    {
+        /// <summary>
+        /// Общий журнал утверждений
+        /// </summary>
+        public static string JournalDocuments = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:UserOperationsView\\AutomationId:ultraPanel1\\AutomationId:splitContainer1\\AutomationId:mainGrid\\Name:user_operation row 1";
+        /// <summary>
+        /// Журнал для проверки
+        /// </summary>
+        public static string JournalSum = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:RequirementDocListApprovingView\\AutomationId:grpBig\\AutomationId:grdList\\Name:List`1 row 1";
+        /// <summary>
+        /// Галочка
+        /// </summary>
+        public static string IsCheck = "Name:Утвердить";
+
+        /// <summary>
+        ///Поиск документа в журнале Наведение фокуса на сумму
+        /// </summary>
+        public static string SumT = "Name:Сумма ТУ";
+        /// <summary>
+        /// Запуск очередного задания по требованиям
+        /// </summary>
+        public static string StartBeforeQ = "Name:DockTop\\Name:Ribbon\\Name:Пользовательские задания\\Name:Управление заданиями\\Name:Запустить очередное задание";
+        /// <summary>
+        /// Кнопка утвердить все
+        /// </summary>
+        public static string ButtonSettlement = "Name:DockTop\\Name:Ribbon\\Name:Список требований об уплате\\Name:Отметки\\Name:Утвердить все";
+        /// <summary>
+        /// Кнопка передать на обработку
+        /// </summary>
+        public static string ButtonSend = "Name:DockTop\\Name:Ribbon\\Name:Список требований об уплате\\Name:Действия\\Name:Передать на обработку";
+    }
 }

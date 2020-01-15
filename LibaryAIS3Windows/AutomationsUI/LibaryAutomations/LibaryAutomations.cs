@@ -183,7 +183,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="auto">Есть ли элемент</param>
         /// <param name = "isSubtree" >Искать в Subtree последний элемент</param>
         /// <param name="countsecond">Колличество обращений к элементу</param>
-        public AutomationElement IsEnableElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,int countsecond =25)
+        public AutomationElement IsEnableElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,int countsecond =25,int isFocus = 0)
         {
             var isenable = false;
             var i = 0;
@@ -193,7 +193,15 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                 FindFirstElement(nameAutomationId, auto, isSubtree);
                 if (FindElement != null)
                 {
-                    isenable = FindElement.Current.IsEnabled;
+                    if (isFocus == 0)
+                    {
+                        isenable = FindElement.Current.IsEnabled;
+                    }
+                    if(isFocus == 1)
+                    {
+                        isenable = FindElement.Current.IsKeyboardFocusable;
+                    }
+                    
                 }
                 if (i == countsecond)
                 {

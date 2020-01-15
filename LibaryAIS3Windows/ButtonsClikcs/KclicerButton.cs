@@ -1301,36 +1301,52 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// Обработка задания требований
         /// 05.08.03.0X.03. Утверждение требований об уплате
         /// </summary>
+        /// <param name="statusButton">Кнопка статуса чтобы остановить</param>
         /// <returns></returns>
-        public string Click17()
+        public void Click17(StatusButtonMethod statusButton)
         {
-            int num = 0;
-            WindowsAis3 windowsAis = new WindowsAis3();
-            while (true)
+            LibaryAutomations libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
+            LibaryAutomations libraryAutomationCheck = new LibaryAutomations(WindowsAis3.AisNalog3);
+            AutomationElement elemental;
+            while ((elemental =libraryAutomation.IsEnableElements(SettlementDebts.JournalDocuments, null,true)) != null)
             {
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, windowsAis.WindowsAis.X + 355, windowsAis.WindowsAis.Y + 80);
-                AutoItX.WinWait(WindowsAis3.AisNalog3, SluzZ.Utb, 10);
-                if (AutoItX.WinExists(WindowsAis3.AisNalog3, SluzZ.Utb) != 1)
+                if (statusButton.Iswork)
                 {
-                    if (num == Proverka.Controlnumer)
+                    libraryAutomation.IsEnableElements(SettlementDebts.SumT, elemental);
+                    libraryAutomation.FindElement.SetFocus();
+                    libraryAutomation.FindFirstElement(SettlementDebts.StartBeforeQ);
+                    var climbablePoint = libraryAutomation.FindElement.GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)climbablePoint.X, (int)climbablePoint.Y);
+                    libraryAutomationCheck.IsEnableElements(SettlementDebts.JournalSum, null, true);
+                    var ischeck = "False";
+                    while (true)
                     {
-                        return Status.StatusAis.Status6;
+                        if(ischeck == "False" || string.IsNullOrWhiteSpace(ischeck))
+                        {
+                            ischeck = libraryAutomationCheck.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomationCheck.IsEnableElements(SettlementDebts.IsCheck, libraryAutomationCheck.FindElement));
+                            if (ischeck == "True") break;
+                        }
+                        if (libraryAutomation.IsEnableElements(SettlementDebts.ButtonSettlement) == null) continue;
+                        libraryAutomation.CliksElements(SettlementDebts.ButtonSettlement);
                     }
-                    num++;
-                    continue;
+                    while (true)
+                    {
+                        if (AutoIt.AutoItX.WinExists(SluzZ.WinCloseNalog[0], SluzZ.WinCloseNalog[1]) > 0)
+                        {
+                            AutoItX.WinActivate(SluzZ.WinCloseNalog[0], SluzZ.WinCloseNalog[1]);
+                            AutoItX.Send(ButtonConstant.Enter);
+                            break;
+                        }
+                            if (libraryAutomation.IsEnableElements(SettlementDebts.ButtonSend) == null) continue;
+                            libraryAutomation.CliksElements(SettlementDebts.ButtonSend);
+
+                    }
                 }
-                break;
+                else
+                {
+                    break;
+                }
             }
-            if (AutoItX.WinExists(WindowsAis3.AisNalog3, SluzZ.Utb) == 1)
-            {
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, windowsAis.WindowsAis.X + 330, windowsAis.WindowsAis.Y + 60);
-                AutoItX.Sleep(500);
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, windowsAis.WindowsAis.X + 240, windowsAis.WindowsAis.Y + 78);
-                AutoItX.WinWait(SluzZ.WinCloseNalog[0], SluzZ.WinCloseNalog[1]);
-                AutoItX.Sleep(500);
-                AutoItX.Send(ButtonConstant.Enter);
-            }
-            return "Обработали!!!";
         }
         /// <summary>
         /// Отработка документов поступивших документов

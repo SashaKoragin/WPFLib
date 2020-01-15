@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Threading;
 using LibaryAIS3Windows.ButtonsClikcs;
@@ -57,11 +53,8 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 {
                     while (statusButton.Iswork)
                     {
-                        var strexit = clickerButton.Click17();
-                        if (strexit.Equals(LibaryAIS3Windows.Status.StatusAis.Status6))
-                        {
-                            DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
-                        }
+                        clickerButton.Click17(statusButton);
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                     }
                 }
                 else
