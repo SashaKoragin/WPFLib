@@ -187,7 +187,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Form\Automat\Uregulirovanie\MessageLk\UserControl\MessageLk.xaml">
+    <Page Include="Form\Automat\Uregulirovanie\SignatureHeadProperty\UserControl\SignatureHeadProperty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\MessageLk\UserControl\MessageLk.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -200,6 +204,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Uregulirovanie\SenderSpravk\UserControl\SenderSpravk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\RenouncementLk\UserControl\RecouncementLk.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -318,8 +326,12 @@
     <Compile Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\UserControl\FormTrebUplNaloga.xaml.cs">
       <DependentUpon>FormTrebUplNaloga.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Form\Automat\Uregulirovanie\MessageLk\DataContext\DataContextMessageLk.cs" />
-    <Compile Include="Form\Automat\Uregulirovanie\MessageLk\UserControl\MessageLk.xaml.cs">
+    <Compile Include="Form\Automat\Uregulirovanie\SignatureHeadProperty\DataContext\DataContextSignatureHeadProperty.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\SignatureHeadProperty\UserControl\SignatureHeadProperty.xaml.cs">
+      <DependentUpon>SignatureHeadProperty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\MessageLk\DataContext\DataContextMessageLk.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\MessageLk\UserControl\MessageLk.xaml.cs">
       <DependentUpon>MessageLk.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Uregulirovanie\RequirementsLog\DataContext\DataContextRequirementsLog.cs" />
@@ -333,6 +345,10 @@
     <Compile Include="Form\Automat\Uregulirovanie\SenderSpravk\DataContext\DataContextSenderSpravk.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\SenderSpravk\UserControl\SenderSpravk.xaml.cs">
       <DependentUpon>SenderSpravk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\RenouncementLk\DataContext\DataContextRecouncementLk.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\RenouncementLk\UserControl\RecouncementLk.xaml.cs">
+      <DependentUpon>RecouncementLk.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\FormirovanieSpiskov\Spiski\DataContext\DataContextSpisok.cs" />
     <Compile Include="Form\FormirovanieSpiskov\Spiski\FormFormirovanie\FormSpisok.xaml.cs">

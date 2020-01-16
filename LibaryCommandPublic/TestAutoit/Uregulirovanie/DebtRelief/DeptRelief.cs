@@ -24,7 +24,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.DebtRelief
                     LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
                     if (ais3.WinexistsAis3() == 1)
                     {
-                        clickerButton.Click19(pathjurnalok, statusButton);
+                        clickerButton.Click19(statusButton ,pathjurnalok);
                         DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                     }
                     else
@@ -48,7 +48,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.DebtRelief
                 LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
-                    clickerButton.Click20(pathjurnalok, statusButton);
+                    clickerButton.Click20(statusButton,pathjurnalok);
                     DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                 }
                 else

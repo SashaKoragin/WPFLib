@@ -24,5 +24,10 @@ namespace LibaryAIS3Windows.AutomationsUI.PublicElement
        /// Запустить полдьзовательское задание
        /// </summary>
        public static string StartUser = "Name:DockTop\\Name:Ribbon\\Name:Пользовательские задания\\Name:Управление заданиями\\Name:Запустить пользовательское задание";
-   }
+        /// <summary>
+        /// Запуск очередного задания по требованиям
+        /// </summary>
+        public static string StartBeforeQ = "Name:DockTop\\Name:Ribbon\\Name:Пользовательские задания\\Name:Управление заданиями\\Name:Запустить очередное задание";
+
+    }
 }

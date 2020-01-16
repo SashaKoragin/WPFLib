@@ -1150,10 +1150,10 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// <summary>
         /// Автоматизация парсинга данных заявок для ролей
         /// </summary>
+        /// <param name="statusButton">Статус для преостановки</param>
         /// <param name="pathjurnalok">Путь к сохранению</param>
         /// <param name="dataPickerSettings">Параметры для автомата</param>
-        /// <param name="statusButton">Статус для преостановки</param>
-        public void Click15(string pathjurnalok, DataPickerRuleItModel dataPickerSettings, StatusButtonMethod statusButton)
+        public void Click15(StatusButtonMethod statusButton, string pathjurnalok, DataPickerRuleItModel dataPickerSettings)
         {
             string dates = null;
             UserRules userRule = new UserRules();
@@ -1314,7 +1314,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                 {
                     libraryAutomation.IsEnableElements(SettlementDebts.SumT, elemental);
                     libraryAutomation.FindElement.SetFocus();
-                    libraryAutomation.FindFirstElement(SettlementDebts.StartBeforeQ);
+                    libraryAutomation.FindFirstElement(PublicElementName.StartBeforeQ);
                     var climbablePoint = libraryAutomation.FindElement.GetClickablePoint();
                     AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)climbablePoint.X, (int)climbablePoint.Y);
                     libraryAutomationCheck.IsEnableElements(SettlementDebts.JournalSum, null, true);
@@ -1351,9 +1351,9 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// <summary>
         /// Отработка документов поступивших документов
         /// </summary>
-        /// <param name="pathjurnalok">Путь сохранения отработтаных</param>
         /// <param name="statusButton">Кнопка статуса чтобы остановить</param>
-        public void Click18(string pathjurnalok, StatusButtonMethod statusButton)
+        /// <param name="pathjurnalok">Путь сохранения отработтаных</param>
+        public void Click18(StatusButtonMethod statusButton, string pathjurnalok)
         {
             LibaryAutomations libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
             AutomationElement elementauto;
@@ -1390,9 +1390,9 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// <summary>
         /// Подписание решения урегулирование задолженности 05.08.10.01.0X.02 Подписание решения.
         /// </summary>
-        /// <param name="pathjurnalok">Путь к отработанным значениям</param>
         /// <param name="statusButton">Кнопка статуса</param>
-        public void Click19(string pathjurnalok, StatusButtonMethod statusButton)
+        /// <param name="pathjurnalok">Путь к отработанным значениям</param>
+        public void Click19(StatusButtonMethod statusButton, string pathjurnalok)
         {
             var libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
             while (libaryAutomations.IsEnableElements(UregulirovanieElementName.JurnalsUserOperationSpravki) !=null)
@@ -1437,9 +1437,9 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// <summary>
         /// Подписание справки урегулирование задолженности 05.08.10.01.0X.02 Подписание справок.
         /// </summary>
-        /// <param name="pathjurnalok">Путь к отработанным значениям</param>
         /// <param name="statusButton">Кнопка статуса</param>
-        public void Click20(string pathjurnalok, StatusButtonMethod statusButton)
+        /// <param name="pathjurnalok">Путь к отработанным значениям</param>
+        public void Click20(StatusButtonMethod statusButton,string pathjurnalok )
         {
             var libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
    
@@ -1574,11 +1574,11 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// Налоговое администрирование\Урегулирование задолженности\Требования об уплате\Журнал требований об уплате
         /// Проставление информации о вручкении +3 дня от подачи
         /// </summary>
+        /// <param name="statusButton">Запуск остановка</param>
         /// <param name="pathjurnalerror">Журнал ошибок</param>
         /// <param name="pathjurnalok">Журнал отработанных</param>
-        /// <param name="statusButton">Запуск остановка</param>
         /// string pathjurnalerror, string pathjurnalok, StatusButtonMethod statusButton
-        public void Click22(string pathjurnalerror,string pathjurnalok, StatusButtonMethod statusButton)
+        public void Click22(StatusButtonMethod statusButton, string pathjurnalerror,string pathjurnalok )
         {
             var libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
             libaryAutomations.FindFirstElement(Trebovanie.JurnalsTrebovanie);
@@ -1662,6 +1662,123 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     }
                 }
                 //  Debug.WriteLine(valuesdate + "  "+ valuesnumber + "  " + valuesinn);
+            }
+        }
+        /// <summary>
+        /// Урегулирование задолженности/05.09 Уведомление о необходимости выгрузки документов в ЛК\
+        /// 05.09 Сообщения о принятом решении об отказе  подлежащие выгрузке в ЛК
+        /// </summary>
+        /// <param name="statusButton">Запуск остановка</param>
+        /// <param name="pathjurnalerror">Журнал ошибок</param>
+        /// <param name="pathjurnalok">Журнал отработанных</param>
+        public void Click23(StatusButtonMethod statusButton, string pathjurnalerror, string pathjurnalok)
+        {
+            LibaryAutomations libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
+            LibaryAutomations libraryAutomationCheck = new LibaryAutomations(WindowsAis3.AisNalog3);
+            AutomationElement elemental;
+            while ((elemental = libraryAutomation.IsEnableElements(RecouncementLk.JurnalsRecouncement, null, true)) != null)
+            {
+                if (statusButton.Iswork)
+                {
+                    var inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(RecouncementLk.RowInn, elemental));
+                    libraryAutomation.FindElement.SetFocus();
+                    libraryAutomation.FindFirstElement(PublicElementName.StartUser);
+                    var climbablePoint = libraryAutomation.FindElement.GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)climbablePoint.X, (int)climbablePoint.Y);
+                    var ischeck = "";
+                    while (true)
+                    {
+                        if (ischeck == "" || string.IsNullOrWhiteSpace(ischeck))
+                        {
+                            ischeck = libraryAutomationCheck.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomationCheck.IsEnableElements(RecouncementLk.CheckDataLk2));
+                            if (ischeck != "") break;
+                        }
+                        if (libraryAutomation.IsEnableElements(RecouncementLk.CheckStatusLk2) == null) continue;
+                        libraryAutomation.CliksElements(RecouncementLk.CheckStatusLk2);
+                    }
+                    while (true)
+                    {
+                        if (libraryAutomation.IsEnableElements(RecouncementLk.WinOkEndUser, null, true, 1) != null)
+                        {
+                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
+                            break;
+                        }
+                        if (libraryAutomation.IsEnableElements(RecouncementLk.CheckExit,null,true) == null) continue;
+                        libraryAutomation.CliksElements(RecouncementLk.CheckExit);
+                    }
+                   LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, $"ИНН Налогоплательщика: {inn}; Дата вручения: {ischeck}", "Проставили признак отправки в ЛК успешно!");
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+        }
+        /// <summary>
+        /// Общие задания\Урегулирование задолженности\05.08.09.02. Взыскание задолженности за счет имущества НП ФЛ. Формирование 
+        /// Служебной записки и Заявлений о взыскании за счет имущества ФЛ
+        /// \05.08.09.02.03 Утверждение и подписание Заявлений о взыскании за счет имущества ФЛ
+        /// \05.08.09.02.03.06. Подпись руководителями Заявлений о взыскании за счет имущества ФЛ
+        /// </summary>
+        /// <param name="statusButton">Запуск остановка</param>
+        /// <param name="pathjurnalerror">Журнал ошибок</param>
+        /// <param name="pathjurnalok">Журнал отработанных</param>
+        public void Click24(StatusButtonMethod statusButton, string pathjurnalerror, string pathjurnalok)
+        {
+            LibaryAutomations libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
+            LibaryAutomations libraryAutomationCheck = new LibaryAutomations(WindowsAis3.AisNalog3);
+            AutomationElement elemental;
+            while ((elemental = libraryAutomation.IsEnableElements(SignatureHeadProperty.JournalSignature, null, true)) != null)
+            {
+                if (statusButton.Iswork)
+                {
+                    libraryAutomation.FindFirstElement(PublicElementName.StartUser);
+                    var climbablePoint = libraryAutomation.FindElement.GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)climbablePoint.X, (int)climbablePoint.Y);
+                    libraryAutomationCheck.IsEnableElements(SignatureHeadProperty.JoirnalControl, null, true);
+                    var ischeck = "False";
+
+                    while (true)
+                    {
+                        if (ischeck == "False" || string.IsNullOrWhiteSpace(ischeck))
+                        {
+                            ischeck = libraryAutomationCheck.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomationCheck.IsEnableElements(SignatureHeadProperty.IsSignatureAll, libraryAutomationCheck.FindElement));
+                            if (ischeck == "True") break;
+                        }
+                        if (libraryAutomation.IsEnableElements(SignatureHeadProperty.ButtonSignatureAll) == null) continue;
+                        libraryAutomation.CliksElements(SignatureHeadProperty.ButtonSignatureAll);
+                    }
+                    while (true)
+                    {
+                        if (libraryAutomation.IsEnableElements(SignatureHeadProperty.WinExit, null, true, 1) != null)
+                        {
+                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
+                            break;
+                        }
+                        if (libraryAutomation.IsEnableElements(SignatureHeadProperty.EndSignature, null, true) == null) continue;
+
+                        var listmemo = libraryAutomation.SelectAutomationColrction(libraryAutomationCheck.IsEnableElements(SignatureHeadProperty.JoirnalAllSignature)).Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("List"));
+                        foreach (var data in listmemo)
+                        {
+                            var valuesinn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                               .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
+                            var valuesadress = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                               .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Адрес")));
+                            var valuesscore = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                               .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Всего")));
+                            var valuesfio = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                               .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ФИО налогоплательщика")));
+                            
+                            LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, $"ИНН Налогоплательщика: {valuesinn}; ФИО НО: {valuesfio} Адрес: {valuesadress}; Сумма: {valuesscore} ", "Подписали руководителем успешно успешно!");
+                        }
+                        libraryAutomation.CliksElements(SignatureHeadProperty.EndSignature);
+                    }
+                }
+                else
+                {
+                    break;
+                }
             }
         }
     }

@@ -107,4 +107,94 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.Uregulirovanie
         /// </summary>
         public static string Back = "Name:DockTop\\Name:Ribbon\\Name:Требование\\Name:Вернуться";
     }
+    /// <summary>
+    /// Описание решения об отказе
+    /// </summary>
+    public class RecouncementLk
+    {
+        /// <summary>
+        /// Журнал отказанных ЛК 2
+        /// </summary>
+        public static string JurnalsRecouncement = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:UserOperationsView\\AutomationId:ultraPanel1\\AutomationId:splitContainer1\\AutomationId:mainGrid\\Name:user_operation row 1";
+        /// <summary>
+        /// ИНН в колонке
+        /// </summary>
+        public static string RowInn = "Name:ИНН НП";
+
+        /// <summary>
+        /// Кнопка Установить признак отправки в ЛК сообщения об отказе
+        /// </summary>
+        public static string CheckStatusLk2 = "Name:DockTop\\Name:Ribbon\\Name:Решение об отказе\\Name:Установить признак отправки в ЛК сообщения об отказе";
+        /// <summary>
+        /// Проверка после Установки признака отправки в ЛК сообщения об отказе
+        /// </summary>
+        public static string CheckDataLk2 = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TransferClaimRefusalDocDetailView\\AutomationId:grpBig\\AutomationId:tab\\AutomationId:tabPage1\\AutomationId:grpRefusal\\AutomationId:tabDocs\\AutomationId:ultraTabPageControl2\\AutomationId:grpNotice\\AutomationId:dtNoticeDeliveryDate";
+        /// <summary>
+        /// Кнопка Завершить пользовательское задание
+        /// </summary>
+        public static string CheckExit = "Name:DockTop\\Name:Ribbon\\Name:Решение об отказе\\Name:Завершить пользовательское задание";
+        /// <summary>
+        /// Окно операция завершена
+        /// </summary>
+        public static string WinOkEndUser = "Name:Завершение пользовательского задания\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnYes";
+    }
+    public class SettlementDebts
+    {
+        /// <summary>
+        /// Общий журнал утверждений
+        /// </summary>
+        public static string JournalDocuments = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:UserOperationsView\\AutomationId:ultraPanel1\\AutomationId:splitContainer1\\AutomationId:mainGrid\\Name:user_operation row 1";
+        /// <summary>
+        /// Журнал для проверки
+        /// </summary>
+        public static string JournalSum = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:RequirementDocListApprovingView\\AutomationId:grpBig\\AutomationId:grdList\\Name:List`1 row 1";
+        /// <summary>
+        /// Галочка
+        /// </summary>
+        public static string IsCheck = "Name:Утвердить";
+        /// <summary>
+        ///Поиск документа в журнале Наведение фокуса на сумму
+        /// </summary>
+        public static string SumT = "Name:Сумма ТУ";
+        /// <summary>
+        /// Кнопка утвердить все
+        /// </summary>
+        public static string ButtonSettlement = "Name:DockTop\\Name:Ribbon\\Name:Список требований об уплате\\Name:Отметки\\Name:Утвердить все";
+        /// <summary>
+        /// Кнопка передать на обработку
+        /// </summary>
+        public static string ButtonSend = "Name:DockTop\\Name:Ribbon\\Name:Список требований об уплате\\Name:Действия\\Name:Передать на обработку";
+    }
+
+    public class SignatureHeadProperty
+    {
+        /// <summary>
+        /// Журнал сигнатур подписи имущества
+        /// </summary>
+        public static string JournalSignature = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:UserOperationsView\\AutomationId:ultraPanel1\\AutomationId:splitContainer1\\AutomationId:mainGrid\\Name:user_operation row 1";
+        /// <summary>
+        /// Подписать все
+        /// </summary>
+        public static string ButtonSignatureAll = "Name:DockTop\\Name:Ribbon\\Name:Список заявлений\\Name:Отметки\\Name:Подписать все";
+        /// <summary>
+        /// Контроль журнала Подписанных заявлений
+        /// </summary>
+        public static string JoirnalControl = "Name:_layoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:AssetSttmClaimSigningView\\AutomationId:grpBig\\AutomationId:grdList\\Name:List`1 row 1";
+        /// <summary>
+        /// Журнал всех подписанных
+        /// </summary>
+        public static string JoirnalAllSignature = "Name:_layoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:AssetSttmClaimSigningView\\AutomationId:grpBig\\AutomationId:grdList";
+        /// <summary>
+        /// Проверка сигнатуры подписи
+        /// </summary>
+        public static string IsSignatureAll = "Name:Подписать";
+        /// <summary>
+        /// Кнопка Завершить подписание
+        /// </summary>
+        public static string EndSignature = "Name:DockTop\\Name:Ribbon\\Name:Список заявлений\\Name:Действия\\Name:Завершить";
+        /// <summary>
+        /// Окно выхода
+        /// </summary>
+        public static string WinExit = "Name:Завершение работы\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+    }
 }

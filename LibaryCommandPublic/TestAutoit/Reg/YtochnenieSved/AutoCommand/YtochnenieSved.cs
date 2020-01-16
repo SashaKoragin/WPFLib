@@ -54,7 +54,7 @@ namespace LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand
                 LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
-                    clickerButton.Click18(pathjurnalok,statusButton);
+                    clickerButton.Click18(statusButton,pathjurnalok);
                     DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusYellow);
                 }
                 else

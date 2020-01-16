@@ -34,7 +34,7 @@ namespace LibaryCommandPublic.TestAutoit.It.Rule
                   LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
                   if (ais3.WinexistsAis3() == 1)
                   {
-                    clickerButton.Click15(pathjurnalok, dataPickerSettings,statusButton);
+                    clickerButton.Click15(statusButton,pathjurnalok, dataPickerSettings);
                     DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                   }
                 else

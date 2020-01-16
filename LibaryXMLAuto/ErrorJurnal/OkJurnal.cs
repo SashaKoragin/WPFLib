@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LibaryXMLAuto.ReadOrWrite;
 
 namespace LibaryXMLAuto.ErrorJurnal
@@ -21,15 +17,22 @@ namespace LibaryXMLAuto.ErrorJurnal
         /// <param name="ok">Параметр что сделали</param>
         public static void JurnalOk(string pathjurnal, string znacenie, string ok)
         {
-            if (File.Exists(pathjurnal))
+            try
             {
-                XmlReadOrWrite read = new XmlReadOrWrite();
-                read.AddElementOk(pathjurnal,znacenie,ok);
+                if (File.Exists(pathjurnal))
+                {
+                    XmlReadOrWrite read = new XmlReadOrWrite();
+                    read.AddElementOk(pathjurnal, znacenie, ok);
+                }
+                else
+                {
+                    var convert = new Converts.ConvettToXml.XmlConvert();
+                    convert.CreateJurnalOk(pathjurnal, znacenie, ok);
+                }
             }
-            else
+            catch(Exception e)
             {
-                var convert = new  Converts.ConvettToXml.XmlConvert();
-                convert.CreateJurnalOk(pathjurnal, znacenie, ok);
+                System.Windows.Forms.MessageBox.Show(e.ToString());
             }
         }
     }

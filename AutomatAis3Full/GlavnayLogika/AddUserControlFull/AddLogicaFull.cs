@@ -16,7 +16,9 @@ using AutomatAis3Full.Form.Automat.Registration.TehnicalUpdate.UserControlTechni
 using AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.UserControl;
 using AutomatAis3Full.Form.Automat.Registration.VisualBank.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.FormTrebUplNaloga.UserControl;
-using AutomatAis3Full.Form.Automat.Uregulirovanie.MessageLk.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.MessageLk.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.RenouncementLk.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.SignatureHeadProperty.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.RequirementsLog.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.SenderReshenia.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.SenderSpravk.UserControl;
@@ -107,6 +109,18 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                },
                                new FullWindowAutoIt()
                                {
+                                   NameControl = "05.08.09.02. Взыскание задолжености за счет имущества",
+                                   CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                   {
+                                       new FullWindowAutoIt()
+                                       {
+                                           NameControl = "05.08.09.02.03.06. Подпись руководителем взысканий за счет имущества",
+                                           UserControl = new SignatureHeadProperty()
+                                       }
+                                   }
+                               },
+                               new FullWindowAutoIt()
+                               {
                                    NameControl = "05.08.03.0X.03. Утверждение требований об уплате",
                                    UserControl = new FormTrebUplNaloga()
                                },
@@ -114,6 +128,11 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                {
                                    NameControl = "05.09 Сообщения о принятом решении о зачете (возврате) подлежащие выгрузке в ЛК",
                                    UserControl = new MessageLk()
+                               },
+                               new FullWindowAutoIt()
+                               {
+                                   NameControl = "05.09 Сообщения о принятом решении об отказе  подлежащие выгрузке в ЛК",
+                                   UserControl = new RecouncementLk()
                                }
                               }
                           }

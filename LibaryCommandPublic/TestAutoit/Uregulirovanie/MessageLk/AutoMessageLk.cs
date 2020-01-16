@@ -9,6 +9,62 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
   public class AutoMessageLk
     {
         /// <summary>
+        /// Автоматизация ветки подписание руководителем за счет имущества ветка 05.08.09.02.03.06. Подпись руководителями Заявлений о взыскании за счет имущества ФЛ
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        /// <param name="pathjurnalerror">Журнал ошибок</param>
+        /// <param name="pathjurnalok">Журнал хороших (обработанных)</param>
+        public void SignatureHeadProperty(StatusButtonMethod statusButton, string pathjurnalerror, string pathjurnalok)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                KclicerButton clickerButton = new KclicerButton();
+                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                if (ais3.WinexistsAis3() == 1)
+                {
+                    clickerButton.Click24(statusButton, pathjurnalerror, pathjurnalok);
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+
+                }
+                else
+                {
+                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                }
+            });
+        }
+
+
+        /// <summary>
+        /// Обработка отказов по ЛК 2 ветка 05.09 Сообщения о принятом решении об отказе  подлежащие выгрузке в ЛК
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        /// <param name="pathjurnalerror">Журнал ошибок</param>
+        /// <param name="pathjurnalok">Журнал хороших (обработанных)</param>
+        public void RecouncementLk(StatusButtonMethod statusButton, string pathjurnalerror, string pathjurnalok)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                KclicerButton clickerButton = new KclicerButton();
+                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                if (ais3.WinexistsAis3() == 1)
+                {
+                    clickerButton.Click23(statusButton,pathjurnalerror, pathjurnalok);
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+
+                }
+                else
+                {
+                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                }
+            });
+        }
+
+
+        /// <summary>
         /// Обработка сообщений ЛК2
         /// </summary>
         /// <param name="statusButton">Кнопка старт </param>
@@ -80,7 +136,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
-                    clickerButton.Click22(pathjurnalerror,pathjurnalok,statusButton);
+                    clickerButton.Click22(statusButton, pathjurnalerror, pathjurnalok);
                     DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                 }
                 else

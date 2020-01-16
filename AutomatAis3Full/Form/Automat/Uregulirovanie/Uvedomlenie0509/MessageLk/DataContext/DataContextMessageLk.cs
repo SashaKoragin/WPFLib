@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutomatAis3Full.Config;
+﻿using AutomatAis3Full.Config;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
-namespace AutomatAis3Full.Form.Automat.Uregulirovanie.MessageLk.DataContext
+namespace AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.MessageLk.DataContext
 {
    public class DataContextMessageLk
     {

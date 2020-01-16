@@ -53,7 +53,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                       {
                           if (recursion.Length == i)
                           {
-                              FindElement = FindElement.FindFirst(TreeScope.Children, Conditions);
+                              FindElement = FindElement.FindFirst(TreeScope.Subtree, Conditions);
                               return FindElement;
                           }
                       }
@@ -61,7 +61,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                   }
                   i++;
               }
-              catch (Exception e)
+              catch
               {
                     return null;
               }
