@@ -177,17 +177,9 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.Uregulirovanie
         /// </summary>
         public static string ButtonSignatureAll = "Name:DockTop\\Name:Ribbon\\Name:Список заявлений\\Name:Отметки\\Name:Подписать все";
         /// <summary>
-        /// Контроль журнала Подписанных заявлений
-        /// </summary>
-        public static string JoirnalControl = "Name:_layoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:AssetSttmClaimSigningView\\AutomationId:grpBig\\AutomationId:grdList\\Name:List`1 row 1";
-        /// <summary>
         /// Журнал всех подписанных
         /// </summary>
         public static string JoirnalAllSignature = "Name:_layoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:AssetSttmClaimSigningView\\AutomationId:grpBig\\AutomationId:grdList";
-        /// <summary>
-        /// Проверка сигнатуры подписи
-        /// </summary>
-        public static string IsSignatureAll = "Name:Подписать";
         /// <summary>
         /// Кнопка Завершить подписание
         /// </summary>

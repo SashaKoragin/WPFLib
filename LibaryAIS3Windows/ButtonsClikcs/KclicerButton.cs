@@ -1625,12 +1625,21 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                                 {
                                     if (libaryAutomations.IsEnableElements(Trebovanie.Date) == null) continue;
                                     libaryAutomations.SetValuePattern(datevruch.ToString("dd.MM.yy"));
-                                    break;
+                                    var date = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.FindElement);
+                                    if (date != "")
+                                    {
+                                        break;
+                                    }
                                 }
                                 if (valuestatussend == "Массовая печать и рассылка" & valuetypenp == "ФЛ")
                                 {
                                   libaryAutomations.IsEnableElements(Trebovanie.ComboboxSend);
-                                  libaryAutomations.ComboBoxPatternUp(3);
+                                  libaryAutomations.ComboBoxPatternUp(2);
+                                }
+                                if (valuestatussend == "По каналам ТКС" & valuetypenp != "ФЛ")
+                                {
+                                    libaryAutomations.IsEnableElements(Trebovanie.ComboboxSend);
+                                    libaryAutomations.ComboBoxPatternUp(1);
                                 }
                                 while (true)
                                 {
@@ -1733,18 +1742,16 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     libraryAutomation.FindFirstElement(PublicElementName.StartUser);
                     var climbablePoint = libraryAutomation.FindElement.GetClickablePoint();
                     AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)climbablePoint.X, (int)climbablePoint.Y);
-                    libraryAutomationCheck.IsEnableElements(SignatureHeadProperty.JoirnalControl, null, true);
-                    var isChecked = "False";
-
+                    var isChecked = false;
                     while (true)
                     {
-                        if (isChecked == "False" || string.IsNullOrWhiteSpace(isChecked))
+                        if (isChecked)
                         {
-                            isChecked = libraryAutomationCheck.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomationCheck.IsEnableElements(SignatureHeadProperty.IsSignatureAll, libraryAutomationCheck.FindElement));
-                            if (isChecked == "True") break;
+                            break;
                         }
                         if (libraryAutomation.IsEnableElements(SignatureHeadProperty.ButtonSignatureAll) == null) continue;
                         libraryAutomation.CliksElements(SignatureHeadProperty.ButtonSignatureAll);
+                        isChecked = true;
                     }
                     while (true)
                     {
