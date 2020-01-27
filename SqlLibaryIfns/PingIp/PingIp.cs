@@ -6,8 +6,8 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
-using EfDatabase.Inventarization.Base;
-using EfDatabase.Inventarization.BaseLogica.AddObjectDb;
+using EfDatabase.Inventory.Base;
+using EfDatabase.Inventory.BaseLogic.AddObjectDb;
 using LibaryXMLAutoModelXmlSql.Model.ServerAndComputer;
 
 namespace SqlLibaryIfns.PingIp

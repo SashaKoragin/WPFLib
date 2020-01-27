@@ -8,32 +8,31 @@ namespace SqlLibaryIfns.SqlSelect.ImnsKadrsSelect
 {
    public class SelectImns
     {
-
-        /// <summary>
-        /// Выборка всех уволенных пользователей
-        /// </summary>
-        public string NotActualUsers = @"Select RTRIM(face.TAB_NUM) as TAB_NUM,RTRIM(face.NEW_POST) as NEW_POST,RTRIM(sub.NAME) as NAME From dbo.STAFF staf
-                      Join (Select I1.TAB_NUM,FM,IM,OT,NEW_SUBDIV,NEW_POST,STAFF_LINK FROM ITEM_MOVE I1
-                             Join (Select LINK_EMPL, MAX(LINK) as LINK From ITEM_MOVE
-                                   GROUP BY LINK_EMPL) I2 on I1.LINK = I2.LINK 
-                             Join EMPLOYERS_TBL emp on emp.LINK=I2.LINK_EMPL and emp.DATE_OUT is not null) face on face.STAFF_LINK = staf.LINK
-                     LEFT Join dbo.SUBDIV sub on sub.LINK_UP = staf.SUBDIV_LINK  For Xml Auto";
-
         /// <summary>
         /// Выборка всех актуальных пользователей
         /// </summary>
-        public string ActualUsers = @"Select RTRIM(face.TAB_NUM) as TAB_NUM,
-                                             RTRIM(face.NEW_POST) as NEW_POST,
-                                             RTRIM(sub.NAME) as NAME,
-                                             RTRIM(face.IM) as IM,
-                                             RTRIM(face.OT) as OT,
-                                             RTRIM(face.FM) as FM From dbo.STAFF staf
-                      Join (Select I1.TAB_NUM,DICTIONARY_FACES.FM,DICTIONARY_FACES.IM,DICTIONARY_FACES.OT,NEW_SUBDIV,NEW_POST,I1.STAFF_LINK FROM ITEM_MOVE I1
-                            Join (Select LINK_EMPL, MAX(LINK) as LINK From ITEM_MOVE
-                                  GROUP BY LINK_EMPL) I2 on I1.LINK = I2.LINK 
-                            Join  DICTIONARY_FACES  on I1.TAB_NUM = DICTIONARY_FACES.TAB_NUM
-                     Join EMPLOYERS_TBL emp on emp.LINK=I2.LINK_EMPL and emp.DATE_OUT is null) face on face.STAFF_LINK = staf.LINK
-                     LEFT Join dbo.SUBDIV sub on sub.LINK_UP = staf.SUBDIV_LINK  For Xml Auto";
+        public string ActualUsers = @"Select RTRIM(TAB_NUM) as TAB_NUM,
+                                             RTRIM(DICTIONARY_POST.NAME) as NEW_POST,
+                                             RTRIM(DSK.NAME) as NAME,
+                                             RTRIM(IM) as IM,
+                                             RTRIM(OT) as OT,
+                                             RTRIM(FM)as FM,
+                                             RTRIM(STATUS.STATUS) as STATUS,
+                                             RTRIM(KSV.NAME) as STATUS_NAME  FRom dbo.EMPLOYERS_TBL as ActualUser
+                                     JOIN (  Select I2.LINK_EMPL as LINKS, STAFF_LINK,I2.LINK From ITEM_MOVE I1
+                                     Join ( Select LINK_EMPL as  LINK_EMPL, MAX(LINK) as LINK From ITEM_MOVE
+                                            GROUP BY LINK_EMPL ) as I2  on I1.LINK = I2.LINK ) as T on T.LINKS=ActualUser.LINK
+                                     JOIN dbo.FACES_MAIN_TBL AS FM ON FM.LINK = ActualUser.FACE_LINK
+                                     JOIN dbo.STAFF STAF on STAF.LINK = T.STAFF_LINK
+                                     JOIN dbo.SUBDIV AS DS ON STAF.SUBDIV_LINK = DS.LINK_UP
+                                     JOIN dbo.DICTIONARY_SUBDIV_KLASSIF AS DSK ON DS.LINK_EX = DSK.LINK
+                                     JOIN DICTIONARY_POST ON STAF.POST_LINK= DICTIONARY_POST.LINK
+                                     JOIN (Select State.LINK_EMPL,STATUS.STATUS From dbo.EMPLOYERS_STATUS STATUS
+                                     JOIN(Select LINK_EMPL,max(DATE) as DATE From dbo.EMPLOYERS_STATUS
+                                          Where DATE < Getdate()
+                                          GROUP BY LINK_EMPL) State on State.LINK_EMPL = STATUS.LINK_EMPL and State.DATE = STATUS.DATE) as STATUS on STATUS.LINK_EMPL = ActualUser.LINK
+                                     JOIN dbo.STATUS_TYPES AS KSV ON STATUS.STATUS = KSV.LINK
+                                    Where DATE_OUT is null For Xml Auto";
 
     }
 }

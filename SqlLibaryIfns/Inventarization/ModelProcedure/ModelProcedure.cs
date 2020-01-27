@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SqlLibaryIfns.Inventarization.ModelProcedure
+namespace SqlLibaryIfns.Inventory.ModelProcedure
 {
    public class ModelProcedure
     {

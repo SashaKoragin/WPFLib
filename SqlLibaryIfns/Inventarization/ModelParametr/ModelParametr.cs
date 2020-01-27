@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SqlLibaryIfns.Inventarization.ModelParametr
+namespace SqlLibaryIfns.Inventory.ModelParametr
 {
    public class ModelParametr
     {

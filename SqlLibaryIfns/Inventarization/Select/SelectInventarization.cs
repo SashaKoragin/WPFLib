@@ -11,9 +11,9 @@ using LibaryXMLAutoInventarization.Model.ModelProcedure;
 using SqlLibaryIfns.SqlSelect.ModelSqlFullService;
 using SqlLibaryIfns.SqlZapros.SqlConnections;
 
-namespace SqlLibaryIfns.Inventarization.Select
+namespace SqlLibaryIfns.Inventory.Select
 {
-   public class SelectInventarization
+   public class SelectInventory
     {
         public string Connection  {get;set;}
         public InventarizationCommandWcfToSql Command  {get; set; }
@@ -21,7 +21,7 @@ namespace SqlLibaryIfns.Inventarization.Select
         /// Конструктор выполнения процедуры на сервере
         /// </summary>
         /// <param name="connectin"></param>
-        public SelectInventarization(string connectin)
+        public SelectInventory(string connectin)
         {
             Connection = connectin;
             var sqlconnect = new SqlConnectionType();
