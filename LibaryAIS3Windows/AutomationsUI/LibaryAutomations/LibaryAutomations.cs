@@ -49,15 +49,22 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                   }
                   else
                   {
-                      if (isSubtree)
-                      {
-                          if (recursion.Length == i)
+                   if(FindElement != null)
+                    {
+                       if (isSubtree)
+                       {
+                         if (recursion.Length == i)
                           {
-                              FindElement = FindElement.FindFirst(TreeScope.Subtree, Conditions);
-                              return FindElement;
+                           FindElement = FindElement.FindFirst(TreeScope.Subtree, Conditions);
+                           return FindElement;
                           }
-                      }
-                     FindElement = FindElement.FindFirst(TreeScope.Children, Conditions) ?? FindElement.FindFirst(TreeScope.Subtree, Conditions);
+                       }
+                        FindElement = FindElement.FindFirst(TreeScope.Children, Conditions) ?? FindElement.FindFirst(TreeScope.Subtree, Conditions);
+                    }
+                   else
+                   {
+                      return null;
+                   }
                   }
                   i++;
               }
@@ -129,7 +136,23 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             var valueauto = (ExpandCollapsePattern)pattrn;
             valueauto.Expand();
         }
-
+        /// <summary>
+        /// Toggle Pattern
+        /// </summary>
+        /// <param name="element"></param>
+        public string TogglePattern(AutomationElement element)
+        {
+            if (element != null)
+            {
+                object patternObj;
+                if (element.TryGetCurrentPattern(TogglePatternIdentifiers.Pattern, out patternObj))
+                {
+                    var valuePattern = (TogglePattern)patternObj;
+                    return valuePattern.Current.ToggleState.ToString();
+                }
+            }
+            return null;
+        }
 
         /// <summary>
         /// Проставить значение в найденный элемент

@@ -18,7 +18,7 @@ using AutomatAis3Full.Form.Automat.Registration.VisualBank.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.FormTrebUplNaloga.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.MessageLk.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.RenouncementLk.UserControl;
-using AutomatAis3Full.Form.Automat.Uregulirovanie.SignatureHeadProperty.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket0508090203.Ticket050809020306.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.RequirementsLog.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.SenderReshenia.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.SenderSpravk.UserControl;
@@ -26,6 +26,8 @@ using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie;
 using AutomatAis3Full.Form.Report.ReportXml.ReportForm;
 using LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand;
 using ViewModelLib.ModelTestAutoit.FullWindowAutoIt;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket0508090202.Ticket050809020204.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket0508090202.Ticket050809020206.UserControl;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
 {
@@ -40,7 +42,7 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
           {
               FullWindowAutoItMethod autoit = new FullWindowAutoItMethod();
               var ytochnenieSved = new YtochnenieSved();
-              ObservableCollection<FullWindowAutoIt> window = new ObservableCollection<FullWindowAutoIt>
+            ObservableCollection<FullWindowAutoIt> window = new ObservableCollection<FullWindowAutoIt>
               {
                   new FullWindowAutoIt()
                   {
@@ -112,11 +114,35 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                    NameControl = "05.08.09.02. Взыскание задолжености за счет имущества",
                                    CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                                    {
-                                       new FullWindowAutoIt()
-                                       {
-                                           NameControl = "05.08.09.02.03.06. Подпись руководителем взысканий за счет имущества",
-                                           UserControl = new SignatureHeadProperty()
-                                       }
+                                      new FullWindowAutoIt()
+                                      {
+                                          NameControl = "05.08.09.02.02. Утверждение и подписание Служебных записок",
+                                          CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                          {
+                                              new FullWindowAutoIt()
+                                              {
+                                                  NameControl = "05.08.09.02.02.04. Утверждение Служебной записки",
+                                                  UserControl = new StatementOfficeNote()
+                                              },
+                                              new FullWindowAutoIt()
+                                              {
+                                                  NameControl = "05.08.09.02.02.06. Подписание Служебной записки",
+                                                  UserControl = new SignatureOfficeNote()
+                                              },
+                                          }
+                                      },
+                                      new FullWindowAutoIt()
+                                      {
+                                          NameControl = "Утверждение и подписание Заявлений о взыскании за счет имущества ФЛ",
+                                          CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                          {
+                                              new FullWindowAutoIt()
+                                              {
+                                                  NameControl = "05.08.09.02.03.06. Подпись руководителем взысканий за счет имущества",
+                                                  UserControl = new SignatureHeadProperty()
+                                              }
+                                          }
+                                      }
                                    }
                                },
                                new FullWindowAutoIt()

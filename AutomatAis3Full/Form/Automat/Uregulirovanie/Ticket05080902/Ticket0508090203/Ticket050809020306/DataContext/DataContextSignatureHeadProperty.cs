@@ -2,7 +2,7 @@
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
-namespace AutomatAis3Full.Form.Automat.Uregulirovanie.SignatureHeadProperty.DataContext
+namespace AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket0508090203.Ticket050809020306.DataContext
 {
    public class DataContextSignatureHeadProperty
     {

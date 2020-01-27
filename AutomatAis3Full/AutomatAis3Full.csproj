@@ -187,7 +187,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Form\Automat\Uregulirovanie\SignatureHeadProperty\UserControl\SignatureHeadProperty.xaml">
+    <Page Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090202\Ticket050809020206\UserControl\SignatureOfficeNote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090202\Ticket050809020204\UserControl\StatementOfficeNote.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090203\Ticket050809020306\UserControl\SignatureHeadProperty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -326,8 +334,16 @@
     <Compile Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\UserControl\FormTrebUplNaloga.xaml.cs">
       <DependentUpon>FormTrebUplNaloga.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Form\Automat\Uregulirovanie\SignatureHeadProperty\DataContext\DataContextSignatureHeadProperty.cs" />
-    <Compile Include="Form\Automat\Uregulirovanie\SignatureHeadProperty\UserControl\SignatureHeadProperty.xaml.cs">
+    <Compile Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090202\Ticket050809020206\DataContext\DataContextSignatureOfficeNote.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090202\Ticket050809020206\UserControl\SignatureOfficeNote.xaml.cs">
+      <DependentUpon>SignatureOfficeNote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090202\Ticket050809020204\DataContext\DataContextStatementOfficeNote.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090202\Ticket050809020204\UserControl\StatementOfficeNote.xaml.cs">
+      <DependentUpon>StatementOfficeNote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090203\Ticket050809020306\DataContext\DataContextSignatureHeadProperty.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090203\Ticket050809020306\UserControl\SignatureHeadProperty.xaml.cs">
       <DependentUpon>SignatureHeadProperty.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\MessageLk\DataContext\DataContextMessageLk.cs" />

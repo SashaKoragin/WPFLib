@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace LibaryAIS3Windows.AutomationsUI.Otdels.Uregulirovanie
 {
    public class UregulirovanieElementName
@@ -184,6 +179,65 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.Uregulirovanie
         /// Кнопка Завершить подписание
         /// </summary>
         public static string EndSignature = "Name:DockTop\\Name:Ribbon\\Name:Список заявлений\\Name:Действия\\Name:Завершить";
+        /// <summary>
+        /// Окно выхода
+        /// </summary>
+        public static string WinExit = "Name:Завершение работы\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+    }
+
+    /// <summary>
+    /// Утверждения служебной записки элементы управления
+    /// </summary>
+    public class TextStatementOfficeNote
+    {
+        /// <summary>
+        /// Общий журнал заданий
+        /// </summary>
+        public static string JournalStatementOffice = "Name:_layoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:UserOperationsView\\AutomationId:ultraPanel1\\AutomationId:splitContainer1\\AutomationId:mainGrid\\Name:user_operation row 1";
+        /// <summary>
+        /// Все данные по таблице
+        /// </summary>
+        public static string JournalAllStatementOffice = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:AssetSttmOfficialNoteApprovingView\\AutomationId:grpBig\\AutomationId:grdList";
+        /// <summary>
+        /// Утвердить
+        /// </summary>
+        public static string IsCheck = "Name:_layoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:AssetSttmOfficialNoteApprovingView\\AutomationId:grpBig\\AutomationId:grpAssigmer\\AutomationId:cbApprove";
+        /// <summary>
+        /// Кнопка включить все
+        /// </summary>
+        public static string ButtonIsCheckAll = "Name:DockTop\\Name:Ribbon\\Name:Служебная записка\\Name:Отметки\\Name:Включить все";
+        /// <summary>
+        /// Завершить
+        /// </summary>
+        public static string Exit = "Name:DockTop\\Name:Ribbon\\Name:Служебная записка\\Name:Действия\\Name:Завершить";
+        /// <summary>
+        /// Окно выхода
+        /// </summary>
+        public static string WinExit = "Name:Завершение работы\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+    }
+
+    public class TextSignatureOfficeNote
+    {
+        /// <summary>
+        /// Общий журнал заданий
+        /// </summary>
+        public static string JournalSignatureOffice = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:UserOperationsView\\AutomationId:ultraPanel1\\AutomationId:splitContainer1\\AutomationId:mainGrid\\Name:user_operation row 1";
+        /// <summary>
+        /// Все данные по таблице на подписание
+        /// </summary>
+        public static string JournalAllStatementOffice = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:AssetSttmOfficialNoteSigningView\\AutomationId:grpBig\\AutomationId:grdList";
+        /// <summary>
+        /// Подписать
+        /// </summary>
+        public static string IsCheck = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:AssetSttmOfficialNoteSigningView\\AutomationId:grpBig\\AutomationId:grpAssigmer\\AutomationId:cbSigne";
+        /// <summary>
+        /// Кнопка включить все
+        /// </summary>
+        public static string ButtonIsCheckAll = "Name:DockTop\\Name:Ribbon\\Name:Служебная записка\\Name:Отметки\\Name:Включить все";
+        /// <summary>
+        /// Завершить
+        /// </summary>
+        public static string Exit = "Name:DockTop\\Name:Ribbon\\Name:Служебная записка\\Name:Действия\\Name:Завершить";
         /// <summary>
         /// Окно выхода
         /// </summary>

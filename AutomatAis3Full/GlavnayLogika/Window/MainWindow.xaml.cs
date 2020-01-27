@@ -31,14 +31,7 @@ namespace AutomatAis3Full.GlavnayLogika.Window
 
         private Version GetRunningVersion()
         {
-            try
-            {
-                return ApplicationDeployment.CurrentDeployment.CurrentVersion;
-            }
-            catch (Exception)
-            {
                 return Assembly.GetExecutingAssembly().GetName().Version;
-            }
         }
     }
 }

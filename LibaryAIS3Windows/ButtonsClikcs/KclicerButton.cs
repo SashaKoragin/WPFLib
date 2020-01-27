@@ -1265,7 +1265,9 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// Автоматизация ветки
         /// Общие задания\Урегулирование задолженности\05.09 Уведомление о необходимости выгрузки документов в ЛК\05.09 Сообщения о принятом решении о зачете (возврате) подлежащие выгрузке в ЛК
         /// </summary>
-        public string Click16(string pathjurnalerror, string pathjurnalok)
+        /// <param name="pathJournalError">Путь к журналу ошибочных</param>
+        /// <param name="pathJournalOk">Путь к журналу отработанных</param>
+        public string Click16(string pathJournalError, string pathJournalOk)
         {
             int i = 0;
             WindowsAis3 win = new WindowsAis3();
@@ -1316,13 +1318,13 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     var climbablePoint = libraryAutomation.FindElement.GetClickablePoint();
                     AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)climbablePoint.X, (int)climbablePoint.Y);
                     libraryAutomationCheck.IsEnableElements(SettlementDebts.JournalSum, null, true);
-                    var ischeck = "False";
+                    var isChecked = "False";
                     while (true)
                     {
-                        if(ischeck == "False" || string.IsNullOrWhiteSpace(ischeck))
+                        if(isChecked == "False" || string.IsNullOrWhiteSpace(isChecked))
                         {
-                            ischeck = libraryAutomationCheck.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomationCheck.IsEnableElements(SettlementDebts.IsCheck, libraryAutomationCheck.FindElement));
-                            if (ischeck == "True") break;
+                            isChecked = libraryAutomationCheck.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomationCheck.IsEnableElements(SettlementDebts.IsCheck, libraryAutomationCheck.FindElement));
+                            if (isChecked == "True") break;
                         }
                         if (libraryAutomation.IsEnableElements(SettlementDebts.ButtonSettlement) == null) continue;
                         libraryAutomation.CliksElements(SettlementDebts.ButtonSettlement);
@@ -1335,8 +1337,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                             AutoItX.Send(ButtonConstant.Enter);
                             break;
                         }
-                            if (libraryAutomation.IsEnableElements(SettlementDebts.ButtonSend) == null) continue;
-                            libraryAutomation.CliksElements(SettlementDebts.ButtonSend);
+                        if (libraryAutomation.IsEnableElements(SettlementDebts.ButtonSend) == null) continue;
+                        libraryAutomation.CliksElements(SettlementDebts.ButtonSend);
 
                     }
                 }
@@ -1350,34 +1352,34 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// Отработка документов поступивших документов
         /// </summary>
         /// <param name="statusButton">Кнопка статуса чтобы остановить</param>
-        /// <param name="pathjurnalok">Путь сохранения отработтаных</param>
-        public void Click18(StatusButtonMethod statusButton, string pathjurnalok)
+        /// <param name="pathJournalOk">Путь сохранения отработанных</param>
+        public void Click18(StatusButtonMethod statusButton, string pathJournalOk)
         {
-            LibaryAutomations libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
-            AutomationElement elementauto;
-            while ((elementauto = libaryAutomations.IsEnableElements(RegistrationElementName.JurnalsDocumentsFirstElement,null,true)) != null)
+            LibaryAutomations libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
+            AutomationElement elementAuto;
+            while ((elementAuto = libraryAutomation.IsEnableElements(RegistrationElementName.JurnalsDocumentsFirstElement,null,true)) != null)
             {
                         if (statusButton.Iswork)
                         {
-                            libaryAutomations.IsEnableElements(RegistrationElementName.Doc, elementauto);
-                            libaryAutomations.FindElement.SetFocus();
-                            var id = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.FindElement);
-                            libaryAutomations.FindFirstElement(RegistrationElementName.IsErrorDocument);
-                            var clickablePoint = libaryAutomations.FindElement.GetClickablePoint();
-                            AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint.X, (int)clickablePoint.Y);
-                            libaryAutomations.IsEnableElements(RegistrationElementName.Qweshions);
-                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
-                            libaryAutomations.IsEnableElements(RegistrationElementName.ErrorsCreate);
-                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
-                            libaryAutomations.IsEnableElements(RegistrationElementName.ErrorsOk);
-                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
-                            libaryAutomations.IsEnableElements(RegistrationElementName.ErrorsCancel);
-                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
-                            libaryAutomations.IsEnableElements(RegistrationElementName.Qweshions);
-                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
-                            libaryAutomations.IsEnableElements(RegistrationElementName.WinOk);
-                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
-                            LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, id, "Отработали Ун входящего без ошибок");
+                            libraryAutomation.IsEnableElements(RegistrationElementName.Doc, elementAuto);
+                            libraryAutomation.FindElement.SetFocus();
+                            var id = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement);
+                            libraryAutomation.FindFirstElement(RegistrationElementName.IsErrorDocument);
+                            var clickPoint = libraryAutomation.FindElement.GetClickablePoint();
+                            AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint.X, (int)clickPoint.Y);
+                            libraryAutomation.IsEnableElements(RegistrationElementName.Qweshions);
+                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
+                            libraryAutomation.IsEnableElements(RegistrationElementName.ErrorsCreate);
+                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
+                            libraryAutomation.IsEnableElements(RegistrationElementName.ErrorsOk);
+                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
+                            libraryAutomation.IsEnableElements(RegistrationElementName.ErrorsCancel);
+                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
+                            libraryAutomation.IsEnableElements(RegistrationElementName.Qweshions);
+                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
+                            libraryAutomation.IsEnableElements(RegistrationElementName.WinOk);
+                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
+                            LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, id, "Отработали Ун входящего без ошибок");
                         }
                         else
                         {
@@ -1389,40 +1391,40 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// Подписание решения урегулирование задолженности 05.08.10.01.0X.02 Подписание решения.
         /// </summary>
         /// <param name="statusButton">Кнопка статуса</param>
-        /// <param name="pathjurnalok">Путь к отработанным значениям</param>
-        public void Click19(StatusButtonMethod statusButton, string pathjurnalok)
+        /// <param name="pathJournalOk">Путь к отработанным значениям</param>
+        public void Click19(StatusButtonMethod statusButton, string pathJournalOk)
         {
-            var libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
-            while (libaryAutomations.IsEnableElements(UregulirovanieElementName.JurnalsUserOperationSpravki) !=null)
+            var libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
+            while (libraryAutomation.IsEnableElements(UregulirovanieElementName.JurnalsUserOperationSpravki) !=null)
             {
                 if (statusButton.Iswork)
                 {
-                    var clickablerows = libaryAutomations.SelectAutomationColrction(libaryAutomations.FindElement).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Имя задания")).GetClickablePoint();
-                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablerows.X, (int)clickablerows.Y);
-                    libaryAutomations.FindFirstElement(PublicElementName.StartUser);
-                    var clickablePoint = libaryAutomations.FindElement.GetClickablePoint();
-                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint.X, (int)clickablePoint.Y);
+                    var clickRows = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Имя задания")).GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickRows.X, (int)clickRows.Y);
+                    libraryAutomation.FindFirstElement(PublicElementName.StartUser);
+                    var clickPoint = libraryAutomation.FindElement.GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint.X, (int)clickPoint.Y);
                     AutoItX.WinWait("АИС Налог-3 ПРОМ ", "ИНН:");
-                    var inn = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.IsEnableElements(UregulirovanieElementName.InnResh));
-                    var fio = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.IsEnableElements(UregulirovanieElementName.FioResh));
-                    var summ = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.IsEnableElements(UregulirovanieElementName.SummResh));
-                    libaryAutomations.IsEnableElements(UregulirovanieElementName.SaveUser);
-                    var clickablePoint1 = libaryAutomations.FindElement.GetClickablePoint();
-                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint1.X, (int)clickablePoint1.Y);
+                    var inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(UregulirovanieElementName.InnResh));
+                    var fio = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(UregulirovanieElementName.FioResh));
+                    var sum = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(UregulirovanieElementName.SummResh));
+                    libraryAutomation.IsEnableElements(UregulirovanieElementName.SaveUser);
+                    var clickPoint1 = libraryAutomation.FindElement.GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint1.X, (int)clickPoint1.Y);
                     while (true)
                     {
-                        if (libaryAutomations.IsEnableElements(UregulirovanieElementName.WinOk, null, true, 1) != null)
+                        if (libraryAutomation.IsEnableElements(UregulirovanieElementName.WinOk, null, true, 1) != null)
                         {
-                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
+                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
                             break;
                         }
-                        if (libaryAutomations.IsEnableElements(UregulirovanieElementName.SendSenderZadoljenost, null,true, 1) != null)
+                        if (libraryAutomation.IsEnableElements(UregulirovanieElementName.SendSenderZadoljenost, null,true, 1) != null)
                         {
-                            var clickablePoint2 = libaryAutomations.FindElement.GetClickablePoint();
-                            AutoItX.MouseClick(ButtonConstant.MouseLeft, (int) clickablePoint2.X,(int) clickablePoint2.Y);
+                            var clickPoint2 = libraryAutomation.FindElement.GetClickablePoint();
+                            AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint2.X,(int)clickPoint2.Y);
                         }
                     }
-                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, $"{summ} {inn} {fio}", "Отработали Подписание решения о признании недоимки и задолжености безнадежными к взысканию");
+                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, $"{sum} {inn} {fio}", "Отработали Подписание решения о признании недоимки и задолженности безнадежными к взысканию");
                 }
                 else
                 {
@@ -1436,58 +1438,58 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// Подписание справки урегулирование задолженности 05.08.10.01.0X.02 Подписание справок.
         /// </summary>
         /// <param name="statusButton">Кнопка статуса</param>
-        /// <param name="pathjurnalok">Путь к отработанным значениям</param>
-        public void Click20(StatusButtonMethod statusButton,string pathjurnalok )
+        /// <param name="pathJournalOk">Путь к отработанным значениям</param>
+        public void Click20(StatusButtonMethod statusButton,string pathJournalOk )
         {
-            var libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
+            var libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
    
-            while (libaryAutomations.IsEnableElements(UregulirovanieElementName.JurnalsUserOperationSpravki) != null)
+            while (libraryAutomation.IsEnableElements(UregulirovanieElementName.JurnalsUserOperationSpravki) != null)
             {
                 if (statusButton.Iswork)
                 {
-                    var clickablerows = libaryAutomations.SelectAutomationColrction(libaryAutomations.FindElement).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Имя задания")).GetClickablePoint();
-                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablerows.X, (int)clickablerows.Y);
-                    libaryAutomations.FindFirstElement(PublicElementName.StartUser);
-                    var clickablePoint = libaryAutomations.FindElement.GetClickablePoint();
-                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint.X, (int)clickablePoint.Y);
+                    var clickRows = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Имя задания")).GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickRows.X, (int)clickRows.Y);
+                    libraryAutomation.FindFirstElement(PublicElementName.StartUser);
+                    var clickPoint = libraryAutomation.FindElement.GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint.X, (int)clickPoint.Y);
                     AutoItX.WinWait("АИС Налог-3 ПРОМ ", "ИНН:");
-                    var num = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.IsEnableElements(UregulirovanieElementName.Number));
-                    var inn = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.IsEnableElements(UregulirovanieElementName.Inn));
-                    var fio = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.IsEnableElements(UregulirovanieElementName.Fio));
-                    libaryAutomations.IsEnableElements(UregulirovanieElementName.SaveUser);
+                    var num = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(UregulirovanieElementName.Number));
+                    var inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(UregulirovanieElementName.Inn));
+                    var fio = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(UregulirovanieElementName.Fio));
+                    libraryAutomation.IsEnableElements(UregulirovanieElementName.SaveUser);
                     AutoItX.Sleep(500);
-                    var clickablePoint1 = libaryAutomations.FindElement.GetClickablePoint();
-                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint1.X, (int)clickablePoint1.Y);
+                    var clickPoint1 = libraryAutomation.FindElement.GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint1.X, (int)clickPoint1.Y);
                     while (true)
                     {
-                        if (libaryAutomations.IsEnableElements(UregulirovanieElementName.SendSender,null,true,1) != null)
+                        if (libraryAutomation.IsEnableElements(UregulirovanieElementName.SendSender,null,true,1) != null)
                         {
                             break;
                         }
-                        if (libaryAutomations.IsEnableElements(UregulirovanieElementName.SaveProject, null, true,1) != null)
+                        if (libraryAutomation.IsEnableElements(UregulirovanieElementName.SaveProject, null, true,1) != null)
                         {
-                            var clickablePoint2 = libaryAutomations.FindElement.GetClickablePoint();
-                            AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint2.X, (int)clickablePoint2.Y);
+                            var clickPoint2 = libraryAutomation.FindElement.GetClickablePoint();
+                            AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint2.X, (int)clickPoint2.Y);
                         }
                     }
                     while (true)
                     {
-                        if (libaryAutomations.IsEnableElements(UregulirovanieElementName.WinOkExeptions, null, true, 1) != null)
+                        if (libraryAutomation.IsEnableElements(UregulirovanieElementName.WinOkExeptions, null, true, 1) != null)
                         {
-                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
+                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
                         }
-                        if (libaryAutomations.IsEnableElements(UregulirovanieElementName.WinOk, null, true, 1) != null)
+                        if (libraryAutomation.IsEnableElements(UregulirovanieElementName.WinOk, null, true, 1) != null)
                         {
-                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
+                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
                             break;
                         }
-                        if (libaryAutomations.IsEnableElements(UregulirovanieElementName.SendSender, null, true,1) != null)
+                        if (libraryAutomation.IsEnableElements(UregulirovanieElementName.SendSender, null, true,1) != null)
                         {
-                            var clickablePoint3 = libaryAutomations.FindElement.GetClickablePoint();
-                            AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint3.X, (int)clickablePoint3.Y);
+                            var clickPoint3 = libraryAutomation.FindElement.GetClickablePoint();
+                            AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint3.X, (int)clickPoint3.Y);
                         }
                     }
-                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, $"{num} {inn} {fio}", "Отработали Подписание справки о суммах недоимки");
+                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, $"{num} {inn} {fio}", "Отработали Подписание справки о суммах недоимки");
                 }
                 else
                 {
@@ -1500,12 +1502,12 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// Налоговое администрирование\Банковские и лицевые счета\06. Журналы принятых файлов БС\01. Визуальный анализ сообщений банка
         /// </summary>
         /// <param name="id">ФПД значение</param>
-        /// <param name="pathjurnalerror">Журнал ошибок</param>
-        /// <param name="pathjurnalok">Журнал сделаных</param>
-        public void Click21(string id, string pathjurnalerror, string pathjurnalok)
+        /// <param name="pathJournalError">Журнал ошибок</param>
+        /// <param name="pathJournalOk">Журнал сделанных</param>
+        public void Click21(string id, string pathJournalError, string pathJournalOk)
         {
             WindowsAis3 win = new WindowsAis3();
-            var libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
+            var libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
             win.ControlGetPos1(WindowsAis3.WinGrid[0], WindowsAis3.WinGrid[1], WindowsAis3.WinGrid[2]);
             AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.X1 + 70, win.WindowsAis.Y + win.Y1 + 35);
             AutoItX.ClipPut(id);
@@ -1515,27 +1517,27 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             AutoItX.Send(ButtonConstant.CtrlV);
             while (true)
             {
-                if (libaryAutomations.CliksElements(RegistrationElementNameVisualBank.UpdateButton, null, false, 1))
+                if (libraryAutomation.CliksElements(RegistrationElementNameVisualBank.UpdateButton, null, false, 1))
                 {
-                    if (libaryAutomations.IsEnableElements(RegistrationElementNameVisualBank.JurnalsDocumentsFirstElementBank, null, true) != null)
+                    if (libraryAutomation.IsEnableElements(RegistrationElementNameVisualBank.JurnalsDocumentsFirstElementBank, null, true) != null)
                     {
-                        libaryAutomations.FindElement.SetFocus();
-                        if (libaryAutomations.CliksElements(RegistrationElementNameVisualBank.Identification, null, false, 5))
+                        libraryAutomation.FindElement.SetFocus();
+                        if (libraryAutomation.CliksElements(RegistrationElementNameVisualBank.Identification, null, false, 5))
                         {
                             while (true)
                             {
-                                if (libaryAutomations.CliksElements(RegistrationElementNameVisualBank.StartIdentification))
+                                if (libraryAutomation.CliksElements(RegistrationElementNameVisualBank.StartIdentification))
                                 {
                                     while (true)
                                     {
-                                        if (libaryAutomations.IsEnableElements(RegistrationElementNameVisualBank.WinOk, null, true, 1) != null)
+                                        if (libraryAutomation.IsEnableElements(RegistrationElementNameVisualBank.WinOk, null, true, 1) != null)
                                         {
-                                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
+                                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
                                         }
-                                        if (libaryAutomations.IsEnableElements(RegistrationElementNameVisualBank.WinOkEnd, null, true, 1) != null)
+                                        if (libraryAutomation.IsEnableElements(RegistrationElementNameVisualBank.WinOkEnd, null, true, 1) != null)
                                         {
-                                            libaryAutomations.InvekePattern(libaryAutomations.FindElement);
-                                            if (libaryAutomations.CliksElements(RegistrationElementNameVisualBank.Return))
+                                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
+                                            if (libraryAutomation.CliksElements(RegistrationElementNameVisualBank.Return))
                                             {
                                                 break;
                                             }
@@ -1544,9 +1546,9 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                                 }
                                 else
                                 {
-                                    LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, id, VisualBank, "Не удаётся идентифицировать лицо. Лицо не найдено!");
-                                    libaryAutomations.CliksElements(RegistrationElementNameVisualBank.ReturnList, null, false, 10);
-                                    if (libaryAutomations.CliksElements(RegistrationElementNameVisualBank.Return, null,false, 10))
+                                    LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathJournalError, id, VisualBank, "Не удаётся идентифицировать лицо. Лицо не найдено!");
+                                    libraryAutomation.CliksElements(RegistrationElementNameVisualBank.ReturnList, null, false, 10);
+                                    if (libraryAutomation.CliksElements(RegistrationElementNameVisualBank.Return, null,false, 10))
                                     {
                                         return;
                                     }
@@ -1558,117 +1560,114 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     }
                     else
                     {
-                        LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, id, VisualBank, "Не найдено значение для идентификации");
-                        if (libaryAutomations.CliksElements(RegistrationElementNameVisualBank.Return, null, false, 10))
+                        LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathJournalError, id, VisualBank, "Не найдено значение для идентификации");
+                        if (libraryAutomation.CliksElements(RegistrationElementNameVisualBank.Return, null, false, 10))
                         {
                             return;
                         }
                     }
                 }
             }
-            LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, id, "Отработали идентификацию успешно!");
+            LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, id, "Отработали идентификацию успешно!");
         }
         /// <summary>
         /// Налоговое администрирование\Урегулирование задолженности\Требования об уплате\Журнал требований об уплате
-        /// Проставление информации о вручкении +3 дня от подачи
+        /// Проставление информации о вручении +3 дня от подачи
         /// </summary>
         /// <param name="statusButton">Запуск остановка</param>
-        /// <param name="pathjurnalerror">Журнал ошибок</param>
-        /// <param name="pathjurnalok">Журнал отработанных</param>
-        /// string pathjurnalerror, string pathjurnalok, StatusButtonMethod statusButton
-        public void Click22(StatusButtonMethod statusButton, string pathjurnalerror,string pathjurnalok )
+        /// <param name="pathJournalError">Журнал ошибок</param>
+        /// <param name="pathJournalOk">Журнал отработанных</param>
+        public void Click22(StatusButtonMethod statusButton, string pathJournalError,string pathJournalOk )
         {
-            var libaryAutomations = new LibaryAutomations(WindowsAis3.AisNalog3);
-            libaryAutomations.FindFirstElement(Trebovanie.JurnalsTrebovanie);
-            var listmemo = libaryAutomations.SelectAutomationColrction(libaryAutomations.FindElement).Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("select0 row"));
-            foreach (var automationElement in listmemo)
+            var libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
+            libraryAutomation.FindFirstElement(Trebovanie.JurnalsTrebovanie);
+            var listMemo = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement).Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("select0 row"));
+            foreach (var automationElement in listMemo)
             {
                 if (statusButton.Iswork)
                 {
                     automationElement.SetFocus();
-                    var valuesdate = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                    var valueDate = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                                      .SelectAutomationColrction(automationElement)
                                      .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата ТУ")));
 
-                    var valuesnumber = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                    var valueNumber = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                                        .SelectAutomationColrction(automationElement)
                                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Номер ТУ")));
 
-                    var valuesinn = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                    var valueInn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                                     .SelectAutomationColrction(automationElement)
                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
 
-                    var valuetypenp = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                    var valueTypeNp = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                                      .SelectAutomationColrction(automationElement)
-                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Тип НП")));
+                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Категория НП")));
 
-                    var valuestatussend = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations
+                    var valueStatusEnd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                                           .SelectAutomationColrction(automationElement)
                                           .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Способ вручения")));
 
-                    libaryAutomations.CliksElements(Trebovanie.ListPanel);
-                    if (libaryAutomations.CliksElements(Trebovanie.Open, null, false, 5))
+                    libraryAutomation.CliksElements(Trebovanie.ListPanel);
+                    if (libraryAutomation.CliksElements(Trebovanie.Open, null, false, 5))
                     {
                         while (true)
                         {
-                            if (libaryAutomations.IsEnableElements(Trebovanie.Save) != null)
+                            if (libraryAutomation.IsEnableElements(Trebovanie.Save) != null)
                             {
-                                libaryAutomations.CliksElements(Trebovanie.TabIfo, null, false, 10);
-                                libaryAutomations.IsEnableElements(Trebovanie.ComboBoxSelect);
-                                libaryAutomations.ComboBoxPatternDown(1);
-                                var datevruch = Convert.ToDateTime(valuesdate).AddDays(valuetypenp == "ФЛ" ? 5 : 3);
-                                if (datevruch.DayOfWeek == DayOfWeek.Saturday)
-                                    datevruch = datevruch.AddDays(2);
-                                if (datevruch.DayOfWeek == DayOfWeek.Sunday)
-                                    datevruch = datevruch.AddDays(1);
+                                libraryAutomation.CliksElements(Trebovanie.TabIfo, null, false, 10);
+                                libraryAutomation.IsEnableElements(Trebovanie.ComboBoxSelect);
+                                libraryAutomation.ComboBoxPatternDown(1);
+                                var dateVAdd = Convert.ToDateTime(valueDate).AddDays(valueTypeNp == "ФЛ" ? 5 : 3);
+                                if (dateVAdd.DayOfWeek == DayOfWeek.Saturday)
+                                    dateVAdd = dateVAdd.AddDays(2);
+                                if (dateVAdd.DayOfWeek == DayOfWeek.Sunday)
+                                    dateVAdd = dateVAdd.AddDays(1);
                                 while (true)
                                 {
-                                    if (libaryAutomations.IsEnableElements(Trebovanie.Date) == null) continue;
-                                    libaryAutomations.SetValuePattern(datevruch.ToString("dd.MM.yy"));
-                                    var date = libaryAutomations.ParseElementLegacyIAccessiblePatternIdentifiers(libaryAutomations.FindElement);
+                                    if (libraryAutomation.IsEnableElements(Trebovanie.Date) == null) continue;
+                                    libraryAutomation.SetValuePattern(dateVAdd.ToString("dd.MM.yy"));
+                                    var date = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement);
                                     if (date != "")
                                     {
                                         break;
                                     }
                                 }
-                                if (valuestatussend == "Массовая печать и рассылка" & valuetypenp == "ФЛ")
+                                if (valueStatusEnd == "Массовая печать и рассылка" & valueTypeNp == "ФЛ")
                                 {
-                                  libaryAutomations.IsEnableElements(Trebovanie.ComboboxSend);
-                                  libaryAutomations.ComboBoxPatternUp(2);
+                                    libraryAutomation.IsEnableElements(Trebovanie.ComboboxSend);
+                                    libraryAutomation.ComboBoxPatternUp(2);
                                 }
-                                if (valuestatussend == "По каналам ТКС" & valuetypenp != "ФЛ")
+                                if (valueStatusEnd == "По каналам ТКС" & valueTypeNp != "ФЛ")
                                 {
-                                    libaryAutomations.IsEnableElements(Trebovanie.ComboboxSend);
-                                    libaryAutomations.ComboBoxPatternUp(1);
+                                    libraryAutomation.IsEnableElements(Trebovanie.ComboboxSend);
+                                    libraryAutomation.ComboBoxPatternUp(1);
                                 }
                                 while (true)
                                 {
-                                    if (libaryAutomations.IsEnableElements(Trebovanie.Save) == null) continue;
-                                    libaryAutomations.CliksElements(Trebovanie.Save);
+                                    if (libraryAutomation.IsEnableElements(Trebovanie.Save) == null) continue;
+                                    libraryAutomation.CliksElements(Trebovanie.Save);
                                     break;
                                 }
                                 while (true)
                                 {
-                                    if (libaryAutomations.IsEnableElements(Trebovanie.Back) == null) continue;
-                                    libaryAutomations.CliksElements(Trebovanie.Back);
+                                    if (libraryAutomation.IsEnableElements(Trebovanie.Back) == null) continue;
+                                    libraryAutomation.CliksElements(Trebovanie.Back);
                                     break;
                                 }
-                                LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok,$"Номер ТУ: {valuesnumber}; Тип лица:{valuetypenp} Дата ТУ: {valuesdate}; Дата вручения: {datevruch}; ИНН Налогоплательщика: {valuesinn}","Проставили врчение успешно!");
-                                // Debug.WriteLine(valuesdate + " " + datevruch + "  " + valuesnumber + "  " + valuesinn);
+                                LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, $"Номер ТУ: {valueNumber}; Тип лица:{valueTypeNp} Дата ТУ: {valueDate}; Дата вручения: {dateVAdd}; ИНН Налогоплательщика: {valueInn}","Проставили вручение успешно!");
                                 break;
                             }
-                            if (libaryAutomations.IsEnableElements(Trebovanie.Back) != null)
+                            if (libraryAutomation.IsEnableElements(Trebovanie.Back) != null)
                             {
-                                //Запись лога что сохранили не достуно
-                                //Debug.WriteLine(valuesdate + "  " + valuesnumber + "  " + valuesinn);
-                                LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathjurnalerror, valuesnumber, LogTreb, "Не активна кнопка сохранить!");
-                                libaryAutomations.CliksElements(Trebovanie.Back, null, false, 10);
+                                //Запись лога что сохранили не доступно
+                                LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathJournalError, valueNumber, LogTreb, "Не активна кнопка сохранить!");
+                                libraryAutomation.CliksElements(Trebovanie.Back, null, false, 10);
                                 break;
                             }
                         }
                     }
                 }
-                //  Debug.WriteLine(valuesdate + "  "+ valuesnumber + "  " + valuesinn);
+  
             }
         }
         /// <summary>
@@ -1676,9 +1675,9 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// 05.09 Сообщения о принятом решении об отказе  подлежащие выгрузке в ЛК
         /// </summary>
         /// <param name="statusButton">Запуск остановка</param>
-        /// <param name="pathjurnalerror">Журнал ошибок</param>
-        /// <param name="pathjurnalok">Журнал отработанных</param>
-        public void Click23(StatusButtonMethod statusButton, string pathjurnalerror, string pathjurnalok)
+        /// <param name="pathJournalError">Журнал ошибок</param>
+        /// <param name="pathJournalOk">Журнал отработанных</param>
+        public void Click23(StatusButtonMethod statusButton, string pathJournalError, string pathJournalOk)
         {
             LibaryAutomations libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
             LibaryAutomations libraryAutomationCheck = new LibaryAutomations(WindowsAis3.AisNalog3);
@@ -1713,7 +1712,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                         if (libraryAutomation.IsEnableElements(RecouncementLk.CheckExit,null,true) == null) continue;
                         libraryAutomation.CliksElements(RecouncementLk.CheckExit);
                     }
-                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathjurnalok, $"ИНН Налогоплательщика: {inn}; Дата вручения: {isChecked}", "Проставили признак отправки в ЛК успешно!");
+                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, $"ИНН Налогоплательщика: {inn}; Дата вручения: {isChecked}", "Проставили признак отправки в ЛК успешно!");
                 }
                 else
                 {
@@ -1785,5 +1784,143 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                 }
             }
         }
+        /// <summary>
+        /// Автоматизация Общие задания\Урегулирование задолженности\05.08.09.02.
+        /// Взыскание задолженности за счет имущества НП ФЛ.Формирование Служебной записки и Заявлений о взыскании за счет имущества ФЛ\05.08.09.02.02 
+        /// Утверждение и подписание Служебных записок\05.08.09.02.02.04. Утверждение Служебной записки
+        /// Автомат для утверждения служебной записки
+        /// </summary>
+        /// <param name="statusButton">Запуск остановка</param>
+        /// <param name="pathJournalError">Журнал ошибок</param>
+        /// <param name="pathJournalOk">Журнал отработанных</param>
+        public void Click25(StatusButtonMethod statusButton, string pathJournalError, string pathJournalOk)
+        {
+            LibaryAutomations libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
+            LibaryAutomations libraryAutomationCheck = new LibaryAutomations(WindowsAis3.AisNalog3);
+            while ((libraryAutomation.IsEnableElements(TextStatementOfficeNote.JournalStatementOffice, null, true)) != null)
+            {
+                if (statusButton.Iswork)
+                {
+                    var isChecked = false;
+                    libraryAutomation.FindFirstElement(PublicElementName.StartUser);
+                    var climbablePoint = libraryAutomation.FindElement.GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)climbablePoint.X, (int)climbablePoint.Y);
+                    while (true)
+                    {
+                        libraryAutomation.IsEnableElements(TextStatementOfficeNote.IsCheck);
+                        libraryAutomation.InvekePattern(libraryAutomation.FindElement);
+                        if(libraryAutomation.TogglePattern(libraryAutomation.FindElement) =="On")
+                        {
+                            break;
+                        }
+                    }
+                    while (true)
+                    {
+                        if (isChecked)
+                        {
+                            break;
+                        }
+                        if (libraryAutomation.IsEnableElements(TextStatementOfficeNote.ButtonIsCheckAll) == null) continue;
+                        libraryAutomation.CliksElements(TextStatementOfficeNote.ButtonIsCheckAll);
+                        isChecked = true;
+                    }
+                    while (true)
+                    {
+                        if (libraryAutomation.IsEnableElements(TextStatementOfficeNote.WinExit, null, true, 1) != null)
+                        {
+                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
+                            break;
+                        }
+                        if (libraryAutomation.IsEnableElements(TextStatementOfficeNote.Exit, null, true) == null) continue;
+                        var listMemo = libraryAutomation.SelectAutomationColrction(libraryAutomationCheck.IsEnableElements(TextStatementOfficeNote.JournalAllStatementOffice)).Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("List"));
+                        foreach (var data in listMemo)
+                        {
+                            var valuesInn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                               .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
+                            var valuesAddress = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                               .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Адрес")));
+                            var valuesScore = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                               .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Всего")));
+                            var valuesFio = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                               .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ФИО налогоплательщика")));
+                            LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, $"ИНН Налогоплательщика: {valuesInn}; ФИО НО: {valuesFio} Адрес: {valuesAddress}; Сумма: {valuesScore} ", "Утверждение руководителем служебной записки прошло успешно!");
+                        }
+                        libraryAutomation.CliksElements(TextStatementOfficeNote.Exit);
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Автоматизация Общие задания\Урегулирование задолженности\05.08.09.02. Взыскание задолженности за счет имущества НП ФЛ. 
+        /// Формирование Служебной записки и Заявлений о взыскании за счет имущества ФЛ\
+        /// 05.08.09.02.02 Утверждение и подписание Служебных записок\05.08.09.02.02.06. Подписание Служебной записки
+        /// </summary>
+        /// <param name="statusButton">Запуск остановка</param>
+        /// <param name="pathJournalError">Журнал ошибок</param>
+        /// <param name="pathJournalOk">Журнал отработанных</param>
+        public void Click26(StatusButtonMethod statusButton, string pathJournalError, string pathJournalOk)
+        {
+            LibaryAutomations libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
+            LibaryAutomations libraryAutomationCheck = new LibaryAutomations(WindowsAis3.AisNalog3);
+            while ((libraryAutomation.IsEnableElements(TextSignatureOfficeNote.JournalSignatureOffice, null, true)) != null)
+            {
+                if (statusButton.Iswork)
+                {
+                    var isChecked = false;
+                    libraryAutomation.FindFirstElement(PublicElementName.StartUser);
+                    var climbablePoint = libraryAutomation.FindElement.GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)climbablePoint.X, (int)climbablePoint.Y);
+                    while (true)
+                    {
+                        libraryAutomation.IsEnableElements(TextSignatureOfficeNote.IsCheck);
+                        libraryAutomation.InvekePattern(libraryAutomation.FindElement);
+                        if (libraryAutomation.TogglePattern(libraryAutomation.FindElement) == "On")
+                        {
+                            break;
+                        }
+                    }
+                    while (true)
+                    {
+                        if (isChecked)
+                        {
+                            break;
+                        }
+                        if (libraryAutomation.IsEnableElements(TextSignatureOfficeNote.ButtonIsCheckAll) == null) continue;
+                        libraryAutomation.CliksElements(TextSignatureOfficeNote.ButtonIsCheckAll);
+                        isChecked = true;
+                    }
+                    while (true)
+                    {
+                        if (libraryAutomation.IsEnableElements(TextSignatureOfficeNote.WinExit, null, true, 1) != null)
+                        {
+                            libraryAutomation.InvekePattern(libraryAutomation.FindElement);
+                            break;
+                        }
+                        if (libraryAutomation.IsEnableElements(TextSignatureOfficeNote.Exit, null, true) == null) continue;
+                        var listMemo = libraryAutomation.SelectAutomationColrction(libraryAutomationCheck.IsEnableElements(TextSignatureOfficeNote.JournalAllStatementOffice)).Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("List"));
+                        foreach (var data in listMemo)
+                        {
+                            var valuesInn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                               .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
+                            var valuesAddress = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                               .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Адрес")));
+                            var valuesScore = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                               .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Всего")));
+                            var valuesFio = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                               .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ФИО налогоплательщика")));
+                            LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, $"ИНН Налогоплательщика: {valuesInn}; ФИО НО: {valuesFio} Адрес: {valuesAddress}; Сумма: {valuesScore} ", "Подписание руководителем служебной записки прошло успешно!");
+                        }
+                        libraryAutomation.CliksElements(TextSignatureOfficeNote.Exit);
+                    }
+                }
+
+            }
+        }
+
     }
 }
