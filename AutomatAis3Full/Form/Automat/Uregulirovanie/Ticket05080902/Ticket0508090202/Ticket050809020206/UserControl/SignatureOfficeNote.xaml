@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" FontSize="20" Grid.ColumnSpan="2"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"   Background="Beige"  Foreground="DarkCyan" >Автомат на ветку - 05.08.09.02.02.04. Утверждение Служебной записки</Label>
+        <Label Grid.Row="0" Grid.Column="0" FontSize="20" Grid.ColumnSpan="2"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"   Background="Beige"  Foreground="DarkCyan" >Автомат на ветку - 05.08.09.02.02.04. Подписание Служебной записки</Label>
         <StackPanel Grid.Row="1" Grid.Column="0">
             <ContentControl
                 Margin="5,5,5,5"

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.DirectoryServices;
-using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using EfDatabase.Inventory.Base;
 using EfDatabase.Inventory.BaseLogic.AddObjectDb;
 using LibaryXMLAutoModelXmlSql.Model.ServerAndComputer;
@@ -19,14 +16,14 @@ namespace SqlLibaryIfns.PingIp
         {
             try
             {
-            Ping ping = new Ping();
-            PingReply pingReply = null;
-            foreach (var servers in server.ServerIfns)
-            {
-                pingReply = ping.Send(servers.ServerIp);
-                if (pingReply != null) servers.Status = pingReply.Status.ToString();
-            }
-            return server;
+                var ping = new Ping();
+                PingReply pingReply = null;
+                foreach (var servers in server.ServerIfns)
+                {
+                    pingReply = ping.Send(servers.ServerIp);
+                    if (pingReply != null) servers.Status = pingReply.Status.ToString();
+                }
+                return server;
             }
             catch (Exception e)
             {
@@ -48,6 +45,7 @@ namespace SqlLibaryIfns.PingIp
             ComputerIpAdressSynhronization synhronization = new ComputerIpAdressSynhronization();
             add.ClearsHostSynhronization();
             add.IsProcessComplete(1,false);
+            Regex ip = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
             foreach (SearchResult find in allhost)
             {
                 var namecomputers = find.GetDirectoryEntry().Name.Replace("CN=", "");

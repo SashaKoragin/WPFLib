@@ -67,18 +67,18 @@ ConectionString.ConectionString.ServerLocal, databasepath, false);
                                 worksheet1.Cell($"E{i}").Value = a4;
                                 worksheet1.Cell($"F{i}").Value = a5;
                         i++;
-                                //lock (shemezg._lock)
-                                //shemezg.ShemeDbZg.Add(new ModelZg
-                                //{
-                                //    StatusZg = docum1.GetItemValue(LotusItem.DbZgItem.StatusZg)[0],
-                                //    Num = docum1.GetItemValue(LotusItem.DbZgItem.NumZg)[0],
-                                //    Datareg = docum1.GetItemValue(LotusItem.DbZgItem.DataregZg)[0],
-                                //    DepartamentZg = docum1.GetItemValue(LotusItem.DbZgItem.DepartamentZg)[0],
-                                //    Incardrespoutnum = docum1.GetItemValue(LotusItem.DbZgItem.InCardRespOutNum)[0],
-                                //    Incardrespdi =Convert.ToString(docum1.GetItemValue(LotusItem.DbZgItem.InCardRespDi)[0]),
-                                //    Extofiledate =Convert.ToString(docum1.GetItemValue(LotusItem.DbZgItem.ExToFileDate)[0]),
-                                //    NameFio = docum1.GetItemValue(LotusItem.DbZgItem.NamePerson)[0]
-                                //});
+                        lock (shemezg._lock)
+                            shemezg.ShemeDbZg.Add(new ModelZg
+                            {
+                                StatusZg = docum1.GetItemValue(LotusItem.DbZgItem.StatusZg)[0],
+                                Num = docum1.GetItemValue(LotusItem.DbZgItem.NumZg)[0],
+                                Datareg = docum1.GetItemValue(LotusItem.DbZgItem.DataregZg)[0],
+                                DepartamentZg = docum1.GetItemValue(LotusItem.DbZgItem.DepartamentZg)[0],
+                                Incardrespoutnum = docum1.GetItemValue(LotusItem.DbZgItem.InCardRespOutNum)[0],
+                                Incardrespdi = Convert.ToString(docum1.GetItemValue(LotusItem.DbZgItem.InCardRespDi)[0]),
+                                Extofiledate = Convert.ToString(docum1.GetItemValue(LotusItem.DbZgItem.ExToFileDate)[0]),
+                                NameFio = docum1.GetItemValue(LotusItem.DbZgItem.NamePerson)[0]
+                            });
                         //    });
                         //});
                         docum = col.GetNextDocument(docum);
