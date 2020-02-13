@@ -16,6 +16,8 @@ using Lotuslib.LotusModel;
 using Lotuslib.Seath.SeathZg;
 using Lotuslib.StatusZG;
 using LotusNotes.ParamFormula;
+using LotusNotes.PublicView.CalendarView.DataContext;
+using LotusNotes.PublicView.CalendarView.View;
 using Prism.Commands;
 using Prism.Mvvm;
 using ViewModelLib.ViewModelPage;
@@ -91,7 +93,6 @@ namespace LotusNotes.ModelDialogs
 
     public class ZgDialogModel : BindableBase
     {
-        //   public SeathDb.SeathDb Seath =new SeathDb.SeathDb();
         public SwithFormul FormulaSwithFormul = new SwithFormul();
         public LinkCommutator[] ZgOtdel { get; }
         public static string Zg { get; set; }
@@ -100,7 +101,7 @@ namespace LotusNotes.ModelDialogs
         public OtdelFormul FormulsOtdel { get; }
         public ModelZg ShemeZg { get; }
         public DelegateCommand GetChange { get; }
-        public CalendarModel Calendar { get; }
+        public CalendarView Calendar { get; }
         public Loading Load { get; }
 
         /// <summary>
@@ -122,12 +123,13 @@ namespace LotusNotes.ModelDialogs
                 })
             };
             Zg = zg;
+            //CalendarModel
             Sheme = LoadOtdUser();
             FormulsOtdel = Lotuslib.LoadingModel.LoadingFormuls.Formuls();
             Status = Lotuslib.LoadingModel.LoadStatus.Status();
             ShemeZg = new ModelZg();
-            GetChange = new DelegateCommand(()=>Dispatcher.CurrentDispatcher.Invoke(() => FormulaSwithFormul.FormulSwith(ShemeZg, Zg, Sheme, Calendar, Status, FormulsOtdel,Load)));
-            Calendar = new CalendarModel();
+            GetChange = new DelegateCommand(()=>Dispatcher.CurrentDispatcher.Invoke(() => FormulaSwithFormul.FormulSwith(ShemeZg, Zg, Sheme, ((CalendarDataContext)Calendar.DataContext).Calendar , Status, FormulsOtdel,Load)));
+            Calendar = new CalendarView();
             Load = new Loading("", 0);
         }
 

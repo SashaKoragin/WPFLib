@@ -1,7 +1,9 @@
 ﻿using System;
 using System.DirectoryServices;
+using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using EfDatabase.Inventory.Base;
 using EfDatabase.Inventory.BaseLogic.AddObjectDb;
@@ -31,6 +33,9 @@ namespace SqlLibaryIfns.PingIp
             }
             return null;
         }
+
+        [DllImport("iphlpapi.dll", ExactSpelling = true)]
+        public static extern int SendARP(int DestIP, int SrcIP, [Out] byte[] pMacAddr, ref int PhyAddrLen);
         /// <summary>
         /// Поик и отпускания в БД наименования рабочих станций
         /// </summary>
@@ -52,9 +57,13 @@ namespace SqlLibaryIfns.PingIp
                 try
                 {
                     IPAddress[] adress = Dns.GetHostAddresses(namecomputers);
+                    byte[] ab = new byte[6];
+                    int len = ab.Length;
+                    int r = SendARP(BitConverter.ToInt32(adress[0].GetAddressBytes(), 0), 0, ab, ref len);
+                    string mac = BitConverter.ToString(ab, 0, 6);
                     synhronization.IpAdress = adress[0].ToString();
                     synhronization.NameHost = namecomputers;
-                    synhronization.MacAdress = null;
+                    synhronization.MacAdress = mac;
                     synhronization.StatusIp = null;
                     synhronization.UserName = null;
                     add.AddHostSynhronization(synhronization);

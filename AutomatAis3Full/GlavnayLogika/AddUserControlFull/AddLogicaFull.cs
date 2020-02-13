@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using AutomatAis3Full.Form.Automat.Analitic.Zadanie.ZacetVozvrat.Signature;
 using AutomatAis3Full.Form.Automat.It.Rule.UserControl;
+using AutomatAis3Full.Form.Automat.Okp2.TaxJournal.TaxJournal;
 using AutomatAis3Full.Form.Automat.Okp3.UsnSend.UsnSend;
 using AutomatAis3Full.Form.Automat.Okp4.FormSnuAuto.SnuFormAuto;
 using AutomatAis3Full.Form.Automat.Okp4.MassSnuForm.MassSnuForm;
@@ -163,6 +164,25 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                               }
                           }
 
+                      }
+                  },
+                  new FullWindowAutoIt()
+                  {
+                      NameControl = "ОКП2",
+                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                      {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "129. Налоговые правонарушения",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "2. Журнал налоговых правонарушений",
+                                      UserControl = new FormTaxJournal()
+                                  }
+                              }
+                          }
                       }
                   },
                   new FullWindowAutoIt()

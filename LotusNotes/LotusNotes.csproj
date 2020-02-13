@@ -120,6 +120,10 @@
     </ApplicationDefinition>
     <Compile Include="Command\CommandsClass.cs" />
     <Compile Include="Command\CommandsUse.cs" />
+    <Compile Include="Dialogs\Local\Expedition\DataContext\ExpeditionDataContext.cs" />
+    <Compile Include="Dialogs\Local\Expedition\View\ExpeditionView.xaml.cs">
+      <DependentUpon>ExpeditionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\Local\Zg\Global\Zg.xaml.cs">
       <DependentUpon>Zg.xaml</DependentUpon>
     </Compile>
@@ -131,10 +135,18 @@
     </Compile>
     <Compile Include="ParamFormula\Formula.cs" />
     <Compile Include="ParamFormula\SwithFormul.cs" />
+    <Compile Include="PublicView\CalendarView\DataContext\CalendarDataContext.cs" />
+    <Compile Include="PublicView\CalendarView\View\CalendarView.xaml.cs">
+      <DependentUpon>CalendarView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SeathDb\SeathDb.cs" />
     <Compile Include="Wcf\IServiceLotusNotes.cs" />
     <Compile Include="Wcf\ServiceLotusNotes.cs" />
     <Page Include="Dialogs\Global\Commutator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Local\Expedition\View\ExpeditionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -165,6 +177,10 @@
       <DependentUpon>LotusPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PublicView\CalendarView\View\CalendarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ModelDialogs\Dialogsmodel.cs" />

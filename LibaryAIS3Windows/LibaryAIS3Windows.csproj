@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="AutomationsUI\LibaryAutomations\LibaryAutomations.cs" />
     <Compile Include="AutomationsUI\Otdels\It\ItElementName.cs" />
+    <Compile Include="AutomationsUI\Otdels\Okp2\Okp2ElementName.cs" />
     <Compile Include="AutomationsUI\Otdels\RaschetBud\RashetBudElementName.cs" />
     <Compile Include="AutomationsUI\Otdels\Registration\RegistrationElementName.cs" />
     <Compile Include="AutomationsUI\Otdels\Uregulirovanie\UregulirovanieElementName.cs" />

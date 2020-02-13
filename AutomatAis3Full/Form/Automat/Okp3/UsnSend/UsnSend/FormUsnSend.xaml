@@ -25,9 +25,8 @@
                 VerticalAlignment="Top"
                 Content="{Binding StartButton.Button}" />
             <CheckBox Content="Подстроить под монитор с расширением 1440 * 900" IsChecked="{Binding StartButton.IsChekcs}" />
-            <Label Content="Комманда приостановить Shift+S" />
-            <Label Content="Комманда возобновить Shift+A" />
+            <Label Content="Команда приостановить Shift+S" />
+            <Label Content="Команда возобновить Shift+A" />
         </StackPanel>
-        
     </Grid>
 </UserControl>

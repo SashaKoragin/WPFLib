@@ -40,12 +40,6 @@ namespace Lotuslib.LotusModel
         }
         ICommand _onGroup;
         ICommand _groupstatus;
-        //public void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        //{
-        //    GridViewColumnHeader column = (sender as GridViewColumnHeader);
-        //    var st = ((Binding)column.Column.DisplayMemberBinding).Path.Path;
-        //    MessageBox.Show(st);
-        //}
         public CollectionView GroupColectionView { get; set; }
         public ICommand GroupStatus
         {

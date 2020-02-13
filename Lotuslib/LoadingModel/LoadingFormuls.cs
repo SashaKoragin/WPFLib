@@ -18,7 +18,6 @@ namespace Lotuslib.LoadingModel
                 Index = 1,
                 Name = "Отбор ЗГ",
                 Discription = "Отбор ЗГ поступившие за период или день",
-                //Formula = @"@Select(@Contains("+LotusItem.DbZgItem.Dept + ";\"{0}\") & ( @Date(@Created)>= @Date({1}) & @Date(@Created) <= @Date({2})))"
                 Formula = @"@Select(@Contains(" + LotusItem.DbZgItem.Dept + ";\"{0}\") & ( @Date("+LotusItem.DbZgItem.DataReg+ ")>= @Date({1}) & @Date(" + LotusItem.DbZgItem.DataReg + ") <= @Date({2})))"
             });
             shemeformulotdel.ShemeOtdelFormul.Add(new OtdelFormul()

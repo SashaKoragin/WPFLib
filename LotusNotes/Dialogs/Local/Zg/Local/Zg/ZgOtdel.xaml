@@ -26,63 +26,11 @@
     </UserControl.Resources>
     <Grid d:DataContext="{d:DesignInstance {x:Type local:ZgDialogModel}}">
         <DockPanel LastChildFill="True">
-            <StackPanel>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Calendar
-                        x:Name="Calendar"
-                        Grid.Row="0"
-                        Margin="5,5,5,5"
-                        HorizontalContentAlignment="Stretch"
-                        VerticalContentAlignment="Stretch"
-                        DockPanel.Dock="Left"
-                        SelectionMode="SingleRange">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectedDatesChanged">
-                                <i:InvokeCommandAction Command="{Binding Calendar.SelectionCommand}" CommandParameter="{Binding SelectedDates, ElementName=Calendar}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </Calendar>
-                    <DockPanel Grid.Row="1">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                Content="Дата начала:" />
-                            <DatePicker
-                                x:Name="DatePickerStart"
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                SelectedDate="{Binding Calendar.StartDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                                Text="{Binding Path=SelectedDate, Mode=TwoWay, StringFormat='dd MMM yyyy', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}"
-                                ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
-                                Validation.ErrorTemplate="{StaticResource ValidationFailed}" />
-                            <Label
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                Content="Дата окнчания:" />
-                            <DatePicker
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                SelectedDate="{Binding Calendar.EndDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                                Text="{Binding Path=SelectedDate, Mode=TwoWay, StringFormat='dd MMM yyyy', RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}"
-                                ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
-                                Validation.ErrorTemplate="{StaticResource ValidationFailed}" />
-                        </Grid>
-                    </DockPanel>
-                </Grid>
-            </StackPanel>
+            <ContentControl
+                Margin="5,5,5,5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="{Binding Calendar}" />
             <StackPanel>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -170,7 +118,6 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-
                 </Grid>
             </StackPanel>
         </DockPanel>

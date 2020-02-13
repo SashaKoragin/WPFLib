@@ -255,8 +255,8 @@
 	    <Component Id="ExcelNumberFormat.dll" Guid="a094d961-318e-440c-9727-595c950ded0d">
 	      <File Id="ExcelNumberFormat.dll" Name="ExcelNumberFormat.dll" Source="$(var.AutomatAis3Full_TargetDir)ExcelNumberFormat.dll" />
 	    </Component>
-	    <Component Id="FastMember.Signed.dll" Guid="36a8ddd4-3127-49c9-a7d7-86bc7efee195">
-	      <File Id="FastMember.Signed.dll" Name="FastMember.Signed.dll" Source="$(var.AutomatAis3Full_TargetDir)FastMember.Signed.dll" />
+	    <Component Id="FastMember.dll" Guid="36a8ddd4-3127-49c9-a7d7-86bc7efee195">
+	      <File Id="FastMember.dll" Name="FastMember.dll" Source="$(var.AutomatAis3Full_TargetDir)FastMember.dll" />
 	    </Component>
 	    <Component Id="LibaryAIS3Windows.dll" Guid="02370789-664b-410f-8d64-dfabac31262f">
 	      <File Id="LibaryAIS3Windows.dll" Name="LibaryAIS3Windows.dll" Source="$(var.AutomatAis3Full_TargetDir)LibaryAIS3Windows.dll" />

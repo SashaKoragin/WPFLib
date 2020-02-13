@@ -85,8 +85,10 @@
     <Compile Include="Indexes\IndexDbLotus.cs" />
     <Compile Include="LoadingModel\LoadingFormuls.cs" />
     <Compile Include="LotusItem\DbComutatorItem.cs" />
+    <Compile Include="LotusItem\DbExpedition.cs" />
     <Compile Include="LotusItem\DbImnsItem.cs" />
     <Compile Include="LotusItem\DbZgItem.cs" />
+    <Compile Include="LotusModel\ModelAllElement.cs" />
     <Compile Include="LotusModel\ModelComutator.cs" />
     <Compile Include="LotusModel\ModelIMNS.cs" />
     <Compile Include="LotusModel\ModelZg.cs" />

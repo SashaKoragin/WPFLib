@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Input;
 using MaterialDesignThemes.Wpf;
 using Lotuslib.LotusModel;
+using LotusNotes.Dialogs.Local.Expedition.DataContext;
+using LotusNotes.Dialogs.Local.Expedition.View;
 
 namespace LotusNotes.Command
 {
@@ -25,11 +27,18 @@ namespace LotusNotes.Command
                     case "Канцелярия ЗГ 2012":
                         var view = new Dialogs.Local.Zg.Global.Zg
                         {
-                            DataContext = new ModelDialogs.ZgDialogModel(item.Path) //"IFNS\\2012\\Arhiv2016\\ZG_Arhiv_2017.nsf"
+                            DataContext = new ModelDialogs.ZgDialogModel(item.Path)
                         };
                          DialogHost.Show(view);
                         break;
-                    default:
+                        case "Экспедиция 2012":
+                            var viewExpedition = new ExpeditionView()
+                            {
+                                DataContext = new ExpeditionDataContext(item.Path)
+                            };
+                            DialogHost.Show(viewExpedition);
+                            break;
+                        default:
                         MessageBox.Show("На это еще не создано");
                         break;
                 }

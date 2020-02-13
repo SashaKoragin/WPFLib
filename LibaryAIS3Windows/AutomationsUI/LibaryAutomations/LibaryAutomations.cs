@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Automation;
 using AutoIt;
 using LibaryAIS3Windows.ButtonsClikcs;
@@ -10,6 +11,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
 {
    public class LibaryAutomations
     {
+
         public int ProcessId { get; set; }
         public AutomationElement RootAutomationElements { get; set; }
 
@@ -128,15 +130,6 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         }
 
         /// <summary>
-        /// Поставить фокус на элемент
-        /// </summary>
-        public void ExpandCollapsePattern(AutomationElement element)
-        {
-            var pattrn = element.GetCurrentPattern(ExpandCollapsePatternIdentifiers.Pattern); //  pattern.(pattern.);
-            var valueauto = (ExpandCollapsePattern)pattrn;
-            valueauto.Expand();
-        }
-        /// <summary>
         /// Toggle Pattern
         /// </summary>
         /// <param name="element"></param>
@@ -164,25 +157,53 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             valueauto.SetValue(value);
         }
         /// <summary>
-        /// Select Combobox count Down
+        /// Элемент и  название в ComboBox которое нужно поставить 
         /// </summary>
-        /// <param name="countdown">Количество прокрутов вниз</param>
-        public void ComboBoxPatternDown(int countdown)
+        /// <param name="automationElement">Элемент автоматизации</param>
+        /// <param name="itemNameComboBox">Наименование которое должно стоять в ComboBox</param>
+        public void SelectItemCombobox(AutomationElement automationElement, string itemNameComboBox)
         {
-            FindElement.SetFocus();
-            AutoItX.Send(string.Format(ButtonConstant.DownCountClick,countdown));
+            automationElement.SetFocus();
+            var isDown = "";
+            var isExit = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
+            var isUp = "";
+            var isEnable = true;
+            while (true)
+            {
+                if (isExit == itemNameComboBox)
+                {
+                    break;
+                }
+                if (isEnable)
+                {
+                    AutoItX.Send(string.Format(ButtonConstant.UpCountClick, 1));
+                    isDown = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
+                    if (isDown != isUp)
+                    {
+                        isExit = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
+                        isUp = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
+                    }
+                    else
+                    {
+                        isEnable = false;
+                    }
+                }
+                else
+                {
+                    AutoItX.Send(string.Format(ButtonConstant.DownCountClick, 1));
+                    isUp = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
+                    if (isDown != isUp)
+                    {
+                        isExit = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
+                        isDown = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
+                    }
+                    else
+                    {
+                        isEnable = true;
+                    }
+                }
+            }
         }
-
-        /// <summary>
-        /// Select Combobox count Up
-        /// </summary>
-        /// <param name="countup">Количество прокрутов вверх</param>
-        public void ComboBoxPatternUp(int countup)
-        {
-            FindElement.SetFocus();
-            AutoItX.Send(string.Format(ButtonConstant.UpCountClick, countup));
-        }
-
         /// <summary>
         /// Получить значение элемента из патерна LegacyIAccessiblePatternIdentifiers
         /// </summary>
@@ -210,7 +231,6 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         {
             var isenable = false;
             var i = 0;
-            
             while (!isenable)
             {
                 FindFirstElement(nameAutomationId, auto, isSubtree);
@@ -241,13 +261,16 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="auto">Есть ли элемент</param>
         /// <param name = "isSubtree" >Искать в Subtree последний элемент</param>
         /// <param name="countsecond">Колличество обращений к элементу</param>
-        public bool CliksElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,int countsecond = 25)
+        /// <param name="x">Координата смещения если не ловит элемент</param>
+        /// <param name="y">Координата смещения если не ловит элемент</param>
+        public bool CliksElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,int countsecond = 25,int x = 0,int y = 0)
         {
             var isClicks = false;
             if (IsEnableElements(nameAutomationId, auto, isSubtree, countsecond) != null)
             {
                 var clickablePoint = FindElement.GetClickablePoint();
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint.X, (int)clickablePoint.Y);
+               // AutoItX.MouseMove((int)clickablePoint.X+x, (int)clickablePoint.Y+y);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint.X + x, (int)clickablePoint.Y + y);
                 isClicks = true;
             }
             return isClicks;
@@ -262,10 +285,10 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         {
            var parametr = nameAutomationId.Split(':');
             if (parametr[0] == "Name")
-             {
+            {
                 return new AndCondition(
-            new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
-            new PropertyCondition(AutomationElement.NameProperty, parametr[1]));
+                    new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
+                    new PropertyCondition(AutomationElement.NameProperty, parametr[1]));
             }
             if (parametr[0] == "AutomationId")
             {
@@ -280,6 +303,16 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                   new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Pane),
                   new PropertyCondition(AutomationElement.AutomationIdProperty, parametr[1])
                   );
+            }
+            if (parametr[0] == "ClassName")
+            {
+                return new AndCondition(new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
+                    new PropertyCondition(AutomationElement.ClassNameProperty,parametr[1]));
+            }
+            if (parametr[0] == "NativeWindowHandle")
+            {
+                return new AndCondition(new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
+                    new PropertyCondition(AutomationElement.NativeWindowHandleProperty, parametr[1]));
             }
             return null;
         }
