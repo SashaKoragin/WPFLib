@@ -4,7 +4,6 @@ using LibaryAIS3Windows.AutomationsUI.LibaryAutomations;
 using LibaryAIS3Windows.AutomationsUI.Otdels.Okp2;
 using LibaryAIS3Windows.ButtonsClikcs;
 using LibaryAIS3Windows.Window;
-using LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction;
 using System.IO;
 
 namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
@@ -12,7 +11,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
    public class Okp2GlobalFunction
     {
         /// <summary>
-        /// Автоматизация глобольного блока надо добавить сохранение
+        /// Автоматизация глобального блока надо добавить сохранение
         /// </summary>
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
         /// <param name="taxJournal">Журнал для ведения в БД</param>
@@ -28,8 +27,8 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
                     libraryAutomationSign.InvekePattern(libraryAutomationSign.IsEnableElements(Okp2ElementName.ViewPrint));
                     while (true)
                     {
-                        var toggel = libraryAutomationSign.TogglePattern(libraryAutomationSign.FindElement);
-                        if (toggel == "Off" || toggel == null)
+                        var toggle = libraryAutomationSign.TogglePattern(libraryAutomationSign.FindElement);
+                        if (toggle == "Off" || toggle == null)
                         {
                             if (libraryAutomationSign.IsEnableElements(Okp2ElementName.ViewCheks, null, true) != null)
                             {
@@ -37,7 +36,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
                                 libraryAutomationSign.InvekePattern(libraryAutomationSign.FindElement);
                             }
                         }
-                        if (toggel == "On")
+                        if (toggle == "On")
                         {
                             AutoItX.WinActivate(Okp2ElementName.ViewName);
                             libraryAutomationSign.InvekePattern(libraryAutomationSign.IsEnableElements(Okp2ElementName.Sign));
@@ -71,17 +70,21 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
         /// <summary>
         /// Завершение закрыть окна
         /// </summary>
-        public void SendJurnalClose()
+        public void SendJournalClose()
         {
             WindowsAis3 win = new WindowsAis3();
             AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
             AutoItX.Sleep(1000);
             AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
         }
-
+        /// <summary>
+        /// Добавление файлов в Журнал
+        /// </summary>
+        /// <param name="taxJournal">Журнал</param>
+        /// <param name="pathPdfTemp">Путь к файлу</param>
         public void AddFile(ref TaxJournal taxJournal,string pathPdfTemp)
         {
-             var file = PublicGlobalFunction.PublicGlobalFunction.RaturNameLastFileTemp(pathPdfTemp, "*.pdf");
+             var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathPdfTemp, "*.pdf");
              taxJournal.FullPath = file.NamePath;
              taxJournal.NameFile = file.NameFile;
              taxJournal.Mime = "application/pdf";

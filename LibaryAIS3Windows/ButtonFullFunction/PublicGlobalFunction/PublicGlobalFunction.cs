@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
 {
@@ -13,23 +11,23 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
         /// Поиск последнего файла в папке
         /// </summary>
         /// <param name="path">Путь</param>
-        /// <param name="seathPattern">Патерн поиска</param>
+        /// <param name="searсhPattern">Паттерн поиска</param>
         /// <returns>Возврат последнего файла</returns>
-        public static GetFile RaturNameLastFileTemp(string path,string seathPattern)
+        public static GetFile ReturnNameLastFileTemp(string path,string searсhPattern)
         {
             var listFile = new List<GetFile>();
-            var pdf = Directory.GetFiles(path, seathPattern);
-            foreach (var pathing in pdf)
+            var pdf = Directory.GetFiles(path, searсhPattern);
+            foreach (var patching in pdf)
             {
                 listFile.Add(new GetFile
                 {
-                    DateWrite = Directory.GetLastWriteTime(pathing),
-                    NameFile = Path.GetFileName(pathing),
-                    NamePath = pathing,
-                    ExtensionsFile = Path.GetExtension(pathing)
+                    DateWrite = Directory.GetLastWriteTime(patching),
+                    NameFile = Path.GetFileName(patching),
+                    NamePath = patching,
+                    ExtensionsFile = Path.GetExtension(patching)
                 });
             }
-            var list = listFile.Where(file => file.DateWrite == listFile.Max(files => files.DateWrite)).FirstOrDefault();
+            var list = listFile.FirstOrDefault(file => file.DateWrite == listFile.Max(files => files.DateWrite));
             return list;
         }
 

@@ -2292,11 +2292,9 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         public void Click27(StatusButtonMethod statusButton, string pathJournalOk, string pathPdfTemp, int countDay)
         {
             Okp2GlobalFunction globalFunction = new Okp2GlobalFunction();
-            AddObjectDb dbAutomation = null;
             LibaryAutomations libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
             LibaryAutomations libraryAutomationDoc = new LibaryAutomations(WindowsAis3.AisNalog3);
             libraryAutomation.CliksElements(Okp2ElementName.UpdateData);
-            DateTime dateVAdd;
             libraryAutomation.IsEnableElements(Okp2ElementName.AllTaxJournal+Okp2ElementName.ElementJournal,null,false,50);
             var listMemo = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindFirstElement(Okp2ElementName.AllTaxJournal)).Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("select0 row"));
             foreach (var automationElement in listMemo)
@@ -2330,22 +2328,20 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     var Status = libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name != "Column Headers").First(elem => elem.Current.Name.Contains(""));
                     var color = libraryAutomation.GetColorPixel(Status);
                     taxFace.Color = color;
+                    AddObjectDb dbAutomation = null;
                     switch (color)
                     {
                         case "ff":
                             var listDocMemo = libraryAutomationDoc.SelectAutomationColrction(libraryAutomationDoc.FindFirstElement(Okp2ElementName.DocAllJournal)).Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("select0 row"));
                           
-                            var isAct = listDocMemo.Where(doc => libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КНД"))) == "1160100" &&
-                            libraryAutomationDoc.GetColorPixel(libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name != "Column Headers").First(elem => elem.Current.Name.Contains(""))) == "ffff00"
-                            ).FirstOrDefault();
+                            var isAct = listDocMemo.FirstOrDefault(doc => libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КНД"))) == "1160100" &&
+                                                                          libraryAutomationDoc.GetColorPixel(libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name != "Column Headers").First(elem => elem.Current.Name.Contains(""))) == "ffff00");
 
-                            var isIzvesh = listDocMemo.Where(doc => libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КНД"))) == "1165213"
-                            ).FirstOrDefault();
+                            var isIzvestia = listDocMemo.FirstOrDefault(doc => libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КНД"))) == "1165213");
 
-                            
-                            if (isAct != null && isIzvesh == null)
+                            if (isAct != null && isIzvestia == null)
                             {
-                                //Проверка наверно сдесь желтый или не желтый?
+                                //Проверка наверно здесь желтый или не желтый?
                                 //Обработка Отсутствует извещение но есть акт желтый статус
                                 libraryAutomation.CliksElements(Okp2ElementName.OpenComplex, null, true);
                                 while (true)
@@ -2378,7 +2374,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                                             if (libraryAutomation.IsEnableElements(Okp2ElementName.WindowDateTime, null, true) != null)
                                             {
                                                 var dateMemo = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement);
-                                                dateVAdd = Convert.ToDateTime(dateMemo).AddDays(countDay);
+                                                var dateVAdd = Convert.ToDateTime(dateMemo).AddDays(countDay);
                                                 if (dateVAdd.DayOfWeek == DayOfWeek.Saturday)
                                                     dateVAdd = dateVAdd.AddDays(2);
                                                 if (dateVAdd.DayOfWeek == DayOfWeek.Sunday)
@@ -2421,8 +2417,8 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                                     }
                                 }
                                 globalFunction.SignAndSendDoc(libraryAutomation,ref taxFace);
-                                globalFunction.SendJurnalClose();
-                                taxFace.MessageInfo = "Извещение успешно выставленно!!!";
+                                globalFunction.SendJournalClose();
+                                taxFace.MessageInfo = "Извещение успешно выставлено!!!";
                                 taxFace.TypeDocument = "Извещение";
                                 globalFunction.AddFile(ref taxFace, pathPdfTemp);
                                 LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, $"Цвет обработки: 9 Ун дела: {taxFace.IdDelo}; Дата обнаружения нарушения: {taxFace.DateError}; ИНН налогоплательщика: {taxFace.Inn}; КПП: {taxFace.Kpp}; Наименование: {taxFace.NameFace}; Фид: {taxFace.Fid}; Дата вручения извещения: {taxFace.DateIzveshenie.Value.ToString("dd.MM.yy")} ТКС: {Convert.ToInt32(taxFace.IsTks)}; Почта: {Convert.ToInt32(taxFace.IsMail)}; ЛК3: {Convert.ToInt32(taxFace.IsLk3)} Путь к файлу длфя печати:{taxFace.FullPath}", taxFace.MessageInfo);
@@ -2458,7 +2454,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                                 }
                             }
                             globalFunction.SignAndSendDoc(libraryAutomation, ref taxFace);
-                            globalFunction.SendJurnalClose();
+                            globalFunction.SendJournalClose();
                             taxFace.MessageInfo = "Комплекс мероприятий успешно завершен!!!";
                             LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, $"Цвет обработки: 12 Ун дела: {taxFace.IdDelo}; Дата обнаружения нарушения: {taxFace.DateError}; ИНН налогоплательщика: {taxFace.Inn}; КПП: {taxFace.Kpp}; Наименование: {taxFace.NameFace}; Фид: {taxFace.Fid}; ТКС: {Convert.ToInt32(taxFace.IsTks)}; Почта: {Convert.ToInt32(taxFace.IsMail)}; ЛК3: {Convert.ToInt32(taxFace.IsLk3)}", taxFace.MessageInfo);
                             dbAutomation = new AddObjectDb();
