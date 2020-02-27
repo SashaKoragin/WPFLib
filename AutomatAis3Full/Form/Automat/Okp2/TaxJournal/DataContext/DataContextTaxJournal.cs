@@ -12,13 +12,17 @@ namespace AutomatAis3Full.Form.Automat.Okp2.TaxJournal.DataContext
    public class DataContextTaxJournal
     {
 
+        public int CountDay { get; set; } = 50;
+
         public StatusButtonMethod StartButton { get; }
 
         public DataContextTaxJournal()
         {
             var command = new LibaryCommandPublic.TestAutoit.Okp2.TaxJournal();
             StartButton = new StatusButtonMethod();
-            StartButton.Button.Command = new DelegateCommand(() => { command.StartTaxJournal(StartButton,ConfigFile.FileJurnalOk); });
+            StartButton.Button.Command = new DelegateCommand(() => { 
+                command.StartTaxJournal(StartButton,ConfigFile.FileJurnalOk,ConfigFile.PathPdfTemp,CountDay); 
+            });
         }
     }
 }

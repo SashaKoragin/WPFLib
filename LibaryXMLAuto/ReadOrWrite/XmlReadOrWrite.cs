@@ -28,7 +28,7 @@ namespace LibaryXMLAuto.ReadOrWrite
             return null;
         }
         /// <summary>
-        /// Удаление Атрибута Образец поиска /players/player[@name='значение']
+        /// Удаление Атрибута Образец поиска /players/player[@name="значение"]
         /// </summary>
         /// <param name="pathxml"></param>
         /// <param name="atribut"></param>

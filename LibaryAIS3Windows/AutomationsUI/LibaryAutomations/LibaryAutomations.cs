@@ -57,6 +57,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                        {
                          if (recursion.Length == i)
                           {
+                           FindElement.SetFocus();
                            FindElement = FindElement.FindFirst(TreeScope.Subtree, Conditions);
                            return FindElement;
                           }
@@ -220,6 +221,18 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             }
             return null;
         }
+        /// <summary>
+        /// Полуучение цвета элемента пикселя
+        /// </summary>
+        /// <param name="element">Автоматизационный элемент</param>
+        /// <returns></returns>
+        public string GetColorPixel(AutomationElement element)
+        {
+            var clickablePoint = element.GetClickablePoint();
+            var hexpixel = AutoIt.AutoItX.PixelGetColor((int)clickablePoint.X, (int)clickablePoint.Y);
+            return Convert.ToString(hexpixel, 16);
+        }
+
         /// <summary>
         /// Проверяет доступен ли элемент и записывает его  в  FindElement
         /// </summary>

@@ -18,25 +18,32 @@ namespace LibaryCommandPublic.TestAutoit.Okp2
         /// 2. Журнал налоговых правонарушений
         /// </summary>
         /// <param name="statusButton">Кнопка запустить задание</param>
-        public void StartTaxJournal(StatusButtonMethod statusButton, string pathJournalOk)
+        public void StartTaxJournal(StatusButtonMethod statusButton, string pathJournalOk, string pathPdfTemp,int countDay)
         {
             DispatcherHelper.Initialize();
             Task.Run(delegate
             {
-                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
-                KclicerButton clickerButton = new KclicerButton();
-                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
-                if (ais3.WinexistsAis3() == 1)
+                try
                 {
-                    while (statusButton.Iswork)
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
                     {
-                        clickerButton.Click27(statusButton,pathJournalOk);
-                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                        while (statusButton.Iswork)
+                        {
+                            clickerButton.Click27(statusButton,pathJournalOk,pathPdfTemp, countDay);
+                            DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
                     }
                 }
-                else
+                catch (Exception e)
                 {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                    MessageBox.Show(e.ToString());
                 }
             });
 

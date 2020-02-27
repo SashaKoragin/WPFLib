@@ -25,7 +25,7 @@
 // ReSharper disable RedundantNameQualifier
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
-// TargetFrameworkVersion = 4.7
+// TargetFrameworkVersion = 4.5
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 
@@ -139,15 +139,25 @@ namespace EfDatabaseAutomation.Automation.Base
     public class TaxJournal
     {
         public int Id { get; set; } // Id (Primary key)
+        public string Color { get; set; } // Color (length: 12)
         public int? IdDelo { get; set; } // IdDelo
         public System.DateTime? DateError { get; set; } // DateError
         public string Inn { get; set; } // Inn (length: 12)
         public string Kpp { get; set; } // Kpp (length: 12)
         public string NameFace { get; set; } // NameFace (length: 512)
         public string Fid { get; set; } // Fid (length: 512)
+        public System.DateTime? DateIzveshenie { get; set; } // DateIzveshenie
         public bool? IsTks { get; set; } // isTks
         public bool? IsMail { get; set; } // isMail
         public bool? IsLk3 { get; set; } // isLk3
+        public string TypeDocument { get; set; } // TypeDocument (length: 128)
+        public string MessageInfo { get; set; } // MessageInfo (length: 512)
+        public string FullPath { get; set; } // FullPath (length: 1024)
+        public string NameFile { get; set; } // NameFile (length: 10)
+        public string Extensions { get; set; } // Extensions (length: 10)
+        public string Mime { get; set; } // Mime (length: 32)
+        public byte[] Document { get; set; } // Document (length: 2147483647)
+        public bool? IsPrint { get; set; } // IsPrint
         public System.DateTime? DataCreate { get; set; } // DataCreate
 
         public TaxJournal()
@@ -175,15 +185,25 @@ namespace EfDatabaseAutomation.Automation.Base
             HasKey(x => x.Id);
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.Color).HasColumnName(@"Color").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
             Property(x => x.IdDelo).HasColumnName(@"IdDelo").HasColumnType("int").IsOptional();
             Property(x => x.DateError).HasColumnName(@"DateError").HasColumnType("smalldatetime").IsOptional();
             Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
             Property(x => x.Kpp).HasColumnName(@"Kpp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
             Property(x => x.NameFace).HasColumnName(@"NameFace").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
             Property(x => x.Fid).HasColumnName(@"Fid").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.DateIzveshenie).HasColumnName(@"DateIzveshenie").HasColumnType("smalldatetime").IsOptional();
             Property(x => x.IsTks).HasColumnName(@"isTks").HasColumnType("bit").IsOptional();
             Property(x => x.IsMail).HasColumnName(@"isMail").HasColumnType("bit").IsOptional();
             Property(x => x.IsLk3).HasColumnName(@"isLk3").HasColumnType("bit").IsOptional();
+            Property(x => x.TypeDocument).HasColumnName(@"TypeDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.MessageInfo).HasColumnName(@"MessageInfo").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.FullPath).HasColumnName(@"FullPath").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.NameFile).HasColumnName(@"NameFile").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.Extensions).HasColumnName(@"Extensions").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.Mime).HasColumnName(@"Mime").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(32);
+            Property(x => x.Document).HasColumnName(@"Document").HasColumnType("image").IsOptional().HasMaxLength(2147483647);
+            Property(x => x.IsPrint).HasColumnName(@"IsPrint").HasColumnType("bit").IsOptional();
             Property(x => x.DataCreate).HasColumnName(@"DataCreate").HasColumnType("smalldatetime").IsOptional();
         }
     }

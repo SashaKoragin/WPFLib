@@ -26,7 +26,7 @@ namespace LibaryXMLAuto.Converts.ConvertXmlToXslx
             //{
             //     dataTable.Columns[""].GetType
             //}
-            //Regex.IsMatch(, "('\'d{4}(-'\'d{2}){2}T'\'d{2}(:'\'d{2}){2})")
+            //Regex.IsMatch(, "("\"d{4}(-"\"d{2}){2}T"\"d{2}(:"\"d{2}){2})")
                  XLWorkbook workbooks = new XLWorkbook();
                 workbooks.Worksheets.Add(table);
                 workbooks.SaveAs(pathsavefull);

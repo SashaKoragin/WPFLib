@@ -22,6 +22,10 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Content="{Binding StartButton.Button}" />
+            <WrapPanel>
+                <Label Content="Количество дней на извещение"/>
+                <TextBox PreviewTextInput="NumberValidationTextBox" Text="{Binding CountDay}" MaxLength="2" ></TextBox>
+            </WrapPanel>
             <Label Content="Команда приостановить Shift+S" />
             <Label Content="Команда возобновить Shift+A" />
         </StackPanel>

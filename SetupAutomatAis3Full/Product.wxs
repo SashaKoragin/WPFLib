@@ -285,6 +285,15 @@
       <Component Id="UIAComWrapper.dll" Guid="8A462885-1497-4AE9-A053-4DD9CFCF3A5B">
         <File Id="UIAComWrapper.dll" Name="UIAComWrapper.dll" Source="$(var.AutomatAis3Full_TargetDir)UIAComWrapper.dll" />
       </Component>
+      <Component Id="EfDatabaseAutomation.dll" Guid="A1684864-516C-40AF-AFD3-737B9956697F">
+        <File Id="EfDatabaseAutomation.dll" Name="EfDatabaseAutomation.dll" Source="$(var.AutomatAis3Full_TargetDir)EfDatabaseAutomation.dll" />
+      </Component>
+      <Component Id="EntityFramework.dll" Guid="0C840407-DCF2-4CC3-9995-636932017513">
+        <File Id="EntityFramework.dll" Name="EntityFramework.dll" Source="$(var.AutomatAis3Full_TargetDir)EntityFramework.dll" />
+      </Component>
+      <Component Id="EntityFramework.SqlServer.dll" Guid="18AD6909-E707-435D-8F11-3B63A681F0A4">
+        <File Id="EntityFramework.SqlServer.dll" Name="EntityFramework.SqlServer.dll" Source="$(var.AutomatAis3Full_TargetDir)EntityFramework.SqlServer.dll" />
+      </Component>
       <Component Id="PdfiumViewer.dll" Guid="7A76CAA9-7257-4BC4-9F3E-92694CD5ABC6">
         <File Id="PdfiumViewer.dll" Name="PdfiumViewer.dll" Source="$(var.AutomatAis3Full_TargetDir)PdfiumViewer.dll" />
       </Component>
@@ -298,5 +307,6 @@
     <Component Id="x86pdfium.dll" Guid="30D7346B-2CDA-435B-AACD-036C52065844" Directory="x86dll">
       <File Id="x86pdfium.dll" Name="pdfium.dll" Source="$(var.AutomatAis3Full_TargetDir)x86\pdfium.dll" />
     </Component>
-	</Fragment>
+
+  </Fragment>
 </Wix>
