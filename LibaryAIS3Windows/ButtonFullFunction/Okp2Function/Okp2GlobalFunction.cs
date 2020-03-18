@@ -24,36 +24,54 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
             {
                 if (libraryAutomationSign.IsEnableElements(Okp2ElementName.ViewPrint, null, true) != null)
                 {
-                    libraryAutomationSign.InvekePattern(libraryAutomationSign.IsEnableElements(Okp2ElementName.ViewPrint));
+
+                    libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Okp2ElementName.ViewPrint));
                     while (true)
                     {
-                        var toggle = libraryAutomationSign.TogglePattern(libraryAutomationSign.FindElement);
+                        var toggle = libraryAutomationSign.TogglePattern(libraryAutomationSign.IsEnableElements(Okp2ElementName.ViewCheks));
                         if (toggle == "Off" || toggle == null)
                         {
-                            if (libraryAutomationSign.IsEnableElements(Okp2ElementName.ViewCheks, null, true) != null)
+                            while (true)
                             {
-                                libraryAutomationSign.FindElement.SetFocus();
-                                libraryAutomationSign.InvekePattern(libraryAutomationSign.FindElement);
+                                if (libraryAutomationSign.IsEnableElements(Okp2ElementName.ViewCheks, null, true) !=null)
+                                {
+                                    libraryAutomationSign.InvokePattern(libraryAutomationSign.FindElement);
+                                    break;
+                                }
                             }
                         }
                         if (toggle == "On")
                         {
-                            AutoItX.WinActivate(Okp2ElementName.ViewName);
-                            libraryAutomationSign.InvekePattern(libraryAutomationSign.IsEnableElements(Okp2ElementName.Sign));
+                            while (true)
+                            {
+                                if (libraryAutomationSign.IsEnableElements(Okp2ElementName.Sign, null, true) !=null)
+                                {
+                                    AutoItX.WinActivate(Okp2ElementName.ViewName);
+                                    libraryAutomationSign.InvokePattern(libraryAutomationSign.FindElement);
+                                    break;
+                                }
+                            }
                             break;
                         }
                     }
                     break;
                 }
             }
+            var isSend = false;
             while (true)
             {
-                AutoItX.WinActivate(WindowsAis3.AisNalog3);
-                if (libraryAutomation.IsEnableElements(Okp2ElementName.SendAll, null, true) != null)
+                if (isSend == false)
                 {
-                    libraryAutomation.CliksElements(Okp2ElementName.SendAll);
+                    PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("AcroRd32");
+                    PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("FoxitPhantom");
+                    AutoItX.WinActivate(WindowsAis3.AisNalog3);
+                    if (libraryAutomation.IsEnableElements(Okp2ElementName.SendAll, null, true) != null)
+                    {
+                        libraryAutomation.ClickElements(Okp2ElementName.SendAll);
+                        isSend = true;
+                    }
                 }
-                if (libraryAutomation.IsEnableElements(Okp2ElementName.SendDocument, null, true) != null)
+                if(libraryAutomation.IsEnableElements(Okp2ElementName.SendDocument, null, true) != null)
                 {
                     var auto = libraryAutomation.FindElement;
                     libraryAutomation.IsEnableElements(Okp2ElementName.Tks, auto);
@@ -62,7 +80,14 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
                     taxJournal.IsMail = libraryAutomation.FindElement.Current.IsEnabled;
                     libraryAutomation.IsEnableElements(Okp2ElementName.Lk3, auto);
                     taxJournal.IsLk3 = libraryAutomation.FindElement.Current.IsEnabled;
-                    libraryAutomation.CliksElements(Okp2ElementName.Close, auto, false, 25, -30, 30);
+                    while (true)
+                    {
+                        if (libraryAutomation.IsEnableElements(Okp2ElementName.Close, null, true) != null)
+                        {
+                            libraryAutomation.ClickElements(Okp2ElementName.Close, null, false, 25, -30, 30);
+                            break;
+                        }
+                    }
                     break;
                 }
             }
@@ -73,6 +98,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
         public void SendJournalClose()
         {
             WindowsAis3 win = new WindowsAis3();
+            AutoItX.Sleep(1000);
             AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
             AutoItX.Sleep(1000);
             AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
@@ -84,18 +110,18 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
         /// <param name="pathPdfTemp">Путь к файлу</param>
         public void AddFile(ref TaxJournal taxJournal,string pathPdfTemp)
         {
-             var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathPdfTemp, "*.pdf");
+            var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathPdfTemp, "*.pdf");
              taxJournal.FullPath = file.NamePath;
              taxJournal.NameFile = file.NameFile;
              taxJournal.Mime = "application/pdf";
              taxJournal.Extensions = file.ExtensionsFile;
-             byte[] bytes;
-                using (FileStream stream = new FileStream(file.NamePath, FileMode.Open))
-                {
-                     bytes = new byte[stream.Length];
-                }
-             taxJournal.Document = bytes;
+             byte[] byteFile;
+             using (FileStream stream = new FileStream(file.NamePath, FileMode.Open))
+             {
+                 byteFile = new byte[stream.Length];
+                stream.Read(byteFile, 0, byteFile.Length);
+             }
+             taxJournal.Document = byteFile;
         }
-
     }
 }

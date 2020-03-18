@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EfDatabaseAutomation.Automation.Base;
+using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.TaxJournalAuto;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
 {
@@ -22,7 +21,32 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
         /// <param name="journal">Отработанный комплекс</param>
         public void AddTaxJournal(TaxJournal journal)
         {
+            journal.IsPrint = false;
             Automation.TaxJournals.Add(journal);
+            Automation.SaveChanges();
+        }
+
+        /// <summary>
+        /// Поиск извещений в БД таблице
+        /// </summary>
+        /// <returns></returns>
+        public List<TaxJournalAuto> DownloadFileNotPrint()
+        {
+           var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 1);
+           if (logicModel != null) 
+               return Automation.Database.SqlQuery<TaxJournalAuto>(logicModel.SelectUser).ToList();
+           return null;
+        }
+        /// <summary>
+        /// Обновления статуса печати
+        /// </summary>
+        /// <param name="idDoc">Ун документа</param>
+        public void UpdatePrintDoc(int idDoc)
+        {
+            var journalTax = Automation.TaxJournals.FirstOrDefault(journal => journal.Id == idDoc);
+            if (journalTax == null) return;
+            journalTax.IsPrint = true;
+            Automation.Entry(journalTax).State = EntityState.Modified;
             Automation.SaveChanges();
         }
     }

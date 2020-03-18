@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Identification" type="Identification">
+		<xs:annotation>
+			<xs:documentation>Идентификация пользователя</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="Identification">
+		<xs:annotation>
+			<xs:documentation>Идентификация пользователя</xs:documentation>
+		</xs:annotation>
+		<xs:sequence minOccurs="0">
+			<xs:element ref="GroupRuleServer" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Login" minOccurs="0"/>
+			<xs:element ref="Password" minOccurs="0"/>
+			<xs:element ref="Name" minOccurs="0"/>
+			<xs:element ref="IsError"/>
+			<xs:element ref="ErrorMessage" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="GroupRuleServer" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Группы и роли сервера</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:list itemType="xs:string"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="Login" type="xs:string" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Логин</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Password" type="xs:string" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Пароль</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Name" type="xs:string" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Имя пользователя</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IsError" type="xs:boolean" default="true">
+		<xs:annotation>
+			<xs:documentation>Есть ли ошибка</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ErrorMessage" type="xs:string" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Сообщение об ошибке</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

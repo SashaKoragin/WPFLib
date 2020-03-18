@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Deployment.Application;
+using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
 
@@ -32,6 +34,12 @@ namespace AutomatAis3Full.GlavnayLogika.Window
         private Version GetRunningVersion()
         {
                 return Assembly.GetExecutingAssembly().GetName().Version;
+        }
+
+        private void Hyperlink_Navigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
         }
     }
 }

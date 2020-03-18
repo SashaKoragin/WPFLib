@@ -27,7 +27,7 @@
         <Menu
             Grid.Row="0"
             Grid.Column="0"
-            Grid.ColumnSpan="3"
+            Grid.ColumnSpan="2"
             HorizontalAlignment="Left"
             VerticalAlignment="Center">
             <MenuItem Header="Файл">
@@ -37,10 +37,21 @@
                 <MenuItem Command="{Binding OpenPdfHelp}" Header="Помощь пользователю" />
             </MenuItem>
         </Menu>
+        <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,15,0">
+            <Label FontSize="18" Content="{Binding User }"></Label>
+            <WrapPanel>
+                <Label FontSize="18" Content="Веб сайт "></Label>
+                <TextBlock VerticalAlignment="Center" FontSize="18">
+                    <Hyperlink NavigateUri="{Binding Web}" RequestNavigate="Hyperlink_Navigate">
+                        <TextBlock FontSize="18" Text="{Binding Path=Web}"></TextBlock>
+                    </Hyperlink>
+                </TextBlock>
+            </WrapPanel>
+        </StackPanel>
+        <WrapPanel Grid.Row="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3">
         <materialDesign:DrawerHost
-            Grid.Row="2"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
             IsLeftDrawerOpen="{Binding FullWindow.IsCheck}">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <ScrollViewer PreviewMouseWheel="UIElement_OnMouseWheel" VerticalScrollBarVisibility="Auto">
@@ -72,6 +83,10 @@
                 </ScrollViewer>
             </materialDesign:DrawerHost.LeftDrawerContent>
         </materialDesign:DrawerHost>
+            <UserControl
+                Margin="5,5,5,5"
+                Content="{Binding ElementName=TreeView, Path=SelectedItem.UserControl}" />
+        </WrapPanel>
         <materialDesign:ColorZone
             Grid.Row="1"
             Grid.Column="0"
@@ -89,11 +104,5 @@
                     Text="Автоматы для Аис 3" />
             </DockPanel>
         </materialDesign:ColorZone>
-        <UserControl
-            Grid.Row="2"
-            Grid.Column="2"
-            Margin="5,5,5,5"
-            Content="{Binding ElementName=TreeView, Path=SelectedItem.UserControl}" />
-
     </Grid>
 </Window>

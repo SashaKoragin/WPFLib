@@ -41,8 +41,7 @@
           <Property Id="IFNS" Value="7751" />
         </Control>
         <Control Id="PathTemp" Type="Text" X="10" Y="35" Width="105" Height="15" Transparent="yes" NoPrefix="yes" Text="Путь к папки Temp:"></Control>
-        <Control Id="PathTemp51" Type="Edit" X="110" Y="35" Width="110" Height="15" Property="ADDPATHTEMP" Text="[ADDPATHTEMP]" ToolTip="Путь где АИС 3 Выгружает PDF:" >
-          <Property Id="ADDPATHTEMP" Value="C:\Windows\Temp\" />
+        <Control Id="PathTemp51" Type="Edit" X="110" Y="35" Width="110" Height="15" Property="TEMPFOLDER" Text="[TEMPFOLDER]" ToolTip="Путь где АИС 3 Выгружает PDF:" >
         </Control>
         <!--Закончил на сервере надо делать-->
         <Control Id="SettingServers" Type="Text" X="40" Y="55" Width="300" Height="15" Transparent="yes" NoPrefix="yes" Text="Настройки серверной части для генерации писем:"></Control>

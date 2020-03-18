@@ -100,6 +100,7 @@
     <Compile Include="Converter\ConvetrorImage\ConvertorImage.cs" />
     <Compile Include="ModelTestAutoit\FullWindowAutoIt\FullWindowAutoIt.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\CheckBoxModel\CheckBoxModel.cs" />
+    <Compile Include="ModelTestAutoit\ModelFormirovanie\DonloadPrintDb\DonloadPrintDb.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\ListViewModelXml\ListViewModelXmlFileGenerateProperty.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\PdfModelPrint\PdfModelPrint.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\ShemeXsd\ShemeProperty.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="ModelTestAutoit\PublicModel\DataPickerItRule\DataPickerRuleItModel.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\DatePicker\DatePickerPub.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\LableAndErrorModel\LableModel.cs" />
+    <Compile Include="ModelTestAutoit\PublicModel\ModelDatePickerAdd\DatePickerAdd.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\PdfHelp\PdfHelp.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\QbeSelect\QbeClass.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\RaschetBuh\SelectVibor.cs" />

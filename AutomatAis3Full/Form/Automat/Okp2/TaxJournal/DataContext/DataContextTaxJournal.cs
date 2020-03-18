@@ -1,28 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Input;
 using AutomatAis3Full.Config;
 using Prism.Commands;
+using ViewModelLib.ModelTestAutoit.ModelFormirovanie.DonloadPrintDb;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
+using ViewModelLib.ModelTestAutoit.PublicModel.ModelDatePickerAdd;
 
 namespace AutomatAis3Full.Form.Automat.Okp2.TaxJournal.DataContext
 {
    public class DataContextTaxJournal
     {
-
-        public int CountDay { get; set; } = 50;
+        public DownloadPrintDb DownloadPrintDb { get; set; }
+        public ICommand DownloadDb { get; }
+        public ICommand PrintFile { get; }
+        public DatePickerAdd DatePicker { get; } 
 
         public StatusButtonMethod StartButton { get; }
 
         public DataContextTaxJournal()
         {
+            DatePicker = new DatePickerAdd();
             var command = new LibaryCommandPublic.TestAutoit.Okp2.TaxJournal();
+            DownloadPrintDb = new DownloadPrintDb();
             StartButton = new StatusButtonMethod();
             StartButton.Button.Command = new DelegateCommand(() => { 
-                command.StartTaxJournal(StartButton,ConfigFile.FileJurnalOk,ConfigFile.PathPdfTemp,CountDay); 
-            });
+                command.StartTaxJournal(StartButton,ConfigFile.FileJurnalOk, ConfigFile.PathPdfTemp, DatePicker); 
+            }); DownloadDb = new DelegateCommand(() => { command.DownloadDbFile(ConfigFile.PathPdfWork, DownloadPrintDb); });
+            PrintFile = new DelegateCommand(() => { command.PrintFiles(DownloadPrintDb); });
         }
     }
 }

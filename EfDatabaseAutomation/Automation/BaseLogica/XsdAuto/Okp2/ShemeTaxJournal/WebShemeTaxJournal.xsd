@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="DateIzveshenie" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата извещения</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:dateTime"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="AutoWebPage" type="AutoWebPage">
+		<xs:annotation>
+			<xs:documentation>Контент на сайт ОКП2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="AutoWebPage">
+		<xs:annotation>
+			<xs:documentation>Контент на сайт ОКП2</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="TaxJournalAutoWebPage" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="TaxJournalAutoWebPage">
+		<xs:annotation>
+			<xs:documentation>Контент на сайт ОКП2</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DateIzveshenie"/>
+				<xs:element ref="IsLk3"/>
+				<xs:element ref="IsMail"/>
+				<xs:element ref="IsPrint"/>
+				<xs:element ref="IsTks"/>
+				<xs:element ref="DataCreate"/>
+				<xs:element ref="IdDelo"/>
+				<xs:element ref="Id"/>
+				<xs:element ref="LogicsButton"/>
+			</xs:sequence>
+			<xs:attribute name="LoginUser" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Табельный номер пользователя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="collapse"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Kpp">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="collapse"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="NameFace">
+				<xs:annotation>
+					<xs:documentation>Наименование лица</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="collapse"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Fid">
+				<xs:annotation>
+					<xs:documentation>ФИД</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="collapse"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="TypeDocument">
+				<xs:annotation>
+					<xs:documentation>Тип документа</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="collapse"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="MessageInfo">
+				<xs:annotation>
+					<xs:documentation>Сообщение</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="collapse"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Extensions">
+				<xs:annotation>
+					<xs:documentation>Расширение файла</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="collapse"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IsTks" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>ТКС</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IsMail" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Почта</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IsLk3" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>ЛК3</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IsPrint" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Статус распечатан</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DataCreate" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата создания</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IdDelo" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Идентификатор дела</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Id" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Идентификатор</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LogicsButton" type="xs:string" default="Button" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Логика кнопок</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

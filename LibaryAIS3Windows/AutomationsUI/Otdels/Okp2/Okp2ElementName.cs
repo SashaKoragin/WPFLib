@@ -12,7 +12,7 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.Okp2
         /// <summary>
         /// Панель Сведения о времени и месте расмотрения раскрыть
         /// </summary>
-        public static string PublicPanel = PublicName + "AutomationId:BusinessEntityViewPartBaseAsync\\AutomationId:contentHost\\ClassName:Pane\\ClassName:ScrollViewer\\ClassName:UCCont\\";
+        public static string PublicPanel = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:BusinessEntityViewPartBaseAsync\\AutomationId:contentHost\\ClassName:Pane\\ClassName:ScrollViewer\\ClassName:UCCont\\";
        /// <summary>
        /// Обновить данные перед автоматом
        /// </summary>
@@ -21,9 +21,8 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.Okp2
         /// <summary>
         /// Журнал для отработки
         /// </summary>
-       public static string AllTaxJournal = PublicName+ "AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData";
+        public static string AllTaxJournal = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row ";
 
-        public static string ElementJournal = "\\Name:select0 row 0";
         /// <summary>
         /// Открыть комплекс мероприятий
         /// </summary>
@@ -31,11 +30,11 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.Okp2
        /// <summary>
        /// Редактировать
        /// </summary>
-       public static string EditTask = PublicName + "AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:_this\\AutomationId:treeView1\\Name:Материалы для рассмотрения\\Name:Rnivc.Cam.Knp.Client.PfTemp.CustomOperations.OperationCustomEntity.DfCEXamlViewSingle\\AutomationId:Header\\ClassName:DfCEXamlViewSingle\\AutomationId:propControl\\AutomationId:btnDefaultCommand";
+       public static string EditTask = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:_this\\AutomationId:treeView1\\Name:Материалы для рассмотрения\\Name:Rnivc.Cam.Knp.Client.PfTemp.CustomOperations.OperationCustomEntity.DfCEXamlViewSingle\\AutomationId:Header\\ClassName:DfCEXamlViewSingle\\AutomationId:propControl\\AutomationId:btnDefaultCommand\\AutomationId:btnDefaultCommandText";
        /// <summary>
        /// Журнал Сформированных документов
        /// </summary>
-       public static string DocAllJournal = PublicName + "AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:detailsTab\\AutomationId:NavigatorDetailsControl\\AutomationId:navigator\\AutomationId:splitContainer\\AutomationId:gridData";
+       public static string DocAllJournal = $"{PublicName}AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:detailsTab\\AutomationId:NavigatorDetailsControl\\AutomationId:navigator\\AutomationId:splitContainer\\AutomationId:gridData";
 
         /// <summary>
         /// Сохранить
@@ -85,31 +84,61 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.Okp2
         /// <summary>
         /// Извещение о времени и месте рассмотрения Акта
         /// </summary>
-        public static string Izveshenie = PublicName+ "AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Материалы для рассмотрения\\Name:Извещение о времени и месте рассмотрения Акта\\AutomationId:Header";
-        
-        
+        public static string Izveshenie = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Материалы для рассмотрения\\Name:Извещение о времени и месте рассмотрения Акта\\AutomationId:Header";
+
+        /// <summary>
+        /// Решение о привлечении лица к ответственности за налоговое правонарушение
+        /// </summary>
+        public static string Reshenia = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Рассмотрение материалов\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение\\AutomationId:Header";
+        /// <summary>
+        /// Закрыть комплекс мероприятий
+        /// </summary>
+        public static string ClosedComplex = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Налоговые правонарушения\\Name:Закрыть комплекс НПН\\AutomationId:Header";
         /// <summary>
         /// Раскрыть Сведения о времени и месте расмотрения раскрыть
         /// </summary>
-        public static string ButtonSved = PublicPanel+ "AutomationId:gb_2\\AutomationId:exp\\AutomationId:HeaderSite";
+        public static string ButtonSved =  $"{PublicPanel}AutomationId:gb_2\\AutomationId:exp\\AutomationId:HeaderSite";
+        /// <summary>
+        /// Общая информация о документе
+        /// </summary>
+        public static string PublicInfo = $"{PublicPanel}AutomationId:gb_0\\AutomationId:exp\\AutomationId:HeaderSite";
+        /// <summary>
+        /// Должностные лица решения подпись
+        /// </summary>
+        public static string ResheniaFaceSignOpen = $"{PublicPanel}AutomationId:gb_10\\AutomationId:exp\\AutomationId:HeaderSite";
+
         /// <summary>
         /// Проставить номер кабита
         /// </summary>
-        public static string NumKabinet = PublicPanel + "AutomationId:gb_2\\AutomationId:exp\\AutomationId:Host\\AutomationId:TimeAndPlaceInfoControl\\AutomationId:uteRoomNumber\\ClassName:WindowsForms10.EDIT.app.0.116cb88_r6_ad1";
+        public static string NumKabinet = $"{PublicPanel}AutomationId:gb_2\\AutomationId:exp\\AutomationId:Host\\AutomationId:TimeAndPlaceInfoControl\\AutomationId:uteRoomNumber\\LocalizedControlType:поле";
+        /// <summary>
+        /// Дата решения
+        /// </summary>
+        public static string DateReshenia = $"{PublicPanel}AutomationId:gb_0\\AutomationId:exp\\AutomationId:Host\\AutomationId:MainAttributesControl\\AutomationId:dtpDate";
+
         /// <summary>
         /// Добавить дату и время вызова
         /// </summary>
-        public static string AddButton = PublicPanel + "AutomationId:gb_2\\AutomationId:exp\\AutomationId:Host\\AutomationId:TimeAndPlaceInfoControl\\AutomationId:ultraGroupBox2\\AutomationId:btnAddDateTimeCall";
+        public static string AddButton = $"{PublicPanel}AutomationId:gb_2\\AutomationId:exp\\AutomationId:Host\\AutomationId:TimeAndPlaceInfoControl\\AutomationId:ultraGroupBox2\\AutomationId:btnAddDateTimeCall";
         /// <summary>
         /// Должностные лица Раскрыть элемент
         /// </summary>
-        public static string FaceName = PublicPanel + "AutomationId:gb_3\\AutomationId:exp\\AutomationId:HeaderSite";
+        public static string FaceName = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:HeaderSite";
 
         /// <summary>
         /// Подписал документ Выбор
         /// </summary>
-        public static string FaceNameSign = PublicPanel + "AutomationId:gb_3\\AutomationId:exp\\AutomationId:Host\\AutomationId:ultraGroupBox1\\AutomationId:ultraCombo1";
+        public static string FaceNameSign = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:Host\\AutomationId:ultraGroupBox1\\AutomationId:ultraCombo1";
 
+        /// <summary>
+        /// Подписал документ решения Выбор 
+        /// </summary>
+        public static string ResheniaFaceSign = $"{PublicPanel}AutomationId:gb_10\\AutomationId:exp\\AutomationId:Host\\AutomationId:EndOfDocumentControl\\AutomationId:ultraGroupBox1\\AutomationId:ultraCombo1";
+
+        /// <summary>
+        /// Окно отпарвка документов
+        /// </summary>
+        public static string WindowSend = "Отправка документов";
         /// <summary
         /// Окно отправки документа
         /// </summary>
@@ -126,7 +155,9 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.Okp2
         /// Почта
         /// </summary>
         public static string Mail = "AutomationId:ViewA01Host\\AutomationId:elementHost1\\Name:elementHost1\\ClassName:CamA01MainView\\ClassName:TabControl\\ClassName:ScrollViewer\\Name:Почта";
-
-        public static string Close = "AutomationId:TitleBar\\Name:Закрыть";
+        /// <summary>
+        /// Координаты от точки закрыть проблемный блок на Win 10 и Win 7 т.к. используется разное окно из разных api.
+        /// </summary>
+        public static string Close = "Name:Отправка документов\\LocalizedControlType:название\\Name:Закрыть";
     }
 }

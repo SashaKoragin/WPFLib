@@ -61,12 +61,17 @@
 			<Directory Id="ProgramFilesFolder">
 				<Directory Id="INSTALLFOLDER" Name="AutomatAis3Full">
         </Directory>
-			</Directory>
+        <Directory Id="TempFolder">
+          <Directory Id="TEMPFOLDER"/>
+        </Directory>
+      </Directory>
       <Directory Id="ProgramMenuFolder" >
         <Directory Id="ProgramMenuDirr" Name="AutomatAis3Full"/>
       </Directory>
-        <Directory Id="DesktopFolder" Name="Desktop"/>
-		</Directory>
+      <Directory Id="DesktopFolder" Name="Desktop"/>
+
+    </Directory>
+    
 	</Fragment>
 
   
@@ -146,7 +151,8 @@
          </Directory>
        </DirectoryRef>
      </Fragment>
-    
+
+  
       
     <Fragment>
     <DirectoryRef Id="INSTALLFOLDER">
@@ -202,7 +208,7 @@
         <util:XmlFile Id="AutomatAis3FullSet2" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServiceAndIpComputer'[\]]//@value" Value="ServiceTestIfns,[SERVICE]" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSet4" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServerReport'[\]]//@value" Value="http://[SERVICE]:8181/ServiceRest/MigrationError" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSet5" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServerRuleUsersWordTemplate'[\]]//@value" Value="http://[SERVICE]:8181/ServiceRest/GenerateTemplateRule" SelectionLanguage="XPath" Sequence="1" />
-        <util:XmlFile Id="AutomatAis3FullSet3" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathPdfTemp'[\]]//@value" Value="[ADDPATHTEMP]" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="AutomatAis3FullSet3" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathPdfTemp'[\]]//@value" Value="[TEMPFOLDER]" SelectionLanguage="XPath" Sequence="1" />
 
         <util:XmlFile Id="AutomatAis3FullSetHelp" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='Help'[\]]//@value" Value="[INSTALLFOLDER]Help\AutomateAis3Full.pdf" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetFileFid" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='FileFid'[\]]//@value" Value="[INSTALLFOLDER]XmlFile\Fid.xml" SelectionLanguage="XPath" Sequence="1" />

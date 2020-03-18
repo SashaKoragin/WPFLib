@@ -53,14 +53,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Automation\BaseLogica\AddObjectDb\AddObjectDb.cs" />
+    <Compile Include="Automation\BaseLogica\SqlSelect\ProcedureParametr\SqlSelect.cs" />
+    <Compile Include="Automation\BaseLogica\SqlSelect\SelectAll\SelectAll.cs" />
+    <Compile Include="Automation\BaseLogica\XsdAuto\Okp2\ShemeTaxJournal\WebShemeTaxJournal.cs">
+      <DependentUpon>WebShemeTaxJournal.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Automation\BaseLogica\XsdAuto\TaxJournalAuto\TaxJournalAuto.cs">
+      <DependentUpon>TaxJournalAuto.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Automation\Base\DatabaseAutomation1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DatabaseAutomation.tt</DependentUpon>
     </Compile>
+    <Compile Include="Automation\SelectParametrSheme\ParametrsModelAutomation.cs">
+      <DependentUpon>ParametrsModelAutomation.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\My\Loggers\Loggers.csproj">
+      <Project>{9bac233e-ed3d-493e-b7f6-f26f8091968d}</Project>
+      <Name>Loggers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibaryXMLAuto\LibaryXMLAuto.csproj">
+      <Project>{a2bc3ae2-4a61-4e9e-9fa4-96a02677c79c}</Project>
+      <Name>LibaryXMLAuto</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Automation\Base\DatabaseAutomation.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -69,13 +89,23 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Automation\BaseLogica\XsdAuto\Okp2\ShemeTaxJournal\WebShemeTaxJournal.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Automation\BaseLogica\XsdAuto\TaxJournalAuto\TaxJournalAuto.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Automation\Base\EF.Reverse.POCO.Core.ttinclude" />
     <None Include="Automation\Base\EF.Reverse.POCO.ttinclude" />
+    <None Include="Automation\SelectParametrSheme\ParametrsModelAutomation.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -84,5 +114,24 @@
     <Error Condition="!Exists('C:\Nuget\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'C:\Nuget\EntityFramework.6.4.0\build\EntityFramework.props'))" />
     <Error Condition="!Exists('C:\Nuget\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'C:\Nuget\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
   </Target>
+  <Target Name="BeforeBuild" DependsOnTargets="CreateDTOSheme" />
   <Import Project="C:\Nuget\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('C:\Nuget\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+  <Target Name="CreateDTOSheme">
+    <ItemGroup>
+      <TaxJournalAuto Include="Automation\BaseLogica\XsdAuto\TaxJournalAuto\*.xsd" />
+      <FullParametrAuto Include="Automation\SelectParametrSheme\*.xsd" />
+      <ShemeTaxJournal Include="Automation\BaseLogica\XsdAuto\Okp2\ShemeTaxJournal\*.xsd" />
+    </ItemGroup>
+    <Message Importance="high" Text="CreateDTOSheme" />
+    <GetFrameworkSdkPath>
+      <Output TaskParameter="Path" PropertyName="WindowsSdkPath" />
+    </GetFrameworkSdkPath>
+    <PropertyGroup>
+      <XsdToolPath>$(WindowsSdkPath)bin\NETFX 4.7 Tools</XsdToolPath>
+    </PropertyGroup>
+    <Message Importance="high" Text="Processing XSD schemas" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(TaxJournalAuto.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.XsdAuto.TaxJournalAuto /outputdir:Automation\BaseLogica\XsdAuto\TaxJournalAuto\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(FullParametrAuto.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.SelectParametrSheme /outputdir:Automation\SelectParametrSheme\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(ShemeTaxJournal.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.XsdAuto.Okp2.ShemeTaxJournal /outputdir:Automation\BaseLogica\XsdAuto\Okp2\ShemeTaxJournal\" />
+  </Target>
 </Project>

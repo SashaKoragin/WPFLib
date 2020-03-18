@@ -21,7 +21,7 @@
                 IsEnabled="{Binding PdfModel.IsDisablePrint, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, NotifyOnSourceUpdated=True}">
                 <Button.Template>
                     <ControlTemplate>
-                        <materialDesign:PackIcon
+                        <materialDesign:PackIcon 
                             Width="30"
                             Height="30"
                             Kind="Printer" />

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="TaxJournalAuto">
+		<xs:annotation>
+			<xs:documentation>Журнал</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdDelo" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун дела</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kpp" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameFace" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Лицо</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Fid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Фид</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateIzveshenie" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата извещения</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="isTks" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>ТКС</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="isMail" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Почта</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="isLk3" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>ЛК3</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TypeDocument" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Тип документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageInfo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Extensions" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Расширение файла</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Document" type="xs:base64Binary">
+				<xs:annotation>
+					<xs:documentation>Документ base64</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IsPrint" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Печать</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DataCreate" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TaxJournalView" type="TaxJournalView">
+		<xs:annotation>
+			<xs:documentation>Общий журнал извещений</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="TaxJournalView">
+		<xs:annotation>
+			<xs:documentation>Класс схемы</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="TaxJournalAuto" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -90,7 +90,7 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
         /// <typeparam name="TValue">Тип параметра</typeparam>
         /// <param name="conectionstring">Строка соединения</param>
         /// <param name="select">Команда Select</param>
-        /// <param name="type">Тип возвращаемого значения класса образец "(SysNum)SelectFullSqlReader(conectionstring, select,typeof(SysNum)"</param>
+        /// <param name="type">Тип возвращаемого значения класса образец "(SysNum)SelectFullSqlReader(conectionString, select,typeof(SysNum)"</param>
         /// <param name="listparametr">Словарь параметров</param>
         /// <returns>Возвращаем object для дальнейшего разбора по классу</returns>
         public object SelectFullParametrSqlReader<TKey, TValue>(string conectionstring, string select, Type type, Dictionary<TKey, TValue> listparametr = null)
@@ -127,20 +127,20 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
         /// </summary>
         /// <typeparam name="TKey">ключ как правило string</typeparam>
         /// <typeparam name="TValue">Параметр как правило string</typeparam>
-        /// <param name="conectionstring">Строка соединения с сервером</param>
+        /// <param name="conectionString">Строка соединения с сервером</param>
         /// <param name="procedure">Процедура</param>
         /// <param name="usernameguid">Имя пользователя для возврата сообщений</param>
         /// <param name="listparametr">Лист параметров для процедуры!!!</param>
         /// <returns></returns>
-        public async Task<DataSet> ProcedureReturnTable<TKey, TValue>(string conectionstring, string procedure,string usernameguid = null, Dictionary<TKey, TValue> listparametr = null)
+        public async Task<DataSet> ProcedureReturnTable<TKey, TValue>(string conectionString, string procedure,string usernameguid = null, Dictionary<TKey, TValue> listparametr = null)
         {
             try
             {
                 DataSet dataset = new DataSet();
-                Sobytie sobytie = new Sobytie(usernameguid) { Messages = null };
+                
                 return await Task<DataSet>.Factory.StartNew(() =>
                     {
-                        using (var con = new SqlConnection(conectionstring))
+                        using (var con = new SqlConnection(conectionString))
                         {
                             var cmd = new SqlCommand(procedure)
                             {
@@ -148,7 +148,11 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
                                 Connection = con,
                                 CommandTimeout = 0
                             };
-                            con.InfoMessage += sobytie.Con_InfoMessageSignalR;
+                            if (usernameguid != null)
+                            {
+                                Sobytie sobriety = new Sobytie(usernameguid) { Messages = null };
+                                con.InfoMessage += sobriety.Con_InfoMessageSignalR;
+                            }
                             if (listparametr?.Count > 0)
                             {
                                 GenerateParametrSql.GenerateParametrSql sql =
@@ -156,9 +160,9 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
                                 cmd = sql.GenerateParametrs(cmd, listparametr);
                             }
                             con.Open();
-                            using ( var sqlreport = new SqlDataAdapter(cmd))
+                            using ( var sqlReport = new SqlDataAdapter(cmd))
                             {
-                                sqlreport.Fill(dataset);
+                                sqlReport.Fill(dataset);
                             }
                             con.Close();
                             SqlConnection.ClearPool(con);

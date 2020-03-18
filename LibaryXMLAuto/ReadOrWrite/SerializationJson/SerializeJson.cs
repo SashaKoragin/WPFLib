@@ -43,7 +43,6 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
           {
             NullValueHandling = NullValueHandling.Ignore,
             DateFormatString = "dd-MM-yyyy"
-
           });
         }
         /// <summary>

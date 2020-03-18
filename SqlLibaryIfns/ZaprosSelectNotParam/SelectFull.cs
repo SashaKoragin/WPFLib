@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Threading.Tasks;
 using EfDatabaseErrorInventory;
 using EfDatabaseInvoice;
 using EfDatabaseParametrsModel;
@@ -17,7 +20,10 @@ using LibaryXMLAutoReports.FullTemplateSheme;
 using SqlLibaryIfns.SqlSelect.ModelSqlFullService;
 using SqlLibaryIfns.SqlZapros.SqlConnections;
 using LibaryXMLAutoModelXmlSql.Model.ServerAndComputer;
+using SqlLibaryIfns.ExcelReport.Report;
 using ServiceWcf = LibaryXMLAutoModelServiceWcfCommand.TestIfnsService.ServiceWcf;
+using LogicaSelect = EfDatabaseParametrsModel.LogicaSelect;
+using System;
 
 namespace SqlLibaryIfns.ZaprosSelectNotParam
 {
@@ -277,24 +283,24 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
         /// <summary>
         /// Выгрузка модели телефонного справочника
         /// </summary>
-        /// <param name="conectionstring">Строка соединения с БД</param>
-        /// <param name="logica">Логика выборки</param>
-        /// <param name="listparametr"></param>
+        /// <param name="connectionString">Строка соединения с БД</param>
+        /// <param name="logic">Логика выборки</param>
+        /// <param name="listparametr">Параметры</param>
         /// <returns>Возвращает объект для превращения его в схему</returns>
-        public object GenerateShemeXsdSql<TKey, TValue>(string conectionstring, LogicaSelect logica, Dictionary<TKey, TValue> listparametr = null)
+        public object GenerateShemeXsdSql<TKey, TValue>(string connectionString, LogicaSelect logic, Dictionary<TKey, TValue> listparametr = null)
         {
             var sqlconnect = new SqlConnectionType();
-            switch (logica.Id)
+            switch (logic.Id)
             {
                 case 10:
                     TelephoneHelp telephoneHelp = new TelephoneHelp
                     {
                         TelephonHeaders =
-                            ((TelephoneHelp)sqlconnect.SelectFullParametrSqlReader(conectionstring, logica.SelectUser,
+                            ((TelephoneHelp)sqlconnect.SelectFullParametrSqlReader(connectionString, logic.SelectUser,
                                 typeof(TelephoneHelp), ModelSqlFullService.ParamCommand("1"))).TelephonHeaders,
                         TelephonBody =
                             ((TelephoneHelp)
-                            sqlconnect.SelectFullParametrSqlReader(conectionstring, logica.SelectUser,
+                            sqlconnect.SelectFullParametrSqlReader(connectionString, logic.SelectUser,
                                 typeof(TelephoneHelp), ModelSqlFullService.ParamCommand("2"))).TelephonBody
                     };
                     return telephoneHelp;
@@ -302,12 +308,43 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                     Book book = new Book
                     {
                         BareCodeBook = new BareCodeBook(),
-                        Organization = ((Book)sqlconnect.SelectFullParametrSqlReader(conectionstring,logica.SelectUser,typeof(Book),listparametr)).Organization
+                        Organization = ((Book)sqlconnect.SelectFullParametrSqlReader(connectionString, logic.SelectUser,typeof(Book),listparametr)).Organization
                     };
                     return book;
                 default:
                     return null;
             }
+        }
+        /// <summary>
+        /// Функция преобразования View в Файл
+        /// </summary>
+        /// <param name="connectionString">Строка соединения</param>
+        /// <param name="logic">Логика</param>
+        /// <param name="pathSaveReport">Путь сохранения</param>
+        /// <returns></returns>
+        public Stream GenerateStreamToSqlViewFile(string connectionString, LogicaSelect logic, string pathSaveReport)
+        {
+            var sqlConnect = new SqlConnectionType();
+            switch (logic.Id)
+            {
+                case 23:
+                    var xlsx = new ReportExcel();
+                    var tableTelephone = sqlConnect.ReportQbe(connectionString, logic.SelectUser);
+                    xlsx.ReportSave(pathSaveReport, "Все телефоны", "Телефоны и пользователи", tableTelephone);
+                    return  DownloadFile(Path.Combine(pathSaveReport, "Все телефоны.xlsx"));
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>
+        /// Конвертация файла в массив данных
+        /// </summary>
+        /// <param name="path">Путь к файлу</param>
+        /// <returns></returns>
+        private Stream DownloadFile(string path)
+        {
+            return File.OpenRead(path);
         }
     }
 }

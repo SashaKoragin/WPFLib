@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using LibaryAIS3Windows.AutomationsUI.LibaryAutomations;
 
 namespace LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
 {
@@ -11,7 +12,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
         /// Поиск последнего файла в папке
         /// </summary>
         /// <param name="path">Путь</param>
-        /// <param name="searсhPattern">Паттерн поиска</param>
+        /// <param name="searсhPattern">Pattern Search</param>
         /// <returns>Возврат последнего файла</returns>
         public static GetFile ReturnNameLastFileTemp(string path,string searсhPattern)
         {
@@ -30,9 +31,42 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
             var list = listFile.FirstOrDefault(file => file.DateWrite == listFile.Max(files => files.DateWrite));
             return list;
         }
-
-
-
+        /// <summary>
+        /// Закрытие процесса обработки файла
+        /// </summary>
+        /// <param name="name">Наименование процесса</param>
+        public static void CloseProcessProgram(string name)
+        {
+            while (true)
+            {
+                System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName(name);
+                foreach (var process in processes)
+                {
+                    process?.CloseMainWindow();
+                }
+                if(processes.Length == 0)
+                {
+                    break;
+                }
+            }
+            AutoIt.AutoItX.Sleep(500);
+        }
+        /// <summary>
+        /// Поиск элемента и ожидания нажатия на элемент
+        /// </summary>
+        /// <param name="libraryAutomation">Элемент</param>
+        /// <param name="searсhPatternElement">Pattern элемент</param>
+        public static void WindowElementClick(LibaryAutomations libraryAutomation, string searсhPatternElement)
+        {
+            while (true)
+            {
+                if (libraryAutomation.IsEnableElements(searсhPatternElement, null, true) != null)
+                {
+                    libraryAutomation.ClickElements(searсhPatternElement, null, true);
+                    break;
+                }
+            }
+        }
     }
 
     public class GetFile

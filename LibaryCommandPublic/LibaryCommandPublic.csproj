@@ -96,6 +96,10 @@
     <Compile Include="TestAutoit\Uregulirovanie\MessageLk\AutoMessageLk.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EfDatabaseAutomation\EfDatabaseAutomation.csproj">
+      <Project>{FDAD249D-CD7D-4581-B945-90D2F9DAD698}</Project>
+      <Name>EfDatabaseAutomation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LibaryAIS3Windows\LibaryAIS3Windows.csproj">
       <Project>{92017569-2991-4b9a-bfa2-6b41cfa72b83}</Project>
       <Name>LibaryAIS3Windows</Name>

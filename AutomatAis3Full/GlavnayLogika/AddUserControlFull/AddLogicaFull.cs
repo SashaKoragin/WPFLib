@@ -182,6 +182,18 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                       UserControl = new FormTaxJournal()
                                   }
                               }
+                          },
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "121. Камеральная налоговая проверка",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)",
+                                      UserControl = null
+                                  }
+                              }
                           }
                       }
                   },

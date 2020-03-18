@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Windows.Automation;
 using AutoIt;
 using LibaryAIS3Windows.ButtonsClikcs;
@@ -123,11 +122,19 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <summary>
         /// Поставить фокус на элемент
         /// </summary>
-        public void InvekePattern(AutomationElement element)
+        public void InvokePattern(AutomationElement element)
         {
-            var pattrn = element.GetCurrentPattern(InvokePatternIdentifiers.Pattern); //  pattern.(pattern.);
-            var valueauto = (InvokePattern)pattrn;
-            valueauto.Invoke();
+            try
+            {
+                element.SetFocus();
+                var pattern = element.GetCurrentPattern(InvokePatternIdentifiers.Pattern);
+                var valueAuto = (InvokePattern)pattern;
+                valueAuto.Invoke();
+            }
+            catch
+            {
+                // ignored
+            }
         }
 
         /// <summary>
@@ -138,8 +145,8 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         {
             if (element != null)
             {
-                object patternObj;
-                if (element.TryGetCurrentPattern(TogglePatternIdentifiers.Pattern, out patternObj))
+                element.SetFocus();
+                if (element.TryGetCurrentPattern(TogglePatternIdentifiers.Pattern, out var patternObj))
                 {
                     var valuePattern = (TogglePattern)patternObj;
                     return valuePattern.Current.ToggleState.ToString();
@@ -153,9 +160,9 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// </summary>
         public void SetValuePattern(string value)
         {
-            var pattrn = FindElement.GetCurrentPattern(ValuePatternIdentifiers.Pattern);
-            var valueauto = (ValuePattern)pattrn;
-            valueauto.SetValue(value);
+            var pattern = FindElement.GetCurrentPattern(ValuePatternIdentifiers.Pattern);
+            var valueAuto = (ValuePattern)pattern;
+            valueAuto.SetValue(value);
         }
         /// <summary>
         /// Элемент и  название в ComboBox которое нужно поставить 
@@ -212,25 +219,24 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         {
             if (element != null)
             {
-               object patternObj;
-               if (element.TryGetCurrentPattern(LegacyIAccessiblePatternIdentifiers.Pattern, out patternObj))
-               {
-                  var valuePattern = (LegacyIAccessiblePattern)patternObj;
-                  return  valuePattern.Current.Value;
-               }
+                if (element.TryGetCurrentPattern(LegacyIAccessiblePatternIdentifiers.Pattern, out var patternObj))
+                {
+                    var valuePattern = (LegacyIAccessiblePattern)patternObj;
+                    return  valuePattern.Current.Value;
+                }
             }
             return null;
         }
         /// <summary>
-        /// Полуучение цвета элемента пикселя
+        /// Получение цвета элемента пикселя
         /// </summary>
-        /// <param name="element">Автоматизационный элемент</param>
+        /// <param name="element">Автоматизированный элемент</param>
         /// <returns></returns>
         public string GetColorPixel(AutomationElement element)
         {
-            var clickablePoint = element.GetClickablePoint();
-            var hexpixel = AutoIt.AutoItX.PixelGetColor((int)clickablePoint.X, (int)clickablePoint.Y);
-            return Convert.ToString(hexpixel, 16);
+            var clickPoint = element.GetClickablePoint();
+            var hexPixel = AutoItX.PixelGetColor((int)clickPoint.X, (int)clickPoint.Y);
+            return Convert.ToString(hexPixel, 16);
         }
 
         /// <summary>
@@ -239,23 +245,23 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="nameAutomationId">Поиск элемента</param>
         /// <param name="auto">Есть ли элемент</param>
         /// <param name = "isSubtree" >Искать в Subtree последний элемент</param>
-        /// <param name="countsecond">Колличество обращений к элементу</param>
-        public AutomationElement IsEnableElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,int countsecond =25,int isFocus = 0)
+        /// <param name="countsecond">Количество обращений к элементу</param>
+        public AutomationElement IsEnableElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,int countsecond =40,int isFocus = 0)
         {
-            var isenable = false;
+            var isEnable = false;
             var i = 0;
-            while (!isenable)
+            while (!isEnable)
             {
                 FindFirstElement(nameAutomationId, auto, isSubtree);
                 if (FindElement != null)
                 {
                     if (isFocus == 0)
                     {
-                        isenable = FindElement.Current.IsEnabled;
+                        isEnable = FindElement.Current.IsEnabled;
                     }
                     if(isFocus == 1)
                     {
-                        isenable = FindElement.Current.IsKeyboardFocusable;
+                        isEnable = FindElement.Current.IsKeyboardFocusable;
                     }
                     
                 }
@@ -273,17 +279,16 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="nameAutomationId">Поиск элемента</param>
         /// <param name="auto">Есть ли элемент</param>
         /// <param name = "isSubtree" >Искать в Subtree последний элемент</param>
-        /// <param name="countsecond">Колличество обращений к элементу</param>
+        /// <param name="countSecond">Количество обращений к элементу</param>
         /// <param name="x">Координата смещения если не ловит элемент</param>
         /// <param name="y">Координата смещения если не ловит элемент</param>
-        public bool CliksElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,int countsecond = 25,int x = 0,int y = 0)
+        public bool ClickElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,int countSecond = 25,int x = 0,int y = 0)
         {
             var isClicks = false;
-            if (IsEnableElements(nameAutomationId, auto, isSubtree, countsecond) != null)
+            if (IsEnableElements(nameAutomationId, auto, isSubtree, countSecond) != null)
             {
-                var clickablePoint = FindElement.GetClickablePoint();
-               // AutoItX.MouseMove((int)clickablePoint.X+x, (int)clickablePoint.Y+y);
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickablePoint.X + x, (int)clickablePoint.Y + y);
+                var clickPoint = FindElement.GetClickablePoint();
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint.X + x, (int)clickPoint.Y + y);
                 isClicks = true;
             }
             return isClicks;
@@ -296,36 +301,41 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <returns></returns>
         private Condition AddCondition(string nameAutomationId)
         {
-           var parametr = nameAutomationId.Split(':');
-            if (parametr[0] == "Name")
+           var parameter = nameAutomationId.Split(':');
+            if (parameter[0] == "Name")
             {
                 return new AndCondition(
                     new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
-                    new PropertyCondition(AutomationElement.NameProperty, parametr[1]));
+                    new PropertyCondition(AutomationElement.NameProperty, parameter[1]));
             }
-            if (parametr[0] == "AutomationId")
+            if (parameter[0] == "AutomationId")
             {
                 return new AndCondition(
                   new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
-                  new PropertyCondition(AutomationElement.AutomationIdProperty, parametr[1]));
+                  new PropertyCondition(AutomationElement.AutomationIdProperty, parameter[1]));
             }
-            if (parametr[0] == "ControlType")
+            if (parameter[0] == "ControlType")
             {
                 return new AndCondition(
                   new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
                   new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Pane),
-                  new PropertyCondition(AutomationElement.AutomationIdProperty, parametr[1])
+                  new PropertyCondition(AutomationElement.AutomationIdProperty, parameter[1])
                   );
             }
-            if (parametr[0] == "ClassName")
+            if (parameter[0] == "ClassName")
             {
                 return new AndCondition(new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
-                    new PropertyCondition(AutomationElement.ClassNameProperty,parametr[1]));
+                    new PropertyCondition(AutomationElement.ClassNameProperty,parameter[1]));
             }
-            if (parametr[0] == "NativeWindowHandle")
+            if (parameter[0] == "NativeWindowHandle")
             {
                 return new AndCondition(new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
-                    new PropertyCondition(AutomationElement.NativeWindowHandleProperty, parametr[1]));
+                    new PropertyCondition(AutomationElement.NativeWindowHandleProperty, parameter[1]));
+            }
+            if(parameter[0]== "LocalizedControlType")
+            {
+                return new AndCondition(new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
+                          new PropertyCondition(AutomationElement.LocalizedControlTypeProperty, parameter[1]));
             }
             return null;
         }

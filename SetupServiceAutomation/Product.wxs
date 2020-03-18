@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define ServiceAutomation_TargetDir=$(var.ServiceAutomation.TargetDir)?>
+  <?define CurrentVersion="!(bind.fileVersion.ServiceAutomation.exe)"?>
+	<Product Id="*" Name="SetupServiceAutomation $(var.CurrentVersion)" Codepage="1251" Language="1049" Version="$(var.CurrentVersion)" Manufacturer="ServiceAutomation" UpgradeCode="a5600e2d-a593-4979-9a15-105e98bf09ea">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <Upgrade Id="B5F944C9-7C62-47E0-A007-0853774A6D23">
+      <UpgradeVersion OnlyDetect="yes" Minimum="1.0.0.0" IncludeMinimum="yes" Maximum="$(var.CurrentVersion)" IncludeMaximum="no" Property="PREVIOUSFOUND" Language="1049" IgnoreRemoveFailure="yes" />
+    </Upgrade>
+
+    <MajorUpgrade Schedule="afterInstallInitialize" DowngradeErrorMessage="Более новая версия уже установлена!" />
+    <MediaTemplate EmbedCab="yes" />
+
+    <WixVariable Id="WixUIBannersBmp" Value="bmp\installer_banner_wix.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="bmp\installer_background_wix.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="License\License.rtf" />
+
+    <!--Диалоговые окна по ссылкам UI-->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UIRef Id="WixUI_MyInstallDir" />
+
+		<Feature Id="ProductFeature" Title="SetupServiceAutomation" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="CreateLog" />
+      <ComponentRef Id="Clear" />
+    </Feature>
+	</Product>
+
+  <Fragment>
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Component Id="Clear" Guid="4A50996A-8E82-4BB7-8F4D-4910B44913FF">
+        <CreateFolder Directory="INSTALLLOCATION" />
+        <RemoveFile Id="RemoveFileLog" On="uninstall" Name="*.*" Directory="PathLog" />
+        <RemoveFolder Id="RemoveFolderLog" On="uninstall" Directory="PathLog" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="SetupServiceAutomation">
+          <Directory Id="INSTALLLOCATION" />
+        </Directory>
+			</Directory>
+		</Directory>
+	</Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Directory Id="PathLog" Name="Log">
+        <Component Id="CreateLog" Guid="8652EEB7-D4A6-4F30-B05E-3244735116C9">
+          <CreateFolder />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+  </Fragment>
+
+  <Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="ServiceAutomation.exe" Guid="A1A23110-A047-48EB-996F-89C302F3E875">
+        <File Id="ServiceAutomation.exe" Name="ServiceAutomation.exe" Source="$(var.ServiceAutomation_TargetDir)ServiceAutomation.exe" />
+        <ServiceInstall Id="ServiceInstall" Type="ownProcess" Interactive="yes" Vital="yes" Description="Служба Automation для статистики автоматов!!!" Name="ServiceAutomation" Start="auto" ErrorControl="normal" />
+        <ServiceControl Id="ServiceRemove" Name="ServiceAutomation" Start="install" Stop="both" Remove="uninstall" Wait="yes" />
+      </Component>
+
+			<Component Id="ServiceAutomation.exe.config" Guid="140ddd27-1140-4068-8d95-fef1b2ae1135">
+			  <File Id="ServiceAutomation.exe.config" Name="ServiceAutomation.exe.config" Source="$(var.ServiceAutomation_TargetDir)ServiceAutomation.exe.config" />
+			</Component>
+			<Component Id="LibaryXMLAuto.dll" Guid="72092a73-5391-496d-a77f-401348fdc139">
+			  <File Id="LibaryXMLAuto.dll" Name="LibaryXMLAuto.dll" Source="$(var.ServiceAutomation_TargetDir)LibaryXMLAuto.dll" />
+			</Component>
+			<Component Id="EfDatabaseAutomation.dll" Guid="d0ef0a71-e4ab-4629-b537-2f1e0cf31950">
+			  <File Id="EfDatabaseAutomation.dll" Name="EfDatabaseAutomation.dll" Source="$(var.ServiceAutomation_TargetDir)EfDatabaseAutomation.dll" />
+			</Component>
+			<Component Id="Loggers.dll" Guid="775abdc4-0a97-455e-a2ff-e5fee037345d">
+			  <File Id="Loggers.dll" Name="Loggers.dll" Source="$(var.ServiceAutomation_TargetDir)Loggers.dll" />
+			</Component>
+      <Component Id="EntityFramework.SqlServer.dll" Guid="58DFAA52-6FE3-4DC2-8707-C22D587F4C3D">
+        <File Id="EntityFramework.SqlServer.dll" Name="EntityFramework.SqlServer.dll" Source="$(var.ServiceAutomation_TargetDir)EntityFramework.SqlServer.dll" />
+      </Component>
+      <Component Id="EntityFramework.dll" Guid="3A1F9842-A468-473D-B2EB-2AC02197B7A7">
+        <File Id="EntityFramework.dll" Name="EntityFramework.dll" Source="$(var.ServiceAutomation_TargetDir)EntityFramework.dll" />
+      </Component>
+      <Component Id="NLog.dll" Guid="C194AAFE-5DF8-49F0-8170-68C6E2F61833">
+        <File Id="NLog.dll" Name="NLog.dll" Source="$(var.ServiceAutomation_TargetDir)NLog.dll" />
+      </Component>
+      <Component Id="Newtonsoft.Json.dll" Guid="C1585E16-66C2-40B6-BB24-E67EF047AD31">
+        <File Id="Newtonsoft.Json.dll" Name="Newtonsoft.Json.dll" Source="$(var.ServiceAutomation_TargetDir)Newtonsoft.Json.dll" />
+      </Component>
+      <Component Id="ClosedXML.dll" Guid="38F79C1A-1AB5-41EE-A917-625DA4F5ED17">
+        <File Id="ClosedXML.dll" Name="ClosedXML.dll" Source="$(var.ServiceAutomation_TargetDir)ClosedXML.dll" />
+      </Component>
+      <Component Id="DocumentFormat.OpenXml.dll" Guid="7FC9AC2D-A055-4BBF-AB8C-5435B16E6DDF">
+        <File Id="DocumentFormat.OpenXml.dll" Name="DocumentFormat.OpenXml.dll" Source="$(var.ServiceAutomation_TargetDir)DocumentFormat.OpenXml.dll" />
+      </Component>
+      <Component Id="ExcelNumberFormat.dll" Guid="424D8915-F288-435F-8C79-03209757F722">
+        <File Id="ExcelNumberFormat.dll" Name="ExcelNumberFormat.dll" Source="$(var.ServiceAutomation_TargetDir)ExcelNumberFormat.dll" />
+      </Component>
+      <Component Id="FastMember.dll" Guid="DD7C24D0-4998-4316-870B-29343062C3E7">
+        <File Id="FastMember.dll" Name="FastMember.dll" Source="$(var.ServiceAutomation_TargetDir)FastMember.dll" />
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
