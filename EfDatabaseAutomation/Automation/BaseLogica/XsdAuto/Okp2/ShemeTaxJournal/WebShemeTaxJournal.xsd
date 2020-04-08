@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xs:element name="DateIzveshenie" nillable="true">
+	<xs:element name="DateIzveshenie" type="xs:dateTime" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Дата извещения</xs:documentation>
 		</xs:annotation>
-		<xs:simpleType>
-			<xs:restriction base="xs:dateTime"/>
-		</xs:simpleType>
 	</xs:element>
 	<xs:element name="AutoWebPage" type="AutoWebPage">
 		<xs:annotation>
@@ -20,6 +17,7 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element ref="TaxJournalAutoWebPage" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="TaxJournal121AutoWebPage" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxJournalAutoWebPage">
@@ -153,6 +151,105 @@
 	<xs:element name="LogicsButton" type="xs:string" default="Button" nillable="false">
 		<xs:annotation>
 			<xs:documentation>Логика кнопок</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TaxJournal121AutoWebPage">
+		<xs:annotation>
+			<xs:documentation>121 статья</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Id"/>
+				<xs:element ref="IsLk3"/>
+				<xs:element ref="IsMail"/>
+				<xs:element ref="IsPrint"/>
+				<xs:element ref="IsTks"/>
+				<xs:element ref="LogicsButton"/>
+				<xs:element ref="DateIzveshenie"/>
+				<xs:element ref="DataCreate"/>
+				<xs:element ref="DateFinishDeclaration"/>
+				<xs:element ref="DateStartDeclaration"/>
+				<xs:element ref="DateFinishCheck"/>
+				<xs:element ref="DateStartCheck"/>
+				<xs:element ref="RegNumDeclaration"/>
+				<xs:element ref="God"/>
+				<xs:element ref="CounDay"/>
+			</xs:sequence>
+			<xs:attribute name="LoginUser" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Табельный номер пользователя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Fid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Фид</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameFace" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Лицо</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Period">
+				<xs:annotation>
+					<xs:documentation>Отчетный период</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="collapse"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="TypeDocument" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Тип документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Extensions" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Расширение файла</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateFinishDeclaration" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Срок представления декларации</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateStartDeclaration" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата представления декларации</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateFinishCheck" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Срок проверки по регламенту</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateStartCheck" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата начала проверки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="RegNumDeclaration" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Рег. номер декларации</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="God" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CounDay" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Просрочка дней</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

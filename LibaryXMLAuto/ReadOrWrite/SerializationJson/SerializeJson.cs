@@ -1,11 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.Text;
-using LibaryXMLAutoModelXmlAuto.MigrationReport;
-using LibaryXMLAutoModelXmlSql.Model.Trebovanie;
+using Ifns51.ToAis;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -59,5 +54,15 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
         }
+        /// <summary>
+        /// Десереализация Json
+        /// </summary>
+        /// <param name="result">JSON</param>
+        /// <returns></returns>
+        public object JsonDeserializeObject<T>(string result)
+        {
+           return JsonConvert.DeserializeObject<List<T>>(result);
+        }
+
     }
 }

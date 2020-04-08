@@ -125,6 +125,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Okp2\RegisterDeclarations\RegisterDeclarations\FormRegisterDeclarations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Okp2\TaxJournal\TaxJournal\FormTaxJournal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -150,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Orn\ConfirmationNbo\ConfirmationNbo\ConfirmationNbo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\PreCheck\ReportingMemo\ReportingMemo\ReportingMemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -276,6 +284,10 @@
     <Compile Include="Form\Automat\It\Rule\UserControl\RuleParse.xaml.cs">
       <DependentUpon>RuleParse.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\Okp2\RegisterDeclarations\DataContext\DataContextRegisterDeclarations.cs" />
+    <Compile Include="Form\Automat\Okp2\RegisterDeclarations\RegisterDeclarations\FormRegisterDeclarations.xaml.cs">
+      <DependentUpon>FormRegisterDeclarations.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\Okp2\TaxJournal\DataContext\DataContextTaxJournal.cs" />
     <Compile Include="Form\Automat\Okp2\TaxJournal\TaxJournal\FormTaxJournal.xaml.cs">
       <DependentUpon>FormTaxJournal.xaml</DependentUpon>
@@ -304,6 +316,10 @@
       <DependentUpon>ConfirmationNbo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Orn\ConfirmationNbo\DataContext\DataContextConfirmationNbo.cs" />
+    <Compile Include="Form\Automat\PreCheck\ReportingMemo\DataContext\ReportingMemoContext.cs" />
+    <Compile Include="Form\Automat\PreCheck\ReportingMemo\ReportingMemo\ReportingMemo.xaml.cs">
+      <DependentUpon>ReportingMemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\RaschetBudg\Migration\DataContext\MigrationContext.cs" />
     <Compile Include="Form\Automat\RaschetBudg\Migration\Migration\Migration.xaml.cs">
       <DependentUpon>Migration.xaml</DependentUpon>
@@ -442,7 +458,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ExcelReport\" />
-    <Folder Include="Form\Automat\Predproverka\" />
     <Folder Include="PdfReport\" />
     <Folder Include="XmlFile\" />
     <Folder Include="XmlJurnal\" />

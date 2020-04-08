@@ -17,7 +17,7 @@ namespace AutomatAis3Full.Form.Automat.RaschetBudg.VedRazd1.DataContext
             Select.SelectViborVedomosty();
             var ved1 = new  StartVedomost1();
             Start = new StatusButtonMethod();
-            Start.Button.Command = new DelegateCommand(()=> { ved1.AutoClicsVed1(Start,Select, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
+            Start.Button.Command = new DelegateCommand(()=> { ved1.AutoClicsVed1(Start, Select, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
         }
     }
 }

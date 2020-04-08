@@ -113,7 +113,11 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             return result;
         }
 
-
+        /// <summary>
+        /// Поиск всех дочерних элементов
+        /// </summary>
+        /// <param name="element">Элемент</param>
+        /// <returns></returns>
         public AutomationElementCollection SelectAutomationColrction(AutomationElement element)
         {
            return element.FindAll(TreeScope.Children, Condition.TrueCondition);
@@ -134,6 +138,35 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             catch
             {
                 // ignored
+            }
+        }
+
+        private string DefaultActionPattern(AutomationElement element)
+        {
+            if (element != null)
+            {
+                element.SetFocus();
+                if (element.TryGetCurrentPattern(LegacyIAccessiblePatternIdentifiers.Pattern, out var patternObj))
+                {
+                    var valuePattern = (LegacyIAccessiblePattern)patternObj;
+                    return valuePattern.Current.DefaultAction;
+                }
+            }
+            return null;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nameAutomationId"></param>
+        public void IsExpandOpen(string nameAutomationId)
+        {
+            if (IsEnableElements(nameAutomationId)!=null)
+            {
+                var expand = DefaultActionPattern(FindElement);
+                if(expand == "Expand")
+                {
+                    InvokePattern(FindElement);
+                }
             }
         }
 
@@ -185,6 +218,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                 if (isEnable)
                 {
                     AutoItX.Send(string.Format(ButtonConstant.UpCountClick, 1));
+                    AutoItX.Sleep(500);
                     isDown = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
                     if (isDown != isUp)
                     {
@@ -199,6 +233,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                 else
                 {
                     AutoItX.Send(string.Format(ButtonConstant.DownCountClick, 1));
+                    AutoItX.Sleep(500);
                     isUp = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
                     if (isDown != isUp)
                     {
@@ -213,12 +248,39 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             }
         }
         /// <summary>
+        /// Эта функция для Выявления максимального года в ComboBox
+        /// </summary>
+        /// <param name="automationElement">Элемент  ComboBox</param>
+        /// <returns>Максимальный год</returns>
+        public int SelectItemComboboxMaxYear(AutomationElement automationElement)
+        {
+            automationElement.SetFocus();
+            var isExit =Convert.ToInt32(ParseElementLegacyIAccessiblePatternIdentifiers(automationElement));
+            var isUp = 0;
+            while (true)
+            {
+                if (isExit == isUp)
+                {
+                    return isExit;
+                }
+                if (isExit < DateTime.Now.Year)
+                {
+                    isExit = Convert.ToInt32(ParseElementLegacyIAccessiblePatternIdentifiers(automationElement));
+                    AutoItX.Send(string.Format(ButtonConstant.UpCountClick, 1));
+                    AutoItX.Sleep(500);
+                    isUp = Convert.ToInt32(ParseElementLegacyIAccessiblePatternIdentifiers(automationElement));
+                }
+            }
+        }
+
+        /// <summary>
         /// Получить значение элемента из патерна LegacyIAccessiblePatternIdentifiers
         /// </summary>
         public string ParseElementLegacyIAccessiblePatternIdentifiers(AutomationElement element)
         {
             if (element != null)
             {
+                element.SetFocus();
                 if (element.TryGetCurrentPattern(LegacyIAccessiblePatternIdentifiers.Pattern, out var patternObj))
                 {
                     var valuePattern = (LegacyIAccessiblePattern)patternObj;
@@ -227,6 +289,24 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             }
             return null;
         }
+
+        /// <summary>
+        /// Получить значение элемента из патерна LegacyIAccessiblePatternIdentifiers
+        /// </summary>
+        public string ParseValuePattern(AutomationElement element)
+        {
+            if (element != null)
+            {
+                element.SetFocus();
+                if (element.TryGetCurrentPattern(ValuePattern.Pattern, out var patternObj))
+                {
+                    var valuePattern = (ValuePattern)patternObj;
+                    return valuePattern.Current.Value;
+                }
+            }
+            return null;
+        }
+
         /// <summary>
         /// Получение цвета элемента пикселя
         /// </summary>
@@ -279,16 +359,17 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="nameAutomationId">Поиск элемента</param>
         /// <param name="auto">Есть ли элемент</param>
         /// <param name = "isSubtree" >Искать в Subtree последний элемент</param>
+        /// <param name="numClicks">Количество нажатий</param>
         /// <param name="countSecond">Количество обращений к элементу</param>
         /// <param name="x">Координата смещения если не ловит элемент</param>
         /// <param name="y">Координата смещения если не ловит элемент</param>
-        public bool ClickElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,int countSecond = 25,int x = 0,int y = 0)
+        public bool ClickElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false, int countSecond = 25,int x = 0,int y = 0, int numClicks = 1)
         {
             var isClicks = false;
             if (IsEnableElements(nameAutomationId, auto, isSubtree, countSecond) != null)
             {
                 var clickPoint = FindElement.GetClickablePoint();
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint.X + x, (int)clickPoint.Y + y);
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint.X + x, (int)clickPoint.Y + y,numClicks);
                 isClicks = true;
             }
             return isClicks;

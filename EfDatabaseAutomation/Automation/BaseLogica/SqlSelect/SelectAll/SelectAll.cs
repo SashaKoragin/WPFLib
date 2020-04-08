@@ -28,8 +28,20 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
         {
             SerializeJson serializeJson = new SerializeJson();
             var webPage = new AutoWebPage();
-            var result = Automation.Database.SqlQuery<TaxJournalAutoWebPage>(sqlSelect.SelectUser).ToArray();
-            webPage.TaxJournalAutoWebPage = result;
+            object result;
+            switch (sqlSelect.Id)
+            {
+                case 2:
+                    result = Automation.Database.SqlQuery<TaxJournalAutoWebPage>(sqlSelect.SelectUser).ToArray();
+                    webPage.TaxJournalAutoWebPage = (TaxJournalAutoWebPage[])result;
+                    break;
+                case 3:
+                    result = Automation.Database.SqlQuery<TaxJournal121AutoWebPage>(sqlSelect.SelectUser).ToArray();
+                    webPage.TaxJournal121AutoWebPage = (TaxJournal121AutoWebPage[])result;
+                    break;
+                default:
+                    return "Данная комманда не определена!!!";
+            }
             var json = serializeJson.JsonLibary(webPage);
             return json;
         }
@@ -58,6 +70,32 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
             }
             return null;
         }
+        /// <summary>
+        /// Выгрузка документа по 121 статье
+        /// </summary>
+        /// <param name="idFile">Ун файла</param>
+        /// <returns></returns>
+        public Stream LoadFile121(int? idFile)
+        {
+            try
+            {
+                var doc = Automation.TaxJournal121.FirstOrDefault(x => x.Id == idFile);
+                if (doc?.Document != null)
+                {
+                    doc.IsPrint = true;
+                    Automation.Entry(doc).State = EntityState.Modified;
+                    Automation.SaveChanges();
+                    return new MemoryStream(doc.Document);
+                }
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+            }
+            return null;
+        }
+
+
 
         /// <summary>
         /// Dispose

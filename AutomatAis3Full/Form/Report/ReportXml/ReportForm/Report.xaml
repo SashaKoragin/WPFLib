@@ -128,11 +128,17 @@
                     Document="{Binding ReportJurnalAndFile.XmlFile.Document}" />
             </StackPanel>
         </WrapPanel>
-        <Label
+        <WrapPanel  
             Grid.Row="1"
-            Grid.Column="1"
-            Content="{Binding LableModel.MessageReport}"
-            FontSize="24"
-            Foreground="{Binding LableModel.Color}" />
+            Grid.Column="1">
+            <Label FontSize="24" 
+                   Content="{Binding LableModel.MessageReport}" 
+                   Foreground="{Binding LableModel.Color}"></Label>
+            <TextBlock VerticalAlignment="Center" FontSize="24"  Foreground="{Binding LableModel.Color}">
+                <Hyperlink NavigateUri="{Binding LableModel.Url}" RequestNavigate="Hyperlink_Navigate">
+                    <TextBlock FontSize="24" Text="{Binding Path=LableModel.Url}" Foreground="{Binding LableModel.Color}"></TextBlock>
+                </Hyperlink>
+            </TextBlock>
+        </WrapPanel>
     </Grid>
 </UserControl>

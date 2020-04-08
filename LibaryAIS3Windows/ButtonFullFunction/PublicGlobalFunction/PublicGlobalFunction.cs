@@ -58,12 +58,13 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
         /// <param name="searсhPatternElement">Pattern элемент</param>
         public static void WindowElementClick(LibaryAutomations libraryAutomation, string searсhPatternElement)
         {
-            while (true)
+            var isProcess = true;
+            while (isProcess)
             {
-                if (libraryAutomation.IsEnableElements(searсhPatternElement, null, true) != null)
+                if (libraryAutomation.IsEnableElements(searсhPatternElement, null, true,1) != null)
                 {
                     libraryAutomation.ClickElements(searсhPatternElement, null, true);
-                    break;
+                    isProcess = false;
                 }
             }
         }

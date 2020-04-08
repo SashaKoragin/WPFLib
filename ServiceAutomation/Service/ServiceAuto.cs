@@ -46,7 +46,7 @@ namespace ServiceAutomation.Service
         }
 
         /// <summary>
-        /// Выгрузка файла из БД
+        /// Выгрузка 129 файла из БД
         /// </summary>
         /// <param name="numberElement"></param>
         /// <returns></returns>
@@ -55,5 +55,12 @@ namespace ServiceAutomation.Service
             var selectAll = new SelectAll();
             return await Task.Factory.StartNew(() => selectAll.LoadFilePdf(numberElement));
         }
+
+        public async Task<Stream> LoadFileTax121(int numberElement)
+        {
+            var selectAll = new SelectAll();
+            return await Task.Factory.StartNew(() => selectAll.LoadFile121(numberElement));
+        }
+
     }
 }

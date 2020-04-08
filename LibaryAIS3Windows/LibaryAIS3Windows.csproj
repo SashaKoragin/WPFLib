@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AisPoco">
+      <HintPath>C:\Nuget\Ais3Dll\AisPoco.dll</HintPath>
+    </Reference>
     <Reference Include="AutoItX3.Assembly, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a646454c8d475470, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\AutoItX.Dotnet.3.3.14.5\lib\AutoItX3.Assembly.dll</HintPath>
       <Private>True</Private>
@@ -66,11 +69,14 @@
     <Compile Include="AutomationsUI\LibaryAutomations\LibaryAutomations.cs" />
     <Compile Include="AutomationsUI\Otdels\It\ItElementName.cs" />
     <Compile Include="AutomationsUI\Otdels\Okp2\Okp2ElementName.cs" />
+    <Compile Include="AutomationsUI\Otdels\PreCheck\PreCheckElementName.cs" />
     <Compile Include="AutomationsUI\Otdels\RaschetBud\RashetBudElementName.cs" />
     <Compile Include="AutomationsUI\Otdels\Registration\RegistrationElementName.cs" />
     <Compile Include="AutomationsUI\Otdels\Uregulirovanie\UregulirovanieElementName.cs" />
     <Compile Include="AutomationsUI\PublicElement\PublicElementName.cs" />
     <Compile Include="ButtonFullFunction\Okp2Function\Okp2GlobalFunction.cs" />
+    <Compile Include="ButtonFullFunction\PreCheck\DataBaseElementAdd.cs" />
+    <Compile Include="ButtonFullFunction\PreCheck\PreCheckFunction.cs" />
     <Compile Include="ButtonFullFunction\PublicGlobalFunction\PublicGlobalFunction.cs" />
     <Compile Include="ButtonsClikcs\ButtonConstant.cs" />
     <Compile Include="ButtonsClikcs\ClikcCheker\Cheker.cs" />
@@ -82,6 +88,7 @@
     <Compile Include="ExitLogica\ExitClass.cs" />
     <Compile Include="ExitLogica\ExitTaskFull\Proverka.cs" />
     <Compile Include="Function\PublicFunc\PublicFunc.cs" />
+    <Compile Include="ModelData\PreCheck\ModelData.cs" />
     <Compile Include="Mode\Analitic\Task\TaskZn.cs" />
     <Compile Include="Mode\Okp4\PravoZorI\Pravo.cs" />
     <Compile Include="Mode\Okp4\PrintSnu\PrintSnuControl.cs" />

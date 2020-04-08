@@ -11,11 +11,22 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
    public class Okp2GlobalFunction
     {
         /// <summary>
+        /// Ткс
+        /// </summary>
+        public bool IsTks { get; set; }
+        /// <summary>
+        /// Mail
+        /// </summary>
+        public bool IsMail { get; set; }
+        /// <summary>
+        /// Лк3
+        /// </summary>
+        public bool IsLk3 { get; set; }
+        /// <summary>
         /// Автоматизация глобального блока надо добавить сохранение
         /// </summary>
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
-        /// <param name="taxJournal">Журнал для ведения в БД</param>
-        public void SignAndSendDoc(LibaryAutomations libraryAutomation, ref TaxJournal taxJournal)
+        public void SignAndSendDoc(LibaryAutomations libraryAutomation)
         {
             AutoItX.WinWait(Okp2ElementName.ViewName);
             AutoItX.WinActivate(Okp2ElementName.ViewName);
@@ -75,11 +86,11 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
                 {
                     var auto = libraryAutomation.FindElement;
                     libraryAutomation.IsEnableElements(Okp2ElementName.Tks, auto);
-                    taxJournal.IsTks = libraryAutomation.FindElement.Current.IsEnabled;
+                    IsTks = libraryAutomation.FindElement.Current.IsEnabled;
                     libraryAutomation.IsEnableElements(Okp2ElementName.Mail, auto);
-                    taxJournal.IsMail = libraryAutomation.FindElement.Current.IsEnabled;
+                    IsMail = libraryAutomation.FindElement.Current.IsEnabled;
                     libraryAutomation.IsEnableElements(Okp2ElementName.Lk3, auto);
-                    taxJournal.IsLk3 = libraryAutomation.FindElement.Current.IsEnabled;
+                    IsLk3 = libraryAutomation.FindElement.Current.IsEnabled;
                     while (true)
                     {
                         if (libraryAutomation.IsEnableElements(Okp2ElementName.Close, null, true) != null)
@@ -122,6 +133,25 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
                 stream.Read(byteFile, 0, byteFile.Length);
              }
              taxJournal.Document = byteFile;
+        }
+
+        /// <summary>
+        /// Добавление файлов в Журнал
+        /// </summary>
+        /// <param name="taxJournal121">Журнал</param>
+        /// <param name="pathPdfTemp">Путь к файлу</param>
+        public void AddFile(ref TaxJournal121 taxJournal121, string pathPdfTemp)
+        {
+            var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathPdfTemp, "*.pdf");
+            taxJournal121.Mime = "application/pdf";
+            taxJournal121.Extensions = file.ExtensionsFile;
+            byte[] byteFile;
+            using (FileStream stream = new FileStream(file.NamePath, FileMode.Open))
+            {
+                byteFile = new byte[stream.Length];
+                stream.Read(byteFile, 0, byteFile.Length);
+            }
+            taxJournal121.Document = byteFile;
         }
     }
 }

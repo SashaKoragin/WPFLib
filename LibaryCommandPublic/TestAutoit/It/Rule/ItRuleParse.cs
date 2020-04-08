@@ -37,11 +37,11 @@ namespace LibaryCommandPublic.TestAutoit.It.Rule
                     clickerButton.Click15(statusButton,pathjurnalok, dataPickerSettings);
                     DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                   }
-                else
-                {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
-                }
-            });
+                  else
+                  {
+                      MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                  }
+              });
             }
         }
     }

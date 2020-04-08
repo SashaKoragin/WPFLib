@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,12 @@ namespace AutomatAis3Full.Form.Report.ReportXml.ReportForm
         {
             InitializeComponent();
             DataContext = new DataContext.DataContextReport();
+        }
+
+        private void Hyperlink_Navigate(object sender, RequestNavigateEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
         }
     }
 }

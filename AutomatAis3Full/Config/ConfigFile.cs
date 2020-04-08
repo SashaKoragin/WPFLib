@@ -25,6 +25,7 @@ namespace AutomatAis3Full.Config
         public static string Ifns = ConfigurationManager.AppSettings["Ifns"];
         public static string Help = ConfigurationManager.AppSettings["Help"];
         public static string WebSite = ConfigurationManager.AppSettings["WebSite"];
+        public static string ServiceGetOrPost = ConfigurationManager.AppSettings["ServiceGetOrPost"];
         /// <summary>
         /// Строка соединения с нашей БД
         /// </summary>

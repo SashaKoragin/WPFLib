@@ -9,6 +9,7 @@ using System.ServiceProcess;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
+using LibaryXMLAuto.ModelServiceWcfCommand.ModelPathReport;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using LibaryXMLAutoModelXmlAuto.MigrationReport;
 using ViewModelLib.ModelTestAutoit.PublicModel.LableAndErrorModel;
@@ -67,7 +68,9 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
                     {
                         XmlConvert xmlconverter = new XmlConvert();
                         var reports =(MigrationParse)xmlconverter.DeserializationXmlToClass(reportjurnal.XmlFile.Path, typeof(MigrationParse));
-                        model.MessageReport = (string)ResultPost(serverReport, reports);
+                        var report =  (ModelPathReport)ResultPost(serverReport, reports);
+                        model.MessageReport = report.Note;
+                        model.Url = report.Url;
                         model.Color = Brushes.Green;
                         return;
                     }
@@ -103,7 +106,9 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
                     {
                         XmlConvert xmlconverter = new XmlConvert();
                         var reports = (UserRules) xmlconverter.DeserializationXmlToClass(reportjurnal.XmlFile.Path, typeof(UserRules));
-                        model.MessageReport = (string)ResultPost(serverReport,reports);
+                        var report = (ModelPathReport)ResultPost(serverReport,reports);
+                        model.MessageReport = report.Note;
+                        model.Url = report.Url;
                         model.Color = Brushes.Green;
                         return;
                     }
@@ -128,8 +133,9 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
         /// <returns></returns>
         private object ResultPost(string serviceadress, object requesttype)
         {
-            string resultserver = null;
-            var js = new SerializeJson().JsonLibary(requesttype);
+            string resultServer;
+            var json = new SerializeJson();
+            var js = json.JsonLibary(requesttype);
             var body = Encoding.UTF8.GetBytes(js);
             var request = (HttpWebRequest) WebRequest.Create(serviceadress);
             request.Method = "POST";
@@ -143,9 +149,9 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
             WebResponse response = request.GetResponse();
             using (StreamReader rdr = new StreamReader(response.GetResponseStream()))
             {
-                resultserver = rdr.ReadToEnd();
+                resultServer = rdr.ReadToEnd();
             }
-            return resultserver;
+            return json.JsonDeserializeObject<ModelPathReport>(resultServer);
         }
     }
 }

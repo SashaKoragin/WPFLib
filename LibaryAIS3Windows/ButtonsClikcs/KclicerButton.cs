@@ -7,9 +7,11 @@ using LibaryAIS3Windows.Window.Otdel.Analitic.TeskText;
 using AutoIt;
 using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb;
+using Ifns51.ToAis;
 using LibaryAIS3Windows.AutomationsUI.LibaryAutomations;
 using LibaryAIS3Windows.AutomationsUI.Otdels.It;
 using LibaryAIS3Windows.AutomationsUI.Otdels.Okp2;
+using LibaryAIS3Windows.AutomationsUI.Otdels.PreCheck;
 using LibaryAIS3Windows.AutomationsUI.Otdels.RaschetBud;
 using LibaryAIS3Windows.AutomationsUI.Otdels.Registration;
 using LibaryAIS3Windows.AutomationsUI.Otdels.Uregulirovanie;
@@ -40,6 +42,7 @@ using ViewModelLib.ModelTestAutoit.PublicModel.DataPickerItRule;
 using LibaryAIS3Windows.ButtonFullFunction.Okp2Function;
 using LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction;
 using ViewModelLib.ModelTestAutoit.PublicModel.ModelDatePickerAdd;
+using LibaryAIS3Windows.ButtonFullFunction.PreCheck;
 
 namespace LibaryAIS3Windows.ButtonsClikcs
 {
@@ -2298,7 +2301,7 @@ namespace LibaryAIS3Windows.ButtonsClikcs
             var rowNumber = 1;
             libraryAutomation.ClickElements(Okp2ElementName.UpdateData);
             AutomationElement automationElement;
-            while ((automationElement = libraryAutomation.IsEnableElements(string.Concat(Okp2ElementName.AllTaxJournal, rowNumber), null, true, 50)) != null)
+            while ((automationElement = libraryAutomation.IsEnableElements(string.Concat(Okp2ElementName.AllTaxJournal, rowNumber), null, false, 50)) != null)
             {
                 var taxFace = new TaxJournal();
                 if (statusButton.Iswork)
@@ -2428,7 +2431,10 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                                         break;
                                     }
                                 }
-                                globalFunction.SignAndSendDoc(libraryAutomation, ref taxFace);
+                                globalFunction.SignAndSendDoc(libraryAutomation);
+                                taxFace.IsLk3 = globalFunction.IsLk3;
+                                taxFace.IsMail = globalFunction.IsMail;
+                                taxFace.IsTks = globalFunction.IsTks;
                                 globalFunction.SendJournalClose();
                                 taxFace.MessageInfo = "Извещение успешно выставлено!!!";
                                 taxFace.TypeDocument = "Извещение";
@@ -2466,7 +2472,10 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                                             break;
                                         }
                                     }
-                                    globalFunction.SignAndSendDoc(libraryAutomation, ref taxFace);
+                                    globalFunction.SignAndSendDoc(libraryAutomation);
+                                    taxFace.IsLk3 = globalFunction.IsLk3;
+                                    taxFace.IsMail = globalFunction.IsMail;
+                                    taxFace.IsTks = globalFunction.IsTks;
                                     WindowsAis3 win = new WindowsAis3();
                                     AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
                                     AutoItX.Sleep(1000);
@@ -2484,7 +2493,10 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                             libraryAutomation.ClickElements(Okp2ElementName.OpenComplex, null, true);
                             PublicGlobalFunction.WindowElementClick(libraryAutomation, Okp2ElementName.EditTask);
                             PublicGlobalFunction.WindowElementClick(libraryAutomation, Okp2ElementName.SignAll);
-                            globalFunction.SignAndSendDoc(libraryAutomation, ref taxFace);
+                            globalFunction.SignAndSendDoc(libraryAutomation);
+                            taxFace.IsLk3 = globalFunction.IsLk3;
+                            taxFace.IsMail = globalFunction.IsMail;
+                            taxFace.IsTks = globalFunction.IsTks;
                             globalFunction.SendJournalClose();
                             taxFace.MessageInfo = "Акт успешно выставлен!!!";
                             taxFace.TypeDocument = "Акт";
@@ -2508,5 +2520,265 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                 rowNumber++;
             }
         }
-    }
+        /// <summary>
+        /// Налоговое администрирование\Контрольная работа (налоговые проверки)\121. Камеральная налоговая проверка\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
+        /// </summary>
+        /// <param name="statusButton">Кнопка Старт</param>
+        /// <param name="pathPdfTemp">Путь к Temp</param>
+        /// <param name="datePicker">Дата вызова плательщика</param>
+        public void Click28(StatusButtonMethod statusButton, string pathPdfTemp, DatePickerAdd datePicker)
+        {
+            Okp2GlobalFunction globalFunction = new Okp2GlobalFunction();
+            LibaryAutomations libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
+            LibaryAutomations libraryAutomationDoc = new LibaryAutomations(WindowsAis3.AisNalog3);
+            var rowNumber = 1;
+            libraryAutomation.ClickElements(Okp2ElementName.UpdateData121);
+            AutomationElement automationElement;
+            while ((automationElement =libraryAutomation.IsEnableElements(string.Concat(Okp2ElementName.AllTaxJournal, rowNumber), null,true, 50)) != null)
+            {
+                var journal = new TaxJournal121();
+                if (statusButton.Iswork)
+                {
+                    automationElement.SetFocus();
+                    AutoItX.Sleep(1000);
+                    journal.LoginUser = Environment.UserName;
+                    journal.RegNumDeclaration = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Рег. номер декларации (расчета)"))));
+                    journal.Period = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                         .SelectAutomationColrction(automationElement)
+                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный период")));
+                    journal.God = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                         .SelectAutomationColrction(automationElement)
+                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный год"))));
+                    journal.Fid = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ФИД НП")));
+                    journal.NameFace = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Налогоплательщик")));
+                   journal.Inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                         .SelectAutomationColrction(automationElement)
+                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
+                    journal.IdComplex = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                         .SelectAutomationColrction(automationElement)
+                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН комплекса"))));
+                    journal.DateStartCheck = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                         .SelectAutomationColrction(automationElement)
+                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата начала проверки"))));
+                    journal.DateFinishCheck = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                         .SelectAutomationColrction(automationElement)
+                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Срок проверки по регламенту"))));
+                    journal.DateStartDeclaration = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                         .SelectAutomationColrction(automationElement)
+                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата представления декларации"))));
+                    journal.DateFinishDeclaration = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                         .SelectAutomationColrction(automationElement)
+                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Срок  представления декларации"))));
+                    var status = libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name == "").ToList();
+
+                    journal.GlobalColor = libraryAutomationDoc.GetColorPixel(status[1]);
+                    journal.GlobalProcessColor = libraryAutomationDoc.GetColorPixel(status[2]);
+                    //Поиск и нажатие на Исходящие документы
+                    var panel = libraryAutomation.SelectAutomationColrction(libraryAutomation.IsEnableElements(Okp2ElementName.PanelDoc)).Cast<AutomationElement>().ToArray(); ;
+                    if(libraryAutomation.IsEnableElements(Okp2ElementName.IshDoc, panel[1], false, 1) != null)
+                    {
+                        libraryAutomation.ClickElements(Okp2ElementName.IshDoc, panel[1], false, 1);
+                    }
+                    var listDocMemo = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindFirstElement(Okp2ElementName.JournalIsh, panel[1])).Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("select0 row")).ToArray();
+                    
+                    //Если нету выставляем Акт
+                    if (!listDocMemo.Any())
+                    {
+                        journal.ColorDoc = null;
+                        if(journal.GlobalProcessColor == "ffffff")
+                        {
+                            PublicGlobalFunction.WindowElementClick(libraryAutomation, Okp2ElementName.StartKnp);
+
+                        }
+                        else
+                        {
+                            PublicGlobalFunction.WindowElementClick(libraryAutomation, Okp2ElementName.OpenKnp);
+                        }
+                        while (true)
+                        {
+                            if (libraryAutomation.IsEnableElements(Okp2ElementName.ClosedKnp,null,false,10) != null){
+                                libraryAutomation.ClickElements(Okp2ElementName.ClosedKnp, null, true);
+                                AutoItX.WinWait(Okp2ElementName.EditWindows);
+                                AutoItX.WinActivate(Okp2ElementName.EditWindows);
+                                LibaryAutomations libraryAutomationSign = new LibaryAutomations(Okp2ElementName.EditWindows);
+                                while (true)
+                                {
+                                    if (libraryAutomationSign.IsEnableElements(Okp2ElementName.DateFinish, null, true) != null)
+                                    {
+                                        libraryAutomationSign.FindFirstElement(Okp2ElementName.DateFinish);
+
+                                        libraryAutomationSign.SelectItemCombobox(libraryAutomationSign.IsEnableElements(Okp2ElementName.ComboBoxError), "Выявлены нарушения");
+                                        PublicGlobalFunction.WindowElementClick(libraryAutomationSign, Okp2ElementName.OkEdit);
+                                        PublicGlobalFunction.WindowElementClick(libraryAutomationSign, Okp2ElementName.WarningOk);
+                                        AutoItX.Sleep(1000);
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                        PublicGlobalFunction.WindowElementClick(libraryAutomation, Okp2ElementName.AktNo);
+                        PublicGlobalFunction.WindowElementClick(libraryAutomation, Okp2ElementName.Established);
+                        libraryAutomation.FindFirstElement(Okp2ElementName.EstablishedNote);
+                        libraryAutomation.SetValuePattern(string.Format(Okp2ElementName.Template, journal.Period, journal.God, journal.DateFinishDeclaration?.ToString("dd.MM.yyyy"), journal.DateStartDeclaration?.ToString("dd.MM.yyyy")));
+                        PublicGlobalFunction.WindowElementClick(libraryAutomation, Okp2ElementName.SaveAktNo);
+                        PublicGlobalFunction.WindowElementClick(libraryAutomation, Okp2ElementName.SignAktNo);
+                        globalFunction.SignAndSendDoc(libraryAutomation);
+                        journal.IsLk3 = globalFunction.IsLk3;
+                        journal.IsMail = globalFunction.IsMail;
+                        journal.IsTks = globalFunction.IsTks;
+                        globalFunction.SendJournalClose();
+                        journal.MessageInfo = "Акт успешно выставлен!!!";
+                        journal.TypeDocument = "Акт";
+                        globalFunction.AddFile(ref journal, pathPdfTemp);
+                        var dbAutomation = new AddObjectDb();
+                        dbAutomation.AddTaxJournal121(journal);
+                    }
+                    else
+                    {
+                        var isAct = listDocMemo.FirstOrDefault(doc =>
+                                 libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>()
+                                                 .First(elem => elem.Current.Name.Contains("КНД"))) == "1160098");
+
+                        var isIzvestia = listDocMemo.FirstOrDefault(doc =>
+                                          libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                            libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>()
+                                       .First(elem => elem.Current.Name.Contains("КНД"))) == "1160099");
+
+                        if (isAct != null && isIzvestia == null)
+                        {
+                            var documentStatus = libraryAutomationDoc.SelectAutomationColrction(isAct).Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name == "").ToList();
+                            journal.ColorDoc = libraryAutomationDoc.GetColorPixel(documentStatus[0]);
+
+                            if (journal.ColorDoc== "ffff00"|| journal.ColorDoc == "8000")
+                            {
+                                //Выставляем извещение
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation, Okp2ElementName.OpenKnp);
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation, Okp2ElementName.IzveshenieActNo);
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation, Okp2ElementName.ButtonSved);
+                                while (true)
+                                {
+                                    if (libraryAutomation.IsEnableElements(Okp2ElementName.NumKabinet, null, true) != null)
+                                    {
+                                        libraryAutomation.FindFirstElement(Okp2ElementName.NumKabinet);
+                                        libraryAutomation.SetValuePattern("366.2");
+                                        libraryAutomation.ClickElements(Okp2ElementName.AddButton);
+                                        AutoItX.WinWait(Okp2ElementName.DateTime);
+                                        AutoItX.WinActivate(Okp2ElementName.DateTime);
+                                        while (true)
+                                        {
+                                            if (libraryAutomation.IsEnableElements(Okp2ElementName.WindowDateTime, null, true) != null)
+                                            {
+                                                journal.DateIzveshenie = datePicker.Date;
+                                                libraryAutomation.SetValuePattern(datePicker.Date.ToString("dd.MM.yy"));
+                                                libraryAutomation.FindFirstElement(Okp2ElementName.WindowHours);
+                                                libraryAutomation.SetValuePattern("10");
+                                                libraryAutomation.FindFirstElement(Okp2ElementName.WindowsOk);
+                                                libraryAutomation.InvokePattern(libraryAutomation.FindElement);
+                                                break;
+                                            }
+                                        }
+                                        break;
+                                    }
+                                }
+                                while (true)
+                                {
+                                    if (libraryAutomation.IsEnableElements(Okp2ElementName.FaceName, null, true) != null)
+                                    {
+                                        libraryAutomation.ClickElements(Okp2ElementName.FaceName, null, true);
+                                        libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(Okp2ElementName.FaceNameSign), "Лобачев А. А.");
+                                        PublicGlobalFunction.WindowElementClick(libraryAutomation, Okp2ElementName.Save);
+                                        PublicGlobalFunction.WindowElementClick(libraryAutomation, Okp2ElementName.SignAll);
+                                        break;
+                                    }
+                                }
+                                //Документ сохранить
+                                globalFunction.SignAndSendDoc(libraryAutomation);
+                                journal.IsLk3 = globalFunction.IsLk3;
+                                journal.IsMail = globalFunction.IsMail;
+                                journal.IsTks = globalFunction.IsTks;
+                                globalFunction.SendJournalClose();
+                                journal.MessageInfo = "Извещение успешно выставлено!!!";
+                                journal.TypeDocument = "Извещение";
+                                globalFunction.AddFile(ref journal, pathPdfTemp);
+                                var dbAutomation = new AddObjectDb();
+                                dbAutomation.AddTaxJournal121(journal);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    break;
+                }
+                rowNumber++;
+            }
+        }
+
+        /// <summary>
+        /// Парсер данных для докладной записки по параметрам
+        /// </summary>
+        /// <param name="statusButton">Статус кнопка</param>
+        /// <param name="srvToLoad">Модель с сервера</param>
+        /// <param name="serviceGetOrPost">Запросы на сервер</param>
+        public void Click29(StatusButtonMethod statusButton, List<SrvToLoad> srvToLoad,string serviceGetOrPost)
+        {
+            var function = new PreCheckFunction();
+            LibaryAutomations libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
+            libraryAutomation.IsExpandOpen(PreCheckElementName.TreeInnExpand1);
+            libraryAutomation.IsExpandOpen(PreCheckElementName.TreeInnExpand2);
+            libraryAutomation.IsExpandOpen(PreCheckElementName.TreeInnExpand3);
+            libraryAutomation.IsExpandOpen(PreCheckElementName.TreeInnExpand4);
+            libraryAutomation.IsExpandOpen(PreCheckElementName.TreeInnExpand5);
+            libraryAutomation.IsExpandOpen(PreCheckElementName.TreeInnExpand6);
+            libraryAutomation.IsExpandOpen(PreCheckElementName.TreeInnExpand7);
+            libraryAutomation.IsExpandOpen(PreCheckElementName.TreeInnExpand8);
+            libraryAutomation.IsExpandOpen(PreCheckElementName.TreeInnExpand9);
+            libraryAutomation.IsExpandOpen(PreCheckElementName.TreeInnExpand10);
+            foreach(var model in srvToLoad)
+            {
+                var sw = model.Tree.Split('\\').Last();
+                switch (sw)
+                {
+                    case "1.01. Идентификационные характеристики организации":
+                       function.ParseDataBase(statusButton, libraryAutomation, model.N134, PreCheckElementName.TreeNoUl, PreCheckElementName.GridJournal, string.Concat(PreCheckElementName.TreeInnDataArea, 7),  PreCheckElementName.UpdateIdentUl, PreCheckElementName.FiltersGrid, model.Tree, serviceGetOrPost);
+                       break;
+                    case "1.03. Сведения об учете организации в НО":
+                       function.ParseDataBase(statusButton,libraryAutomation, model.N134, PreCheckElementName.TreeInnKey, PreCheckElementName.GridJournal, string.Concat(PreCheckElementName.TreeInnDataArea,3), PreCheckElementName.Update, PreCheckElementName.FiltersGrid, model.Tree, serviceGetOrPost);
+                       break;
+                   case "1.12. Сведения о филиалах, представительствах, иных обособленных подразделениях":
+                       function.ParseDataBase(statusButton, libraryAutomation, model.N134, PreCheckElementName.DataFil, PreCheckElementName.GridJournal, string.Concat(PreCheckElementName.TreeInnDataArea, 2), PreCheckElementName.UpdateHistoryFil, PreCheckElementName.FiltersGrid, model.Tree, serviceGetOrPost);
+                       break;
+                   case "1.18. Сведения об объектах собственности российской организации – имущество":
+                       function.ParseDataBase(statusButton, libraryAutomation, model.N134, PreCheckElementName.UlIm, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 5), PreCheckElementName.UpdateDataUlIm, PreCheckElementName.FiltersIm, model.Tree, serviceGetOrPost);
+                       break;
+                   case "1.19. Сведения об объектах собственности российской организации – земля":
+                       function.ParseDataBase(statusButton, libraryAutomation, model.N134, PreCheckElementName.UlZm, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 5), PreCheckElementName.UpdateDataUlZm, PreCheckElementName.FiltersIm, model.Tree, serviceGetOrPost);
+                       break;
+                   case "1.20. Сведения об объектах собственности российской организации – транспорт":
+                       function.ParseDataBase(statusButton, libraryAutomation, model.N134, PreCheckElementName.UlTr, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 6), PreCheckElementName.UpdateDataUlTr, PreCheckElementName.FiltersIm, model.Tree, serviceGetOrPost);
+                       break;
+                   case "2.02. История изменений сведений об учете организации в НО":
+                       function.ParseDataBase(statusButton, libraryAutomation, model.N134, PreCheckElementName.History, PreCheckElementName.GridJournal, string.Concat(PreCheckElementName.TreeInnDataArea, 3), PreCheckElementName.UpdateHistory, PreCheckElementName.FiltersGrid, model.Tree, serviceGetOrPost);
+                       break;
+                   case "Сведения о среднесписочной численности работников":
+                       function.ParseDataBase(statusButton, libraryAutomation, model.N134, PreCheckElementName.UlYerFace, PreCheckElementName.GridJournalSvedFace, string.Concat(PreCheckElementName.DataAreaSvedFaceFull, 8), PreCheckElementName.UpdateYerFace, PreCheckElementName.FiltersGridSvedFace, model.Tree, serviceGetOrPost);
+                       break;
+                   case "01. Картотека счетов РО, ИО, ИП":
+                       function.ParseDataBase(statusButton, libraryAutomation, model.N134, PreCheckElementName.CashUl, PreCheckElementName.GridJournalCash, string.Concat(PreCheckElementName.DataAreaCashFull, 3), PreCheckElementName.UpdateCashFace, PreCheckElementName.FiltersCash, model.Tree, serviceGetOrPost);
+                       break;
+                   case "7. Индивидуальные карточки налогоплательщиков":
+                       function.IndividualCards(statusButton, libraryAutomation, model.N134, PreCheckElementName.CardPpa, PreCheckElementNameIndividualCards.GridJournalCard, string.Concat(PreCheckElementNameIndividualCards.DataAreaCard, 5), PreCheckElementNameIndividualCards.UpdateCashFaceCard, PreCheckElementNameIndividualCards.GridFiltersCard, model.Tree, serviceGetOrPost);
+                       break;
+                }
+            }
+        }
 }
+    }

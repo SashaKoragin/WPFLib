@@ -25,6 +25,16 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
             Automation.TaxJournals.Add(journal);
             Automation.SaveChanges();
         }
+        /// <summary>
+        /// Добавление файла 121
+        /// </summary>
+        /// <param name="journal"></param>
+        public void AddTaxJournal121(TaxJournal121 journal)
+        {
+            journal.IsPrint = false;
+            Automation.TaxJournal121.Add(journal);
+            Automation.SaveChanges();
+        }
 
         /// <summary>
         /// Поиск извещений в БД таблице

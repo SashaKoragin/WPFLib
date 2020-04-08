@@ -48,5 +48,15 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadFileTaxJournal", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<Stream> LoadFileTaxJournal(int numberElement);
+
+        /// <summary>
+        /// Выгрузка файла для ОКП 2 121 статья
+        /// http://localhost:8050/ServiceAutomation/LoadFileTax121
+        /// </summary>
+        /// <param name="numberElement">Запрос</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadFileTax121", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> LoadFileTax121(int numberElement);
     }
 }

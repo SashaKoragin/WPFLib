@@ -10,8 +10,18 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.LableAndErrorModel
 {
    public class LableModel  : BindableBase
    {
-       private Brush _color;
+        private Brush _color;
+        private string _url;
         private string _messageReport;
+        public string Url
+        {
+            get { return _url; }
+            set
+            {
+                _url = value;
+                RaisePropertyChanged();
+            }
+        }
         public string MessageReport
         {
             get { return _messageReport; }

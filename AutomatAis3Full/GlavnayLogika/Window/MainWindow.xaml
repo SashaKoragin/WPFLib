@@ -50,11 +50,13 @@
         </StackPanel>
         <WrapPanel Grid.Row="2"
                    Grid.Column="0"
-                   Grid.ColumnSpan="3">
+                   Grid.ColumnSpan="3" >
         <materialDesign:DrawerHost
+            Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WrapPanel}}, Path=ActualHeight}"
             IsLeftDrawerOpen="{Binding FullWindow.IsCheck}">
             <materialDesign:DrawerHost.LeftDrawerContent>
-                <ScrollViewer PreviewMouseWheel="UIElement_OnMouseWheel" VerticalScrollBarVisibility="Auto">
+                <ScrollViewer 
+                    PreviewMouseWheel="UIElement_OnMouseWheel" VerticalScrollBarVisibility="Auto">
                     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                         <StackPanel>
                             <ToggleButton
@@ -85,7 +87,9 @@
         </materialDesign:DrawerHost>
             <UserControl
                 Margin="5,5,5,5"
-                Content="{Binding ElementName=TreeView, Path=SelectedItem.UserControl}" />
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                Content="{Binding ElementName=TreeView, Path=SelectedItem.UserControl}"  />
         </WrapPanel>
         <materialDesign:ColorZone
             Grid.Row="1"
@@ -104,5 +108,6 @@
                     Text="Автоматы для Аис 3" />
             </DockPanel>
         </materialDesign:ColorZone>
+
     </Grid>
 </Window>

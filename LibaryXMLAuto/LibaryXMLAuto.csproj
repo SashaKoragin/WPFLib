@@ -38,6 +38,9 @@
     <OutputPath>bin\x86\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AisPoco">
+      <HintPath>C:\Nuget\Ais3Dll\AisPoco.dll</HintPath>
+    </Reference>
     <Reference Include="ClosedXML, Version=0.94.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\ClosedXML.0.94.2\lib\net40\ClosedXML.dll</HintPath>
     </Reference>
@@ -76,6 +79,7 @@
       <DependentUpon>SelectUsers.xsd</DependentUpon>
     </Compile>
     <Compile Include="ModelServiceWcfCommand\AngularModel\AngularModel.cs" />
+    <Compile Include="ModelServiceWcfCommand\ModelPathReport\ModelPathReport.cs" />
     <Compile Include="ModelServiceWcfCommand\TestIfnsService\WcfServiiceFull.cs">
       <DependentUpon>WcfServiiceFull.xsd</DependentUpon>
     </Compile>

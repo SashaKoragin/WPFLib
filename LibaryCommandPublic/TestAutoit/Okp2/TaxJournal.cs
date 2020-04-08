@@ -34,11 +34,8 @@ namespace LibaryCommandPublic.TestAutoit.Okp2
                     LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
                     if (ais3.WinexistsAis3() == 1)
                     {
-                        while (statusButton.Iswork)
-                        {
-                            clickerButton.Click27(statusButton,pathJournalOk,pathPdfTemp, datePicker);
-                            DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
-                        }
+                        clickerButton.Click27(statusButton,pathJournalOk,pathPdfTemp, datePicker);
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                     }
                     else
                     {

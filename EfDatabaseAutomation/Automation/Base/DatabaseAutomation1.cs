@@ -29,6 +29,8 @@
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
 
+using Newtonsoft.Json;
+
 namespace EfDatabaseAutomation.Automation.Base
 {
 
@@ -36,11 +38,26 @@ namespace EfDatabaseAutomation.Automation.Base
 
     public interface IAutomation : System.IDisposable
     {
+        System.Data.Entity.DbSet<BranchUlFace> BranchUlFaces { get; set; } // BranchUlFace
+        System.Data.Entity.DbSet<CashBankAllUlFace> CashBankAllUlFaces { get; set; } // CashBankAllUlFace
+        System.Data.Entity.DbSet<CashUlFace> CashUlFaces { get; set; } // CashUlFace
+        System.Data.Entity.DbSet<HistoriUlFace> HistoriUlFaces { get; set; } // HistoriUlFace
+        System.Data.Entity.DbSet<IndividualCardsUlFace> IndividualCardsUlFaces { get; set; } // IndividualCardsUlFace
+        System.Data.Entity.DbSet<IndividualNameParametr> IndividualNameParametrs { get; set; } // IndividualNameParametr
         System.Data.Entity.DbSet<InfoViewAutomation> InfoViewAutomations { get; set; } // InfoViewAutomation
+        System.Data.Entity.DbSet<LandUlFace> LandUlFaces { get; set; } // LandUlFace
         System.Data.Entity.DbSet<LogicsSelectAutomation> LogicsSelectAutomations { get; set; } // LogicsSelectAutomation
+        System.Data.Entity.DbSet<LogPreCheck> LogPreChecks { get; set; } // LogPreCheck
+        System.Data.Entity.DbSet<PropertyUlFace> PropertyUlFaces { get; set; } // PropertyUlFace
+        System.Data.Entity.DbSet<StrngthUlFace> StrngthUlFaces { get; set; } // StrngthUlFace
+        System.Data.Entity.DbSet<SvedAccoutingUlFace> SvedAccoutingUlFaces { get; set; } // SvedAccoutingUlFace
         System.Data.Entity.DbSet<TaxJournal> TaxJournals { get; set; } // TaxJournal
+        System.Data.Entity.DbSet<TaxJournal121> TaxJournal121 { get; set; } // TaxJournal121
+        System.Data.Entity.DbSet<TaxJournal121AutoWebPage> TaxJournal121AutoWebPage { get; set; } // TaxJournal121AutoWebPage
         System.Data.Entity.DbSet<TaxJournalAutoReport> TaxJournalAutoReports { get; set; } // TaxJournalAutoReport
         System.Data.Entity.DbSet<TaxJournalAutoWebPage> TaxJournalAutoWebPages { get; set; } // TaxJournalAutoWebPage
+        System.Data.Entity.DbSet<TransportUlFace> TransportUlFaces { get; set; } // TransportUlFace
+        System.Data.Entity.DbSet<UlFace> UlFaces { get; set; } // UlFace
 
         int SaveChanges();
         System.Threading.Tasks.Task<int> SaveChangesAsync();
@@ -63,11 +80,26 @@ namespace EfDatabaseAutomation.Automation.Base
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class Automation : System.Data.Entity.DbContext, IAutomation
     {
+        public System.Data.Entity.DbSet<BranchUlFace> BranchUlFaces { get; set; } // BranchUlFace
+        public System.Data.Entity.DbSet<CashBankAllUlFace> CashBankAllUlFaces { get; set; } // CashBankAllUlFace
+        public System.Data.Entity.DbSet<CashUlFace> CashUlFaces { get; set; } // CashUlFace
+        public System.Data.Entity.DbSet<HistoriUlFace> HistoriUlFaces { get; set; } // HistoriUlFace
+        public System.Data.Entity.DbSet<IndividualCardsUlFace> IndividualCardsUlFaces { get; set; } // IndividualCardsUlFace
+        public System.Data.Entity.DbSet<IndividualNameParametr> IndividualNameParametrs { get; set; } // IndividualNameParametr
         public System.Data.Entity.DbSet<InfoViewAutomation> InfoViewAutomations { get; set; } // InfoViewAutomation
+        public System.Data.Entity.DbSet<LandUlFace> LandUlFaces { get; set; } // LandUlFace
         public System.Data.Entity.DbSet<LogicsSelectAutomation> LogicsSelectAutomations { get; set; } // LogicsSelectAutomation
+        public System.Data.Entity.DbSet<LogPreCheck> LogPreChecks { get; set; } // LogPreCheck
+        public System.Data.Entity.DbSet<PropertyUlFace> PropertyUlFaces { get; set; } // PropertyUlFace
+        public System.Data.Entity.DbSet<StrngthUlFace> StrngthUlFaces { get; set; } // StrngthUlFace
+        public System.Data.Entity.DbSet<SvedAccoutingUlFace> SvedAccoutingUlFaces { get; set; } // SvedAccoutingUlFace
         public System.Data.Entity.DbSet<TaxJournal> TaxJournals { get; set; } // TaxJournal
+        public System.Data.Entity.DbSet<TaxJournal121> TaxJournal121 { get; set; } // TaxJournal121
+        public System.Data.Entity.DbSet<TaxJournal121AutoWebPage> TaxJournal121AutoWebPage { get; set; } // TaxJournal121AutoWebPage
         public System.Data.Entity.DbSet<TaxJournalAutoReport> TaxJournalAutoReports { get; set; } // TaxJournalAutoReport
         public System.Data.Entity.DbSet<TaxJournalAutoWebPage> TaxJournalAutoWebPages { get; set; } // TaxJournalAutoWebPage
+        public System.Data.Entity.DbSet<TransportUlFace> TransportUlFaces { get; set; } // TransportUlFace
+        public System.Data.Entity.DbSet<UlFace> UlFaces { get; set; } // UlFace
 
         static Automation()
         {
@@ -117,20 +149,50 @@ namespace EfDatabaseAutomation.Automation.Base
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Configurations.Add(new BranchUlFaceConfiguration());
+            modelBuilder.Configurations.Add(new CashBankAllUlFaceConfiguration());
+            modelBuilder.Configurations.Add(new CashUlFaceConfiguration());
+            modelBuilder.Configurations.Add(new HistoriUlFaceConfiguration());
+            modelBuilder.Configurations.Add(new IndividualCardsUlFaceConfiguration());
+            modelBuilder.Configurations.Add(new IndividualNameParametrConfiguration());
             modelBuilder.Configurations.Add(new InfoViewAutomationConfiguration());
+            modelBuilder.Configurations.Add(new LandUlFaceConfiguration());
             modelBuilder.Configurations.Add(new LogicsSelectAutomationConfiguration());
+            modelBuilder.Configurations.Add(new LogPreCheckConfiguration());
+            modelBuilder.Configurations.Add(new PropertyUlFaceConfiguration());
+            modelBuilder.Configurations.Add(new StrngthUlFaceConfiguration());
+            modelBuilder.Configurations.Add(new SvedAccoutingUlFaceConfiguration());
             modelBuilder.Configurations.Add(new TaxJournalConfiguration());
+            modelBuilder.Configurations.Add(new TaxJournal121Configuration());
+            modelBuilder.Configurations.Add(new TaxJournal121AutoWebPageConfiguration());
             modelBuilder.Configurations.Add(new TaxJournalAutoReportConfiguration());
             modelBuilder.Configurations.Add(new TaxJournalAutoWebPageConfiguration());
+            modelBuilder.Configurations.Add(new TransportUlFaceConfiguration());
+            modelBuilder.Configurations.Add(new UlFaceConfiguration());
         }
 
         public static System.Data.Entity.DbModelBuilder CreateModel(System.Data.Entity.DbModelBuilder modelBuilder, string schema)
         {
+            modelBuilder.Configurations.Add(new BranchUlFaceConfiguration(schema));
+            modelBuilder.Configurations.Add(new CashBankAllUlFaceConfiguration(schema));
+            modelBuilder.Configurations.Add(new CashUlFaceConfiguration(schema));
+            modelBuilder.Configurations.Add(new HistoriUlFaceConfiguration(schema));
+            modelBuilder.Configurations.Add(new IndividualCardsUlFaceConfiguration(schema));
+            modelBuilder.Configurations.Add(new IndividualNameParametrConfiguration(schema));
             modelBuilder.Configurations.Add(new InfoViewAutomationConfiguration(schema));
+            modelBuilder.Configurations.Add(new LandUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new LogicsSelectAutomationConfiguration(schema));
+            modelBuilder.Configurations.Add(new LogPreCheckConfiguration(schema));
+            modelBuilder.Configurations.Add(new PropertyUlFaceConfiguration(schema));
+            modelBuilder.Configurations.Add(new StrngthUlFaceConfiguration(schema));
+            modelBuilder.Configurations.Add(new SvedAccoutingUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new TaxJournalConfiguration(schema));
+            modelBuilder.Configurations.Add(new TaxJournal121Configuration(schema));
+            modelBuilder.Configurations.Add(new TaxJournal121AutoWebPageConfiguration(schema));
             modelBuilder.Configurations.Add(new TaxJournalAutoReportConfiguration(schema));
             modelBuilder.Configurations.Add(new TaxJournalAutoWebPageConfiguration(schema));
+            modelBuilder.Configurations.Add(new TransportUlFaceConfiguration(schema));
+            modelBuilder.Configurations.Add(new UlFaceConfiguration(schema));
             return modelBuilder;
         }
     }
@@ -150,6 +212,169 @@ namespace EfDatabaseAutomation.Automation.Base
 
     #region POCO classes
 
+    // BranchUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class BranchUlFace
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int? IdUl { get; set; } // IdUl
+        public long IdNum { get; set; } // IdNum (Primary key)
+        public System.DateTime? DataCreateBranch { get; set; } // DataCreateBranch
+        public System.DateTime? DataCloseBranch { get; set; } // DataCloseBranch
+        public string IndexAddress { get; set; } // IndexAddress (length: 8)
+        public string RegionAddress { get; set; } // RegionAddress (length: 128)
+        public string DistrictAddress { get; set; } // DistrictAddress (length: 128)
+        public string TownAddress { get; set; } // TownAddress (length: 128)
+        public string LocalityAddress { get; set; } // LocalityAddress (length: 128)
+        public string StreetAddress { get; set; } // StreetAddress (length: 128)
+        public string HouseAddress { get; set; } // HouseAddress (length: 128)
+        public string BodyAddress { get; set; } // BodyAddress (length: 128)
+        public string ApartmentAddress { get; set; } // ApartmentAddress (length: 128)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent UlFace pointed by [BranchUlFace].([IdUl]) (FK_UlFace_BranchUlFace)
+        /// </summary>
+        public virtual UlFace UlFace { get; set; } // FK_UlFace_BranchUlFace
+
+        public BranchUlFace()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // CashBankAllUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class CashBankAllUlFace
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int? IdUl { get; set; } // IdUl
+        public long IdNum { get; set; } // IdNum (Primary key)
+        public int NumberCash { get; set; } // NumberCash (Primary key)
+        public System.DateTime? DateWay { get; set; } // DateWay
+        public int? CodeNo { get; set; } // CodeNo
+        public System.DateTime? DateGetting { get; set; } // DateGetting
+        public string NameBank { get; set; } // NameBank (Primary key) (length: 1024)
+        public string CashNumber { get; set; } // CashNumber (Primary key) (length: 128)
+        public System.DateTime? DateStartPeriod { get; set; } // DateStartPeriod
+        public System.DateTime? DateFinishPeriod { get; set; } // DateFinishPeriod
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent UlFace pointed by [CashBankAllUlFace].([IdUl]) (FK_UlFace_CashBankAllUlFace)
+        /// </summary>
+        public virtual UlFace UlFace { get; set; } // FK_UlFace_CashBankAllUlFace
+
+        public CashBankAllUlFace()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // CashUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class CashUlFace
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int? IdUl { get; set; } // IdUl
+        public long IdNum { get; set; } // IdNum (Primary key)
+        public string NameFull { get; set; } // NameFull (Primary key) (length: 1024)
+        public string CashNumber { get; set; } // CashNumber (Primary key) (length: 128)
+        public System.DateTime? DataOpenCash { get; set; } // DataOpenCash
+        public System.DateTime? DataClosedCash { get; set; } // DataClosedCash
+        public string TypeCash { get; set; } // TypeCash (length: 128)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent UlFace pointed by [CashUlFace].([IdUl]) (FK_UlFace_CashUlFace)
+        /// </summary>
+        public virtual UlFace UlFace { get; set; } // FK_UlFace_CashUlFace
+
+        public CashUlFace()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // HistoriUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class HistoriUlFace
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int? IdUl { get; set; } // IdUl
+        public long IdNum { get; set; } // IdNum (Primary key)
+        public int KodeNo { get; set; } // KodeNo (Primary key)
+        public System.DateTime? DateNoStart { get; set; } // DateNoStart
+        public System.DateTime? DateNoFinish { get; set; } // DateNoFinish
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent UlFace pointed by [HistoriUlFace].([IdUl]) (FK_HistoriUlFace_UlFace)
+        /// </summary>
+        public virtual UlFace UlFace { get; set; } // FK_HistoriUlFace_UlFace
+
+        public HistoriUlFace()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // IndividualCardsUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class IndividualCardsUlFace
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int? IdUl { get; set; } // IdUl
+        public string Acved { get; set; } // Acved (length: 256)
+        public string GroupOrg { get; set; } // GroupOrg (length: 128)
+        public string Segment { get; set; } // Segment (length: 128)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent UlFace pointed by [IndividualCardsUlFace].([IdUl]) (FK_IndividualCardsUlFace_UlFace)
+        /// </summary>
+        public virtual UlFace UlFace { get; set; } // FK_IndividualCardsUlFace_UlFace
+
+        public IndividualCardsUlFace()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // IndividualNameParametr
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class IndividualNameParametr
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int? IdUl { get; set; } // IdUl
+        public string NameParametr { get; set; } // NameParametr (Primary key) (length: 128)
+        public int Years { get; set; } // Years (Primary key)
+        public double Parametr { get; set; } // Parametr (Primary key)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent UlFace pointed by [IndividualNameParametr].([IdUl]) (FK_IndividualNameParametr_UlFace)
+        /// </summary>
+        public virtual UlFace UlFace { get; set; } // FK_IndividualNameParametr_UlFace
+
+        public IndividualNameParametr()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
     // InfoViewAutomation
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class InfoViewAutomation
@@ -168,6 +393,32 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // LandUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class LandUlFace
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int? IdUl { get; set; } // IdUl
+        public long IdNum { get; set; } // IdNum (Primary key)
+        public string TypeObject { get; set; } // TypeObject (length: 128)
+        public System.DateTime? DateStartStaging { get; set; } // DateStartStaging
+        public System.DateTime? DateFinishStaging { get; set; } // DateFinishStaging
+        public string AddressObject { get; set; } // AddressObject (length: 256)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent UlFace pointed by [LandUlFace].([IdUl]) (FK_UlFace_LandUlFace)
+        /// </summary>
+        public virtual UlFace UlFace { get; set; } // FK_UlFace_LandUlFace
+
+        public LandUlFace()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
     // LogicsSelectAutomation
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class LogicsSelectAutomation
@@ -181,6 +432,108 @@ namespace EfDatabaseAutomation.Automation.Base
         public LogicsSelectAutomation()
         {
             DataCreate = System.DateTime.Now;
+        }
+    }
+
+    // LogPreCheck
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class LogPreCheck
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public string UserTabelNum { get; set; } // UserTabelNum (Primary key) (length: 32)
+        public string Method { get; set; } // Method (length: 32)
+        public string StatusMethod { get; set; } // StatusMethod (length: 32)
+        public string ErrorLog { get; set; } // ErrorLog
+        public System.DateTime? Datacreate { get; set; } // Datacreate
+
+        public LogPreCheck()
+        {
+            Datacreate = System.DateTime.Now;
+        }
+    }
+
+    // PropertyUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class PropertyUlFace
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int? IdUl { get; set; } // IdUl
+        public long IdNum { get; set; } // IdNum (Primary key)
+        public string TypeObject { get; set; } // TypeObject (length: 128)
+        public System.DateTime? DateStartStaging { get; set; } // DateStartStaging
+        public System.DateTime? DateFinishStaging { get; set; } // DateFinishStaging
+        public string AddressObject { get; set; } // AddressObject (length: 256)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent UlFace pointed by [PropertyUlFace].([IdUl]) (FK_UlFace_PropertyUlFace)
+        /// </summary>
+        public virtual UlFace UlFace { get; set; } // FK_UlFace_PropertyUlFace
+
+        public PropertyUlFace()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // StrngthUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class StrngthUlFace
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int? IdUl { get; set; } // IdUl
+        public long IdNum { get; set; } // IdNum (Primary key)
+        public System.DateTime? DataDocument { get; set; } // DataDocument
+        public int? StrngthFace { get; set; } // StrngthFace
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent UlFace pointed by [StrngthUlFace].([IdUl]) (FK_UlFace_StrngthUlFace)
+        /// </summary>
+        public virtual UlFace UlFace { get; set; } // FK_UlFace_StrngthUlFace
+
+        public StrngthUlFace()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // SvedAccoutingUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class SvedAccoutingUlFace
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int? IdUl { get; set; } // IdUl
+        public long IdNum { get; set; } // IdNum (Primary key)
+        public string TypeObject { get; set; } // TypeObject (length: 128)
+        public string Kpp { get; set; } // Kpp (length: 12)
+        public string NameObject { get; set; } // NameObject (length: 256)
+        public string AddressObject { get; set; } // AddressObject (length: 256)
+        public int? CodeNalog { get; set; } // CodeNalog
+        public System.DateTime? DateBegin { get; set; } // DateBegin
+        public System.DateTime? DateFactBegin { get; set; } // DateFactBegin
+        public string CodeSppuno { get; set; } // CodeSPPUNO (length: 3)
+        public string CauseBegin { get; set; } // CauseBegin (length: 256)
+        public System.DateTime? DateEnd { get; set; } // DateEnd
+        public System.DateTime? DateFactEnd { get; set; } // DateFactEnd
+        public string CodeSppunoEnd { get; set; } // CodeSPPUNOEnd (length: 3)
+        public string CauseEnd { get; set; } // CauseEnd (length: 256)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent UlFace pointed by [SvedAccoutingUlFace].([IdUl]) (FK_UlFace_SvedAccoutingUlFace)
+        /// </summary>
+        public virtual UlFace UlFace { get; set; } // FK_UlFace_SvedAccoutingUlFace
+
+        public SvedAccoutingUlFace()
+        {
+            DateCreate = System.DateTime.Now;
         }
     }
 
@@ -217,6 +570,71 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // TaxJournal121
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TaxJournal121
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public string GlobalColor { get; set; } // GlobalColor (length: 12)
+        public string GlobalProcessColor { get; set; } // GlobalProcessColor (length: 12)
+        public string ColorDoc { get; set; } // ColorDoc (length: 12)
+        public int? RegNumDeclaration { get; set; } // RegNumDeclaration
+        public string Period { get; set; } // Period (length: 128)
+        public int? God { get; set; } // God
+        public string Fid { get; set; } // Fid (length: 512)
+        public System.DateTime? DateIzveshenie { get; set; } // DateIzveshenie
+        public string NameFace { get; set; } // NameFace (length: 512)
+        public string Inn { get; set; } // Inn (length: 12)
+        public int? IdComplex { get; set; } // IdComplex
+        public System.DateTime? DateStartCheck { get; set; } // DateStartCheck
+        public System.DateTime? DateFinishCheck { get; set; } // DateFinishCheck
+        public System.DateTime? DateStartDeclaration { get; set; } // DateStartDeclaration
+        public System.DateTime? DateFinishDeclaration { get; set; } // DateFinishDeclaration
+        public bool? IsTks { get; set; } // IsTks
+        public bool? IsMail { get; set; } // IsMail
+        public bool? IsLk3 { get; set; } // IsLk3
+        public string TypeDocument { get; set; } // TypeDocument (length: 128)
+        public string MessageInfo { get; set; } // MessageInfo (length: 512)
+        public string LoginUser { get; set; } // LoginUser (length: 1024)
+        public string Extensions { get; set; } // Extensions (length: 10)
+        public string Mime { get; set; } // Mime (length: 128)
+        public byte[] Document { get; set; } // Document (length: 2147483647)
+        public bool? IsPrint { get; set; } // IsPrint
+        public System.DateTime? DataCreate { get; set; } // DataCreate
+
+        public TaxJournal121()
+        {
+            DataCreate = System.DateTime.Now;
+        }
+    }
+
+    // TaxJournal121AutoWebPage
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TaxJournal121AutoWebPage
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int? RegNumDeclaration { get; set; } // RegNumDeclaration
+        public string Period { get; set; } // Period (length: 128)
+        public int? God { get; set; } // God
+        public string Fid { get; set; } // Fid (length: 512)
+        public System.DateTime? DateIzveshenie { get; set; } // DateIzveshenie
+        public string NameFace { get; set; } // NameFace (length: 512)
+        public string Inn { get; set; } // Inn (length: 12)
+        public System.DateTime? DateStartCheck { get; set; } // DateStartCheck
+        public System.DateTime? DateFinishCheck { get; set; } // DateFinishCheck
+        public System.DateTime? DateStartDeclaration { get; set; } // DateStartDeclaration
+        public System.DateTime? DateFinishDeclaration { get; set; } // DateFinishDeclaration
+        public int? CounDay { get; set; } // CounDay
+        public bool? IsTks { get; set; } // IsTks
+        public bool? IsMail { get; set; } // IsMail
+        public bool? IsLk3 { get; set; } // IsLk3
+        public string TypeDocument { get; set; } // TypeDocument (length: 128)
+        public string LoginUser { get; set; } // LoginUser (length: 1024)
+        public string Extensions { get; set; } // Extensions (length: 10)
+        public bool? IsPrint { get; set; } // IsPrint
+        public System.DateTime? DataCreate { get; set; } // DataCreate
+    }
+
     // TaxJournalAutoReport
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class TaxJournalAutoReport
@@ -245,14 +663,15 @@ namespace EfDatabaseAutomation.Automation.Base
     {
         public int Id { get; set; } // Id (Primary key)
         public int? IdDelo { get; set; } // IdDelo
+        public string LoginUser { get; set; } // LoginUser (length: 1024)
         public string Inn { get; set; } // Inn (length: 12)
         public string Kpp { get; set; } // Kpp (length: 12)
         public string NameFace { get; set; } // NameFace (length: 512)
         public string Fid { get; set; } // Fid (length: 512)
         public System.DateTime? DateIzveshenie { get; set; } // DateIzveshenie
-        public bool? IsTks { get; set; } // isTks
-        public bool? IsMail { get; set; } // isMail
-        public bool? IsLk3 { get; set; } // isLk3
+        public bool? IsTks { get; set; } // IsTks
+        public bool? IsMail { get; set; } // IsMail
+        public bool? IsLk3 { get; set; } // IsLk3
         public string TypeDocument { get; set; } // TypeDocument (length: 128)
         public string MessageInfo { get; set; } // MessageInfo (length: 512)
         public string Extensions { get; set; } // Extensions (length: 10)
@@ -260,9 +679,300 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.DateTime? DataCreate { get; set; } // DataCreate
     }
 
+    // TransportUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TransportUlFace
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int? IdUl { get; set; } // IdUl
+        public long IdNum { get; set; } // IdNum (Primary key)
+        public string TypeObject { get; set; } // TypeObject (length: 128)
+        public System.DateTime? DateStartStaging { get; set; } // DateStartStaging
+        public System.DateTime? DateFinishStaging { get; set; } // DateFinishStaging
+        public string AddressObject { get; set; } // AddressObject (length: 256)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent UlFace pointed by [TransportUlFace].([IdUl]) (FK_UlFace_TransportUlFace)
+        /// </summary>
+        public virtual UlFace UlFace { get; set; } // FK_UlFace_TransportUlFace
+
+        public TransportUlFace()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // UlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class UlFace
+    {
+        public int IdUl { get; set; } // IdUl (Primary key)
+        public long IdNum { get; set; } // IdNum
+        public string Inn { get; set; } // Inn (length: 12)
+        public string NameFull { get; set; } // NameFull (length: 1024)
+        public string Kpp { get; set; } // Kpp (length: 12)
+        public string NameSmall { get; set; } // NameSmall (length: 512)
+        public string Address { get; set; } // Address (length: 512)
+        public System.DateTime? DateResh { get; set; } // DateResh
+        public System.DateTime? DateReshReorg { get; set; } // DateReshReorg
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child BranchUlFaces where [BranchUlFace].[IdUl] point to this entity (FK_UlFace_BranchUlFace)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<BranchUlFace> BranchUlFaces { get; set; } // BranchUlFace.FK_UlFace_BranchUlFace
+        /// <summary>
+        /// Child CashBankAllUlFaces where [CashBankAllUlFace].[IdUl] point to this entity (FK_UlFace_CashBankAllUlFace)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<CashBankAllUlFace> CashBankAllUlFaces { get; set; } // CashBankAllUlFace.FK_UlFace_CashBankAllUlFace
+        /// <summary>
+        /// Child CashUlFaces where [CashUlFace].[IdUl] point to this entity (FK_UlFace_CashUlFace)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<CashUlFace> CashUlFaces { get; set; } // CashUlFace.FK_UlFace_CashUlFace
+        /// <summary>
+        /// Child HistoriUlFaces where [HistoriUlFace].[IdUl] point to this entity (FK_HistoriUlFace_UlFace)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<HistoriUlFace> HistoriUlFaces { get; set; } // HistoriUlFace.FK_HistoriUlFace_UlFace
+        /// <summary>
+        /// Child IndividualCardsUlFaces where [IndividualCardsUlFace].[IdUl] point to this entity (FK_IndividualCardsUlFace_UlFace)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<IndividualCardsUlFace> IndividualCardsUlFaces { get; set; } // IndividualCardsUlFace.FK_IndividualCardsUlFace_UlFace
+        /// <summary>
+        /// Child IndividualNameParametrs where [IndividualNameParametr].[IdUl] point to this entity (FK_IndividualNameParametr_UlFace)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<IndividualNameParametr> IndividualNameParametrs { get; set; } // IndividualNameParametr.FK_IndividualNameParametr_UlFace
+        /// <summary>
+        /// Child LandUlFaces where [LandUlFace].[IdUl] point to this entity (FK_UlFace_LandUlFace)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<LandUlFace> LandUlFaces { get; set; } // LandUlFace.FK_UlFace_LandUlFace
+        /// <summary>
+        /// Child PropertyUlFaces where [PropertyUlFace].[IdUl] point to this entity (FK_UlFace_PropertyUlFace)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<PropertyUlFace> PropertyUlFaces { get; set; } // PropertyUlFace.FK_UlFace_PropertyUlFace
+        /// <summary>
+        /// Child StrngthUlFaces where [StrngthUlFace].[IdUl] point to this entity (FK_UlFace_StrngthUlFace)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<StrngthUlFace> StrngthUlFaces { get; set; } // StrngthUlFace.FK_UlFace_StrngthUlFace
+        /// <summary>
+        /// Child SvedAccoutingUlFaces where [SvedAccoutingUlFace].[IdUl] point to this entity (FK_UlFace_SvedAccoutingUlFace)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<SvedAccoutingUlFace> SvedAccoutingUlFaces { get; set; } // SvedAccoutingUlFace.FK_UlFace_SvedAccoutingUlFace
+        /// <summary>
+        /// Child TransportUlFaces where [TransportUlFace].[IdUl] point to this entity (FK_UlFace_TransportUlFace)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<TransportUlFace> TransportUlFaces { get; set; } // TransportUlFace.FK_UlFace_TransportUlFace
+
+        public UlFace()
+        {
+            DateCreate = System.DateTime.Now;
+            BranchUlFaces = new System.Collections.Generic.List<BranchUlFace>();
+            CashBankAllUlFaces = new System.Collections.Generic.List<CashBankAllUlFace>();
+            CashUlFaces = new System.Collections.Generic.List<CashUlFace>();
+            HistoriUlFaces = new System.Collections.Generic.List<HistoriUlFace>();
+            IndividualCardsUlFaces = new System.Collections.Generic.List<IndividualCardsUlFace>();
+            IndividualNameParametrs = new System.Collections.Generic.List<IndividualNameParametr>();
+            LandUlFaces = new System.Collections.Generic.List<LandUlFace>();
+            PropertyUlFaces = new System.Collections.Generic.List<PropertyUlFace>();
+            StrngthUlFaces = new System.Collections.Generic.List<StrngthUlFace>();
+            SvedAccoutingUlFaces = new System.Collections.Generic.List<SvedAccoutingUlFace>();
+            TransportUlFaces = new System.Collections.Generic.List<TransportUlFace>();
+        }
+    }
+
     #endregion
 
     #region POCO Configuration
+
+    // BranchUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class BranchUlFaceConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<BranchUlFace>
+    {
+        public BranchUlFaceConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public BranchUlFaceConfiguration(string schema)
+        {
+            ToTable("BranchUlFace", schema);
+            HasKey(x => new { x.Id, x.IdNum });
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsOptional();
+            Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DataCreateBranch).HasColumnName(@"DataCreateBranch").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DataCloseBranch).HasColumnName(@"DataCloseBranch").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.IndexAddress).HasColumnName(@"IndexAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(8);
+            Property(x => x.RegionAddress).HasColumnName(@"RegionAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.DistrictAddress).HasColumnName(@"DistrictAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.TownAddress).HasColumnName(@"TownAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.LocalityAddress).HasColumnName(@"LocalityAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.StreetAddress).HasColumnName(@"StreetAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.HouseAddress).HasColumnName(@"HouseAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.BodyAddress).HasColumnName(@"BodyAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.ApartmentAddress).HasColumnName(@"ApartmentAddress").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.UlFace).WithMany(b => b.BranchUlFaces).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_UlFace_BranchUlFace
+        }
+    }
+
+    // CashBankAllUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class CashBankAllUlFaceConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CashBankAllUlFace>
+    {
+        public CashBankAllUlFaceConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public CashBankAllUlFaceConfiguration(string schema)
+        {
+            ToTable("CashBankAllUlFace", schema);
+            HasKey(x => new { x.Id, x.IdNum, x.NumberCash, x.NameBank, x.CashNumber });
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsOptional();
+            Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.NumberCash).HasColumnName(@"NumberCash").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DateWay).HasColumnName(@"DateWay").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.CodeNo).HasColumnName(@"CodeNo").HasColumnType("int").IsOptional();
+            Property(x => x.DateGetting).HasColumnName(@"DateGetting").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.NameBank).HasColumnName(@"NameBank").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.CashNumber).HasColumnName(@"CashNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(128).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DateStartPeriod).HasColumnName(@"DateStartPeriod").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateFinishPeriod).HasColumnName(@"DateFinishPeriod").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.UlFace).WithMany(b => b.CashBankAllUlFaces).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_UlFace_CashBankAllUlFace
+        }
+    }
+
+    // CashUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class CashUlFaceConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<CashUlFace>
+    {
+        public CashUlFaceConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public CashUlFaceConfiguration(string schema)
+        {
+            ToTable("CashUlFace", schema);
+            HasKey(x => new { x.Id, x.IdNum, x.NameFull, x.CashNumber });
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsOptional();
+            Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.NameFull).HasColumnName(@"NameFull").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.CashNumber).HasColumnName(@"CashNumber").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(128).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DataOpenCash).HasColumnName(@"DataOpenCash").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DataClosedCash).HasColumnName(@"DataClosedCash").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.TypeCash).HasColumnName(@"TypeCash").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.UlFace).WithMany(b => b.CashUlFaces).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_UlFace_CashUlFace
+        }
+    }
+
+    // HistoriUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class HistoriUlFaceConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<HistoriUlFace>
+    {
+        public HistoriUlFaceConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public HistoriUlFaceConfiguration(string schema)
+        {
+            ToTable("HistoriUlFace", schema);
+            HasKey(x => new { x.Id, x.IdNum, x.KodeNo });
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsOptional();
+            Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.KodeNo).HasColumnName(@"KodeNo").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DateNoStart).HasColumnName(@"DateNoStart").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateNoFinish).HasColumnName(@"DateNoFinish").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.UlFace).WithMany(b => b.HistoriUlFaces).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_HistoriUlFace_UlFace
+        }
+    }
+
+    // IndividualCardsUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class IndividualCardsUlFaceConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<IndividualCardsUlFace>
+    {
+        public IndividualCardsUlFaceConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public IndividualCardsUlFaceConfiguration(string schema)
+        {
+            ToTable("IndividualCardsUlFace", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsOptional();
+            Property(x => x.Acved).HasColumnName(@"Acved").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.GroupOrg).HasColumnName(@"GroupOrg").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.Segment).HasColumnName(@"Segment").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.UlFace).WithMany(b => b.IndividualCardsUlFaces).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_IndividualCardsUlFace_UlFace
+        }
+    }
+
+    // IndividualNameParametr
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class IndividualNameParametrConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<IndividualNameParametr>
+    {
+        public IndividualNameParametrConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public IndividualNameParametrConfiguration(string schema)
+        {
+            ToTable("IndividualNameParametr", schema);
+            HasKey(x => new { x.Id, x.NameParametr, x.Years, x.Parametr });
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsOptional();
+            Property(x => x.NameParametr).HasColumnName(@"NameParametr").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(128).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Years).HasColumnName(@"Years").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Parametr).HasColumnName(@"Parametr").HasColumnType("float").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.UlFace).WithMany(b => b.IndividualNameParametrs).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_IndividualNameParametr_UlFace
+        }
+    }
 
     // InfoViewAutomation
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
@@ -288,6 +998,34 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // LandUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class LandUlFaceConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<LandUlFace>
+    {
+        public LandUlFaceConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public LandUlFaceConfiguration(string schema)
+        {
+            ToTable("LandUlFace", schema);
+            HasKey(x => new { x.Id, x.IdNum });
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsOptional();
+            Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.TypeObject).HasColumnName(@"TypeObject").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.DateStartStaging).HasColumnName(@"DateStartStaging").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateFinishStaging).HasColumnName(@"DateFinishStaging").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.AddressObject).HasColumnName(@"AddressObject").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.UlFace).WithMany(b => b.LandUlFaces).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_UlFace_LandUlFace
+        }
+    }
+
     // LogicsSelectAutomation
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class LogicsSelectAutomationConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<LogicsSelectAutomation>
@@ -307,6 +1045,120 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.SelectedParametr).HasColumnName(@"SelectedParametr").HasColumnType("nvarchar(max)").IsOptional();
             Property(x => x.SelectUser).HasColumnName(@"SelectUser").HasColumnType("nvarchar(max)").IsOptional();
             Property(x => x.DataCreate).HasColumnName(@"DataCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // LogPreCheck
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class LogPreCheckConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<LogPreCheck>
+    {
+        public LogPreCheckConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public LogPreCheckConfiguration(string schema)
+        {
+            ToTable("LogPreCheck", schema);
+            HasKey(x => new { x.Id, x.UserTabelNum });
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.UserTabelNum).HasColumnName(@"UserTabelNum").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(32).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Method).HasColumnName(@"Method").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(32);
+            Property(x => x.StatusMethod).HasColumnName(@"StatusMethod").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(32);
+            Property(x => x.ErrorLog).HasColumnName(@"ErrorLog").HasColumnType("varchar(max)").IsOptional().IsUnicode(false);
+            Property(x => x.Datacreate).HasColumnName(@"Datacreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // PropertyUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class PropertyUlFaceConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<PropertyUlFace>
+    {
+        public PropertyUlFaceConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public PropertyUlFaceConfiguration(string schema)
+        {
+            ToTable("PropertyUlFace", schema);
+            HasKey(x => new { x.Id, x.IdNum });
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsOptional();
+            Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.TypeObject).HasColumnName(@"TypeObject").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.DateStartStaging).HasColumnName(@"DateStartStaging").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateFinishStaging).HasColumnName(@"DateFinishStaging").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.AddressObject).HasColumnName(@"AddressObject").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.UlFace).WithMany(b => b.PropertyUlFaces).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_UlFace_PropertyUlFace
+        }
+    }
+
+    // StrngthUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class StrngthUlFaceConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<StrngthUlFace>
+    {
+        public StrngthUlFaceConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public StrngthUlFaceConfiguration(string schema)
+        {
+            ToTable("StrngthUlFace", schema);
+            HasKey(x => new { x.Id, x.IdNum });
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsOptional();
+            Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DataDocument).HasColumnName(@"DataDocument").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.StrngthFace).HasColumnName(@"StrngthFace").HasColumnType("int").IsOptional();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.UlFace).WithMany(b => b.StrngthUlFaces).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_UlFace_StrngthUlFace
+        }
+    }
+
+    // SvedAccoutingUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class SvedAccoutingUlFaceConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<SvedAccoutingUlFace>
+    {
+        public SvedAccoutingUlFaceConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public SvedAccoutingUlFaceConfiguration(string schema)
+        {
+            ToTable("SvedAccoutingUlFace", schema);
+            HasKey(x => new { x.Id, x.IdNum });
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsOptional();
+            Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.TypeObject).HasColumnName(@"TypeObject").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.Kpp).HasColumnName(@"Kpp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.NameObject).HasColumnName(@"NameObject").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.AddressObject).HasColumnName(@"AddressObject").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.CodeNalog).HasColumnName(@"CodeNalog").HasColumnType("int").IsOptional();
+            Property(x => x.DateBegin).HasColumnName(@"DateBegin").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateFactBegin).HasColumnName(@"DateFactBegin").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.CodeSppuno).HasColumnName(@"CodeSPPUNO").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(3);
+            Property(x => x.CauseBegin).HasColumnName(@"CauseBegin").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.DateEnd).HasColumnName(@"DateEnd").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateFactEnd).HasColumnName(@"DateFactEnd").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.CodeSppunoEnd).HasColumnName(@"CodeSPPUNOEnd").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(3);
+            Property(x => x.CauseEnd).HasColumnName(@"CauseEnd").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.UlFace).WithMany(b => b.SvedAccoutingUlFaces).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_UlFace_SvedAccoutingUlFace
         }
     }
 
@@ -344,6 +1196,88 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.Extensions).HasColumnName(@"Extensions").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
             Property(x => x.Mime).HasColumnName(@"Mime").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
             Property(x => x.Document).HasColumnName(@"Document").HasColumnType("image").IsOptional().HasMaxLength(2147483647);
+            Property(x => x.IsPrint).HasColumnName(@"IsPrint").HasColumnType("bit").IsOptional();
+            Property(x => x.DataCreate).HasColumnName(@"DataCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // TaxJournal121
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TaxJournal121Configuration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TaxJournal121>
+    {
+        public TaxJournal121Configuration()
+            : this("dbo")
+        {
+        }
+
+        public TaxJournal121Configuration(string schema)
+        {
+            ToTable("TaxJournal121", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.GlobalColor).HasColumnName(@"GlobalColor").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.GlobalProcessColor).HasColumnName(@"GlobalProcessColor").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.ColorDoc).HasColumnName(@"ColorDoc").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.RegNumDeclaration).HasColumnName(@"RegNumDeclaration").HasColumnType("int").IsOptional();
+            Property(x => x.Period).HasColumnName(@"Period").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.God).HasColumnName(@"God").HasColumnType("int").IsOptional();
+            Property(x => x.Fid).HasColumnName(@"Fid").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.DateIzveshenie).HasColumnName(@"DateIzveshenie").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.NameFace).HasColumnName(@"NameFace").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.IdComplex).HasColumnName(@"IdComplex").HasColumnType("int").IsOptional();
+            Property(x => x.DateStartCheck).HasColumnName(@"DateStartCheck").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateFinishCheck).HasColumnName(@"DateFinishCheck").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateStartDeclaration).HasColumnName(@"DateStartDeclaration").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateFinishDeclaration).HasColumnName(@"DateFinishDeclaration").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.IsTks).HasColumnName(@"IsTks").HasColumnType("bit").IsOptional();
+            Property(x => x.IsMail).HasColumnName(@"IsMail").HasColumnType("bit").IsOptional();
+            Property(x => x.IsLk3).HasColumnName(@"IsLk3").HasColumnType("bit").IsOptional();
+            Property(x => x.TypeDocument).HasColumnName(@"TypeDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.MessageInfo).HasColumnName(@"MessageInfo").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.LoginUser).HasColumnName(@"LoginUser").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.Extensions).HasColumnName(@"Extensions").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.Mime).HasColumnName(@"Mime").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.Document).HasColumnName(@"Document").HasColumnType("image").IsOptional().HasMaxLength(2147483647);
+            Property(x => x.IsPrint).HasColumnName(@"IsPrint").HasColumnType("bit").IsOptional();
+            Property(x => x.DataCreate).HasColumnName(@"DataCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // TaxJournal121AutoWebPage
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TaxJournal121AutoWebPageConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TaxJournal121AutoWebPage>
+    {
+        public TaxJournal121AutoWebPageConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public TaxJournal121AutoWebPageConfiguration(string schema)
+        {
+            ToTable("TaxJournal121AutoWebPage", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.RegNumDeclaration).HasColumnName(@"RegNumDeclaration").HasColumnType("int").IsOptional();
+            Property(x => x.Period).HasColumnName(@"Period").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.God).HasColumnName(@"God").HasColumnType("int").IsOptional();
+            Property(x => x.Fid).HasColumnName(@"Fid").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.DateIzveshenie).HasColumnName(@"DateIzveshenie").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.NameFace).HasColumnName(@"NameFace").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.DateStartCheck).HasColumnName(@"DateStartCheck").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateFinishCheck).HasColumnName(@"DateFinishCheck").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateStartDeclaration).HasColumnName(@"DateStartDeclaration").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateFinishDeclaration).HasColumnName(@"DateFinishDeclaration").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.CounDay).HasColumnName(@"CounDay").HasColumnType("int").IsOptional();
+            Property(x => x.IsTks).HasColumnName(@"IsTks").HasColumnType("bit").IsOptional();
+            Property(x => x.IsMail).HasColumnName(@"IsMail").HasColumnType("bit").IsOptional();
+            Property(x => x.IsLk3).HasColumnName(@"IsLk3").HasColumnType("bit").IsOptional();
+            Property(x => x.TypeDocument).HasColumnName(@"TypeDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.LoginUser).HasColumnName(@"LoginUser").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.Extensions).HasColumnName(@"Extensions").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
             Property(x => x.IsPrint).HasColumnName(@"IsPrint").HasColumnType("bit").IsOptional();
             Property(x => x.DataCreate).HasColumnName(@"DataCreate").HasColumnType("smalldatetime").IsOptional();
         }
@@ -398,19 +1332,75 @@ namespace EfDatabaseAutomation.Automation.Base
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.IdDelo).HasColumnName(@"IdDelo").HasColumnType("int").IsOptional();
+            Property(x => x.LoginUser).HasColumnName(@"LoginUser").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
             Property(x => x.Kpp).HasColumnName(@"Kpp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
             Property(x => x.NameFace).HasColumnName(@"NameFace").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
             Property(x => x.Fid).HasColumnName(@"Fid").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
             Property(x => x.DateIzveshenie).HasColumnName(@"DateIzveshenie").HasColumnType("smalldatetime").IsOptional();
-            Property(x => x.IsTks).HasColumnName(@"isTks").HasColumnType("bit").IsOptional();
-            Property(x => x.IsMail).HasColumnName(@"isMail").HasColumnType("bit").IsOptional();
-            Property(x => x.IsLk3).HasColumnName(@"isLk3").HasColumnType("bit").IsOptional();
+            Property(x => x.IsTks).HasColumnName(@"IsTks").HasColumnType("bit").IsOptional();
+            Property(x => x.IsMail).HasColumnName(@"IsMail").HasColumnType("bit").IsOptional();
+            Property(x => x.IsLk3).HasColumnName(@"IsLk3").HasColumnType("bit").IsOptional();
             Property(x => x.TypeDocument).HasColumnName(@"TypeDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
             Property(x => x.MessageInfo).HasColumnName(@"MessageInfo").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
             Property(x => x.Extensions).HasColumnName(@"Extensions").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
             Property(x => x.IsPrint).HasColumnName(@"IsPrint").HasColumnType("bit").IsOptional();
             Property(x => x.DataCreate).HasColumnName(@"DataCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // TransportUlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TransportUlFaceConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TransportUlFace>
+    {
+        public TransportUlFaceConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public TransportUlFaceConfiguration(string schema)
+        {
+            ToTable("TransportUlFace", schema);
+            HasKey(x => new { x.Id, x.IdNum });
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsOptional();
+            Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.TypeObject).HasColumnName(@"TypeObject").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.DateStartStaging).HasColumnName(@"DateStartStaging").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateFinishStaging).HasColumnName(@"DateFinishStaging").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.AddressObject).HasColumnName(@"AddressObject").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.UlFace).WithMany(b => b.TransportUlFaces).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_UlFace_TransportUlFace
+        }
+    }
+
+    // UlFace
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class UlFaceConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<UlFace>
+    {
+        public UlFaceConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public UlFaceConfiguration(string schema)
+        {
+            ToTable("UlFace", schema);
+            HasKey(x => x.IdUl);
+
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired();
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.NameFull).HasColumnName(@"NameFull").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.Kpp).HasColumnName(@"Kpp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.NameSmall).HasColumnName(@"NameSmall").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Address).HasColumnName(@"Address").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.DateResh).HasColumnName(@"DateResh").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateReshReorg).HasColumnName(@"DateReshReorg").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
         }
     }
 
