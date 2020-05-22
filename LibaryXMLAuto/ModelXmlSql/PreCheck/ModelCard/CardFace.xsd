@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="CardFaceUl" type="CardFaceUl">
+		<xs:annotation>
+			<xs:documentation>Картачка организации ЮЛ</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="CardFaceUl">
+		<xs:annotation>
+			<xs:documentation>Картачка организации ЮЛ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="FaceUl"/>
+			<xs:element ref="Card"/>
+			<xs:element ref="BranchUlFace" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="HistoriUlFace" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="CashUlFace" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="CashBankSpr" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="RukAndUcrh" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Актуальное имущество руководителей учередителей</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="ImZmTrUl" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Active" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Balans" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Profit" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Nds" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="FlRukUcrh" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="FaceUl">
+		<xs:annotation>
+			<xs:documentation>Общие сведения</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DateResh" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kpp" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameFull" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Address" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Адрес организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Card">
+		<xs:annotation>
+			<xs:documentation>Карточка организации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="List1Card" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="List2Card" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="List1Card">
+		<xs:annotation>
+			<xs:documentation>1 лист карточки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Keys" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Ключ 1</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Keys1" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Ключ 2</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Parameter" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Параметр</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BranchUlFace">
+		<xs:annotation>
+			<xs:documentation>Обособленные подразделения</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DataCreateBranch" minOccurs="0"/>
+				<xs:element ref="DataCloseBranch" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="IndexAddress" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Индекс</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="RegionAddress" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Регион</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DistrictAddress" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Район</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TownAddress" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Город</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="LocalityAddress" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Населенный пункт</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="StreetAddress" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Улица</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="HouseAddress" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Дом</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="BodyAddress" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Корпус строение</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ApartmentAddress" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Квартира</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateResh" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата принятия решения о ликвидации</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DataCreateBranch" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата постановки обособки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DataCloseBranch" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата снятия с учета</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="List2Card">
+		<xs:annotation>
+			<xs:documentation>2 лист карточки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Keys" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Ключ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Parameter" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Параметр 1</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Parameter1" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Параметр 2</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Parameter2" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Параметр 3</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Parameter3" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Параметр 4</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HistoriUlFace">
+		<xs:annotation>
+			<xs:documentation>История сведений организации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DateNoStart" minOccurs="0"/>
+				<xs:element ref="DateNoFinish" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="KodeNo" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Код налогового органа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kpp" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateNoStart" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата постановки на учет</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateNoFinish" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата снятия с учета</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CashUlFace">
+		<xs:annotation>
+			<xs:documentation>Банковские счета организации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DataOpenCash"/>
+				<xs:element ref="DataClosedCash"/>
+			</xs:sequence>
+			<xs:attribute name="NameFull" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование банка</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CashNumber" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер счета</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TypeCash">
+				<xs:annotation>
+					<xs:documentation>Вид счета</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DataOpenCash" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата открытия счета</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DataClosedCash" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата закрытия счета</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CashBankSpr">
+		<xs:annotation>
+			<xs:documentation>Справки выписки по счету</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DateWay"/>
+				<xs:element ref="DatePriem"/>
+			</xs:sequence>
+			<xs:attribute name="NameBank" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование банка</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NumberCash" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер счета</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Dostavka" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Способ доставки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateWay" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата запроса банковских выписок</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DatePriem" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата получения банковских выписок</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="RukAndUcrh">
+		<xs:annotation>
+			<xs:documentation>Актуальные руководители учередители</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TypeObject" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="IdFl" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун ФЛ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdUl" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун ЮЛ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameFl" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование ФЛ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Priznak" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Признак руководителя или Учередителя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateStart" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Дата начала</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ImZmTrUl">
+		<xs:annotation>
+			<xs:documentation>Имущество Организации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DateFactStart"/>
+				<xs:element ref="DateFactFinish"/>
+			</xs:sequence>
+			<xs:attribute name="TypeObject" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Классификация объекта</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameObject" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Тип объекта учета</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="AddresObject" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Адрес объекта учета</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateFactStart" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата фактической постановки имущества</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateFactFinish" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата фактического снятия с учета</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TypeObject">
+		<xs:annotation>
+			<xs:documentation>Тип объекта</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ImZmTrFl" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="TypeObject" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Тип Имущество земля транспорт</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ImZmTrFl">
+		<xs:annotation>
+			<xs:documentation>Объект</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="NameObject" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование объекта</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="AddresObject" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Адрес объекта</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateFactStart" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Дата фактической постановки имущества</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateFactFinish" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Дата фактического снятия с учета</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Active">
+		<xs:annotation>
+			<xs:documentation>Активы</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="God1"/>
+				<xs:element ref="God2"/>
+				<xs:element ref="God3"/>
+			</xs:sequence>
+			<xs:attribute name="NameParametr" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование параметра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Balans">
+		<xs:annotation>
+			<xs:documentation>Баланс</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="God1" minOccurs="0"/>
+				<xs:element ref="God2" minOccurs="0"/>
+				<xs:element ref="God3" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун параметра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameParametr" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наиенование параметра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CodeParametr" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код параметра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Profit">
+		<xs:annotation>
+			<xs:documentation>Прибыль</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="God1" minOccurs="0"/>
+				<xs:element ref="God2" minOccurs="0"/>
+				<xs:element ref="God3" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="Id" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун параметра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameParametr" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наиенование параметра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CodeParametr" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код параметра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Nds">
+		<xs:annotation>
+			<xs:documentation>НДС</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Summ"/>
+				<xs:element ref="SummOut"/>
+				<xs:element ref="SummNalog"/>
+				<xs:element ref="SummIn"/>
+			</xs:sequence>
+			<xs:attribute name="RegNumDecl" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Регстрационный номер декларации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="God" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Год декларации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Period" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Период квартал</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FlRukUcrh">
+		<xs:annotation>
+			<xs:documentation>Актуальные руководитель и учередители</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="NameFl" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Имя ФЛ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Priznak" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Признак</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="God1" type="xs:long" default="0" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Год от текущего -3</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="God2" type="xs:long" default="0" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Год от текущего -2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="God3" type="xs:long" default="0" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Год от текущего -1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Summ" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Общая сумма НДС (стр.210) (стр.120 по форме от 15.10.2009)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SummOut" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Общая сумма НДС, подлежащая вычету (стр.340) (стр.220 по форме от 15.10.2009) (руб.)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SummNalog" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>В т.ч. сумма налога, уплаченная при ввозе товаров на таможенную территорию РФ (стр.270) (стр.170 по форме от 15.10.2009)  (руб.)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SummIn" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Сумма к уплате (+) (стр.350) / сумма к уменьшению (-) (стр.360) (руб.)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

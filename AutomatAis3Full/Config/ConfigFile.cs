@@ -26,6 +26,7 @@ namespace AutomatAis3Full.Config
         public static string Help = ConfigurationManager.AppSettings["Help"];
         public static string WebSite = ConfigurationManager.AppSettings["WebSite"];
         public static string ServiceGetOrPost = ConfigurationManager.AppSettings["ServiceGetOrPost"];
+        public static string BankSvedSave = ConfigurationManager.AppSettings["BankSvedSave"];
         /// <summary>
         /// Строка соединения с нашей БД
         /// </summary>

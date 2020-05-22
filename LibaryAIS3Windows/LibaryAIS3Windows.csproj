@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="AisPoco">
       <HintPath>C:\Nuget\Ais3Dll\AisPoco.dll</HintPath>
     </Reference>
@@ -61,7 +62,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="UIAComWrapper, Version=1.1.0.14, Culture=neutral, PublicKeyToken=78cbcf77433a85e5, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\UIAComWrapper.1.1.0.14\lib\net40\UIAComWrapper.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>

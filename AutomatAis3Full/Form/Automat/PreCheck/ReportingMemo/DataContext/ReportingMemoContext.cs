@@ -15,7 +15,7 @@ namespace AutomatAis3Full.Form.Automat.PreCheck.ReportingMemo.DataContext
             var  reportMemoStart = new ReportingMemoStart();
             Start = new StatusButtonMethod
             {
-                Button = {Command = new DelegateCommand(() => { reportMemoStart.ReportingMemoStartPreCheck(Start,ConfigFile.ServiceGetOrPost); })}
+                Button = {Command = new DelegateCommand(() => { reportMemoStart.ReportingMemoStartPreCheck(Start,ConfigFile.ServiceGetOrPost, ConfigFile.PathPdfTemp, ConfigFile.BankSvedSave); })}
             };
         }
     }

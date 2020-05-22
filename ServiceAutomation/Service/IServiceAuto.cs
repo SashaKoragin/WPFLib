@@ -1,8 +1,12 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using EfDatabaseAutomation.Automation.SelectParametrSheme;
+using Ifns51.FromAis;
+using Ifns51.ToAis;
 using ServiceAutomation.LoginAD.XsdShemeLogin;
 using LogicsSelectAutomation = EfDatabaseAutomation.Automation.SelectParametrSheme.LogicsSelectAutomation;
 
@@ -40,6 +44,15 @@ namespace ServiceAutomation.Service
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/Select", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<string> Select(LogicsSelectAutomation sqlSelect);
         /// <summary>
+        /// Запрос на вытягивание данных по процедуре выборке
+        /// http://localhost:8050/ServiceAutomation/ResultSelectProcedure
+        /// </summary>
+        /// <param name="model">Модель запроса по процедуре</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/ResultSelectProcedure", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<ModelSelect> ResultSelectProcedure(ModelSelect model);
+        /// <summary>
         /// Выгрузка файла для ОКП 2
         /// http://localhost:8050/ServiceAutomation/LoadFileTaxJournal
         /// </summary>
@@ -48,7 +61,6 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadFileTaxJournal", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<Stream> LoadFileTaxJournal(int numberElement);
-
         /// <summary>
         /// Выгрузка файла для ОКП 2 121 статья
         /// http://localhost:8050/ServiceAutomation/LoadFileTax121
@@ -58,5 +70,50 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadFileTax121", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<Stream> LoadFileTax121(int numberElement);
+
+
+
+        /// <summary>
+        /// Добавление ИНН для ввода
+        /// http://localhost:8050/ServiceAutomation/AddInnToModel
+        /// </summary>
+        /// <param name="inn">ИНН для ввода</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddInnToModel", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        string AddInnToModel(string inn);
+        /// <summary>
+        /// Получение данных что отрабатывать
+        /// http://localhost:8050/ServiceAutomation/LoadModelPreCheck
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadModelPreCheck", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        List<SrvToLoad> LoadModelPreCheck();
+        /// <summary>
+        /// Постановка статуса что данные отработаны
+        /// http://localhost:8050/ServiceAutomation/LoadModelPreCheck
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadModelPreCheck", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        string LoadModelPreCheckModel(AisParsedData model);
+
+        /// <summary>
+        /// Снять статус для повторения отработки
+        /// http://localhost:8050/ServiceAutomation/CheckStatusNone
+        /// </summary>
+        /// <param name="idModel">Ун модели</param>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/CheckStatusNone?status={status}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        void CheckStatus(int idModel, string status=null);
+        /// <summary>
+        /// Генерация докладной записки Юридического лица
+        /// </summary>
+        /// <param name="innUl">ИНН ЮЛ</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/GenerateNoteReportUl", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> GenerateNoteReportUl(string innUl);
     }
 }

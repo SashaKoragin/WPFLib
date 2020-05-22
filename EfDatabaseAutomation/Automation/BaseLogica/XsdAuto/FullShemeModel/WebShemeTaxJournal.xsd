@@ -18,6 +18,8 @@
 		<xs:sequence>
 			<xs:element ref="TaxJournalAutoWebPage" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="TaxJournal121AutoWebPage" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="AddUlFace" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ModelTree" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxJournalAutoWebPage">
@@ -250,6 +252,73 @@
 	<xs:element name="CounDay" type="xs:int" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Просрочка дней</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AddUlFace">
+		<xs:annotation>
+			<xs:documentation>Лицо для добавления (Предпроверка)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Id"/>
+			</xs:sequence>
+			<xs:attribute name="LogicsButton" type="xs:string" default="Button">
+				<xs:annotation>
+					<xs:documentation>Логика кнопки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="InnUl" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="FullStatus" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус лица модели</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ModelTree">
+		<xs:annotation>
+			<xs:documentation>Модель отработаных веток</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Id"/>
+				<xs:element ref="DateCreate"/>
+				<xs:element ref="IdModel"/>
+			</xs:sequence>
+			<xs:attribute name="LogicsButton" type="xs:string" default="Button">
+				<xs:annotation>
+					<xs:documentation>Логика кнопки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="InnUl" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Tree" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Ветка</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="StatusModel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус обработки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateCreate" type="xs:dateTime" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Дата записи</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IdModel" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Id Модели ветки</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

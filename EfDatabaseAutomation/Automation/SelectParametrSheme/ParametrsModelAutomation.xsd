@@ -16,15 +16,23 @@
 			<xs:documentation>Параметр выборки модели</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:attribute name="Id" default="0">
+			<xs:sequence>
+				<xs:element ref="Id"/>
+			</xs:sequence>
+			<xs:attribute name="IdCodeProcedure" type="xs:int" default="0">
 				<xs:annotation>
-					<xs:documentation>Параметр выборки из таблицы LogicaSelect</xs:documentation>
+					<xs:documentation>Ун выборки кода процедуры</xs:documentation>
 				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:int">
-						<xs:whiteSpace value="collapse"/>
-					</xs:restriction>
-				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string" default="">
+				<xs:annotation>
+					<xs:documentation>Инн параметр запроса</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="RegNumber" type="xs:long" default="0">
+				<xs:annotation>
+					<xs:documentation>Регистрационные номера параметр</xs:documentation>
+				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
@@ -33,11 +41,9 @@
 			<xs:documentation>Общая выборка из таблицы LogicaSelect</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:attribute name="Id" type="xs:int" default="0">
-				<xs:annotation>
-					<xs:documentation>Порядковый номер</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
+			<xs:sequence>
+				<xs:element ref="Id"/>
+			</xs:sequence>
 			<xs:attribute name="SelectInfo" type="xs:string" use="required">
 				<xs:annotation>
 					<xs:documentation>Описание выборки</xs:documentation>
@@ -60,6 +66,9 @@
 			<xs:documentation>Параметры для генерации пользователем</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="IsVisible"/>
+			</xs:sequence>
 			<xs:attribute name="Value" type="xs:string">
 				<xs:annotation>
 					<xs:documentation>Наименование</xs:documentation>
@@ -85,11 +94,6 @@
 					<xs:documentation>Тип колонки</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="IsVisible" type="xs:boolean">
-				<xs:annotation>
-					<xs:documentation>Видимость элемента</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<xs:complexType name="ModelSelect">
@@ -100,6 +104,58 @@
 			<xs:element ref="ParametrsSelect" minOccurs="0"/>
 			<xs:element ref="LogicsSelectAutomation" minOccurs="0"/>
 			<xs:element ref="InfoViewAutomation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ParameterProcedureWeb" minOccurs="0"/>
+			<xs:element ref="ResultSelectProcedureWeb" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:element name="ParameterProcedureWeb">
+		<xs:annotation>
+			<xs:documentation>Модель без параметров для динамических таблиц</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Id"/>
+			</xs:sequence>
+			<xs:attribute name="SelectInfoModel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Информация о моделе</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="SelectParameterTable" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Выборка динамических параметров для отображения</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ModelClassFind" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Модель поиска класса для запроса и преобразования в результат</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ParameterProcedure" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Параметры для процедуры запроса через процедуру</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="SelectUser" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Пользовательска выборка для данных</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ResultSelectProcedureWeb" type="xs:string" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Результат выборки по Процедуре</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Id" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Порядковый номер он же параметр</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IsVisible" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Видимость элемента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
 </xs:schema>

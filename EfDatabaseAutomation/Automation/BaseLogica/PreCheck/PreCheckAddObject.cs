@@ -1,4 +1,7 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using EfDatabaseAutomation.Automation.Base;
 
@@ -138,32 +141,39 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         }
 
         /// <summary>
-        /// Добавление имущества ЮЛ
+        /// Добавление имущества Юридических лиц
         /// </summary>
-        /// <param name="propertyUlFace">Имущество</param>
+        /// <param name="transportUlFace">(Транспорт земля имущество)</param>
         /// <param name="innUl">ИНН</param>
-        public void AddPropertyUlFace(PropertyUlFace propertyUlFace, string innUl)
+        /// <param name="typeObject">Выбор типа объекта</param>
+        public void AddImZmTrUl(ImZmTrUl imZmTrUl, string innUl, string typeObject)
         {
             //ИНН Есть ли лицо
             using (var context = new Base.Automation())
             {
-                var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
-                propertyUlFace.IdUl = idUl;
+                var idUl = (from users in Automation.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
+                imZmTrUl.IdUl = idUl;
             }
-            if (propertyUlFace.IdUl != 0)
+            //Тип объекта
+            using (var context = new Base.Automation())
             {
-                if (!(from propertyUlFaces in Automation.PropertyUlFaces where propertyUlFaces.IdNum == propertyUlFace.IdNum select new { PropertyUlFace = propertyUlFaces }).Any())
+                var idObject = (from type in Automation.TypeObjects where type.TypeObject_ == typeObject select type.IdObject).SingleOrDefault();
+                imZmTrUl.IdObject = idObject;
+            }
+            if (imZmTrUl.IdUl != 0)
+            {
+                if (!(from imZmTrUls in Automation.ImZmTrUls where imZmTrUls.IdNum == imZmTrUl.IdNum select new { ImZmTrUl = imZmTrUls }).Any())
                 {
-                    Automation.PropertyUlFaces.Add(propertyUlFace);
+                    Automation.ImZmTrUls.Add(imZmTrUl);
                     Automation.SaveChanges();
                 }
                 else
                 {
                     using (var context = new Base.Automation())
                     {
-                        var select = (from propertyUlFaces in context.PropertyUlFaces where propertyUlFaces.IdNum == propertyUlFace.IdNum select new { PropertyUlFace = propertyUlFaces }).FirstOrDefault();
-                        propertyUlFace.Id = select.PropertyUlFace.Id;
-                        Automation.Entry(propertyUlFace).State = EntityState.Modified;
+                        var select = (from imZmTrUls in context.ImZmTrUls where imZmTrUls.IdNum == imZmTrUl.IdNum select new { ImZmTrUl = imZmTrUls }).FirstOrDefault();
+                        imZmTrUl.Id = select.ImZmTrUl.Id;
+                        Automation.Entry(imZmTrUl).State = EntityState.Modified;
                         Automation.SaveChanges();
                     }
                 }
@@ -172,71 +182,46 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         }
 
         /// <summary>
-        /// Добавление имущества Земля
+        /// Добавление имущество транспорт земля физических лиц 
         /// </summary>
-        /// <param name="landUlFace">Имущество</param>
-        /// <param name="innUl">ИНН</param>
-        public void AddLandUlFace(LandUlFace landUlFace, string innUl)
+        /// <param name="imZmTrFl">Модель транспорта земли имущества</param>
+        /// <param name="innFl">ИНН ФЛ</param>
+        /// <param name="typeObject">Выбор типа объекта</param>
+        public void AddImZmTrFl(ImZmTrFl imZmTrFl,string innFl,string typeObject)
         {
-            //ИНН Есть ли лицо
             using (var context = new Base.Automation())
             {
-                var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
-                landUlFace.IdUl = idUl;
+                var idFl = (from users in context.FlFaces where users.Inn == innFl select users.IdFl).SingleOrDefault();
+                imZmTrFl.IdFl = idFl;
             }
-            if (landUlFace.IdUl != 0)
-            {
-                 if (!(from landUlFaces in Automation.LandUlFaces where landUlFaces.IdNum == landUlFace.IdNum select new { LandUlFace = landUlFaces }).Any())
-                 {
-                     Automation.LandUlFaces.Add(landUlFace);
-                     Automation.SaveChanges();
-                 }
-                 else
-                 {
-                    using (var context = new Base.Automation())
-                    {
-                        var select = (from landUlFaces in context.LandUlFaces where landUlFaces.IdNum == landUlFace.IdNum select new { LandUlFace = landUlFaces }).FirstOrDefault();
-                        landUlFace.Id = select.LandUlFace.Id;
-                        Automation.Entry(landUlFace).State = EntityState.Modified;
-                        Automation.SaveChanges();
-                    }
-                }
-            }
-            //Отсутствует лицо сохранение не возможно
-        }
-        /// <summary>
-        /// Добавление имущества Транспорт
-        /// </summary>
-        /// <param name="transportUlFace">Транспорт</param>
-        /// <param name="innUl">ИНН</param>
-        public void AddTransportUlFace(TransportUlFace transportUlFace, string innUl)
-        {
-            //ИНН Есть ли лицо
+            //Тип объекта
             using (var context = new Base.Automation())
             {
-                var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
-                transportUlFace.IdUl = idUl;
+                var idObject = (from type in context.TypeObjects where type.TypeObject_ == typeObject select type.IdObject).SingleOrDefault();
+                imZmTrFl.IdObject = idObject;
             }
-            if (transportUlFace.IdUl != 0)
+            if (imZmTrFl.IdFl != 0)
             {
-                if (!(from transportUlFaces in Automation.TransportUlFaces where transportUlFaces.IdNum == transportUlFace.IdNum select new { TransportUlFace = transportUlFaces }).Any())
+                if (!(from imZmTrFls in Automation.ImZmTrFls where imZmTrFls.IdNum == imZmTrFl.IdNum select new { ImZmTrFl = imZmTrFls }).Any())
                 {
-                    Automation.TransportUlFaces.Add(transportUlFace);
+                    Automation.ImZmTrFls.Add(imZmTrFl);
                     Automation.SaveChanges();
                 }
                 else
                 {
                     using (var context = new Base.Automation())
                     {
-                        var select = (from transportUlFaces in context.TransportUlFaces where transportUlFaces.IdNum == transportUlFace.IdNum select new { TransportUlFace = transportUlFaces }).FirstOrDefault();
-                        transportUlFace.Id = select.TransportUlFace.Id;
-                        Automation.Entry(transportUlFace).State = EntityState.Modified;
-                        Automation.SaveChanges();
+                       var select = (from imZmTrFls in context.ImZmTrFls where imZmTrFls.IdNum == imZmTrFl.IdNum select new { ImZmTrFl = imZmTrFls }).FirstOrDefault();
+                       imZmTrFl.Id = select.ImZmTrFl.Id;
+                       Automation.Entry(imZmTrFl).State = EntityState.Modified;
+                       Automation.SaveChanges();
                     }
                 }
             }
             //Отсутствует лицо сохранение не возможно
         }
+
+
 
         /// <summary>
         /// Добавление среднегодовой численности
@@ -308,7 +293,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         /// <summary>
         /// Добавление ОКВЕД
         /// </summary>
-        /// <param name="individualCardsUlFace">Карточка ОКВЕД</param>
+        /// <param name="individualCardsUlFace">Карточка ОКВЕД в xml</param>
         /// <param name="innUl">ИНН</param>
         public void AddIndividualCardsUlFace(IndividualCardsUlFace individualCardsUlFace, string innUl)
         {
@@ -335,42 +320,110 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                     }
                 }
             }
+            var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 10);
+            Automation.Database.SqlQuery<string>(logicModel.SelectUser, new SqlParameter(logicModel.SelectedParametr.Split(',')[0], innUl)).FirstOrDefault();
             //Отсутствует лицо сохранение не возможно
         }
+        /// <summary>
+        /// Проверка на содержание в БД номера декларации что бы не отбирать
+        /// </summary>
+        /// <param name="regNumDecl">Рег номер декларации</param>
+        /// <returns></returns>
+        public bool IsExistsDeclaration(long regNumDecl)
+        {
+            if ((from declarationUls in Automation.DeclarationUls where declarationUls.RegNumDecl == regNumDecl select new { DeclarationUls = declarationUls }).Any())
+            {
+                return true;
+            }
+            return false;
+        }
 
-        public void AddIndividualNameParametr(IndividualNameParametr individualNameParametr, string innUl)
+        /// <summary>
+        /// Добавление деклараций на все
+        /// </summary>
+        /// <param name="declaration">Основа декларации</param>
+        /// <param name="innUl">ИНН</param>
+        public void AddDeclarationModel(DeclarationUl declarationUl, string innUl)
         {
             using (var context = new Base.Automation())
             {
                 var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
-                individualNameParametr.IdUl = idUl;
+                declarationUl.IdUl = idUl;
             }
-            if (individualNameParametr.IdUl != 0)
+            if (declarationUl.IdUl != 0)
             {
-                if (!(from individualNameParametrs in Automation.IndividualNameParametrs 
-                      where individualNameParametrs.Years == individualNameParametr.Years 
-                      && individualNameParametrs.NameParametr == individualNameParametr.NameParametr 
-                      && individualNameParametrs.IdUl == individualNameParametr.IdUl
-                      select new { IndividualNameParametrs = individualNameParametrs }).Any())
+                if (!(from declarationUls in Automation.DeclarationUls
+                      where declarationUls.RegNumDecl == declarationUl.RegNumDecl
+                      select new { DeclarationUls = declarationUls }).Any())
                 {
-                    Automation.IndividualNameParametrs.Add(individualNameParametr);
+                    Automation.DeclarationUls.Add(declarationUl);
+                    try
+                    {
+                        Automation.SaveChanges();
+                    }
+                    catch(DbEntityValidationException ex)
+                    {
+                        foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                        {
+                            Trace.WriteLine(validationError.Entry.Entity.ToString());
+                            Trace.WriteLine("");
+                             foreach (DbValidationError err in validationError.ValidationErrors)
+                             {
+                                Trace.WriteLine(err.ErrorMessage);
+                             }
+                        }
+                    }
+                }
+                //Обновление данных и внутренних полей не требуется
+            }
+            //Отсутствует лицо сохранение не возможно
+        }
+        /// <summary>
+        /// Добавление выписок в БД 
+        /// </summary>
+        /// <param name="cashBankAllUlFace">Выписки</param>
+        /// <param name="innUl">ИНН ЮЛ</param>
+        public void AddCashBankAllUlFace(CashBankAllUlFace cashBankAllUlFace, string innUl)
+        {
+            using (var context = new Base.Automation())
+            {
+                var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
+                cashBankAllUlFace.IdUl = idUl;
+            }
+            if (cashBankAllUlFace.IdUl != 0)
+            {
+                if (!(from сashBankAllUlFaces in Automation.CashBankAllUlFaces where сashBankAllUlFaces.IdUl == cashBankAllUlFace.IdUl
+                      && сashBankAllUlFaces.NumberCash == cashBankAllUlFace.NumberCash
+                      && сashBankAllUlFaces.IdNum == cashBankAllUlFace.IdNum
+                      && сashBankAllUlFaces.DateFinishPeriod == cashBankAllUlFace.DateFinishPeriod
+                      && сashBankAllUlFaces.DateStartPeriod == cashBankAllUlFace.DateStartPeriod
+                      && сashBankAllUlFaces.CashScoreStartPeriod == cashBankAllUlFace.CashScoreStartPeriod
+                      && сashBankAllUlFaces.CashScoreFinishPeriod == cashBankAllUlFace.CashScoreFinishPeriod
+                      select new { CashBankAllUlFace = сashBankAllUlFaces }).Any())
+                {
+                    Automation.CashBankAllUlFaces.Add(cashBankAllUlFace);
                     Automation.SaveChanges();
                 }
                 else
                 {
                     using (var context = new Base.Automation())
                     {
-                        var select = (from individualNameParametrs in context.IndividualNameParametrs where individualNameParametrs.Years == individualNameParametr.Years 
-                                      && individualNameParametrs.NameParametr == individualNameParametr.NameParametr
-                                      && individualNameParametrs.IdUl == individualNameParametr.IdUl
-                                      select new { IndividualNameParametrs = individualNameParametrs }).FirstOrDefault();
-                        individualNameParametr.Id = select.IndividualNameParametrs.Id;
-                        Automation.Entry(individualNameParametr).State = EntityState.Modified;
+                        var select = (from сashBankAllUlFaces in context.CashBankAllUlFaces where сashBankAllUlFaces.IdUl == cashBankAllUlFace.IdUl
+                                        && сashBankAllUlFaces.NumberCash == cashBankAllUlFace.NumberCash
+                                        && сashBankAllUlFaces.IdNum == cashBankAllUlFace.IdNum
+                                        && сashBankAllUlFaces.DateFinishPeriod == cashBankAllUlFace.DateFinishPeriod
+                                        && сashBankAllUlFaces.DateStartPeriod == cashBankAllUlFace.DateStartPeriod
+                                        && сashBankAllUlFaces.CashScoreStartPeriod == cashBankAllUlFace.CashScoreStartPeriod
+                                        && сashBankAllUlFaces.CashScoreFinishPeriod == cashBankAllUlFace.CashScoreFinishPeriod
+                                      select new { CashBankAllUlFace = сashBankAllUlFaces }).FirstOrDefault();
+                        cashBankAllUlFace.Id = select.CashBankAllUlFace.Id;
+                        Automation.Entry(cashBankAllUlFace).State = EntityState.Modified;
                         Automation.SaveChanges();
                     }
                 }
             }
             //Отсутствует лицо сохранение не возможно
+
         }
     }
 }

@@ -53,19 +53,33 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>C:\Nuget\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Interop.UIAutomationClient, Version=12.0.21213.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>C:\Nuget\UIAComWrapper.1.1.0.14\lib\net40\Interop.UIAutomationClient.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Pex.Framework">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Pex\Microsoft.Pex.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
-    <Reference Include="UIAComWrapper, Version=1.1.0.14, Culture=neutral, PublicKeyToken=78cbcf77433a85e5" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAComWrapper, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Nuget\UIAComWrapper.1.1.0.14\lib\net40\UIAComWrapper.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LibaryAIS3Windows\LibaryAIS3Windows.csproj">
       <Project>{92017569-2991-4B9A-BFA2-6B41CFA72B83}</Project>
       <Name>LibaryAIS3Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibaryXMLAuto\LibaryXMLAuto.csproj">
+      <Project>{a2bc3ae2-4a61-4e9e-9fa4-96a02677c79c}</Project>
+      <Name>LibaryXMLAuto</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewModelLib\ViewModelLib.csproj">
       <Project>{08BB509F-EAD1-4666-A539-6D60F464DB2F}</Project>

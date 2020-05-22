@@ -1,15 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using EfDatabaseAutomation.Automation.SelectParametrSheme;
+using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr
 {
     public class SqlSelect : IDisposable
     {
-        public static string ProcedureSelect = "Exec [dbo].[AutomationCommandSelectWcfToSql] {0}";
-
+        /// <summary>
+        /// Процедура параметров автоматизации
+        /// </summary>
+        private static string ProcedureSelect = "Exec [dbo].[AutomationCommandSelectWcfToSql] {0}";
+        /// <summary>
+        /// Процедура вытягивание логики динамических таблиц
+        /// </summary>
+        private static string ProcedureSelectParameterProcedureWeb = "Exec [dbo].[ProcedureSelectParameterProcedureWeb] {0}";
         public Base.Automation Automation { get; set; }
 
         public SqlSelect()
@@ -40,16 +49,83 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr
         }
 
         /// <summary>
+        /// Запрос параметров для раз кладки и дальнейшей выборки Предпроверка генерация динамических таблиц
+        /// </summary>
+        /// <param name="model">Модель параметров с сайта</param>
+        /// <returns></returns>
+        public ModelSelect ParameterSelect(ModelSelect model)
+        {
+            try
+            {
+                model.ParameterProcedureWeb = SqlSelectParameterProcedureWeb(model.ParametrsSelect.Id);
+                model.InfoViewAutomation = Automation.Database.SqlQuery<InfoViewAutomation>(model.ParameterProcedureWeb.SelectParameterTable).ToArray();
+                return model;
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+                return null;
+            }
+        }
+        /// <summary>
+        /// Запрос по процедурам лежащим в них выборок Предпроверка генерация динамических таблиц (сама таблица)
+        /// </summary>
+        /// <param name="model">С запроса</param>
+        /// <returns></returns>
+        public ModelSelect ResultSelectProcedure<T>(ModelSelect model)
+        {
+            try
+            {
+                SerializeJson serializeJson = new SerializeJson();
+                var result =  Automation.Database.SqlQuery<T>(model.ParameterProcedureWeb.SelectUser,
+                    new SqlParameter(model.ParameterProcedureWeb.ParameterProcedure.Split(',')[0], model.ParametrsSelect.IdCodeProcedure),
+                                 new SqlParameter(model.ParameterProcedureWeb.ParameterProcedure.Split(',')[1], string.IsNullOrWhiteSpace(model.ParametrsSelect.Inn) ? (object)DBNull.Value : model.ParametrsSelect.Inn),
+                                 new SqlParameter(model.ParameterProcedureWeb.ParameterProcedure.Split(',')[2], model.ParametrsSelect.RegNumber)).ToList();
+                dynamic expand = new ExpandoObject();
+                AddProperty(expand, model.ParameterProcedureWeb.ModelClassFind, result);
+                model.ResultSelectProcedureWeb = serializeJson.JsonLibary(expand);
+                return model;
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Выборка модели для манипуляции
         /// </summary>
         /// <param name="id">Параметр индекса в таблицы</param>
         /// <returns></returns>
-        public LogicsSelectAutomation SqlSelectModel(int id)
+        private LogicsSelectAutomation SqlSelectModel(int id)
         {
             return Automation.Database.SqlQuery<LogicsSelectAutomation>(String.Format(ProcedureSelect, id)).ToList()[0];
         }
+        /// <summary>
+        /// Модель выбора процедур и параметров к ней для динамических таблиц
+        /// </summary>
+        /// <param name="id">Параметр индекса в таблицы</param>
+        /// <returns></returns>
+        private ParameterProcedureWeb SqlSelectParameterProcedureWeb(int id)
+        {
+            return Automation.Database.SqlQuery<ParameterProcedureWeb>(String.Format(ProcedureSelectParameterProcedureWeb, id)).FirstOrDefault();
+        }
 
-
+        /// <summary>
+        /// Добавление в ExpandoObject динамического названия типа
+        /// </summary>
+        /// <param name="expando">Динамический объект ExpandoObject</param>
+        /// <param name="propertyName">Наименование параметра </param>
+        /// <param name="propertyValue">Объект прикрепляемый к модели</param>
+        private void AddProperty(ExpandoObject expando, string propertyName, object propertyValue)
+        {
+            var expandoDict = expando as IDictionary<string, object>;
+            if (expandoDict.ContainsKey(propertyName))
+                expandoDict[propertyName] = propertyValue;
+            else
+                expandoDict.Add(propertyName, propertyValue);
+        }
         /// <summary>
         /// Dispose
         /// </summary>
@@ -62,7 +138,9 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr
                 Automation = null;
             }
         }
-
+        /// <summary>
+        /// Метод освобождения ресурсов
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);

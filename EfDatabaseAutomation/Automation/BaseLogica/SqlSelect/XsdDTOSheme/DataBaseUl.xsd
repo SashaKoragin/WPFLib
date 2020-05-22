@@ -1,0 +1,802 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="DataBaseUlSelect" type="DataBaseUlSelect">
+		<xs:annotation>
+			<xs:documentation>База данных запросов</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="DataBaseUlSelect">
+		<xs:annotation>
+			<xs:documentation>База данных запросов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="UlFace" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="DeclarationUl" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="DeclarationData" minOccurs="0"/>
+			<xs:element ref="RukAndUch" minOccurs="0"/>
+			<xs:element ref="Nds" minOccurs="0"/>
+			<xs:element ref="Profit" minOccurs="0"/>
+			<xs:element ref="Balans" minOccurs="0"/>
+			<xs:element ref="UlCommunication" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="UlFace">
+		<xs:annotation>
+			<xs:documentation>Организации в БД</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton" minOccurs="0"/>
+				<xs:element ref="DateOgrn"/>
+				<xs:element ref="Fid"/>
+				<xs:element ref="IdNum"/>
+			</xs:sequence>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameFull" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Полное наименование организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kpp" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Ogrn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ОГРН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="StatusUl" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameSmall" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сокращенное имя организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Address" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Адрес организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="StatusFull" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус пакета</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LogicsButton" default="Button" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Логика кнопок</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:whiteSpace value="collapse"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="DateOgrn" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата ОГРН</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Fid" type="xs:long" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Фид</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IdNum" type="xs:long" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Ун организации</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DeclarationUl">
+		<xs:annotation>
+			<xs:documentation>Декларации ЮЛ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton" minOccurs="0"/>
+				<xs:element ref="RegNumDecl"/>
+				<xs:element ref="Psumm"/>
+				<xs:element ref="NumberKor"/>
+				<xs:element ref="God"/>
+			</xs:sequence>
+			<xs:attribute name="NameDocument" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Документ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="VidDoc" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Вид документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Period" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Отчетный период</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Knd" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КНД</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RegNumDecl" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Регистрационный номер декларации</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Psumm" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>П-Сумма</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NumberKor" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Номер корректировки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="God" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Отчетный год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DeclarationData">
+		<xs:annotation>
+			<xs:documentation>Детализация декларации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RegNumDecl"/>
+			</xs:sequence>
+			<xs:attribute name="CodeString" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код пункта</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameParametr" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование параметра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CodeParametr" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код параметра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DataFace" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сумма по данным НП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DataInspector" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сумма по данным НО </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Error" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Отклонение</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RukAndUch">
+		<xs:annotation>
+			<xs:documentation>Руководители и учередители</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DateStart"/>
+				<xs:element ref="DateFinish"/>
+				<xs:element ref="LogicsButton" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="PriznakCard" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Признак карточки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameFl" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование субъекта</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Priznak" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Признак</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateStart" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата начала действия</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateFinish" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата окончания действия</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Nds">
+		<xs:annotation>
+			<xs:documentation>НДС</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RegNumDecl"/>
+				<xs:element ref="NumberKor"/>
+				<xs:element ref="God"/>
+				<xs:element ref="Summ"/>
+				<xs:element ref="SummOut"/>
+				<xs:element ref="SummNalog"/>
+				<xs:element ref="SummIn"/>
+				<xs:element ref="LogicsButton" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="VidDoc" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Вид документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Period" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Период</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Summ" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Общая сумма НДС (стр.210) (стр.120 по форме от 15.10.2009)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SummOut" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Общая сумма НДС, подлежащая вычету (стр.340) (стр.220 по форме от 15.10.2009) (руб.)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SummNalog" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>В т.ч. сумма налога, уплаченная при ввозе товаров на таможенную территорию РФ (стр.270) (стр.170 по форме от 15.10.2009)  (руб.)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SummIn" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Сумма к уплате (+) (стр.350) / сумма к уменьшению (-) (стр.360)          (руб.)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Profit">
+		<xs:annotation>
+			<xs:documentation>Прибыль</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RegNumDecl"/>
+				<xs:element ref="NumberKor"/>
+				<xs:element ref="God"/>
+				<xs:element ref="Par2_010"/>
+				<xs:element ref="Par2_020"/>
+				<xs:element ref="Par2_030"/>
+				<xs:element ref="Par2_040"/>
+				<xs:element ref="Par2_050"/>
+				<xs:element ref="Par2_060"/>
+				<xs:element ref="Par2_070"/>
+				<xs:element ref="LogicsButton" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="NameDocument" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="VidDoc" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Вид документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Period" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Период</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Par2_010" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Доходы от реализации (стр. 040 Приложения №1 )</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2_020" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Внереализационные доходы (стр.100 Прил.1)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2_030" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>
+Расходы, уменьшающие сумму доходов от реализации (стр.130 Прил.2)	
+</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2_040" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Внереализационные расходы (стр.200+стр.300 Прил.2)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2_050" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Убытки (стр.360 Прил.3)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2_060" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Итого прибыль (убыток) (стр.010+стр.020-стр.030-стр .040+стр.050)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2_070" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Доходы, исключаемые из прибыли</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Balans">
+		<xs:annotation>
+			<xs:documentation>Баланс</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RegNumDecl"/>
+				<xs:element ref="LogicsButton" minOccurs="0"/>
+				<xs:element ref="NumberKor"/>
+				<xs:element ref="God"/>
+				<xs:element ref="Par2110_4"/>
+				<xs:element ref="Par2120_4"/>
+				<xs:element ref="Par2100_4"/>
+				<xs:element ref="Par2210_4"/>
+				<xs:element ref="Par2220_4"/>
+				<xs:element ref="Par2200_4"/>
+				<xs:element ref="Par2320_4"/>
+				<xs:element ref="Par2330_4"/>
+				<xs:element ref="Par2310_4"/>
+				<xs:element ref="Par2340_4"/>
+				<xs:element ref="Par2350_4"/>
+				<xs:element ref="Par2300_4"/>
+				<xs:element ref="Par2450_4"/>
+				<xs:element ref="Par2430_4"/>
+				<xs:element ref="Par2410_4"/>
+				<xs:element ref="Par2400_4"/>
+			</xs:sequence>
+			<xs:attribute name="NameDocument" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="VidDoc" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Вид документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Period" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Период</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Par2110_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Выручка от продажи товаров (работ, услуг) (2110_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2120_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Себестоимость проданных товаров (работ, услуг) (2120_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2100_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Валовая прибыль (2100_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2210_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Коммерческие расходы (2210_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2220_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Управленческие расходы (2220_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2200_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Прибыль (убыток) от продаж (2200_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2320_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Проценты к получению (2320_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2330_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Проценты к уплате (2330_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2310_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Доходы от участия в других организациях (2310_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2340_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Прочие доходы (2340_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2350_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Прочие расходы (2350_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2300_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Прибыль (убыток) до налогообложения (2300_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2450_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Изменение отложенных налоговых активов (2450_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2430_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Изменение отложенных налоговых обязательств (2430_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2410_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Текущий налог на прибыль (2410_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par2400_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Чистая прибыль (убыток) отчетного периода (2400_4)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Active">
+		<xs:annotation>
+			<xs:documentation>Активы</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton" minOccurs="0"/>
+				<xs:element ref="RegNumDecl"/>
+				<xs:element ref="NumberKor"/>
+				<xs:element ref="God"/>
+				<xs:element ref="Par1110_6"/>
+				<xs:element ref="Par1110_5"/>
+				<xs:element ref="Par1110_4"/>
+				<xs:element ref="Par1150_6"/>
+				<xs:element ref="Par1150_5"/>
+				<xs:element ref="Par1150_4"/>
+				<xs:element ref="Par1160_6"/>
+				<xs:element ref="Par1160_5"/>
+				<xs:element ref="Par1160_4"/>
+				<xs:element ref="Par1170_6"/>
+				<xs:element ref="Par1170_5"/>
+				<xs:element ref="Par1170_4"/>
+				<xs:element ref="Par1210_6"/>
+				<xs:element ref="Par1210_5"/>
+				<xs:element ref="Par1210_4"/>
+				<xs:element ref="Par1230_6"/>
+				<xs:element ref="Par1230_5"/>
+				<xs:element ref="Par1230_4"/>
+				<xs:element ref="Par1240_6"/>
+				<xs:element ref="Par1240_5"/>
+				<xs:element ref="Par1240_4"/>
+				<xs:element ref="Par1250_6"/>
+				<xs:element ref="Par1250_5"/>
+				<xs:element ref="Par1250_4"/>
+				<xs:element ref="Par1260_6"/>
+				<xs:element ref="Par1260_5"/>
+				<xs:element ref="Par1260_4"/>
+				<xs:element ref="Par1410_6"/>
+				<xs:element ref="Par1410_5"/>
+				<xs:element ref="Par1410_4"/>
+				<xs:element ref="Par1420_6"/>
+				<xs:element ref="Par1420_5"/>
+				<xs:element ref="Par1420_4"/>
+				<xs:element ref="Par1450_6"/>
+				<xs:element ref="Par1450_5"/>
+				<xs:element ref="Par1450_4"/>
+				<xs:element ref="Par1510_6"/>
+				<xs:element ref="Par1510_5"/>
+				<xs:element ref="Par1510_4"/>
+				<xs:element ref="Par1520_6"/>
+				<xs:element ref="Par1520_5"/>
+				<xs:element ref="Par1520_4"/>
+			</xs:sequence>
+			<xs:attribute name="NameDocument" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="VidDoc" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Вид документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Period" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Период</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Par1110_6" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Нематериальные активы (1110_6) Текущий год-2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1110_5" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Нематериальные активы (1110_5) Текущий год-1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1110_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Нематериальные активы (1110_4) Текущий год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1150_6" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Основные средства (1150_6) Текущий год-2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1150_5" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Основные средства (1150_5) Текущий год-1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1150_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Основные средства (1150_4) Текущий год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1160_6" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Доходные вложения в материальные ценности (1160_6) Текущий год-2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1160_5" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Доходные вложения в материальные ценности (1160_5) Текущий год-1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1160_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Доходные вложения в материальные ценности (1160_4) Текущий год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1170_6" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Долгосрочные финансовые вложения (1170_6)  Текущий год-2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1170_5" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Долгосрочные финансовые вложения (1170_5)  Текущий год-1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1170_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Долгосрочные финансовые вложения (1170_4)  Текущий год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1210_6" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Запасы (1210_6)  Текущий год-2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1210_5" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Запасы (1210_5)  Текущий год-1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1210_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Запасы (1210_4)  Текущий год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1230_6" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Дебиторская задолженность (1230_6)  Текущий год-2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1230_5" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Дебиторская задолженность (1230_5)  Текущий год-1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1230_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Дебиторская задолженность (1230_4)  Текущий год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1240_6" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Краткосрочные финансовые вложения (1240_6)  Текущий год-2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1240_5" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Краткосрочные финансовые вложения (1240_5)  Текущий год-1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1240_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Краткосрочные финансовые вложения (1240_4)  Текущий год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1250_6" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Денежные средства (1250_6)  Текущий год-2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1250_5" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Денежные средства (1250_5)  Текущий год-1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1250_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Денежные средства (1250_4)  Текущий год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1260_6" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Прочие оборотные активы (1260_6)  Текущий год-2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1260_5" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Прочие оборотные активы (1260_5)  Текущий год-1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1260_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Прочие оборотные активы (1260_4)  Текущий год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1410_6" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Займы и кредиты (1410_6)  Текущий год-2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1410_5" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Займы и кредиты (1410_5)  Текущий год-1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1410_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Займы и кредиты (1410_4)  Текущий год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1420_6" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Отложенные налоговые обязательства (1420_6)  Текущий год-2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1420_5" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Отложенные налоговые обязательства (1420_5)  Текущий год-1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1420_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Отложенные налоговые обязательства (1420_4)  Текущий год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1450_6" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Прочие долгосрочные обязательства (1450_6)  Текущий год-2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1450_5" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Прочие долгосрочные обязательства (1450_5)  Текущий год-1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1450_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Прочие долгосрочные обязательства (1450_4)  Текущий год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1510_6" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Займы и кредиты (1510_6)  Текущий год-2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1510_5" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Займы и кредиты (1510_5)  Текущий год-1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1510_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Займы и кредиты (1510_4)  Текущий год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1520_6" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Кредиторская задолженность (1520_6)  Текущий год-2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1520_5" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Кредиторская задолженность (1520_5)  Текущий год-1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Par1520_4" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Кредиторская задолженность (1520_4)  Текущий год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="UlCommunication">
+		<xs:annotation>
+			<xs:documentation>Зависимость от ЮЛ Учередителя</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DateOgrn"/>
+				<xs:element ref="IdUl"/>
+			</xs:sequence>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameFull" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Полное наименование</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kpp" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Ogrn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ОГРН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="StatusUl" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IdUl" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Ун Юридического лица</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

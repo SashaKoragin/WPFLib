@@ -11,7 +11,7 @@
 // 
 // Этот исходный код был создан с помощью xsd, версия=4.7.2046.0.
 // 
-namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.Okp2.ShemeTaxJournal {
+namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
     using System.Xml.Serialization;
     
     
@@ -26,6 +26,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.Okp2.ShemeTaxJourna
         private TaxJournalAutoWebPage[] taxJournalAutoWebPageField;
         
         private TaxJournal121AutoWebPage[] taxJournal121AutoWebPageField;
+        
+        private AddUlFace[] addUlFaceField;
+        
+        private ModelTree[] modelTreeField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxJournalAutoWebPage")]
@@ -46,6 +50,28 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.Okp2.ShemeTaxJourna
             }
             set {
                 this.taxJournal121AutoWebPageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("AddUlFace")]
+        public AddUlFace[] AddUlFace {
+            get {
+                return this.addUlFaceField;
+            }
+            set {
+                this.addUlFaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ModelTree")]
+        public ModelTree[] ModelTree {
+            get {
+                return this.modelTreeField;
+            }
+            set {
+                this.modelTreeField = value;
             }
         }
     }
@@ -579,6 +605,178 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.Okp2.ShemeTaxJourna
             }
             set {
                 this.extensionsField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class AddUlFace {
+        
+        private System.Nullable<int> idField;
+        
+        private string logicsButtonField;
+        
+        private string innUlField;
+        
+        private string fullStatusField;
+        
+        public AddUlFace() {
+            this.logicsButtonField = "Button";
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("Button")]
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string InnUl {
+            get {
+                return this.innUlField;
+            }
+            set {
+                this.innUlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string FullStatus {
+            get {
+                return this.fullStatusField;
+            }
+            set {
+                this.fullStatusField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class ModelTree {
+        
+        private System.Nullable<int> idField;
+        
+        private System.DateTime dateCreateField;
+        
+        private System.Nullable<int> idModelField;
+        
+        private string logicsButtonField;
+        
+        private string innUlField;
+        
+        private string treeField;
+        
+        private string statusModelField;
+        
+        public ModelTree() {
+            this.logicsButtonField = "Button";
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateCreate {
+            get {
+                return this.dateCreateField;
+            }
+            set {
+                this.dateCreateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> IdModel {
+            get {
+                return this.idModelField;
+            }
+            set {
+                this.idModelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("Button")]
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string InnUl {
+            get {
+                return this.innUlField;
+            }
+            set {
+                this.innUlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Tree {
+            get {
+                return this.treeField;
+            }
+            set {
+                this.treeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string StatusModel {
+            get {
+                return this.statusModelField;
+            }
+            set {
+                this.statusModelField = value;
             }
         }
     }

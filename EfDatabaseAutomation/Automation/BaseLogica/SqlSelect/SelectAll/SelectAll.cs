@@ -4,8 +4,8 @@ using System;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
-using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.Okp2.ShemeTaxJournal;
-
+using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel;
+using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
 {
@@ -28,6 +28,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
         {
             SerializeJson serializeJson = new SerializeJson();
             var webPage = new AutoWebPage();
+            var dataBaseUlSelect = new DataBaseUlSelect();
             object result;
             switch (sqlSelect.Id)
             {
@@ -39,6 +40,18 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
                     result = Automation.Database.SqlQuery<TaxJournal121AutoWebPage>(sqlSelect.SelectUser).ToArray();
                     webPage.TaxJournal121AutoWebPage = (TaxJournal121AutoWebPage[])result;
                     break;
+                case 5:
+                    result = Automation.Database.SqlQuery<AddUlFace>(sqlSelect.SelectUser).ToArray();
+                    webPage.AddUlFace = (AddUlFace[])result;
+                    break;
+                case 8:
+                    result = Automation.Database.SqlQuery<ModelTree>(sqlSelect.SelectUser).ToArray();
+                    webPage.ModelTree = (ModelTree[])result;
+                    break;
+                case 13:
+                    result = Automation.Database.SqlQuery<UlFace>(sqlSelect.SelectUser).ToArray();
+                    dataBaseUlSelect.UlFace = (UlFace[])result;
+                    return serializeJson.JsonLibary(dataBaseUlSelect);
                 default:
                     return "Данная комманда не определена!!!";
             }

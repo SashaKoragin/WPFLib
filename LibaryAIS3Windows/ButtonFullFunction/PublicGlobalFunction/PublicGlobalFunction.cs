@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using LibaryAIS3Windows.AutomationsUI.LibaryAutomations;
 
 namespace LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
 {
     public class PublicGlobalFunction
     {
+
         /// <summary>
         /// Поиск последнего файла в папке
         /// </summary>
@@ -67,6 +69,37 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
                     isProcess = false;
                 }
             }
+        }
+        /// <summary>
+        /// Ждать завершение кнопки Update на Аис 3 если нет данных выход из цикла
+        /// </summary>
+        /// <param name="libraryAutomation">Автоматизационный элемент</param>
+        /// <param name="searсhPatternElementGrid">Grid для поиска Caption</param>
+        public static string GridNotDataIsWaitUpdate(LibaryAutomations libraryAutomation, string searсhPatternElementGrid)
+        {
+           var isExit = true;
+            while (isExit)
+            {
+                if (libraryAutomation.IsEnableElements(string.Concat(searсhPatternElementGrid, "\\Name:Caption"), null, true, 1) == null)
+                {
+                    isExit = false;
+                }
+                if(libraryAutomation.FindElement != null)
+                {
+                    if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement) == "Данные, удовлетворяющие заданным условиям не найдены.")
+                    {
+
+                        isExit = false;
+                        return "Данные, удовлетворяющие заданным условиям не найдены.";
+                    }
+                    if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement) == "")
+                    {
+                        isExit = false;
+                        return "";
+                    }
+                }
+            }
+            return null;
         }
     }
 

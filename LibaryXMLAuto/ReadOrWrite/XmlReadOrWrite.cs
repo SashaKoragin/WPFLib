@@ -27,12 +27,39 @@ namespace LibaryXMLAuto.ReadOrWrite
             }
             return null;
         }
+
         /// <summary>
-        /// Удаление Атрибута Образец поиска /players/player[@name="значение"]
+        /// Дессериализация текста xml из БД в объект
         /// </summary>
-        /// <param name="pathxml"></param>
-        /// <param name="atribut"></param>
-        public void DeleteAtributXml(string pathxml, string atribut)
+        /// <param name="text">Текст xml</param>
+        /// <param name="objType">Тип объекта сериализации cs файла</param>
+        /// <returns></returns>
+        public object ReadXmlText(string text, Type objType)
+        {
+            using (var stream = new MemoryStream()) {
+                var writer = new StreamWriter(stream);
+                writer.Write(text);
+                writer.Flush();
+                stream.Position = 0;
+                XmlReader reader = new XmlTextReader(stream);
+                XmlSerializer serializer = new XmlSerializer(objType);
+               
+                if (serializer.CanDeserialize(reader))
+                {
+                    object o = serializer.Deserialize(reader);
+                    return o;
+                }
+            };
+            return null;
+        }
+
+
+            /// <summary>
+            /// Удаление Атрибута Образец поиска /players/player[@name="значение"]
+            /// </summary>
+            /// <param name="pathxml"></param>
+            /// <param name="atribut"></param>
+            public void DeleteAtributXml(string pathxml, string atribut)
         {
                 var doc = LogicaXml.LogicaXml.Document(pathxml);
                 XmlNode node = doc.SelectSingleNode(atribut);

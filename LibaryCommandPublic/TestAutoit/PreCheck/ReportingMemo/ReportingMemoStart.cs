@@ -10,7 +10,6 @@ using GalaSoft.MvvmLight.Threading;
 using Ifns51.ToAis;
 using LibaryAIS3Windows.ButtonsClikcs;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
-using LibaryXMLAutoModelXmlAuto.ModelSnuOne;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
 namespace LibaryCommandPublic.TestAutoit.PreCheck.ReportingMemo
@@ -22,7 +21,9 @@ namespace LibaryCommandPublic.TestAutoit.PreCheck.ReportingMemo
         /// </summary>
         /// <param name="statusButton">Кнопка</param>
         /// <param name="serviceGetOrPost">Адрес get bkb Post</param>
-        public void ReportingMemoStartPreCheck(StatusButtonMethod statusButton,string serviceGetOrPost)
+        /// <param name="pathTemp">Путь сохранения Temp</param>
+        /// <param name="pathSaveBank">Путь сохранения выписок из банка</param>
+        public void ReportingMemoStartPreCheck(StatusButtonMethod statusButton,string serviceGetOrPost, string pathTemp, string pathSaveBank)
         {
             DispatcherHelper.Initialize();
                 Task.Run(delegate
@@ -37,7 +38,7 @@ namespace LibaryCommandPublic.TestAutoit.PreCheck.ReportingMemo
                         {
                             if (ais3.WinexistsAis3() == 1)
                             {
-                                clickerButton.Click29(statusButton,result, serviceGetOrPost);
+                                clickerButton.Click29(statusButton, result, serviceGetOrPost, pathTemp, pathSaveBank);
                                 DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                             }
                             else

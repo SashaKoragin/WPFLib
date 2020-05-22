@@ -227,6 +227,8 @@
         <util:XmlFile Id="AutomatAis3FullSetPathInn" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathInn'[\]]//@value" Value="[INSTALLFOLDER]XmlFile\" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetExcelReportFile" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ExcelReportFile'[\]]//@value" Value="[INSTALLFOLDER]ExcelReport\" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetPathPdfWork" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathPdfWork'[\]]//@value" Value="[INSTALLFOLDER]PdfReport\" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="AutomatAis3FullSetServiceGetOrPost" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServiceGetOrPost'[\]]//@value" Value="http://[SERVICE]:8050/ServiceAutomation/LoadModelPreCheck" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="AutomatAis3FullSetBankSvedSave" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='BankSvedSave'[\]]//@value" Value="[BANKSVEDSAVE]" SelectionLanguage="XPath" Sequence="1" />
       </Component>
 	    <Component Id="MaterialDesignThemes.MahApps.dll" Guid="6c5e4642-dae0-4322-8ca5-96b32b5a83a9">
 	      <File Id="MaterialDesignThemes.MahApps.dll" Name="MaterialDesignThemes.MahApps.dll" Source="$(var.AutomatAis3Full_TargetDir)MaterialDesignThemes.MahApps.dll" />
@@ -293,6 +295,9 @@
       </Component>
       <Component Id="EfDatabaseAutomation.dll" Guid="A1684864-516C-40AF-AFD3-737B9956697F">
         <File Id="EfDatabaseAutomation.dll" Name="EfDatabaseAutomation.dll" Source="$(var.AutomatAis3Full_TargetDir)EfDatabaseAutomation.dll" />
+      </Component>
+      <Component Id="AisPoco.dll" Guid="A3601EDC-FE07-4FC6-B0A4-D01F4D1F92CD">
+        <File Id="AisPoco.dll" Name="AisPoco.dll" Source="$(var.AutomatAis3Full_TargetDir)AisPoco.dll" />
       </Component>
       <Component Id="EntityFramework.dll" Guid="0C840407-DCF2-4CC3-9995-636932017513">
         <File Id="EntityFramework.dll" Name="EntityFramework.dll" Source="$(var.AutomatAis3Full_TargetDir)EntityFramework.dll" />

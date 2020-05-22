@@ -38,6 +38,10 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
         
         private InfoViewAutomation[] infoViewAutomationField;
         
+        private ParameterProcedureWeb parameterProcedureWebField;
+        
+        private string resultSelectProcedureWebField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public ParametrsSelect ParametrsSelect {
@@ -70,6 +74,27 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
                 this.infoViewAutomationField = value;
             }
         }
+        
+        /// <remarks/>
+        public ParameterProcedureWeb ParameterProcedureWeb {
+            get {
+                return this.parameterProcedureWebField;
+            }
+            set {
+                this.parameterProcedureWebField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string ResultSelectProcedureWeb {
+            get {
+                return this.resultSelectProcedureWebField;
+            }
+            set {
+                this.resultSelectProcedureWebField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -83,19 +108,61 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
         
         private int idField;
         
+        private int idCodeProcedureField;
+        
+        private string innField;
+        
+        private long regNumberField;
+        
         public ParametrsSelect() {
-            this.idField = 0;
+            this.idCodeProcedureField = 0;
+            this.innField = "";
+            this.regNumberField = ((long)(0));
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(0)]
         public int Id {
             get {
                 return this.idField;
             }
             set {
                 this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(0)]
+        public int IdCodeProcedure {
+            get {
+                return this.idCodeProcedureField;
+            }
+            set {
+                this.idCodeProcedureField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute("")]
+        public string Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(typeof(long), "0")]
+        public long RegNumber {
+            get {
+                return this.regNumberField;
+            }
+            set {
+                this.regNumberField = value;
             }
         }
     }
@@ -117,13 +184,7 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
         
         private string selectUserField;
         
-        public LogicsSelectAutomation() {
-            this.idField = 0;
-        }
-        
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(0)]
         public int Id {
             get {
                 return this.idField;
@@ -176,6 +237,8 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=true)]
     public partial class InfoViewAutomation {
         
+        private bool isVisibleField;
+        
         private string valueField;
         
         private string nameTableField;
@@ -186,9 +249,15 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
         
         private string typeColumnField;
         
-        private bool isVisibleField;
-        
-        private bool isVisibleFieldSpecified;
+        /// <remarks/>
+        public bool IsVisible {
+            get {
+                return this.isVisibleField;
+            }
+            set {
+                this.isVisibleField = value;
+            }
+        }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -244,26 +313,91 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
                 this.typeColumnField = value;
             }
         }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class ParameterProcedureWeb {
+        
+        private int idField;
+        
+        private string selectInfoModelField;
+        
+        private string selectParameterTableField;
+        
+        private string modelClassFindField;
+        
+        private string parameterProcedureField;
+        
+        private string selectUserField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public bool IsVisible {
+        public int Id {
             get {
-                return this.isVisibleField;
+                return this.idField;
             }
             set {
-                this.isVisibleField = value;
+                this.idField = value;
             }
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool IsVisibleSpecified {
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string SelectInfoModel {
             get {
-                return this.isVisibleFieldSpecified;
+                return this.selectInfoModelField;
             }
             set {
-                this.isVisibleFieldSpecified = value;
+                this.selectInfoModelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string SelectParameterTable {
+            get {
+                return this.selectParameterTableField;
+            }
+            set {
+                this.selectParameterTableField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string ModelClassFind {
+            get {
+                return this.modelClassFindField;
+            }
+            set {
+                this.modelClassFindField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string ParameterProcedure {
+            get {
+                return this.parameterProcedureField;
+            }
+            set {
+                this.parameterProcedureField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string SelectUser {
+            get {
+                return this.selectUserField;
+            }
+            set {
+                this.selectUserField = value;
             }
         }
     }

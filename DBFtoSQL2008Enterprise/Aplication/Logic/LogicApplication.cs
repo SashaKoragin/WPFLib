@@ -7,7 +7,6 @@ using System.Text;
 using System.Windows;
 using DBFtoSQL2008Enterprise.Aplication.ResourceDBFtoSQL;
 using DBFtoSQL2008Enterprise.Aplication.ViewModelElement.ViewModel;
-using MaterialDesignThemes.Wpf;
 using MigSharp;
 
 namespace DBFtoSQL2008Enterprise.Aplication.Logic

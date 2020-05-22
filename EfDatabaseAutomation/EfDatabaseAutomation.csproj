@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AisPoco">
+      <HintPath>C:\Nuget\Ais3Dll\AisPoco.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -56,11 +59,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Automation\BaseLogica\AddObjectDb\AddObjectDb.cs" />
+    <Compile Include="Automation\BaseLogica\ModelGetPost\ModelGetPost.cs" />
     <Compile Include="Automation\BaseLogica\PreCheck\PreCheckAddObject.cs" />
     <Compile Include="Automation\BaseLogica\SqlSelect\PreCheckLog\SqlPreCheckLog.cs" />
     <Compile Include="Automation\BaseLogica\SqlSelect\ProcedureParametr\SqlSelect.cs" />
     <Compile Include="Automation\BaseLogica\SqlSelect\SelectAll\SelectAll.cs" />
-    <Compile Include="Automation\BaseLogica\XsdAuto\Okp2\ShemeTaxJournal\WebShemeTaxJournal.cs">
+    <Compile Include="Automation\BaseLogica\SqlSelect\XsdDTOSheme\DataBaseUl.cs">
+      <DependentUpon>DataBaseUl.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Automation\BaseLogica\XsdAuto\FullShemeModel\WebShemeTaxJournal.cs">
       <DependentUpon>WebShemeTaxJournal.xsd</DependentUpon>
     </Compile>
     <Compile Include="Automation\BaseLogica\XsdAuto\TaxJournalAuto\TaxJournalAuto.cs">
@@ -94,7 +101,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Automation\BaseLogica\XsdAuto\Okp2\ShemeTaxJournal\WebShemeTaxJournal.xsd">
+    <None Include="Automation\BaseLogica\SqlSelect\XsdDTOSheme\DataBaseUl.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Automation\BaseLogica\XsdAuto\FullShemeModel\WebShemeTaxJournal.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Automation\BaseLogica\XsdAuto\TaxJournalAuto\TaxJournalAuto.xsd">
@@ -125,7 +135,8 @@
     <ItemGroup>
       <TaxJournalAuto Include="Automation\BaseLogica\XsdAuto\TaxJournalAuto\*.xsd" />
       <FullParametrAuto Include="Automation\SelectParametrSheme\*.xsd" />
-      <ShemeTaxJournal Include="Automation\BaseLogica\XsdAuto\Okp2\ShemeTaxJournal\*.xsd" />
+      <ShemeTaxJournal Include="Automation\BaseLogica\XsdAuto\FullShemeModel\*.xsd" />
+      <DTOXSDSheme Include="Automation\BaseLogica\SqlSelect\XsdDTOSheme\*.xsd" />
     </ItemGroup>
     <Message Importance="high" Text="CreateDTOSheme" />
     <GetFrameworkSdkPath>
@@ -137,6 +148,7 @@
     <Message Importance="high" Text="Processing XSD schemas" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(TaxJournalAuto.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.XsdAuto.TaxJournalAuto /outputdir:Automation\BaseLogica\XsdAuto\TaxJournalAuto\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(FullParametrAuto.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.SelectParametrSheme /outputdir:Automation\SelectParametrSheme\" />
-    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(ShemeTaxJournal.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.XsdAuto.Okp2.ShemeTaxJournal /outputdir:Automation\BaseLogica\XsdAuto\Okp2\ShemeTaxJournal\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(ShemeTaxJournal.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.XsdAuto.FullShemeModel /outputdir:Automation\BaseLogica\XsdAuto\FullShemeModel\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(DTOXSDSheme.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.SqlSelect.XsdDTOSheme /outputdir:Automation\BaseLogica\SqlSelect\XsdDTOSheme\" />
   </Target>
 </Project>

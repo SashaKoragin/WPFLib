@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Automation;
 using AutoIt;
+using LibaryAIS3Windows.AutomationsUI.Otdels.PreCheck;
 using LibaryAIS3Windows.ButtonsClikcs;
+
 
 
 namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
@@ -95,7 +97,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             while (child != null)
             {
                 result.Add(child);
-                string path = @"c:\MyTest.txt";
+                string path = @"d:\MyTest.txt";
                 using (StreamWriter sw = new StreamWriter(path, true))
                 {
                     var values = ParseElementLegacyIAccessiblePatternIdentifiers(child);
@@ -218,7 +220,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                 if (isEnable)
                 {
                     AutoItX.Send(string.Format(ButtonConstant.UpCountClick, 1));
-                    AutoItX.Sleep(500);
+                    AutoItX.Sleep(1000);
                     isDown = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
                     if (isDown != isUp)
                     {
@@ -233,7 +235,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                 else
                 {
                     AutoItX.Send(string.Format(ButtonConstant.DownCountClick, 1));
-                    AutoItX.Sleep(500);
+                    AutoItX.Sleep(1000);
                     isUp = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
                     if (isDown != isUp)
                     {
@@ -267,7 +269,15 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                 {
                     isExit = Convert.ToInt32(ParseElementLegacyIAccessiblePatternIdentifiers(automationElement));
                     AutoItX.Send(string.Format(ButtonConstant.UpCountClick, 1));
-                    AutoItX.Sleep(500);
+                    AutoItX.Sleep(1000);
+                    if (IsEnableElements(PreCheckElementNameIndividualCards.ErrorYear, null, true,1) != null)
+                    {
+                        ClickElements(PreCheckElementNameIndividualCards.ErrorYear, null, true);
+                        if (IsEnableElements(PreCheckElementNameIndividualCards.ErrorData, null, true) != null)
+                        {
+                            ClickElements(PreCheckElementNameIndividualCards.ErrorData, null, true);
+                        }
+                    }
                     isUp = Convert.ToInt32(ParseElementLegacyIAccessiblePatternIdentifiers(automationElement));
                 }
             }
@@ -289,6 +299,25 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             }
             return null;
         }
+        /// <summary>
+        /// Статус элемента
+        /// </summary>
+        /// <param name="element">Наименование элемента</param>
+        /// <returns>Статус элемента</returns>
+        public uint? ParseElementLegacyIAccessiblePatternIdentifiersState(AutomationElement element)
+        {
+            if (element != null)
+            {
+                if (element.TryGetCurrentPattern(LegacyIAccessiblePatternIdentifiers.Pattern, out var patternObj))
+                {
+                    var valuePattern = (LegacyIAccessiblePattern)patternObj;
+                    var status = valuePattern.Current.State;
+                    return status;
+                }
+            }
+            return null;
+        }
+
 
         /// <summary>
         /// Получить значение элемента из патерна LegacyIAccessiblePatternIdentifiers
@@ -374,6 +403,19 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             }
             return isClicks;
         }
+        /// <summary>
+        /// Нажать на элемент без поиска
+        /// </summary>
+        /// <param name="auto">Элемент</param>
+        /// <param name="x">X</param>
+        /// <param name="y">Y</param>
+        /// <param name="numClicks">Количество кликов</param>
+        public void ClickElement(AutomationElement auto, int x = 0, int y = 0, int numClicks = 1)
+        {
+            var clickPoint = auto.GetClickablePoint();
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint.X + x, (int)clickPoint.Y + y, numClicks);
+        }
+
 
         /// <summary>
         /// Функция Id окна

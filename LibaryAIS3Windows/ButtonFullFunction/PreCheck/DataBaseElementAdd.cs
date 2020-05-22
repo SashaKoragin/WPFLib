@@ -5,7 +5,10 @@ using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.PreCheck;
 using LibaryAIS3Windows.AutomationsUI.LibaryAutomations;
 using System.Text.RegularExpressions;
-using LibaryAIS3Windows.AutomationsUI.Otdels.PreCheck;
+using Ifns51.FromAis;
+using System.Collections.Generic;
+using System.Data.OleDb;
+using System.Data;
 
 namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
 {
@@ -17,46 +20,58 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
         /// </summary>
         /// <param name="libraryAutomation">Библиотека Автоматизации</param>
         /// <param name="automationElement">Автоматизированный элемент</param>
-        public void AddUlFace(LibaryAutomations libraryAutomation, AutomationElement automationElement)
+        /// <param name="aisData">Модель для сервера</param>
+        /// <param name="memos">Поля</param>
+        public void AddUlFace(LibaryAutomations libraryAutomation, AutomationElement automationElement, ref AisParsedData aisData, string[] memos)
         {
             UlFace uiFace = new UlFace();
             PreCheckAddObject preCheck = new PreCheckAddObject();
-
-            uiFace.IdNum = Convert.ToInt64(Regex.Replace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                    .SelectAutomationColrction(automationElement)
-                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН ЮЛ в ЕГРН"))), @"\s+", ""));
-            uiFace.Inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                    .SelectAutomationColrction(automationElement)
-                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
-
-            uiFace.NameFull = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Полное наименование ЮЛ")));
-
-            uiFace.Kpp = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КПП ЮЛ")));
-
-
-            uiFace.NameSmall = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Сокращенное наименование ЮЛ")));
-
-            uiFace.Address = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Адрес МН ЮЛ")));
-
-           var dateResh = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата принятия решения о ликвидации")));
-           uiFace.DateResh = string.IsNullOrWhiteSpace(dateResh) ? null : (DateTime?)Convert.ToDateTime(dateResh);
-
-           var dateResRegor = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>()
-                .First(elem => elem.Current.Name.Contains("Дата принятия решения о реорганизации")));
-           uiFace.DateReshReorg = string.IsNullOrWhiteSpace(dateResRegor) ? null : (DateTime?)Convert.ToDateTime(dateResRegor);
-
+            var dictionary = new Dictionary<string, string>();
+            foreach (var memo in memos)
+            {
+                var value = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains(memo)));
+                dictionary.Add(memo, value);
+                switch (memo)
+                {
+                    case "УН ЮЛ в ЕГРН":
+                        uiFace.IdNum = Convert.ToInt64(Regex.Replace(value, @"\s+", ""));
+                        break;
+                    case "ИНН":
+                        uiFace.Inn = value;
+                        break;
+                    case "Полное наименование ЮЛ":
+                        uiFace.NameFull = value;
+                        break;
+                    case "КПП ЮЛ":
+                        uiFace.Kpp = value;
+                        break;
+                    case "Сокращенное наименование ЮЛ":
+                        uiFace.NameSmall = value;
+                        break;
+                    case "Адрес МН ЮЛ":
+                        uiFace.Address = value;
+                        break;
+                    case "Дата принятия решения о ликвидации":
+                        uiFace.DateResh = string.IsNullOrWhiteSpace(value) ? null : (DateTime?)Convert.ToDateTime(value);
+                        break;
+                    case "Дата принятия решения о реорганизации":
+                        uiFace.DateReshReorg = string.IsNullOrWhiteSpace(value) ? null : (DateTime?)Convert.ToDateTime(value);
+                        break;
+                    case "ОГРН":
+                        uiFace.Ogrn = value;
+                        break;
+                    case "Статус ЮЛ в ЦСР":
+                        uiFace.StatusUl = value;
+                        break;
+                    case "Дата присвоения ОГРН":
+                        uiFace.DateOgrn = string.IsNullOrWhiteSpace(value) ? null : (DateTime?)Convert.ToDateTime(value);
+                        break;
+                    case "ФИД лица":
+                        uiFace.Fid = Convert.ToInt64(Regex.Replace(value, @"\s+", ""));
+                        break;
+                }
+            }
+            aisData.Data.Add(dictionary);
             preCheck.AddUlFace(uiFace);
         }
         /// <summary>
@@ -65,76 +80,67 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
         /// </summary>
         /// <param name="libraryAutomation">Библиотека Автоматизации</param>
         /// <param name="automationElement">Автоматизированный элемент</param>
+        /// <param name="aisData">Модель для сервера</param>
         /// <param name="innUl">Инн ЮЛ</param>
-        public void AddSvedAccoutingUlFace(LibaryAutomations libraryAutomation, AutomationElement automationElement, string innUl)
+        /// <param name="memos">Поля для парсинга АИС 3</param>
+        public void AddSvedAccoutingUlFace(LibaryAutomations libraryAutomation, AutomationElement automationElement,ref AisParsedData aisData, string innUl, string[] memos)
         {
-            SvedAccoutingUlFace svedAccoutingUlFace = new SvedAccoutingUlFace();
+            SvedAccoutingUlFace savedAccountingUlFace = new SvedAccoutingUlFace();
             PreCheckAddObject preCheck = new PreCheckAddObject();
-
-            svedAccoutingUlFace.IdNum = Convert.ToInt64(Regex.Replace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                    .SelectAutomationColrction(automationElement)
-                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН записи об учете ЮЛ в НО"))), @"\s+", ""));
-
-            svedAccoutingUlFace.TypeObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Тип объекта учета")));
-
-            svedAccoutingUlFace.Kpp = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КПП")));
-
-            svedAccoutingUlFace.NameObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Наименование объекта учета")));
-
-            svedAccoutingUlFace.AddressObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                 .SelectAutomationColrction(automationElement)
-                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Адрес объекта учета")));
-
-            svedAccoutingUlFace.CodeNalog = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                 .SelectAutomationColrction(automationElement)
-                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Код НО по месту учета"))));
-
-            var dateBegin = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                 .SelectAutomationColrction(automationElement)
-                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата постановки на учет")));
-            svedAccoutingUlFace.DateBegin = string.IsNullOrWhiteSpace(dateBegin) ? null : (DateTime?)Convert.ToDateTime(dateBegin);
-
-            var dateFactBegin = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                 .SelectAutomationColrction(automationElement)
-                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата фактической постановки на учет")));
-            svedAccoutingUlFace.DateFactBegin = string.IsNullOrWhiteSpace(dateFactBegin) ? null : (DateTime?)Convert.ToDateTime(dateFactBegin);
-
-            svedAccoutingUlFace.CodeSppuno = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                 .SelectAutomationColrction(automationElement)
-                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Код по СППУНО")));
-
-            svedAccoutingUlFace.CauseBegin = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                  .SelectAutomationColrction(automationElement)
-                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Причина постановки на учет")));
-
-            var dateEnd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                  .SelectAutomationColrction(automationElement)
-                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата снятия с учета")));
-            svedAccoutingUlFace.DateEnd = string.IsNullOrWhiteSpace(dateEnd) ? null : (DateTime?)Convert.ToDateTime(dateEnd);
-
-            var dateFactEnd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                  .SelectAutomationColrction(automationElement)
-                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата фактического снятия с учета")));
-            svedAccoutingUlFace.DateFactEnd = string.IsNullOrWhiteSpace(dateFactEnd) ? null : (DateTime?)Convert.ToDateTime(dateFactEnd);
-
-            svedAccoutingUlFace.CodeSppunoEnd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                  .SelectAutomationColrction(automationElement)
-                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Код по СПСУНО")));
-
-            svedAccoutingUlFace.CauseEnd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                  .SelectAutomationColrction(automationElement)
-                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Причина снятия с учета")));
-
-            preCheck.AddSvedAccoutingUlFace(svedAccoutingUlFace, innUl);
+            var dictionary = new Dictionary<string, string>();
+            foreach (var memo in memos)
+            {
+                var value = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains(memo)));
+                dictionary.Add(memo, value);
+                switch (memo)
+                {
+                    case "УН записи об учете ЮЛ в НО":
+                        savedAccountingUlFace.IdNum = Convert.ToInt64(Regex.Replace(value, @"\s+", ""));
+                        break;
+                    case "Тип объекта учета":
+                        savedAccountingUlFace.TypeObject = value;
+                        break;
+                    case "КПП":
+                        savedAccountingUlFace.Kpp = value;
+                        break;
+                    case "Наименование объекта учета":
+                        savedAccountingUlFace.NameObject = value;
+                        break;
+                    case "Адрес объекта учета":
+                        savedAccountingUlFace.AddressObject = value;
+                        break;
+                    case "Код НО по месту учета":
+                        savedAccountingUlFace.CodeNalog = Convert.ToInt32(value);
+                        break;
+                    case "Дата постановки на учет":
+                        savedAccountingUlFace.DateBegin = string.IsNullOrWhiteSpace(value) ? null : (DateTime?)Convert.ToDateTime(value);
+                        break;
+                    case "Дата фактической постановки на учет":
+                        savedAccountingUlFace.DateFactBegin = string.IsNullOrWhiteSpace(value) ? null : (DateTime?)Convert.ToDateTime(value);
+                        break;
+                    case "Код по СППУНО":
+                        savedAccountingUlFace.CodeSppuno = value;
+                        break;
+                    case "Причина постановки на учет":
+                        savedAccountingUlFace.CauseBegin = value;
+                        break;
+                    case "Дата снятия с учета":
+                        savedAccountingUlFace.DateEnd = string.IsNullOrWhiteSpace(value) ? null : (DateTime?)Convert.ToDateTime(value);
+                        break;
+                    case "Дата фактического снятия с учета":
+                        savedAccountingUlFace.DateFactEnd = string.IsNullOrWhiteSpace(value) ? null : (DateTime?)Convert.ToDateTime(value);
+                        break;
+                    case "Код по СПСУНО":
+                        savedAccountingUlFace.CodeSppunoEnd = value;
+                        break;
+                    case "Причина снятия с учета":
+                        savedAccountingUlFace.CauseEnd = value;
+                        break;
+                }
+            }
+            aisData.Data.Add(dictionary);
+            preCheck.AddSvedAccoutingUlFace(savedAccountingUlFace, innUl);
         }
-
-
         /// <summary>
         /// Добавление в БД Истории ЮЛ
         /// Для ветки Налоговое администрирование\Централизованный учет налогоплательщиков\01. ЕГРН - российские организации\2.02. История изменений сведений об учете организации в НО
@@ -146,6 +152,22 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
         {
             HistoriUlFace historyUiFace = new HistoriUlFace();
             PreCheckAddObject preCheck = new PreCheckAddObject();
+
+            historyUiFace.TypeObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                  .SelectAutomationColrction(automationElement)
+                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Тип объекта учета")));
+
+            historyUiFace.KppObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                  .SelectAutomationColrction(automationElement)
+                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КПП")));
+
+            historyUiFace.NameObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                  .SelectAutomationColrction(automationElement)
+                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Наименование объекта учета")));
+
+            historyUiFace.AddressObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                  .SelectAutomationColrction(automationElement)
+                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Адрес объекта учета")));
 
             historyUiFace.IdNum = Convert.ToInt64(Regex.Replace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                 .SelectAutomationColrction(automationElement)
@@ -233,117 +255,68 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
         }
 
         /// <summary>
-        /// Добавление имущества ЮЛ
-        /// Налоговое администрирование\Централизованный учет налогоплательщиков\01. ЕГРН - российские организации\1.18. Сведения об объектах собственности российской организации – имущество
+        /// Добавление объектов собственности Руководителей и учередителей
         /// </summary>
         /// <param name="libraryAutomation">Библиотека Автоматизации</param>
         /// <param name="automationElement">Автоматизированный элемент</param>
-        /// <param name="innUl">Инн ЮЛ</param>
-        public void AddPropertyUlFace(LibaryAutomations libraryAutomation, AutomationElement automationElement, string innUl)
+        /// <param name="innUl">Инн ФЛ</param>
+        /// <param name="typeObject">Тип объекта (имущество,земля,транспорт)</param>
+        public void AddObjectUl(LibaryAutomations libraryAutomation, AutomationElement automationElement, string innUl, string typeObject)
         {
-            PropertyUlFace propertyUlFace = new PropertyUlFace();
+            ImZmTrUl imZmTrUl = new ImZmTrUl();
             PreCheckAddObject preCheck = new PreCheckAddObject();
 
-            propertyUlFace.IdNum = Convert.ToInt64(Regex.Replace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                    .SelectAutomationColrction(automationElement)
-                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН объекта учета ЮЛ"))), @"\s+", ""));
-
-            propertyUlFace.TypeObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Наименование объекта учета")));
-
-            var dateStartStaging = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Наименование объекта учета")));
-            propertyUlFace.DateStartStaging = string.IsNullOrWhiteSpace(dateStartStaging) ? null : (DateTime?)Convert.ToDateTime(dateStartStaging);
-
-            var dateFinishStaging = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата окончательного снятия с учета")));
-            propertyUlFace.DateFinishStaging = string.IsNullOrWhiteSpace(dateFinishStaging) ? null : (DateTime?)Convert.ToDateTime(dateFinishStaging);
-
-            propertyUlFace.AddressObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Адрес места нахождения объекта собственности")));
-
-            preCheck.AddPropertyUlFace(propertyUlFace, innUl);
-        }
-
-        /// <summary>
-        /// Добавление земля ЮЛ
-        /// Налоговое администрирование\Централизованный учет налогоплательщиков\01. ЕГРН - российские организации\1.19. Сведения об объектах собственности российской организации – земля
-        /// </summary>
-        /// <param name="libraryAutomation">Библиотека Автоматизации</param>
-        /// <param name="automationElement">Автоматизированный элемент</param>
-        /// <param name="innUl">Инн ЮЛ</param>
-        public void AddLandUlFace(LibaryAutomations libraryAutomation, AutomationElement automationElement, string innUl)
-        {
-            LandUlFace landUlFace = new LandUlFace();
-            PreCheckAddObject preCheck = new PreCheckAddObject();
-
-            landUlFace.IdNum = Convert.ToInt64(Regex.Replace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+            imZmTrUl.IdNum = Convert.ToInt64(Regex.Replace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                 .SelectAutomationColrction(automationElement)
                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН объекта учета ЮЛ"))), @"\s+", ""));
 
-            landUlFace.TypeObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+            imZmTrUl.NameObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                 .SelectAutomationColrction(automationElement)
                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Наименование объекта учета")));
 
-            var dateStartStaging = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+            imZmTrUl.ReasonSettingStart = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Причина постановки на учет")));
+
+            var dateOne = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                 .SelectAutomationColrction(automationElement)
                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата первичной постановки на учет")));
-            landUlFace.DateStartStaging = string.IsNullOrWhiteSpace(dateStartStaging) ? null : (DateTime?)Convert.ToDateTime(dateStartStaging);
+            imZmTrUl.DateOne = string.IsNullOrWhiteSpace(dateOne) ? null : (DateTime?)Convert.ToDateTime(dateOne);
 
-            var dateFinishStaging = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+            var dateStart = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата постановки на учет в данном НО")));
+            imZmTrUl.DateStart = string.IsNullOrWhiteSpace(dateStart) ? null : (DateTime?)Convert.ToDateTime(dateStart);
+
+            var dateFactStart = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата фактической постановки на учет")));
+            imZmTrUl.DateFactStart = string.IsNullOrWhiteSpace(dateFactStart) ? null : (DateTime?)Convert.ToDateTime(dateFactStart);
+
+            imZmTrUl.ReasonSettingFinish = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Причина снятия с учета")));
+
+            var dateFinish = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                 .SelectAutomationColrction(automationElement)
                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата окончательного снятия с учета")));
-            landUlFace.DateFinishStaging = string.IsNullOrWhiteSpace(dateFinishStaging) ? null : (DateTime?)Convert.ToDateTime(dateFinishStaging);
+            imZmTrUl.DateFinish = string.IsNullOrWhiteSpace(dateFinish) ? null : (DateTime?)Convert.ToDateTime(dateFinish);
 
-            landUlFace.AddressObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+            var dateFinishNo = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата снятия с учета в данном НО")));
+            imZmTrUl.DateFinishNo = string.IsNullOrWhiteSpace(dateFinishNo) ? null : (DateTime?)Convert.ToDateTime(dateFinishNo);
+
+            var dateFactFinish = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата фактического снятия с учета в данном НО")));
+            imZmTrUl.DateFactFinish = string.IsNullOrWhiteSpace(dateFactFinish) ? null : (DateTime?)Convert.ToDateTime(dateFactFinish);
+
+            imZmTrUl.AddresObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                 .SelectAutomationColrction(automationElement)
                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Адрес места нахождения объекта собственности")));
 
-            preCheck.AddLandUlFace(landUlFace, innUl);
-
-        }
-
-        /// <summary>
-        /// Добавление земля ЮЛ
-        /// Налоговое администрирование\Централизованный учет налогоплательщиков\01. ЕГРН - российские организации\1.20. Сведения об объектах собственности российской организации – транспорт
-        /// </summary>
-        /// <param name="libraryAutomation">Библиотека Автоматизации</param>
-        /// <param name="automationElement">Автоматизированный элемент</param>
-        /// <param name="innUl">Инн ЮЛ</param>
-        public void AddTransportUlFace(LibaryAutomations libraryAutomation, AutomationElement automationElement, string innUl)
-        {
-            TransportUlFace transportUlFace = new TransportUlFace();
-            PreCheckAddObject preCheck = new PreCheckAddObject();
-
-            transportUlFace.IdNum = Convert.ToInt64(Regex.Replace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН объекта учета ЮЛ"))), @"\s+", ""));
-
-            transportUlFace.TypeObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Наименование объекта учета")));
-
-            var dateStartStaging = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата первичной постановки на учет")));
-            transportUlFace.DateStartStaging = string.IsNullOrWhiteSpace(dateStartStaging) ? null : (DateTime?)Convert.ToDateTime(dateStartStaging);
-
-            var dateFinishStaging = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата окончательного снятия с учета")));
-            transportUlFace.DateFinishStaging = string.IsNullOrWhiteSpace(dateFinishStaging) ? null : (DateTime?)Convert.ToDateTime(dateFinishStaging);
-
-
-            transportUlFace.AddressObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Адрес места нахождения объекта собственности")));
-
-            preCheck.AddTransportUlFace(transportUlFace, innUl);
-
+            preCheck.AddImZmTrUl(imZmTrUl, innUl, typeObject);
         }
         /// <summary>
         /// Добавление Сведения о среднесписочной численности работников ЮЛ
@@ -417,71 +390,206 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
 
         }
         /// <summary>
-        /// 7. Индивидуальные карточки налогоплательщиков АКВЕД
+        /// 7. Индивидуальные карточки налогоплательщиков сохранение в БД
         /// </summary>
-        /// <param name="libraryAutomation">Библиотека Автоматизации</param>
+        /// <param name="fileNameXml">Файл xml</param>
         /// <param name="innUl">ИНН</param>
-        public void AddIndividualCardsUlFace(LibaryAutomations libraryAutomation, string innUl)
+        public void AddIndividualCardsUlFace(string fileNameXml, string innUl)
         {
             IndividualCardsUlFace cardsUlFace = new IndividualCardsUlFace();
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var acvedCode = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.PanelElementOkvedCode));
-            var acvedName = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.PanelElementOkvedName));
-            cardsUlFace.Acved = string.Concat(acvedCode, " - ", acvedName);
-            cardsUlFace.GroupOrg = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.PanelElementOrgScale));
-            cardsUlFace.Segment = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.PanelElementtxtOsn));
+            cardsUlFace.ReportAll = LibaryXMLAuto.ReadOrWrite.LogicaXml.LogicaXml.Document(fileNameXml).InnerXml;
             preCheck.AddIndividualCardsUlFace(cardsUlFace, innUl);
         }
 
-        public void AddRaschetCard(LibaryAutomations libraryAutomation, AutomationElement automationElement, string innUl)
+        /// <summary>
+        /// Добавление Банковские выписки, справки ЮЛ
+        /// </summary>
+        /// <param name="fileName">Имя файла выписок</param>
+        /// <param name="innUl">Инн ЮЛ</param>
+        public void AddCashBankAllUlFace(string fileName, string innUl)
         {
-            
-            PreCheckAddObject preCheck = new PreCheckAddObject();
-            double doubleNum;
-            var cardParametr = libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name != "Column Headers" && automationElemenst.Current.Name != "Наименование показателя").ToList();
-            foreach(var param in cardParametr)
+            var preCheck = new PreCheckAddObject();
+            var connectionString = string.Format($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={fileName}; Extended Properties=Excel 12.0;");
+            var adapter = new OleDbDataAdapter("Select * From [Sheet1$]", connectionString);
+            var ds = new DataSet();
+            long result;
+            adapter.Fill(ds, "Declaration");
+            var data = ds.Tables["Declaration"];
+            var countRow = 1;
+            foreach (DataRow row in data.Rows)
             {
-                if (Double.TryParse(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(param),out doubleNum))
+                if (countRow >= 2)
                 {
-                   IndividualNameParametr raschetCard = new IndividualNameParametr();
-                   raschetCard.NameParametr = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                           .SelectAutomationColrction(automationElement)
-                                           .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Наименование показателя")));
-                   raschetCard.Years = Convert.ToInt32(param.Current.Name);
-                   raschetCard.Parametr = doubleNum;
-                   preCheck.AddIndividualNameParametr(raschetCard, innUl);
+                    if (Int64.TryParse(row.ItemArray[0].ToString(),out result))
+                    {
+                        CashBankAllUlFace cashBankAllUlFace = new CashBankAllUlFace
+                        {
+                            IdNum = Convert.ToInt64(row.ItemArray[0]),
+                            DateWay = Convert.ToDateTime(row.ItemArray[1]),
+                            CodeNo = Convert.ToInt32(row.ItemArray[2]),
+                            DatePriem = Convert.ToDateTime(row.ItemArray[3]),
+                            NameBank = Convert.ToString(row.ItemArray[4]),
+                            Bik = Convert.ToString(row.ItemArray[5]),
+                            InnBank = Convert.ToString(row.ItemArray[6]),
+                            KppBank = Convert.ToString(row.ItemArray[7]),
+                            NumberCash = Convert.ToString(row.ItemArray[8]),
+                            Cash = Convert.ToString(row.ItemArray[9]),
+                            DateStartPeriod = Convert.ToDateTime(row.ItemArray[10]),
+                            DateFinishPeriod = Convert.ToDateTime(row.ItemArray[11]),
+                            CashScoreStartPeriod = Convert.ToDouble(row.ItemArray[12]),
+                            CashScoreFinishPeriod = Convert.ToDouble(row.ItemArray[13])
+                        };
+                        preCheck.AddCashBankAllUlFace(cashBankAllUlFace, innUl);
+                    }
+                  
                 }
+                countRow++;
             }
         }
 
-        ///// <summary>
-        ///// Добавление Банковские выписки, справки ЮЛ
-        ///// </summary>
-        ///// <param name="libraryAutomation">Библиотека Автоматизации</param>
-        ///// <param name="automationElement">Автоматизированный элемент</param>
-        ///// <param name="innUl">Инн ЮЛ</param>
-        //public void AddCashBankAllUlFace(LibaryAutomations libraryAutomation, AutomationElement automationElement, string innUl)
-        //{
-        //    CashBankAllUlFace cashBankAllUlFace = new CashBankAllUlFace();
-        //    PreCheckAddObject preCheck = new PreCheckAddObject();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="libraryAutomation">Библиотека Автоматизации</param>
+        /// <param name="automationElement">Автоматизированный элемент</param>
+        /// <returns>Возврат Рег номера декларации</returns>
+        public DeclarationUl AddDeclaration(LibaryAutomations libraryAutomation, AutomationElement automationElement)
+        {
+            DeclarationUl declarationUlFace = new DeclarationUl
+            {
+                RegNumDecl = Convert.ToInt64(Regex.Replace(
+                    libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("РегНомер"))), @"\s+", "")),
+                Psumm = Convert.ToDouble(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                    libraryAutomation
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("П-Сумма")))),
+                Knd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    .SelectAutomationColrction(automationElement)
+                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КНД"))),
+                NameDocument = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    .SelectAutomationColrction(automationElement)
+                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Документ"))),
+                VidDoc = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    .SelectAutomationColrction(automationElement)
+                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Вид документа"))),
+                NumberKor = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                    libraryAutomation
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Номер корректировки")))),
+                Period = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    .SelectAutomationColrction(automationElement)
+                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный период"))),
+                God = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                    libraryAutomation
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный год"))))
+            };
+            return declarationUlFace;
+        }
+        public bool DeclarationDataExists(long regNumberDeclaration)
+        {
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            return preCheck.IsExistsDeclaration(regNumberDeclaration);
+        }
 
-        //    cashBankAllUlFace.NumberCash
+        /// <summary>
+        /// Наименование файла
+        /// </summary>
+        /// <param name="fileName">Имя файла</param>
+        /// <param name="declarationUl">Декларация</param>
+        /// <param name="innUl">ИНН</param>
+        public void AddDeclarationData(string fileName, DeclarationUl declarationUl, string innUl)
+        {
+           List<DeclarationData> listDeclarationDataFace = new List<DeclarationData>();
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            var connectionString = string.Format($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={fileName}; Extended Properties=Excel 12.0;");
+            var adapter = new OleDbDataAdapter("Select * From [Sheet0$]", connectionString);
+            var ds = new DataSet();
+            adapter.Fill(ds, "Declaration");
+            DataTable data = ds.Tables["Declaration"];
+            foreach(DataRow row in data.Rows)
+            {
+                listDeclarationDataFace.Add(new DeclarationData()
+                {
+                    RegNumDecl = declarationUl.RegNumDecl,
+                    CodeString = row.Field<string>("Код строки"),
+                    NameParametr = row.Field<string>("Наименование показателя"),
+                    CodeParametr = row.Field<string>("Код показателя"),
+                    DataFace = row.Field<string>("По данным плательщика"),
+                    DataInspector = row.Field<string>("По данным инспектора"),
+                    Error = row.Field<string>("Отклонение"),
+                });
+            }
+            declarationUl.DeclarationDatas = listDeclarationDataFace;
+            preCheck.AddDeclarationModel(declarationUl, innUl);
+        }
 
-        //    cashBankAllUlFace.DateWay
+        /// <summary>
+        /// Добавление объектов собственности Руководителей и учередителей
+        /// </summary>
+        /// <param name="libraryAutomation">Библиотека Автоматизации</param>
+        /// <param name="automationElement">Автоматизированный элемент</param>
+        /// <param name="innFl">Инн ФЛ</param>
+        /// <param name="typeObject">Тип объекта (имущество,земля,транспорт)</param>
+        public void AddObjectFl(LibaryAutomations libraryAutomation, AutomationElement automationElement, string innFl,string typeObject)
+        {
+            ImZmTrFl imZmTrFl = new ImZmTrFl();
+            PreCheckAddObject preCheck = new PreCheckAddObject();
 
-        //    cashBankAllUlFace.CodeNo
+            imZmTrFl.IdNum = Convert.ToInt64(Regex.Replace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН объекта учета ФЛ"))), @"\s+", ""));
 
-        //    cashBankAllUlFace.DateGetting
+            imZmTrFl.NameObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Наименование объекта учета")));
 
-        //    cashBankAllUlFace.NameBank
+            imZmTrFl.ReasonSettingStart = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Причина постановки на учет")));
 
-        //    cashBankAllUlFace.CashNumber
+            var dateOne = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата первичной постановки на учет")));
+            imZmTrFl.DateOne = string.IsNullOrWhiteSpace(dateOne) ? null : (DateTime?)Convert.ToDateTime(dateOne);
 
-        //    cashBankAllUlFace.DateStartPeriod
+            var dateStart = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата постановки на учет в данном НО")));
+            imZmTrFl.DateStart = string.IsNullOrWhiteSpace(dateStart) ? null : (DateTime?)Convert.ToDateTime(dateStart);
 
-        //    cashBankAllUlFace.DateFinishPeriod
+            var dateFactStart = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата фактической постановки на учет")));
+            imZmTrFl.DateFactStart = string.IsNullOrWhiteSpace(dateFactStart) ? null : (DateTime?)Convert.ToDateTime(dateFactStart);
 
+            imZmTrFl.ReasonSettingFinish = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Причина снятия с учета")));
 
-        //}
+            var dateFinish = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата окончательного снятия с учета")));
+            imZmTrFl.DateFinish = string.IsNullOrWhiteSpace(dateFinish) ? null : (DateTime?)Convert.ToDateTime(dateFinish);
+
+            var dateFinishNo = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата снятия с учета в данном НО")));
+            imZmTrFl.DateFinishNo = string.IsNullOrWhiteSpace(dateFinishNo) ? null : (DateTime?)Convert.ToDateTime(dateFinishNo);
+
+            var dateFactFinish = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата фактического снятия с учета в данном НО")));
+            imZmTrFl.DateFactFinish = string.IsNullOrWhiteSpace(dateFactFinish) ? null : (DateTime?)Convert.ToDateTime(dateFactFinish);
+
+            imZmTrFl.AddresObject = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Адрес места нахождения объекта собственности")));
+
+            preCheck.AddImZmTrFl(imZmTrFl,innFl, typeObject);
+        }
     }
 }

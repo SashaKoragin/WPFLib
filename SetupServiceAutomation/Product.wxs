@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
   <?define ServiceAutomation_TargetDir=$(var.ServiceAutomation.TargetDir)?>
   <?define CurrentVersion="!(bind.fileVersion.ServiceAutomation.exe)"?>
 	<Product Id="*" Name="SetupServiceAutomation $(var.CurrentVersion)" Codepage="1251" Language="1049" Version="$(var.CurrentVersion)" Manufacturer="ServiceAutomation" UpgradeCode="a5600e2d-a593-4979-9a15-105e98bf09ea">
@@ -23,9 +23,21 @@
 		<Feature Id="ProductFeature" Title="SetupServiceAutomation" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
       <ComponentRef Id="CreateLog" />
+      <ComponentRef Id="CreateFolderReport" />
       <ComponentRef Id="Clear" />
     </Feature>
 	</Product>
+
+  <Fragment>
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Directory Id="PathReport" Name="Report">
+        <Component Id="CreateFolderReport" Guid="860A7AD8-FA26-4FCA-890D-7B7B768D3C2D">
+          <CreateFolder />
+        </Component>
+      </Directory>
+    </DirectoryRef>
+  </Fragment>
+
 
   <Fragment>
     <DirectoryRef Id="INSTALLLOCATION">
@@ -33,6 +45,8 @@
         <CreateFolder Directory="INSTALLLOCATION" />
         <RemoveFile Id="RemoveFileLog" On="uninstall" Name="*.*" Directory="PathLog" />
         <RemoveFolder Id="RemoveFolderLog" On="uninstall" Directory="PathLog" />
+        <RemoveFile Id="RemoveFileReport" On="uninstall" Name="*.*" Directory="PathReport" />
+        <RemoveFolder Id="RemoveFolderReport" On="uninstall" Directory="PathReport" />
       </Component>
     </DirectoryRef>
   </Fragment>
@@ -61,12 +75,21 @@
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="ServiceAutomation.exe" Guid="A1A23110-A047-48EB-996F-89C302F3E875">
         <File Id="ServiceAutomation.exe" Name="ServiceAutomation.exe" Source="$(var.ServiceAutomation_TargetDir)ServiceAutomation.exe" />
-        <ServiceInstall Id="ServiceInstall" Type="ownProcess" Interactive="yes" Vital="yes" Description="Служба Automation для статистики автоматов!!!" Name="ServiceAutomation" Start="auto" ErrorControl="normal" />
-        <ServiceControl Id="ServiceRemove" Name="ServiceAutomation" Start="install" Stop="both" Remove="uninstall" Wait="yes" />
+        <ServiceInstall Id="ServiceInstall" Type="ownProcess" Interactive="yes" Vital="yes" Description="Служба Automation для статистики автоматов!!!" Name="ServiceAutomation" Start="auto" ErrorControl="ignore" />
+        <ServiceControl Id="Start"
+                        Name="ServiceAutomation"
+                        Start="install"
+                        Wait="no" />
+        <ServiceControl Id="Stop"
+                        Name="ServiceAutomation"
+                        Stop="both"
+                        Remove="uninstall"
+                        Wait="yes" />
       </Component>
 
 			<Component Id="ServiceAutomation.exe.config" Guid="140ddd27-1140-4068-8d95-fef1b2ae1135">
-			  <File Id="ServiceAutomation.exe.config" Name="ServiceAutomation.exe.config" Source="$(var.ServiceAutomation_TargetDir)ServiceAutomation.exe.config" />
+			  <File Id="ServiceAutomation.exe.config" Name="ServiceAutomation.exe.config" Source="$(var.ServiceAutomation_TargetDir)ServiceAutomation.exe.config" KeyPath="yes" Vital="yes" />
+         <util:XmlFile Id="Report" File="[#ServiceAutomation.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathSaveTemplate'[\]]//@value" Value="[PathReport]" SelectionLanguage="XPath" Sequence="1" />
 			</Component>
 			<Component Id="LibaryXMLAuto.dll" Guid="72092a73-5391-496d-a77f-401348fdc139">
 			  <File Id="LibaryXMLAuto.dll" Name="LibaryXMLAuto.dll" Source="$(var.ServiceAutomation_TargetDir)LibaryXMLAuto.dll" />
@@ -101,6 +124,13 @@
       <Component Id="FastMember.dll" Guid="DD7C24D0-4998-4316-870B-29343062C3E7">
         <File Id="FastMember.dll" Name="FastMember.dll" Source="$(var.ServiceAutomation_TargetDir)FastMember.dll" />
       </Component>
+      <Component Id="LibaryDocumentGenerator.dll" Guid="B5EF8D4D-A1E6-4B1A-A50C-0FD0CFED32B3">
+        <File Id="LibaryDocumentGenerator.dll" Name="LibaryDocumentGenerator.dll" Source="$(var.ServiceAutomation_TargetDir)LibaryDocumentGenerator.dll" />
+      </Component>
+      <Component Id="AisPoco.dll" Guid="880B50F8-27FC-48E3-A115-CB387860054D">
+        <File Id="AisPoco.dll" Name="AisPoco.dll" Source="$(var.ServiceAutomation_TargetDir)AisPoco.dll" />
+      </Component>
+      
 		</ComponentGroup>
 	</Fragment>
 </Wix>
