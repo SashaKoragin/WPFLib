@@ -1178,23 +1178,23 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class Active {
         
-        private System.Nullable<long> god1Field;
+        private System.Nullable<decimal> god1Field;
         
-        private System.Nullable<long> god2Field;
+        private System.Nullable<decimal> god2Field;
         
-        private System.Nullable<long> god3Field;
+        private System.Nullable<decimal> god3Field;
         
         private string nameParametrField;
         
         public Active() {
-            this.god1Field = ((long)(0));
-            this.god2Field = ((long)(0));
-            this.god3Field = ((long)(0));
+            this.god1Field = ((decimal)(0m));
+            this.god2Field = ((decimal)(0m));
+            this.god3Field = ((decimal)(0m));
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<long> God1 {
+        public System.Nullable<decimal> God1 {
             get {
                 return this.god1Field;
             }
@@ -1205,7 +1205,7 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<long> God2 {
+        public System.Nullable<decimal> God2 {
             get {
                 return this.god2Field;
             }
@@ -1216,7 +1216,7 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<long> God3 {
+        public System.Nullable<decimal> God3 {
             get {
                 return this.god3Field;
             }
@@ -1246,15 +1246,15 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class Balans {
         
-        private System.Nullable<long> god1Field;
+        private System.Nullable<decimal> god1Field;
         
         private bool god1FieldSpecified;
         
-        private System.Nullable<long> god2Field;
+        private System.Nullable<decimal> god2Field;
         
         private bool god2FieldSpecified;
         
-        private System.Nullable<long> god3Field;
+        private System.Nullable<decimal> god3Field;
         
         private bool god3FieldSpecified;
         
@@ -1267,14 +1267,14 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
         private string codeParametrField;
         
         public Balans() {
-            this.god1Field = ((long)(0));
-            this.god2Field = ((long)(0));
-            this.god3Field = ((long)(0));
+            this.god1Field = ((decimal)(0m));
+            this.god2Field = ((decimal)(0m));
+            this.god3Field = ((decimal)(0m));
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<long> God1 {
+        public System.Nullable<decimal> God1 {
             get {
                 return this.god1Field;
             }
@@ -1296,7 +1296,7 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<long> God2 {
+        public System.Nullable<decimal> God2 {
             get {
                 return this.god2Field;
             }
@@ -1318,7 +1318,7 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<long> God3 {
+        public System.Nullable<decimal> God3 {
             get {
                 return this.god3Field;
             }
@@ -1392,15 +1392,15 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class Profit {
         
-        private System.Nullable<long> god1Field;
+        private System.Nullable<decimal> god1Field;
         
         private bool god1FieldSpecified;
         
-        private System.Nullable<long> god2Field;
+        private System.Nullable<decimal> god2Field;
         
         private bool god2FieldSpecified;
         
-        private System.Nullable<long> god3Field;
+        private System.Nullable<decimal> god3Field;
         
         private bool god3FieldSpecified;
         
@@ -1413,14 +1413,14 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
         private string codeParametrField;
         
         public Profit() {
-            this.god1Field = ((long)(0));
-            this.god2Field = ((long)(0));
-            this.god3Field = ((long)(0));
+            this.god1Field = ((decimal)(0m));
+            this.god2Field = ((decimal)(0m));
+            this.god3Field = ((decimal)(0m));
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<long> God1 {
+        public System.Nullable<decimal> God1 {
             get {
                 return this.god1Field;
             }
@@ -1442,7 +1442,7 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<long> God2 {
+        public System.Nullable<decimal> God2 {
             get {
                 return this.god2Field;
             }
@@ -1464,7 +1464,7 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<long> God3 {
+        public System.Nullable<decimal> God3 {
             get {
                 return this.god3Field;
             }

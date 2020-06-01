@@ -98,7 +98,12 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                                 Automation.Entry(modelUpdate).State = EntityState.Modified;
                                 Automation.SaveChanges();
                                 var logicModelFullStatus = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 11);
-                                Automation.Database.SqlQuery<string>(logicModelFullStatus.SelectUser, new SqlParameter(logicModelFullStatus.SelectedParametr.Split(',')[0], select.ModelGetPosts.Id)).FirstOrDefault();
+                                if (logicModelFullStatus != null)
+                                {
+                                    Automation.Database.SqlQuery<string>(logicModelFullStatus.SelectUser,
+                                        new SqlParameter(logicModelFullStatus.SelectedParametr.Split(',')[0],
+                                            @select.ModelGetPosts.Id)).FirstOrDefault();
+                                }
                             }
                         }
                     }
@@ -111,10 +116,12 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
             }
             return null;
         }
+
         /// <summary>
         /// Метод для снятия статуса для повторной отработки
         /// </summary>
         /// <param name="idModel">Ун модели</param>
+        /// <param name="status">Статус обработки ветки</param>
         public void CheckStatus(int idModel,string status)
         {
             try
@@ -133,9 +140,15 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                         };
                         Automation.Entry(modelUpdate).State = EntityState.Modified;
                         Automation.SaveChanges();
-                        var paramertControl = string.IsNullOrWhiteSpace(status) ? 12 : 11; //Если null или Empty то УН 12 в противном случае 11;
-                        var logicModelOnFullStatus = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == paramertControl);
-                        var resultFullOnBlockStatus = Automation.Database.SqlQuery<string>(logicModelOnFullStatus.SelectUser, new SqlParameter(logicModelOnFullStatus.SelectedParametr.Split(',')[0], idModel)).FirstOrDefault();
+                        var parameterControl = string.IsNullOrWhiteSpace(status) ? 12 : 11; //Если null или Empty то УН 12 в противном случае 11;
+                        var logicModelOnFullStatus = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == parameterControl);
+                        if (logicModelOnFullStatus != null)
+                        {
+                            var resultFullOnBlockStatus = Automation.Database
+                                .SqlQuery<string>(logicModelOnFullStatus.SelectUser,
+                                    new SqlParameter(logicModelOnFullStatus.SelectedParametr.Split(',')[0], idModel))
+                                .FirstOrDefault();
+                        }
                     }
                 }
             }
@@ -213,7 +226,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
             {
                 Loggers.Log4NetLogger.Error(ex);
             }
-            return null; ;
+            return null;
         }
 
     }

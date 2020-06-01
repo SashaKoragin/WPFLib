@@ -21,7 +21,7 @@ namespace ServiceAutomation.Service
         /// <summary>
         /// Параметры глобальной конфигурации 
         /// </summary>
-           private readonly ParametrConfig.ParametrConfig ParametrConfig = new ParametrConfig.ParametrConfig();
+           private readonly ParametrConfig.ParameterConfig _parameterConfig = new ParametrConfig.ParameterConfig();
 
         /// <summary>
         /// Авторизация через домен и роли
@@ -122,10 +122,12 @@ namespace ServiceAutomation.Service
             var modelLoad = new ModelGetPost();
             return modelLoad.LoadModelPreCheck(model);
         }
+
         /// <summary>
         /// Снятие статуса повторной отработки
         /// </summary>
-        /// <param name="idModel"></param>
+        /// <param name="idModel">Ун модели</param>
+        /// <param name="status">Статус обработки ветки</param>
         public void CheckStatus(int idModel,string status = null)
         {
             var modelLoad = new ModelGetPost();
@@ -147,7 +149,7 @@ namespace ServiceAutomation.Service
                     if (card != null)
                     {
                         ReportNote report = new ReportNote();
-                        report.CreateDocum(ParametrConfig.PathSaveTemplate, card, null);
+                        report.CreateDocum(_parameterConfig.PathSaveTemplate, card, null);
                         return report.FileArray();
                     }
                 }

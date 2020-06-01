@@ -1,12 +1,10 @@
-﻿using System;
-using System.Configuration;
-using System.Runtime.Serialization;
+﻿using System.Configuration;
 
 namespace ServiceAutomation.ParametrConfig
 {
-    public class ParametrConfig
+    public class ParameterConfig
     {
-        public ParametrConfig()
+        public ParameterConfig()
         {
             ConfigurationManager.RefreshSection(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None).AppSettings.SectionInformation.Name);
             PathSaveTemplate = ConfigurationManager.AppSettings["PathSaveTemplate"];

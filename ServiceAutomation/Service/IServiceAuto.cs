@@ -3,7 +3,6 @@ using System.IO;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using EfDatabaseAutomation.Automation.SelectParametrSheme;
 using Ifns51.FromAis;
 using Ifns51.ToAis;
@@ -104,6 +103,7 @@ namespace ServiceAutomation.Service
         /// http://localhost:8050/ServiceAutomation/CheckStatusNone
         /// </summary>
         /// <param name="idModel">Ун модели</param>
+        /// <param name="status">Статус обработки ветки</param>
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/CheckStatusNone?status={status}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         void CheckStatus(int idModel, string status=null);

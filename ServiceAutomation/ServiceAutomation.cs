@@ -15,10 +15,10 @@ namespace ServiceAutomation
             Service?.Close();
             Service = new ServiceHost(typeof(ServiceAuto));
             Service.Open();
-            new Thread(StartOutlook).Start();
+            new Thread(StartAutomationService).Start();
         }
 
-        void StartOutlook()
+        void StartAutomationService()
         {
             Loggers.Log4NetLogger.Info(new Exception("Запустили сервис статистики автоматизации!"));
         }
