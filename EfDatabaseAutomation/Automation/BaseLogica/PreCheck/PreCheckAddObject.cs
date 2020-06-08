@@ -356,10 +356,13 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                       where declarationUls.RegNumDecl == declarationUl.RegNumDecl
                       select new { DeclarationUls = declarationUls }).Any())
                 {
+                    var declarationDates = declarationUl.DeclarationDatas;
+                    declarationUl.DeclarationDatas = null;
                     Automation.DeclarationUls.Add(declarationUl);
                     try
                     {
                         Automation.SaveChanges();
+                        Automation.BulkInsert<DeclarationData>(declarationDates);
                     }
                     catch(DbEntityValidationException ex)
                     {

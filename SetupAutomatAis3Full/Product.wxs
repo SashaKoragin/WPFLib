@@ -308,7 +308,10 @@
       <Component Id="PdfiumViewer.dll" Guid="7A76CAA9-7257-4BC4-9F3E-92694CD5ABC6">
         <File Id="PdfiumViewer.dll" Name="PdfiumViewer.dll" Source="$(var.AutomatAis3Full_TargetDir)PdfiumViewer.dll" />
       </Component>
-	  </ComponentGroup>
+      <Component Id="Z.EntityFramework.Extensions.dll" Guid="CDE1DA14-BA4A-4F4F-80FB-58947196D1C3">
+        <File Id="Z.EntityFramework.Extensions.dll" Name="Z.EntityFramework.Extensions.dll" Source="$(var.AutomatAis3Full_TargetDir)Z.EntityFramework.Extensions.dll" />
+      </Component>
+    </ComponentGroup>
     <Component Id="Helpers" Guid="2ABEDCD4-5B6E-44F6-B6D6-18C41026CD68" Directory="Help">
         <File Id="AutomateAis3Full.pdf" Name="AutomateAis3Full.pdf" Source="$(var.AutomatAis3Full_TargetDir)Help\AutomateAis3Full.pdf"/>
     </Component>
