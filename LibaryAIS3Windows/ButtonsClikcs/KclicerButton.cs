@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Automation;
 using LibaryAIS3Windows.Window.Otdel.Analitic.TeskText;
 using AutoIt;
@@ -31,7 +32,6 @@ using LibaryAIS3Windows.Window.Otdel.Okp4.Print;
 using LibaryAIS3Windows.Window.Otdel.Okp4.Snu;
 using LibaryAIS3Windows.Window.Otdel.Orn.Nbo;
 using LibaryAIS3Windows.Window.Otdel.RaschetBudg.Migration;
-using LibaryAIS3Windows.Window.Otdel.RaschetBudg.Vedomost1;
 using LibaryAIS3Windows.Window.Otdel.Reg.ActualStatus;
 using LibaryAIS3Windows.Window.Otdel.Reg.Fpd;
 using LibaryAIS3Windows.Window.Otdel.Reg.IdFace;
@@ -48,8 +48,6 @@ namespace LibaryAIS3Windows.ButtonsClikcs
 {
     public class KclicerButton
     {
-        private const string ModeBranchVedomost1 =
-            @"Налоговое администрирование\Расчеты с бюджетом\Ведомость невыясненных поступлений\Ведомость невыясненных поступлений. Раздел 1";
 
 
         private const string LogTreb =
@@ -911,96 +909,150 @@ namespace LibaryAIS3Windows.ButtonsClikcs
         /// Уточнение платежей
         /// </summary>
         /// <param name="statusButton">Кнопка</param>
-        /// <param name="pathJournalError">Путь к журналу ошибок</param>
-        /// <param name="pathJournalOk">Путь к журналу Ок</param>
-        /// <param name="logics">Логика анализа</param>
-        /// <param name="isTp">Проставлять ТП</param>
-        public void Click10(StatusButtonMethod statusButton, string pathJournalError, string pathJournalOk, int logics, bool isTp)
+        public void Click10(StatusButtonMethod statusButton)
         {
             var libraryAutomation = new LibaryAutomations(WindowsAis3.AisNalog3);
             libraryAutomation.FindFirstElement(RashetBudElementName.DateGrid);
+            var addObjectPl = new AddObjectDb();
+            RegxStart regStart = new RegxStart();
             var listMemo = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement).Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("List"));
-            foreach (var automationElement in listMemo)
+            var listNotNull = listMemo.Where(elem => libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.SelectAutomationColrction(elem)
+                                                     .Cast<AutomationElement>().First(elemMemo => elemMemo.Current.Name.Contains("Номер расчетного документа (3)"))) != ""
+                                                     && libraryAutomation.GetColorPixel(libraryAutomation.SelectAutomationColrction(elem)
+                                                     .Cast<AutomationElement>().First(elemMemo => elemMemo.Current.Name.Contains("Состояние уточнения")))!= "e79621").ToArray();
+            foreach (var automationElement in listNotNull)
             {
-                if (statusButton.Iswork)
-                {
-                    automationElement.SetFocus();
-                    RegxStart regStart = new RegxStart();
-                    regStart.RaschDoc = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                        libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Расчетный документ")));
-                    regStart.RaspredPl = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                        libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КБК")));
-                    regStart.InnPlatel = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                        libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>()
-                            .First(elem => elem.Current.Name.Contains("ИНН плательщика (60)")));
-                    regStart.Inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                        .SelectAutomationColrction(automationElement)
-                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН получателя (61)")));
-                    regStart.Kpp = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                        .SelectAutomationColrction(automationElement)
-                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КПП получателя (103)")));
-                    regStart.Platej = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                        libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Сумма (7)")));
-                    regStart.Kbk100 = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                        libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КБК")));
-                    regStart.KbkIfns = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                        libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КБК (104)")));
-                    regStart.Oktmo = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                        libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>()
-                            .First(elem => elem.Current.Name.Contains("ОКТМО (ОКАТО) (105)")));
-                    if (String.IsNullOrWhiteSpace(regStart.Oktmo) ||string.Equals(regStart.IsMathRegx("(0{6})", regStart.Oktmo), "000000"))
+                    if (statusButton.Iswork)
                     {
-                        LibaryXMLAuto.ErrorJurnal.ErrorJurnal.JurnalError(pathJournalError, regStart.RaschDoc,
-                        ModeBranchVedomost1, "Не опознано ОКТМО надо проверять");
-                    }
-                    else
-                    {
-                        while (true)
-                        {
-                            if (libraryAutomation.IsEnableElements(RashetBudElementName.StartUtoch) == null) continue;
-                            libraryAutomation.ClickElements(RashetBudElementName.StartUtoch);
-                            break;
-                        }
+                        var kbkOnKbk = new ModelKbkOnKbk();
+                        automationElement.SetFocus();
 
-                        AutoItX.WinWait(Vedomost1Win.ViesneniePl[0], Vedomost1Win.ViesneniePl[1]);
-                        AutoItX.Send(ButtonConstant.Enter);
-                        regStart.UseNalog(logics, isTp);
-                        while (true)
-                        {
-                            if (libraryAutomation.IsEnableElements(RashetBudElementName.Utverjdenie) == null) continue;
-                            libraryAutomation.ClickElements(RashetBudElementName.Utverjdenie);
-                            break;
-                        }
+                        kbkOnKbk.IdDoc = Convert.ToInt64(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation.SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Номер расчетного документа (3)"))));
 
-                        if ((AutoItX.WinWait(Vedomost1Win.Utoch[0], Vedomost1Win.Utoch[1], 1) == 1) ||(AutoItX.WinWait(Vedomost1Win.Utoch2[0], Vedomost1Win.Utoch2[0], 1) == 1))
+                        kbkOnKbk.InnPayer = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation.SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН плательщика (60)"))).Trim();
+                    
+                        kbkOnKbk.KbkIfns = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation.SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КБК (104)")));
+
+                        kbkOnKbk.Kbk100Before = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation.SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name=="КБК"));
+
+                        kbkOnKbk.Oktmo105 = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>()
+                                .First(elem => elem.Current.Name.Contains("ОКТМО (ОКАТО) (105)")));
+
+                    kbkOnKbk.OktmoUfk = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>()
+                                .First(elem => elem.Current.Name =="ОКТМО (ОКАТО)"));
+
+
+                    kbkOnKbk.TpPayerBefore = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>()
+                                .First(elem => elem.Current.Name.Contains("Основание платежа (106)")));
+
+                        kbkOnKbk.StatusPayerBefore = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>()
+                                .First(elem => elem.Current.Name.Contains("Тип платежа (110)")));
+
+                        kbkOnKbk.Payment = Convert.ToDecimal(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation.SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Сумма (7)"))));
+
+                        kbkOnKbk.InnBank = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН получателя (61)")));
+
+                        kbkOnKbk.KppBank = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КПП получателя (103)")));
+
+                        if ((String.IsNullOrWhiteSpace(kbkOnKbk.Oktmo105) || Regex.Matches(kbkOnKbk.Oktmo105, @"(0{6})").Count > 0)|| (String.IsNullOrWhiteSpace(kbkOnKbk.OktmoUfk) || Regex.Matches(kbkOnKbk.OktmoUfk, @"(0{6})").Count > 0))
                         {
-                            AutoItX.Sleep(500);
-                            AutoItX.Send(ButtonConstant.Enter);
+                            kbkOnKbk.StatusError = "#E80A0A";
+                            kbkOnKbk.Conclusion = "Провести уточнение не возможно надо проверять ОКТМО!!!";
+                            addObjectPl.AddModelKbkOnKbk(kbkOnKbk);
                         }
-                        if (regStart.InnPlatel.Length != 10)
+                        else
                         {
-                            AutoItX.WinWait(Vedomost1Win.IsData[0], Vedomost1Win.IsData[1], 2);
-                            AutoItX.Sleep(500);
-                            AutoItX.Send(ButtonConstant.Enter);
+                            PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.StartUtoch);
+                            while (true)
+                            {
+                                if (libraryAutomation.IsEnableElements(RashetBudElementName.WindowsStartYes, null, true) != null)
+                                {
+                                    libraryAutomation.ClickElements(RashetBudElementName.WindowsStartYes, null, true);
+                                    while(true)
+                                    {
+                                        if (libraryAutomation.IsEnableElements(RashetBudElementName.SendKbk, null, true) != null)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                            if (regStart.UseNalog(libraryAutomation, kbkOnKbk))
+                            {
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.Utverjdenie);
+                                while (true)
+                                {
+                                    if (libraryAutomation.IsEnableElements(RashetBudElementName.WinUtoch, null, true) != null)
+                                    {
+                                        libraryAutomation.ClickElements(RashetBudElementName.WinUtoch, null, true);
+                                        break;
+                                    }
+                                }
+                                kbkOnKbk.StatusError = "#50D413";
+                                kbkOnKbk.Conclusion = "Уточнение проведено успешно!!!";
+                                addObjectPl.AddModelKbkOnKbk(kbkOnKbk);
+                            }
+                            else
+                            {
+                                //Выход из уточнения
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.ButtonNotUtoch);
+                                while (true)
+                                {
+                                    if (libraryAutomation.IsEnableElements(RashetBudElementName.WinNotUtoch, null, true) != null)
+                                    {
+                                        libraryAutomation.ClickElements(RashetBudElementName.WinNotUtoch, null, true);
+                                        break;
+                                    }
+                                }
+                                kbkOnKbk.StatusError = "#E80A0A";
+                                kbkOnKbk.Conclusion = "Не найдено КБК в БД логика не определена!!!";
+                            }
+
+                            //AutoItX.WinWait(Vedomost1Win.ViesneniePl[0], Vedomost1Win.ViesneniePl[1]);
+                            //AutoItX.Send(ButtonConstant.Enter);
+
+                            //while (true)
+                            //{
+                            //    if (libraryAutomation.IsEnableElements(RashetBudElementName.Utverjdenie) == null) continue;
+                            //    libraryAutomation.ClickElements(RashetBudElementName.Utverjdenie);
+                            //    break;
+                            //}
+
+                            //if ((AutoItX.WinWait(Vedomost1Win.Utoch[0], Vedomost1Win.Utoch[1], 1) == 1) || (AutoItX.WinWait(Vedomost1Win.Utoch2[0], Vedomost1Win.Utoch2[0], 1) == 1))
+                            //{
+                            //    AutoItX.Sleep(500);
+                            //    AutoItX.Send(ButtonConstant.Enter);
+                            //}
+                            //if (regStart.InnPlatel.Length != 10)
+                            //{
+                            //    AutoItX.WinWait(Vedomost1Win.IsData[0], Vedomost1Win.IsData[1], 2);
+                            //    AutoItX.Sleep(500);
+                            //    AutoItX.Send(ButtonConstant.Enter);
+                            //}
+                            //AutoItX.WinWaitClose("АИС Налог-3 ПРОМ ", "Проведение уточнения");
+
+                            //LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, regStart.RaschDoc + " Подставили КБК: " + regStart.KbkIfns + " вместо " + regStart.Kbk100, "Удалось спарсить");
                         }
-                        AutoItX.WinWaitClose("АИС Налог-3 ПРОМ ", "Проведение уточнения");
-                        LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk,regStart.RaschDoc + " Подставили КБК: " + regStart.KbkIfns + " вместо " + regStart.Kbk100, "Удалось спарсить");
                     }
-                }
             }
         }
 

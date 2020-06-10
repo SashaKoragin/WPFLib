@@ -31,6 +31,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private ModelTree[] modelTreeField;
         
+        private ModelKbkOnKbk[] modelKbkOnKbkField;
+        
+        private HelpKbkAuto[] helpKbkAutoField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxJournalAutoWebPage")]
         public TaxJournalAutoWebPage[] TaxJournalAutoWebPage {
@@ -72,6 +76,28 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.modelTreeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ModelKbkOnKbk")]
+        public ModelKbkOnKbk[] ModelKbkOnKbk {
+            get {
+                return this.modelKbkOnKbkField;
+            }
+            set {
+                this.modelKbkOnKbkField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("HelpKbkAuto")]
+        public HelpKbkAuto[] HelpKbkAuto {
+            get {
+                return this.helpKbkAutoField;
+            }
+            set {
+                this.helpKbkAutoField = value;
             }
         }
     }
@@ -777,6 +803,333 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.statusModelField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class ModelKbkOnKbk {
+        
+        private int idClarificationField;
+        
+        private long idDocField;
+        
+        private decimal paymentField;
+        
+        private System.DateTime dateCreateField;
+        
+        private string statusErrorField;
+        
+        private string innPayerField;
+        
+        private string kbkIfnsField;
+        
+        private string kbk100BeforeField;
+        
+        private string tpPayerBeforeField;
+        
+        private string statusPayerBeforeField;
+        
+        private string kbkUtcAfterField;
+        
+        private string tpPayerUtcAfterField;
+        
+        private string statusPayerUtcAfterField;
+        
+        private string innBankField;
+        
+        private string kppBankField;
+        
+        private string oktmo105Field;
+        
+        private string oktmoUfkField;
+        
+        private string conclusionField;
+        
+        /// <remarks/>
+        public int IdClarification {
+            get {
+                return this.idClarificationField;
+            }
+            set {
+                this.idClarificationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long IdDoc {
+            get {
+                return this.idDocField;
+            }
+            set {
+                this.idDocField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal Payment {
+            get {
+                return this.paymentField;
+            }
+            set {
+                this.paymentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateCreate {
+            get {
+                return this.dateCreateField;
+            }
+            set {
+                this.dateCreateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string StatusError {
+            get {
+                return this.statusErrorField;
+            }
+            set {
+                this.statusErrorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string InnPayer {
+            get {
+                return this.innPayerField;
+            }
+            set {
+                this.innPayerField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string KbkIfns {
+            get {
+                return this.kbkIfnsField;
+            }
+            set {
+                this.kbkIfnsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Kbk100Before {
+            get {
+                return this.kbk100BeforeField;
+            }
+            set {
+                this.kbk100BeforeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string TpPayerBefore {
+            get {
+                return this.tpPayerBeforeField;
+            }
+            set {
+                this.tpPayerBeforeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string StatusPayerBefore {
+            get {
+                return this.statusPayerBeforeField;
+            }
+            set {
+                this.statusPayerBeforeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string KbkUtcAfter {
+            get {
+                return this.kbkUtcAfterField;
+            }
+            set {
+                this.kbkUtcAfterField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string TpPayerUtcAfter {
+            get {
+                return this.tpPayerUtcAfterField;
+            }
+            set {
+                this.tpPayerUtcAfterField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string StatusPayerUtcAfter {
+            get {
+                return this.statusPayerUtcAfterField;
+            }
+            set {
+                this.statusPayerUtcAfterField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string InnBank {
+            get {
+                return this.innBankField;
+            }
+            set {
+                this.innBankField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string KppBank {
+            get {
+                return this.kppBankField;
+            }
+            set {
+                this.kppBankField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Oktmo105 {
+            get {
+                return this.oktmo105Field;
+            }
+            set {
+                this.oktmo105Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string OktmoUfk {
+            get {
+                return this.oktmoUfkField;
+            }
+            set {
+                this.oktmoUfkField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Conclusion {
+            get {
+                return this.conclusionField;
+            }
+            set {
+                this.conclusionField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class HelpKbkAuto {
+        
+        private System.Nullable<int> idField;
+        
+        private int idQbeField;
+        
+        private string groupColorField;
+        
+        private string nameGroupPlField;
+        
+        private string kbkField;
+        
+        private string descriptionGroupField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int IdQbe {
+            get {
+                return this.idQbeField;
+            }
+            set {
+                this.idQbeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string GroupColor {
+            get {
+                return this.groupColorField;
+            }
+            set {
+                this.groupColorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameGroupPl {
+            get {
+                return this.nameGroupPlField;
+            }
+            set {
+                this.nameGroupPlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Kbk {
+            get {
+                return this.kbkField;
+            }
+            set {
+                this.kbkField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string DescriptionGroup {
+            get {
+                return this.descriptionGroupField;
+            }
+            set {
+                this.descriptionGroupField = value;
             }
         }
     }

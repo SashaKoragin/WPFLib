@@ -343,8 +343,10 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <returns></returns>
         public string GetColorPixel(AutomationElement element)
         {
+            element.SetFocus();
             var clickPoint = element.GetClickablePoint();
             var hexPixel = AutoItX.PixelGetColor((int)clickPoint.X, (int)clickPoint.Y);
+            var v = Convert.ToString(hexPixel, 16);
             return Convert.ToString(hexPixel, 16);
         }
 

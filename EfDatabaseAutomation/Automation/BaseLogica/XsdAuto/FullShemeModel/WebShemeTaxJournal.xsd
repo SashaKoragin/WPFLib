@@ -20,6 +20,8 @@
 			<xs:element ref="TaxJournal121AutoWebPage" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="AddUlFace" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="ModelTree" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ModelKbkOnKbk" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="HelpKbkAuto" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxJournalAutoWebPage">
@@ -319,6 +321,140 @@
 	<xs:element name="IdModel" type="xs:int" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Id Модели ветки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ModelKbkOnKbk">
+		<xs:annotation>
+			<xs:documentation>Модель уточненных платежей</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="IdClarification"/>
+				<xs:element ref="IdDoc"/>
+				<xs:element ref="Payment"/>
+				<xs:element ref="DateCreate"/>
+			</xs:sequence>
+			<xs:attribute name="StatusError" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус ошибки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="InnPayer" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН плательщика</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="KbkIfns" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КБК ИФНС</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kbk100Before" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КБК Before</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TpPayerBefore" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ТП Before</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="StatusPayerBefore" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус Before</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="KbkUtcAfter" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КБК After</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TpPayerUtcAfter" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ТП After</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="StatusPayerUtcAfter" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус After</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="InnBank" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН Банкв</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="KppBank" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КПП Банка</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Oktmo105" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ОКТМО 105</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="OktmoUfk" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ОКТМО УФК</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Conclusion" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус обработки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IdClarification" type="xs:int" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Ун записи</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IdDoc" type="xs:long" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Ун документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Payment" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Сумма платежа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="HelpKbkAuto">
+		<xs:annotation>
+			<xs:documentation>Справочник КБК на автоматизации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Id"/>
+				<xs:element ref="IdQbe"/>
+			</xs:sequence>
+			<xs:attribute name="GroupColor" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Цвет группы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameGroupPl" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование группы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kbk" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КБК</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DescriptionGroup" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Описание группы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IdQbe" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Ун группы</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

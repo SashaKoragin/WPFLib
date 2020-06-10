@@ -48,6 +48,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr
 
         }
 
+
+
         /// <summary>
         /// Запрос параметров для раз кладки и дальнейшей выборки Предпроверка генерация динамических таблиц
         /// </summary>

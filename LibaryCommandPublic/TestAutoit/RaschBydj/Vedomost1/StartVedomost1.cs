@@ -14,17 +14,12 @@ namespace LibaryCommandPublic.TestAutoit.RaschBydj.Vedomost1
         /// Запуск анализа платежек 
         /// </summary>
         /// <param name="statusButton">Кнопка запуска процесса</param>
-        /// <param name="uslovie">Условие запуска</param>
-        /// <param name="pathjurnalerror">Путь к ошибке</param>
-        /// <param name="pathjurnalok">Путь к журналу с отработанными</param>
-        public void AutoClicsVed1(StatusButtonMethod statusButton, SelectVibor uslovie, string pathjurnalerror, string pathjurnalok)
+        public void AutoClicsVed1(StatusButtonMethod statusButton)
         {
             try
             {
                 DispatcherHelper.Initialize();
-                if (uslovie.IsValidation())
-                {
-                    Task.Run(delegate
+                Task.Run(delegate
                     {
                         LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
                         if (ais3.WinexistsAis3() == 1)
@@ -32,7 +27,7 @@ namespace LibaryCommandPublic.TestAutoit.RaschBydj.Vedomost1
 
                             DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                             KclicerButton clickerButton = new KclicerButton();
-                            clickerButton.Click10(statusButton, pathjurnalerror, pathjurnalok, uslovie.Sel.Num,statusButton.IsChekcs);
+                            clickerButton.Click10(statusButton);
                             DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusYellow);
                         }
                         else
@@ -41,7 +36,6 @@ namespace LibaryCommandPublic.TestAutoit.RaschBydj.Vedomost1
                             DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
                         }
                     });
-                }
             }
             catch (Exception e)
             {

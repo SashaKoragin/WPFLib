@@ -26,11 +26,10 @@
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
 // TargetFrameworkVersion = 4.5
-
-using Newtonsoft.Json;
-
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
+
+using Newtonsoft.Json;
 
 namespace EfDatabaseAutomation.Automation.Base
 {
@@ -47,14 +46,18 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<DeclarationUl> DeclarationUls { get; set; } // DeclarationUl
         System.Data.Entity.DbSet<Field> Fields { get; set; } // Fields
         System.Data.Entity.DbSet<FlFace> FlFaces { get; set; } // FlFace
+        System.Data.Entity.DbSet<GroupKbk> GroupKbks { get; set; } // GroupKbk
         System.Data.Entity.DbSet<HistoriUlFace> HistoriUlFaces { get; set; } // HistoriUlFace
         System.Data.Entity.DbSet<ImZmTrFl> ImZmTrFls { get; set; } // ImZmTrFl
         System.Data.Entity.DbSet<ImZmTrUl> ImZmTrUls { get; set; } // ImZmTrUl
         System.Data.Entity.DbSet<IndividualCardsUlFace> IndividualCardsUlFaces { get; set; } // IndividualCardsUlFace
         System.Data.Entity.DbSet<InfoViewAutomation> InfoViewAutomations { get; set; } // InfoViewAutomation
+        System.Data.Entity.DbSet<KbkPayment> KbkPayments { get; set; } // KbkPayment
+        System.Data.Entity.DbSet<KbkPlat> KbkPlats { get; set; } // KbkPlat
         System.Data.Entity.DbSet<LogicsSelectAutomation> LogicsSelectAutomations { get; set; } // LogicsSelectAutomation
         System.Data.Entity.DbSet<LogPreCheck> LogPreChecks { get; set; } // LogPreCheck
         System.Data.Entity.DbSet<ModelGetPost> ModelGetPosts { get; set; } // ModelGetPost
+        System.Data.Entity.DbSet<ModelKbkOnKbk> ModelKbkOnKbks { get; set; } // ModelKbkOnKbk
         System.Data.Entity.DbSet<ModelTree> ModelTrees { get; set; } // ModelTree
         System.Data.Entity.DbSet<ParameterProcedureWeb> ParameterProcedureWebs { get; set; } // ParameterProcedureWeb
         System.Data.Entity.DbSet<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh
@@ -99,14 +102,18 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<DeclarationUl> DeclarationUls { get; set; } // DeclarationUl
         public System.Data.Entity.DbSet<Field> Fields { get; set; } // Fields
         public System.Data.Entity.DbSet<FlFace> FlFaces { get; set; } // FlFace
+        public System.Data.Entity.DbSet<GroupKbk> GroupKbks { get; set; } // GroupKbk
         public System.Data.Entity.DbSet<HistoriUlFace> HistoriUlFaces { get; set; } // HistoriUlFace
         public System.Data.Entity.DbSet<ImZmTrFl> ImZmTrFls { get; set; } // ImZmTrFl
         public System.Data.Entity.DbSet<ImZmTrUl> ImZmTrUls { get; set; } // ImZmTrUl
         public System.Data.Entity.DbSet<IndividualCardsUlFace> IndividualCardsUlFaces { get; set; } // IndividualCardsUlFace
         public System.Data.Entity.DbSet<InfoViewAutomation> InfoViewAutomations { get; set; } // InfoViewAutomation
+        public System.Data.Entity.DbSet<KbkPayment> KbkPayments { get; set; } // KbkPayment
+        public System.Data.Entity.DbSet<KbkPlat> KbkPlats { get; set; } // KbkPlat
         public System.Data.Entity.DbSet<LogicsSelectAutomation> LogicsSelectAutomations { get; set; } // LogicsSelectAutomation
         public System.Data.Entity.DbSet<LogPreCheck> LogPreChecks { get; set; } // LogPreCheck
         public System.Data.Entity.DbSet<ModelGetPost> ModelGetPosts { get; set; } // ModelGetPost
+        public System.Data.Entity.DbSet<ModelKbkOnKbk> ModelKbkOnKbks { get; set; } // ModelKbkOnKbk
         public System.Data.Entity.DbSet<ModelTree> ModelTrees { get; set; } // ModelTree
         public System.Data.Entity.DbSet<ParameterProcedureWeb> ParameterProcedureWebs { get; set; } // ParameterProcedureWeb
         public System.Data.Entity.DbSet<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh
@@ -178,14 +185,18 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new DeclarationUlConfiguration());
             modelBuilder.Configurations.Add(new FieldConfiguration());
             modelBuilder.Configurations.Add(new FlFaceConfiguration());
+            modelBuilder.Configurations.Add(new GroupKbkConfiguration());
             modelBuilder.Configurations.Add(new HistoriUlFaceConfiguration());
             modelBuilder.Configurations.Add(new ImZmTrFlConfiguration());
             modelBuilder.Configurations.Add(new ImZmTrUlConfiguration());
             modelBuilder.Configurations.Add(new IndividualCardsUlFaceConfiguration());
             modelBuilder.Configurations.Add(new InfoViewAutomationConfiguration());
+            modelBuilder.Configurations.Add(new KbkPaymentConfiguration());
+            modelBuilder.Configurations.Add(new KbkPlatConfiguration());
             modelBuilder.Configurations.Add(new LogicsSelectAutomationConfiguration());
             modelBuilder.Configurations.Add(new LogPreCheckConfiguration());
             modelBuilder.Configurations.Add(new ModelGetPostConfiguration());
+            modelBuilder.Configurations.Add(new ModelKbkOnKbkConfiguration());
             modelBuilder.Configurations.Add(new ModelTreeConfiguration());
             modelBuilder.Configurations.Add(new ParameterProcedureWebConfiguration());
             modelBuilder.Configurations.Add(new RukAndUcrhConfiguration());
@@ -212,14 +223,18 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new DeclarationUlConfiguration(schema));
             modelBuilder.Configurations.Add(new FieldConfiguration(schema));
             modelBuilder.Configurations.Add(new FlFaceConfiguration(schema));
+            modelBuilder.Configurations.Add(new GroupKbkConfiguration(schema));
             modelBuilder.Configurations.Add(new HistoriUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new ImZmTrFlConfiguration(schema));
             modelBuilder.Configurations.Add(new ImZmTrUlConfiguration(schema));
             modelBuilder.Configurations.Add(new IndividualCardsUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new InfoViewAutomationConfiguration(schema));
+            modelBuilder.Configurations.Add(new KbkPaymentConfiguration(schema));
+            modelBuilder.Configurations.Add(new KbkPlatConfiguration(schema));
             modelBuilder.Configurations.Add(new LogicsSelectAutomationConfiguration(schema));
             modelBuilder.Configurations.Add(new LogPreCheckConfiguration(schema));
             modelBuilder.Configurations.Add(new ModelGetPostConfiguration(schema));
+            modelBuilder.Configurations.Add(new ModelKbkOnKbkConfiguration(schema));
             modelBuilder.Configurations.Add(new ModelTreeConfiguration(schema));
             modelBuilder.Configurations.Add(new ParameterProcedureWebConfiguration(schema));
             modelBuilder.Configurations.Add(new RukAndUcrhConfiguration(schema));
@@ -489,6 +504,31 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // GroupKbk
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class GroupKbk
+    {
+        public int IdQbe { get; set; } // IdQbe (Primary key)
+        public string NameGroupPl { get; set; } // NameGroupPl (length: 1024)
+        public string DescriptionGroup { get; set; } // DescriptionGroup (length: 1024)
+        public string GroupColor { get; set; } // GroupColor (length: 15)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child KbkPayments where [KbkPayment].[IdQbe] point to this entity (FK_GroupKbk_KbkPayment)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<KbkPayment> KbkPayments { get; set; } // KbkPayment.FK_GroupKbk_KbkPayment
+
+        public GroupKbk()
+        {
+            DateCreate = System.DateTime.Now;
+            KbkPayments = new System.Collections.Generic.List<KbkPayment>();
+        }
+    }
+
     // HistoriUlFace
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class HistoriUlFace
@@ -634,6 +674,43 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // KbkPayment
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class KbkPayment
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int IdQbe { get; set; } // IdQbe
+        public string Kbk { get; set; } // Kbk (length: 1024)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent GroupKbk pointed by [KbkPayment].([IdQbe]) (FK_GroupKbk_KbkPayment)
+        /// </summary>
+        public virtual GroupKbk GroupKbk { get; set; } // FK_GroupKbk_KbkPayment
+
+        public KbkPayment()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // KbkPlat
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class KbkPlat
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int IdQbe { get; set; } // IdQbe
+        public string Kbk { get; set; } // Kbk (length: 1024)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        public KbkPlat()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
     // LogicsSelectAutomation
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class LogicsSelectAutomation
@@ -690,6 +767,35 @@ namespace EfDatabaseAutomation.Automation.Base
         public virtual Tree Tree { get; set; } // FK_Tree_ModelGetPost
 
         public ModelGetPost()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // ModelKbkOnKbk
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class ModelKbkOnKbk
+    {
+        public int IdClarification { get; set; } // IdClarification (Primary key)
+        public string StatusError { get; set; } // StatusError (length: 12)
+        public long IdDoc { get; set; } // IdDoc
+        public string InnPayer { get; set; } // InnPayer (length: 12)
+        public decimal? Payment { get; set; } // Payment
+        public string KbkIfns { get; set; } // KbkIfns (length: 1024)
+        public string Kbk100Before { get; set; } // Kbk100Before (length: 1024)
+        public string TpPayerBefore { get; set; } // TpPayerBefore (length: 12)
+        public string StatusPayerBefore { get; set; } // StatusPayerBefore (length: 12)
+        public string KbkUtcAfter { get; set; } // KbkUtcAfter (length: 1024)
+        public string TpPayerUtcAfter { get; set; } // TpPayerUtcAfter (length: 12)
+        public string StatusPayerUtcAfter { get; set; } // StatusPayerUtcAfter (length: 12)
+        public string InnBank { get; set; } // InnBank (length: 12)
+        public string KppBank { get; set; } // KppBank (length: 12)
+        public string Oktmo105 { get; set; } // Oktmo105 (length: 12)
+        public string OktmoUfk { get; set; } // OktmoUfk (length: 12)
+        public string Conclusion { get; set; } // Conclusion (length: 1024)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        public ModelKbkOnKbk()
         {
             DateCreate = System.DateTime.Now;
         }
@@ -1353,6 +1459,28 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // GroupKbk
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class GroupKbkConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<GroupKbk>
+    {
+        public GroupKbkConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public GroupKbkConfiguration(string schema)
+        {
+            ToTable("GroupKbk", schema);
+            HasKey(x => x.IdQbe);
+
+            Property(x => x.IdQbe).HasColumnName(@"IdQbe").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.NameGroupPl).HasColumnName(@"NameGroupPl").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DescriptionGroup).HasColumnName(@"DescriptionGroup").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.GroupColor).HasColumnName(@"GroupColor").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
     // HistoriUlFace
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class HistoriUlFaceConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<HistoriUlFace>
@@ -1504,6 +1632,51 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // KbkPayment
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class KbkPaymentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<KbkPayment>
+    {
+        public KbkPaymentConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public KbkPaymentConfiguration(string schema)
+        {
+            ToTable("KbkPayment", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdQbe).HasColumnName(@"IdQbe").HasColumnType("int").IsRequired();
+            Property(x => x.Kbk).HasColumnName(@"Kbk").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.GroupKbk).WithMany(b => b.KbkPayments).HasForeignKey(c => c.IdQbe).WillCascadeOnDelete(false); // FK_GroupKbk_KbkPayment
+        }
+    }
+
+    // KbkPlat
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class KbkPlatConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<KbkPlat>
+    {
+        public KbkPlatConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public KbkPlatConfiguration(string schema)
+        {
+            ToTable("KbkPlat", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdQbe).HasColumnName(@"IdQbe").HasColumnType("int").IsRequired();
+            Property(x => x.Kbk).HasColumnName(@"Kbk").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
     // LogicsSelectAutomation
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class LogicsSelectAutomationConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<LogicsSelectAutomation>
@@ -1572,6 +1745,41 @@ namespace EfDatabaseAutomation.Automation.Base
             // Foreign keys
             HasRequired(a => a.AddUlFace).WithMany(b => b.ModelGetPosts).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_AddUlFace_ModelGetPost
             HasRequired(a => a.Tree).WithMany(b => b.ModelGetPosts).HasForeignKey(c => c.IdTreModel).WillCascadeOnDelete(false); // FK_Tree_ModelGetPost
+        }
+    }
+
+    // ModelKbkOnKbk
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class ModelKbkOnKbkConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<ModelKbkOnKbk>
+    {
+        public ModelKbkOnKbkConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public ModelKbkOnKbkConfiguration(string schema)
+        {
+            ToTable("ModelKbkOnKbk", schema);
+            HasKey(x => x.IdClarification);
+
+            Property(x => x.IdClarification).HasColumnName(@"IdClarification").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.StatusError).HasColumnName(@"StatusError").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.IdDoc).HasColumnName(@"IdDoc").HasColumnType("bigint").IsRequired();
+            Property(x => x.InnPayer).HasColumnName(@"InnPayer").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.Payment).HasColumnName(@"Payment").HasColumnType("decimal").IsOptional().HasPrecision(28,2);
+            Property(x => x.KbkIfns).HasColumnName(@"KbkIfns").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.Kbk100Before).HasColumnName(@"Kbk100Before").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.TpPayerBefore).HasColumnName(@"TpPayerBefore").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.StatusPayerBefore).HasColumnName(@"StatusPayerBefore").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.KbkUtcAfter).HasColumnName(@"KbkUtcAfter").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.TpPayerUtcAfter).HasColumnName(@"TpPayerUtcAfter").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.StatusPayerUtcAfter).HasColumnName(@"StatusPayerUtcAfter").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.InnBank).HasColumnName(@"InnBank").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.KppBank).HasColumnName(@"KppBank").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.Oktmo105).HasColumnName(@"Oktmo105").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.OktmoUfk).HasColumnName(@"OktmoUfk").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.Conclusion).HasColumnName(@"Conclusion").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
         }
     }
 

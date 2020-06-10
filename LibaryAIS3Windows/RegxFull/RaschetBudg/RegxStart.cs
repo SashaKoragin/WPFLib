@@ -1,213 +1,120 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using AutoIt;
-using LibaryAIS3Windows.ButtonsClikcs;
-using LibaryAIS3Windows.Mode.RaschetBudg.VedRazd1;
-using LibaryAIS3Windows.RegxFull.PublicRegx;
-using LibaryAIS3Windows.Window;
+﻿using System.Text.RegularExpressions;
+using EfDatabaseAutomation.Automation.Base;
+using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll;
+using LibaryAIS3Windows.AutomationsUI.LibaryAutomations;
+using LibaryAIS3Windows.AutomationsUI.Otdels.RaschetBud;
 
 namespace LibaryAIS3Windows.RegxFull.RaschetBudg
 {
    public class RegxStart
    {
-        /// <summary>
-        /// Инн плательщика по определению
+       /// <summary>
+        /// Анализ подстановки налогов 
         /// </summary>
-        public string InnPlatel { get; set; }
-        /// <summary>
-        /// Парсим расчетный документ
-        /// </summary>
-        public string RaschDoc { get; set; }
-        /// <summary>
-        /// Парсим распределение платежа
-        /// </summary>
-        public string RaspredPl { get; set; }
-        /// <summary>
-        /// Сам платеж
-        /// </summary>
-        public string Platej {  get; set; }
-        /// <summary>
-        /// КБК не правильный
-        /// </summary>
-        public string Kbk100 { get; set; }
-        /// <summary>
-        /// КБК наш где платеж
-        /// </summary>
-        public string KbkIfns { get; set; }
-
-        /// <summary>
-        /// Инн плательщика банка
-        /// </summary>
-        public string Inn { get; set; }
-        /// <summary>
-        /// Кпп плательщика банка
-        /// </summary>
-        public string Kpp { get; set; }
-        /// <summary>
-        /// Октмо по рапределению
-        /// </summary>
-        public string Oktmo { get; set; }
-        /// <summary>
-        /// Парсим ТП для определения входа а вкладку уточнение
-        /// </summary>
-        public string Tp { get; set; }
-
-        /// <summary>
-        /// Возврат результата
-        /// </summary>
-        /// <param name="paternstring">Патерн поиска</param>
-        /// <param name="text">Весь текст на окне любой скрытый и нет</param>
+        /// <param name="libraryAutomation">Библиотека автоматизации</param>
+        /// <param name="modelKbk">Модель КБК</param>
         /// <returns></returns>
-        public string IsMathRegx(string paternstring,string text)
+        public bool UseNalog(LibaryAutomations libraryAutomation, ModelKbkOnKbk modelKbk)
         {
-            Regex regex = new Regex(paternstring, RegexOptions.Multiline);
-            var math = regex.Match(text);
-            if (math.Success)
-                return math.Value;
-            return null;
-        }
-        /// <summary>
-        /// Анализ простановки налдогов 
-        /// </summary>
-        /// <param name="logica">Как будет идти анализ данных</param>
-        /// /// <param name="isTp"></param>
-        public void UseNalog(int logica, bool isTp)
-        {
-            ParsTp();
-            if (!isTp)
+            bool isTp = false; //Проверяем логику подстановки ТП
+            if (Regex.Matches(modelKbk.Kbk100Before, @"^(100[0-9]+)$").Count > 0)
             {
-                while (true)
-                {
-                    AutoItX.WinActivate(WindowsAis3.AisNalog3);
-                    AutoItX.ControlClick(WindowsAis3.AisNalog3, VedRazd1.SelectKbk[0], VedRazd1.SelectKbk[1]);
-                    AutoItX.WinWait(VedRazd1.WinNalog[0], VedRazd1.WinNalog[1], 60);
-                    if (AutoItX.WinExists(VedRazd1.WinNalog[0], VedRazd1.WinNalog[1]) == 1)
-                    {
-
-                        while (true)
-                        {
-                            WindowsAis3 win = new WindowsAis3();
-                            win.ControlGetPos1(WindowsAis3.Nalog[0], WindowsAis3.Nalog[1], WindowsAis3.Nalog[2]);
-                            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.X1 + win.WinNalog.X + 40,
-                                win.Y1 + win.WinNalog.Y + 60, 1);
-                            AutoItX.Send(KbkIfns);
-                            AutoItX.Sleep(2000);
-                            AutoItX.Send(ButtonConstant.Tab);
-                            AutoItX.Send(ButtonConstant.Tab);
-                            AutoItX.ControlClick(VedRazd1.WinNalog[0], VedRazd1.SelectKbkStart[0],
-                                VedRazd1.SelectKbkStart[1]);
-                            var kbkparse = ReadWindow.Read.Reades.ReadForm(VedRazd1.Ifns, 1);
-                            if (String.Equals(KbkIfns, kbkparse))
-                            {
-                                break;
-                            }
-                        }
-                        break;
-                    }
-
-                }
+                isTp = true;
+                libraryAutomation.FindFirstElement(RashetBudElementName.SendKbk, null, true);
+                libraryAutomation.SetValuePattern(modelKbk.KbkIfns);
             }
-            Status(logica, isTp);
+            modelKbk.KbkUtcAfter = modelKbk.KbkIfns;
+            return Status(libraryAutomation, modelKbk, isTp);
         }
 
         /// <summary>
-        /// Анализ 100 Иностранцы
+        ///  Функция анализа подстановки
         /// </summary>
-        /// <param name="logica">Какой анализ делаем</param>
-        /// <param name="isTp"></param>
-        public void Status(int logica,bool isTp)
+        /// <param name="libraryAutomation">Библиотека автоматизации</param>
+        /// <param name="modelKbk">Модель КБК</param>
+        /// <param name="isTp">Проверка ТП</param>
+        /// <returns>Bool есть ли такой КБК в БД для проверки группы</returns>
+        private bool Status(LibaryAutomations libraryAutomation, ModelKbkOnKbk modelKbk,bool isTp)
         {
             string status = "01";
-            switch (logica)
+            SelectAll select = new SelectAll();
+            var payment = select.SelectKbkGroup(modelKbk.KbkIfns);
+            if (payment != null)
             {
-                case 1:
-                    status = "13";
-                    SendsStatus(IsSberbank(status));
-                    break;
-                case 2:
-                    SendsTp(isTp);
-                    break;
-                case 3:
-                    if (InnPlatel.Length != 12)
-                    {
-                        SendsStatus(IsSberbank(status));
-                        SendsTp(isTp);
-                    }
-                    else
-                    {
-                        status = "09";
-                        SendsStatus(status);
-                        SendsTp(isTp);
-                    }
-                    break;
-                case 4:
-                    status = "02";
-                    SendsStatus(IsSberbank(status));
-                    SendsTp(isTp);
-                    break;
-            }
-        }
-
-        public void ParsTp()
-        {
-            while(true)
-            {
-                try
+                switch (payment.IdQbe)
                 {
-                    var pattern = new FullRegx();
-                    var texttp = ReadWindow.Read.Reades.HidenTextReturn(WindowsAis3.AisNalog3);
-                    Tp = IsMathRegx(pattern.Tp, texttp);
-                    if (!String.IsNullOrWhiteSpace(Tp))
-                    {
+                    case 1:
+                        status = "13";
+                        SendsStatus(IsSberbank(status, modelKbk), libraryAutomation);
                         break;
-                    }
+                    case 2:
+                        SendsTp(isTp, libraryAutomation, modelKbk);
+                        break;
+                    case 3:
+                        if (modelKbk.InnPayer.Length != 12)
+                        {
+                            SendsStatus(IsSberbank(status, modelKbk), libraryAutomation);
+                            SendsTp(isTp, libraryAutomation, modelKbk);
+                        }
+                        else
+                        {
+                            status = "09";
+                            SendsStatus(status, libraryAutomation);
+                            SendsTp(isTp, libraryAutomation, modelKbk);
+                        }
+                        break;
+                    case 4:
+                        status = "02";
+                        SendsStatus(IsSberbank(status, modelKbk), libraryAutomation);
+                        SendsTp(isTp, libraryAutomation, modelKbk);
+                        break;
                 }
-                catch (Exception)
-                {
-                    // ignored
-                }
+                modelKbk.StatusPayerUtcAfter = status;
+                return true;
             }
+            return false;
         }
 
         /// <summary>
         /// Функция проверки Сбербанка
         /// </summary>
-        /// <param name="status">Статус изменится или нет</param>
+        /// <param name="status">Статус</param>
+        /// <param name="modelKbk">Модель КБК</param>
         /// <returns></returns>
-       public string IsSberbank(string status)
-       {
-            if (Inn == "7707083893" && Kpp == "526002001")
+        private string IsSberbank(string status, ModelKbkOnKbk modelKbk)
+        {
+            if (modelKbk.InnBank == "7707083893" && modelKbk.KppBank == "526002001")
             {
                 status = "15";
             }
-           return status;
-       }
+            return status;
+        }
         /// <summary>
-        /// Функция простановки статуса
+        /// Функция подстановки статуса
         /// </summary>
-        /// <param name="status">Статус</param>
-       public void SendsStatus(string status)
-       {
-            AutoItX.ControlClick(VedRazd1.Status[0], "", VedRazd1.Status[1]);
-            AutoItX.Send(status);
-       }
+        /// <param name="status">Статус платежа</param>
+        /// <param name="libraryAutomation">Библиотека автоматизации</param>
+        private void SendsStatus(string status, LibaryAutomations libraryAutomation)
+        {
+           libraryAutomation.FindFirstElement(RashetBudElementName.SendStatus, null, true);
+           libraryAutomation.SetValuePattern(status);
+        }
+
         /// <summary>
         /// Постановка ТП в поле
         /// </summary>
-        /// <param name="isTp"></param>
-       public void SendsTp(bool isTp)
+        /// <param name="isTp">Проверка надо ли проставлять ТП после проверки на 100</param>
+        /// <param name="libraryAutomation">Библиотека автоматизации</param>
+        /// <param name="modelKbk">Модель КБК</param>
+        private void SendsTp(bool isTp, LibaryAutomations libraryAutomation, ModelKbkOnKbk modelKbk)
        {
-           if (!isTp)
+           if (isTp)
            {
                 string tp = "ТП";
-                AutoItX.ControlClick(VedRazd1.SelectTp[0], "", VedRazd1.SelectTp[1]);
-                AutoItX.Send(tp);
-           }
-        }
+                libraryAutomation.FindFirstElement(RashetBudElementName.SendTp, null, true);
+                libraryAutomation.SetValuePattern(tp);
+                modelKbk.TpPayerUtcAfter = tp;
+            }
+       }
     }
 }

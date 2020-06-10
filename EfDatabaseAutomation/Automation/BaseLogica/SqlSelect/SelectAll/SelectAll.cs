@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
+using EfDatabaseAutomation.Automation.Base;
+using ModelKbkOnKbk = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.ModelKbkOnKbk;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
 {
@@ -24,7 +26,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
         /// </summary>
         /// <param name="sqlSelect">Выборка пользовательская</param>
         /// <returns></returns>
-        public string SelectSqlAll(LogicsSelectAutomation sqlSelect)
+        public string SelectSqlAll(SelectParametrSheme.LogicsSelectAutomation sqlSelect)
         {
             SerializeJson serializeJson = new SerializeJson();
             var webPage = new AutoWebPage();
@@ -33,25 +35,33 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
             switch (sqlSelect.Id)
             {
                 case 2:
-                    result = Automation.Database.SqlQuery<TaxJournalAutoWebPage>(sqlSelect.SelectUser).ToArray();
-                    webPage.TaxJournalAutoWebPage = (TaxJournalAutoWebPage[])result;
+                    result = Automation.Database.SqlQuery<XsdAuto.FullShemeModel.TaxJournalAutoWebPage>(sqlSelect.SelectUser).ToArray();
+                    webPage.TaxJournalAutoWebPage = (XsdAuto.FullShemeModel.TaxJournalAutoWebPage[])result;
                     break;
                 case 3:
-                    result = Automation.Database.SqlQuery<TaxJournal121AutoWebPage>(sqlSelect.SelectUser).ToArray();
-                    webPage.TaxJournal121AutoWebPage = (TaxJournal121AutoWebPage[])result;
+                    result = Automation.Database.SqlQuery<XsdAuto.FullShemeModel.TaxJournal121AutoWebPage>(sqlSelect.SelectUser).ToArray();
+                    webPage.TaxJournal121AutoWebPage = (XsdAuto.FullShemeModel.TaxJournal121AutoWebPage[])result;
                     break;
                 case 5:
-                    result = Automation.Database.SqlQuery<AddUlFace>(sqlSelect.SelectUser).ToArray();
-                    webPage.AddUlFace = (AddUlFace[])result;
+                    result = Automation.Database.SqlQuery<XsdAuto.FullShemeModel.AddUlFace>(sqlSelect.SelectUser).ToArray();
+                    webPage.AddUlFace = (XsdAuto.FullShemeModel.AddUlFace[])result;
                     break;
                 case 8:
-                    result = Automation.Database.SqlQuery<ModelTree>(sqlSelect.SelectUser).ToArray();
-                    webPage.ModelTree = (ModelTree[])result;
+                    result = Automation.Database.SqlQuery<XsdAuto.FullShemeModel.ModelTree>(sqlSelect.SelectUser).ToArray();
+                    webPage.ModelTree = (XsdAuto.FullShemeModel.ModelTree[])result;
                     break;
                 case 13:
-                    result = Automation.Database.SqlQuery<UlFace>(sqlSelect.SelectUser).ToArray();
-                    dataBaseUlSelect.UlFace = (UlFace[])result;
+                    result = Automation.Database.SqlQuery<XsdDTOSheme.UlFace>(sqlSelect.SelectUser).ToArray();
+                    dataBaseUlSelect.UlFace = (XsdDTOSheme.UlFace[])result;
                     return serializeJson.JsonLibary(dataBaseUlSelect);
+                case 14:
+                    result = Automation.Database.SqlQuery<ModelKbkOnKbk>(sqlSelect.SelectUser).ToArray();
+                    webPage.ModelKbkOnKbk = (ModelKbkOnKbk[])result;
+                    break;
+                case 15:
+                    result = Automation.Database.SqlQuery<HelpKbkAuto>(sqlSelect.SelectUser).ToArray();
+                    webPage.HelpKbkAuto = (HelpKbkAuto[])result;
+                    break;
                 default:
                     return "Данная комманда не определена!!!";
             }
@@ -107,8 +117,15 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
             }
             return null;
         }
-
-
+        /// <summary>
+        /// Запрос проверки КБК по платежу
+        /// </summary>
+        /// <param name="kbk">КБК для запроса уточнения</param>
+        /// <returns></returns>
+        public KbkPayment SelectKbkGroup(string kbk)
+        {   
+            return Automation.KbkPayments.FirstOrDefault(x => x.Kbk == kbk);
+        }
 
         /// <summary>
         /// Dispose

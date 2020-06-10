@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using EfDatabaseAutomation.Automation.Base;
@@ -57,6 +58,16 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
             if (journalTax == null) return;
             journalTax.IsPrint = true;
             Automation.Entry(journalTax).State = EntityState.Modified;
+            Automation.SaveChanges();
+        }
+        /// <summary>
+        /// Добавление КБК лога уточнение платежа
+        /// </summary>
+        /// <param name="modelKbk">Модель уточнение платежа</param>
+        public void AddModelKbkOnKbk(ModelKbkOnKbk modelKbk)
+        {
+            modelKbk.DateCreate = DateTime.Now;
+            Automation.ModelKbkOnKbks.Add(modelKbk);
             Automation.SaveChanges();
         }
     }
