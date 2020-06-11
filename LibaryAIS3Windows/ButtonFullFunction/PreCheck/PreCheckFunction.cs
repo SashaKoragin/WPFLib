@@ -29,7 +29,8 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
         /// <param name="update">Обновить кнопка</param>
         /// <param name="filters">Фильтр кнопка</param>
         /// <param name="serviceGetOrPost">Адрес ответа с клиента</param>
-        public void ParseDataBase(StatusButtonMethod statusButton,LibaryAutomations libraryAutomation, SrvToLoad model, string tree,string gridElement, string treeInnDataArea,string update,string filters, string serviceGetOrPost)
+        /// <param name="isType">Дополнительный параметр по Сведениям об учете</param>
+        public void ParseDataBase(StatusButtonMethod statusButton,LibaryAutomations libraryAutomation, SrvToLoad model, string tree,string gridElement, string treeInnDataArea,string update,string filters, string serviceGetOrPost,bool isType = false)
         {
             var rowNumber = 1;
             DataBaseElementAdd dataBaseAdd = new DataBaseElementAdd();
@@ -50,10 +51,24 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
                             libraryAutomation.FindElement.SetFocus();
                             SendKeys.SendWait("{ENTER}");
                             SendKeys.SendWait(inn);
-                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, update);
                             break;
                         }
                     }
+                    if (isType)
+                    {
+                        while (true)
+                        {
+                            if (libraryAutomation.FindFirstElement(string.Concat(PreCheckElementName.TreeInnDataArea, 7), null, true) != null)
+                            {
+                                libraryAutomation.FindFirstElement(PreCheckElementName.Memo, libraryAutomation.FindElement, true);
+                                libraryAutomation.FindElement.SetFocus();
+                                SendKeys.SendWait("{ENTER}");
+                                SendKeys.SendWait("1");
+                                break;
+                            }
+                        }
+                    }
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, update);
                     PublicGlobalFunction.PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, gridElement);
                     var modelPost = new AisParsedData() { N134 = inn, Tree = model.Tree };
                     AutomationElement automationElement;

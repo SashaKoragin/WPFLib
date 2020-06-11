@@ -39,6 +39,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme {
         
         private UlCommunication ulCommunicationField;
         
+        private ObjectFace[] objectFaceField;
+        
+        private CashUlFace[] cashUlFaceField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("UlFace")]
         public UlFace[] UlFace {
@@ -118,6 +122,28 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme {
             }
             set {
                 this.ulCommunicationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ObjectFace")]
+        public ObjectFace[] ObjectFace {
+            get {
+                return this.objectFaceField;
+            }
+            set {
+                this.objectFaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("CashUlFace")]
+        public CashUlFace[] CashUlFace {
+            get {
+                return this.cashUlFaceField;
+            }
+            set {
+                this.cashUlFaceField = value;
             }
         }
     }
@@ -1337,6 +1363,208 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme {
             }
             set {
                 this.statusUlField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class ObjectFace {
+        
+        private System.Nullable<System.DateTime> dateStartField;
+        
+        private System.Nullable<System.DateTime> dateFinishField;
+        
+        private string nameFaceField;
+        
+        private string innFaceField;
+        
+        private string nameObjectField;
+        
+        private string reasonSettingStartField;
+        
+        private string reasonSettingFinishField;
+        
+        private string addresObjectField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DateStart {
+            get {
+                return this.dateStartField;
+            }
+            set {
+                this.dateStartField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DateFinish {
+            get {
+                return this.dateFinishField;
+            }
+            set {
+                this.dateFinishField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameFace {
+            get {
+                return this.nameFaceField;
+            }
+            set {
+                this.nameFaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string InnFace {
+            get {
+                return this.innFaceField;
+            }
+            set {
+                this.innFaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameObject {
+            get {
+                return this.nameObjectField;
+            }
+            set {
+                this.nameObjectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string ReasonSettingStart {
+            get {
+                return this.reasonSettingStartField;
+            }
+            set {
+                this.reasonSettingStartField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string ReasonSettingFinish {
+            get {
+                return this.reasonSettingFinishField;
+            }
+            set {
+                this.reasonSettingFinishField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string AddresObject {
+            get {
+                return this.addresObjectField;
+            }
+            set {
+                this.addresObjectField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class CashUlFace {
+        
+        private System.Nullable<long> idNumField;
+        
+        private System.Nullable<System.DateTime> dataOpenCashField;
+        
+        private System.Nullable<System.DateTime> dataClosedCashField;
+        
+        private string nameFullField;
+        
+        private string cashNumberField;
+        
+        private string typeCashField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<long> IdNum {
+            get {
+                return this.idNumField;
+            }
+            set {
+                this.idNumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DataOpenCash {
+            get {
+                return this.dataOpenCashField;
+            }
+            set {
+                this.dataOpenCashField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DataClosedCash {
+            get {
+                return this.dataClosedCashField;
+            }
+            set {
+                this.dataClosedCashField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameFull {
+            get {
+                return this.nameFullField;
+            }
+            set {
+                this.nameFullField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string CashNumber {
+            get {
+                return this.cashNumberField;
+            }
+            set {
+                this.cashNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string TypeCash {
+            get {
+                return this.typeCashField;
+            }
+            set {
+                this.typeCashField = value;
             }
         }
     }

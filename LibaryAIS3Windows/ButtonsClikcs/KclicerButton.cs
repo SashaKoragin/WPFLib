@@ -2806,56 +2806,56 @@ namespace LibaryAIS3Windows.ButtonsClikcs
                     var sw = model.Tree.Split('\\').Last();
                     if (model.N134!=null)
                     {
-                    switch (sw)
-                    {
-                       case "1.01. Идентификационные характеристики организации":
-                           function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.TreeNoUl, PreCheckElementName.GridJournal, string.Concat(PreCheckElementName.TreeInnDataArea, 7),  PreCheckElementName.UpdateIdentUl, PreCheckElementName.FiltersGrid, serviceGetOrPost);
-                           break;
-                       case "1.03. Сведения об учете организации в НО":
-                           function.ParseDataBase(statusButton,libraryAutomation, model, PreCheckElementName.TreeInnKey, PreCheckElementName.GridJournal, string.Concat(PreCheckElementName.TreeInnDataArea,3), PreCheckElementName.Update, PreCheckElementName.FiltersGrid, serviceGetOrPost);
-                           break;
-                       case "1.12. Сведения о филиалах, представительствах, иных обособленных подразделениях":
-                           function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.DataFil, PreCheckElementName.GridJournal, string.Concat(PreCheckElementName.TreeInnDataArea, 2), PreCheckElementName.UpdateHistoryFil, PreCheckElementName.FiltersGrid, serviceGetOrPost);
-                           break;
-                       case "1.18. Сведения об объектах собственности российской организации – имущество":
-                           function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.UlIm, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 5), PreCheckElementName.UpdateDataUlIm, PreCheckElementName.FiltersIm, serviceGetOrPost);
-                           break;
-                       case "1.19. Сведения об объектах собственности российской организации – земля":
-                           function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.UlZm, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 5), PreCheckElementName.UpdateDataUlZm, PreCheckElementName.FiltersIm, serviceGetOrPost);
-                           break;
-                       case "1.20. Сведения об объектах собственности российской организации – транспорт":
-                           function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.UlTr, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 6), PreCheckElementName.UpdateDataUlTr, PreCheckElementName.FiltersIm, serviceGetOrPost);
-                           break;
-                       case "2.02. История изменений сведений об учете организации в НО":
-                           function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.History, PreCheckElementName.GridJournal, string.Concat(PreCheckElementName.TreeInnDataArea, 3), PreCheckElementName.UpdateHistory, PreCheckElementName.FiltersGrid, serviceGetOrPost);
-                           break;
-                       case "Сведения о среднесписочной численности работников":
-                          function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.UlYerFace, PreCheckElementName.GridJournalSvedFace, string.Concat(PreCheckElementName.DataAreaSvedFaceFull, 8), PreCheckElementName.UpdateYerFace, PreCheckElementName.FiltersGridSvedFace, serviceGetOrPost);
-                          break;
-                       case "01. Картотека счетов РО, ИО, ИП":
-                          function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.CashUl, PreCheckElementName.GridJournalCash, string.Concat(PreCheckElementName.DataAreaCashFull, 3), PreCheckElementName.UpdateCashFace, PreCheckElementName.FiltersCash, serviceGetOrPost);
-                          break;
-                       case "7. Индивидуальные карточки налогоплательщиков": 
-                          function.IndividualCards(statusButton, libraryAutomation, model, PreCheckElementName.CardPpa, PreCheckElementNameIndividualCards.GridJournalCard, string.Concat(PreCheckElementNameIndividualCards.DataAreaCard, 5), PreCheckElementNameIndividualCards.UpdateCashFaceCard, PreCheckElementNameIndividualCards.GridFiltersCard, serviceGetOrPost, pathTemp);
-                          break;
-                       case "Банковские выписки, справки":
-                           function.BankSpr(statusButton, libraryAutomation, model, PreCheckElementName.BankSpravki, serviceGetOrPost, pathSaveBank);
-                           break;
-                       case "Реестр документов НБО":
-                          function.DeclarationIntelligenceUl(statusButton, libraryAutomation, model, PreCheckElementName.Declaration, PreCheckElementName.GridJournalSvedFace, string.Concat(PreCheckElementName.DataAreaSvedFaceFull, 17), PreCheckElementName.UpdateNBO, PreCheckElementName.FiltersGridSvedFace, serviceGetOrPost, pathTemp);
-                          break;
-                       case "1. Реестр документов НБО":
-                          function.DeclarationIntelligenceUl(statusButton, libraryAutomation, model, PreCheckElementName.DeclarationMigration, PreCheckElementName.GridJournalSvedFace, string.Concat(PreCheckElementName.DataAreaSvedFaceFull, 16), PreCheckElementName.UpdateNBO, PreCheckElementName.FiltersGridSvedFace, serviceGetOrPost, pathTemp);
-                          break;
-                       case "1.18. Сведения об объектах собственности физического лица – имущество":
-                            function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.ImFl, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 9), PreCheckElementName.UpdateFlIm, PreCheckElementName.FiltersIm, serviceGetOrPost);
-                            break;
-                       case "1.19. Сведения об объектах собственности физического лица – земля":
-                            function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.ZmFl, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 9), PreCheckElementName.UpdateFlZm, PreCheckElementName.FiltersIm, serviceGetOrPost);
-                            break;
-                       case "1.20. Сведения об объектах собственности физического лица – транспорт":
-                            function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.TrFl, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 10), PreCheckElementName.UpdateFlTr, PreCheckElementName.FiltersIm, serviceGetOrPost);
-                            break;
+                        switch (sw)
+                        {
+                            case "1.01. Идентификационные характеристики организации":
+                                function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.TreeNoUl, PreCheckElementName.GridJournal, string.Concat(PreCheckElementName.TreeInnDataArea, 7),  PreCheckElementName.UpdateIdentUl, PreCheckElementName.FiltersGrid, serviceGetOrPost);
+                                break;
+                            case "1.03. Сведения об учете организации в НО":
+                                function.ParseDataBase(statusButton,libraryAutomation, model, PreCheckElementName.TreeInnKey, PreCheckElementName.GridJournal, string.Concat(PreCheckElementName.TreeInnDataArea,3), PreCheckElementName.Update, PreCheckElementName.FiltersGrid, serviceGetOrPost,true);
+                                break;
+                            case "1.12. Сведения о филиалах, представительствах, иных обособленных подразделениях":
+                                function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.DataFil, PreCheckElementName.GridJournal, string.Concat(PreCheckElementName.TreeInnDataArea, 2), PreCheckElementName.UpdateHistoryFil, PreCheckElementName.FiltersGrid, serviceGetOrPost);
+                                break;
+                            case "1.18. Сведения об объектах собственности российской организации – имущество":
+                                function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.UlIm, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 5), PreCheckElementName.UpdateDataUlIm, PreCheckElementName.FiltersIm, serviceGetOrPost);
+                                break;
+                            case "1.19. Сведения об объектах собственности российской организации – земля":
+                                function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.UlZm, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 5), PreCheckElementName.UpdateDataUlZm, PreCheckElementName.FiltersIm, serviceGetOrPost);
+                                break;
+                            case "1.20. Сведения об объектах собственности российской организации – транспорт":
+                                function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.UlTr, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 6), PreCheckElementName.UpdateDataUlTr, PreCheckElementName.FiltersIm, serviceGetOrPost);
+                                break;
+                            case "2.02. История изменений сведений об учете организации в НО":
+                                function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.History, PreCheckElementName.GridJournal, string.Concat(PreCheckElementName.TreeInnDataArea, 3), PreCheckElementName.UpdateHistory, PreCheckElementName.FiltersGrid, serviceGetOrPost,true);
+                                break;
+                            case "Сведения о среднесписочной численности работников":
+                                function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.UlYerFace, PreCheckElementName.GridJournalSvedFace, string.Concat(PreCheckElementName.DataAreaSvedFaceFull, 8), PreCheckElementName.UpdateYerFace, PreCheckElementName.FiltersGridSvedFace, serviceGetOrPost);
+                                break;
+                            case "01. Картотека счетов РО, ИО, ИП":
+                                function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.CashUl, PreCheckElementName.GridJournalCash, string.Concat(PreCheckElementName.DataAreaCashFull, 3), PreCheckElementName.UpdateCashFace, PreCheckElementName.FiltersCash, serviceGetOrPost);
+                                break;
+                            case "7. Индивидуальные карточки налогоплательщиков": 
+                                function.IndividualCards(statusButton, libraryAutomation, model, PreCheckElementName.CardPpa, PreCheckElementNameIndividualCards.GridJournalCard, string.Concat(PreCheckElementNameIndividualCards.DataAreaCard, 5), PreCheckElementNameIndividualCards.UpdateCashFaceCard, PreCheckElementNameIndividualCards.GridFiltersCard, serviceGetOrPost, pathTemp);
+                                break;
+                            case "Банковские выписки, справки":
+                                function.BankSpr(statusButton, libraryAutomation, model, PreCheckElementName.BankSpravki, serviceGetOrPost, pathSaveBank);
+                                break;
+                            case "Реестр документов НБО":
+                                function.DeclarationIntelligenceUl(statusButton, libraryAutomation, model, PreCheckElementName.Declaration, PreCheckElementName.GridJournalSvedFace, string.Concat(PreCheckElementName.DataAreaSvedFaceFull, 17), PreCheckElementName.UpdateNBO, PreCheckElementName.FiltersGridSvedFace, serviceGetOrPost, pathTemp);
+                                break;
+                            case "1. Реестр документов НБО":
+                                function.DeclarationIntelligenceUl(statusButton, libraryAutomation, model, PreCheckElementName.DeclarationMigration, PreCheckElementName.GridJournalSvedFace, string.Concat(PreCheckElementName.DataAreaSvedFaceFull, 16), PreCheckElementName.UpdateNBO, PreCheckElementName.FiltersGridSvedFace, serviceGetOrPost, pathTemp);
+                                break;
+                            case "1.18. Сведения об объектах собственности физического лица – имущество":
+                                function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.ImFl, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 9), PreCheckElementName.UpdateFlIm, PreCheckElementName.FiltersIm, serviceGetOrPost);
+                                break;
+                            case "1.19. Сведения об объектах собственности физического лица – земля":
+                                function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.ZmFl, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 9), PreCheckElementName.UpdateFlZm, PreCheckElementName.FiltersIm, serviceGetOrPost);
+                                break;
+                            case "1.20. Сведения об объектах собственности физического лица – транспорт":
+                                function.ParseDataBase(statusButton, libraryAutomation, model, PreCheckElementName.TrFl, PreCheckElementName.GridJournalIm, string.Concat(PreCheckElementName.DataAreaImFull, 10), PreCheckElementName.UpdateFlTr, PreCheckElementName.FiltersIm, serviceGetOrPost);
+                                break;
                         }
                     }
                 }
