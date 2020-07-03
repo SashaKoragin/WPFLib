@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -7,13 +8,12 @@ using EfDatabaseAutomation.Automation.Base;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
 {
-   public class PreCheckAddObject
+   public class PreCheckAddObject : IDisposable
     {
         public Base.Automation Automation { get; set; }
 
         public PreCheckAddObject()
         {
-            Automation?.Dispose();
             Automation = new Base.Automation();
         }
 
@@ -325,6 +325,20 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             //Отсутствует лицо сохранение не возможно
         }
         /// <summary>
+        /// Проверка на существование такого счета в БД
+        /// </summary>
+        /// <param name="idNum">Регистрационный номер счета</param>
+        /// <returns></returns>
+        public bool IsExistsIdCash(long idNum)
+        {
+            if ((from cashUlFaces in Automation.CashUlFaces where cashUlFaces.IdNum == idNum select new { CashUlFaces = cashUlFaces }).Any())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Проверка на содержание в БД номера декларации что бы не отбирать
         /// </summary>
         /// <param name="regNumDecl">Рег номер декларации</param>
@@ -356,6 +370,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                       where declarationUls.RegNumDecl == declarationUl.RegNumDecl
                       select new { DeclarationUls = declarationUls }).Any())
                 {
+                    //Здесь говно переделать под SQLXMLBULKLOADLib.SQLXMLBulkLoad4
+                    //declarationDates to xml
+                    //xsd to SELECT top 0 * FROM DeclarationData FOR XML AUTO, ELEMENTS ,XMLSCHEMA 
+                    //Переделать  Automation.BulkInsert<DeclarationData>(declarationDates); Так как либа платная
                     var declarationDates = declarationUl.DeclarationDatas;
                     declarationUl.DeclarationDatas = null;
                     Automation.DeclarationUls.Add(declarationUl);
@@ -427,6 +445,23 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             }
             //Отсутствует лицо сохранение не возможно
 
+        }
+        /// <summary>
+        /// Disposing
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Automation?.Dispose();
+                Automation = null;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
         }
     }
 }

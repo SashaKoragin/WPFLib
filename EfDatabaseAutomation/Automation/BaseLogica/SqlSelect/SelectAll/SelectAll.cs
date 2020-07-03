@@ -8,6 +8,7 @@ using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
 using EfDatabaseAutomation.Automation.Base;
 using ModelKbkOnKbk = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.ModelKbkOnKbk;
+using HelpKbkAuto = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.HelpKbkAuto;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
 {
@@ -62,8 +63,12 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
                     result = Automation.Database.SqlQuery<HelpKbkAuto>(sqlSelect.SelectUser).ToArray();
                     webPage.HelpKbkAuto = (HelpKbkAuto[])result;
                     break;
+                case 16:
+                    result = Automation.Database.SqlQuery<AllJournal129>(sqlSelect.SelectUser).ToArray();
+                    webPage.AllJournal129 = (AllJournal129[])result;
+                    break;
                 default:
-                    return "Данная комманда не определена!!!";
+                    return "Данная команда не определена!!!";
             }
             var json = serializeJson.JsonLibary(webPage);
             return json;

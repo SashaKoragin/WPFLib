@@ -180,7 +180,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
         /// <summary>
         /// Функция подписание служебной записки
         /// </summary>
-        /// <param name="statusButton">Кнопка старт </param>
+        /// <param name="statusButton">Кнопка старт</param>
         /// <param name="pathJournalError">Журнал ошибок</param>
         /// <param name="pathJournalOk">Журнал хороших (обработанных)</param>
         public void AutoSignatureOfficeNote(StatusButtonMethod statusButton, string pathJournalError, string pathJournalOk)
@@ -194,6 +194,30 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 if (ais3.WinexistsAis3() == 1)
                 {
                     clickerButton.Click26(statusButton, pathJournalError, pathJournalOk);
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                }
+                else
+                {
+                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                }
+            });
+        }
+        /// <summary>
+        /// Функция подписания по ветки
+        /// Общие задания\Урегулирование задолженности\05.09 Формирование решения об отказе по заявлению\Подписание руководителем НО
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        public void SigningDecisionApplication(StatusButtonMethod statusButton)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                KclicerButton clickerButton = new KclicerButton();
+                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                if (ais3.WinexistsAis3() == 1)
+                {
+                    clickerButton.Click31(statusButton);
                     DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                 }
                 else

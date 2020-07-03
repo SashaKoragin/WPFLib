@@ -1,7 +1,7 @@
 ﻿using AutoIt;
 using EfDatabaseAutomation.Automation.Base;
 using LibaryAIS3Windows.AutomationsUI.LibaryAutomations;
-using LibaryAIS3Windows.AutomationsUI.Otdels.Okp2;
+using LibaryAIS3Windows.AutomationsUI.Otdels.PublicJournal129And121;
 using LibaryAIS3Windows.ButtonsClikcs;
 using LibaryAIS3Windows.Window;
 using System.IO;
@@ -28,23 +28,23 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
         public void SignAndSendDoc(LibaryAutomations libraryAutomation)
         {
-            AutoItX.WinWait(Okp2ElementName.ViewName);
-            AutoItX.WinActivate(Okp2ElementName.ViewName);
-            LibaryAutomations libraryAutomationSign = new LibaryAutomations(Okp2ElementName.ViewName);
+            AutoItX.WinWait(Journal129AndJournal121.ViewName);
+            AutoItX.WinActivate(Journal129AndJournal121.ViewName);
+            LibaryAutomations libraryAutomationSign = new LibaryAutomations(Journal129AndJournal121.ViewName);
             while (true)
             {
-                if (libraryAutomationSign.IsEnableElements(Okp2ElementName.ViewPrint, null, true) != null)
+                if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewPrint, null, true) != null)
                 {
 
-                    libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Okp2ElementName.ViewPrint));
+                    libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewPrint));
                     while (true)
                     {
-                        var toggle = libraryAutomationSign.TogglePattern(libraryAutomationSign.IsEnableElements(Okp2ElementName.ViewCheks));
+                        var toggle = libraryAutomationSign.TogglePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewCheks));
                         if (toggle == "Off" || toggle == null)
                         {
                             while (true)
                             {
-                                if (libraryAutomationSign.IsEnableElements(Okp2ElementName.ViewCheks, null, true) !=null)
+                                if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewCheks, null, true) !=null)
                                 {
                                     libraryAutomationSign.InvokePattern(libraryAutomationSign.FindElement);
                                     break;
@@ -55,9 +55,9 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
                         {
                             while (true)
                             {
-                                if (libraryAutomationSign.IsEnableElements(Okp2ElementName.Sign, null, true) !=null)
+                                if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.Sign, null, true) !=null)
                                 {
-                                    AutoItX.WinActivate(Okp2ElementName.ViewName);
+                                    AutoItX.WinActivate(Journal129AndJournal121.ViewName);
                                     libraryAutomationSign.InvokePattern(libraryAutomationSign.FindElement);
                                     break;
                                 }
@@ -76,26 +76,26 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
                     PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("AcroRd32");
                     PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("FoxitPhantom");
                     AutoItX.WinActivate(WindowsAis3.AisNalog3);
-                    if (libraryAutomation.IsEnableElements(Okp2ElementName.SendAll, null, true) != null)
+                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.SendAll, null, true) != null)
                     {
-                        libraryAutomation.ClickElements(Okp2ElementName.SendAll);
+                        libraryAutomation.ClickElements(Journal129AndJournal121.SendAll);
                         isSend = true;
                     }
                 }
-                if(libraryAutomation.IsEnableElements(Okp2ElementName.SendDocument, null, true) != null)
+                if(libraryAutomation.IsEnableElements(Journal129AndJournal121.SendDocument, null, true) != null)
                 {
                     var auto = libraryAutomation.FindElement;
-                    libraryAutomation.IsEnableElements(Okp2ElementName.Tks, auto);
+                    libraryAutomation.IsEnableElements(Journal129AndJournal121.Tks, auto);
                     IsTks = libraryAutomation.FindElement.Current.IsEnabled;
-                    libraryAutomation.IsEnableElements(Okp2ElementName.Mail, auto);
+                    libraryAutomation.IsEnableElements(Journal129AndJournal121.Mail, auto);
                     IsMail = libraryAutomation.FindElement.Current.IsEnabled;
-                    libraryAutomation.IsEnableElements(Okp2ElementName.Lk3, auto);
+                    libraryAutomation.IsEnableElements(Journal129AndJournal121.Lk3, auto);
                     IsLk3 = libraryAutomation.FindElement.Current.IsEnabled;
                     while (true)
                     {
-                        if (libraryAutomation.IsEnableElements(Okp2ElementName.Close, null, true) != null)
+                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.Close, null, true) != null)
                         {
-                            libraryAutomation.ClickElements(Okp2ElementName.Close, null, false, 25, -30, 30);
+                            libraryAutomation.ClickElements(Journal129AndJournal121.Close, null, false, 25, -30, 30);
                             break;
                         }
                     }

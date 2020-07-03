@@ -157,6 +157,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\PreCheck\Journal129\Journal129\Journal129.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\PreCheck\ReportingMemo\ReportingMemo\ReportingMemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\RenouncementLk\UserControl\RecouncementLk.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\SigningDecisionApplication\UserControl\SigningDecisionApplication.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -316,6 +324,10 @@
       <DependentUpon>ConfirmationNbo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Orn\ConfirmationNbo\DataContext\DataContextConfirmationNbo.cs" />
+    <Compile Include="Form\Automat\PreCheck\Journal129\DataContext\Journal129Context.cs" />
+    <Compile Include="Form\Automat\PreCheck\Journal129\Journal129\Journal129.xaml.cs">
+      <DependentUpon>Journal129.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\PreCheck\ReportingMemo\DataContext\ReportingMemoContext.cs" />
     <Compile Include="Form\Automat\PreCheck\ReportingMemo\ReportingMemo\ReportingMemo.xaml.cs">
       <DependentUpon>ReportingMemo.xaml</DependentUpon>
@@ -391,6 +403,10 @@
     <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\RenouncementLk\DataContext\DataContextRecouncementLk.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\RenouncementLk\UserControl\RecouncementLk.xaml.cs">
       <DependentUpon>RecouncementLk.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\SigningDecisionApplication\DataContext\DataContextSigningDecisionApplication.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\SigningDecisionApplication\UserControl\SigningDecisionApplication.xaml.cs">
+      <DependentUpon>SigningDecisionApplication.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\FormirovanieSpiskov\Spiski\DataContext\DataContextSpisok.cs" />
     <Compile Include="Form\FormirovanieSpiskov\Spiski\FormFormirovanie\FormSpisok.xaml.cs">

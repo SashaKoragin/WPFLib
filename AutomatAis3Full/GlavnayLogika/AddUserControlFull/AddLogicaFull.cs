@@ -9,6 +9,7 @@ using AutomatAis3Full.Form.Automat.Okp4.MassSnuForm.MassSnuForm;
 using AutomatAis3Full.Form.Automat.Okp4.PravoEdit.PravoEdit;
 using AutomatAis3Full.Form.Automat.Okp4.PrintSnu.Print;
 using AutomatAis3Full.Form.Automat.Orn.ConfirmationNbo.ConfirmationNbo;
+using AutomatAis3Full.Form.Automat.PreCheck.Journal129.Journal129;
 using AutomatAis3Full.Form.Automat.PreCheck.ReportingMemo.ReportingMemo;
 using AutomatAis3Full.Form.Automat.RaschetBudg.Migration.Migration;
 using AutomatAis3Full.Form.Automat.RaschetBudg.VedRazd1.VedRaz1;
@@ -31,6 +32,7 @@ using LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand;
 using ViewModelLib.ModelTestAutoit.FullWindowAutoIt;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket0508090202.Ticket050809020204.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket0508090202.Ticket050809020206.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.SigningDecisionApplication.UserControl;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
 {
@@ -82,6 +84,18 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                           {
                               NameControl = "Докладная записка",
                               UserControl = new ReportingMemo()
+                          },
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "129. Налоговые правонарушения",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "2. Журнал налоговых правонарушений",
+                                      UserControl = new Journal129()
+                                  }
+                              }
                           }
                       }
                   },
@@ -174,6 +188,11 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                {
                                    NameControl = "05.09 Сообщения о принятом решении об отказе  подлежащие выгрузке в ЛК",
                                    UserControl = new RecouncementLk()
+                               },
+                               new FullWindowAutoIt()
+                               {
+                                   NameControl = "05.09 Формирование решения об отказе по заявлению (Подписание руководителем НО)",
+                                   UserControl = new SigningDecisionApplication()
                                }
                               }
                           }

@@ -239,6 +239,18 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.Uregulirovanie
         /// </summary>
         public static string Exit = "Name:DockTop\\Name:Ribbon\\Name:Служебная записка\\Name:Действия\\Name:Завершить";
         /// <summary>
+        /// Подписать действие
+        /// </summary>
+        public static string Sign = "Name:DockTop\\Name:Ribbon\\Name:Решение об отказе\\Name:Подписать";
+        /// <summary>
+        /// Окно подписание
+        /// </summary>
+        public static string WinOk = "Name:Подписание\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnYes";
+        /// <summary>
+        /// 2 Окно подписание
+        /// </summary>
+        public static string WinOk1 = "Name:Подписание\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+        /// <summary>
         /// Окно выхода
         /// </summary>
         public static string WinExit = "Name:Завершение работы\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";

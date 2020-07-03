@@ -22,6 +22,7 @@
 			<xs:element ref="ModelTree" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="ModelKbkOnKbk" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="HelpKbkAuto" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="AllJournal129" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxJournalAutoWebPage">
@@ -455,6 +456,64 @@
 	<xs:element name="IdQbe" type="xs:int">
 		<xs:annotation>
 			<xs:documentation>Ун группы</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AllJournal129">
+		<xs:annotation>
+			<xs:documentation>Журнал 129</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton"/>
+				<xs:element ref="Id"/>
+				<xs:element ref="IdDelo"/>
+				<xs:element ref="DateError"/>
+			</xs:sequence>
+			<xs:attribute name="StateColor" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Стадия</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="State_TaxPayerColor" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Состояние НП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kpp" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameFace" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Лицо</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Fid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ФИД</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="LoginUser" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Учетная запись пользователя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageInfo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Отметка о проставлении</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateError" type="xs:dateTime" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Дата выявления нарушения</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

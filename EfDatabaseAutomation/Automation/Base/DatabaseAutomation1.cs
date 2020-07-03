@@ -26,10 +26,11 @@
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
 // TargetFrameworkVersion = 4.5
-#pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
-
 
 using Newtonsoft.Json;
+
+#pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
+
 
 namespace EfDatabaseAutomation.Automation.Base
 {
@@ -47,6 +48,7 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<Field> Fields { get; set; } // Fields
         System.Data.Entity.DbSet<FlFace> FlFaces { get; set; } // FlFace
         System.Data.Entity.DbSet<GroupKbk> GroupKbks { get; set; } // GroupKbk
+        System.Data.Entity.DbSet<HelpKbkAuto> HelpKbkAutoes { get; set; } // HelpKbkAuto
         System.Data.Entity.DbSet<HistoriUlFace> HistoriUlFaces { get; set; } // HistoriUlFace
         System.Data.Entity.DbSet<ImZmTrFl> ImZmTrFls { get; set; } // ImZmTrFl
         System.Data.Entity.DbSet<ImZmTrUl> ImZmTrUls { get; set; } // ImZmTrUl
@@ -66,6 +68,7 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<TaxJournal> TaxJournals { get; set; } // TaxJournal
         System.Data.Entity.DbSet<TaxJournal121> TaxJournal121 { get; set; } // TaxJournal121
         System.Data.Entity.DbSet<TaxJournal121AutoWebPage> TaxJournal121AutoWebPage { get; set; } // TaxJournal121AutoWebPage
+        System.Data.Entity.DbSet<TaxJournal129> TaxJournal129 { get; set; } // TaxJournal129
         System.Data.Entity.DbSet<TaxJournalAutoReport> TaxJournalAutoReports { get; set; } // TaxJournalAutoReport
         System.Data.Entity.DbSet<TaxJournalAutoWebPage> TaxJournalAutoWebPages { get; set; } // TaxJournalAutoWebPage
         System.Data.Entity.DbSet<Tree> Trees { get; set; } // Tree
@@ -103,6 +106,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<Field> Fields { get; set; } // Fields
         public System.Data.Entity.DbSet<FlFace> FlFaces { get; set; } // FlFace
         public System.Data.Entity.DbSet<GroupKbk> GroupKbks { get; set; } // GroupKbk
+        public System.Data.Entity.DbSet<HelpKbkAuto> HelpKbkAutoes { get; set; } // HelpKbkAuto
         public System.Data.Entity.DbSet<HistoriUlFace> HistoriUlFaces { get; set; } // HistoriUlFace
         public System.Data.Entity.DbSet<ImZmTrFl> ImZmTrFls { get; set; } // ImZmTrFl
         public System.Data.Entity.DbSet<ImZmTrUl> ImZmTrUls { get; set; } // ImZmTrUl
@@ -122,6 +126,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<TaxJournal> TaxJournals { get; set; } // TaxJournal
         public System.Data.Entity.DbSet<TaxJournal121> TaxJournal121 { get; set; } // TaxJournal121
         public System.Data.Entity.DbSet<TaxJournal121AutoWebPage> TaxJournal121AutoWebPage { get; set; } // TaxJournal121AutoWebPage
+        public System.Data.Entity.DbSet<TaxJournal129> TaxJournal129 { get; set; } // TaxJournal129
         public System.Data.Entity.DbSet<TaxJournalAutoReport> TaxJournalAutoReports { get; set; } // TaxJournalAutoReport
         public System.Data.Entity.DbSet<TaxJournalAutoWebPage> TaxJournalAutoWebPages { get; set; } // TaxJournalAutoWebPage
         public System.Data.Entity.DbSet<Tree> Trees { get; set; } // Tree
@@ -186,6 +191,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new FieldConfiguration());
             modelBuilder.Configurations.Add(new FlFaceConfiguration());
             modelBuilder.Configurations.Add(new GroupKbkConfiguration());
+            modelBuilder.Configurations.Add(new HelpKbkAutoConfiguration());
             modelBuilder.Configurations.Add(new HistoriUlFaceConfiguration());
             modelBuilder.Configurations.Add(new ImZmTrFlConfiguration());
             modelBuilder.Configurations.Add(new ImZmTrUlConfiguration());
@@ -205,6 +211,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new TaxJournalConfiguration());
             modelBuilder.Configurations.Add(new TaxJournal121Configuration());
             modelBuilder.Configurations.Add(new TaxJournal121AutoWebPageConfiguration());
+            modelBuilder.Configurations.Add(new TaxJournal129Configuration());
             modelBuilder.Configurations.Add(new TaxJournalAutoReportConfiguration());
             modelBuilder.Configurations.Add(new TaxJournalAutoWebPageConfiguration());
             modelBuilder.Configurations.Add(new TreeConfiguration());
@@ -224,6 +231,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new FieldConfiguration(schema));
             modelBuilder.Configurations.Add(new FlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new GroupKbkConfiguration(schema));
+            modelBuilder.Configurations.Add(new HelpKbkAutoConfiguration(schema));
             modelBuilder.Configurations.Add(new HistoriUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new ImZmTrFlConfiguration(schema));
             modelBuilder.Configurations.Add(new ImZmTrUlConfiguration(schema));
@@ -243,6 +251,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new TaxJournalConfiguration(schema));
             modelBuilder.Configurations.Add(new TaxJournal121Configuration(schema));
             modelBuilder.Configurations.Add(new TaxJournal121AutoWebPageConfiguration(schema));
+            modelBuilder.Configurations.Add(new TaxJournal129Configuration(schema));
             modelBuilder.Configurations.Add(new TaxJournalAutoReportConfiguration(schema));
             modelBuilder.Configurations.Add(new TaxJournalAutoWebPageConfiguration(schema));
             modelBuilder.Configurations.Add(new TreeConfiguration(schema));
@@ -527,6 +536,18 @@ namespace EfDatabaseAutomation.Automation.Base
             DateCreate = System.DateTime.Now;
             KbkPayments = new System.Collections.Generic.List<KbkPayment>();
         }
+    }
+
+    // HelpKbkAuto
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class HelpKbkAuto
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public string GroupColor { get; set; } // GroupColor (length: 15)
+        public int IdQbe { get; set; } // IdQbe (Primary key)
+        public string NameGroupPl { get; set; } // NameGroupPl (Primary key) (length: 1024)
+        public string Kbk { get; set; } // Kbk (Primary key) (length: 1024)
+        public string DescriptionGroup { get; set; } // DescriptionGroup (length: 1024)
     }
 
     // HistoriUlFace
@@ -1020,6 +1041,41 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.DateTime? DataCreate { get; set; } // DataCreate
     }
 
+    // TaxJournal129
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TaxJournal129
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public string StateColor { get; set; } // StateColor (length: 12)
+        public string StateTaxPayerColor { get; set; } // State_TaxPayerColor (length: 12)
+        public int? IdDelo { get; set; } // IdDelo
+        public System.DateTime? DateError { get; set; } // DateError
+        public string Inn { get; set; } // Inn (length: 12)
+        public string Kpp { get; set; } // Kpp (length: 12)
+        public string NameFace { get; set; } // NameFace (length: 512)
+        public string Fid { get; set; } // Fid (length: 512)
+        public string LoginUser { get; set; } // LoginUser (length: 1024)
+        public string StatusObject { get; set; } // StatusObject (length: 512)
+        public System.DateTime? DateIzveshenie { get; set; } // DateIzveshenie
+        public bool? IsTks { get; set; } // IsTks
+        public bool? IsMail { get; set; } // IsMail
+        public bool? IsLk3 { get; set; } // IsLk3
+        public string TypeDocument { get; set; } // TypeDocument (length: 128)
+        public string MessageInfo { get; set; } // MessageInfo (length: 512)
+        public string FullPath { get; set; } // FullPath (length: 1024)
+        public string NameFile { get; set; } // NameFile (length: 128)
+        public string Extensions { get; set; } // Extensions (length: 10)
+        public string Mime { get; set; } // Mime (length: 128)
+        public byte[] Document { get; set; } // Document (length: 2147483647)
+        public bool? IsPrint { get; set; } // IsPrint
+        public System.DateTime? DataCreate { get; set; } // DataCreate
+
+        public TaxJournal129()
+        {
+            DataCreate = System.DateTime.Now;
+        }
+    }
+
     // TaxJournalAutoReport
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class TaxJournalAutoReport
@@ -1215,6 +1271,7 @@ namespace EfDatabaseAutomation.Automation.Base
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class UlFaceAll
     {
+        public int IdUl { get; set; } // IdUl (Primary key)
         public string StatusFull { get; set; } // StatusFull (Primary key) (length: 7)
         public long IdNum { get; set; } // IdNum (Primary key)
         public long Fid { get; set; } // Fid (Primary key)
@@ -1478,6 +1535,29 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.DescriptionGroup).HasColumnName(@"DescriptionGroup").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.GroupColor).HasColumnName(@"GroupColor").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
             Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // HelpKbkAuto
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class HelpKbkAutoConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<HelpKbkAuto>
+    {
+        public HelpKbkAutoConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public HelpKbkAutoConfiguration(string schema)
+        {
+            ToTable("HelpKbkAuto", schema);
+            HasKey(x => new { x.Id, x.IdQbe, x.NameGroupPl, x.Kbk });
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.GroupColor).HasColumnName(@"GroupColor").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.IdQbe).HasColumnName(@"IdQbe").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.NameGroupPl).HasColumnName(@"NameGroupPl").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Kbk).HasColumnName(@"Kbk").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DescriptionGroup).HasColumnName(@"DescriptionGroup").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
         }
     }
 
@@ -2044,6 +2124,47 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // TaxJournal129
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TaxJournal129Configuration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TaxJournal129>
+    {
+        public TaxJournal129Configuration()
+            : this("dbo")
+        {
+        }
+
+        public TaxJournal129Configuration(string schema)
+        {
+            ToTable("TaxJournal129", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.StateColor).HasColumnName(@"StateColor").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.StateTaxPayerColor).HasColumnName(@"State_TaxPayerColor").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.IdDelo).HasColumnName(@"IdDelo").HasColumnType("int").IsOptional();
+            Property(x => x.DateError).HasColumnName(@"DateError").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.Kpp).HasColumnName(@"Kpp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.NameFace).HasColumnName(@"NameFace").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Fid).HasColumnName(@"Fid").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.LoginUser).HasColumnName(@"LoginUser").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.StatusObject).HasColumnName(@"StatusObject").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.DateIzveshenie).HasColumnName(@"DateIzveshenie").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.IsTks).HasColumnName(@"IsTks").HasColumnType("bit").IsOptional();
+            Property(x => x.IsMail).HasColumnName(@"IsMail").HasColumnType("bit").IsOptional();
+            Property(x => x.IsLk3).HasColumnName(@"IsLk3").HasColumnType("bit").IsOptional();
+            Property(x => x.TypeDocument).HasColumnName(@"TypeDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.MessageInfo).HasColumnName(@"MessageInfo").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.FullPath).HasColumnName(@"FullPath").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.NameFile).HasColumnName(@"NameFile").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.Extensions).HasColumnName(@"Extensions").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.Mime).HasColumnName(@"Mime").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.Document).HasColumnName(@"Document").HasColumnType("image").IsOptional().HasMaxLength(2147483647);
+            Property(x => x.IsPrint).HasColumnName(@"IsPrint").HasColumnType("bit").IsOptional();
+            Property(x => x.DataCreate).HasColumnName(@"DataCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
     // TaxJournalAutoReport
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class TaxJournalAutoReportConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TaxJournalAutoReport>
@@ -2194,8 +2315,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public UlFaceAllConfiguration(string schema)
         {
             ToTable("UlFaceAll", schema);
-            HasKey(x => new { x.StatusFull, x.IdNum, x.Fid, x.Inn, x.NameFull, x.NameSmall });
+            HasKey(x => new { x.IdUl, x.StatusFull, x.IdNum, x.Fid, x.Inn, x.NameFull, x.NameSmall });
 
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.StatusFull).HasColumnName(@"StatusFull").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(7).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.Fid).HasColumnName(@"Fid").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);

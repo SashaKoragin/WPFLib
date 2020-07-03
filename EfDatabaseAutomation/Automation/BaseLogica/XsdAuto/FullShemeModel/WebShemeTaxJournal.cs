@@ -35,6 +35,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private HelpKbkAuto[] helpKbkAutoField;
         
+        private AllJournal129[] allJournal129Field;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxJournalAutoWebPage")]
         public TaxJournalAutoWebPage[] TaxJournalAutoWebPage {
@@ -98,6 +100,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.helpKbkAutoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("AllJournal129")]
+        public AllJournal129[] AllJournal129 {
+            get {
+                return this.allJournal129Field;
+            }
+            set {
+                this.allJournal129Field = value;
             }
         }
     }
@@ -1130,6 +1143,174 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.descriptionGroupField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class AllJournal129 {
+        
+        private string logicsButtonField;
+        
+        private System.Nullable<int> idField;
+        
+        private System.Nullable<int> idDeloField;
+        
+        private System.DateTime dateErrorField;
+        
+        private string stateColorField;
+        
+        private string state_TaxPayerColorField;
+        
+        private string innField;
+        
+        private string kppField;
+        
+        private string nameFaceField;
+        
+        private string fidField;
+        
+        private string loginUserField;
+        
+        private string messageInfoField;
+        
+        public AllJournal129() {
+            this.logicsButtonField = "Button";
+        }
+        
+        /// <remarks/>
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> IdDelo {
+            get {
+                return this.idDeloField;
+            }
+            set {
+                this.idDeloField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateError {
+            get {
+                return this.dateErrorField;
+            }
+            set {
+                this.dateErrorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string StateColor {
+            get {
+                return this.stateColorField;
+            }
+            set {
+                this.stateColorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string State_TaxPayerColor {
+            get {
+                return this.state_TaxPayerColorField;
+            }
+            set {
+                this.state_TaxPayerColorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Kpp {
+            get {
+                return this.kppField;
+            }
+            set {
+                this.kppField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameFace {
+            get {
+                return this.nameFaceField;
+            }
+            set {
+                this.nameFaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Fid {
+            get {
+                return this.fidField;
+            }
+            set {
+                this.fidField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string LoginUser {
+            get {
+                return this.loginUserField;
+            }
+            set {
+                this.loginUserField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string MessageInfo {
+            get {
+                return this.messageInfoField;
+            }
+            set {
+                this.messageInfoField = value;
             }
         }
     }

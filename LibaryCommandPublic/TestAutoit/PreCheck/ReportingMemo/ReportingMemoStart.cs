@@ -57,6 +57,39 @@ namespace LibaryCommandPublic.TestAutoit.PreCheck.ReportingMemo
                     }
                 });
         }
+        /// <summary>
+        /// Проставить статус о подтверждении статуса правонарушения
+        /// </summary>
+        /// <param name="statusButton">Кнопка</param>
+        public void StatusJournal129(StatusButtonMethod statusButton)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                try
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        clickerButton.Click30(statusButton);
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                }
+            });
+        }
 
         /// <summary>
         /// Прием запроса сервера

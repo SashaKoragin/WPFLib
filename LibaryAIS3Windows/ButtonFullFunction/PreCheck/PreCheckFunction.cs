@@ -198,7 +198,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
                            }
                            break;
                        }
-                        break;
+                       break;
                     }
                     var result = post.ResultPost(serviceGetOrPost, modelPost);
                     if (result == null)

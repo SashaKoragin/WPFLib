@@ -68,7 +68,7 @@
   <ItemGroup>
     <Compile Include="AutomationsUI\LibaryAutomations\LibaryAutomations.cs" />
     <Compile Include="AutomationsUI\Otdels\It\ItElementName.cs" />
-    <Compile Include="AutomationsUI\Otdels\Okp2\Okp2ElementName.cs" />
+    <Compile Include="AutomationsUI\Otdels\PublicJournal129And121\129JournalAnd121Journal.cs" />
     <Compile Include="AutomationsUI\Otdels\PreCheck\PreCheckElementName.cs" />
     <Compile Include="AutomationsUI\Otdels\RaschetBud\RashetBudElementName.cs" />
     <Compile Include="AutomationsUI\Otdels\Registration\RegistrationElementName.cs" />

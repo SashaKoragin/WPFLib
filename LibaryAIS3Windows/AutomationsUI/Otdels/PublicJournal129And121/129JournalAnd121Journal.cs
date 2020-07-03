@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibaryAIS3Windows.AutomationsUI.Otdels.Okp2
+﻿
+namespace LibaryAIS3Windows.AutomationsUI.Otdels.PublicJournal129And121
 {
-   public class Okp2ElementName
-   {
+   public class Journal129AndJournal121
+    {
        public static string PublicName = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\";
         /// <summary>
         /// Панель Сведения о времени и месте расмотрения раскрыть
@@ -21,8 +16,23 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.Okp2
         /// <summary>
         /// Журнал для отработки
         /// </summary>
-        public static string AllTaxJournal = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row ";
-
+        public static string AllTaxJournal = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:OtherMaterials1014\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row ";
+        /// <summary>
+        /// Постановка комментарий
+        /// </summary>
+        public static string WinDialogComment = "Name:Обстоятельства, исключающие производство по делу о налоговых нарушениях\\AutomationId:DocsPresentNboControl\\AutomationId:ultraTextEditor\\LocalizedControlType:поле";
+        /// <summary>
+        /// Кнопка сохранить в диалоговом окне
+        /// </summary>
+        public static string WinDialogSave = "Name:Обстоятельства, исключающие производство по делу о налоговых нарушениях\\AutomationId:DocsPresentNboControl\\AutomationId:ubSave";
+        /// <summary>
+        /// Информация ОК
+        /// </summary>
+        public static string WinOk = "Name:Информация\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+        /// <summary>
+        /// Отметка о не подтверждении факта нарушения
+        /// </summary>
+        public static string ButonState = "Name:DockTop\\Name:Ribbon\\Name:2. Журнал налоговых правонарушений\\Name:Отметка о не подтверждении факта нарушения";
         /// <summary>
         /// Открыть комплекс мероприятий
         /// </summary>

@@ -73,6 +73,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
             }
             aisData.Data.Add(dictionary);
             preCheck.AddUlFace(uiFace);
+            preCheck.Dispose();
         }
         /// <summary>
         /// Сведения об учете организации
@@ -140,6 +141,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
             }
             aisData.Data.Add(dictionary);
             preCheck.AddSvedAccoutingUlFace(savedAccountingUlFace, innUl);
+            preCheck.Dispose();
         }
         /// <summary>
         /// Добавление в БД Истории ЮЛ
@@ -188,6 +190,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
             historyUiFace.DateNoFinish = string.IsNullOrWhiteSpace(dateNoFinish) ? null : (DateTime?)Convert.ToDateTime(dateNoFinish);
 
             preCheck.AddHistoryUlFace(historyUiFace, innUl);
+            preCheck.Dispose();
         }
 
         /// <summary>
@@ -252,6 +255,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Квартира /офис/")));
 
             preCheck.AddBranchUlFace(branchUlFace, innUl);
+            preCheck.Dispose();
         }
 
         /// <summary>
@@ -317,6 +321,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Адрес места нахождения объекта собственности")));
 
             preCheck.AddImZmTrUl(imZmTrUl, innUl, typeObject);
+            preCheck.Dispose();
         }
         /// <summary>
         /// Добавление Сведения о среднесписочной численности работников ЮЛ
@@ -344,6 +349,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Среднегодовая численнось работников (чел)"))));
 
             preCheck.AddStrngthUlFace(strngthUlFace, innUl);
+            preCheck.Dispose();
         }
 
         /// <summary>
@@ -355,39 +361,43 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
         /// <param name="innUl">Инн ЮЛ</param>
         public void AddCashUlFace(LibaryAutomations libraryAutomation, AutomationElement automationElement, string innUl)
         {
-            CashUlFace cashUlFace = new CashUlFace();
-            PreCheckAddObject preCheck = new PreCheckAddObject();
-
-            cashUlFace.IdNum = Convert.ToInt64(Regex.Replace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+            var idNum = Convert.ToInt64(Regex.Replace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                 .SelectAutomationColrction(automationElement)
                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Счет: Регномер"))), @"\s+", ""));
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            if (!preCheck.IsExistsIdCash(idNum))
+            {
+                CashUlFace cashUlFace = new CashUlFace();
 
-            cashUlFace.NameFull = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КО: Наименование головной организации")));
+                cashUlFace.IdNum = idNum;
 
-            cashUlFace.CashNumber = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Счет: Номер")));
+                cashUlFace.NameFull = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    .SelectAutomationColrction(automationElement)
+                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КО: Наименование головной организации")));
 
-            var dataOpenCash = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Счет: Дата открытия")));
-            cashUlFace.DataOpenCash = string.IsNullOrWhiteSpace(dataOpenCash) ? null : (DateTime?)Convert.ToDateTime(dataOpenCash);
+                cashUlFace.CashNumber = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    .SelectAutomationColrction(automationElement)
+                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Счет: Номер")));
 
-
-            var dataClosedCash = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Счет: Дата закрытия")));
-            cashUlFace.DataClosedCash = string.IsNullOrWhiteSpace(dataClosedCash) ? null : (DateTime?)Convert.ToDateTime(dataClosedCash);
+                var dataOpenCash = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    .SelectAutomationColrction(automationElement)
+                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Счет: Дата открытия")));
+                cashUlFace.DataOpenCash = string.IsNullOrWhiteSpace(dataOpenCash) ? null : (DateTime?)Convert.ToDateTime(dataOpenCash);
 
 
-            cashUlFace.TypeCash =libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                .SelectAutomationColrction(automationElement)
-                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Счет: Вид")));
+                var dataClosedCash = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    .SelectAutomationColrction(automationElement)
+                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Счет: Дата закрытия")));
+                cashUlFace.DataClosedCash = string.IsNullOrWhiteSpace(dataClosedCash) ? null : (DateTime?)Convert.ToDateTime(dataClosedCash);
 
-            preCheck.AddCashUlFace(cashUlFace, innUl);
 
+                cashUlFace.TypeCash = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    .SelectAutomationColrction(automationElement)
+                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Счет: Вид")));
+
+                preCheck.AddCashUlFace(cashUlFace, innUl);
+            }
+            preCheck.Dispose();
         }
         /// <summary>
         /// 7. Индивидуальные карточки налогоплательщиков сохранение в БД
@@ -400,6 +410,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
             PreCheckAddObject preCheck = new PreCheckAddObject();
             cardsUlFace.ReportAll = LibaryXMLAuto.ReadOrWrite.LogicaXml.LogicaXml.Document(fileNameXml).InnerXml;
             preCheck.AddIndividualCardsUlFace(cardsUlFace, innUl);
+            preCheck.Dispose();
         }
 
         /// <summary>
@@ -446,6 +457,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
                 }
                 countRow++;
             }
+            preCheck.Dispose();
         }
 
         /// <summary>
@@ -525,6 +537,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
             }
             declarationUl.DeclarationDatas = listDeclarationDataFace;
             preCheck.AddDeclarationModel(declarationUl, innUl);
+            preCheck.Dispose();
         }
 
         /// <summary>
@@ -590,6 +603,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Адрес места нахождения объекта собственности")));
 
             preCheck.AddImZmTrFl(imZmTrFl,innFl, typeObject);
+            preCheck.Dispose();
         }
     }
 }
