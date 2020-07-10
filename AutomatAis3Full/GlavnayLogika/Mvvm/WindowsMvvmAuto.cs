@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows.Input;
-using System.Windows.Navigation;
 using AutomatAis3Full.Config;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.FullWindowAutoIt;
@@ -26,8 +24,8 @@ namespace AutomatAis3Full.GlavnayLogika.Mvvm
             PdfHelp help = new PdfHelp();
             var fullLogica = new AddUserControlFull.AddLogicaFull();
             FullWindow = fullLogica.FullWindowAdd();
-            OpenForms = new DelegateCommand<object>(parametr => { FullWindow.IsCheked(parametr); });
-            OpenPdfHelp = new DelegateCommand((() => {help.OpenReport(Config.ConfigFile.Help); }));
+            OpenForms = new DelegateCommand<object>(parameter => { FullWindow.IsCheked(parameter); });
+            OpenPdfHelp = new DelegateCommand((() => {help.OpenReport(ConfigFile.Help); }));
             User = $"Добро пожаловать {Environment.UserName}";
             Web = ConfigFile.WebSite;
         }

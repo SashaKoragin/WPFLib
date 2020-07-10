@@ -23,7 +23,8 @@ namespace LibaryCommandPublic.TestAutoit.PreCheck.ReportingMemo
         /// <param name="serviceGetOrPost">Адрес get bkb Post</param>
         /// <param name="pathTemp">Путь сохранения Temp</param>
         /// <param name="pathSaveBank">Путь сохранения выписок из банка</param>
-        public void ReportingMemoStartPreCheck(StatusButtonMethod statusButton,string serviceGetOrPost, string pathTemp, string pathSaveBank)
+
+        public void ReportingMemoStartPreCheck(StatusButtonMethod statusButton, string serviceGetOrPost, string pathTemp, string pathSaveBank)
         {
             DispatcherHelper.Initialize();
                 Task.Run(delegate

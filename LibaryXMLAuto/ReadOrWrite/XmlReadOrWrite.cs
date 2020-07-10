@@ -52,6 +52,34 @@ namespace LibaryXMLAuto.ReadOrWrite
             };
             return null;
         }
+        /// <summary>
+        /// Конвертация класса в XML
+        /// </summary>
+        /// <param name="classType">Класс объект</param>
+        /// <param name="objType">Тип объекта</param>
+        /// <returns></returns>
+        public string ClassToXml(object classType, Type objType)
+        {
+            using (var stringWriter = new System.IO.StringWriter())
+            {
+                var serializer = new XmlSerializer(objType);
+                serializer.Serialize(stringWriter, classType);
+                return stringWriter.ToString();
+            }
+        }
+        /// <summary>
+        /// Создание xml файла
+        /// </summary>
+        /// <param name="pathToFullNameSave">Полный путь с расширением xml DeclarationData.xml</param>
+        /// <param name="classType">Класс для сериализации</param>
+        /// <param name="objType">Тип объекта</param>
+        public void CreateXmlFile(string pathToFullNameSave, object classType, Type objType)
+        {
+            XmlSerializer writer = new XmlSerializer(objType);
+            FileStream file = File.Create(pathToFullNameSave);
+            writer.Serialize(file, classType);
+            file.Close();
+        }
 
 
             /// <summary>

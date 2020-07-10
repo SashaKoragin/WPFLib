@@ -1,5 +1,4 @@
-﻿using EfDatabaseAutomation.Automation.SelectParametrSheme;
-using LibaryXMLAuto.ReadOrWrite.SerializationJson;
+﻿using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using System;
 using System.Data.Entity;
 using System.IO;
@@ -64,8 +63,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
                     webPage.HelpKbkAuto = (HelpKbkAuto[])result;
                     break;
                 case 16:
-                    result = Automation.Database.SqlQuery<AllJournal129>(sqlSelect.SelectUser).ToArray();
-                    webPage.AllJournal129 = (AllJournal129[])result;
+                    result = Automation.Database.SqlQuery<XsdAuto.FullShemeModel.AllJournal129>(sqlSelect.SelectUser).ToArray();
+                    webPage.AllJournal129 = (XsdAuto.FullShemeModel.AllJournal129[])result;
                     break;
                 default:
                     return "Данная команда не определена!!!";

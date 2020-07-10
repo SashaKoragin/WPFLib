@@ -9,7 +9,7 @@
 // The following connection settings were used to generate this file:
 //     Configuration file:     "EfDatabaseAutomation\App.config"
 //     Connection String Name: "DatabaseAutomation"
-//     Connection String:      "Data Source=i7751-app127;Initial Catalog=Automation;Integrated Security=True;MultipleActiveResultSets=True"
+//     Connection String:      "Data Source=i7751-app127;Initial Catalog=AutomationTest;Integrated Security=True;MultipleActiveResultSets=True"
 // ------------------------------------------------------------------------------------------------
 // Database Edition        : Enterprise Edition (64-bit)
 // Database Engine Edition : Enterprise
@@ -26,11 +26,10 @@
 // ReSharper disable RedundantOverridenMember
 // ReSharper disable UseNameofExpression
 // TargetFrameworkVersion = 4.5
-
-using Newtonsoft.Json;
-
 #pragma warning disable 1591    //  Ignore "Missing XML Comment" warning
 
+
+using Newtonsoft.Json;
 
 namespace EfDatabaseAutomation.Automation.Base
 {
@@ -40,6 +39,7 @@ namespace EfDatabaseAutomation.Automation.Base
     public interface IAutomation : System.IDisposable
     {
         System.Data.Entity.DbSet<AddUlFace> AddUlFaces { get; set; } // AddUlFace
+        System.Data.Entity.DbSet<AllJournal129> AllJournal129 { get; set; } // AllJournal129
         System.Data.Entity.DbSet<BranchUlFace> BranchUlFaces { get; set; } // BranchUlFace
         System.Data.Entity.DbSet<CashBankAllUlFace> CashBankAllUlFaces { get; set; } // CashBankAllUlFace
         System.Data.Entity.DbSet<CashUlFace> CashUlFaces { get; set; } // CashUlFace
@@ -48,6 +48,7 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<Field> Fields { get; set; } // Fields
         System.Data.Entity.DbSet<FlFace> FlFaces { get; set; } // FlFace
         System.Data.Entity.DbSet<GroupKbk> GroupKbks { get; set; } // GroupKbk
+        System.Data.Entity.DbSet<HeadingStatement> HeadingStatements { get; set; } // HeadingStatement
         System.Data.Entity.DbSet<HelpKbkAuto> HelpKbkAutoes { get; set; } // HelpKbkAuto
         System.Data.Entity.DbSet<HistoriUlFace> HistoriUlFaces { get; set; } // HistoriUlFace
         System.Data.Entity.DbSet<ImZmTrFl> ImZmTrFls { get; set; } // ImZmTrFl
@@ -63,6 +64,7 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<ModelTree> ModelTrees { get; set; } // ModelTree
         System.Data.Entity.DbSet<ParameterProcedureWeb> ParameterProcedureWebs { get; set; } // ParameterProcedureWeb
         System.Data.Entity.DbSet<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh
+        System.Data.Entity.DbSet<StatementFull> StatementFulls { get; set; } // StatementFull
         System.Data.Entity.DbSet<StrngthUlFace> StrngthUlFaces { get; set; } // StrngthUlFace
         System.Data.Entity.DbSet<SvedAccoutingUlFace> SvedAccoutingUlFaces { get; set; } // SvedAccoutingUlFace
         System.Data.Entity.DbSet<TaxJournal> TaxJournals { get; set; } // TaxJournal
@@ -98,6 +100,7 @@ namespace EfDatabaseAutomation.Automation.Base
     public class Automation : System.Data.Entity.DbContext, IAutomation
     {
         public System.Data.Entity.DbSet<AddUlFace> AddUlFaces { get; set; } // AddUlFace
+        public System.Data.Entity.DbSet<AllJournal129> AllJournal129 { get; set; } // AllJournal129
         public System.Data.Entity.DbSet<BranchUlFace> BranchUlFaces { get; set; } // BranchUlFace
         public System.Data.Entity.DbSet<CashBankAllUlFace> CashBankAllUlFaces { get; set; } // CashBankAllUlFace
         public System.Data.Entity.DbSet<CashUlFace> CashUlFaces { get; set; } // CashUlFace
@@ -106,6 +109,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<Field> Fields { get; set; } // Fields
         public System.Data.Entity.DbSet<FlFace> FlFaces { get; set; } // FlFace
         public System.Data.Entity.DbSet<GroupKbk> GroupKbks { get; set; } // GroupKbk
+        public System.Data.Entity.DbSet<HeadingStatement> HeadingStatements { get; set; } // HeadingStatement
         public System.Data.Entity.DbSet<HelpKbkAuto> HelpKbkAutoes { get; set; } // HelpKbkAuto
         public System.Data.Entity.DbSet<HistoriUlFace> HistoriUlFaces { get; set; } // HistoriUlFace
         public System.Data.Entity.DbSet<ImZmTrFl> ImZmTrFls { get; set; } // ImZmTrFl
@@ -121,6 +125,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<ModelTree> ModelTrees { get; set; } // ModelTree
         public System.Data.Entity.DbSet<ParameterProcedureWeb> ParameterProcedureWebs { get; set; } // ParameterProcedureWeb
         public System.Data.Entity.DbSet<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh
+        public System.Data.Entity.DbSet<StatementFull> StatementFulls { get; set; } // StatementFull
         public System.Data.Entity.DbSet<StrngthUlFace> StrngthUlFaces { get; set; } // StrngthUlFace
         public System.Data.Entity.DbSet<SvedAccoutingUlFace> SvedAccoutingUlFaces { get; set; } // SvedAccoutingUlFace
         public System.Data.Entity.DbSet<TaxJournal> TaxJournals { get; set; } // TaxJournal
@@ -183,6 +188,7 @@ namespace EfDatabaseAutomation.Automation.Base
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Configurations.Add(new AddUlFaceConfiguration());
+            modelBuilder.Configurations.Add(new AllJournal129Configuration());
             modelBuilder.Configurations.Add(new BranchUlFaceConfiguration());
             modelBuilder.Configurations.Add(new CashBankAllUlFaceConfiguration());
             modelBuilder.Configurations.Add(new CashUlFaceConfiguration());
@@ -191,6 +197,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new FieldConfiguration());
             modelBuilder.Configurations.Add(new FlFaceConfiguration());
             modelBuilder.Configurations.Add(new GroupKbkConfiguration());
+            modelBuilder.Configurations.Add(new HeadingStatementConfiguration());
             modelBuilder.Configurations.Add(new HelpKbkAutoConfiguration());
             modelBuilder.Configurations.Add(new HistoriUlFaceConfiguration());
             modelBuilder.Configurations.Add(new ImZmTrFlConfiguration());
@@ -206,6 +213,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new ModelTreeConfiguration());
             modelBuilder.Configurations.Add(new ParameterProcedureWebConfiguration());
             modelBuilder.Configurations.Add(new RukAndUcrhConfiguration());
+            modelBuilder.Configurations.Add(new StatementFullConfiguration());
             modelBuilder.Configurations.Add(new StrngthUlFaceConfiguration());
             modelBuilder.Configurations.Add(new SvedAccoutingUlFaceConfiguration());
             modelBuilder.Configurations.Add(new TaxJournalConfiguration());
@@ -223,6 +231,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public static System.Data.Entity.DbModelBuilder CreateModel(System.Data.Entity.DbModelBuilder modelBuilder, string schema)
         {
             modelBuilder.Configurations.Add(new AddUlFaceConfiguration(schema));
+            modelBuilder.Configurations.Add(new AllJournal129Configuration(schema));
             modelBuilder.Configurations.Add(new BranchUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new CashBankAllUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new CashUlFaceConfiguration(schema));
@@ -231,6 +240,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new FieldConfiguration(schema));
             modelBuilder.Configurations.Add(new FlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new GroupKbkConfiguration(schema));
+            modelBuilder.Configurations.Add(new HeadingStatementConfiguration(schema));
             modelBuilder.Configurations.Add(new HelpKbkAutoConfiguration(schema));
             modelBuilder.Configurations.Add(new HistoriUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new ImZmTrFlConfiguration(schema));
@@ -246,6 +256,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new ModelTreeConfiguration(schema));
             modelBuilder.Configurations.Add(new ParameterProcedureWebConfiguration(schema));
             modelBuilder.Configurations.Add(new RukAndUcrhConfiguration(schema));
+            modelBuilder.Configurations.Add(new StatementFullConfiguration(schema));
             modelBuilder.Configurations.Add(new StrngthUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new SvedAccoutingUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new TaxJournalConfiguration(schema));
@@ -299,6 +310,23 @@ namespace EfDatabaseAutomation.Automation.Base
             DateCreate = System.DateTime.Now;
             ModelGetPosts = new System.Collections.Generic.List<ModelGetPost>();
         }
+    }
+
+    // AllJournal129
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class AllJournal129
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public string StateColor { get; set; } // StateColor (length: 12)
+        public string StateTaxPayerColor { get; set; } // State_TaxPayerColor (length: 12)
+        public int? IdDelo { get; set; } // IdDelo
+        public System.DateTime? DateError { get; set; } // DateError
+        public string Inn { get; set; } // Inn (length: 12)
+        public string Kpp { get; set; } // Kpp (length: 12)
+        public string NameFace { get; set; } // NameFace (length: 512)
+        public string Fid { get; set; } // Fid (length: 512)
+        public string LoginUser { get; set; } // LoginUser (length: 1024)
+        public string MessageInfo { get; set; } // MessageInfo (length: 512)
     }
 
     // BranchUlFace
@@ -535,6 +563,29 @@ namespace EfDatabaseAutomation.Automation.Base
         {
             DateCreate = System.DateTime.Now;
             KbkPayments = new System.Collections.Generic.List<KbkPayment>();
+        }
+    }
+
+    // HeadingStatement
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class HeadingStatement
+    {
+        public int IdStatementHead { get; set; } // IdStatementHead (Primary key)
+        public string NameIndex { get; set; } // NameIndex (length: 1024)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child StatementFulls where [StatementFull].[IdStatementHead] point to this entity (FK_HeadingStatement_StatementFull)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<StatementFull> StatementFulls { get; set; } // StatementFull.FK_HeadingStatement_StatementFull
+
+        public HeadingStatement()
+        {
+            DateCreate = System.DateTime.Now;
+            StatementFulls = new System.Collections.Generic.List<StatementFull>();
         }
     }
 
@@ -879,6 +930,36 @@ namespace EfDatabaseAutomation.Automation.Base
         public virtual UlFace UlFace { get; set; } // FK_RukAndUcrh_UlFace
 
         public RukAndUcrh()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // StatementFull
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class StatementFull
+    {
+        public int IdStatementIndex { get; set; } // IdStatementIndex (Primary key)
+        public int IdUl { get; set; } // IdUl
+        public int IdStatementHead { get; set; } // IdStatementHead
+        public int VarIndex { get; set; } // VarIndex
+        public string NameParametr { get; set; } // NameParametr (length: 1024)
+        public string ValuesStatement { get; set; } // ValuesStatement (length: 1024)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent HeadingStatement pointed by [StatementFull].([IdStatementHead]) (FK_HeadingStatement_StatementFull)
+        /// </summary>
+        public virtual HeadingStatement HeadingStatement { get; set; } // FK_HeadingStatement_StatementFull
+
+        /// <summary>
+        /// Parent UlFace pointed by [StatementFull].([IdUl]) (FK_UlFace_StatementFull)
+        /// </summary>
+        public virtual UlFace UlFace { get; set; } // FK_UlFace_StatementFull
+
+        public StatementFull()
         {
             DateCreate = System.DateTime.Now;
         }
@@ -1241,6 +1322,11 @@ namespace EfDatabaseAutomation.Automation.Base
         [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh.FK_RukAndUcrh_UlFace
         /// <summary>
+        /// Child StatementFulls where [StatementFull].[IdUl] point to this entity (FK_UlFace_StatementFull)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<StatementFull> StatementFulls { get; set; } // StatementFull.FK_UlFace_StatementFull
+        /// <summary>
         /// Child StrngthUlFaces where [StrngthUlFace].[IdUl] point to this entity (FK_UlFace_StrngthUlFace)
         /// </summary>
         [JsonIgnore]
@@ -1262,6 +1348,7 @@ namespace EfDatabaseAutomation.Automation.Base
             ImZmTrUls = new System.Collections.Generic.List<ImZmTrUl>();
             IndividualCardsUlFaces = new System.Collections.Generic.List<IndividualCardsUlFace>();
             RukAndUcrhs = new System.Collections.Generic.List<RukAndUcrh>();
+            StatementFulls = new System.Collections.Generic.List<StatementFull>();
             StrngthUlFaces = new System.Collections.Generic.List<StrngthUlFace>();
             SvedAccoutingUlFaces = new System.Collections.Generic.List<SvedAccoutingUlFace>();
         }
@@ -1307,6 +1394,34 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.InnUl).HasColumnName(@"InnUl").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
             Property(x => x.FullStatus).HasColumnName(@"FullStatus").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(124);
             Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // AllJournal129
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class AllJournal129Configuration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AllJournal129>
+    {
+        public AllJournal129Configuration()
+            : this("dbo")
+        {
+        }
+
+        public AllJournal129Configuration(string schema)
+        {
+            ToTable("AllJournal129", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.StateColor).HasColumnName(@"StateColor").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.StateTaxPayerColor).HasColumnName(@"State_TaxPayerColor").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.IdDelo).HasColumnName(@"IdDelo").HasColumnType("int").IsOptional();
+            Property(x => x.DateError).HasColumnName(@"DateError").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.Kpp).HasColumnName(@"Kpp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.NameFace).HasColumnName(@"NameFace").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Fid).HasColumnName(@"Fid").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.LoginUser).HasColumnName(@"LoginUser").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.MessageInfo).HasColumnName(@"MessageInfo").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
         }
     }
 
@@ -1534,6 +1649,26 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.NameGroupPl).HasColumnName(@"NameGroupPl").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.DescriptionGroup).HasColumnName(@"DescriptionGroup").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.GroupColor).HasColumnName(@"GroupColor").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // HeadingStatement
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class HeadingStatementConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<HeadingStatement>
+    {
+        public HeadingStatementConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public HeadingStatementConfiguration(string schema)
+        {
+            ToTable("HeadingStatement", schema);
+            HasKey(x => x.IdStatementHead);
+
+            Property(x => x.IdStatementHead).HasColumnName(@"IdStatementHead").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.NameIndex).HasColumnName(@"NameIndex").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
         }
     }
@@ -1937,6 +2072,34 @@ namespace EfDatabaseAutomation.Automation.Base
             // Foreign keys
             HasRequired(a => a.FlFace).WithMany(b => b.RukAndUcrhs).HasForeignKey(c => c.IdFl).WillCascadeOnDelete(false); // FK_RukAndUcrh_FlFace
             HasRequired(a => a.UlFace).WithMany(b => b.RukAndUcrhs).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_RukAndUcrh_UlFace
+        }
+    }
+
+    // StatementFull
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class StatementFullConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<StatementFull>
+    {
+        public StatementFullConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public StatementFullConfiguration(string schema)
+        {
+            ToTable("StatementFull", schema);
+            HasKey(x => x.IdStatementIndex);
+
+            Property(x => x.IdStatementIndex).HasColumnName(@"IdStatementIndex").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired();
+            Property(x => x.IdStatementHead).HasColumnName(@"IdStatementHead").HasColumnType("int").IsRequired();
+            Property(x => x.VarIndex).HasColumnName(@"VarIndex").HasColumnType("int").IsRequired();
+            Property(x => x.NameParametr).HasColumnName(@"NameParametr").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.ValuesStatement).HasColumnName(@"ValuesStatement").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.HeadingStatement).WithMany(b => b.StatementFulls).HasForeignKey(c => c.IdStatementHead).WillCascadeOnDelete(false); // FK_HeadingStatement_StatementFull
+            HasRequired(a => a.UlFace).WithMany(b => b.StatementFulls).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_UlFace_StatementFull
         }
     }
 

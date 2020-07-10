@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace AutomatAis3Full.Config
 {
@@ -28,6 +27,10 @@ namespace AutomatAis3Full.Config
         public static string ServiceGetOrPost = ConfigurationManager.AppSettings["ServiceGetOrPost"];
         public static string BankSvedSave = ConfigurationManager.AppSettings["BankSvedSave"];
         /// <summary>
+        /// Строка соединения с Sql для массовой загрузки xml
+        /// </summary>
+        public static readonly string BulkCopyXml = ConfigurationManager.ConnectionStrings["BulkCopyXml"].ConnectionString;
+        /// <summary>
         /// Строка соединения с нашей БД
         /// </summary>
         public static readonly string Connection = ConfigurationManager.ConnectionStrings["SQL"].ConnectionString;
@@ -39,6 +42,14 @@ namespace AutomatAis3Full.Config
         /// Путь к PDF файлам сохранение Work
         /// </summary>
         public static string PathPdfWork = ConfigurationManager.AppSettings["PathPdfWork"];
+        /// <summary>
+        /// Путь к Xsd схемам
+        /// </summary>
+        public static string PathXsdScheme = ConfigurationManager.AppSettings["PathXsdScheme"];
+        /// <summary>
+        /// Выгрузка xml файлов
+        /// </summary>
+        public static string PathDownloadTempXml = ConfigurationManager.AppSettings["PathDownloadTempXml"];
 
     }
 }

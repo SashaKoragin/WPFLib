@@ -53,6 +53,16 @@
         <Control Id="BankSvedSave" Type="Edit" X="110" Y="95" Width="110" Height="15" Property="BANKSVEDSAVE" Text="[BANKSVEDSAVE]"  ToolTip="Папка для БВ смотреть:" >
           <Property Id="BANKSVEDSAVE" Value="D:\" />
         </Control>
+        <Control Id="ConnectionString" Type="Text" X="10" Y="115" Width="105" Height="15" Transparent="yes" NoPrefix="yes" Text="Строка соединения с БД:"></Control>
+        <Control Id="ServerText" Type="Text" X="10" Y="135" Width="50" Height="15" Transparent="yes" NoPrefix="yes" Text="Сервер:"></Control>
+        <Control Id="Server" Type="Edit" X="55" Y="135" Width="100" Height="15" ToolTip="Наименование сервера:" Property="SERVER" Text="[SERVER]">
+          <Property Id="SERVER" Value="i7751-app127"/>
+        </Control>
+        <Control Id="DbText" Type="Text" X="155" Y="135" Width="15" Height="15" Transparent="yes" NoPrefix="yes" Text="БД:"></Control>
+        <Control Id="Db" Type="Edit" X="175" Y="135" Width="100" Height="15" ToolTip="База данных:" Property="DB" Text="[DB]">
+          <Property Id="DB" Value="Automation"/>
+        </Control>
+
         <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)">
           <Publish Event="NewDialog" Value="VerifyReadyDlg" Order="10" />
         </Control>

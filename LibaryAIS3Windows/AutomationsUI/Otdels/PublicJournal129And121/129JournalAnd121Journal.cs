@@ -18,6 +18,10 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.PublicJournal129And121
         /// </summary>
         public static string AllTaxJournal = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:OtherMaterials1014\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row ";
         /// <summary>
+        /// 121 Журнал
+        /// </summary>
+        public static string AllTaxJournal121 = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row ";
+        /// <summary>
         /// Постановка комментарий
         /// </summary>
         public static string WinDialogComment = "Name:Обстоятельства, исключающие производство по делу о налоговых нарушениях\\AutomationId:DocsPresentNboControl\\AutomationId:ultraTextEditor\\LocalizedControlType:поле";
@@ -44,7 +48,7 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.PublicJournal129And121
        /// <summary>
        /// Журнал Сформированных документов
        /// </summary>
-       public static string DocAllJournal = $"{PublicName}AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:detailsTab\\AutomationId:NavigatorDetailsControl\\AutomationId:navigator\\AutomationId:splitContainer\\AutomationId:gridData";
+       public static string DocAllJournal = $"{PublicName}AutomationId:OtherMaterials1014\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:detailsTab\\AutomationId:NavigatorDetailsControl\\AutomationId:navigator\\AutomationId:splitContainer\\AutomationId:gridData";
 
         /// <summary>
         /// Сохранить
@@ -134,7 +138,6 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.PublicJournal129And121
         /// Должностные лица Раскрыть элемент
         /// </summary>
         public static string FaceName = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:HeaderSite";
-
         /// <summary>
         /// Подписал документ Выбор
         /// </summary>
@@ -144,6 +147,16 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.PublicJournal129And121
         /// Подписал документ решения Выбор 
         /// </summary>
         public static string ResheniaFaceSign = $"{PublicPanel}AutomationId:gb_10\\AutomationId:exp\\AutomationId:Host\\AutomationId:EndOfDocumentControl\\AutomationId:ultraGroupBox1\\AutomationId:ultraCombo1";
+
+        /// <summary>
+        /// Должностные лица по 14 группе Раскрыть элемент
+        /// </summary>
+        public static string FaceNameGr14 = $"{PublicPanel}AutomationId:gb_14\\AutomationId:exp\\AutomationId:HeaderSite";
+
+        /// <summary>
+        /// Подписал документ Выбор по 14 группе
+        /// </summary>
+        public static string FaceNameSignGr14 = $"{PublicPanel}AutomationId:gb_14\\AutomationId:exp\\AutomationId:Host\\AutomationId:ultraGroupBox1\\AutomationId:ultraCombo1";
 
         /// <summary>
         /// Окно отпарвка документов
@@ -257,6 +270,13 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.PublicJournal129And121
         /// Извещение о времени и месте рассмотрения материалов налоговой проверки
         /// </summary>
         public static string IzveshenieActNo = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Материалы для рассмотрения\\Name:Извещение о времени и месте рассмотрения материалов налоговой проверки\\AutomationId:Header\\Name:Извещение о времени и месте рассмотрения материалов налоговой проверки";
-
+        /// <summary>
+        /// Решение о привлечении к ответственности
+        /// </summary>
+        public static string ReshNo = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Результаты рассмотрения материалов проверки\\Name:Решение о привлечении к ответственности\\AutomationId:Header\\Name:Решение о привлечении к ответственности";
+        /// <summary>
+        /// Закрыть комплекс мероприятий по 121 статье
+        /// </summary>
+        public static string ClosedComplex121 = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Камеральная налоговая проверка\\Name:Закрыть комплекс КНП\\Name:Закрыть комплекс КНП\\Name:Закрыть комплекс КНП";
     }
 }

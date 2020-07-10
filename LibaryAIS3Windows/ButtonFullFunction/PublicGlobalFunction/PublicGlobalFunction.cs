@@ -54,6 +54,26 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
             AutoIt.AutoItX.Sleep(500);
         }
         /// <summary>
+        /// Убить процесс обработки файла
+        /// </summary>
+        /// <param name="name">Наименование процесса</param>
+        public static void KillProcessProgram(string name)
+        {
+            while (true)
+            {
+                System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName(name);
+                foreach (var process in processes)
+                {
+                    process?.Kill();
+                }
+                if (processes.Length == 0)
+                {
+                    break;
+                }
+            }
+            AutoIt.AutoItX.Sleep(500);
+        }
+        /// <summary>
         /// Поиск элемента и ожидания нажатия на элемент
         /// </summary>
         /// <param name="libraryAutomation">Элемент</param>

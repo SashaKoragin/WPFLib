@@ -34,6 +34,8 @@
       
 		<Feature Id="ProductFeature" Title="AutomatAis3Full" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="CreateDownloadTempXml"/>
+      <ComponentRef Id="CreateXsdShemeLoad"/>
       <ComponentRef Id="CreateFolderx86"/>
       <ComponentRef Id="CreateFolderx64"/>
       <ComponentRef Id="ClearAll" />
@@ -49,6 +51,7 @@
       <ComponentRef Id="Helpers"/>
       <ComponentRef Id="x64pdfium.dll"/>
       <ComponentRef Id="x86pdfium.dll"/>
+      <ComponentRef Id="XsdDataDeclaration.xsd"/>
 		</Feature>
 
     <!--<InstallExecuteSequence>
@@ -94,6 +97,21 @@
     
       
      <Fragment>
+       <DirectoryRef Id="INSTALLFOLDER">
+         <Directory Id="XsdShemeLoad" Name="XsdShemeLoad">
+           <Component Id="CreateXsdShemeLoad" Guid="C4ADDFEC-C47A-4B90-B74C-8E20A2C83CB3">
+             <CreateFolder />
+           </Component>
+         </Directory>
+       </DirectoryRef>
+
+       <DirectoryRef Id="INSTALLFOLDER">
+         <Directory Id="DownloadTempXml" Name="DownloadTempXml">
+           <Component Id="CreateDownloadTempXml" Guid="B9CF42EB-6142-45BB-B35A-6668EF4A9552">
+             <CreateFolder />
+           </Component>
+         </Directory>
+       </DirectoryRef>
        <DirectoryRef Id="INSTALLFOLDER">
          <Directory Id="PathXmlFile" Name="XmlFile">
            <Component Id="CreateFolderXmlFile" Guid="8F0172B4-C441-4E01-8C5A-5A12E8FA6FE0">
@@ -174,6 +192,10 @@
         <RemoveFolder Id="RemoveFolderx86" On="uninstall" Directory="x86dll" />
         <RemoveFile Id="RemoveFilex64" On="uninstall" Name="*.*" Directory="x64dll" />
         <RemoveFolder Id="RemoveFolderx64" On="uninstall" Directory="x64dll" />
+        <RemoveFile Id="RemoveFileDownloadTempXml" On="uninstall" Name="*.*" Directory="DownloadTempXml" />
+        <RemoveFolder Id="RemoveFolderDownloadTempXml" On="uninstall" Directory="DownloadTempXml" />
+        <RemoveFile Id="RemoveFileXsdShemeLoad" On="uninstall" Name="*.*" Directory="XsdShemeLoad" />
+        <RemoveFolder Id="RemoveFolderXsdShemeLoad" On="uninstall" Directory="XsdShemeLoad" />
       </Component>
     </DirectoryRef>
   </Fragment>
@@ -188,11 +210,6 @@
   </DirectoryRef>
 </Fragment>
 
- 
-  <!--<Fragment>   
-      <CustomAction Id="Register" Directory="INSTALLFOLDER" Execute="deferred" Impersonate="no" ExeCommand="[WindowsFolder]System32\regsvr32 &quot;[INSTALLFOLDER]AutoItX3.Assembly.dll&quot;" Return="check" />
-      <CustomAction Id="Unregister" Directory="INSTALLFOLDER" Execute="deferred" Impersonate="no" ExeCommand="[WindowsFolder]System32\regsvr32 /u &quot;[INSTALLFOLDER]AutoItX3.Assembly.dll&quot;" Return="check" />
-  </Fragment>-->
       
 	<Fragment>
 	  <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
@@ -229,6 +246,10 @@
         <util:XmlFile Id="AutomatAis3FullSetPathPdfWork" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathPdfWork'[\]]//@value" Value="[INSTALLFOLDER]PdfReport\" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetServiceGetOrPost" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServiceGetOrPost'[\]]//@value" Value="http://[SERVICE]:8050/ServiceAutomation/LoadModelPreCheck" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetBankSvedSave" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='BankSvedSave'[\]]//@value" Value="[BANKSVEDSAVE]" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="DatabaseAutomationConnect" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//connectionStrings//add[\[]@name='DatabaseAutomation'[\]]//@connectionString" Value="Data Source=[SERVER];Initial Catalog=[DB];Integrated Security=True;MultipleActiveResultSets=True" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="BulkCopyXmlAutomationConnect" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//connectionStrings//add[\[]@name='BulkCopyXml'[\]]//@connectionString" Value="provider=SQLOLEDB;data source=[SERVER];database=[DB];integrated security=SSPI" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="AutomatAis3FullSetPathXsdScheme" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathXsdScheme'[\]]//@value" Value="[INSTALLFOLDER]XsdShemeLoad\" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="AutomatAis3FullSetPathDownloadTempXml" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathDownloadTempXml'[\]]//@value" Value="[INSTALLFOLDER]DownloadTempXml\" SelectionLanguage="XPath" Sequence="1" />
       </Component>
 	    <Component Id="MaterialDesignThemes.MahApps.dll" Guid="6c5e4642-dae0-4322-8ca5-96b32b5a83a9">
 	      <File Id="MaterialDesignThemes.MahApps.dll" Name="MaterialDesignThemes.MahApps.dll" Source="$(var.AutomatAis3Full_TargetDir)MaterialDesignThemes.MahApps.dll" />
@@ -308,10 +329,12 @@
       <Component Id="PdfiumViewer.dll" Guid="7A76CAA9-7257-4BC4-9F3E-92694CD5ABC6">
         <File Id="PdfiumViewer.dll" Name="PdfiumViewer.dll" Source="$(var.AutomatAis3Full_TargetDir)PdfiumViewer.dll" />
       </Component>
-      <Component Id="Z.EntityFramework.Extensions.dll" Guid="CDE1DA14-BA4A-4F4F-80FB-58947196D1C3">
-        <File Id="Z.EntityFramework.Extensions.dll" Name="Z.EntityFramework.Extensions.dll" Source="$(var.AutomatAis3Full_TargetDir)Z.EntityFramework.Extensions.dll" />
-      </Component>
+
+
     </ComponentGroup>
+    <Component Id="XsdDataDeclaration.xsd" Guid="143E7EF5-8794-445B-B41A-0EEF062C006D" Directory="XsdShemeLoad">
+      <File Id="XsdDataDeclaration.xsd" Name="XsdDataDeclaration.xsd" Source="$(var.AutomatAis3Full_TargetDir)XsdShemeLoad\XsdDataDeclaration.xsd" />
+    </Component>
     <Component Id="Helpers" Guid="2ABEDCD4-5B6E-44F6-B6D6-18C41026CD68" Directory="Help">
         <File Id="AutomateAis3Full.pdf" Name="AutomateAis3Full.pdf" Source="$(var.AutomatAis3Full_TargetDir)Help\AutomateAis3Full.pdf"/>
     </Component>

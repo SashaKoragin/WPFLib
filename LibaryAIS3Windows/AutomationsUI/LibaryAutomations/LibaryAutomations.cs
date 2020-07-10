@@ -204,7 +204,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// </summary>
         /// <param name="automationElement">Элемент автоматизации</param>
         /// <param name="itemNameComboBox">Наименование которое должно стоять в ComboBox</param>
-        public void SelectItemCombobox(AutomationElement automationElement, string itemNameComboBox)
+        public void SelectItemCombobox(AutomationElement automationElement, string itemNameComboBox, int milesecond = 1000)
         {
             automationElement.SetFocus();
             var isDown = "";
@@ -220,7 +220,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                 if (isEnable)
                 {
                     AutoItX.Send(string.Format(ButtonConstant.UpCountClick, 1));
-                    AutoItX.Sleep(1000);
+                    AutoItX.Sleep(milesecond);
                     isDown = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
                     if (isDown != isUp)
                     {
@@ -235,7 +235,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                 else
                 {
                     AutoItX.Send(string.Format(ButtonConstant.DownCountClick, 1));
-                    AutoItX.Sleep(1000);
+                    AutoItX.Sleep(milesecond);
                     isUp = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
                     if (isDown != isUp)
                     {

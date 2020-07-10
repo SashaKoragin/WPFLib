@@ -196,7 +196,6 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
                                 break;
                               }
                            }
-                           break;
                        }
                        break;
                     }
@@ -282,11 +281,10 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
                                                     break;
                                                 }
                                             }
-                                            break;
+                            
                                         }
                                         break;
                                     }
-                                    break;
                                 }
                                 break;
                             }
@@ -323,7 +321,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
         /// <param name="filters">Фильтр кнопка</param>
         /// <param name="serviceGetOrPost">Адрес ответа с клиента</param>
         /// <param name="pathTemp">Путь к сохранению документа</param>
-        public void DeclarationIntelligenceUl(StatusButtonMethod statusButton, LibaryAutomations libraryAutomation, SrvToLoad model, string tree, string gridElement, string treeInnDataArea, string update, string filters, string serviceGetOrPost, string pathTemp)
+        public void DeclarationIntelligenceUl(StatusButtonMethod statusButton, LibaryAutomations libraryAutomation, SrvToLoad model, string tree, string gridElement,  string treeInnDataArea, string update, string filters, string serviceGetOrPost, string pathTemp)
         {
             DataBaseElementAdd dataBaseAdd = new DataBaseElementAdd();
             var post = new HttpGetAndPost();
@@ -399,5 +397,57 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
             AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
         }
 
+        /// <summary>
+        /// Поиск ЮЛ Выписок ЮЛ и раскладка их В БД
+        /// </summary>
+        public void FindUlStatement(StatusButtonMethod statusButton, LibaryAutomations libraryAutomation, SrvToLoad model, string tree, string gridElement, string treeInnDataArea, string update, string filters, string serviceGetOrPost, string pathTemp)
+        {
+            DataBaseElementAdd dataBaseAdd = new DataBaseElementAdd();
+          
+            var post = new HttpGetAndPost();
+            WindowsAis3 win;
+            libraryAutomation.FindFirstElement(tree, null, true);
+            libraryAutomation.FindElement.SetFocus();
+            libraryAutomation.ClickElements(tree, null, false, 25, 0, 0, 2);
+            foreach (var inn in model.N134)
+            {
+                if (statusButton.Iswork)
+                {
+                    while (true)
+                    {
+                        if (libraryAutomation.FindFirstElement(treeInnDataArea, null, true) != null)
+                        {
+                            libraryAutomation.FindFirstElement(PreCheckElementName.Memo, libraryAutomation.FindElement, true);
+                            libraryAutomation.FindElement.SetFocus();
+                            SendKeys.SendWait("{ENTER}");
+                            SendKeys.SendWait(inn);
+                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, update);
+                            break;
+                        }
+                    }
+                    if (PublicGlobalFunction.PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, gridElement) != "Данные, удовлетворяющие заданным условиям не найдены.")
+                    {
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckFindUl.PrintStatement);
+                        AutoItX.ProcessWait("WINWORD.EXE", 60000);
+                        PublicGlobalFunction.PublicGlobalFunction.KillProcessProgram("WINWORD");
+                        var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathTemp, "*.rtf");
+                        dataBaseAdd.AddDbStatement(file.NamePath, inn);
+                    }
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, filters);
+                    //var modelPost = new AisParsedData() { N134 = inn, Tree = model.Tree };
+                    //var result = post.ResultPost(serviceGetOrPost, modelPost);
+                    //if (result == null)
+                    //{
+                    //    statusButton.Iswork = false;
+                    //}
+                }
+                else
+                {
+                    statusButton.Iswork = false;
+                }
+            }
+            win = new WindowsAis3();
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+        } 
    }
 }

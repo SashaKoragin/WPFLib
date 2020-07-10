@@ -6,24 +6,24 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.PreCheck
         /// <summary>
         /// Дерево элементов
         /// </summary>
-        public static string FullTree = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskpaneWorkspace\\AutomationId:ScenarioView\\AutomationId:scenarioTree\\";
+        private static string FullTree = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskpaneWorkspace\\AutomationId:ScenarioView\\AutomationId:scenarioTree\\";
         /// <summary>
         /// Подстановка условий
         /// </summary>
-        public static string FullDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorView\\AutomationId:splitContainer\\AutomationId:navigatorControl\\AutomationId:splitContainer\\";
+        private static string FullDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorView\\AutomationId:splitContainer\\AutomationId:navigatorControl\\AutomationId:splitContainer\\";
         /// <summary>
         /// Подстановка условий Имущество
         /// </summary>
-        public static string DataAreaIm = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorMdiView\\AutomationId:splitContainer\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\";
+        private static string DataAreaIm = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorMdiView\\AutomationId:splitContainer\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\";
         /// <summary>
         /// Подстановка условий 01. Картотека счетов РО, ИО, ИП
         /// </summary>
-        public static string DataAreaCash = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:ViewIRView3\\AutomationId:navigatorSc\\AutomationId:splitContainer\\";
+        private static string DataAreaCash = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:ViewIRView3\\AutomationId:navigatorSc\\AutomationId:splitContainer\\";
         /// <summary>
         /// Подстановка условий Сведения о среднесписочной численности работников
         /// </summary>
-        public static string DataAreaSvedFace = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\";
-        /// <summary>
+        private static string DataAreaSvedFace = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\";
+       /// <summary>
         /// Налоговое администрирование
         /// </summary>
         public static string TreeInnExpand1 = $"{FullTree}Name:Налоговое администрирование";
@@ -75,6 +75,14 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.PreCheck
         /// Миграция НП в части КНП
         /// </summary>
         public static string TreeInnExpand13 = $"{FullTree}Name:124. Миграция НП в части КНП";
+        /// <summary>
+        /// Централизованная система регистрации
+        /// </summary>
+        public static string TreeInnExpand14 = $"{FullTree}Name:Централизованная система регистрации";
+        /// <summary>
+        /// Поиск
+        /// </summary>
+        public static string TreeInnExpand15 = $"{FullTree}Name:Поиск";
         /// <summary>
         /// 1.01. Идентификационные характеристики организации
         /// </summary>
@@ -141,7 +149,10 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.PreCheck
         /// Реестр деклараций НБО
         /// </summary>
         public static string DeclarationMigration = $"{FullTree}Name:1. Реестр документов НБО";
-
+        /// <summary>
+        /// Поиск ЮЛ Лица
+        /// </summary>
+        public static string FindUl = $"{FullTree}Name:Поиск ЮЛ";
         /// <summary>
         /// Поиск условия куда подставлять ИНН
         /// </summary>
@@ -175,8 +186,6 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.PreCheck
         /// GRID Сведения о среднесписычной численности  и НБО
         /// </summary>
         public static string GridJournalSvedFace = $"{DataAreaSvedFace}AutomationId:gridData";
-
-
         /// <summary>
         /// Значение
         /// </summary>
@@ -404,5 +413,34 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.PreCheck
         /// Ок экспорт
         /// </summary>
         public static string ExportFileOk = "Name:Экспорт документа\\Name:ОК";
+    }
+
+    public class PreCheckFindUl
+    {
+        /// <summary>
+        /// Подстановка условий в Поиск ЮЛ
+        /// </summary>
+        private static string DataFindUl = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SimpleNavigatorView\\AutomationId:navigatorControl1\\AutomationId:splitContainer\\";
+        /// <summary>
+        ///   Поиск условия куда подставлять Поиск ЮЛ
+        /// </summary>
+        public static string DataAreaFindUl = $"{DataFindUl}AutomationId:gridConditions\\Name:List`1 row ";
+        /// <summary>
+        /// GRID Поиск ЮЛ
+        /// </summary>
+        public static string GridJournalFindUl = $"{DataFindUl}AutomationId:gridData";
+        /// <summary>
+        /// Применить фильтр
+        /// </summary>
+        public static string UseFilter = "Name:DockTop\\Name:Ribbon\\Name:Навигатор\\Name:Основные действия\\Name:Применить фильтр";
+        /// <summary>
+        /// Изменить фильтр
+        /// </summary>
+        public static string ChangeFilter = "Name:DockTop\\Name:Ribbon\\Name:Навигатор\\Name:Основные действия\\Name:Изменить фильтр";
+        /// <summary>
+        /// Печать выписки (Новый формат)
+        /// </summary>
+        public static string PrintStatement = "Name:DockTop\\Name:Ribbon\\Name:Навигатор\\Name:Дополнительно\\Name:Печать выписки (Новый формат)";
+
     }
 }

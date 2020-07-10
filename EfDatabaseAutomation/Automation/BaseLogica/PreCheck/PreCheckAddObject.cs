@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using EfDatabaseAutomation.Automation.Base;
+using LibaryXMLAuto.ReadOrWrite;
+using System.Configuration;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
 {
@@ -16,7 +19,6 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         {
             Automation = new Base.Automation();
         }
-
         /// <summary>
         /// Добавление Юридического лица
         /// </summary>
@@ -355,9 +357,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         /// <summary>
         /// Добавление деклараций на все
         /// </summary>
-        /// <param name="declaration">Основа декларации</param>
+        /// <param name="declarationUl">Основа декларации</param>
+        /// <param name="declarationData">Массив строк декларации</param>
         /// <param name="innUl">ИНН</param>
-        public void AddDeclarationModel(DeclarationUl declarationUl, string innUl)
+        public void AddDeclarationModel(DeclarationUl declarationUl, XsdShemeSqlLoad.LoadDeclarationData.ArrayOfDeclarationData declarationData,  string innUl)
         {
             using (var context = new Base.Automation())
             {
@@ -370,17 +373,15 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                       where declarationUls.RegNumDecl == declarationUl.RegNumDecl
                       select new { DeclarationUls = declarationUls }).Any())
                 {
-                    //Здесь говно переделать под SQLXMLBULKLOADLib.SQLXMLBulkLoad4
-                    //declarationDates to xml
-                    //xsd to SELECT top 0 * FROM DeclarationData FOR XML AUTO, ELEMENTS ,XMLSCHEMA 
-                    //Переделать  Automation.BulkInsert<DeclarationData>(declarationDates); Так как либа платная
-                    var declarationDates = declarationUl.DeclarationDatas;
-                    declarationUl.DeclarationDatas = null;
+                    XmlReadOrWrite xml = new XmlReadOrWrite();
+                    var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdDataDeclaration.xsd";
+                    var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}DeclarationData.xml";
+                    xml.CreateXmlFile(xmlFile, declarationData, typeof(XsdShemeSqlLoad.LoadDeclarationData.ArrayOfDeclarationData));
                     Automation.DeclarationUls.Add(declarationUl);
                     try
                     {
                         Automation.SaveChanges();
-                        Automation.BulkInsert<DeclarationData>(declarationDates);
+                        BulkInsertIntoDb(xsdFile, xmlFile);
                     }
                     catch(DbEntityValidationException ex)
                     {
@@ -444,8 +445,67 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 }
             }
             //Отсутствует лицо сохранение не возможно
-
         }
+        /// <summary>
+        /// Добавление Заголовка блока Выписки
+        /// </summary>
+        /// <param name="headingStatement">Заголовок блока</param>
+        /// <returns></returns>
+        public HeadingStatement AddHeadingStatement(HeadingStatement headingStatement)
+        {
+            if (!(from head in Automation.HeadingStatements where head.NameIndex == headingStatement.NameIndex select new { Head = head }).Any())
+            {
+                Automation.HeadingStatements.Add(headingStatement);
+                Automation.SaveChanges();
+            }
+            using (var context = new Base.Automation())
+            {
+                var headingStatementFirst = (from head in context.HeadingStatements where head.NameIndex == headingStatement.NameIndex select head).SingleOrDefault();
+                return headingStatementFirst;
+            }
+        }
+        /// <summary>
+        /// Добавление данных  в выписку Внутрянка
+        /// </summary>
+        /// <param name="statementFull">Body Statement</param>
+        /// <param name="innUl">ИНН</param>
+        public void AddStatementFull(List<StatementFull> statementFull, string innUl)
+        {
+            //ИНН Есть ли лицо
+            using (var context = new Base.Automation())
+            {
+                var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
+                statementFull.ForEach(state=>state.IdUl= idUl);
+            }
+            if (statementFull[0].IdUl != 0)
+            {
+                //XmlReadOrWrite xml = new XmlReadOrWrite();
+                //var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdDataDeclaration.xsd";
+                //var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}DeclarationData.xml";
+                //xml.CreateXmlFile(xmlFile, declarationData, typeof(XsdShemeSqlLoad.LoadDeclarationData.ArrayOfDeclarationData));
+                //BulkInsertIntoDb(xsdFile, xmlFile);
+            }
+        }
+
+
+        /// <summary>
+        /// Загрузка 
+        /// </summary>
+        /// <param name="fullPathXsdScheme">Полный путь к схеме xsd для загрузки данных</param>
+        /// <param name="fullPathXml">Полный путь к xml для загрузки</param>
+        public void BulkInsertIntoDb(string fullPathXsdScheme, string fullPathXml)
+        {
+            var bulkLoader = new SQLXMLBULKLOADLib.SQLXMLBulkLoad4
+            {
+                ConnectionString = ConfigurationManager.ConnectionStrings["BulkCopyXml"].ConnectionString,
+                ForceTableLock = true,
+                BulkLoad = true,
+                Transaction = false,
+                KeepIdentity = false,
+            };
+            bulkLoader.Execute(fullPathXsdScheme, fullPathXml);
+        }
+
         /// <summary>
         /// Disposing
         /// </summary>

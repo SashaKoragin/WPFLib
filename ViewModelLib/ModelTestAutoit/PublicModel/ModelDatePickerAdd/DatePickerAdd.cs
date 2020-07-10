@@ -6,6 +6,18 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ModelDatePickerAdd
    public class DatePickerAdd : BindableBase
     {
 
+        private int _countIzveshenie = 1;
+
+        public int CountIzveshenie
+        {
+            get => _countIzveshenie;
+            set
+            {
+                _countIzveshenie = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private int _countDay = 43;
       
         public int CountDay 

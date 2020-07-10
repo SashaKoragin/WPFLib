@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using System.Windows.Automation;
 using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.PreCheck;
+using EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.LoadDeclarationData;
 using LibaryAIS3Windows.AutomationsUI.LibaryAutomations;
 using System.Text.RegularExpressions;
 using Ifns51.FromAis;
 using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Data;
+using System.Windows.Forms;
 
 namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
 {
@@ -515,16 +518,17 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
         /// <param name="innUl">ИНН</param>
         public void AddDeclarationData(string fileName, DeclarationUl declarationUl, string innUl)
         {
-           List<DeclarationData> listDeclarationDataFace = new List<DeclarationData>();
             PreCheckAddObject preCheck = new PreCheckAddObject();
             var connectionString = string.Format($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={fileName}; Extended Properties=Excel 12.0;");
             var adapter = new OleDbDataAdapter("Select * From [Sheet0$]", connectionString);
             var ds = new DataSet();
             adapter.Fill(ds, "Declaration");
             DataTable data = ds.Tables["Declaration"];
-            foreach(DataRow row in data.Rows)
+            ArrayOfDeclarationData listDeclarationDataFace = new ArrayOfDeclarationData() {DeclarationData = new EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.LoadDeclarationData.DeclarationData[data.Rows.Count] };
+            var i = 0;
+            foreach (DataRow row in data.Rows)
             {
-                listDeclarationDataFace.Add(new DeclarationData()
+                listDeclarationDataFace.DeclarationData[i] = new EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.LoadDeclarationData.DeclarationData()
                 {
                     RegNumDecl = declarationUl.RegNumDecl,
                     CodeString = row.Field<string>("Код строки"),
@@ -532,11 +536,11 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
                     CodeParametr = row.Field<string>("Код показателя"),
                     DataFace = row.Field<string>("По данным плательщика"),
                     DataInspector = row.Field<string>("По данным инспектора"),
-                    Error = row.Field<string>("Отклонение"),
-                });
+                    Error = row.Field<string>("Отклонение")
+                };
+                i++;
             }
-            declarationUl.DeclarationDatas = listDeclarationDataFace;
-            preCheck.AddDeclarationModel(declarationUl, innUl);
+            preCheck.AddDeclarationModel(declarationUl, listDeclarationDataFace, innUl);
             preCheck.Dispose();
         }
 
@@ -604,6 +608,63 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PreCheck
 
             preCheck.AddImZmTrFl(imZmTrFl,innFl, typeObject);
             preCheck.Dispose();
+        }
+        /// <summary>
+        /// Разбор файла выписок организации Пока такой алгоритм
+        /// </summary>
+        /// <param name="fileName">Имя файла</param>
+        /// <param name="innUl">ИНН ЮЛ</param>
+        public void AddDbStatement(string fileName, string innUl)
+        {
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            RichTextBox rtb = new RichTextBox();
+            rtb.LoadFile(fileName);
+            var isRead = false;
+            string parameter = "";
+            HeadingStatement statement = new HeadingStatement();
+            var listStatementFull = new List<StatementFull>();
+            foreach (string line in rtb.Lines)
+            {
+                if (isRead)
+                {
+                    var textSplit = line.Split('\t');
+                    //Формирование заголовка выписки
+                    if (textSplit.Length == 1)
+                    {
+                        bool isNum = int.TryParse(textSplit[0], out var num);
+                        if (!string.IsNullOrWhiteSpace(textSplit[0]))
+                        {
+                            parameter = isNum ? string.Concat(parameter, $" - {num}").Replace($" - {num - 1}", "") : textSplit[0];
+                            if (!string.IsNullOrWhiteSpace(parameter))
+                            {
+                                //Запись или проверка есть ли NameIndex в БД возврат IdStatementHead
+                                statement = preCheck.AddHeadingStatement(new HeadingStatement() {NameIndex = parameter});
+                            }
+                        }
+                    }
+                    //Формирование тела Выписки
+                    if (textSplit.Length == 3)
+                    {
+                        if (!string.IsNullOrWhiteSpace(textSplit[0]))
+                        {
+                            //Собираем коллекцию с учетом  IdStatementHead и УН ЮЛ и записываем в БД
+                            listStatementFull.Add(new StatementFull()
+                            {
+                                    VarIndex = Convert.ToInt32(textSplit[0]),
+                                    NameParametr = textSplit[1],
+                                    ValuesStatement = textSplit[2],
+                                    IdStatementHead = statement.IdStatementHead
+                            });
+                        }
+                    }
+                }
+                //Условие нахождения начала выписки
+                if (line.Equals("1\t2\t3"))
+                    isRead = true;
+            }
+            preCheck.AddStatementFull(listStatementFull,innUl);
+            preCheck.Dispose();
+            rtb.Dispose();
         }
     }
 }

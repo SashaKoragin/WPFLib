@@ -468,11 +468,16 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="XsdShemeLoad\XsdDataDeclaration.xsd">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DownloadTempXml\" />
     <Folder Include="ExcelReport\" />
     <Folder Include="PdfReport\" />
     <Folder Include="XmlFile\" />
