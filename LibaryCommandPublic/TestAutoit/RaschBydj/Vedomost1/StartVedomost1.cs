@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GalaSoft.MvvmLight.Threading;
-using LibaryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.ButtonsClikcs;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 using ViewModelLib.ModelTestAutoit.PublicModel.RaschetBuh;
 
-namespace LibaryCommandPublic.TestAutoit.RaschBydj.Vedomost1
+namespace LibraryCommandPublic.TestAutoit.RaschBydj.Vedomost1
 {
    public class StartVedomost1
     {
@@ -21,7 +21,7 @@ namespace LibaryCommandPublic.TestAutoit.RaschBydj.Vedomost1
                 DispatcherHelper.Initialize();
                 Task.Run(delegate
                     {
-                        LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                        LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                         if (ais3.WinexistsAis3() == 1)
                         {
 
@@ -32,7 +32,7 @@ namespace LibaryCommandPublic.TestAutoit.RaschBydj.Vedomost1
                         }
                         else
                         {
-                            MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                            MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                             DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
                         }
                     });

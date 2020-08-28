@@ -24,6 +24,7 @@
                 VerticalAlignment="Top"
                 Content="{Binding Start.Button}"
                 FontSize="16" />
+            
             <Label Content="Команда приостановить Shift+S" FontSize="16" />
             <Label Content="Команда возобновить Shift+A" FontSize="16" />
         </StackPanel>

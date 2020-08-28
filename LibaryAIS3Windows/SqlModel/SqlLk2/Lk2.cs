@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 
 
-namespace LibaryAIS3Windows.SqlModel.SqlLk2
+namespace LibraryAIS3Windows.SqlModel.SqlLk2
 {
    public class Lk2
     {

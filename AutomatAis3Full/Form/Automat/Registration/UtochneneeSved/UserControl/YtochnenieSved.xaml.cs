@@ -6,7 +6,7 @@ namespace AutomatAis3Full.Form.Automat.Registration.UtochneneeSved.UserControl
     /// </summary>
     public partial class YtochnenieSved : System.Windows.Controls.UserControl
     {
-        public YtochnenieSved(LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand.YtochnenieSved ytochnenieSved)
+        public YtochnenieSved(LibraryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand.YtochnenieSved ytochnenieSved)
         {
             InitializeComponent();
             DataContext = new DataContext.DataContextReg(ytochnenieSved);

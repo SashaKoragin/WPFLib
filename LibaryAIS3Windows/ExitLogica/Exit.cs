@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace LibaryAIS3Windows.ExitLogica
+namespace LibraryAIS3Windows.ExitLogica
 {
     /// <summary>
     /// Класс при завершении работы автомата

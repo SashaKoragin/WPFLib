@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
-using LibaryAIS3Windows.AutomationsUI.LibaryAutomations;
+using AutoIt;
+using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
 
-namespace LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
+namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
 {
     public class PublicGlobalFunction
     {
@@ -34,6 +34,15 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
             return list;
         }
         /// <summary>
+        /// Удаление файла
+        /// </summary>
+        /// <param name="fileName">Имя файла</param>
+        public static void DeleteFile(string fileName)
+        {
+            File.Delete(fileName);
+        }
+
+        /// <summary>
         /// Закрытие процесса обработки файла
         /// </summary>
         /// <param name="name">Наименование процесса</param>
@@ -51,7 +60,7 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
                     break;
                 }
             }
-            AutoIt.AutoItX.Sleep(500);
+            AutoItX.Sleep(500);
         }
         /// <summary>
         /// Убить процесс обработки файла
@@ -64,21 +73,25 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
                 System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName(name);
                 foreach (var process in processes)
                 {
+                    process.WaitForExit(2000);
                     process?.Kill();
+                    process.WaitForExit(4000);
+                    process.Close();
+                    process.Dispose();
                 }
                 if (processes.Length == 0)
                 {
                     break;
                 }
             }
-            AutoIt.AutoItX.Sleep(500);
+            AutoItX.Sleep(500);
         }
         /// <summary>
         /// Поиск элемента и ожидания нажатия на элемент
         /// </summary>
         /// <param name="libraryAutomation">Элемент</param>
         /// <param name="searсhPatternElement">Pattern элемент</param>
-        public static void WindowElementClick(LibaryAutomations libraryAutomation, string searсhPatternElement)
+        public static void WindowElementClick(LibraryAutomations libraryAutomation, string searсhPatternElement)
         {
             var isProcess = true;
             while (isProcess)
@@ -95,12 +108,12 @@ namespace LibaryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
         /// </summary>
         /// <param name="libraryAutomation">Автоматизационный элемент</param>
         /// <param name="searсhPatternElementGrid">Grid для поиска Caption</param>
-        public static string GridNotDataIsWaitUpdate(LibaryAutomations libraryAutomation, string searсhPatternElementGrid)
+        public static string GridNotDataIsWaitUpdate(LibraryAutomations libraryAutomation, string searсhPatternElementGrid)
         {
            var isExit = true;
             while (isExit)
             {
-                if (libraryAutomation.IsEnableElements(string.Concat(searсhPatternElementGrid, "\\Name:Caption"), null, true, 1) == null)
+                if (libraryAutomation.IsEnableElements(string.Concat(searсhPatternElementGrid, "\\Name:Caption"), null, false, 1,0,true) == null)
                 {
                     isExit = false;
                 }

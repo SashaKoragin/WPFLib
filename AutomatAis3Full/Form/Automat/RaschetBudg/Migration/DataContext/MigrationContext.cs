@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 using AutomatAis3Full.Config;
-using LibaryCommandPublic.TestAutoit.RaschBydj.Migration;
+using LibraryCommandPublic.TestAutoit.RaschBydj.Migration;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 using ViewModelLib.ModelTestAutoit.PublicModel.RaschetBuh;

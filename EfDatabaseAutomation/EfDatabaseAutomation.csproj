@@ -35,9 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AisPoco">
-      <HintPath>C:\Nuget\Ais3Dll\AisPoco.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -74,9 +71,12 @@
     <Compile Include="Automation\BaseLogica\XsdAuto\TaxJournalAuto\TaxJournalAuto.cs">
       <DependentUpon>TaxJournalAuto.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Automation\BaseLogica\XsdShemeSqlLoad\LoadDeclarationData\XsdDataDeclaration.cs">
-      <DependentUpon>XsdDataDeclaration.xsd</DependentUpon>
+    <Compile Include="Automation\BaseLogica\XsdShemeSqlLoad\AttributeHelper.cs" />
+    <Compile Include="Automation\BaseLogica\XsdShemeSqlLoad\LoadDeclarationData\XsdAllBodyData.cs">
+      <DependentUpon>XsdAllBodyData.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Automation\BaseLogica\XsdShemeSqlLoad\MappingAttribute.cs" />
+    <Compile Include="Automation\BaseLogica\XsdShemeSqlLoad\PropertyMapHelper.cs" />
     <Compile Include="Automation\Base\DatabaseAutomation1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -91,6 +91,10 @@
     <ProjectReference Include="..\..\..\My\Loggers\Loggers.csproj">
       <Project>{9bac233e-ed3d-493e-b7f6-f26f8091968d}</Project>
       <Name>Loggers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AisPoco\AisPoco.csproj">
+      <Project>{ae019cef-782d-41b7-942f-420f3c1b434a}</Project>
+      <Name>AisPoco</Name>
     </ProjectReference>
     <ProjectReference Include="..\LibaryXMLAuto\LibaryXMLAuto.csproj">
       <Project>{a2bc3ae2-4a61-4e9e-9fa4-96a02677c79c}</Project>
@@ -114,7 +118,7 @@
     <None Include="Automation\BaseLogica\XsdAuto\TaxJournalAuto\TaxJournalAuto.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Automation\BaseLogica\XsdShemeSqlLoad\LoadDeclarationData\XsdDataDeclaration.xsd">
+    <None Include="Automation\BaseLogica\XsdShemeSqlLoad\LoadDeclarationData\XsdAllBodyData.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Automation\Base\EF.Reverse.POCO.Core.ttinclude" />
@@ -154,7 +158,7 @@
       <FullParametrAuto Include="Automation\SelectParametrSheme\*.xsd" />
       <ShemeTaxJournal Include="Automation\BaseLogica\XsdAuto\FullShemeModel\*.xsd" />
       <DTOXSDSheme Include="Automation\BaseLogica\SqlSelect\XsdDTOSheme\*.xsd" />
-      <XmlToSql Include="Automation\BaseLogica\XsdShemeSqlLoad\LoadDeclarationData\*.xsd" />
+      <!--<XmlToSql Include="Automation\BaseLogica\XsdShemeSqlLoad\LoadDeclarationData\*.xsd" />-->
     </ItemGroup>
     <Message Importance="high" Text="CreateDTOSheme" />
     <GetFrameworkSdkPath>
@@ -168,6 +172,6 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(FullParametrAuto.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.SelectParametrSheme /outputdir:Automation\SelectParametrSheme\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(ShemeTaxJournal.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.XsdAuto.FullShemeModel /outputdir:Automation\BaseLogica\XsdAuto\FullShemeModel\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(DTOXSDSheme.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.SqlSelect.XsdDTOSheme /outputdir:Automation\BaseLogica\SqlSelect\XsdDTOSheme\" />
-    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XmlToSql.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.XsdShemeSqlLoad.LoadDeclarationData /outputdir:Automation\BaseLogica\XsdShemeSqlLoad\LoadDeclarationData\" />
+   <!--<Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XmlToSql.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData /outputdir:Automation\BaseLogica\XsdShemeSqlLoad\LoadDeclarationData\" />-->
   </Target>
 </Project>

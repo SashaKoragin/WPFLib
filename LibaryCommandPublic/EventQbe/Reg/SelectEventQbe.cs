@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LibaryAIS3Windows.ButtonsClikcs.SelectQbe;
+using LibraryAIS3Windows.ButtonsClikcs.SelectQbe;
 using ViewModelLib.ModelTestAutoit.PublicModel.SelectBranch;
 using ViewModelLib.ModelTestAutoit.PublicModel.QbeSelect;
 
-namespace LibaryCommandPublic.EventQbe.Reg
+namespace LibraryCommandPublic.EventQbe.Reg
 {
     /// <summary>
     /// Класс для принятия решений на какие события подписываться а на какие нет

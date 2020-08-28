@@ -1,8 +1,8 @@
 ﻿using AutoIt;
 using System.Drawing;
-using LibaryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.ButtonsClikcs;
 
-namespace LibaryAIS3Windows.Window
+namespace LibraryAIS3Windows.Window
 {
     /// <summary>
     /// Класс констант текста АИС 3

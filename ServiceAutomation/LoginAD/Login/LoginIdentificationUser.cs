@@ -1,4 +1,5 @@
-﻿using System.DirectoryServices.AccountManagement;
+﻿using System;
+using System.DirectoryServices.AccountManagement;
 using System.Linq;
 using ServiceAutomation.LoginAD.XsdShemeLogin;
 
@@ -9,48 +10,58 @@ namespace ServiceAutomation.LoginAD.Login
 
         public Identification AuthUserService(Identification identification)
         {
-            if (identification.Login != null)
+            try
             {
-                using (PrincipalContext context = new PrincipalContext(ContextType.Domain, null, identification.Login, identification.Password))
+                if (identification.Login != null)
                 {
-                    if (context.ValidateCredentials(identification.Login, identification.Password))
+                    using (PrincipalContext context = new PrincipalContext(ContextType.Domain, null, identification.Login, identification.Password))
                     {
-                        using (var users = new UserPrincipal(context))
+                        if (context.ValidateCredentials(identification.Login, identification.Password))
                         {
-                            users.SamAccountName = identification.Login;
-                            
-                            using (var searcher = new PrincipalSearcher(users))
+                            using (var users = new UserPrincipal(context))
                             {
-                                var user = searcher.FindOne() as UserPrincipal;
-                                if (user != null)
+                                users.SamAccountName = identification.Login;
+
+                                using (var searcher = new PrincipalSearcher(users))
                                 {
-                                    var group = user.GetGroups();
-                                    identification.GroupRuleServer = new string[group.Count()];
-                                    var i = 0;
-                                    foreach (var gr in group)
+                                    var user = searcher.FindOne() as UserPrincipal;
+                                    if (user != null)
                                     {
-                                        identification.GroupRuleServer[i] = gr.Name;
-                                         i++;
+                                        var group = user.GetGroups();
+                                        identification.GroupRuleServer = new string[group.Count()];
+                                        var i = 0;
+                                        foreach (var gr in group)
+                                        {
+                                            identification.GroupRuleServer[i] = gr.Name;
+                                            i++;
+                                        }
+                                        identification.Name = user.Name;
+                                        identification.ErrorMessage = null;
+                                        identification.IsError = false;
+                                        return identification;
                                     }
-                                    identification.Name = user.Name;
-                                    identification.ErrorMessage = null;
-                                    identification.IsError = false;
-                                    return identification;
                                 }
                             }
+
+                            identification.ErrorMessage = "Пользователь не найден!!!";
+                            identification.IsError = true;
+                            return identification;
                         }
-                        identification.ErrorMessage = "Пользователь не найден!!!";
+                        identification.ErrorMessage = "Не правильный логин/пароль!!!";
                         identification.IsError = true;
                         return identification;
                     }
-                    identification.ErrorMessage = "Не правильный логин/пароль!!!";
-                    identification.IsError = true;
-                    return identification;
                 }
+                identification.ErrorMessage = "Пользователь не введен!!!";
+                identification.IsError = true;
+                return identification;
             }
-            identification.ErrorMessage = "Пользователь не введен!!!";
-            identification.IsError = true;
-            return identification;
+            catch (Exception ex)
+            {
+                identification.ErrorMessage = ex.Message;
+                identification.IsError = true;
+                return identification;
+            }
         }
     }
 }

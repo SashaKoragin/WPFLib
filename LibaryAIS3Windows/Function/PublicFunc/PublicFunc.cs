@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-namespace LibaryAIS3Windows.Function.PublicFunc
+namespace LibraryAIS3Windows.Function.PublicFunc
 {
   public class PublicFunc
     {

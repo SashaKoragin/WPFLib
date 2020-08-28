@@ -1,7 +1,7 @@
 ﻿using AutoIt;
-using LibaryAIS3Windows.Window;
+using LibraryAIS3Windows.Window;
 
-namespace LibaryAIS3Windows.ButtonsClikcs.SelectQbe
+namespace LibraryAIS3Windows.ButtonsClikcs.SelectQbe
 {
     /// <summary>
     /// Qbe событийная система подписываемся на Qbe

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibaryAIS3Windows.Mode.Reg.ZemlyFpd
+﻿namespace LibraryAIS3Windows.Mode.Reg.ZemlyFpd
 {
     /// <summary>
     /// Элементы в ветки Налоговое администрирование\Собственность\05. Взаимодействие с органами Росреестра – Земельные участки\03. Обработка ФПД  от РР - ФЛ - Анализ результатов обработки документов

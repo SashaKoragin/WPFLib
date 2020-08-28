@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AutomatAis3Full.Config;
-using LibaryCommandPublic.TestAutoit.Reg.VisualBank;
+using LibraryCommandPublic.TestAutoit.Reg.VisualBank;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;

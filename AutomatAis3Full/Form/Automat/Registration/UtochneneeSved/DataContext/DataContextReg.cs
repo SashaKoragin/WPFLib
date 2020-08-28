@@ -1,5 +1,5 @@
 ﻿using Prism.Commands;
-using LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand;
+using LibraryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand;
 using AutomatAis3Full.Config;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 

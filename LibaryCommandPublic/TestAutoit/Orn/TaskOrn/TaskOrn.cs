@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Threading;
-using LibaryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.ButtonsClikcs;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
-namespace LibaryCommandPublic.TestAutoit.Orn.TaskOrn
+namespace LibraryCommandPublic.TestAutoit.Orn.TaskOrn
 {
    public class TaskOrn
     {
@@ -20,14 +20,14 @@ namespace LibaryCommandPublic.TestAutoit.Orn.TaskOrn
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                 KclicerButton clickerButton = new KclicerButton();
-                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
                     while (statusButton.Iswork)
                     {
                         string status = clickerButton.Click13();
 
-                        if (status.Equals(LibaryAIS3Windows.Status.StatusAis.Status6))
+                        if (status.Equals(LibraryAIS3Windows.Status.StatusAis.Status6))
                         {
                             DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                         }
@@ -35,7 +35,7 @@ namespace LibaryCommandPublic.TestAutoit.Orn.TaskOrn
                 }
                 else
                 {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                 }
             });
         }

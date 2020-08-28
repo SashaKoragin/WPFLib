@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using AutoIt;
 
-namespace LibaryAIS3Windows.Window.Otdel.Reg.Yvedomlenie
+namespace LibraryAIS3Windows.Window.Otdel.Reg.Yvedomlenie
 {
     /// <summary>
     /// В данном классе используется текст окон относя щихся к режиму в пользовательских заданиях

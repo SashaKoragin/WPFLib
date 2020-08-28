@@ -36,9 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AisPoco">
-      <HintPath>C:\Nuget\Ais3Dll\AisPoco.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Nuget\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
@@ -65,9 +62,17 @@
     <Compile Include="TestDataBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AisPoco\AisPoco.csproj">
+      <Project>{ae019cef-782d-41b7-942f-420f3c1b434a}</Project>
+      <Name>AisPoco</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EfDatabaseAutomation\EfDatabaseAutomation.csproj">
       <Project>{fdad249d-cd7d-4581-b945-90d2f9dad698}</Project>
       <Name>EfDatabaseAutomation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibaryAIS3Windows\LibraryAIS3Windows.csproj">
+      <Project>{92017569-2991-4B9A-BFA2-6B41CFA72B83}</Project>
+      <Name>LibraryAIS3Windows</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

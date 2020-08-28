@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using EfDatabaseAutomation.Automation.Base;
+using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel;
 using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.TaxJournalAuto;
+using ModelKbkOnKbk = EfDatabaseAutomation.Automation.Base.ModelKbkOnKbk;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
 {
@@ -78,6 +81,14 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
             modelKbk.DateCreate = DateTime.Now;
             Automation.ModelKbkOnKbks.Add(modelKbk);
             Automation.SaveChanges();
+        }
+        /// <summary>
+        /// Процедура актуализации статуса подписывающего лица!!!
+        /// </summary>
+        /// <param name="signatureSenderTaxJournalOkp2">Ун подписи</param>
+        public void IsActualStatus(int signatureSenderTaxJournalOkp2)
+        {
+            var resultFullOnBlockStatus = Automation.Database.SqlQuery<string>("Exec [dbo].[ActualStatusSignature] @Id", new SqlParameter("Id", signatureSenderTaxJournalOkp2)).FirstOrDefault();
         }
     }
 }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibaryAIS3Windows.Window.Otdel.Okp3.Usn
+﻿namespace LibraryAIS3Windows.Window.Otdel.Okp3.Usn
 {
    public class CardDeclr
    {

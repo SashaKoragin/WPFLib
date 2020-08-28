@@ -7,8 +7,8 @@
     <ProjectGuid>{0A0C77AF-9FE5-4C32-B32E-40AB40FFEFF9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LibaryCommandPublic</RootNamespace>
-    <AssemblyName>LibaryCommandPublic</AssemblyName>
+    <RootNamespace>LibraryCommandPublic</RootNamespace>
+    <AssemblyName>LibraryCommandPublic</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AisPoco, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Nuget\Ais3Dll\AisPoco.dll</HintPath>
-    </Reference>
     <Reference Include="ClosedXML, Version=0.94.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ClosedXML.0.94.2\lib\net40\ClosedXML.dll</HintPath>
     </Reference>
@@ -86,6 +82,7 @@
     <Compile Include="TestAutoit\Okp3\UsnSend\CommandUsn.cs" />
     <Compile Include="TestAutoit\Okp4\EditPravo\Pravo\CommandPravo.cs" />
     <Compile Include="TestAutoit\Okp4\SnuOneAuto\AutoCommand\AutoCklicsAisCommand.cs" />
+    <Compile Include="TestAutoit\Okp5\Identification\IdentificationFace.cs" />
     <Compile Include="TestAutoit\Orn\TaskOrn\TaskOrn.cs" />
     <Compile Include="TestAutoit\PreCheck\ReportingMemo\ReportingMemoStart.cs" />
     <Compile Include="TestAutoit\PublicCommand\CommandFormirovanie.cs" />
@@ -102,13 +99,17 @@
     <Compile Include="TestAutoit\Uregulirovanie\MessageLk\AutoMessageLk.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AisPoco\AisPoco.csproj">
+      <Project>{ae019cef-782d-41b7-942f-420f3c1b434a}</Project>
+      <Name>AisPoco</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EfDatabaseAutomation\EfDatabaseAutomation.csproj">
       <Project>{FDAD249D-CD7D-4581-B945-90D2F9DAD698}</Project>
       <Name>EfDatabaseAutomation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LibaryAIS3Windows\LibaryAIS3Windows.csproj">
+    <ProjectReference Include="..\LibaryAIS3Windows\LibraryAIS3Windows.csproj">
       <Project>{92017569-2991-4b9a-bfa2-6b41cfa72b83}</Project>
-      <Name>LibaryAIS3Windows</Name>
+      <Name>LibraryAIS3Windows</Name>
     </ProjectReference>
     <ProjectReference Include="..\LibaryXMLAuto\LibaryXMLAuto.csproj">
       <Project>{a2bc3ae2-4a61-4e9e-9fa4-96a02677c79c}</Project>

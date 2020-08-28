@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoIt;
 
-namespace LibaryAIS3Windows.ReadWindow.Read
+namespace LibraryAIS3Windows.ReadWindow.Read
 {
     /// <summary>
     /// Класс для считывания значений с Формы

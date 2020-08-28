@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GalaSoft.MvvmLight.Threading;
-using LibaryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.ButtonsClikcs;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
-namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.DebtRelief
+namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.DebtRelief
 {
    public class DeptRelief
     {
@@ -21,7 +21,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.DebtRelief
                 {
                     DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                     KclicerButton clickerButton = new KclicerButton();
-                    LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                     if (ais3.WinexistsAis3() == 1)
                     {
                         clickerButton.Click19(statusButton ,pathjurnalok);
@@ -29,7 +29,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.DebtRelief
                     }
                     else
                     {
-                        MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                     }
                 });
         }
@@ -45,7 +45,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.DebtRelief
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                 KclicerButton clickerButton = new KclicerButton();
-                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
                     clickerButton.Click20(statusButton,pathjurnalok);
@@ -53,7 +53,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.DebtRelief
                 }
                 else
                 {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                 }
             });
         }

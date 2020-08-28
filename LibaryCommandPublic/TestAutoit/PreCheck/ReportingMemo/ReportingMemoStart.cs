@@ -4,15 +4,14 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
-using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.PreCheckLog;
 using GalaSoft.MvvmLight.Threading;
 using Ifns51.ToAis;
-using LibaryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.ButtonsClikcs;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
-namespace LibaryCommandPublic.TestAutoit.PreCheck.ReportingMemo
+namespace LibraryCommandPublic.TestAutoit.PreCheck.ReportingMemo
 {
    public class ReportingMemoStart
     {
@@ -33,7 +32,7 @@ namespace LibaryCommandPublic.TestAutoit.PreCheck.ReportingMemo
                     {
                         DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                         KclicerButton clickerButton = new KclicerButton();
-                        LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                        LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                         var result = ResultGet(serviceGetOrPost);
                         if (result != null)
                         {
@@ -44,7 +43,7 @@ namespace LibaryCommandPublic.TestAutoit.PreCheck.ReportingMemo
                             }
                             else
                             {
-                                MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                                MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                             }
                         }
                         else
@@ -71,7 +70,7 @@ namespace LibaryCommandPublic.TestAutoit.PreCheck.ReportingMemo
                 {
                     DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                     KclicerButton clickerButton = new KclicerButton();
-                    LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                     if (ais3.WinexistsAis3() == 1)
                     {
                         clickerButton.Click30(statusButton);
@@ -79,7 +78,7 @@ namespace LibaryCommandPublic.TestAutoit.PreCheck.ReportingMemo
                     }
                     else
                     {
-                        MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                         DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                     }
 
@@ -136,7 +135,7 @@ namespace LibaryCommandPublic.TestAutoit.PreCheck.ReportingMemo
                 {
                     resultServer = rdr.ReadToEnd();
                 }
-                return (List<SrvToLoad>)json.JsonDeserializeObject<SrvToLoad>(resultServer) ;
+                return (List<SrvToLoad>)json.JsonDeserializeObjectListClass<SrvToLoad>(resultServer) ;
             }
             return null;
         }

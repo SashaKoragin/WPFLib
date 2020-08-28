@@ -19,7 +19,7 @@ namespace AutomatAis3Full.Form.Automat.Okp2.TaxJournal.DataContext
         public DataContextTaxJournal()
         {
             DatePicker = new DatePickerAdd();
-            var command = new LibaryCommandPublic.TestAutoit.Okp2.TaxJournal();
+            var command = new LibraryCommandPublic.TestAutoit.Okp2.TaxJournal();
             DownloadPrintDb = new DownloadPrintDb();
             StartButton = new StatusButtonMethod();
             StartButton.Button.Command = new DelegateCommand(() => { 

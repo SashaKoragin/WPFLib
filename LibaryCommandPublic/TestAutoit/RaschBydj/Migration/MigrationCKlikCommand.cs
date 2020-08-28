@@ -3,12 +3,12 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GalaSoft.MvvmLight.Threading;
-using LibaryAIS3Windows.ButtonsClikcs;
-using LibaryAIS3Windows.Window;
+using LibraryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.Window;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 using ViewModelLib.ModelTestAutoit.PublicModel.RaschetBuh;
 
-namespace LibaryCommandPublic.TestAutoit.RaschBydj.Migration
+namespace LibraryCommandPublic.TestAutoit.RaschBydj.Migration
 {
    public class MigrationCKlikCommand
     {
@@ -47,7 +47,7 @@ namespace LibaryCommandPublic.TestAutoit.RaschBydj.Migration
                         }
                         else
                         {
-                            MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                            MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                             DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
                         }
                 });

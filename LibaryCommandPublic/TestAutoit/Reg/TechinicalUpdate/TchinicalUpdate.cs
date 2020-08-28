@@ -6,15 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GalaSoft.MvvmLight.Threading;
-using LibaryAIS3Windows.ButtonsClikcs;
-using LibaryAIS3Windows.ButtonsClikcs.SelectQbe.EventReg;
-using LibaryAIS3Windows.ExitLogica;
-using LibaryAIS3Windows.Window;
-using LibaryCommandPublic.EventQbe.Reg;
+using LibraryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.ButtonsClikcs.SelectQbe.EventReg;
+using LibraryAIS3Windows.ExitLogica;
+using LibraryAIS3Windows.Window;
+using LibraryCommandPublic.EventQbe.Reg;
 using LibaryXMLAutoModelXmlAuto.ModelFaceFid;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
-namespace LibaryCommandPublic.TestAutoit.Reg.TechinicalUpdate
+namespace LibraryCommandPublic.TestAutoit.Reg.TechinicalUpdate
 {
    public class TchinicalUpdate
     {
@@ -64,19 +64,19 @@ namespace LibaryCommandPublic.TestAutoit.Reg.TechinicalUpdate
                             }
                             else
                             {
-                                MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                                MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
                             }
                         }
                         else
                         {
-                            MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status7);
+                            MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status7);
                         }
                     });
                 }
                 else
                 {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status5);
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status5);
                 }
             }
             catch (Exception e)

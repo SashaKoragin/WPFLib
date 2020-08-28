@@ -1,17 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Automation;
 using AutoIt;
-using LibaryAIS3Windows.AutomationsUI.Otdels.PreCheck;
-using LibaryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.AutomationsUI.Otdels.PreCheck;
+using LibraryAIS3Windows.AutomationsUI.PublicElement;
+using LibraryAIS3Windows.ButtonsClikcs;
 
 
 
-namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
+namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
 {
-   public class LibaryAutomations
+   public class LibraryAutomations
     {
+        /// <summary>
+        /// Все месяца календаря АИС 3
+        /// </summary>
+        private static Dictionary<int,string> Calendar = new Dictionary<int, string>()
+        {
+            {1, "января"},
+            {2, "февраля"},
+            {3, "марта"},
+            {4, "апреля"},
+            {5, "мая"},
+            {6, "июня"},
+            {7, "июля"},
+            {8, "августа"},
+            {9, "сентября"},
+            {10, "октября"},
+            {11, "ноября"},
+            {12, "декабря"}
+        };
 
         public int ProcessId { get; set; }
         public AutomationElement RootAutomationElements { get; set; }
@@ -23,7 +43,7 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// Подключение к процессу
         /// </summary>
         /// <param name="nameWindowsAis3"></param>
-        public LibaryAutomations(string nameWindowsAis3)
+        public LibraryAutomations(string nameWindowsAis3)
         {
             RootAutomationElements = AutomationElement.FromHandle(AutoItX.WinGetHandle(nameWindowsAis3));
             ProcessId = RootAutomationElements.Current.ProcessId;
@@ -34,8 +54,9 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="nameAutomationId"></param>
         /// <param name="auto">Поиск по циклу по формуле если нет в корневом элементе то ищем потомка</param>
         /// <param name="isSubtree">Искать в Subtree последний элемент</param>
+        /// <param name="isChildren">Искать в Children последний элемент</param>
         /// <returns></returns>
-        public AutomationElement FindFirstElement(string nameAutomationId, AutomationElement auto = null,bool isSubtree=false)
+        public AutomationElement FindFirstElement(string nameAutomationId, AutomationElement auto = null,bool isSubtree=false, bool isChildren = false)
         {
             var recursion = nameAutomationId.Split('\\');
             FindElement = auto;
@@ -43,39 +64,48 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             foreach (var str in recursion)
             {
              try
-               {
+             {
                  Conditions = AddCondition(str);
-                  if (auto == null)
-                  {
-                      FindElement = RootAutomationElements.FindFirst(TreeScope.Children, Conditions);
-                      auto = FindElement;
-                  }
-                  else
-                  {
-                   if(FindElement != null)
-                    {
-                       if (isSubtree)
-                       {
-                         if (recursion.Length == i)
-                          {
-                           FindElement.SetFocus();
-                           FindElement = FindElement.FindFirst(TreeScope.Subtree, Conditions);
-                           return FindElement;
-                          }
-                       }
-                        FindElement = FindElement.FindFirst(TreeScope.Children, Conditions) ?? FindElement.FindFirst(TreeScope.Subtree, Conditions);
-                    }
-                   else
-                   {
-                      return null;
-                   }
-                  }
-                  i++;
-              }
-              catch
-              {
-                    return null;
-              }
+                 if (auto == null)
+                 {
+                     FindElement = RootAutomationElements.FindFirst(TreeScope.Children, Conditions);
+                     auto = FindElement;
+                 }
+                 else
+                 {
+                     if(FindElement != null)
+                     {
+                         if (isSubtree)
+                         {
+                             if (recursion.Length == i)
+                             {
+                                 FindElement.SetFocus();
+                                 FindElement = FindElement.FindFirst(TreeScope.Subtree, Conditions);
+                                 return FindElement;
+                             }
+                         }
+                         if (isChildren)
+                         {
+                             if (recursion.Length == i)
+                             {
+                                 FindElement.SetFocus();
+                                 FindElement = FindElement.FindFirst(TreeScope.Children, Conditions);
+                                 return FindElement;
+                             }
+                         }
+                         FindElement = FindElement.FindFirst(TreeScope.Children, Conditions) ?? FindElement.FindFirst(TreeScope.Subtree, Conditions);
+                     }
+                     else
+                     {
+                         return null;
+                     }
+                 }
+                 i++;
+             }
+             catch
+             {
+                 return null;
+             }
             }
             return FindElement;
         }
@@ -157,20 +187,43 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             return null;
         }
         /// <summary>
-        /// 
+        /// Раскрытие элемента Автоматизации
         /// </summary>
-        /// <param name="nameAutomationId"></param>
-        public void IsExpandOpen(string nameAutomationId)
+        /// <param name="nameAutomationId">Имя элемента</param>
+        public bool IsExpandOpen(string nameAutomationId)
         {
-            if (IsEnableElements(nameAutomationId)!=null)
+            if (IsEnableElements(nameAutomationId,null,false,5)!=null)
             {
                 var expand = DefaultActionPattern(FindElement);
                 if(expand == "Expand")
                 {
                     InvokePattern(FindElement);
                 }
+                return true;
             }
+
+            return false;
         }
+        /// <summary>
+        /// Проверка на доступ и раскрытия элемента 
+        /// </summary>
+        /// <param name="fullTreeAis3">Полная ветка АИС 3 "Налоговое администрирование\\Централизованный учет налогоплательщиков\\01. ЕГРН - российские организации\\1.01. Идентификационные характеристики организации"</param>
+        /// <returns></returns>
+        public bool IsEnableExpandTree(string fullTreeAis3)
+        {
+            var arrayTree = fullTreeAis3.Split('\\');
+            foreach (var tree in arrayTree)
+            {
+                var fullTree = string.Concat(PublicElementName.FullTree,$"Name:{tree}");
+                var isTrue = IsExpandOpen(fullTree);
+                if (!isTrue)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
 
         /// <summary>
         /// Toggle Pattern
@@ -249,6 +302,49 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
                 }
             }
         }
+        /// <summary>
+        /// Контроль даты календаря который нелзя спарсить
+        /// </summary>
+        /// <param name="dateTime">Дата и время которое надо подставить</param>
+        public void DateControlComboboxNotValue(DateTime dateTime)
+        {
+            
+            var dayAutomation = Convert.ToInt32(FindElement.Current.Name.Split(' ')[0].Trim());
+            var dayControl = dateTime.Day;
+            while (dayAutomation != dayControl)
+            {
+                FindElement.SetFocus();
+                ClickElement(FindElement, -180);
+                AutoItX.Send(string.Format(ButtonConstant.UpCountClick, 1));
+                AutoItX.Sleep(100);
+                dayAutomation = Convert.ToInt32(FindElement.Current.Name.Split(' ')[0].Trim());
+            }
+            
+            var mouthAutomation = FindElement.Current.Name.Split(' ')[1].Trim();
+            var mouthControl = Calendar.FirstOrDefault(x => x.Key == dateTime.Month).Value;
+            while (mouthAutomation != mouthControl)
+            {
+                
+                ClickElement(FindElement, -165);
+                AutoItX.Send(string.Format(ButtonConstant.UpCountClick, 1));
+                AutoItX.Sleep(100);
+                mouthAutomation = FindElement.Current.Name.Split(' ')[1].Trim();
+            }
+            
+            var yearAutomation = Convert.ToInt32(FindElement.Current.Name.Split(' ')[2].Trim());
+            var yearControl = dateTime.Year;
+            while (yearAutomation != yearControl)
+            {
+                FindElement.SetFocus();
+                ClickElement(FindElement, -110, 0);
+                AutoItX.Send(yearAutomation > yearControl
+                             ? string.Format(ButtonConstant.DownCountClick, 1)
+                             : string.Format(ButtonConstant.UpCountClick, 1));
+                AutoItX.Sleep(100);
+                yearAutomation = Convert.ToInt32(FindElement.Current.Name.Split(' ')[2].Trim());
+            }
+        }
+
         /// <summary>
         /// Эта функция для Выявления максимального года в ComboBox
         /// </summary>
@@ -346,7 +442,6 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
             element.SetFocus();
             var clickPoint = element.GetClickablePoint();
             var hexPixel = AutoItX.PixelGetColor((int)clickPoint.X, (int)clickPoint.Y);
-            var v = Convert.ToString(hexPixel, 16);
             return Convert.ToString(hexPixel, 16);
         }
 
@@ -357,13 +452,15 @@ namespace LibaryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="auto">Есть ли элемент</param>
         /// <param name = "isSubtree" >Искать в Subtree последний элемент</param>
         /// <param name="countsecond">Количество обращений к элементу</param>
-        public AutomationElement IsEnableElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,int countsecond =40,int isFocus = 0)
+        /// <param name="isFocus">Включен: (IsEnabled 0) и (IsKeyboardFocusable 1)</param>
+        /// <param name="isChildren">Искать в Children последний элемент</param>
+        public AutomationElement IsEnableElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,  int countsecond =40, int isFocus = 0, bool isChildren = false)
         {
             var isEnable = false;
             var i = 0;
             while (!isEnable)
             {
-                FindFirstElement(nameAutomationId, auto, isSubtree);
+                FindFirstElement(nameAutomationId, auto, isSubtree, isChildren);
                 if (FindElement != null)
                 {
                     if (isFocus == 0)

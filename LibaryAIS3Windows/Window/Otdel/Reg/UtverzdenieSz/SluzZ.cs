@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibaryAIS3Windows.Window.Otdel.Uregulirovanie.UtverzdenieSz
+﻿
+namespace LibraryAIS3Windows.Window.Otdel.Uregulirovanie.UtverzdenieSz
 {
    public class SluzZ
    {

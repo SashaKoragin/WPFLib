@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight.Threading;
-using LibaryAIS3Windows.ButtonsClikcs;
-using LibaryAIS3Windows.ExitLogica;
-using LibaryAIS3Windows.Window;
+using LibraryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.ExitLogica;
+using LibraryAIS3Windows.Window;
 using LibaryXMLAutoModelXmlAuto.FileVisualId;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
-namespace LibaryCommandPublic.TestAutoit.Reg.VisualTreatmentFace
+namespace LibraryCommandPublic.TestAutoit.Reg.VisualTreatmentFace
 {
    public class VisualTreatmentFace
     {
@@ -62,7 +62,7 @@ namespace LibaryCommandPublic.TestAutoit.Reg.VisualTreatmentFace
                         }
                         else
                         {
-                            MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                            MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                             DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
                         }
                         var status = exit.Exitfunc(statusButton.Count, idmodel.IdZapros.Length, statusButton.Iswork);
@@ -73,7 +73,7 @@ namespace LibaryCommandPublic.TestAutoit.Reg.VisualTreatmentFace
                     }
                     else
                     {
-                        MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status7);
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status7);
                     }
                     }
                     catch (Exception e)
@@ -84,7 +84,7 @@ namespace LibaryCommandPublic.TestAutoit.Reg.VisualTreatmentFace
             }
             else
             {
-                MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status5);
+                MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status5);
             }
         }
     }

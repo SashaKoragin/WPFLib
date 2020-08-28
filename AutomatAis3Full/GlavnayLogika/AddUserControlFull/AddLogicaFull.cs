@@ -8,6 +8,7 @@ using AutomatAis3Full.Form.Automat.Okp4.FormSnuAuto.SnuFormAuto;
 using AutomatAis3Full.Form.Automat.Okp4.MassSnuForm.MassSnuForm;
 using AutomatAis3Full.Form.Automat.Okp4.PravoEdit.PravoEdit;
 using AutomatAis3Full.Form.Automat.Okp4.PrintSnu.Print;
+using AutomatAis3Full.Form.Automat.Okp5.Identification.FaceIdentification;
 using AutomatAis3Full.Form.Automat.Orn.ConfirmationNbo.ConfirmationNbo;
 using AutomatAis3Full.Form.Automat.PreCheck.Journal129.Journal129;
 using AutomatAis3Full.Form.Automat.PreCheck.ReportingMemo.ReportingMemo;
@@ -28,7 +29,7 @@ using AutomatAis3Full.Form.Automat.Uregulirovanie.SenderReshenia.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.SenderSpravk.UserControl;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie;
 using AutomatAis3Full.Form.Report.ReportXml.ReportForm;
-using LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand;
+using LibraryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand;
 using ViewModelLib.ModelTestAutoit.FullWindowAutoIt;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket0508090202.Ticket050809020204.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket0508090202.Ticket050809020206.UserControl;
@@ -101,7 +102,7 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                   },
                   new FullWindowAutoIt()
                   {
-                      NameControl = "Урегулирование задолжености",
+                      NameControl = "Урегулирование задолженности",
                       CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                       {
                           new FullWindowAutoIt()
@@ -140,7 +141,7 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                },
                                new FullWindowAutoIt()
                                {
-                                   NameControl = "05.08.09.02. Взыскание задолжености за счет имущества",
+                                   NameControl = "05.08.09.02. Взыскание задолженности за счет имущества",
                                    CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                                    {
                                       new FullWindowAutoIt()
@@ -247,7 +248,7 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                       {
                                           new FullWindowAutoIt()
                                           {
-                                              NameControl = "Применение упрощенной системы налогооблажения",
+                                              NameControl = "Применение упрощенной системы налогообложения",
                                               CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                                               {
                                                   new FullWindowAutoIt()
@@ -260,6 +261,32 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                           }
                                       }
 
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  new FullWindowAutoIt()
+                  {
+                      NameControl = "ОКП5",
+                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                      {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Физические лица",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "2.01. Сведения о доходах ФЛ",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "5.01. Неидентифицированные получатели дохода",
+                                              UserControl = new FaceIdentificationView(),
+                                          }
+                                      }
                                   }
                               }
                           }

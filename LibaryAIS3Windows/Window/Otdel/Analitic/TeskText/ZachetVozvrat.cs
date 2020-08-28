@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibaryAIS3Windows.Window.Otdel.Analitic.TeskText
+﻿namespace LibraryAIS3Windows.Window.Otdel.Analitic.TeskText
 {
     /// <summary>
     /// Текстовые строки для задания

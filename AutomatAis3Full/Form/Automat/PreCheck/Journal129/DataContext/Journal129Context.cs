@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LibaryCommandPublic.TestAutoit.PreCheck.ReportingMemo;
+using LibraryCommandPublic.TestAutoit.PreCheck.ReportingMemo;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 

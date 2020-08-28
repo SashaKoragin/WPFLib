@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Threading;
-using LibaryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.ButtonsClikcs;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 using ViewModelLib.ModelTestAutoit.PublicModel.ModelDatePickerAdd;
 
-namespace LibaryCommandPublic.TestAutoit.Okp2
+namespace LibraryCommandPublic.TestAutoit.Okp2
 {
    public class RegisterDeclarations
     {
@@ -26,7 +26,7 @@ namespace LibaryCommandPublic.TestAutoit.Okp2
                 {
                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                     KclicerButton clickerButton = new KclicerButton();
-                    LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                     if (ais3.WinexistsAis3() == 1)
                     {
                         clickerButton.Click28(statusButton, pathPdfTemp, datePicker);
@@ -34,7 +34,7 @@ namespace LibaryCommandPublic.TestAutoit.Okp2
                     }
                     else
                     {
-                        MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                     }
                 }
                 catch (Exception e)

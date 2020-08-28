@@ -3,6 +3,7 @@ using System.IO;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Threading.Tasks;
+using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel;
 using EfDatabaseAutomation.Automation.SelectParametrSheme;
 using Ifns51.FromAis;
 using Ifns51.ToAis;
@@ -70,8 +71,6 @@ namespace ServiceAutomation.Service
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadFileTax121", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<Stream> LoadFileTax121(int numberElement);
 
-
-
         /// <summary>
         /// Добавление ИНН для ввода
         /// http://localhost:8050/ServiceAutomation/AddInnToModel
@@ -115,5 +114,21 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/GenerateNoteReportUl", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<Stream> GenerateNoteReportUl(string innUl);
+        /// <summary>
+        /// Формирование выписки данных в БД
+        /// </summary>
+        /// <param name="model">Модель выписки</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/GenerateStatement", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> GenerateStatement(ModelSelect model);
+        /// <summary>
+        /// Формирование выписки данных в БД
+        /// </summary>
+        /// <param name="signatureSenderTaxJournalOkp2">Ун подписи</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/ActualizationSignature", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<bool> ActualizationSignature(int signatureSenderTaxJournalOkp2);
     }
 }

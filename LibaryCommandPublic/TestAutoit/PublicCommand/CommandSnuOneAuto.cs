@@ -5,8 +5,8 @@ using LibaryXMLAuto.Converts.ConvettToXml;
 using ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXlsx;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXml;
-using System.ServiceProcess;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using LibaryXMLAuto.ModelServiceWcfCommand.ModelPathReport;
@@ -14,7 +14,7 @@ using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using LibaryXMLAutoModelXmlAuto.MigrationReport;
 using ViewModelLib.ModelTestAutoit.PublicModel.LableAndErrorModel;
 
-namespace LibaryCommandPublic.TestAutoit.PublicCommand
+namespace LibraryCommandPublic.TestAutoit.PublicCommand
 {
     public class CommandSnuOneAuto
     {
@@ -53,35 +53,26 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
         /// Отправка письм
         /// </summary>
         /// <param name="model">Модель сообщения</param>
-        /// <param name="nameservice">Наименование сервиса и Ip</param>
         /// <param name="serverReport">Конечная точка</param>
         /// <param name="reportjurnal">Журнал ошибок по миграции НП</param>
-        public void SenderServerReport(LableModel model, string nameservice, string serverReport,ReportJurnalMethod reportjurnal)
+        public void SenderServerReport(LableModel model, string serverReport,ReportJurnalMethod reportjurnal)
         {
             if (reportjurnal.XmlFile.Name == "ReportMigration.xml")
             {
-                var service = nameservice.Split(',');
-                ServiceController sc = new ServiceController(service[0], service[1]);
-                if (sc.Status != ServiceControllerStatus.Stopped)
+                try
                 {
-                    try
-                    {
-                        XmlConvert xmlconverter = new XmlConvert();
-                        var reports =(MigrationParse)xmlconverter.DeserializationXmlToClass(reportjurnal.XmlFile.Path, typeof(MigrationParse));
-                        var report =  (ModelPathReport)ResultPost(serverReport, reports);
-                        model.MessageReport = report.Note;
-                        model.Url = report.Url;
-                        model.Color = Brushes.Green;
-                        return;
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(e.ToString());
-                    }
+                    XmlConvert xmlconverter = new XmlConvert();
+                    var reports =(MigrationParse)xmlconverter.DeserializationXmlToClass(reportjurnal.XmlFile.Path, typeof(MigrationParse));
+                    var report =  (ModelPathReport)ResultPost(serverReport, reports);
+                    model.MessageReport = report.Note;
+                    model.Url = report.Url;
+                    model.Color = Brushes.Green;
+                    return;
                 }
-                model.MessageReport = $"Служба: {service[0]} на компьютере {service[1]} остановлена!";
-                model.Color = Brushes.Red;
-                return;
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                }
             }
             model.MessageReport = $"Для формирования писем возможно отправить только ReportMigration.xml";
             model.Color = Brushes.Red;
@@ -90,39 +81,35 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
         /// Отправка файла xml UserRule.xml для формирования Формуляров доступа
         /// </summary>
         /// <param name="model">Модель xaml MVVM</param>
-        /// <param name="nameservice">Имя службы</param>
         /// <param name="serverReport">Конечный адресс службы</param>
         /// <param name="reportjurnal">Модель журнала</param>
-        public void DepartmentDocumentSenders(LableModel model, string nameservice, string serverReport,ReportJurnalMethod reportjurnal)
+        public async void DepartmentDocumentSenders(LableModel model, string serverReport,ReportJurnalMethod reportjurnal)
         {
-
-            if (reportjurnal.XmlFile.Name == "UserRule.xml")
-            {
-                var service = nameservice.Split(',');
-                ServiceController sc = new ServiceController(service[0], service[1]);
-                if (sc.Status != ServiceControllerStatus.Stopped)
+           await Task.Factory.StartNew(() =>
                 {
                     try
                     {
-                        XmlConvert xmlconverter = new XmlConvert();
-                        var reports = (UserRules) xmlconverter.DeserializationXmlToClass(reportjurnal.XmlFile.Path, typeof(UserRules));
-                        var report = (ModelPathReport)ResultPost(serverReport,reports);
-                        model.MessageReport = report.Note;
-                        model.Url = report.Url;
-                        model.Color = Brushes.Green;
-                        return;
+                        if (reportjurnal.XmlFile.Name == "UserRule.xml")
+                        {
+                            XmlConvert converter = new XmlConvert();
+                                var reports =
+                                    (UserRules) converter.DeserializationXmlToClass(reportjurnal.XmlFile.Path,
+                                        typeof(UserRules));
+                                var report = (ModelPathReport) ResultPost(serverReport, reports);
+                                model.MessageReport = report.Note;
+                                model.Url = report.Url;
+                                model.Color = Brushes.Green;
+                                return;
+                        }
+                        model.MessageReport = $"Для формирования писем возможно отправить только UserRule.xml";
+                        model.Color = Brushes.Red;
                     }
                     catch (Exception e)
                     {
                         MessageBox.Show(e.ToString());
                     }
                 }
-                model.MessageReport = $"Служба: {service[0]} на компьютере {service[1]} остановлена!";
-                model.Color = Brushes.Red;
-                return;
-            }
-            model.MessageReport = $"Для формирования писем возможно отправить только UserRule.xml";
-            model.Color = Brushes.Red;
+            );
         }
 
         /// <summary>
@@ -151,7 +138,9 @@ namespace LibaryCommandPublic.TestAutoit.PublicCommand
             {
                 resultServer = rdr.ReadToEnd();
             }
-            return json.JsonDeserializeObject<ModelPathReport>(resultServer);
+            response.Close();
+            response.Dispose();
+            return json.JsonDeserializeObjectClass<ModelPathReport>(resultServer);
         }
     }
 }

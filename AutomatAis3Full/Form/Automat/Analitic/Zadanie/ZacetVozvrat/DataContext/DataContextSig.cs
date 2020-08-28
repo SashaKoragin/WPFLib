@@ -2,7 +2,7 @@
 using AutomatAis3Full.Config;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
-using LibaryCommandPublic.TestAutoit.Analitic.TheUserTask;
+using LibraryCommandPublic.TestAutoit.Analitic.TheUserTask;
 
 namespace AutomatAis3Full.Form.Automat.Analitic.Zadanie.ZacetVozvrat.DataContext
 {

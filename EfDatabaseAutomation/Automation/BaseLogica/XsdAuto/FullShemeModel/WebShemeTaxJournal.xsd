@@ -23,6 +23,7 @@
 			<xs:element ref="ModelKbkOnKbk" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="HelpKbkAuto" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="AllJournal129" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="SignatureBoss" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxJournalAutoWebPage">
@@ -180,6 +181,16 @@
 				<xs:element ref="God"/>
 				<xs:element ref="CounDay"/>
 			</xs:sequence>
+			<xs:attribute name="NameKnd" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Декларация</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Knd" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КНД</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="LoginUser" type="xs:string">
 				<xs:annotation>
 					<xs:documentation>Табельный номер пользователя</xs:documentation>
@@ -514,6 +525,33 @@
 	<xs:element name="DateError" type="xs:dateTime" abstract="true">
 		<xs:annotation>
 			<xs:documentation>Дата выявления нарушения</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SignatureBoss">
+		<xs:annotation>
+			<xs:documentation>Подпись руководителя (Извещения, Решения)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton"/>
+				<xs:element ref="Id"/>
+				<xs:element ref="IsActual"/>
+			</xs:sequence>
+			<xs:attribute name="NameUser" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ФИО Руководителя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IsSignature" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус права подписи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IsActual" type="xs:boolean" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Актуальность подписи</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

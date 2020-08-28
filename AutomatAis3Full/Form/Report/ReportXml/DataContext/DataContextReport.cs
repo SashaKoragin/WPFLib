@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using AutomatAis3Full.Config;
-using LibaryCommandPublic.TestAutoit.PublicCommand;
+using LibraryCommandPublic.TestAutoit.PublicCommand;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.PublicModel.LableAndErrorModel;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXlsx;
@@ -37,8 +37,8 @@ namespace AutomatAis3Full.Form.Report.ReportXml.DataContext
                 DeleteReport = new DelegateCommand(() => { Report.DeleteReportFile(); });
                 OpenReport = new DelegateCommand(() => { Report.OpenReport(); });
                 OpenFile = new DelegateCommand(() => { command.ConvertXslToXmlAndOpen(Report, ReportJurnalAndFile, ConfigFile.ExcelReportFile); });
-                SendFileToServer = new DelegateCommand(() => command.SenderServerReport(LableModel,ConfigFile.ServiceAndIpComputer, ConfigFile.ServerReport,ReportJurnalAndFile));
-                SenderDepartment = new DelegateCommand(()=>command.DepartmentDocumentSenders(LableModel, ConfigFile.ServiceAndIpComputer, ConfigFile.ServerRuleUsersWordTemplate, ReportJurnalAndFile));
+                SendFileToServer = new DelegateCommand(() => command.SenderServerReport(LableModel, ConfigFile.ServerReport,ReportJurnalAndFile));
+                SenderDepartment = new DelegateCommand(()=>command.DepartmentDocumentSenders(LableModel,  ConfigFile.ServerRuleUsersWordTemplate, ReportJurnalAndFile));
                 Update = new DelegateCommand(() =>
                 {
                     ReportJurnalAndFile.AddFileXml(ConfigFile.PathInn);

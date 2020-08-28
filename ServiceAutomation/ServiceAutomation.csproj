@@ -46,9 +46,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AisPoco">
-      <HintPath>C:\Nuget\Ais3Dll\AisPoco.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -119,6 +116,10 @@
     <ProjectReference Include="..\..\..\My\Loggers\Loggers.csproj">
       <Project>{9bac233e-ed3d-493e-b7f6-f26f8091968d}</Project>
       <Name>Loggers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AisPoco\AisPoco.csproj">
+      <Project>{ae019cef-782d-41b7-942f-420f3c1b434a}</Project>
+      <Name>AisPoco</Name>
     </ProjectReference>
     <ProjectReference Include="..\EfDatabaseAutomation\EfDatabaseAutomation.csproj">
       <Project>{fdad249d-cd7d-4581-b945-90d2f9dad698}</Project>

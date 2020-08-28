@@ -284,6 +284,14 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                         (MailSheme)
                         sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
                             typeof(MailSheme)));
+                case 29:
+                    return serializeJson.JsonLibary((
+                        FullError) sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString,
+                        logic.SelectUser, typeof(FullError)));
+                case 31:
+                    return serializeJson.JsonLibary((
+                        FullError)sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString,
+                        logic.SelectUser, typeof(FullError)));
                 default:
                     return "Данная команда не определена!!!";
             }
@@ -334,13 +342,17 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
         public Stream GenerateStreamToSqlViewFile(string connectionString, LogicaSelect logic, string pathSaveReport)
         {
             var sqlConnect = new SqlConnectionType();
+            var xlsx = new ReportExcel();
             switch (logic.Id)
             {
                 case 23:
-                    var xlsx = new ReportExcel();
                     var tableTelephone = sqlConnect.ReportQbe(connectionString, logic.SelectUser);
                     xlsx.ReportSave(pathSaveReport, "Все телефоны", "Телефоны и пользователи", tableTelephone);
                     return  DownloadFile(Path.Combine(pathSaveReport, "Все телефоны.xlsx"));
+                case 30:
+                    var tableAllTechnics = sqlConnect.ReportQbe(connectionString, logic.SelectUser);
+                    xlsx.ReportSave(pathSaveReport, "Вся техника в БД", "Техника", tableAllTechnics);
+                    return DownloadFile(Path.Combine(pathSaveReport, "Вся техника в БД.xlsx"));
                 default:
                     return null;
             }

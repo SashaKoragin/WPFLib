@@ -65,6 +65,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="UIAComWrapper, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -73,9 +74,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LibaryAIS3Windows\LibaryAIS3Windows.csproj">
+    <ProjectReference Include="..\LibaryAIS3Windows\LibraryAIS3Windows.csproj">
       <Project>{92017569-2991-4B9A-BFA2-6B41CFA72B83}</Project>
-      <Name>LibaryAIS3Windows</Name>
+      <Name>LibraryAIS3Windows</Name>
     </ProjectReference>
     <ProjectReference Include="..\LibaryXMLAuto\LibaryXMLAuto.csproj">
       <Project>{a2bc3ae2-4a61-4e9e-9fa4-96a02677c79c}</Project>

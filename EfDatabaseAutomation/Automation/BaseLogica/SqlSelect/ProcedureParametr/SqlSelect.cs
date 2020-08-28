@@ -4,7 +4,9 @@ using System.Data.SqlClient;
 using System.Dynamic;
 using System.Linq;
 using System.Text;
+using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
 using EfDatabaseAutomation.Automation.SelectParametrSheme;
+using LibaryXMLAuto.ReadOrWrite;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr
@@ -94,6 +96,45 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr
                 return null;
             }
         }
+        /// <summary>
+        /// Выгрузка выписки для формирования файла выписки
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public void ResultStatement(ModelSelect model)
+        {
+            var result = Automation.Database.SqlQuery<HeadingStatement>(model.ParameterProcedureWeb.SelectUser,
+                new SqlParameter(model.ParameterProcedureWeb.ParameterProcedure.Split(',')[0], model.ParametrsSelect.IdCodeProcedure),
+                new SqlParameter(model.ParameterProcedureWeb.ParameterProcedure.Split(',')[1], string.IsNullOrWhiteSpace(model.ParametrsSelect.Inn) ? (object)DBNull.Value : model.ParametrsSelect.Inn),
+                new SqlParameter(model.ParameterProcedureWeb.ParameterProcedure.Split(',')[2], model.ParametrsSelect.RegNumber)).ToList();
+                //return result;
+        }
+        /// <summary>
+        /// Выполнение процедуры возвращающая xml файл для разбора на web UI
+        /// </summary>
+        /// <param name="model">Модель выборки</param>
+        /// <returns></returns>
+        public ModelSelect ResultSelectProcedureString<T>(ModelSelect model)
+        {
+            try
+            {
+                var xml = new XmlReadOrWrite();
+                SerializeJson serializeJson = new SerializeJson();
+                var result = Automation.Database.SqlQuery<string>(model.ParameterProcedureWeb.SelectUser,
+                new SqlParameter(model.ParameterProcedureWeb.ParameterProcedure.Split(',')[0], model.ParametrsSelect.IdCodeProcedure),
+                             new SqlParameter(model.ParameterProcedureWeb.ParameterProcedure.Split(',')[1], string.IsNullOrWhiteSpace(model.ParametrsSelect.Inn) ? (object)DBNull.Value : model.ParametrsSelect.Inn),
+                             new SqlParameter(model.ParameterProcedureWeb.ParameterProcedure.Split(',')[2], model.ParametrsSelect.RegNumber)).ToArray();
+                var resultServer = (T)xml.ReadXmlText(string.Join("", result), typeof(T));
+                model.ResultSelectProcedureWeb = serializeJson.JsonLibary(resultServer);
+                return model;
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+                return null;
+            }
+        }
+
 
         /// <summary>
         /// Выборка модели для манипуляции

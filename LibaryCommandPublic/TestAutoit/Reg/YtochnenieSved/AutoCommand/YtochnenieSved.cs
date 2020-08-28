@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Threading;
-using LibaryAIS3Windows.ButtonsClikcs;
-using LibaryAIS3Windows.ExitLogica;
+using LibraryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.ExitLogica;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
-namespace LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand
+namespace LibraryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand
 {
    public class YtochnenieSved
     {
@@ -22,7 +22,7 @@ namespace LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                 KclicerButton clickerButton = new KclicerButton();
-                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
                     while (statusButton.Iswork)
@@ -34,7 +34,7 @@ namespace LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand
                 }
                 else
                 {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                 }
             });
         }
@@ -51,7 +51,7 @@ namespace LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                 KclicerButton clickerButton = new KclicerButton();
-                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
                     clickerButton.Click18(statusButton,pathjurnalok);
@@ -59,7 +59,7 @@ namespace LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand
                 }
                 else
                 {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                 }
             });
         }

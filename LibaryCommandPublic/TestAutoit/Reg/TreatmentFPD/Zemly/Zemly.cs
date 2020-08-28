@@ -4,17 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Threading;
-using LibaryAIS3Windows.ButtonsClikcs;
-using LibaryAIS3Windows.ButtonsClikcs.SelectQbe;
-using LibaryAIS3Windows.ExitLogica;
+using LibraryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.ButtonsClikcs.SelectQbe;
+using LibraryAIS3Windows.ExitLogica;
 using LibaryXMLAutoModelXmlAuto.FpdReg;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
-using LibaryAIS3Windows.Window;
-using LibaryCommandPublic.EventQbe.Reg;
+using LibraryAIS3Windows.Window;
+using LibraryCommandPublic.EventQbe.Reg;
 using ViewModelLib.ModelTestAutoit.PublicModel.QbeSelect;
 using ViewModelLib.ModelTestAutoit.PublicModel.SelectBranch;
 
-namespace LibaryCommandPublic.TestAutoit.Reg.TreatmentFPD.Zemly
+namespace LibraryCommandPublic.TestAutoit.Reg.TreatmentFPD.Zemly
 {
    public class Zemly
     {
@@ -82,7 +82,7 @@ namespace LibaryCommandPublic.TestAutoit.Reg.TreatmentFPD.Zemly
                             }
                             else
                             {
-                                MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                                MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
                             }
                         }
@@ -95,7 +95,7 @@ namespace LibaryCommandPublic.TestAutoit.Reg.TreatmentFPD.Zemly
             }
             else
             {
-                MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status5);
+                MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status5);
             }
         }
     }

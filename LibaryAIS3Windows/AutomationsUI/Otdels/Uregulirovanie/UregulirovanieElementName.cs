@@ -1,5 +1,4 @@
-﻿
-namespace LibaryAIS3Windows.AutomationsUI.Otdels.Uregulirovanie
+﻿namespace LibraryAIS3Windows.AutomationsUI.Otdels.Uregulirovanie
 {
    public class UregulirovanieElementName
     {

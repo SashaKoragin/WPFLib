@@ -21,6 +21,8 @@
 			<xs:element ref="UlCommunication" minOccurs="0"/>
 			<xs:element ref="ObjectFace" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="CashUlFace" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="StatementUcr" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Statement" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="UlFace">
@@ -878,5 +880,82 @@
 		<xs:annotation>
 			<xs:documentation>Дата закрытия счета</xs:documentation>
 		</xs:annotation>
+	</xs:element>
+	<xs:element name="StatementUcr">
+		<xs:annotation>
+			<xs:documentation>Учередители в Выпеске Регистрации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton" minOccurs="0"/>
+				<xs:element ref="DateStart"/>
+				<xs:element ref="DateFinish"/>
+			</xs:sequence>
+			<xs:attribute name="Name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование учередителя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Priznak" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Признак</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Statement">
+		<xs:annotation>
+			<xs:documentation>Выписка организации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="HeadingStatement" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HeadingStatement">
+		<xs:annotation>
+			<xs:documentation>Категория выписки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="StatementFull" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="NameIndex" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Категория</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="StatementFull">
+		<xs:annotation>
+			<xs:documentation>Пункты категории</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="VarIndex" use="required">
+				<xs:annotation>
+					<xs:documentation>Индекс</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="NameParametr" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование параметра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ValuesStatement" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Значение параметра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
 	</xs:element>
 </xs:schema>

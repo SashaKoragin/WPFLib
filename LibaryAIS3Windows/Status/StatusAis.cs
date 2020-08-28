@@ -1,5 +1,4 @@
-﻿
-namespace LibaryAIS3Windows.Status
+﻿namespace LibraryAIS3Windows.Status
 {
     /// <summary>
     /// Константы для сообщений что бы не загромождать

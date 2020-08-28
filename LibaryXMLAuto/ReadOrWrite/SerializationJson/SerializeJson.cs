@@ -55,14 +55,23 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
             });
         }
         /// <summary>
-        /// Десереализация Json
+        /// Десереализация Json List классов
         /// </summary>
         /// <param name="result">JSON</param>
         /// <returns></returns>
-        public object JsonDeserializeObject<T>(string result)
+        public object JsonDeserializeObjectListClass<T>(string result)
         {
            return JsonConvert.DeserializeObject<List<T>>(result);
         }
 
+        /// <summary>
+        /// Десериализация Json Класс
+        /// </summary>
+        /// <param name="result">JSON</param>
+        /// <returns></returns>
+        public object JsonDeserializeObjectClass<T>(string result)
+        {
+            return JsonConvert.DeserializeObject<T>(result);
+        }
     }
 }

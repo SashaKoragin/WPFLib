@@ -1,15 +1,11 @@
 ﻿using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using Ifns51.ToAis;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.PreCheckLog;
-using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
-namespace LibaryAIS3Windows.ModelData.PreCheck
+namespace LibraryAIS3Windows.ModelData.PreCheck
 {
     public class HttpGetAndPost
     {

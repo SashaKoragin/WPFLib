@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sql="urn:schemas-microsoft-com:mapping-schema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ArrayBodyDoc" sql:is-constant="true">
+		<xs:annotation>
+			<xs:documentation>Коллекция деклараций</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DeclarationData" minOccurs="0" maxOccurs="unbounded" sql:relation="DeclarationData"/>
+				<xs:element ref="StatementData" minOccurs="0" maxOccurs="unbounded" sql:relation="StatementFull"/>
+				<xs:element ref="CashUlFace" minOccurs="0" maxOccurs="unbounded" sql:relation="CashUlFace"/>
+				<xs:element ref="CashBankAllUlFace" minOccurs="0" maxOccurs="unbounded" sql:relation="CashBankAllUlFace"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DeclarationData" sql:relation="DeclarationData">
+		<xs:annotation>
+			<xs:documentation>Декларации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" type="xs:int" use="optional" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>УН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="RegNumDecl" use="required">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер декларации</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:long"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="CodeString" use="optional">
+				<xs:annotation>
+					<xs:documentation>Описание кода</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="NameParametr" use="optional">
+				<xs:annotation>
+					<xs:documentation>Наименование параметра</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="CodeParametr" use="optional">
+				<xs:annotation>
+					<xs:documentation>Код параметра</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="DataFace" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Данные представленные лицом</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DataInspector" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Данные инспектора</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Error" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Разногласия</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>Дата записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="StatementData" sql:relation="StatementFull">
+		<xs:annotation>
+			<xs:documentation>Выписка </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IdStatementIndex" type="xs:int" use="optional" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>Индекс</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdUl" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун Юридическогоко лица</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="IdStatementHead" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун заголовка</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="VarIndex" use="required">
+				<xs:annotation>
+					<xs:documentation>№ п/п</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="NameParametr" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Наименование показателя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ValuesStatement" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Значение показателя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>Дата записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CashUlFace" sql:relation="CashUlFace">
+		<xs:annotation>
+			<xs:documentation>Счета организации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DataOpenCash" minOccurs="0" sql:datatype="smalldatetime"/>
+				<xs:element ref="DataClosedCash" minOccurs="0" sql:datatype="smalldatetime"/>
+			</xs:sequence>
+			<xs:attribute name="Id" type="xs:int" use="optional" sql:mapped="false" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Ун</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdUl" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Ун Юридическогоко лица</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="IdNum" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>УН АИС 3</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:long"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="NameFull" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Полное наименование банка</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="CashNumber" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Номер счета</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="TypeCash" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Тип счета</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:mapped="false" sql:datatype="smalldatetime"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DataOpenCash" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата открытия счета</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:dateTime"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="DataClosedCash" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата закрытия счета</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:dateTime"/>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="CashBankAllUlFace">
+		<xs:annotation>
+			<xs:documentation>Банковские Выписки по счетам</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" type="xs:int" use="optional" sql:mapped="false" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Ун</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdUl" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Ун Юридическогоко лица</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="IdNum" type="xs:string" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CodeNo" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Код налогового органа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameBank" type="xs:string" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Наименование банка</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Bik" type="xs:string" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Бик банка</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="InnBank" type="xs:string" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>ИНН Банка</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="KppBank" type="xs:string" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>КПП Банка</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NumberCash" type="xs:string" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Номер счета</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Cash" type="xs:string" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Валюта</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CashScoreStartPeriod" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Сумма остатка на начало периода, в валюте счета</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CashScoreFinishPeriod" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Сумма остатка на конец периода, в валюте счета</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateWay" use="required" sql:datatype="smalldatetime">
+				<xs:annotation>
+					<xs:documentation>Дата направления</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:dateTime"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="DatePriem" use="required" sql:datatype="smalldatetime">
+				<xs:annotation>
+					<xs:documentation>Дата получения</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:dateTime"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="DateStartPeriod" use="required" sql:datatype="smalldatetime">
+				<xs:annotation>
+					<xs:documentation>Дата начала периода банковской выписки</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:dateTime"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="DateFinishPeriod" use="required" sql:datatype="smalldatetime">
+				<xs:annotation>
+					<xs:documentation>Дата окончания периода банковской выписки</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:dateTime"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:mapped="false" sql:datatype="smalldatetime"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,5 +1,5 @@
 ﻿
-namespace LibaryAIS3Windows.ExitLogica
+namespace LibraryAIS3Windows.ExitLogica
 {
     /// <summary>
     /// Вспомогательный класс значений

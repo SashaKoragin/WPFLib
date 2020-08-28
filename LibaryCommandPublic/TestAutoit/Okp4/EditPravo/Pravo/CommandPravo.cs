@@ -2,13 +2,13 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GalaSoft.MvvmLight.Threading;
-using LibaryAIS3Windows.ButtonsClikcs;
-using LibaryAIS3Windows.ExitLogica;
-using LibaryCommandPublic.EventQbe.OKp4;
+using LibraryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.ExitLogica;
+using LibraryCommandPublic.EventQbe.OKp4;
 using LibaryXMLAutoModelXmlAuto.ModelFidZorI;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
-namespace LibaryCommandPublic.TestAutoit.Okp4.EditPravo.Pravo
+namespace LibraryCommandPublic.TestAutoit.Okp4.EditPravo.Pravo
 {
     /// <summary>
     /// Для команд ОКП 4 Земля Имущество
@@ -30,12 +30,12 @@ namespace LibaryCommandPublic.TestAutoit.Okp4.EditPravo.Pravo
             {
                 Task.Run(delegate
                 {
-                    LibaryAIS3Windows.ButtonsClikcs.SelectQbe.EventOkp.EventOkp eventqbe = new LibaryAIS3Windows.ButtonsClikcs.SelectQbe.EventOkp.EventOkp();
+                    LibraryAIS3Windows.ButtonsClikcs.SelectQbe.EventOkp.EventOkp eventqbe = new LibraryAIS3Windows.ButtonsClikcs.SelectQbe.EventOkp.EventOkp();
                     EventOkp selectevent = new EventOkp();
                     DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                     KclicerButton clickerButton = new KclicerButton();
                     Exit exit = new Exit();
-                    LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                     LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite read = new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
                     object obj = read.ReadXml(pathfilefid, typeof(FidFactZemlyOrImushestvo));
                     FidFactZemlyOrImushestvo fidmodel = (FidFactZemlyOrImushestvo)obj;
@@ -67,14 +67,14 @@ namespace LibaryCommandPublic.TestAutoit.Okp4.EditPravo.Pravo
                     }
                     else
                     {
-                        MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                         DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
                     }
                 });
             }
             else
             {
-                MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status5);
+                MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status5);
             }
         }
         

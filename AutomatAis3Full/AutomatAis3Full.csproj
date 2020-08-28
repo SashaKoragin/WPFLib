@@ -153,6 +153,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Okp5\Identification\FaceIdentification\FaceIdentificationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Orn\ConfirmationNbo\ConfirmationNbo\ConfirmationNbo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -320,6 +324,10 @@
     <Compile Include="Form\Automat\Okp4\PrintSnu\Print\UserPrintSnu.xaml.cs">
       <DependentUpon>UserPrintSnu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\Okp5\Identification\DataContext\FaceIdentificationDataContext.cs" />
+    <Compile Include="Form\Automat\Okp5\Identification\FaceIdentification\FaceIdentificationView.xaml.cs">
+      <DependentUpon>FaceIdentificationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\Orn\ConfirmationNbo\ConfirmationNbo\ConfirmationNbo.xaml.cs">
       <DependentUpon>ConfirmationNbo.xaml</DependentUpon>
     </Compile>
@@ -468,7 +476,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="XsdShemeLoad\XsdDataDeclaration.xsd">
+    <None Include="XsdShemeLoad\XsdAllBodyData.xsd">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -484,9 +492,9 @@
     <Folder Include="XmlJurnal\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LibaryCommandPublic\LibaryCommandPublic.csproj">
+    <ProjectReference Include="..\LibaryCommandPublic\LibraryCommandPublic.csproj">
       <Project>{0a0c77af-9fe5-4c32-b32e-40ab40ffeff9}</Project>
-      <Name>LibaryCommandPublic</Name>
+      <Name>LibraryCommandPublic</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewModelLib\ViewModelLib.csproj">
       <Project>{08bb509f-ead1-4666-a539-6d60f464db2f}</Project>

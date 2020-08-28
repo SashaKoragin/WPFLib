@@ -43,6 +43,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme {
         
         private CashUlFace[] cashUlFaceField;
         
+        private StatementUcr[] statementUcrField;
+        
+        private HeadingStatement[][] statementField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("UlFace")]
         public UlFace[] UlFace {
@@ -144,6 +148,28 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme {
             }
             set {
                 this.cashUlFaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("StatementUcr")]
+        public StatementUcr[] StatementUcr {
+            get {
+                return this.statementUcrField;
+            }
+            set {
+                this.statementUcrField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayItemAttribute("HeadingStatement", typeof(HeadingStatement), IsNullable=false)]
+        public HeadingStatement[][] Statement {
+            get {
+                return this.statementField;
+            }
+            set {
+                this.statementField = value;
             }
         }
     }
@@ -1576,6 +1602,183 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class StatementUcr {
+        
+        private string logicsButtonField;
+        
+        private System.Nullable<System.DateTime> dateStartField;
+        
+        private System.Nullable<System.DateTime> dateFinishField;
+        
+        private string nameField;
+        
+        private string priznakField;
+        
+        private string innField;
+        
+        public StatementUcr() {
+            this.logicsButtonField = "Button";
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DateStart {
+            get {
+                return this.dateStartField;
+            }
+            set {
+                this.dateStartField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DateFinish {
+            get {
+                return this.dateFinishField;
+            }
+            set {
+                this.dateFinishField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Priznak {
+            get {
+                return this.priznakField;
+            }
+            set {
+                this.priznakField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class HeadingStatement {
+        
+        private StatementFull[] statementFullField;
+        
+        private string nameIndexField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("StatementFull")]
+        public StatementFull[] StatementFull {
+            get {
+                return this.statementFullField;
+            }
+            set {
+                this.statementFullField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameIndex {
+            get {
+                return this.nameIndexField;
+            }
+            set {
+                this.nameIndexField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class StatementFull {
+        
+        private int varIndexField;
+        
+        private string nameParametrField;
+        
+        private string valuesStatementField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int VarIndex {
+            get {
+                return this.varIndexField;
+            }
+            set {
+                this.varIndexField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameParametr {
+            get {
+                return this.nameParametrField;
+            }
+            set {
+                this.nameParametrField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string ValuesStatement {
+            get {
+                return this.valuesStatementField;
+            }
+            set {
+                this.valuesStatementField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class Active {
         
         private string logicsButtonField;
@@ -2171,6 +2374,29 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme {
             }
             set {
                 this.periodField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class Statement {
+        
+        private HeadingStatement[] headingStatementField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("HeadingStatement")]
+        public HeadingStatement[] HeadingStatement {
+            get {
+                return this.headingStatementField;
+            }
+            set {
+                this.headingStatementField = value;
             }
         }
     }

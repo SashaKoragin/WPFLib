@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using AutomatAis3Full.Config;
-using LibaryCommandPublic.TestAutoit.Okp3.UsnSend;
+using LibraryCommandPublic.TestAutoit.Okp3.UsnSend;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 

@@ -1,12 +1,7 @@
-﻿
-namespace LibaryAIS3Windows.AutomationsUI.Otdels.PreCheck
+﻿namespace LibraryAIS3Windows.AutomationsUI.Otdels.PreCheck
 {
     public class PreCheckElementName
     {
-        /// <summary>
-        /// Дерево элементов
-        /// </summary>
-        private static string FullTree = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskpaneWorkspace\\AutomationId:ScenarioView\\AutomationId:scenarioTree\\";
         /// <summary>
         /// Подстановка условий
         /// </summary>
@@ -23,136 +18,6 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.PreCheck
         /// Подстановка условий Сведения о среднесписочной численности работников
         /// </summary>
         private static string DataAreaSvedFace = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\";
-       /// <summary>
-        /// Налоговое администрирование
-        /// </summary>
-        public static string TreeInnExpand1 = $"{FullTree}Name:Налоговое администрирование";
-        /// <summary>
-        /// Централизованный учет налогоплательщиков
-        /// </summary>
-        public static string TreeInnExpand2 = $"{FullTree}Name:Централизованный учет налогоплательщиков";
-        /// <summary>
-        /// 01. ЕГРН - российские организации
-        /// </summary>
-        public static string TreeInnExpand3 = $"{FullTree}Name:01. ЕГРН - российские организации";
-        /// <summary>
-        /// Контрольная работа (налоговые проверки)
-        /// </summary>
-        public static string TreeInnExpand4 = $"{FullTree}Name:Контрольная работа (налоговые проверки)";
-        /// <summary>
-        /// 109. Прочие документы
-        /// </summary>
-        public static string TreeInnExpand5 = $"{FullTree}Name:109. Прочие документы";
-        /// <summary>
-        /// Банковские и лицевые счета
-        /// </summary>
-        public static string TreeInnExpand6 = $"{FullTree}Name:Банковские и лицевые счета";
-        /// <summary>
-        /// 09. Картотека счетов
-        /// </summary>
-        public static string TreeInnExpand7 = $"{FullTree}Name:09. Картотека счетов";
-        /// <summary>
-        /// Анализ Банковских Документов
-        /// </summary>
-        public static string TreeInnExpand8 = $"{FullTree}Name:Анализ Банковских Документов";
-        /// <summary>
-        /// Предпроверочный анализ
-        /// </summary>
-        public static string TreeInnExpand9 = $"{FullTree}Name:Предпроверочный анализ";
-        /// <summary>
-        /// ППА-отбор
-        /// </summary>
-        public static string TreeInnExpand10 = $"{FullTree}Name:ППА-отбор";
-        /// <summary>
-        /// Мониторинг и обработка документов
-        /// </summary>
-        public static string TreeInnExpand11 = $"{FullTree}Name:101. Мониторинг и обработка документов";
-        /// <summary>
-        /// ЕГРН физические лица
-        /// </summary>
-        public static string TreeInnExpand12 = $"{FullTree}Name:02. ЕГРН - физические лица";
-        /// <summary>
-        /// Миграция НП в части КНП
-        /// </summary>
-        public static string TreeInnExpand13 = $"{FullTree}Name:124. Миграция НП в части КНП";
-        /// <summary>
-        /// Централизованная система регистрации
-        /// </summary>
-        public static string TreeInnExpand14 = $"{FullTree}Name:Централизованная система регистрации";
-        /// <summary>
-        /// Поиск
-        /// </summary>
-        public static string TreeInnExpand15 = $"{FullTree}Name:Поиск";
-        /// <summary>
-        /// 1.01. Идентификационные характеристики организации
-        /// </summary>
-        public static string TreeNoUl = $"{FullTree}Name:1.01. Идентификационные характеристики организации";
-        /// <summary>
-        /// 1.03. Сведения об учете организации в НО
-        /// </summary>
-        public static string TreeInnKey = $"{FullTree}Name:1.03. Сведения об учете организации в НО";
-        /// <summary>
-        /// 2.02. История изменений сведений об учете организации в НО
-        /// </summary>
-        public static string History = $"{FullTree}Name:2.02. История изменений сведений об учете организации в НО";
-        /// <summary>
-        /// 01. Картотека счетов РО, ИО, ИП
-        /// </summary>
-        public static string CashUl = $"{FullTree}Name:01. Картотека счетов РО, ИО, ИП";
-        /// <summary>
-        /// Сведения о среднесписочной численности работников
-        /// </summary>
-        public static string UlYerFace = $"{FullTree}Name:Сведения о среднесписочной численности работников";
-        /// <summary>
-        /// 1.12. Сведения о филиалах, представительствах, иных обособленных подразделениях
-        /// </summary>
-        public static string DataFil = $"{FullTree}Name:1.12. Сведения о филиалах, представительствах, иных обособленных подразделениях";
-        /// <summary>
-        /// 1.18. Сведения об объектах собственности российской организации – имущество
-        /// </summary>
-        public static string UlIm = $"{FullTree}Name:1.18. Сведения об объектах собственности российской организации – имущество";
-        /// <summary>
-        /// 1.19. Сведения об объектах собственности российской организации – земля
-        /// </summary>
-        public static string UlZm = $"{FullTree}Name:1.19. Сведения об объектах собственности российской организации – земля";
-        /// <summary>
-        /// 1.20. Сведения об объектах собственности российской организации – транспорт
-        /// </summary>
-        public static string UlTr = $"{FullTree}Name:1.20. Сведения об объектах собственности российской организации – транспорт";
-        /// <summary>
-        /// 7. Индивидуальные карточки налогоплательщиков
-        /// </summary>
-        public static string CardPpa = $"{FullTree}Name:7. Индивидуальные карточки налогоплательщиков";
-      
-        /// <summary>
-        /// 1.18. Сведения об объектах собственности физического лица – имущество
-        /// </summary>
-        public static string ImFl = $"{FullTree}Name:1.18. Сведения об объектах собственности физического лица – имущество";
-        /// <summary>
-        /// 1.19. Сведения об объектах собственности физического лица – земля
-        /// </summary>
-        public static string ZmFl = $"{FullTree}Name:1.19. Сведения об объектах собственности физического лица – земля";
-        /// <summary>
-        /// 1.20. Сведения об объектах собственности физического лица – транспорт
-        /// </summary>
-        public static string TrFl = $"{FullTree}Name:1.20. Сведения об объектах собственности физического лица – транспорт";
-     
-        /// <summary>
-        /// Ветка банковские справки и выписки
-        /// </summary>
-        public static string BankSpravki = $"{FullTree}Name:Банковские выписки, справки";
-        /// <summary>
-        /// Реестр деклараций НБО
-        /// </summary>
-        public static string Declaration = $"{FullTree}Name:Реестр документов НБО";
-        /// <summary>
-        /// Реестр деклараций НБО
-        /// </summary>
-        public static string DeclarationMigration = $"{FullTree}Name:1. Реестр документов НБО";
-        /// <summary>
-        /// Поиск ЮЛ Лица
-        /// </summary>
-        public static string FindUl = $"{FullTree}Name:Поиск ЮЛ";
         /// <summary>
         /// Поиск условия куда подставлять ИНН
         /// </summary>
@@ -195,17 +60,34 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.PreCheck
         /// </summary>
         public static string FiltersGrid = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorView\\AutomationId:splitContainer\\AutomationId:navigatorControl\\AutomationId:tsControlPanel\\Name:Фильтр";
         /// <summary>
+        /// Экспорт Grid
+        /// </summary>
+        public static string ExportGrid = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorView\\AutomationId:splitContainer\\AutomationId:navigatorControl\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка";
+        /// <summary>
         /// фильтр Grid Имущество
         /// </summary>
         public static string FiltersIm = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorMdiView\\AutomationId:splitContainer\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\Name:Фильтр";
         /// <summary>
-        /// фильтр Grid Картотеки счетов
+        /// Экспорт Grid Имущество
+        /// </summary>
+        public static string ExportIm = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorMdiView\\AutomationId:splitContainer\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка";
+        /// <summary>
+        /// Фильтр Grid Картотеки счетов
         /// </summary>
         public static string FiltersCash = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:ViewIRView3\\AutomationId:navigatorSc\\AutomationId:tsControlPanel\\Name:Фильтр";
         /// <summary>
-        /// фильтр Grid Сведения о среднесписычной численности
+        /// Экспорт Grid Картотеки счетов
+        /// </summary>
+        public static string ExportCash = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:ViewIRView3\\AutomationId:navigatorSc\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка";
+        /// <summary>
+        /// Фильтр Grid Сведения о среднесписычной численности
         /// </summary>
         public static string FiltersGridSvedFace = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\Name:Фильтр";
+        /// <summary>
+        /// Экспорт Grid Сведения о среднесписычной численности
+        /// </summary>
+        public static string ExportGridSvedFace = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка";
+
         /// <summary>
         /// Обновить Идентификационные характеристики организации
         /// </summary>
@@ -214,6 +96,34 @@ namespace LibaryAIS3Windows.AutomationsUI.Otdels.PreCheck
         /// Обновить
         /// </summary>
         public static string Update = "Name:DockTop\\Name:Ribbon\\Name:Сведения об учете организации в НО\\Name:Навигатор\\Name:Обновить";
+        /// <summary>
+        /// Экспортировать в Excel
+        /// </summary>
+        public static string ExportXlsx = "Name:DockTop\\Name:Ribbon\\Name:Навигатор\\Name:Экспорт";
+        /// <summary>
+        /// Колонки для Экспорта данных
+        /// </summary>
+        public static string WinExport = "Name:Экспорт данных\\AutomationId:lblColumns\\LocalizedControlType:кнопка";
+        /// <summary>
+        /// Экспортировать в Excel Меню
+        /// </summary>
+        public static string ExportMenuXlsx = "Name:Экспорт данных\\Name:DropDown\\Name:Выбрать все";
+        /// <summary>
+        /// Экспорт
+        /// </summary>
+        public static string Export = "Name:Экспорт данных\\Name:Экспорт";
+        /// <summary>
+        /// Excel
+        /// </summary>
+        public static string Xlsx = "ClassName:XLMAIN";
+        /// <summary>
+        /// Сохранить файл
+        /// </summary>
+        public static string SaveXlsx = "ClassName:XLMAIN\\Name:Microsoft Excel\\ClassName:NetUIHWNDElement\\ClassName:NetUINetUIDialog\\Name:Сохранить";       
+        /// <summary>
+        /// Проставить наименование листа
+        /// </summary>
+        public static string ExportNameList = "Name:Экспорт данных\\AutomationId:txtWorksheetName";
         /// <summary>
         /// Обновить историю
         /// </summary>

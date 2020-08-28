@@ -7,12 +7,14 @@ using EfDatabaseAutomation.Automation.SelectParametrSheme;
 using ServiceAutomation.LoginAD.XsdShemeLogin;
 using LogicsSelectAutomation = EfDatabaseAutomation.Automation.SelectParametrSheme.LogicsSelectAutomation;
 using EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost;
-using Ifns51.ToAis;
 using System.Collections.Generic;
 using System.Reflection;
+using EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
-using Ifns51.FromAis;
 using LibaryDocumentGenerator.Documents.Template;
+using Ifns51.ToAis;
+using LibaryXMLAuto.ReadOrWrite.SerializationJson;
+using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel;
 
 namespace ServiceAutomation.Service
 {
@@ -21,7 +23,7 @@ namespace ServiceAutomation.Service
         /// <summary>
         /// Параметры глобальной конфигурации 
         /// </summary>
-           private readonly ParametrConfig.ParameterConfig _parameterConfig = new ParametrConfig.ParameterConfig();
+        private readonly ParametrConfig.ParameterConfig _parameterConfig = new ParametrConfig.ParameterConfig();
 
         /// <summary>
         /// Авторизация через домен и роли
@@ -44,9 +46,10 @@ namespace ServiceAutomation.Service
         /// <returns></returns>
         public async Task<ModelSelect> GenerateSqlSelect(ModelSelect model)
         {
-           var select = new SqlSelect();
-           return await Task.Factory.StartNew(() => select.SelectSql(model));
+            var select = new SqlSelect();
+            return await Task.Factory.StartNew(() => select.SelectSql(model));
         }
+
         /// <summary>
         /// Выборка
         /// </summary>
@@ -57,6 +60,7 @@ namespace ServiceAutomation.Service
             var selectAll = new SelectAll();
             return await Task.Factory.StartNew(() => selectAll.SelectSqlAll(sqlSelect));
         }
+
         /// <summary>
         /// Динамическое создание моделей для сайта (Пред проверка)
         /// </summary>
@@ -66,13 +70,22 @@ namespace ServiceAutomation.Service
         {
             return await Task.Factory.StartNew(() =>
             {
-                model = (ModelSelect)typeof(SqlSelect).GetMethod("ParameterSelect")?.Invoke(new SqlSelect(), new object[] { model });
+                model = (ModelSelect) typeof(SqlSelect).GetMethod("ParameterSelect")
+                    ?.Invoke(new SqlSelect(), new object[] {model});
                 Assembly db = typeof(DataBaseUlSelect).Assembly;
                 if (model != null)
                 {
-                    var type = db.GetType($"EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme.{model.ParameterProcedureWeb.ModelClassFind}");
-                    return (ModelSelect)typeof(SqlSelect).GetMethod("ResultSelectProcedure")?.MakeGenericMethod(type).Invoke(new SqlSelect(), new object[] { model });
+                    var type = db.GetType(
+                        $"EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme.{model.ParameterProcedureWeb.ModelClassFind}");
+                    if (model.ParametrsSelect.Id == 12)
+                    {
+                        return (ModelSelect) typeof(SqlSelect).GetMethod("ResultSelectProcedureString")
+                            ?.MakeGenericMethod(type).Invoke(new SqlSelect(), new object[] {model});
+                    }
+                    return (ModelSelect) typeof(SqlSelect).GetMethod("ResultSelectProcedure")?.MakeGenericMethod(type)
+                        .Invoke(new SqlSelect(), new object[] {model});
                 }
+
                 return model;
             });
         }
@@ -93,6 +106,7 @@ namespace ServiceAutomation.Service
             var selectAll = new SelectAll();
             return await Task.Factory.StartNew(() => selectAll.LoadFile121(numberElement));
         }
+
         /// <summary>
         /// Метод добавление ИНН для ввода
         /// </summary>
@@ -101,8 +115,11 @@ namespace ServiceAutomation.Service
         public string AddInnToModel(string inn)
         {
             var model = new ModelGetPost();
-            return model.AddInnModel(inn);
+            var modelReturn = model.AddInnModel(inn);
+            model.Dispose();
+            return modelReturn;
         }
+
         /// <summary>
         /// Подгрудка ИНН для отработки значений
         /// </summary>
@@ -110,17 +127,22 @@ namespace ServiceAutomation.Service
         public List<SrvToLoad> LoadModelPreCheck()
         {
             var model = new ModelGetPost();
-            return model.LoadModelPreCheck();
+            var modelReturn = model.LoadModelPreCheck();
+            model.Dispose();
+            return modelReturn;
         }
+
         /// <summary>
         /// Ответ от клиента что отработал не завис если не пришел ответ значит завис клиент
         /// </summary>
         /// <param name="model">Модель ответа</param>
         /// <returns></returns>
-        public string LoadModelPreCheckModel(AisParsedData model)
+        public string LoadModelPreCheckModel(Ifns51.FromAis.AisParsedData model)
         {
             var modelLoad = new ModelGetPost();
-            return modelLoad.LoadModelPreCheck(model);
+            var modelReturn = modelLoad.LoadModelPreCheck(model);
+            modelLoad.Dispose();
+            return modelReturn;
         }
 
         /// <summary>
@@ -128,11 +150,13 @@ namespace ServiceAutomation.Service
         /// </summary>
         /// <param name="idModel">Ун модели</param>
         /// <param name="status">Статус обработки ветки</param>
-        public void CheckStatus(int idModel,string status = null)
+        public void CheckStatus(int idModel, string status = null)
         {
             var modelLoad = new ModelGetPost();
             modelLoad.CheckStatus(idModel, status);
+            modelLoad.Dispose();
         }
+
         /// <summary>
         /// Генерация докладной записки ЮЛ
         /// </summary>
@@ -146,6 +170,7 @@ namespace ServiceAutomation.Service
                 {
                     var model = new ModelGetPost();
                     var card = model.CardUi(innUl);
+                    model.Dispose();
                     if (card != null)
                     {
                         ReportNote report = new ReportNote();
@@ -155,9 +180,62 @@ namespace ServiceAutomation.Service
                 }
                 catch (Exception ex)
                 {
-                   Loggers.Log4NetLogger.Error(ex);
+                    Loggers.Log4NetLogger.Error(ex);
                 }
                 return null;
+            });
+        }
+        /// <summary>
+        /// Генерация Выписки в docx
+        /// </summary>
+        /// <param name="model">Модель для генерации выписки</param>
+        /// <returns></returns>
+        public async Task<Stream> GenerateStatement(ModelSelect model)
+        {
+            return await Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        SerializeJson serializeJson = new SerializeJson();
+                        model = (ModelSelect) typeof(SqlSelect).GetMethod("ParameterSelect")?.Invoke(new SqlSelect(), new object[] {model});
+                        Assembly db = typeof(DataBaseUlSelect).Assembly;
+                        var type = db.GetType($"EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme.{model.ParameterProcedureWeb.ModelClassFind}");
+                        model = (ModelSelect)typeof(SqlSelect).GetMethod("ResultSelectProcedureString")?.MakeGenericMethod(type).Invoke(new SqlSelect(), new object[] {model});
+                        Statement statement = (Statement)serializeJson.JsonDeserializeObjectClass<Statement>(model.ResultSelectProcedureWeb);
+                        if (statement != null)
+                        {
+                            ReportStatement reportStatement = new ReportStatement();
+                            reportStatement.CreateDocum(_parameterConfig.PathSaveTemplate, statement);
+                            return reportStatement.FileArray();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Loggers.Log4NetLogger.Error(ex);
+                    }
+                    return null;
+        });
+        }
+        /// <summary>
+        /// Изменение статуса подписывающего лица
+        /// </summary>
+        /// <param name="signatureSenderTaxJournalOkp2">Ун подписи</param>
+        /// <returns></returns>
+        public async Task<bool> ActualizationSignature(int signatureSenderTaxJournalOkp2)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    AddObjectDb taxJournalSignature = new AddObjectDb();
+                    taxJournalSignature.IsActualStatus(signatureSenderTaxJournalOkp2);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Loggers.Log4NetLogger.Error(ex);
+                }
+                return false;
             });
         }
     }

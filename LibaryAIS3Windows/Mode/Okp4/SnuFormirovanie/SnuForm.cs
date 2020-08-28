@@ -1,5 +1,5 @@
 ﻿
-namespace LibaryAIS3Windows.Mode.Okp4.SnuFormirovanie
+namespace LibraryAIS3Windows.Mode.Okp4.SnuFormirovanie
 {
     /// <summary>
     /// Данный класс сождан для хранения статических констант для ветки АИС налог 3

@@ -12,7 +12,7 @@ namespace AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket05080
         public DataContextStatementOfficeNote()
         {
             StartButton = new StatusButtonMethod();
-            var commandAuto = new LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk.AutoMessageLk();
+            var commandAuto = new LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk.AutoMessageLk();
             StartButton.Button.Command = new DelegateCommand(() => { commandAuto.AutoStatementOfficeNote(StartButton, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
         }
 

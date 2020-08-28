@@ -7,11 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GalaSoft.MvvmLight.Threading;
-using LibaryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.ButtonsClikcs;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 using ViewModelLib.ModelTestAutoit.PublicModel.DataPickerItRule;
 
-namespace LibaryCommandPublic.TestAutoit.It.Rule
+namespace LibraryCommandPublic.TestAutoit.It.Rule
 {
    public class ItRuleParse
     {
@@ -31,7 +31,7 @@ namespace LibaryCommandPublic.TestAutoit.It.Rule
                   File.Delete(pathjurnalok);
                   DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                   KclicerButton clickerButton = new KclicerButton();
-                  LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                  LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                   if (ais3.WinexistsAis3() == 1)
                   {
                     clickerButton.Click15(statusButton,pathjurnalok, dataPickerSettings);
@@ -39,7 +39,7 @@ namespace LibaryCommandPublic.TestAutoit.It.Rule
                   }
                   else
                   {
-                      MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                      MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                   }
               });
             }

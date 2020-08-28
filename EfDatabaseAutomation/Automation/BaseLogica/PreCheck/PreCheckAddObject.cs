@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
@@ -123,20 +122,19 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             }
             if (branchFace.IdUl != 0)
             {
-                if (!(from branchUlFaces in Automation.BranchUlFaces where branchUlFaces.IdNum == branchFace.IdNum select new { BranchUlFaces = branchUlFaces }).Any())
+                if (!(from branchUlFaces in Automation.BranchUlFaces where branchUlFaces.IdNum == branchFace.IdNum
+                      && branchUlFaces.RegionAddress == branchFace.RegionAddress
+                      && branchUlFaces.DistrictAddress == branchFace.DistrictAddress
+                      && branchUlFaces.TownAddress == branchFace.TownAddress
+                      && branchUlFaces.LocalityAddress == branchFace.LocalityAddress
+                      && branchUlFaces.StreetAddress == branchFace.StreetAddress
+                      && branchUlFaces.HouseAddress == branchFace.HouseAddress
+                      && branchUlFaces.BodyAddress == branchFace.BodyAddress
+                      && branchUlFaces.IdUl == branchFace.IdUl
+                      select new { BranchUlFaces = branchUlFaces }).Any())
                 {
                    Automation.BranchUlFaces.Add(branchFace);
                    Automation.SaveChanges();
-                }
-                else
-                {
-                    using (var context = new Base.Automation())
-                    {
-                        var select = (from branchUlFaces in context.BranchUlFaces where branchUlFaces.IdNum == branchFace.IdNum select new { BranchUlFaces = branchUlFaces }).FirstOrDefault();
-                        branchFace.Id = select.BranchUlFaces.Id;
-                        Automation.Entry(branchFace).State = EntityState.Modified;
-                        Automation.SaveChanges();
-                    }
                 }
             }
             //Отсутствует лицо сохранение не возможно
@@ -262,33 +260,30 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         /// <summary>
         /// Добавление Налоговое администрирование\Банковские и лицевые счета\09. Картотека счетов\01. Картотека счетов РО, ИО, ИП
         /// </summary>
-        /// <param name="cashUiFace">Картотека счетов</param>
+        /// <param name="cashFull">Картотека счетов</param>
         /// <param name="innUl">ИНН</param>
-        public void AddCashUlFace(CashUlFace cashUiFace, string innUl)
+        public void AddCashUlFace(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc cashFull, string innUl)
         {
             //ИНН Есть ли лицо
+            int idUl;
             using (var context = new Base.Automation())
             {
-                var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
-                cashUiFace.IdUl = idUl;
+                idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
+                cashFull.CashUlFace.ToList().ForEach(cash=>cash.IdUl = idUl);
             }
-            if (cashUiFace.IdUl != 0)
+            if (cashFull.CashUlFace[0].IdUl != 0)
             {
-                if (!(from cashUlFaces in Automation.CashUlFaces where cashUlFaces.IdNum == cashUiFace.IdNum select new { CashUlFace = cashUlFaces }).Any())
+                //Удаляем старые записи по выписке заполняем новыми
+                using (var contextDelete = new Base.Automation())
                 {
-                   Automation.CashUlFaces.Add(cashUiFace);
-                   Automation.SaveChanges();
+                    contextDelete.CashUlFaces.RemoveRange(contextDelete.CashUlFaces.Where(x => x.IdUl == idUl));
+                    contextDelete.SaveChanges();
                 }
-                else
-                {
-                    using (var context = new Base.Automation())
-                    {
-                        var select = (from cashUlFaces in context.CashUlFaces where cashUlFaces.IdNum == cashUiFace.IdNum select new { CashUlFace = cashUlFaces }).FirstOrDefault();
-                        cashUiFace.Id = select.CashUlFace.Id;
-                        Automation.Entry(cashUiFace).State = EntityState.Modified;
-                        Automation.SaveChanges();
-                    }
-                }
+                XmlReadOrWrite xml = new XmlReadOrWrite();
+                var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+                var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}CashData.xml";
+                xml.CreateXmlFile(xmlFile, cashFull, typeof(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc));
+                BulkInsertIntoDb(xsdFile, xmlFile);
             }
             //Отсутствует лицо сохранение не возможно
         }
@@ -322,24 +317,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                     }
                 }
             }
-            var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 10);
-            Automation.Database.SqlQuery<string>(logicModel.SelectUser, new SqlParameter(logicModel.SelectedParametr.Split(',')[0], innUl)).FirstOrDefault();
             //Отсутствует лицо сохранение не возможно
         }
-        /// <summary>
-        /// Проверка на существование такого счета в БД
-        /// </summary>
-        /// <param name="idNum">Регистрационный номер счета</param>
-        /// <returns></returns>
-        public bool IsExistsIdCash(long idNum)
-        {
-            if ((from cashUlFaces in Automation.CashUlFaces where cashUlFaces.IdNum == idNum select new { CashUlFaces = cashUlFaces }).Any())
-            {
-                return true;
-            }
-            return false;
-        }
-
         /// <summary>
         /// Проверка на содержание в БД номера декларации что бы не отбирать
         /// </summary>
@@ -360,7 +339,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         /// <param name="declarationUl">Основа декларации</param>
         /// <param name="declarationData">Массив строк декларации</param>
         /// <param name="innUl">ИНН</param>
-        public void AddDeclarationModel(DeclarationUl declarationUl, XsdShemeSqlLoad.LoadDeclarationData.ArrayOfDeclarationData declarationData,  string innUl)
+        public void AddDeclarationModel(DeclarationUl declarationUl, XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc declarationData,  string innUl)
         {
             using (var context = new Base.Automation())
             {
@@ -374,9 +353,9 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                       select new { DeclarationUls = declarationUls }).Any())
                 {
                     XmlReadOrWrite xml = new XmlReadOrWrite();
-                    var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdDataDeclaration.xsd";
+                    var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
                     var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}DeclarationData.xml";
-                    xml.CreateXmlFile(xmlFile, declarationData, typeof(XsdShemeSqlLoad.LoadDeclarationData.ArrayOfDeclarationData));
+                    xml.CreateXmlFile(xmlFile, declarationData, typeof(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc));
                     Automation.DeclarationUls.Add(declarationUl);
                     try
                     {
@@ -405,44 +384,28 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         /// </summary>
         /// <param name="cashBankAllUlFace">Выписки</param>
         /// <param name="innUl">ИНН ЮЛ</param>
-        public void AddCashBankAllUlFace(CashBankAllUlFace cashBankAllUlFace, string innUl)
+        public void AddCashBankAllUlFace(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc cashBankAllUlFace, string innUl)
         {
+            //ИНН Есть ли лицо
+            int idUl;
             using (var context = new Base.Automation())
             {
-                var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
-                cashBankAllUlFace.IdUl = idUl;
+                idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
+                cashBankAllUlFace.CashBankAllUlFace.ToList().ForEach(cashBank=>cashBank.IdUl = idUl);
             }
-            if (cashBankAllUlFace.IdUl != 0)
+            if (cashBankAllUlFace.CashBankAllUlFace[0].IdUl != 0)
             {
-                if (!(from сashBankAllUlFaces in Automation.CashBankAllUlFaces where сashBankAllUlFaces.IdUl == cashBankAllUlFace.IdUl
-                      && сashBankAllUlFaces.NumberCash == cashBankAllUlFace.NumberCash
-                      && сashBankAllUlFaces.IdNum == cashBankAllUlFace.IdNum
-                      && сashBankAllUlFaces.DateFinishPeriod == cashBankAllUlFace.DateFinishPeriod
-                      && сashBankAllUlFaces.DateStartPeriod == cashBankAllUlFace.DateStartPeriod
-                      && сashBankAllUlFaces.CashScoreStartPeriod == cashBankAllUlFace.CashScoreStartPeriod
-                      && сashBankAllUlFaces.CashScoreFinishPeriod == cashBankAllUlFace.CashScoreFinishPeriod
-                      select new { CashBankAllUlFace = сashBankAllUlFaces }).Any())
+                //Удаляем старые записи по выписке заполняем новыми
+                using (var contextDelete = new Base.Automation())
                 {
-                    Automation.CashBankAllUlFaces.Add(cashBankAllUlFace);
-                    Automation.SaveChanges();
+                    contextDelete.CashBankAllUlFaces.RemoveRange(contextDelete.CashBankAllUlFaces.Where(x => x.IdUl == idUl));
+                    contextDelete.SaveChanges();
                 }
-                else
-                {
-                    using (var context = new Base.Automation())
-                    {
-                        var select = (from сashBankAllUlFaces in context.CashBankAllUlFaces where сashBankAllUlFaces.IdUl == cashBankAllUlFace.IdUl
-                                        && сashBankAllUlFaces.NumberCash == cashBankAllUlFace.NumberCash
-                                        && сashBankAllUlFaces.IdNum == cashBankAllUlFace.IdNum
-                                        && сashBankAllUlFaces.DateFinishPeriod == cashBankAllUlFace.DateFinishPeriod
-                                        && сashBankAllUlFaces.DateStartPeriod == cashBankAllUlFace.DateStartPeriod
-                                        && сashBankAllUlFaces.CashScoreStartPeriod == cashBankAllUlFace.CashScoreStartPeriod
-                                        && сashBankAllUlFaces.CashScoreFinishPeriod == cashBankAllUlFace.CashScoreFinishPeriod
-                                      select new { CashBankAllUlFace = сashBankAllUlFaces }).FirstOrDefault();
-                        cashBankAllUlFace.Id = select.CashBankAllUlFace.Id;
-                        Automation.Entry(cashBankAllUlFace).State = EntityState.Modified;
-                        Automation.SaveChanges();
-                    }
-                }
+                XmlReadOrWrite xml = new XmlReadOrWrite();
+                var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+                var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}CashDataBank.xml";
+                xml.CreateXmlFile(xmlFile, cashBankAllUlFace, typeof(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc));
+                BulkInsertIntoDb(xsdFile, xmlFile);
             }
             //Отсутствует лицо сохранение не возможно
         }
@@ -469,22 +432,36 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         /// </summary>
         /// <param name="statementFull">Body Statement</param>
         /// <param name="innUl">ИНН</param>
-        public void AddStatementFull(List<StatementFull> statementFull, string innUl)
+        public void AddStatementFull(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc statementFull, string innUl)
         {
             //ИНН Есть ли лицо
+            int idUl;
             using (var context = new Base.Automation())
             {
-                var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
-                statementFull.ForEach(state=>state.IdUl= idUl);
+                idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
+                statementFull.StatementData.ToList().ForEach(state=>state.IdUl= idUl);
             }
-            if (statementFull[0].IdUl != 0)
+            if (statementFull.StatementData[0].IdUl != 0)
             {
-                //XmlReadOrWrite xml = new XmlReadOrWrite();
-                //var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdDataDeclaration.xsd";
-                //var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}DeclarationData.xml";
-                //xml.CreateXmlFile(xmlFile, declarationData, typeof(XsdShemeSqlLoad.LoadDeclarationData.ArrayOfDeclarationData));
-                //BulkInsertIntoDb(xsdFile, xmlFile);
+                //Удаляем старые записи по выписке заполняем новыми
+                using (var contextDelete = new Base.Automation())
+                {
+                    contextDelete.StatementFulls.RemoveRange(contextDelete.StatementFulls.Where(x => x.IdUl == idUl));
+                    contextDelete.SaveChanges();
+                }
+                    XmlReadOrWrite xml = new XmlReadOrWrite();
+                    var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+                    var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}DeclarationData.xml";
+                    xml.CreateXmlFile(xmlFile, statementFull, typeof(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc));
+                    BulkInsertIntoDb(xsdFile, xmlFile);
             }
+            //Процедура вытягивания учредителей и Руководителей Цель Выписки и Карточки организации
+            var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 10);
+            if (logicModel != null)
+                using (var context = new Base.Automation())
+                {
+                    var resultDb = context.Database.SqlQuery<string>(logicModel.SelectUser, new SqlParameter(logicModel.SelectedParametr.Split(',')[0], innUl)).FirstOrDefault();
+                }
         }
 
 

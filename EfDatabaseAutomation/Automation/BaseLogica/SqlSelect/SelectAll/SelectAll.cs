@@ -8,6 +8,7 @@ using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
 using EfDatabaseAutomation.Automation.Base;
 using ModelKbkOnKbk = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.ModelKbkOnKbk;
 using HelpKbkAuto = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.HelpKbkAuto;
+using SignatureBoss = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.SignatureBoss;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
 {
@@ -65,6 +66,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
                 case 16:
                     result = Automation.Database.SqlQuery<XsdAuto.FullShemeModel.AllJournal129>(sqlSelect.SelectUser).ToArray();
                     webPage.AllJournal129 = (XsdAuto.FullShemeModel.AllJournal129[])result;
+                    break;
+                case 17:
+                    result = Automation.Database.SqlQuery<SignatureBoss>(sqlSelect.SelectUser).ToArray();
+                    webPage.SignatureBoss = (SignatureBoss[]) result;
                     break;
                 default:
                     return "Данная команда не определена!!!";
@@ -129,6 +134,14 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
         public KbkPayment SelectKbkGroup(string kbk)
         {   
             return Automation.KbkPayments.FirstOrDefault(x => x.Kbk == kbk);
+        }
+        /// <summary>
+        /// Подписант документов для ОКП 2
+        /// </summary>
+        /// <returns></returns>
+        public string SelectSenderJournal()
+        {
+            return Automation.SenderTaxJournalOkp2.First(sender => sender.IsActual == true).NameUser;
         }
 
         /// <summary>

@@ -8,7 +8,7 @@ namespace AutomatAis3Full.Form.Automat.Registration.Journal.ReceivedDocument.Dat
     {
         public StatusButtonMethod StartButton { get; }
 
-        public DataContextReceivedDocuments(LibaryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand.YtochnenieSved ytochnenieSved)
+        public DataContextReceivedDocuments(LibraryCommandPublic.TestAutoit.Reg.YtochnenieSved.AutoCommand.YtochnenieSved ytochnenieSved)
         {
             StartButton = new StatusButtonMethod();
             StartButton.Button.Command = new DelegateCommand(() => { ytochnenieSved.JurnalReceivedDocument(StartButton, ConfigFile.FileJurnalOk); });

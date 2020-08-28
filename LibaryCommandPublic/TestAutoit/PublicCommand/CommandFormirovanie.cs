@@ -8,7 +8,7 @@ using ViewModelLib.ModelTestAutoit.ModelFormirovanie.ShemeXsd;
 using ViewModelLib.ModelTestAutoit.ModelFormirovanie.StackPanelModel.ShemeSnuOneForm;
 using ViewModelLib.ModelTestAutoit.ModelFormirovanie.TextBoxModel;
 
-namespace LibaryCommandPublic.TestAutoit.PublicCommand
+namespace LibraryCommandPublic.TestAutoit.PublicCommand
 {
    /// <summary>
    /// Библиотека для команд связана с библиотекой AddModelProject

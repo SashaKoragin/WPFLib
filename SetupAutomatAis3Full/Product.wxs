@@ -4,7 +4,8 @@
      xmlns:net="http://schemas.microsoft.com/wix/NetFxExtension">
   <?define AutomatAis3Full_TargetDir=$(var.AutomatAis3Full.TargetDir)?>
   <?define CurrentVersion="!(bind.fileVersion.AutomatAis3Full.exe)"?>
-	<Product Id="*" Name="AutomatAis3Full $(var.CurrentVersion)" Codepage="1251" Language="1049"  Version="$(var.CurrentVersion)" Manufacturer="AutomatAis3Full" UpgradeCode="b1045be5-b9a0-4aeb-8793-dabc3e5132b4">
+	<Product Id="*" Name="AutomatAis3Full $(var.CurrentVersion)" Codepage="1251" Language="1049"  Version="$(var.CurrentVersion)" Manufacturer="AutomatAis3Full"
+           UpgradeCode="b1045be5-b9a0-4aeb-8793-dabc3e5132b4">
 		<Package InstallerVersion="405" Compressed="yes" InstallScope="perMachine" />
 
     
@@ -30,6 +31,10 @@
     
         <!--Диалоговые окна по ссылкам UI-->
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    
+    <!--Custom Folder User Download-->
+    <SetProperty Id="USER" Value="C:\Users\[LogonUser]\Downloads\" Before="FileCost" Sequence="ui"></SetProperty>
+    
     <UIRef Id="WixUI_InstallAutomatAis3" />
       
 		<Feature Id="ProductFeature" Title="AutomatAis3Full" Level="1">
@@ -51,13 +56,16 @@
       <ComponentRef Id="Helpers"/>
       <ComponentRef Id="x64pdfium.dll"/>
       <ComponentRef Id="x86pdfium.dll"/>
-      <ComponentRef Id="XsdDataDeclaration.xsd"/>
+      <ComponentRef Id="XsdAllBodyData.xsd"/>
 		</Feature>
 
     <!--<InstallExecuteSequence>
-      <Custom Action="Register" After='InstallFiles'/>
+      <Custom Action="Register" After='InstallInitialize'/>
+
     </InstallExecuteSequence>-->
 	</Product>
+
+
 
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
@@ -222,7 +230,6 @@
 	    <Component Id="AutomatAis3Full.exe.config" Guid="2efdc2eb-9e01-49a6-8204-b7f99614a513" > 
 	      <File Id="AutomatAis3Full.exe.config" Name="AutomatAis3Full.exe.config" Source="$(var.AutomatAis3Full_TargetDir)AutomatAis3Full.exe.config" KeyPath="yes" Vital="yes"/>
         <util:XmlFile Id="AutomatAis3FullSet1" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='Ifns'[\]]//@value" Value="[IFNS]" SelectionLanguage="XPath" Sequence="1" />
-        <util:XmlFile Id="AutomatAis3FullSet2" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServiceAndIpComputer'[\]]//@value" Value="ServiceTestIfns,[SERVICE]" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSet4" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServerReport'[\]]//@value" Value="http://[SERVICE]:8181/ServiceRest/MigrationError" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSet5" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServerRuleUsersWordTemplate'[\]]//@value" Value="http://[SERVICE]:8181/ServiceRest/GenerateTemplateRule" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSet3" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathPdfTemp'[\]]//@value" Value="[TEMPFOLDER]" SelectionLanguage="XPath" Sequence="1" />
@@ -245,7 +252,7 @@
         <util:XmlFile Id="AutomatAis3FullSetExcelReportFile" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ExcelReportFile'[\]]//@value" Value="[INSTALLFOLDER]ExcelReport\" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetPathPdfWork" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathPdfWork'[\]]//@value" Value="[INSTALLFOLDER]PdfReport\" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetServiceGetOrPost" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServiceGetOrPost'[\]]//@value" Value="http://[SERVICE]:8050/ServiceAutomation/LoadModelPreCheck" SelectionLanguage="XPath" Sequence="1" />
-        <util:XmlFile Id="AutomatAis3FullSetBankSvedSave" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='BankSvedSave'[\]]//@value" Value="[BANKSVEDSAVE]" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="AutomatAis3FullSetBankSvedSave" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='BankSvedSave'[\]]//@value" Value="[USER]" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="DatabaseAutomationConnect" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//connectionStrings//add[\[]@name='DatabaseAutomation'[\]]//@connectionString" Value="Data Source=[SERVER];Initial Catalog=[DB];Integrated Security=True;MultipleActiveResultSets=True" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="BulkCopyXmlAutomationConnect" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//connectionStrings//add[\[]@name='BulkCopyXml'[\]]//@connectionString" Value="provider=SQLOLEDB;data source=[SERVER];database=[DB];integrated security=SSPI" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetPathXsdScheme" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathXsdScheme'[\]]//@value" Value="[INSTALLFOLDER]XsdShemeLoad\" SelectionLanguage="XPath" Sequence="1" />
@@ -260,8 +267,8 @@
 	    <Component Id="ViewModelLib.dll" Guid="e6dcb71c-90b7-4576-95f3-875b701dd36e">
 	      <File Id="ViewModelLib.dll" Name="ViewModelLib.dll" Source="$(var.AutomatAis3Full_TargetDir)ViewModelLib.dll" />
 	    </Component>
-	    <Component Id="LibaryCommandPublic.dll" Guid="db4b5693-3aa3-41fd-a9ce-3a6be5b13d9c">
-	      <File Id="LibaryCommandPublic.dll" Name="LibaryCommandPublic.dll" Source="$(var.AutomatAis3Full_TargetDir)LibaryCommandPublic.dll" />
+	    <Component Id="LibraryCommandPublic.dll" Guid="db4b5693-3aa3-41fd-a9ce-3a6be5b13d9c">
+	      <File Id="LibraryCommandPublic.dll" Name="LibraryCommandPublic.dll" Source="$(var.AutomatAis3Full_TargetDir)LibraryCommandPublic.dll" />
 	    </Component>
 	    <Component Id="Prism.dll" Guid="5eab3abe-4eb5-47a3-8d2e-331367bf21a5">
 	      <File Id="Prism.dll" Name="Prism.dll" Source="$(var.AutomatAis3Full_TargetDir)Prism.dll" />
@@ -287,8 +294,8 @@
 	    <Component Id="FastMember.dll" Guid="36a8ddd4-3127-49c9-a7d7-86bc7efee195">
 	      <File Id="FastMember.dll" Name="FastMember.dll" Source="$(var.AutomatAis3Full_TargetDir)FastMember.dll" />
 	    </Component>
-	    <Component Id="LibaryAIS3Windows.dll" Guid="02370789-664b-410f-8d64-dfabac31262f">
-	      <File Id="LibaryAIS3Windows.dll" Name="LibaryAIS3Windows.dll" Source="$(var.AutomatAis3Full_TargetDir)LibaryAIS3Windows.dll" />
+	    <Component Id="LibraryAIS3Windows.dll" Guid="02370789-664b-410f-8d64-dfabac31262f">
+	      <File Id="LibraryAIS3Windows.dll" Name="LibraryAIS3Windows.dll" Source="$(var.AutomatAis3Full_TargetDir)LibraryAIS3Windows.dll" />
 	    </Component>
 	    <Component Id="AutoItX3.Assembly.dll" Guid="dc59767a-55a0-40c5-acc5-19c5b2ee05e4">
 	      <File Id="AutoItX3.Assembly.dll" Name="AutoItX3.Assembly.dll" Source="$(var.AutomatAis3Full_TargetDir)AutoItX3.Assembly.dll" />
@@ -329,11 +336,17 @@
       <Component Id="PdfiumViewer.dll" Guid="7A76CAA9-7257-4BC4-9F3E-92694CD5ABC6">
         <File Id="PdfiumViewer.dll" Name="PdfiumViewer.dll" Source="$(var.AutomatAis3Full_TargetDir)PdfiumViewer.dll" />
       </Component>
+      <Component Id="Net.SourceForge.Koogra.dll" Guid="B9623D6D-955C-4C19-9AD6-F48C042EE085">
+        <File Id="Net.SourceForge.Koogra.dll" Name="Net.SourceForge.Koogra.dll" Source="$(var.AutomatAis3Full_TargetDir)Net.SourceForge.Koogra.dll" />
+      </Component>
+      <Component Id="Ionic.Utils.Zip.dll" Guid="F422B9C3-C3C8-4C34-ADEB-5FC616EC951B">
+        <File Id="Ionic.Utils.Zip.dll" Name="Ionic.Utils.Zip.dll" Source="$(var.AutomatAis3Full_TargetDir)Ionic.Utils.Zip.dll" />
+      </Component>
 
 
     </ComponentGroup>
-    <Component Id="XsdDataDeclaration.xsd" Guid="143E7EF5-8794-445B-B41A-0EEF062C006D" Directory="XsdShemeLoad">
-      <File Id="XsdDataDeclaration.xsd" Name="XsdDataDeclaration.xsd" Source="$(var.AutomatAis3Full_TargetDir)XsdShemeLoad\XsdDataDeclaration.xsd" />
+    <Component Id="XsdAllBodyData.xsd" Guid="143E7EF5-8794-445B-B41A-0EEF062C006D" Directory="XsdShemeLoad">
+      <File Id="XsdAllBodyData.xsd" Name="XsdAllBodyData.xsd" Source="$(var.AutomatAis3Full_TargetDir)XsdShemeLoad\XsdAllBodyData.xsd" />
     </Component>
     <Component Id="Helpers" Guid="2ABEDCD4-5B6E-44F6-B6D6-18C41026CD68" Directory="Help">
         <File Id="AutomateAis3Full.pdf" Name="AutomateAis3Full.pdf" Source="$(var.AutomatAis3Full_TargetDir)Help\AutomateAis3Full.pdf"/>

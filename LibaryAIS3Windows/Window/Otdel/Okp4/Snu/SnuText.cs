@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibaryAIS3Windows.Window.Otdel.Okp4.Snu
+﻿namespace LibraryAIS3Windows.Window.Otdel.Okp4.Snu
 {
    internal class SnuText
     {

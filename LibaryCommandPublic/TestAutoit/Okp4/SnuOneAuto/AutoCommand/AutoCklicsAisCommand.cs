@@ -3,9 +3,9 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using LibaryAIS3Windows.Window;
-using LibaryAIS3Windows.ButtonsClikcs;
-using LibaryAIS3Windows.ExitLogica;
+using LibraryAIS3Windows.Window;
+using LibraryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.ExitLogica;
 using LibaryXMLAutoModelXmlAuto.ModelSnuOne;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 using System.Threading;
@@ -13,7 +13,7 @@ using GalaSoft.MvvmLight.Threading;
 using LibaryXMLAutoModelXmlAuto.FullInnCount;
 using ViewModelLib.ModelTestAutoit.PublicModel.DatePicker;
 
-namespace LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
+namespace LibraryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
 {
    public class AutoCklicsAisCommand
     {
@@ -63,14 +63,14 @@ namespace LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
                     }
                     else
                     {
-                        MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                         DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
                     }
                 });
             }
             else
             {
-                MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status5);
+                MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status5);
             }
         }
 
@@ -119,14 +119,14 @@ namespace LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
                     }
                     else
                     {
-                        MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                         DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
                     }
                 });
             }
             else
             {
-                MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status5);
+                MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status5);
             }
         }
 
@@ -188,20 +188,20 @@ namespace LibaryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
                                 }
                                 else
                                 {
-                                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                                     DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
                                 }
                             }
                             else
                             {
-                                MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status7);
+                                MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status7);
                             }
                         });
 
                     }
                     else
                     {
-                        MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status5);
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status5);
                     }
                 }
 

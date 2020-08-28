@@ -13,7 +13,7 @@ namespace AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.SigningDec
         public DataContextSigningDecisionApplication()
         {
             StartButton = new StatusButtonMethod();
-            var commandAuto = new LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk.AutoMessageLk();
+            var commandAuto = new LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk.AutoMessageLk();
             StartButton.Button.Command = new DelegateCommand(() => { commandAuto.SigningDecisionApplication(StartButton); });
         }
 

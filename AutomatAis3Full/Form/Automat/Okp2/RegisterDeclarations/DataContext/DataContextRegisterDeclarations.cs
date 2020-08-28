@@ -17,7 +17,7 @@ namespace AutomatAis3Full.Form.Automat.Okp2.RegisterDeclarations.DataContext
         public DataContextRegisterDeclarations()
         {
             DatePicker = new DatePickerAdd();
-            var command = new LibaryCommandPublic.TestAutoit.Okp2.RegisterDeclarations();
+            var command = new LibraryCommandPublic.TestAutoit.Okp2.RegisterDeclarations();
             StartButton = new StatusButtonMethod();
             StartButton.Button.Command = new DelegateCommand(() => { command.StartRegisterDeclarations(StartButton, ConfigFile.PathPdfTemp, DatePicker); });
         }

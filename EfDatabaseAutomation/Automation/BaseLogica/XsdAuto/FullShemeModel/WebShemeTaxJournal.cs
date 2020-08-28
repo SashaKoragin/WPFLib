@@ -37,6 +37,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private AllJournal129[] allJournal129Field;
         
+        private SignatureBoss[] signatureBossField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxJournalAutoWebPage")]
         public TaxJournalAutoWebPage[] TaxJournalAutoWebPage {
@@ -111,6 +113,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.allJournal129Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("SignatureBoss")]
+        public SignatureBoss[] SignatureBoss {
+            get {
+                return this.signatureBossField;
+            }
+            set {
+                this.signatureBossField = value;
             }
         }
     }
@@ -388,6 +401,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private System.Nullable<int> counDayField;
         
+        private string nameKndField;
+        
+        private string kndField;
+        
         private string loginUserField;
         
         private string fidField;
@@ -567,6 +584,28 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.counDayField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameKnd {
+            get {
+                return this.nameKndField;
+            }
+            set {
+                this.nameKndField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Knd {
+            get {
+                return this.kndField;
+            }
+            set {
+                this.kndField = value;
             }
         }
         
@@ -1311,6 +1350,84 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.messageInfoField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class SignatureBoss {
+        
+        private string logicsButtonField;
+        
+        private System.Nullable<int> idField;
+        
+        private System.Nullable<bool> isActualField;
+        
+        private string nameUserField;
+        
+        private string isSignatureField;
+        
+        public SignatureBoss() {
+            this.logicsButtonField = "Button";
+        }
+        
+        /// <remarks/>
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> IsActual {
+            get {
+                return this.isActualField;
+            }
+            set {
+                this.isActualField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameUser {
+            get {
+                return this.nameUserField;
+            }
+            set {
+                this.nameUserField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string IsSignature {
+            get {
+                return this.isSignatureField;
+            }
+            set {
+                this.isSignatureField = value;
             }
         }
     }

@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoIt;
-using LibaryAIS3Windows.ButtonsClikcs;
-using LibaryAIS3Windows.Window;
+using LibraryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.Window;
 
-namespace LibaryAIS3Windows.QbeAis3.RaschetBudg.Vedomost1
+namespace LibraryAIS3Windows.QbeAis3.RaschetBudg.Vedomost1
 {
    public class QbeVedomost1
     {

@@ -1,12 +1,12 @@
 ﻿using AutoIt;
 using EfDatabaseAutomation.Automation.Base;
-using LibaryAIS3Windows.AutomationsUI.LibaryAutomations;
-using LibaryAIS3Windows.AutomationsUI.Otdels.PublicJournal129And121;
-using LibaryAIS3Windows.ButtonsClikcs;
-using LibaryAIS3Windows.Window;
+using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
+using LibraryAIS3Windows.AutomationsUI.Otdels.PublicJournal129And121;
+using LibraryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.Window;
 using System.IO;
 
-namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
+namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
 {
    public class Okp2GlobalFunction
     {
@@ -26,11 +26,11 @@ namespace LibaryAIS3Windows.ButtonFullFunction.Okp2Function
         /// Автоматизация глобального блока надо добавить сохранение
         /// </summary>
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
-        public void SignAndSendDoc(LibaryAutomations libraryAutomation)
+        public void SignAndSendDoc(LibraryAutomations libraryAutomation)
         {
             AutoItX.WinWait(Journal129AndJournal121.ViewName);
             AutoItX.WinActivate(Journal129AndJournal121.ViewName);
-            LibaryAutomations libraryAutomationSign = new LibaryAutomations(Journal129AndJournal121.ViewName);
+            LibraryAutomations libraryAutomationSign = new LibraryAutomations(Journal129AndJournal121.ViewName);
             while (true)
             {
                 if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewPrint, null, true) != null)

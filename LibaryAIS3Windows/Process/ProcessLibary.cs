@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoIt;
+﻿using AutoIt;
 
-namespace LibaryAIS3Windows.Process
+namespace LibraryAIS3Windows.Process
 {
    public class ProcessLibary
    {

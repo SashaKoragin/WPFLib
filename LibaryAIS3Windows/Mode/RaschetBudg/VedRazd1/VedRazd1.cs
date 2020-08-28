@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibaryAIS3Windows.Mode.RaschetBudg.VedRazd1
+﻿namespace LibraryAIS3Windows.Mode.RaschetBudg.VedRazd1
 {
    public class VedRazd1
     {

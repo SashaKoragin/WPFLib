@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibaryCommandPublic.EventQbe.OKp4
+namespace LibraryCommandPublic.EventQbe.OKp4
 {
    public class EventOkp
     {
@@ -12,7 +12,7 @@ namespace LibaryCommandPublic.EventQbe.OKp4
         /// Подписываемся на событие проставить галочку
         /// </summary>
         /// <param name="eventOkp">Класс с событием</param>
-        public void AddEvent(LibaryAIS3Windows.ButtonsClikcs.SelectQbe.EventOkp.EventOkp eventOkp)
+        public void AddEvent(LibraryAIS3Windows.ButtonsClikcs.SelectQbe.EventOkp.EventOkp eventOkp)
         {
             eventOkp.Check += eventOkp.Checking;
             eventOkp.InvokeEvent();
@@ -21,7 +21,7 @@ namespace LibaryCommandPublic.EventQbe.OKp4
         /// Отписка от события проставки галочки
         /// </summary>
         /// <param name="eventOkp">Класс с событием</param>
-        public void RemoveEvent(LibaryAIS3Windows.ButtonsClikcs.SelectQbe.EventOkp.EventOkp eventOkp)
+        public void RemoveEvent(LibraryAIS3Windows.ButtonsClikcs.SelectQbe.EventOkp.EventOkp eventOkp)
         {
             eventOkp.Check -= eventOkp.Checking;
         }

@@ -1,5 +1,5 @@
 ﻿
-namespace LibaryAIS3Windows.ButtonsClikcs
+namespace LibraryAIS3Windows.ButtonsClikcs
 {
     /// <summary>
     /// Класс для символизирует нажатия разных кнопок рядом количество

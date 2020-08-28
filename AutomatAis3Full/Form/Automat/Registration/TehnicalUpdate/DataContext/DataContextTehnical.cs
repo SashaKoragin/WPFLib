@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 using AutomatAis3Full.Config;
-using LibaryCommandPublic.TestAutoit.Reg.TechinicalUpdate;
+using LibraryCommandPublic.TestAutoit.Reg.TechinicalUpdate;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;

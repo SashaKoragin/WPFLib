@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using AutomatAis3Full.Config;
-using LibaryCommandPublic.TestAutoit.Uregulirovanie.DebtRelief;
+using LibraryCommandPublic.TestAutoit.Uregulirovanie.DebtRelief;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 

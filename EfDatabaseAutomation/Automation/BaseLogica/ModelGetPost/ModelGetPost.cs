@@ -1,4 +1,5 @@
-﻿using Ifns51.FromAis;
+﻿
+using Ifns51.FromAis;
 using Ifns51.ToAis;
 using LibaryXMLAuto.ReadOrWrite;
 using LibaryXMLAutoModelXmlSql.PreCheck.ModelCard;
@@ -10,12 +11,11 @@ using System.Linq;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
 {
-    public class ModelGetPost
+    public class ModelGetPost : IDisposable
     {
         public Base.Automation Automation { get; set; }
         public ModelGetPost()
         {
-            Automation?.Dispose();
             Automation = new Base.Automation();
         }
 
@@ -75,12 +75,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
         {
             try
             {
+
                 var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 7);
                 if (logicModel != null)
                 {
-                    var result = Automation.Database.SqlQuery<int>(logicModel.SelectUser,
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[0], model.N134),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], model.Tree)).FirstOrDefault();
+                    int result;
+                    using (var context = new Base.Automation())
+                    {
+                         result = context.Database.SqlQuery<int>(logicModel.SelectUser,
+                            new SqlParameter(logicModel.SelectedParametr.Split(',')[0], model.N134),
+                            new SqlParameter(logicModel.SelectedParametr.Split(',')[1], model.Tree)).FirstOrDefault();
+                    }
                     if (result != 0)
                     {
                         using (var context = new Base.Automation())
@@ -97,12 +102,19 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                                 };
                                 Automation.Entry(modelUpdate).State = EntityState.Modified;
                                 Automation.SaveChanges();
-                                var logicModelFullStatus = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 11);
+                                Base.LogicsSelectAutomation logicModelFullStatus;
+                                using (var context2 = new Base.Automation())
+                                {
+                                    logicModelFullStatus = context2.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 11);
+                                }
                                 if (logicModelFullStatus != null)
                                 {
-                                    Automation.Database.SqlQuery<string>(logicModelFullStatus.SelectUser,
-                                        new SqlParameter(logicModelFullStatus.SelectedParametr.Split(',')[0],
-                                            @select.ModelGetPosts.Id)).FirstOrDefault();
+                                    using (var context3 = new Base.Automation())
+                                    {
+                                       var resultDb = context3.Database.SqlQuery<string>(logicModelFullStatus.SelectUser,
+                                            new SqlParameter(logicModelFullStatus.SelectedParametr.Split(',')[0],
+                                                select.ModelGetPosts.Id)).FirstOrDefault();
+                                    }
                                 }
                             }
                         }
@@ -229,5 +241,22 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
             return null;
         }
 
+        /// <summary>
+        /// Disposing
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Automation?.Dispose();
+                Automation = null;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
     }
 }

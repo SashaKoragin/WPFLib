@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Threading;
-using LibaryAIS3Windows.ButtonsClikcs;
+using LibraryAIS3Windows.ButtonsClikcs;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
-namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
+namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
 {
   public class AutoMessageLk
     {
@@ -21,7 +21,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                 KclicerButton clickerButton = new KclicerButton();
-                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
                     clickerButton.Click24(statusButton, pathJournalError, pathJournalOk);
@@ -30,7 +30,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
                 else
                 {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                 }
             });
         }
@@ -49,7 +49,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                 KclicerButton clickerButton = new KclicerButton();
-                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
                     clickerButton.Click23(statusButton,pathjurnalerror, pathjurnalok);
@@ -58,7 +58,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
                 else
                 {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                 }
             });
         }
@@ -77,14 +77,14 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                 KclicerButton clickerButton = new KclicerButton();
-                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
                     while (statusButton.Iswork)
                     {
                         var strexit = clickerButton.Click16(pathjurnalerror, pathjurnalok);
                         
-                        if (strexit.Equals(LibaryAIS3Windows.Status.StatusAis.Status6))
+                        if (strexit.Equals(LibraryAIS3Windows.Status.StatusAis.Status6))
                         {
                             DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                         }
@@ -93,7 +93,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
                 else
                 {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                 }
             });
         }
@@ -109,7 +109,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                 KclicerButton clickerButton = new KclicerButton();
-                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
                     while (statusButton.Iswork)
@@ -120,7 +120,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
                 else
                 {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                 }
             });
         }
@@ -138,7 +138,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                 KclicerButton clickerButton = new KclicerButton();
-                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
                     clickerButton.Click22(statusButton, pathJournalError, pathJournalOk);
@@ -146,7 +146,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
                 else
                 {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                 }
             });
         }
@@ -164,7 +164,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                 KclicerButton clickerButton = new KclicerButton();
-                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
                     clickerButton.Click25(statusButton, pathJournalError, pathJournalOk);
@@ -172,7 +172,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
                 else
                 {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                 }
             });
         }
@@ -190,7 +190,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                 KclicerButton clickerButton = new KclicerButton();
-                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
                     clickerButton.Click26(statusButton, pathJournalError, pathJournalOk);
@@ -198,7 +198,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
                 else
                 {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                 }
             });
         }
@@ -214,7 +214,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                 KclicerButton clickerButton = new KclicerButton();
-                LibaryAIS3Windows.Window.WindowsAis3 ais3 = new LibaryAIS3Windows.Window.WindowsAis3();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
                     clickerButton.Click31(statusButton);
@@ -222,7 +222,7 @@ namespace LibaryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
                 else
                 {
-                    MessageBox.Show(LibaryAIS3Windows.Status.StatusAis.Status1);
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                 }
             });
         }

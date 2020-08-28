@@ -1,10 +1,10 @@
 ﻿using System.Text.RegularExpressions;
 using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll;
-using LibaryAIS3Windows.AutomationsUI.LibaryAutomations;
-using LibaryAIS3Windows.AutomationsUI.Otdels.RaschetBud;
+using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
+using LibraryAIS3Windows.AutomationsUI.Otdels.RaschetBud;
 
-namespace LibaryAIS3Windows.RegxFull.RaschetBudg
+namespace LibraryAIS3Windows.RegxFull.RaschetBudg
 {
    public class RegxStart
    {
@@ -14,7 +14,7 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
         /// <param name="modelKbk">Модель КБК</param>
         /// <returns></returns>
-        public bool UseNalog(LibaryAutomations libraryAutomation, ModelKbkOnKbk modelKbk)
+        public bool UseNalog(LibraryAutomations libraryAutomation, ModelKbkOnKbk modelKbk)
         {
             bool isTp = false; //Проверяем логику подстановки ТП
             if (Regex.Matches(modelKbk.Kbk100Before, @"^(100[0-9]+)$").Count > 0)
@@ -34,7 +34,7 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
         /// <param name="modelKbk">Модель КБК</param>
         /// <param name="isTp">Проверка ТП</param>
         /// <returns>Bool есть ли такой КБК в БД для проверки группы</returns>
-        private bool Status(LibaryAutomations libraryAutomation, ModelKbkOnKbk modelKbk,bool isTp)
+        private bool Status(LibraryAutomations libraryAutomation, ModelKbkOnKbk modelKbk,bool isTp)
         {
             string status = "01";
             SelectAll select = new SelectAll();
@@ -94,7 +94,7 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
         /// </summary>
         /// <param name="status">Статус платежа</param>
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
-        private void SendsStatus(string status, LibaryAutomations libraryAutomation)
+        private void SendsStatus(string status, LibraryAutomations libraryAutomation)
         {
            libraryAutomation.FindFirstElement(RashetBudElementName.SendStatus, null, true);
            libraryAutomation.SetValuePattern(status);
@@ -106,7 +106,7 @@ namespace LibaryAIS3Windows.RegxFull.RaschetBudg
         /// <param name="isTp">Проверка надо ли проставлять ТП после проверки на 100</param>
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
         /// <param name="modelKbk">Модель КБК</param>
-        private void SendsTp(bool isTp, LibaryAutomations libraryAutomation, ModelKbkOnKbk modelKbk)
+        private void SendsTp(bool isTp, LibraryAutomations libraryAutomation, ModelKbkOnKbk modelKbk)
        {
            if (isTp)
            {

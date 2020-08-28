@@ -1,4 +1,4 @@
-﻿using LibaryCommandPublic.TestAutoit.RaschBydj.Vedomost1;
+﻿using LibraryCommandPublic.TestAutoit.RaschBydj.Vedomost1;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 

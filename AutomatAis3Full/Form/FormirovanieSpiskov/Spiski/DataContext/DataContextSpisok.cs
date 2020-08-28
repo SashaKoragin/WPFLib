@@ -6,7 +6,7 @@ using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormFormirovanie.PublicEle
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormirovanieXml.CountCollection;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormirovanieXml.DeleteTitle;
 using AutomatAis3Full.Form.FormirovanieSpiskov.Spiski.FormirovanieXml.RowSelect;
-using LibaryCommandPublic.TestAutoit.PublicCommand;
+using LibraryCommandPublic.TestAutoit.PublicCommand;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.ModelFormirovanie.CheckBoxModel;
 using ViewModelLib.ModelTestAutoit.ModelFormirovanie.ListViewModelXml;

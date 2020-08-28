@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoIt;
-using LibaryAIS3Windows.Window;
+﻿using AutoIt;
+using LibraryAIS3Windows.Window;
 
-namespace LibaryAIS3Windows.ButtonsClikcs.SelectQbe.EventOkp
+namespace LibraryAIS3Windows.ButtonsClikcs.SelectQbe.EventOkp
 {
    public class EventOkp
    {

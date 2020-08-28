@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutomatAis3Full.Config;
-using LibaryCommandPublic.TestAutoit.Uregulirovanie.DebtRelief;
+using LibraryCommandPublic.TestAutoit.Uregulirovanie.DebtRelief;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
