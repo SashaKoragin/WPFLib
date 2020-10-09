@@ -7,6 +7,8 @@ namespace LibaryXMLAuto.Reports.FullTemplateSheme
         {
         [DataMember(Name = "IdHeaders")]
         public int IdHeaders { get; set; }
+        [DataMember(Name = "ImageForm")]
+        public byte[] ImageForm { get; set; }
         [DataMember(Name = "TextHeade1")]
         public string TextHeade1 { get; set; }
         [DataMember(Name = "TextHeade2")]
@@ -27,6 +29,10 @@ namespace LibaryXMLAuto.Reports.FullTemplateSheme
         public string TextHeade9 { get; set; }
         [DataMember(Name = "TextHeade10")]
         public string TextHeade10 { get; set; }
+        [DataMember(Name = "TextHeade11")]
+        public string TextHeade11 { get; set; }
+        [DataMember(Name = "TextHeade12")]
+        public string TextHeade12 { get; set; }
         [DataMember(Name = "DateCreate")]
         public DateTime DateCreate { get; set; }
         }

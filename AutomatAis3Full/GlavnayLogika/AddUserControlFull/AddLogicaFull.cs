@@ -8,6 +8,7 @@ using AutomatAis3Full.Form.Automat.Okp4.FormSnuAuto.SnuFormAuto;
 using AutomatAis3Full.Form.Automat.Okp4.MassSnuForm.MassSnuForm;
 using AutomatAis3Full.Form.Automat.Okp4.PravoEdit.PravoEdit;
 using AutomatAis3Full.Form.Automat.Okp4.PrintSnu.Print;
+using AutomatAis3Full.Form.Automat.Okp5.ActIzvesheniaReshenia121.ActIzvesheniaReshenia;
 using AutomatAis3Full.Form.Automat.Okp5.Identification.FaceIdentification;
 using AutomatAis3Full.Form.Automat.Orn.ConfirmationNbo.ConfirmationNbo;
 using AutomatAis3Full.Form.Automat.PreCheck.Journal129.Journal129;
@@ -34,6 +35,7 @@ using ViewModelLib.ModelTestAutoit.FullWindowAutoIt;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket0508090202.Ticket050809020204.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket0508090202.Ticket050809020206.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.SigningDecisionApplication.UserControl;
+using AutomatAis3Full.Form.Automat.Okp1.Declaration121.Declaration121;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
 {
@@ -202,6 +204,25 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                   },
                   new FullWindowAutoIt()
                   {
+                      NameControl = "ОКП1",
+                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                      {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "121. Камеральная налоговая проверка",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)",
+                                      UserControl = new  FormDeclaration121()
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  new FullWindowAutoIt()
+                  {
                       NameControl = "ОКП2",
                       CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                       {
@@ -271,6 +292,18 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                       NameControl = "ОКП5",
                       CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                       {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "121. Камеральная налоговая проверка",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)",
+                                      UserControl = new ActIzvesheniaResheniaView()
+                                  }
+                              }
+                          },
                           new FullWindowAutoIt()
                           {
                               NameControl = "Физические лица",

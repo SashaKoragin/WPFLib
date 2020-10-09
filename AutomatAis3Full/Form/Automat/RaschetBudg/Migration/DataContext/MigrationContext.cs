@@ -11,24 +11,19 @@ namespace AutomatAis3Full.Form.Automat.RaschetBudg.Migration.DataContext
     {
         public StatusButtonMethod Start { get; }
         public SelectVibor Select { get; }
-        public DelegateCommand Vibor { get; }
-
         public ModelEditConfig EditConfig { get; }
-
-        public ICommand AddExeption { get; }
-        public ICommand DeleteExeption { get; }
+        public ICommand AddException { get; }
+        public ICommand DeleteException { get; }
         public MigrationContext()
         {
             EditConfig = new ModelEditConfig();
-            AddExeption = new DelegateCommand((() => { EditConfig.AddExeptionIfns(); }));
-            DeleteExeption = new DelegateCommand<string>(param=> { EditConfig.DeleteExeptionIfns(param); });
+            AddException = new DelegateCommand((() => { EditConfig.AddExeptionIfns(); }));
+            DeleteException = new DelegateCommand<string>(param=> { EditConfig.DeleteExeptionIfns(param); });
             Select = new SelectVibor();
             Select.SelectMigrationVibor();
-            var migration = new MigrationCKlikCommand();
+            var migration = new MigrationClickCommand();
             Start = new StatusButtonMethod {IsChekcs = true};
-            Start.Button.Command = new DelegateCommand(() => { migration.AutoCklikMigration(Start, ConfigFile.ReportMigration,EditConfig.ExeptionsIfns);  });
-            Vibor = new DelegateCommand(()=>migration.SendParametr(Select,ConfigFile.Ifns));
-
+            Start.Button.Command = new DelegateCommand(() => { migration.AutoClickMigration(Start, Select, ConfigFile.ReportMigration, ConfigFile.Ifns, EditConfig.ExceptionIfns);  });
         }
     }
 }

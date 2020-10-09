@@ -1,7 +1,36 @@
 ﻿namespace LibraryAIS3Windows.Mode.RaschetBudg.Migration
 {
    public class Migration
-    {
+   {
+        /// <summary>
+        /// Полный путь к панелям
+        /// </summary>
+        public static string PathFull = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:MigrationLogView\\AutomationId:navigatorControl1\\AutomationId:splitContainer\\";
+        /// <summary>
+        /// Журнал с ошибкой
+        /// </summary>
+        public static string PathFullError = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:MigrationLocks\\AutomationId:ultraTabControl1\\AutomationId:ultraTabPageControl1\\AutomationId:ultraGrid1\\Name:List`1 row 1";
+        /// <summary>
+        /// Панель с условиями
+        /// </summary>
+        public static string GridPanel = $"{PathFull}AutomationId:gridConditions\\Name:List`1 row ";
+        /// <summary>
+        /// панель данных
+        /// </summary>
+        public static string GridData = $"{PathFull}AutomationId:gridData";
+        /// <summary>
+        /// Данные после обновления
+        /// </summary>
+        public static string GridDataRow = $"{PathFull}AutomationId:gridData\\Name:select0 row ";
+        /// <summary>
+        /// Обновить данные
+        /// </summary>
+        public static string UpdateGrid = "Name:DockTop\\Name:Ribbon\\Name:Журнал миграции НП\\Name:Операции\\Name:Обновить";
+        /// <summary>
+        /// Кнопка просмотр прерываний процесса
+        /// </summary>
+        public static string ViewProcess = "Name:DockTop\\Name:Ribbon\\Name:Журнал миграции НП\\Name:Операции\\Name:Просмотр прерываний процесса и причин прерываний";
+
 
         /// <summary>
         /// Уникальный идентификатор
@@ -11,10 +40,7 @@
             "АИС Налог-3 ПРОМ ",
             "[NAME:txtID]"
         };
-        /// <summary>
-        /// Текст миграция НП
-        /// </summary>
-        public static string MigrationNp = "Тип:";
+
         /// <summary>
         /// Команда ControlCommand Работает по Handle
         /// </summary>
@@ -24,68 +50,5 @@
             "Разблокировать",
             "[NAME:unlockButton]"
        };
-        /// <summary>
-        /// Поле ФИД
-        /// </summary>
-        public static string[] FidMemo =
-        {
-            "АИС Налог-3 ПРОМ ",
-            "[NAME:fidTE]"
-        };
-
-        /// <summary>
-        /// Поле ИНН
-        /// </summary>
-        public static string[] InnMemo =
-        {
-            "АИС Налог-3 ПРОМ ",
-            "[NAME:innTE]"
-        };
-
-        /// <summary>
-        /// Поле КПП
-        /// </summary>
-        public static string[] KppMemo =
-        {
-            "АИС Налог-3 ПРОМ ",
-            "[NAME:kppTE]"
-        };
-
-        /// <summary>
-        /// Наименование организации
-        /// </summary>
-        public static string[] NameOrganization =
-        {
-            "АИС Налог-3 ПРОМ ",
-            "[NAME:txtTP_NAME]"
-        };
-
-        /// <summary>
-        /// Определение приема или передачи
-        /// </summary>
-        public static string[] PeredachaOrPriem =
-        {
-            "АИС Налог-3 ПРОМ ",
-            "НО передающий данные"
-        };
-
-        /// <summary>
-        /// Налоговая передающая данные
-        /// </summary>
-        public static string[] CodeIfnsPeredacha =
-        {
-            "АИС Налог-3 ПРОМ ",
-            "[NAME:txtIFNS_SENDER]"
-        };
-
-        /// <summary>
-        /// Налоговая пренимающая данные
-        /// </summary>
-        public static string[] CodeIfnsPriem =
-        {
-            "АИС Налог-3 ПРОМ ",
-            "[NAME:txtIFNS_RECEIVER]"
-        };
-
-    }
+   }
 }

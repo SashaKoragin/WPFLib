@@ -26,64 +26,64 @@ namespace LibraryCommandPublic.TestAutoit.Reg.Status
         {
             try
             {
-           DispatcherHelper.Initialize();
-           if (File.Exists(pathfileinn))
-            {
-              Task.Run(delegate
-               {
-                 LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite read = new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
-                 var snumodelmass = (Face)read.ReadXml(pathfileinn, typeof(Face));
-                 if (snumodelmass.Fid != null)
-                 {
-                   DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
-                   KclicerButton clickerButton = new KclicerButton();
-                   EventReg eventqbe = new EventReg();
-                   EventFid regevent = new EventFid();
-                   Exit exit = new Exit();
-                   WindowsAis3 ais3 = new WindowsAis3();
-                   if (ais3.WinexistsAis3() == 1)
-                      {
-                       foreach (var fid in snumodelmass.Fid)
-                        {
-                         if (statusButton.Iswork)
-                           {
-                               if (statusButton.IsChekcs)
-                               {
-                                   regevent.AddEvent(eventqbe);
-                                   regevent.RemoveEvent(eventqbe);
-                                   DispatcherHelper.CheckBeginInvokeOnUI(statusButton.IsCheker);
-                                   
-                               }
-                            clickerButton.Click8( pathjurnalerror, pathjurnalok, fid.FidFace);
-                            read.DeleteAtributXml(pathfileinn,LibaryXMLAuto.GenerateAtribyte.GeneratorAtribute.GenerateAtributeFaceFid(fid.FidFace));
-                            statusButton.Count++;
-                           }
-                         else
-                           {
-                            break;
-                           }
-                        }
-                       var status = exit.Exitfunc(statusButton.Count, snumodelmass.Fid.Length,statusButton.Iswork);
-                       statusButton.Count = status.IsCount;
-                       statusButton.Iswork = status.IsWork;
-                       DispatcherHelper.CheckBeginInvokeOnUI( delegate { statusButton.StatusGrinandYellow(status.Stat); });
-                      }
-                  else
-                      {
-                       MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
-                       DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
-                      }
-                }
-              else
+                DispatcherHelper.Initialize();
+                if (File.Exists(pathfileinn))
                 {
-                  MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status7);
+                    Task.Run(delegate
+                    {
+                        LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite read = new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
+                        var snumodelmass = (Face)read.ReadXml(pathfileinn, typeof(Face));
+                        if (snumodelmass.Fid != null)
+                        {
+                            DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                            KclicerButton clickerButton = new KclicerButton();
+                            EventReg eventqbe = new EventReg();
+                            EventFid regevent = new EventFid();
+                            Exit exit = new Exit();
+                            WindowsAis3 ais3 = new WindowsAis3();
+                            if (ais3.WinexistsAis3() == 1)
+                            {
+                                foreach (var fid in snumodelmass.Fid)
+                                {
+                                    if (statusButton.Iswork)
+                                    {
+                                        if (statusButton.IsChekcs)
+                                        {
+                                            regevent.AddEvent(eventqbe);
+                                            regevent.RemoveEvent(eventqbe);
+                                            DispatcherHelper.CheckBeginInvokeOnUI(statusButton.IsCheker);
+                                   
+                                        }
+                                        clickerButton.Click8( pathjurnalerror, pathjurnalok, fid.FidFace);
+                                        read.DeleteAtributXml(pathfileinn,LibaryXMLAuto.GenerateAtribyte.GeneratorAtribute.GenerateAtributeFaceFid(fid.FidFace));
+                                        statusButton.Count++;
+                                    }
+                                    else
+                                    {
+                                        break;
+                                    }
+                                }
+                                var status = exit.Exitfunc(statusButton.Count, snumodelmass.Fid.Length,statusButton.Iswork);
+                                statusButton.Count = status.IsCount;
+                                statusButton.Iswork = status.IsWork;
+                                DispatcherHelper.CheckBeginInvokeOnUI( delegate { statusButton.StatusGrinandYellow(status.Stat); });
+                            }
+                            else
+                            {
+                                MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status7);
+                        }
+                    });
                 }
-             });
-             }
-             else
-              {
-               MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status5);
-              }
+                else
+                {
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status5);
+                }
             }
             catch (Exception e)
             {

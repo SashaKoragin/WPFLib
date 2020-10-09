@@ -36,7 +36,8 @@ namespace LibaryXMLAutoModelXmlAuto.MigrationReport {
         public string N280;
         
         public MigrationParse() {
-            this.Otdel = "Отдел расчетов с бюджетом Аналитический отдел";
+            this.Otdel = "Отдел расчетов с бюджетом/Аналитический отдел/Отдел регистрации и учета налогопла" +
+                "тельщиков";
             this.N280 = "";
         }
     }

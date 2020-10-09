@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Automation;
+using System.Windows.Forms;
 using AutoIt;
 using LibraryAIS3Windows.AutomationsUI.Otdels.PreCheck;
 using LibraryAIS3Windows.AutomationsUI.PublicElement;
@@ -48,6 +49,21 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
             RootAutomationElements = AutomationElement.FromHandle(AutoItX.WinGetHandle(nameWindowsAis3));
             ProcessId = RootAutomationElements.Current.ProcessId;
         }
+        /// <summary>
+        /// Подстановка параметра в условие поля
+        /// </summary>
+        /// <param name="fullPathParameter">Полный индекс условия</param>
+        /// <param name="parameter">Параметр</param>
+        public void SendParameter(string fullPathParameter,string parameter)
+        {
+            if (FindFirstElement(fullPathParameter, null, true) == null) return;
+            FindFirstElement("Name:Значение", FindElement, true);
+            FindElement.SetFocus();
+            SendKeys.SendWait("{ENTER}");
+            SendKeys.SendWait(parameter);
+        }
+
+
         /// <summary>
         /// Поиск элемента по полю
         /// </summary>
@@ -132,7 +148,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                 {
                     var values = ParseElementLegacyIAccessiblePatternIdentifiers(child);
                     sw.WriteLine(child.Current.Name + ":"+child.Current.AutomationId + ":" + values);
-                 }
+                }
                 child = tw.GetNextSibling(child);
                 
 
@@ -167,7 +183,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                 var valueAuto = (InvokePattern)pattern;
                 valueAuto.Invoke();
             }
-            catch
+            catch(Exception ex)
             {
                 // ignored
             }
@@ -204,6 +220,8 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
 
             return false;
         }
+
+
         /// <summary>
         /// Проверка на доступ и раскрытия элемента 
         /// </summary>

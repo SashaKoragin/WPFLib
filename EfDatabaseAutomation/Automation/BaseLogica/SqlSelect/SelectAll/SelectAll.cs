@@ -71,6 +71,18 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
                     result = Automation.Database.SqlQuery<SignatureBoss>(sqlSelect.SelectUser).ToArray();
                     webPage.SignatureBoss = (SignatureBoss[]) result;
                     break;
+                case 18:
+                    result = Automation.Database.SqlQuery<Documen2NDFLIdentification>(sqlSelect.SelectUser).ToArray();
+                    webPage.Documen2NDFLIdentification = (Documen2NDFLIdentification[])result;
+                    break;
+                case 19:
+                    result = Automation.Database.SqlQuery<Documen2NDFLIdentification>(sqlSelect.SelectUser).ToArray();
+                    webPage.Documen2NDFLIdentification = (Documen2NDFLIdentification[])result;
+                    break;
+                case 20:
+                    result = Automation.Database.SqlQuery<Documen2NDFLIdentification>(sqlSelect.SelectUser).ToArray();
+                    webPage.Documen2NDFLIdentification = (Documen2NDFLIdentification[])result;
+                    break;
                 default:
                     return "Данная команда не определена!!!";
             }

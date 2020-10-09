@@ -141,6 +141,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                         break;
                     }
                     //Статусы записывать в Log
+                    modelPost.IdTemplate = model.IdTemplate;
                     var result = post.ResultPost(serviceGetOrPost, modelPost);
                     if (result == null)
                     {
@@ -224,6 +225,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                         }
                         break;
                     }
+                    modelPost.IdTemplate = model.IdTemplate;
                     var result = post.ResultPost(serviceGetOrPost, modelPost);
                     if (result == null)
                     {
@@ -323,6 +325,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                             break;
                         }
                     }
+                    modelPost.IdTemplate = model.IdTemplate;
                     var result = post.ResultPost(serviceGetOrPost, modelPost);
                     if (result == null)
                     {
@@ -424,7 +427,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                             AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
                         }
                     }
-                    var modelPost = new AisParsedData() {N134 = inn, Tree = model.Tree};
+                    var modelPost = new AisParsedData() {N134 = inn, Tree = model.Tree, IdTemplate = model.IdTemplate};
                     libraryAutomation.IsEnableElements(filters);
                     libraryAutomation.InvokePattern(libraryAutomation.FindElement);
                     var result = post.ResultPost(serviceGetOrPost, modelPost);
@@ -491,7 +494,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                         dataBaseAdd.AddDbStatement(file.NamePath, inn);
                     }
                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, filters);
-                    var modelPost = new AisParsedData() {N134 = inn, Tree = model.Tree};
+                    var modelPost = new AisParsedData() {N134 = inn, Tree = model.Tree, IdTemplate = model.IdTemplate };
                     var result = post.ResultPost(serviceGetOrPost, modelPost);
                     if (result == null)
                     {

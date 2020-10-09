@@ -130,7 +130,9 @@
       <Component Id="AisPoco.dll" Guid="880B50F8-27FC-48E3-A115-CB387860054D">
         <File Id="AisPoco.dll" Name="AisPoco.dll" Source="$(var.ServiceAutomation_TargetDir)AisPoco.dll" />
       </Component>
-      
+      <Component Id="SqlLibaryIfns.dll" Guid="BA9F74BB-C0F2-4D5F-878C-11CEA0C5A7B0" >
+        <File Id="SqlLibaryIfns.dll" Name="SqlLibaryIfns.dll" Source="$(var.ServiceAutomation_TargetDir)SqlLibaryIfns.dll"/>
+      </Component>
 		</ComponentGroup>
 	</Fragment>
 </Wix>

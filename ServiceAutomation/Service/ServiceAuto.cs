@@ -9,12 +9,15 @@ using LogicsSelectAutomation = EfDatabaseAutomation.Automation.SelectParametrShe
 using EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost;
 using System.Collections.Generic;
 using System.Reflection;
+using AisPoco.Ifns51.ToAis;
 using EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb;
+using EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
 using LibaryDocumentGenerator.Documents.Template;
 using Ifns51.ToAis;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel;
+using SqlLibaryIfns.ZaprosSelectNotParam;
 
 namespace ServiceAutomation.Service
 {
@@ -48,6 +51,16 @@ namespace ServiceAutomation.Service
         {
             var select = new SqlSelect();
             return await Task.Factory.StartNew(() => select.SelectSql(model));
+        }
+        /// <summary>
+        /// Создание отчета на сервере
+        /// </summary>
+        /// <param name="sqlSelect">С генерированный запрос с клиента</param>
+        /// <returns></returns>
+        public async Task<Stream> GenerateFileXlsxSqlView(LogicsSelectAutomation sqlSelect)
+        {
+            var selectFull = new SelectFull();
+            return await Task.Factory.StartNew(() => selectFull.GenerateStreamToSqlViewFile(_parameterConfig.ConnectionString, sqlSelect.SelectUser, "REPORTSQLSERVER", sqlSelect.SelectInfo, _parameterConfig.PathSaveTemplate));
         }
 
         /// <summary>
@@ -119,15 +132,26 @@ namespace ServiceAutomation.Service
             model.Dispose();
             return modelReturn;
         }
-
+        /// <summary>
+        /// Выгрузка всех шаблонов в БД
+        /// </summary>
+        /// <returns></returns>
+        public List<TemplateModel> LoadAllTemplateDb()
+        {
+            var model = new ModelGetPost();
+            var modelReturn = model.LoadAllTemplateDb();
+            model.Dispose();
+            return modelReturn;
+        }
         /// <summary>
         /// Подгрудка ИНН для отработки значений
         /// </summary>
+        /// <param name="idTemplate">Уникальные номера шаблонов</param>
         /// <returns></returns>
-        public List<SrvToLoad> LoadModelPreCheck()
+        public List<SrvToLoad> LoadModelPreCheck(int[] idTemplate)
         {
             var model = new ModelGetPost();
-            var modelReturn = model.LoadModelPreCheck();
+            var modelReturn = model.LoadModelPreCheck(idTemplate);
             model.Dispose();
             return modelReturn;
         }
@@ -236,6 +260,32 @@ namespace ServiceAutomation.Service
                     Loggers.Log4NetLogger.Error(ex);
                 }
                 return false;
+            });
+        }
+        /// <summary>
+        /// Добавление УН файлов для отработки на автомате
+        /// </summary>
+        /// <param name="listIdFile">УН файлов</param>
+        public async Task<ServiceAddFile> AddFileId(List<long> listIdFile)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                IdentificationAddorEditFace identification = new IdentificationAddorEditFace();
+                var errorOrNull = identification.AddNewIdDocument(listIdFile);
+                identification.Dispose();
+                return errorOrNull;
+            });
+        }
+        /// <summary>
+        /// Снятие статуса на документе
+        /// </summary>
+        /// <param name="idDocument">Документ</param>
+        /// <returns></returns>
+        public async Task CheckStatusError(long idDocument)
+        {
+            await Task.Factory.StartNew(() => {
+                IdentificationAddorEditFace identification = new IdentificationAddorEditFace();
+                identification.IsCheckError(idDocument);
             });
         }
     }

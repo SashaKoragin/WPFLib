@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
+using AisPoco.Ifns51.ToAis;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
 {
@@ -42,12 +43,36 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
             }
             return null;
         }
+        /// <summary>
+        /// Выгрузка всех шаблонов в БД
+        /// </summary>
+        /// <returns></returns>
+        public List<TemplateModel> LoadAllTemplateDb()
+        {
+            try
+            {
+                var xml = new XmlReadOrWrite();
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 21);
+                if (logicModel != null)
+                {
+                    var result = Automation.Database.SqlQuery<string>(logicModel.SelectUser).ToArray();
+                    var resultServer = (List<TemplateModel>)xml.ReadXmlText(string.Join("", result), typeof(List<TemplateModel>));
+                    return resultServer;
+                }
+            }
+            catch (Exception ex)
+            {
+                Loggers.Log4NetLogger.Error(ex);
+            }
+            return null;
+        }
 
         /// <summary>
         /// Получение данных для клиента на парсинг значений
         /// </summary>
+        /// <param name="idTemplate">Уникальные номера шаблонов</param>
         /// <returns></returns>
-        public List<SrvToLoad> LoadModelPreCheck()
+        public List<SrvToLoad> LoadModelPreCheck(int[] idTemplate)
         {
             try
             {
@@ -55,7 +80,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                 var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 6);
                 if (logicModel != null)
                 {
-                    var result = Automation.Database.SqlQuery<string>(logicModel.SelectUser).ToArray();
+                    var result = Automation.Database.SqlQuery<string>(logicModel.SelectUser,
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[0], string.Join(",",idTemplate))).ToArray();
                     var resultServer = (List<SrvToLoad>)xml.ReadXmlText(string.Join("", result), typeof(List<SrvToLoad>));
                     return resultServer;
                 }
@@ -75,7 +101,6 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
         {
             try
             {
-
                 var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 7);
                 if (logicModel != null)
                 {
@@ -84,20 +109,22 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                     {
                          result = context.Database.SqlQuery<int>(logicModel.SelectUser,
                             new SqlParameter(logicModel.SelectedParametr.Split(',')[0], model.N134),
-                            new SqlParameter(logicModel.SelectedParametr.Split(',')[1], model.Tree)).FirstOrDefault();
+                            new SqlParameter(logicModel.SelectedParametr.Split(',')[1], model.Tree),
+                            new SqlParameter(logicModel.SelectedParametr.Split(',')[2], model.IdTemplate)).FirstOrDefault();
                     }
                     if (result != 0)
                     {
                         using (var context = new Base.Automation())
                         {
-                            var select = (from modelGetPosts in context.ModelGetPosts where modelGetPosts.Id == result select new { ModelGetPosts = modelGetPosts }).FirstOrDefault();
+                            var select = (from faceModelTemplateGetPosts in context.FaceModelTemplateGetPosts where faceModelTemplateGetPosts.Id == result select new { FaceModelTemplateGetPosts = faceModelTemplateGetPosts }).FirstOrDefault();
                             if (select != null)
                             {
-                                var modelUpdate = new Base.ModelGetPost()
+                                var modelUpdate = new Base.FaceModelTemplateGetPost()
                                 {
-                                    Id = select.ModelGetPosts.Id,
-                                    IdUl = select.ModelGetPosts.IdUl,
-                                    IdTreModel = select.ModelGetPosts.IdTreModel,
+                                    Id = select.FaceModelTemplateGetPosts.Id,
+                                    IdUl = select.FaceModelTemplateGetPosts.IdUl,
+                                    IdTemplate = select.FaceModelTemplateGetPosts.IdTemplate,
+                                    IdTree = select.FaceModelTemplateGetPosts.IdTree,
                                     StatusModel = "Ок!"
                                 };
                                 Automation.Entry(modelUpdate).State = EntityState.Modified;
@@ -113,7 +140,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                                     {
                                        var resultDb = context3.Database.SqlQuery<string>(logicModelFullStatus.SelectUser,
                                             new SqlParameter(logicModelFullStatus.SelectedParametr.Split(',')[0],
-                                                select.ModelGetPosts.Id)).FirstOrDefault();
+                                                select.FaceModelTemplateGetPosts.Id)).FirstOrDefault();
                                     }
                                 }
                             }
@@ -140,14 +167,15 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
             {
                 using (var context = new Base.Automation())
                 {
-                    var select = (from modelGetPosts in context.ModelGetPosts where modelGetPosts.Id == idModel select new { ModelGetPosts = modelGetPosts }).FirstOrDefault();
+                    var select = (from faceModelTemplateGetPosts in context.FaceModelTemplateGetPosts where faceModelTemplateGetPosts.Id == idModel select new { FaceModelTemplateGetPosts = faceModelTemplateGetPosts }).FirstOrDefault();
                     if (select != null)
                     {
-                        var modelUpdate = new Base.ModelGetPost()
+                        var modelUpdate = new Base.FaceModelTemplateGetPost()
                         {
-                            Id = select.ModelGetPosts.Id,
-                            IdUl = select.ModelGetPosts.IdUl,
-                            IdTreModel = select.ModelGetPosts.IdTreModel,
+                            Id = select.FaceModelTemplateGetPosts.Id,
+                            IdUl = select.FaceModelTemplateGetPosts.IdUl,
+                            IdTemplate = select.FaceModelTemplateGetPosts.IdTemplate,
+                            IdTree = select.FaceModelTemplateGetPosts.IdTree,
                             StatusModel = status
                         };
                         Automation.Entry(modelUpdate).State = EntityState.Modified;

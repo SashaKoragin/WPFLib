@@ -319,6 +319,8 @@ namespace LibaryXMLAutoReports.FullTemplateSheme {
         
         private bool idHeadersFieldSpecified;
         
+        private byte[] imageFormField;
+        
         private string textHeade1Field;
         
         private string textHeade2Field;
@@ -338,6 +340,10 @@ namespace LibaryXMLAutoReports.FullTemplateSheme {
         private string textHeade9Field;
         
         private string textHeade10Field;
+        
+        private string textHeade11Field;
+        
+        private string textHeade12Field;
         
         private System.DateTime dateCreateField;
         
@@ -362,6 +368,17 @@ namespace LibaryXMLAutoReports.FullTemplateSheme {
             }
             set {
                 this.idHeadersFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="base64Binary")]
+        public byte[] ImageForm {
+            get {
+                return this.imageFormField;
+            }
+            set {
+                this.imageFormField = value;
             }
         }
         
@@ -472,6 +489,28 @@ namespace LibaryXMLAutoReports.FullTemplateSheme {
             }
             set {
                 this.textHeade10Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string TextHeade11 {
+            get {
+                return this.textHeade11Field;
+            }
+            set {
+                this.textHeade11Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string TextHeade12 {
+            get {
+                return this.textHeade12Field;
+            }
+            set {
+                this.textHeade12Field = value;
             }
         }
         

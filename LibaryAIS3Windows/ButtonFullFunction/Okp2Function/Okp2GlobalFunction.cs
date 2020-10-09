@@ -26,7 +26,9 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
         /// Автоматизация глобального блока надо добавить сохранение
         /// </summary>
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
-        public void SignAndSendDoc(LibraryAutomations libraryAutomation)
+        /// <param name="x">Координата смещения x для отправки</param>
+        /// <param name="y">Координата смещения y для отправки</param>
+        public void SignAndSendDoc(LibraryAutomations libraryAutomation, int x =-30, int y = 30)
         {
             AutoItX.WinWait(Journal129AndJournal121.ViewName);
             AutoItX.WinActivate(Journal129AndJournal121.ViewName);
@@ -95,7 +97,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                     {
                         if (libraryAutomation.IsEnableElements(Journal129AndJournal121.Close, null, true) != null)
                         {
-                            libraryAutomation.ClickElements(Journal129AndJournal121.Close, null, false, 25, -30, 30);
+                            libraryAutomation.ClickElements(Journal129AndJournal121.Close, null, false, 25, x, y);
                             break;
                         }
                     }

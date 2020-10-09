@@ -19,5 +19,11 @@ namespace Ifns51.ToAis
 			get;
 			set;
 		}
+		//”н обрабатываемого шаблона
+        public int IdTemplate 
+        { 
+            get; 
+            set;
+        }
 	}
 }

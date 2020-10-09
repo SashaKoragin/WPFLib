@@ -24,6 +24,7 @@ namespace AutomatAis3Full.Config
         public static string Help = ConfigurationManager.AppSettings["Help"];
         public static string WebSite = ConfigurationManager.AppSettings["WebSite"];
         public static string ServiceGetOrPost = ConfigurationManager.AppSettings["ServiceGetOrPost"];
+        public static string AllTemplate = ConfigurationManager.AppSettings["AllTemplate"];
         public static string BankSvedSave = ConfigurationManager.AppSettings["BankSvedSave"];
         /// <summary>
         /// Строка соединения с Sql для массовой загрузки xml

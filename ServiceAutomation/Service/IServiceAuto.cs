@@ -3,7 +3,10 @@ using System.IO;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Threading.Tasks;
-using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel;
+using System.Web.Http;
+using AisPoco.Ifns51.ToAis;
+using EfDatabaseAutomation.Automation.Base;
+using EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace;
 using EfDatabaseAutomation.Automation.SelectParametrSheme;
 using Ifns51.FromAis;
 using Ifns51.ToAis;
@@ -81,13 +84,22 @@ namespace ServiceAutomation.Service
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddInnToModel", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         string AddInnToModel(string inn);
         /// <summary>
-        /// Получение данных что отрабатывать
-        /// http://localhost:8050/ServiceAutomation/LoadModelPreCheck
+        /// Получение всех шаблонов в БД
+        /// http://localhost:8050/ServiceAutomation/LoadAllTemplateDb
         /// </summary>
         /// <returns></returns>
         [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadAllTemplateDb", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        List<TemplateModel> LoadAllTemplateDb();
+        /// <summary>
+        /// Получение данных что отрабатывать
+        /// http://localhost:8050/ServiceAutomation/LoadModelPreCheck
+        /// </summary>
+        /// <param name="idTemplate">Уникальные номера шаблонов</param>
+        /// <returns></returns>
+        [OperationContract]
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadModelPreCheck", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        List<SrvToLoad> LoadModelPreCheck();
+        List<SrvToLoad> LoadModelPreCheck([FromUri] int[] idTemplate);
         /// <summary>
         /// Постановка статуса что данные отработаны
         /// http://localhost:8050/ServiceAutomation/LoadModelPreCheck
@@ -130,5 +142,28 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/ActualizationSignature", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<bool> ActualizationSignature(int signatureSenderTaxJournalOkp2);
+
+        /// <summary>
+        /// Генерация отчета документа на сервере
+        /// </summary>
+        /// <param name="sqlSelect">С генерированный запрос с клиента</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/GenerateFileXlsxSqlView", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> GenerateFileXlsxSqlView(LogicsSelectAutomation sqlSelect);
+        /// <summary>
+        /// Добавление файлов для обработки на автомате
+        /// </summary>
+        /// <param name="listIdFile">УН файлов</param>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddFileId", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<ServiceAddFile> AddFileId(List<long> listIdFile);
+        /// <summary>
+        /// Снятие статуса ошибки на документе
+        /// </summary>
+        /// <param name="idDocument">Документ</param>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/CheckStatusError", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task CheckStatusError(long idDocument);
     }
 }

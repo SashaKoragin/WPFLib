@@ -41,6 +41,19 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
           });
         }
         /// <summary>
+        /// Библиотечная функция получения данных JSON
+        /// </summary>
+        /// <param name="model">Объект модели класса</param>
+        /// <returns></returns>
+        public string JsonLibraryVks(object model)
+        {
+            return JsonConvert.SerializeObject(model, new JsonSerializerSettings()
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                DateFormatString = "dd.MM.yyyy HH:mm"
+            });
+        }
+        /// <summary>
         /// Сериализация в json c игнорированием DateTime
         /// </summary>
         /// <param name="model">Объект модели класса</param>

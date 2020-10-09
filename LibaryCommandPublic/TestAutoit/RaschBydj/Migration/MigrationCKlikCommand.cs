@@ -10,67 +10,39 @@ using ViewModelLib.ModelTestAutoit.PublicModel.RaschetBuh;
 
 namespace LibraryCommandPublic.TestAutoit.RaschBydj.Migration
 {
-   public class MigrationCKlikCommand
+   public class MigrationClickCommand
     {
 
         /// <summary>
         /// Миграция НП
         /// </summary>
         /// <param name="statusButton">Кнопка передачи старта</param>
+        /// <param name="select">Выборка данных</param>
         /// <param name="reportMigration">Путь к отчету парсинга миграции</param>
-        /// <param name="collectionExeption">Исключенные ИНН</param>
-        public void AutoCklikMigration(StatusButtonMethod statusButton, string reportMigration, ObservableCollection<string> collectionExeption)
+        /// <param name="code">Код налогового органа</param>
+        /// <param name="collectionException">Исключенные ИНН</param>
+        public void AutoClickMigration(StatusButtonMethod statusButton, SelectVibor select, string reportMigration, string code, ObservableCollection<string> collectionException)
         {
             DispatcherHelper.Initialize();
-                Task.Run(delegate
-                {
-                    string copyid = null;
-         
-                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
-                    if (File.Exists(reportMigration)){ File.Delete(reportMigration);}
-                        KclicerButton clickerButton = new KclicerButton();
-                        WindowsAis3 ais3 = new WindowsAis3();
-                        ais3.StartNMigration();
-                        if (ais3.WinexistsAis3() == 1)
-                        {
-                           while (statusButton.Iswork)
-                           {
-
-                                var id = clickerButton.Click11(statusButton.IsChekcs, reportMigration, copyid, collectionExeption);
-                                if (id.Equals(copyid))
-                                {
-                                   DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusYellow);
-                                   return;
-                                }
-                                copyid = id;
-                           }
-                        }
-                        else
-                        {
-                            MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
-                            DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
-                        }
-                });
-            
-        }
-        /// <summary>
-        /// Выборки 
-        /// </summary>
-        /// <param name="select">Параметры выборки</param>
-        /// <param name="ifns">Номер инспекции из Конфига</param>
-        public void SendParametr(SelectVibor select,string ifns)
-        {
             if (select.IsValidation())
             {
-                WindowsAis3 ais3 = new WindowsAis3();
-                if (select.Sel.Num == 1)
+                Task.Run(delegate
                 {
-                    ais3.SendParametrsPriem(ifns);
-                }
-                else
-                {
-                    ais3.SendParametrsPeredahca(ifns);
-                }
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    if (File.Exists(reportMigration))  { File.Delete(reportMigration); }
+                    KclicerButton clickerButton = new KclicerButton();
+                    WindowsAis3 ais3 = new WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        clickerButton.Click11(statusButton, select, reportMigration, code, collectionException);
+                        DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                        DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusGrin);
+                    }
+                });
             }
         }
     }

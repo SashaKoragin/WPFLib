@@ -72,6 +72,8 @@ namespace LibaryXMLAutoModelXmlAuto.OtdelRuleUsers {
         
         private string datesField;
         
+        private string contactField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Users")]
         public Users[] Users {
@@ -146,6 +148,17 @@ namespace LibaryXMLAutoModelXmlAuto.OtdelRuleUsers {
             }
             set {
                 this.datesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Contact {
+            get {
+                return this.contactField;
+            }
+            set {
+                this.contactField = value;
             }
         }
     }

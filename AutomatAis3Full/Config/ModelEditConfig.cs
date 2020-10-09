@@ -34,7 +34,7 @@ namespace AutomatAis3Full.Config
             {
                 foreach (var strexeption in exeptions)
                 {
-                    ExeptionsIfns.Add(strexeption);
+                    ExceptionIfns.Add(strexeption);
                 }
             }
         }
@@ -82,7 +82,7 @@ namespace AutomatAis3Full.Config
         /// <summary>
         /// Коллекция исключений
         /// </summary>
-        public ObservableCollection<string> ExeptionsIfns { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<string> ExceptionIfns { get; set; } = new ObservableCollection<string>();
 
         /// <summary>
         /// Добавление исключения для Инспекции
@@ -91,7 +91,7 @@ namespace AutomatAis3Full.Config
         {
             if (IsValidation())
             {
-                ExeptionsIfns.Add(Ifns);
+                ExceptionIfns.Add(Ifns);
                 UpdateConfig();
             }
         }
@@ -101,14 +101,14 @@ namespace AutomatAis3Full.Config
         /// </summary>
         public void DeleteExeptionIfns(string param)
         {
-            ExeptionsIfns.Remove(param);
+            ExceptionIfns.Remove(param);
             UpdateConfig();
         }
 
         private void UpdateConfig()
         {
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["ExeptionsIfns"].Value = String.Join(",", ExeptionsIfns);
+            config.AppSettings.Settings["ExeptionsIfns"].Value = String.Join(",", ExceptionIfns);
             config.Save(ConfigurationSaveMode.Modified);
         }
     }

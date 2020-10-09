@@ -40,10 +40,10 @@
         /// Открыть комплекс мероприятий
         /// </summary>
         public static string OpenComplex = "Name:DockTop\\Name:Ribbon\\Name:2. Журнал налоговых правонарушений\\Name:Открыть комплекс мероприятий";
-       /// <summary>
-       /// Редактировать
-       /// </summary>
-       public static string EditTask = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:_this\\AutomationId:treeView1\\Name:Материалы для рассмотрения\\Name:Rnivc.Cam.Knp.Client.PfTemp.CustomOperations.OperationCustomEntity.DfCEXamlViewSingle\\AutomationId:Header\\ClassName:DfCEXamlViewSingle\\AutomationId:propControl\\AutomationId:btnDefaultCommand\\AutomationId:btnDefaultCommandText";
+        /// <summary>
+        /// Редактировать
+        /// </summary>
+        public static string EditTask = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:_this\\AutomationId:treeView1\\Name:Материалы для рассмотрения\\Name:Rnivc.Cam.Knp.Client.PfTemp.CustomOperations.OperationCustomEntity.DfCEXamlViewSingle\\AutomationId:Header\\ClassName:DfCEXamlViewSingle\\AutomationId:propControl\\AutomationId:btnDefaultCommand\\AutomationId:btnDefaultCommandText";
        /// <summary>
        /// Журнал Сформированных документов
        /// </summary>
@@ -138,6 +138,33 @@
         /// </summary>
         public static string FaceName = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:HeaderSite";
         /// <summary>
+        /// Иные документы
+        /// </summary>
+        public static string AnyDocumentsGr3 = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:HeaderSite";
+        /// <summary>
+        /// Иные документы вставка текста
+        /// </summary>
+        public static string AnyPastDocumentsGr3 = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\AutomationId:txbUstanovleno";
+        /// <summary>
+        /// Установленно
+        /// </summary>
+        public static string InstallGr6 = $"{PublicPanel}AutomationId:gb_6\\AutomationId:exp\\AutomationId:HeaderSite";
+        /// <summary>
+        /// Установленно Текст
+        /// </summary>
+        public static string InstallTextGr6 = $"{PublicPanel}AutomationId:gb_6\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\AutomationId:txbUstanovleno";
+
+
+
+        /// <summary>
+        /// Привлечь к ответственности
+        /// </summary>
+        public static string ErrorFaceGr11 = $"{PublicPanel}AutomationId:gb_11\\AutomationId:exp\\AutomationId:HeaderSite";
+        /// <summary>
+        /// Счет по решению
+        /// </summary>
+        public static string CashFace = $"{PublicPanel}AutomationId:gb_11\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:txbViolationsTotal";
+        /// <summary>
         /// Подписал документ Выбор
         /// </summary>
         public static string FaceNameSign = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:Host\\AutomationId:ultraGroupBox1\\AutomationId:ultraCombo1";
@@ -192,6 +219,10 @@
         /// Исходящие документы
         /// </summary>
         public static string IshDoc = "AutomationId:detailsTab\\Name:Исходящие документы";
+        /// <summary>
+        /// Нарушениея
+        /// </summary>
+        public static string Error = "AutomationId:detailsTab\\Name:Нарушения";
 
         public static string JournalIsh = "AutomationId:detailsTab\\AutomationId:navigator\\AutomationId:splitContainer\\AutomationId:gridData";
         /// <summary>
@@ -206,6 +237,14 @@
         /// Открыть комплекс мероприятий
         /// </summary>
         public static string OpenKnp = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Открыть комплекс мероприятий";
+        /// <summary>
+        /// Режимы для Статистики
+        /// </summary>
+        public static string ModeStatic = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Режимы для Статистики";
+        /// <summary>
+        /// Нарушения для 1 НТК
+        /// </summary>
+        public static string ModeStatic1NTK = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Режимы для Статистики\\Name:Нарушения для 1 НТК";
         /// <summary>
         /// Завершить проверку
         /// </summary>
@@ -265,7 +304,27 @@
                                            "\n     На основании пункта 4 статьи 289 НК РФ налогоплательщики (налоговые агенты) представляют налоговые декларации по налогу на прибыль по итогам налогового периода не позднее 28 марта года, следующего за истекшим налоговым периодом. Налоговым периодом по налогу признается календарный год (п. 1 ст. 285 НК РФ)." +
                                            "\n     Таким образом, в нарушение подпункта 4 пункта 1 статьи 23, пункта 6 статьи 80, пункта 4 статьи 289 НК РФ, Обществом не выполнена обязанность по своевременному представлению в налоговый орган по месту своего нахождения налоговой декларации по налогу на прибыль организаций {0} {1} года. При установленном сроке представления – {2}, календарным годом, налоговая декларация фактически представлена – {3}." +
                                            "\n     В силу п. 1 ст. 119 НК РФ непредставление налогоплательщиком в установленный законодательством о налогах и сборах срок налоговой декларации в налоговый орган по месту учета влечет взыскание штрафа в размере 5 процентов неуплаченной суммы налога, подлежащей уплате (доплате) на основании этой декларации, за каждый полный или неполный месяц со дня, установленного для ее представления, но не более 30 процентов указанной суммы и не менее 1000 рублей.";
-
+        /// <summary>
+        /// Шаблон под номера извещений для ОКП 5 
+        /// </summary>
+        public static string TemplateIzveshenia = "Извещение о времени и месте рассмотрения материалов налоговой проверки №  {0} от {1}";
+        /// <summary>
+        /// Решение об отложении шаблон
+        /// </summary>
+        public static string TemplateReshBeginDate = "Решение об отложении рассмотрения материалов налоговой проверки в связи с неявкой лица (лиц), участие которого (которых) необходимо для их рассмотрения № {0} от {1}";
+        /// <summary>
+        /// Решение о продлении шаблон
+        /// </summary>
+        public static string TemplateReshDate = "Решение о продлении срока рассмотрения материалов налоговой проверки № {0} от {1}";
+        /// <summary>
+        /// Протокол шаблон
+        /// </summary>
+        public static string Protokol = "Протокол рассмотрения материалов налоговой проверки № {0} от {1}";
+        /// <summary>
+        /// Добавление к шаблону установленно
+        /// </summary>
+        public static string TemplateAddText = @"     По результатам камеральной налоговой проверки в рамках ст.88 Налогового кодекса РФ выявлено, что налогоплательщик не исполнил свою обязанность по представлению в налоговый орган расчета по страховым взносам {0} {1} года и тем самым совершил виновное противоправное деяние, за которое п.1  ст.119 НК РФ предусмотрена налоговая ответственность." +
+                                                "     В соответствии с п.п.4, п.5 ст.101 НК РФ обстоятельства, исключающие вину лица в совершении налогового правонарушения или обстоятельства, смягчающие или отягчающие ответственность за совершение налогового правонарушения, не установлены.";
 
         /// <summary>
         /// Сохранить Акт налоговой проверки!
@@ -287,5 +346,28 @@
         /// Закрыть комплекс мероприятий по 121 статье
         /// </summary>
         public static string ClosedComplex121 = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Камеральная налоговая проверка\\Name:Закрыть комплекс КНП\\Name:Закрыть комплекс КНП\\Name:Закрыть комплекс КНП";
+        /// <summary>
+        /// Не сохранять изменения в случае ошибки
+        /// </summary>
+        public static string WinCloseError = "Name:Сохранить изменения. Решение о привлечении к ответственности\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnNo";
+
+        //Проставка статуса 1НК Нарушения выявленны или нет
+        private static string WinError = "Name:Нарушения\\AutomationId:VnpSignViolControl\\";
+        /// <summary>
+        /// Таблица
+        /// </summary>
+        public static string WinTableError = $"{WinError}AutomationId:grSignViol";
+        /// <summary>
+        /// Выбрать
+        /// </summary>
+        public static string SelectError = $"Name:Выбрать";
+        /// <summary>
+        /// Сохранить
+        /// </summary>
+        public static string SaveUdError = $"{WinError}AutomationId:ubAdd";
+        /// <summary>
+        /// Закрыть окно в случае если уже галочка стоит
+        /// </summary>
+        public static string CloseWinError = "Name:Нарушения\\AutomationId:TitleBar\\Name:Закрыть";
     }
 }

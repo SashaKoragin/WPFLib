@@ -9,7 +9,7 @@
 // The following connection settings were used to generate this file:
 //     Configuration file:     "EfDatabaseAutomation\App.config"
 //     Connection String Name: "DatabaseAutomation"
-//     Connection String:      "Data Source=i7751-app127;Initial Catalog=Automation;Integrated Security=True;MultipleActiveResultSets=True"
+//     Connection String:      "Data Source=i7751-app127;Initial Catalog=AutomationTest;Integrated Security=True;MultipleActiveResultSets=True"
 // ------------------------------------------------------------------------------------------------
 // Database Edition        : Enterprise Edition (64-bit)
 // Database Engine Edition : Enterprise
@@ -47,6 +47,8 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<DeclarationData> DeclarationDatas { get; set; } // DeclarationData
         System.Data.Entity.DbSet<DeclarationUl> DeclarationUls { get; set; } // DeclarationUl
         System.Data.Entity.DbSet<Documen2Ndfl> Documen2Ndfl { get; set; } // Documen2NDFL
+        System.Data.Entity.DbSet<Documen2NdflIdentification> Documen2NdflIdentification { get; set; } // Documen2NDFLIdentification
+        System.Data.Entity.DbSet<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost
         System.Data.Entity.DbSet<Field> Fields { get; set; } // Fields
         System.Data.Entity.DbSet<FlFace> FlFaces { get; set; } // FlFace
         System.Data.Entity.DbSet<GroupKbk> GroupKbks { get; set; } // GroupKbk
@@ -61,7 +63,6 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<KbkPlat> KbkPlats { get; set; } // KbkPlat
         System.Data.Entity.DbSet<LogicsSelectAutomation> LogicsSelectAutomations { get; set; } // LogicsSelectAutomation
         System.Data.Entity.DbSet<LogPreCheck> LogPreChecks { get; set; } // LogPreCheck
-        System.Data.Entity.DbSet<ModelGetPost> ModelGetPosts { get; set; } // ModelGetPost
         System.Data.Entity.DbSet<ModelKbkOnKbk> ModelKbkOnKbks { get; set; } // ModelKbkOnKbk
         System.Data.Entity.DbSet<ModelTree> ModelTrees { get; set; } // ModelTree
         System.Data.Entity.DbSet<ParameterProcedureWeb> ParameterProcedureWebs { get; set; } // ParameterProcedureWeb
@@ -77,8 +78,11 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<TaxJournal129> TaxJournal129 { get; set; } // TaxJournal129
         System.Data.Entity.DbSet<TaxJournalAutoReport> TaxJournalAutoReports { get; set; } // TaxJournalAutoReport
         System.Data.Entity.DbSet<TaxJournalAutoWebPage> TaxJournalAutoWebPages { get; set; } // TaxJournalAutoWebPage
+        System.Data.Entity.DbSet<Template> Templates { get; set; } // Template
+        System.Data.Entity.DbSet<TemplateAndTree> TemplateAndTrees { get; set; } // TemplateAndTree
         System.Data.Entity.DbSet<Tree> Trees { get; set; } // Tree
         System.Data.Entity.DbSet<TypeObject> TypeObjects { get; set; } // TypeObject
+        System.Data.Entity.DbSet<TypeTree> TypeTrees { get; set; } // TypeTree
         System.Data.Entity.DbSet<UlFace> UlFaces { get; set; } // UlFace
         System.Data.Entity.DbSet<UlFaceAll> UlFaceAlls { get; set; } // UlFaceAll
 
@@ -111,6 +115,8 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<DeclarationData> DeclarationDatas { get; set; } // DeclarationData
         public System.Data.Entity.DbSet<DeclarationUl> DeclarationUls { get; set; } // DeclarationUl
         public System.Data.Entity.DbSet<Documen2Ndfl> Documen2Ndfl { get; set; } // Documen2NDFL
+        public System.Data.Entity.DbSet<Documen2NdflIdentification> Documen2NdflIdentification { get; set; } // Documen2NDFLIdentification
+        public System.Data.Entity.DbSet<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost
         public System.Data.Entity.DbSet<Field> Fields { get; set; } // Fields
         public System.Data.Entity.DbSet<FlFace> FlFaces { get; set; } // FlFace
         public System.Data.Entity.DbSet<GroupKbk> GroupKbks { get; set; } // GroupKbk
@@ -125,7 +131,6 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<KbkPlat> KbkPlats { get; set; } // KbkPlat
         public System.Data.Entity.DbSet<LogicsSelectAutomation> LogicsSelectAutomations { get; set; } // LogicsSelectAutomation
         public System.Data.Entity.DbSet<LogPreCheck> LogPreChecks { get; set; } // LogPreCheck
-        public System.Data.Entity.DbSet<ModelGetPost> ModelGetPosts { get; set; } // ModelGetPost
         public System.Data.Entity.DbSet<ModelKbkOnKbk> ModelKbkOnKbks { get; set; } // ModelKbkOnKbk
         public System.Data.Entity.DbSet<ModelTree> ModelTrees { get; set; } // ModelTree
         public System.Data.Entity.DbSet<ParameterProcedureWeb> ParameterProcedureWebs { get; set; } // ParameterProcedureWeb
@@ -141,8 +146,11 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<TaxJournal129> TaxJournal129 { get; set; } // TaxJournal129
         public System.Data.Entity.DbSet<TaxJournalAutoReport> TaxJournalAutoReports { get; set; } // TaxJournalAutoReport
         public System.Data.Entity.DbSet<TaxJournalAutoWebPage> TaxJournalAutoWebPages { get; set; } // TaxJournalAutoWebPage
+        public System.Data.Entity.DbSet<Template> Templates { get; set; } // Template
+        public System.Data.Entity.DbSet<TemplateAndTree> TemplateAndTrees { get; set; } // TemplateAndTree
         public System.Data.Entity.DbSet<Tree> Trees { get; set; } // Tree
         public System.Data.Entity.DbSet<TypeObject> TypeObjects { get; set; } // TypeObject
+        public System.Data.Entity.DbSet<TypeTree> TypeTrees { get; set; } // TypeTree
         public System.Data.Entity.DbSet<UlFace> UlFaces { get; set; } // UlFace
         public System.Data.Entity.DbSet<UlFaceAll> UlFaceAlls { get; set; } // UlFaceAll
 
@@ -202,6 +210,8 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new DeclarationDataConfiguration());
             modelBuilder.Configurations.Add(new DeclarationUlConfiguration());
             modelBuilder.Configurations.Add(new Documen2NdflConfiguration());
+            modelBuilder.Configurations.Add(new Documen2NdflIdentificationConfiguration());
+            modelBuilder.Configurations.Add(new FaceModelTemplateGetPostConfiguration());
             modelBuilder.Configurations.Add(new FieldConfiguration());
             modelBuilder.Configurations.Add(new FlFaceConfiguration());
             modelBuilder.Configurations.Add(new GroupKbkConfiguration());
@@ -216,7 +226,6 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new KbkPlatConfiguration());
             modelBuilder.Configurations.Add(new LogicsSelectAutomationConfiguration());
             modelBuilder.Configurations.Add(new LogPreCheckConfiguration());
-            modelBuilder.Configurations.Add(new ModelGetPostConfiguration());
             modelBuilder.Configurations.Add(new ModelKbkOnKbkConfiguration());
             modelBuilder.Configurations.Add(new ModelTreeConfiguration());
             modelBuilder.Configurations.Add(new ParameterProcedureWebConfiguration());
@@ -232,8 +241,11 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new TaxJournal129Configuration());
             modelBuilder.Configurations.Add(new TaxJournalAutoReportConfiguration());
             modelBuilder.Configurations.Add(new TaxJournalAutoWebPageConfiguration());
+            modelBuilder.Configurations.Add(new TemplateConfiguration());
+            modelBuilder.Configurations.Add(new TemplateAndTreeConfiguration());
             modelBuilder.Configurations.Add(new TreeConfiguration());
             modelBuilder.Configurations.Add(new TypeObjectConfiguration());
+            modelBuilder.Configurations.Add(new TypeTreeConfiguration());
             modelBuilder.Configurations.Add(new UlFaceConfiguration());
             modelBuilder.Configurations.Add(new UlFaceAllConfiguration());
         }
@@ -248,6 +260,8 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new DeclarationDataConfiguration(schema));
             modelBuilder.Configurations.Add(new DeclarationUlConfiguration(schema));
             modelBuilder.Configurations.Add(new Documen2NdflConfiguration(schema));
+            modelBuilder.Configurations.Add(new Documen2NdflIdentificationConfiguration(schema));
+            modelBuilder.Configurations.Add(new FaceModelTemplateGetPostConfiguration(schema));
             modelBuilder.Configurations.Add(new FieldConfiguration(schema));
             modelBuilder.Configurations.Add(new FlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new GroupKbkConfiguration(schema));
@@ -262,7 +276,6 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new KbkPlatConfiguration(schema));
             modelBuilder.Configurations.Add(new LogicsSelectAutomationConfiguration(schema));
             modelBuilder.Configurations.Add(new LogPreCheckConfiguration(schema));
-            modelBuilder.Configurations.Add(new ModelGetPostConfiguration(schema));
             modelBuilder.Configurations.Add(new ModelKbkOnKbkConfiguration(schema));
             modelBuilder.Configurations.Add(new ModelTreeConfiguration(schema));
             modelBuilder.Configurations.Add(new ParameterProcedureWebConfiguration(schema));
@@ -278,8 +291,11 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new TaxJournal129Configuration(schema));
             modelBuilder.Configurations.Add(new TaxJournalAutoReportConfiguration(schema));
             modelBuilder.Configurations.Add(new TaxJournalAutoWebPageConfiguration(schema));
+            modelBuilder.Configurations.Add(new TemplateConfiguration(schema));
+            modelBuilder.Configurations.Add(new TemplateAndTreeConfiguration(schema));
             modelBuilder.Configurations.Add(new TreeConfiguration(schema));
             modelBuilder.Configurations.Add(new TypeObjectConfiguration(schema));
+            modelBuilder.Configurations.Add(new TypeTreeConfiguration(schema));
             modelBuilder.Configurations.Add(new UlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new UlFaceAllConfiguration(schema));
             return modelBuilder;
@@ -305,7 +321,7 @@ namespace EfDatabaseAutomation.Automation.Base
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class AddUlFace
     {
-        public int Id { get; set; } // Id (Primary key)
+        public int IdUl { get; set; } // IdUl (Primary key)
         public string InnUl { get; set; } // InnUl (length: 12)
         public string FullStatus { get; set; } // FullStatus (length: 124)
         public System.DateTime? DateCreate { get; set; } // DateCreate
@@ -313,15 +329,15 @@ namespace EfDatabaseAutomation.Automation.Base
         // Reverse navigation
 
         /// <summary>
-        /// Child ModelGetPosts where [ModelGetPost].[IdUl] point to this entity (FK_AddUlFace_ModelGetPost)
+        /// Child FaceModelTemplateGetPosts where [FaceModelTemplateGetPost].[IdUl] point to this entity (FK_AddUlFace_FaceModelTemplateGetPost)
         /// </summary>
         [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<ModelGetPost> ModelGetPosts { get; set; } // ModelGetPost.FK_AddUlFace_ModelGetPost
+        public virtual System.Collections.Generic.ICollection<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost.FK_AddUlFace_FaceModelTemplateGetPost
 
         public AddUlFace()
         {
             DateCreate = System.DateTime.Now;
-            ModelGetPosts = new System.Collections.Generic.List<ModelGetPost>();
+            FaceModelTemplateGetPosts = new System.Collections.Generic.List<FaceModelTemplateGetPost>();
         }
     }
 
@@ -506,11 +522,12 @@ namespace EfDatabaseAutomation.Automation.Base
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class Documen2Ndfl
     {
-        public int Id { get; set; } // Id (Primary key)
-        public long IdDoc { get; set; } // IdDoc (Primary key)
-        public long IdFile { get; set; } // IdFile (Primary key)
-        public int Ifns { get; set; } // Ifns (Primary key)
-        public int Yars { get; set; } // Yars (Primary key)
+        public int Id { get; set; } // Id
+        public long IdDoc { get; set; } // IdDoc (Primary key via unique index UQ__Documen2__0E65F8DA6399A2AA)
+        public long? IdFile { get; set; } // IdFile
+        public int? Ifns { get; set; } // Ifns
+        public int? Yars { get; set; } // Yars
+        public int? Priznak { get; set; } // Priznak
         public string Inn { get; set; } // INN (length: 12)
         public string FName { get; set; } // FName (length: 512)
         public string IName { get; set; } // IName (length: 512)
@@ -538,12 +555,77 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // Documen2NDFLIdentification
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class Documen2NdflIdentification
+    {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
+        public long IdDoc { get; set; } // IdDoc (Primary key)
+        public long? IdFile { get; set; } // IdFile
+        public int? Ifns { get; set; } // Ifns
+        public int? Yars { get; set; } // Yars
+        public int? Priznak { get; set; } // Priznak
+        public string Inn { get; set; } // INN (length: 12)
+        public string FName { get; set; } // FName (length: 512)
+        public string IName { get; set; } // IName (length: 512)
+        public string OName { get; set; } // OName (length: 512)
+        public string Fio { get; set; } // FIO (length: 512)
+        public string Document { get; set; } // Document (length: 1024)
+        public string SeriaNumber { get; set; } // SeriaNumber (length: 1024)
+        public System.DateTime? DateNameUser { get; set; } // DateNameUser
+        public string InnOrganization { get; set; } // InnOrganization (length: 12)
+        public string NameOrganization { get; set; } // NameOrganization (length: 1024)
+        public long? Fid { get; set; } // Fid
+        public long? IdFl { get; set; } // IdFl
+        public string InnUtoch { get; set; } // INNUtoch (length: 12)
+        public string FNameUtoch { get; set; } // FNameUtoch (length: 512)
+        public string INameUtoch { get; set; } // INameUtoch (length: 512)
+        public string ONameUtoch { get; set; } // ONameUtoch (length: 512)
+        public System.DateTime? DateNameUserUtoch { get; set; } // DateNameUserUtoch
+        public string StatusSved { get; set; } // StatusSved (length: 512)
+        public string ErrorNameStatus { get; set; } // ErrorNameStatus (length: 1024)
+    }
+
+    // FaceModelTemplateGetPost
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class FaceModelTemplateGetPost
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int IdUl { get; set; } // IdUl
+        public int IdTemplate { get; set; } // IdTemplate
+        public int IdTree { get; set; } // IdTree
+        public string StatusModel { get; set; } // StatusModel (length: 124)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent AddUlFace pointed by [FaceModelTemplateGetPost].([IdUl]) (FK_AddUlFace_FaceModelTemplateGetPost)
+        /// </summary>
+        public virtual AddUlFace AddUlFace { get; set; } // FK_AddUlFace_FaceModelTemplateGetPost
+
+        /// <summary>
+        /// Parent Template pointed by [FaceModelTemplateGetPost].([IdTemplate]) (FK_Template_FaceModelTemplateGetPost)
+        /// </summary>
+        public virtual Template Template { get; set; } // FK_Template_FaceModelTemplateGetPost
+
+        /// <summary>
+        /// Parent Tree pointed by [FaceModelTemplateGetPost].([IdTree]) (FK_Tree_FaceModelTemplateGetPost)
+        /// </summary>
+        public virtual Tree Tree { get; set; } // FK_Tree_FaceModelTemplateGetPost
+
+        public FaceModelTemplateGetPost()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
     // Fields
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class Field
     {
         public int Id { get; set; } // Id (Primary key)
-        public int? IdTree { get; set; } // IdTree
+        public int IdTree { get; set; } // IdTree
         public string Fields { get; set; } // Fields (length: 1024)
         public System.DateTime? DateCreate { get; set; } // DateCreate
 
@@ -865,34 +947,6 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
-    // ModelGetPost
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
-    public class ModelGetPost
-    {
-        public int Id { get; set; } // Id (Primary key)
-        public int IdUl { get; set; } // IdUl
-        public int IdTreModel { get; set; } // IdTreModel
-        public string StatusModel { get; set; } // StatusModel (length: 124)
-        public System.DateTime? DateCreate { get; set; } // DateCreate
-
-        // Foreign keys
-
-        /// <summary>
-        /// Parent AddUlFace pointed by [ModelGetPost].([IdUl]) (FK_AddUlFace_ModelGetPost)
-        /// </summary>
-        public virtual AddUlFace AddUlFace { get; set; } // FK_AddUlFace_ModelGetPost
-
-        /// <summary>
-        /// Parent Tree pointed by [ModelGetPost].([IdTreModel]) (FK_Tree_ModelGetPost)
-        /// </summary>
-        public virtual Tree Tree { get; set; } // FK_Tree_ModelGetPost
-
-        public ModelGetPost()
-        {
-            DateCreate = System.DateTime.Now;
-        }
-    }
-
     // ModelKbkOnKbk
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class ModelKbkOnKbk
@@ -1153,10 +1207,13 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.DateTime DateFinishCheck { get; set; } // DateFinishCheck (Primary key)
         public System.DateTime DateStartDeclaration { get; set; } // DateStartDeclaration (Primary key)
         public System.DateTime DateFinishDeclaration { get; set; } // DateFinishDeclaration (Primary key)
+        public System.DateTime? DateFinishKnp { get; set; } // DateFinishKnp
         public bool? IsTks { get; set; } // IsTks
         public bool? IsMail { get; set; } // IsMail
         public bool? IsLk3 { get; set; } // IsLk3
+        public bool IsPriznak { get; set; } // IsPriznak (Primary key)
         public string TypeDocument { get; set; } // TypeDocument (length: 128)
+        public string Score { get; set; } // Score (length: 512)
         public string MessageInfo { get; set; } // MessageInfo (length: 512)
         public string LoginUser { get; set; } // LoginUser (length: 1024)
         public string Extensions { get; set; } // Extensions (length: 10)
@@ -1198,6 +1255,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public string Extensions { get; set; } // Extensions (length: 10)
         public bool? IsPrint { get; set; } // IsPrint
         public System.DateTime? DataCreate { get; set; } // DataCreate
+        public string MessageInfo { get; set; } // MessageInfo (length: 512)
     }
 
     // TaxJournal129
@@ -1279,33 +1337,102 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.DateTime? DataCreate { get; set; } // DataCreate
     }
 
-    // Tree
+    // Template
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
-    public class Tree
+    public class Template
     {
-        public int Id { get; set; } // Id (Primary key)
-        public string Tree_ { get; set; } // Tree (length: 1024)
-        public int TypeTree { get; set; } // TypeTree
+        public int IdTemplate { get; set; } // IdTemplate (Primary key)
+        public string NameTemplate { get; set; } // NameTemplate (length: 512)
         public System.DateTime? DateCreate { get; set; } // DateCreate
 
         // Reverse navigation
 
+        /// <summary>
+        /// Child FaceModelTemplateGetPosts where [FaceModelTemplateGetPost].[IdTemplate] point to this entity (FK_Template_FaceModelTemplateGetPost)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost.FK_Template_FaceModelTemplateGetPost
+        /// <summary>
+        /// Child TemplateAndTrees where [TemplateAndTree].[IdTemplate] point to this entity (FK_Template_TemplateAndTree)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<TemplateAndTree> TemplateAndTrees { get; set; } // TemplateAndTree.FK_Template_TemplateAndTree
+
+        public Template()
+        {
+            DateCreate = System.DateTime.Now;
+            FaceModelTemplateGetPosts = new System.Collections.Generic.List<FaceModelTemplateGetPost>();
+            TemplateAndTrees = new System.Collections.Generic.List<TemplateAndTree>();
+        }
+    }
+
+    // TemplateAndTree
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TemplateAndTree
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int IdTemplate { get; set; } // IdTemplate
+        public int IdTree { get; set; } // IdTree
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Template pointed by [TemplateAndTree].([IdTemplate]) (FK_Template_TemplateAndTree)
+        /// </summary>
+        public virtual Template Template { get; set; } // FK_Template_TemplateAndTree
+
+        /// <summary>
+        /// Parent Tree pointed by [TemplateAndTree].([IdTree]) (FK_Tree_TemplateAndTree)
+        /// </summary>
+        public virtual Tree Tree { get; set; } // FK_Tree_TemplateAndTree
+
+        public TemplateAndTree()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // Tree
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class Tree
+    {
+        public int IdTree { get; set; } // IdTree (Primary key)
+        public string Tree_ { get; set; } // Tree (length: 1024)
+        public int IdTypeTree { get; set; } // IdTypeTree
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child FaceModelTemplateGetPosts where [FaceModelTemplateGetPost].[IdTree] point to this entity (FK_Tree_FaceModelTemplateGetPost)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost.FK_Tree_FaceModelTemplateGetPost
         /// <summary>
         /// Child Fields where [Fields].[IdTree] point to this entity (FK_Tree_Fields)
         /// </summary>
         [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<Field> Fields { get; set; } // Fields.FK_Tree_Fields
         /// <summary>
-        /// Child ModelGetPosts where [ModelGetPost].[IdTreModel] point to this entity (FK_Tree_ModelGetPost)
+        /// Child TemplateAndTrees where [TemplateAndTree].[IdTree] point to this entity (FK_Tree_TemplateAndTree)
         /// </summary>
         [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<ModelGetPost> ModelGetPosts { get; set; } // ModelGetPost.FK_Tree_ModelGetPost
+        public virtual System.Collections.Generic.ICollection<TemplateAndTree> TemplateAndTrees { get; set; } // TemplateAndTree.FK_Tree_TemplateAndTree
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent TypeTree pointed by [Tree].([IdTypeTree]) (FK_Tree_TypeTree)
+        /// </summary>
+        public virtual TypeTree TypeTree { get; set; } // FK_Tree_TypeTree
 
         public Tree()
         {
             DateCreate = System.DateTime.Now;
+            FaceModelTemplateGetPosts = new System.Collections.Generic.List<FaceModelTemplateGetPost>();
             Fields = new System.Collections.Generic.List<Field>();
-            ModelGetPosts = new System.Collections.Generic.List<ModelGetPost>();
+            TemplateAndTrees = new System.Collections.Generic.List<TemplateAndTree>();
         }
     }
 
@@ -1335,6 +1462,29 @@ namespace EfDatabaseAutomation.Automation.Base
             DateCreate = System.DateTime.Now;
             ImZmTrFls = new System.Collections.Generic.List<ImZmTrFl>();
             ImZmTrUls = new System.Collections.Generic.List<ImZmTrUl>();
+        }
+    }
+
+    // TypeTree
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TypeTree
+    {
+        public int IdTypeTree { get; set; } // IdTypeTree (Primary key)
+        public string NameTypeTree { get; set; } // NameTypeTree (length: 1024)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child Trees where [Tree].[IdTypeTree] point to this entity (FK_Tree_TypeTree)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<Tree> Trees { get; set; } // Tree.FK_Tree_TypeTree
+
+        public TypeTree()
+        {
+            DateCreate = System.DateTime.Now;
+            Trees = new System.Collections.Generic.List<Tree>();
         }
     }
 
@@ -1466,9 +1616,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public AddUlFaceConfiguration(string schema)
         {
             ToTable("AddUlFace", schema);
-            HasKey(x => x.Id);
+            HasKey(x => x.IdUl);
 
-            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.InnUl).HasColumnName(@"InnUl").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
             Property(x => x.FullStatus).HasColumnName(@"FullStatus").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(124);
             Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
@@ -1676,13 +1826,14 @@ namespace EfDatabaseAutomation.Automation.Base
         public Documen2NdflConfiguration(string schema)
         {
             ToTable("Documen2NDFL", schema);
-            HasKey(x => new { x.Id, x.IdDoc, x.IdFile, x.Ifns, x.Yars });
+            HasKey(x => x.IdDoc);
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.IdDoc).HasColumnName(@"IdDoc").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.IdFile).HasColumnName(@"IdFile").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.Ifns).HasColumnName(@"Ifns").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.Yars).HasColumnName(@"Yars").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.IdFile).HasColumnName(@"IdFile").HasColumnType("bigint").IsOptional();
+            Property(x => x.Ifns).HasColumnName(@"Ifns").HasColumnType("int").IsOptional();
+            Property(x => x.Yars).HasColumnName(@"Yars").HasColumnType("int").IsOptional();
+            Property(x => x.Priznak).HasColumnName(@"Priznak").HasColumnType("int").IsOptional();
             Property(x => x.Inn).HasColumnName(@"INN").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
             Property(x => x.FName).HasColumnName(@"FName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
             Property(x => x.IName).HasColumnName(@"IName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
@@ -1706,6 +1857,76 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // Documen2NDFLIdentification
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class Documen2NdflIdentificationConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Documen2NdflIdentification>
+    {
+        public Documen2NdflIdentificationConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public Documen2NdflIdentificationConfiguration(string schema)
+        {
+            ToTable("Documen2NDFLIdentification", schema);
+            HasKey(x => new { x.LogicsButton, x.IdDoc });
+
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.IdDoc).HasColumnName(@"IdDoc").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.IdFile).HasColumnName(@"IdFile").HasColumnType("bigint").IsOptional();
+            Property(x => x.Ifns).HasColumnName(@"Ifns").HasColumnType("int").IsOptional();
+            Property(x => x.Yars).HasColumnName(@"Yars").HasColumnType("int").IsOptional();
+            Property(x => x.Priznak).HasColumnName(@"Priznak").HasColumnType("int").IsOptional();
+            Property(x => x.Inn).HasColumnName(@"INN").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.FName).HasColumnName(@"FName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.IName).HasColumnName(@"IName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.OName).HasColumnName(@"OName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Fio).HasColumnName(@"FIO").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Document).HasColumnName(@"Document").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.SeriaNumber).HasColumnName(@"SeriaNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateNameUser).HasColumnName(@"DateNameUser").HasColumnType("date").IsOptional();
+            Property(x => x.InnOrganization).HasColumnName(@"InnOrganization").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.NameOrganization).HasColumnName(@"NameOrganization").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.Fid).HasColumnName(@"Fid").HasColumnType("bigint").IsOptional();
+            Property(x => x.IdFl).HasColumnName(@"IdFl").HasColumnType("bigint").IsOptional();
+            Property(x => x.InnUtoch).HasColumnName(@"INNUtoch").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.FNameUtoch).HasColumnName(@"FNameUtoch").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.INameUtoch).HasColumnName(@"INameUtoch").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.ONameUtoch).HasColumnName(@"ONameUtoch").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.DateNameUserUtoch).HasColumnName(@"DateNameUserUtoch").HasColumnType("date").IsOptional();
+            Property(x => x.StatusSved).HasColumnName(@"StatusSved").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.ErrorNameStatus).HasColumnName(@"ErrorNameStatus").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+        }
+    }
+
+    // FaceModelTemplateGetPost
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class FaceModelTemplateGetPostConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<FaceModelTemplateGetPost>
+    {
+        public FaceModelTemplateGetPostConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public FaceModelTemplateGetPostConfiguration(string schema)
+        {
+            ToTable("FaceModelTemplateGetPost", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired();
+            Property(x => x.IdTemplate).HasColumnName(@"IdTemplate").HasColumnType("int").IsRequired();
+            Property(x => x.IdTree).HasColumnName(@"IdTree").HasColumnType("int").IsRequired();
+            Property(x => x.StatusModel).HasColumnName(@"StatusModel").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(124);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.AddUlFace).WithMany(b => b.FaceModelTemplateGetPosts).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_AddUlFace_FaceModelTemplateGetPost
+            HasRequired(a => a.Template).WithMany(b => b.FaceModelTemplateGetPosts).HasForeignKey(c => c.IdTemplate).WillCascadeOnDelete(false); // FK_Template_FaceModelTemplateGetPost
+            HasRequired(a => a.Tree).WithMany(b => b.FaceModelTemplateGetPosts).HasForeignKey(c => c.IdTree).WillCascadeOnDelete(false); // FK_Tree_FaceModelTemplateGetPost
+        }
+    }
+
     // Fields
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class FieldConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Field>
@@ -1721,12 +1942,12 @@ namespace EfDatabaseAutomation.Automation.Base
             HasKey(x => x.Id);
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            Property(x => x.IdTree).HasColumnName(@"IdTree").HasColumnType("int").IsOptional();
+            Property(x => x.IdTree).HasColumnName(@"IdTree").HasColumnType("int").IsRequired();
             Property(x => x.Fields).HasColumnName(@"Fields").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
 
             // Foreign keys
-            HasOptional(a => a.Tree).WithMany(b => b.Fields).HasForeignKey(c => c.IdTree).WillCascadeOnDelete(false); // FK_Tree_Fields
+            HasRequired(a => a.Tree).WithMany(b => b.Fields).HasForeignKey(c => c.IdTree).WillCascadeOnDelete(false); // FK_Tree_Fields
         }
     }
 
@@ -2057,32 +2278,6 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
-    // ModelGetPost
-    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
-    public class ModelGetPostConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<ModelGetPost>
-    {
-        public ModelGetPostConfiguration()
-            : this("dbo")
-        {
-        }
-
-        public ModelGetPostConfiguration(string schema)
-        {
-            ToTable("ModelGetPost", schema);
-            HasKey(x => x.Id);
-
-            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
-            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired();
-            Property(x => x.IdTreModel).HasColumnName(@"IdTreModel").HasColumnType("int").IsRequired();
-            Property(x => x.StatusModel).HasColumnName(@"StatusModel").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(124);
-            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
-
-            // Foreign keys
-            HasRequired(a => a.AddUlFace).WithMany(b => b.ModelGetPosts).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_AddUlFace_ModelGetPost
-            HasRequired(a => a.Tree).WithMany(b => b.ModelGetPosts).HasForeignKey(c => c.IdTreModel).WillCascadeOnDelete(false); // FK_Tree_ModelGetPost
-        }
-    }
-
     // ModelKbkOnKbk
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class ModelKbkOnKbkConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<ModelKbkOnKbk>
@@ -2379,7 +2574,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public TaxJournal121Configuration(string schema)
         {
             ToTable("TaxJournal121", schema);
-            HasKey(x => new { x.Id, x.DateStartCheck, x.DateFinishCheck, x.DateStartDeclaration, x.DateFinishDeclaration });
+            HasKey(x => new { x.Id, x.DateStartCheck, x.DateFinishCheck, x.DateStartDeclaration, x.DateFinishDeclaration, x.IsPriznak });
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.GlobalColor).HasColumnName(@"GlobalColor").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
@@ -2399,10 +2594,13 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.DateFinishCheck).HasColumnName(@"DateFinishCheck").HasColumnType("smalldatetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.DateStartDeclaration).HasColumnName(@"DateStartDeclaration").HasColumnType("smalldatetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.DateFinishDeclaration).HasColumnName(@"DateFinishDeclaration").HasColumnType("smalldatetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DateFinishKnp).HasColumnName(@"DateFinishKnp").HasColumnType("smalldatetime").IsOptional();
             Property(x => x.IsTks).HasColumnName(@"IsTks").HasColumnType("bit").IsOptional();
             Property(x => x.IsMail).HasColumnName(@"IsMail").HasColumnType("bit").IsOptional();
             Property(x => x.IsLk3).HasColumnName(@"IsLk3").HasColumnType("bit").IsOptional();
+            Property(x => x.IsPriznak).HasColumnName(@"IsPriznak").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.TypeDocument).HasColumnName(@"TypeDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.Score).HasColumnName(@"Score").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
             Property(x => x.MessageInfo).HasColumnName(@"MessageInfo").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
             Property(x => x.LoginUser).HasColumnName(@"LoginUser").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.Extensions).HasColumnName(@"Extensions").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
@@ -2450,6 +2648,7 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.Extensions).HasColumnName(@"Extensions").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
             Property(x => x.IsPrint).HasColumnName(@"IsPrint").HasColumnType("bit").IsOptional();
             Property(x => x.DataCreate).HasColumnName(@"DataCreate").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.MessageInfo).HasColumnName(@"MessageInfo").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
         }
     }
 
@@ -2560,6 +2759,51 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // Template
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TemplateConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Template>
+    {
+        public TemplateConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public TemplateConfiguration(string schema)
+        {
+            ToTable("Template", schema);
+            HasKey(x => x.IdTemplate);
+
+            Property(x => x.IdTemplate).HasColumnName(@"IdTemplate").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.NameTemplate).HasColumnName(@"NameTemplate").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // TemplateAndTree
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TemplateAndTreeConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TemplateAndTree>
+    {
+        public TemplateAndTreeConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public TemplateAndTreeConfiguration(string schema)
+        {
+            ToTable("TemplateAndTree", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdTemplate).HasColumnName(@"IdTemplate").HasColumnType("int").IsRequired();
+            Property(x => x.IdTree).HasColumnName(@"IdTree").HasColumnType("int").IsRequired();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.Template).WithMany(b => b.TemplateAndTrees).HasForeignKey(c => c.IdTemplate).WillCascadeOnDelete(false); // FK_Template_TemplateAndTree
+            HasRequired(a => a.Tree).WithMany(b => b.TemplateAndTrees).HasForeignKey(c => c.IdTree).WillCascadeOnDelete(false); // FK_Tree_TemplateAndTree
+        }
+    }
+
     // Tree
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class TreeConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Tree>
@@ -2572,12 +2816,15 @@ namespace EfDatabaseAutomation.Automation.Base
         public TreeConfiguration(string schema)
         {
             ToTable("Tree", schema);
-            HasKey(x => x.Id);
+            HasKey(x => x.IdTree);
 
-            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdTree).HasColumnName(@"IdTree").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.Tree_).HasColumnName(@"Tree").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
-            Property(x => x.TypeTree).HasColumnName(@"TypeTree").HasColumnType("int").IsRequired();
+            Property(x => x.IdTypeTree).HasColumnName(@"IdTypeTree").HasColumnType("int").IsRequired();
             Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.TypeTree).WithMany(b => b.Trees).HasForeignKey(c => c.IdTypeTree).WillCascadeOnDelete(false); // FK_Tree_TypeTree
         }
     }
 
@@ -2597,6 +2844,26 @@ namespace EfDatabaseAutomation.Automation.Base
 
             Property(x => x.IdObject).HasColumnName(@"IdObject").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.TypeObject_).HasColumnName(@"TypeObject").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // TypeTree
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TypeTreeConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TypeTree>
+    {
+        public TypeTreeConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public TypeTreeConfiguration(string schema)
+        {
+            ToTable("TypeTree", schema);
+            HasKey(x => x.IdTypeTree);
+
+            Property(x => x.IdTypeTree).HasColumnName(@"IdTypeTree").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.NameTypeTree).HasColumnName(@"NameTypeTree").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
         }
     }

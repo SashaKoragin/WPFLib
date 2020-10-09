@@ -41,7 +41,7 @@ namespace LibraryCommandPublic.TestAutoit.It.Rule
                   {
                       MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                   }
-              });
+               });
             }
         }
     }

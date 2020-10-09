@@ -292,6 +292,10 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                     return serializeJson.JsonLibary((
                         FullError)sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString,
                         logic.SelectUser, typeof(FullError)));
+                case 33:
+                    return serializeJson.JsonLibraryVks((
+                        MailSheme)sqlConnect.SelectFullParametrSqlReader<string,string>(connectionString,
+                        logic.SelectUser,typeof(MailSheme)));
                 default:
                     return "Данная команда не определена!!!";
             }
@@ -332,6 +336,24 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                     return null;
             }
         }
+        /// <summary>
+        /// Запрос на выгрузку данных в таблицу XLSX
+        /// </summary>
+        /// <param name="connectionString">Строка соединения с сервером</param>
+        /// <param name="sqlSelect">Sql запрос</param>
+        /// <param name="nameFile">Наименование файла</param>
+        /// <param name="nameReport">Наименование отчета</param>
+        /// <param name="pathSaveReport">Путь сохранения отчета</param>
+        /// <returns></returns>
+        public Stream GenerateStreamToSqlViewFile(string connectionString, string sqlSelect, string nameFile, string nameReport, string pathSaveReport)
+        {
+            var sqlConnect = new SqlConnectionType();
+            var xlsx = new ReportExcel();
+            var tableTelephone = sqlConnect.ReportQbe(connectionString, sqlSelect);
+            xlsx.ReportSave(pathSaveReport, nameFile, nameReport, tableTelephone);
+            return DownloadFile(Path.Combine(pathSaveReport, $"{nameFile}.xlsx"));
+        }
+
         /// <summary>
         /// Функция преобразования View в Файл
         /// </summary>

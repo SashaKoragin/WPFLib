@@ -24,6 +24,7 @@
 			<xs:element ref="HelpKbkAuto" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="AllJournal129" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="SignatureBoss" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Documen2NDFLIdentification" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxJournalAutoWebPage">
@@ -229,6 +230,11 @@
 			<xs:attribute name="Extensions" type="xs:string">
 				<xs:annotation>
 					<xs:documentation>Расширение файла</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageInfo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Ошибка\Сообщение</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
@@ -552,6 +558,134 @@
 	<xs:element name="IsActual" type="xs:boolean" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Актуальность подписи</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Documen2NDFLIdentification">
+		<xs:annotation>
+			<xs:documentation>Идентификация справок 2НДФЛ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton"/>
+				<xs:element ref="IdDoc"/>
+				<xs:element ref="IdFile"/>
+				<xs:element ref="Yars"/>
+				<xs:element ref="Priznak"/>
+				<xs:element ref="DateNameUser"/>
+				<xs:element ref="Fid"/>
+				<xs:element ref="IdFl"/>
+				<xs:element ref="DateNameUserUtoch"/>
+			</xs:sequence>
+			<xs:attribute name="INN" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="FName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="OName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="FIO" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ФИО</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Document" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Документ удостоверяющий личность</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="SeriaNumber" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Серия/Номер Документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="InnOrganization" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameOrganization" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="INNUtoch" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН уточненного лица</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="FNameUtoch" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Фамилия уточненного лица</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="INameUtoch" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Имя уточненного лица</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ONameUtoch" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Отчество уточненного лица</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="StatusSved" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус лица</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ErrorNameStatus" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус отработки документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IdFile" type="xs:long" nillable="true">
+		<xs:annotation>
+			<xs:documentation>УН файла</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Yars" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Год</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Priznak" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Признак</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateNameUser" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата рождения</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Fid" type="xs:long" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Фид уточненного лица</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IdFl" type="xs:long" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Ун ФЛ Уточненного лица</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateNameUserUtoch" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Уточненная дата рождения</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

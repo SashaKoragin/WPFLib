@@ -26,6 +26,23 @@
                 FontSize="16" />
             <Label Content="Комманда приостановить Shift+S" FontSize="16" />
             <Label Content="Комманда возобновить Shift+A" FontSize="16" />
+            <WrapPanel>
+                <Label Content="Выбор признака:" FontSize="16"/>
+                <ComboBox HorizontalContentAlignment="Stretch" 
+                          MinWidth="80" 
+                          SelectedItem="{Binding ModelSelect.SelectModel, ValidatesOnDataErrors=True}" 
+                          ItemsSource="{Binding ModelSelect.ModelCollection}"
+                          ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                          Validation.ErrorTemplate="{StaticResource ValidationFailederror}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding NameParameter}" FontSize="16"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </WrapPanel>
         </StackPanel>
     </Grid>
 </UserControl>

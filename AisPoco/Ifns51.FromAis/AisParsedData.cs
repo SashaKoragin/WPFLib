@@ -16,6 +16,12 @@ namespace Ifns51.FromAis
 			get;
 			set;
 		}
+		//УН обрабатываемого шаблона
+        public int IdTemplate
+        {
+            get;
+            set;
+		}
 
 		public List<Dictionary<string,string>> Data
 		{

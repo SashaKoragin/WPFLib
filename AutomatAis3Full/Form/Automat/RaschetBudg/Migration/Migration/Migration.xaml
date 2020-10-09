@@ -20,14 +20,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Label
-            Grid.Row="0"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Content="При выборке важно поставить УН миграции в заголовок!!!"
-            FontSize="20"
-            FontWeight="Bold"
-            Foreground="Red" />
         <StackPanel
             Grid.Row="1"
             Grid.Column="0"
@@ -39,11 +31,9 @@
                 Content="{Binding Start.Button}"
                 FontSize="16" />
             <WrapPanel>
-                <Button
-                    Margin="5,5,5,5"
-                    Command="{Binding Vibor}"
-                    Content="Проставить выборку" />
+                <Label Content="Выборка:" FontSize="16" />
                 <ComboBox
+   
                     ItemsSource="{Binding Select.SelectQbe}"
                     SelectedItem="{Binding Select.Sel, Mode=TwoWay, ValidatesOnDataErrors=True}"
                     ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
@@ -55,9 +45,8 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </WrapPanel>
-            <CheckBox Content="Вытаскивать ошибки по сообщениям" IsChecked="{Binding Start.IsChekcs}" />
-            <Label Content="Комманда приостановить Shift+S" FontSize="16" />
-            <Label Content="Комманда возобновить Shift+A" FontSize="16" />
+            <Label Content="Команда приостановить Shift+S" FontSize="16" />
+            <Label Content="Команда возобновить Shift+A" FontSize="16" />
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Label
@@ -79,7 +68,7 @@
                                     Text="{Binding EditConfig.Ifns, Mode=TwoWay, ValidatesOnDataErrors=True}"
                                     ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
                                     Validation.ErrorTemplate="{StaticResource ValidationFailederror}" />
-                                <Button Command="{Binding AddExeption}" Content="Добавить" />
+                                <Button Command="{Binding AddException}" Content="Добавить" />
                             </WrapPanel>
                         </ControlTemplate>
                     </TextBox.Template>
@@ -89,7 +78,7 @@
                 x:Name="View"
                 Height="150"
                 Margin="5,5,5,5"
-                ItemsSource="{Binding EditConfig.ExeptionsIfns}"
+                ItemsSource="{Binding EditConfig.ExceptionIfns}"
                 SelectionMode="Single">
                 <ListView.View>
                     <GridView>
@@ -104,7 +93,7 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button
-                                        Command="{Binding ElementName=View, Path=DataContext.DeleteExeption}"
+                                        Command="{Binding ElementName=View, Path=DataContext.DeleteException}"
                                         CommandParameter="{Binding}"
                                         Content="Удалить" />
                                 </DataTemplate>

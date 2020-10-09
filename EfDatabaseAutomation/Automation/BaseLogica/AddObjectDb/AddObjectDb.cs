@@ -10,12 +10,11 @@ using ModelKbkOnKbk = EfDatabaseAutomation.Automation.Base.ModelKbkOnKbk;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
 {
-   public class AddObjectDb 
+   public class AddObjectDb : IDisposable
     {
         public Automation.Base.Automation Automation { get; set; }
         public AddObjectDb()
         {
-            Automation?.Dispose();
             Automation = new Base.Automation();
         }
 
@@ -89,6 +88,25 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
         public void IsActualStatus(int signatureSenderTaxJournalOkp2)
         {
             var resultFullOnBlockStatus = Automation.Database.SqlQuery<string>("Exec [dbo].[ActualStatusSignature] @Id", new SqlParameter("Id", signatureSenderTaxJournalOkp2)).FirstOrDefault();
+        }
+
+
+        /// <summary>
+        /// Disposing
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                Automation?.Dispose();
+                Automation = null;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
         }
     }
 }

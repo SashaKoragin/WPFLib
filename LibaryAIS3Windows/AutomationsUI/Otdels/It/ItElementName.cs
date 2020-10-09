@@ -21,7 +21,7 @@
         /// <summary>
         /// Журнал Дата
         /// </summary>
-        public static string GridJournalRows = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandJrnlView\\AutomationId:gbAll\\AutomationId:grdJournal\\Name:List`1 row {0}";
+        public static string GridJournalRows = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandJrnlView\\AutomationId:gbAll\\AutomationId:grdJournal\\Name:List`1 row ";
         /// <summary>
         /// История ролей
         /// </summary>

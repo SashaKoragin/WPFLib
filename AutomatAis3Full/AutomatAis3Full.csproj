@@ -125,6 +125,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Okp1\Declaration121\Declaration121\FormDeclaration121.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Okp2\RegisterDeclarations\RegisterDeclarations\FormRegisterDeclarations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -150,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Okp4\PrintSnu\Print\UserPrintSnu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Okp5\ActIzvesheniaReshenia121\ActIzvesheniaReshenia\ActIzvesheniaResheniaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -296,6 +304,10 @@
     <Compile Include="Form\Automat\It\Rule\UserControl\RuleParse.xaml.cs">
       <DependentUpon>RuleParse.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\Okp1\Declaration121\DataContext\DataContextDeclaration121.cs" />
+    <Compile Include="Form\Automat\Okp1\Declaration121\Declaration121\FormDeclaration121.xaml.cs">
+      <DependentUpon>FormDeclaration121.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\Okp2\RegisterDeclarations\DataContext\DataContextRegisterDeclarations.cs" />
     <Compile Include="Form\Automat\Okp2\RegisterDeclarations\RegisterDeclarations\FormRegisterDeclarations.xaml.cs">
       <DependentUpon>FormRegisterDeclarations.xaml</DependentUpon>
@@ -324,6 +336,10 @@
     <Compile Include="Form\Automat\Okp4\PrintSnu\Print\UserPrintSnu.xaml.cs">
       <DependentUpon>UserPrintSnu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\Okp5\ActIzvesheniaReshenia121\ActIzvesheniaReshenia\ActIzvesheniaResheniaView.xaml.cs">
+      <DependentUpon>ActIzvesheniaResheniaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Okp5\ActIzvesheniaReshenia121\DataContext\ActIzvesheniaResheniaDataContext.cs" />
     <Compile Include="Form\Automat\Okp5\Identification\DataContext\FaceIdentificationDataContext.cs" />
     <Compile Include="Form\Automat\Okp5\Identification\FaceIdentification\FaceIdentificationView.xaml.cs">
       <DependentUpon>FaceIdentificationView.xaml</DependentUpon>
@@ -492,6 +508,10 @@
     <Folder Include="XmlJurnal\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AisPoco\AisPoco.csproj">
+      <Project>{AE019CEF-782D-41B7-942F-420F3C1B434A}</Project>
+      <Name>AisPoco</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LibaryCommandPublic\LibraryCommandPublic.csproj">
       <Project>{0a0c77af-9fe5-4c32-b32e-40ab40ffeff9}</Project>
       <Name>LibraryCommandPublic</Name>

@@ -39,6 +39,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private SignatureBoss[] signatureBossField;
         
+        private Documen2NDFLIdentification[] documen2NDFLIdentificationField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxJournalAutoWebPage")]
         public TaxJournalAutoWebPage[] TaxJournalAutoWebPage {
@@ -124,6 +126,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.signatureBossField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Documen2NDFLIdentification")]
+        public Documen2NDFLIdentification[] Documen2NDFLIdentification {
+            get {
+                return this.documen2NDFLIdentificationField;
+            }
+            set {
+                this.documen2NDFLIdentificationField = value;
             }
         }
     }
@@ -419,6 +432,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private string extensionsField;
         
+        private string messageInfoField;
+        
         public TaxJournal121AutoWebPage() {
             this.logicsButtonField = "Button";
         }
@@ -683,6 +698,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.extensionsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string MessageInfo {
+            get {
+                return this.messageInfoField;
+            }
+            set {
+                this.messageInfoField = value;
             }
         }
     }
@@ -1428,6 +1454,330 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.isSignatureField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class Documen2NDFLIdentification {
+        
+        private string logicsButtonField;
+        
+        private long idDocField;
+        
+        private System.Nullable<long> idFileField;
+        
+        private System.Nullable<int> yarsField;
+        
+        private System.Nullable<int> priznakField;
+        
+        private System.Nullable<System.DateTime> dateNameUserField;
+        
+        private System.Nullable<long> fidField;
+        
+        private System.Nullable<long> idFlField;
+        
+        private System.Nullable<System.DateTime> dateNameUserUtochField;
+        
+        private string iNNField;
+        
+        private string fNameField;
+        
+        private string iNameField;
+        
+        private string oNameField;
+        
+        private string fIOField;
+        
+        private string documentField;
+        
+        private string seriaNumberField;
+        
+        private string innOrganizationField;
+        
+        private string nameOrganizationField;
+        
+        private string iNNUtochField;
+        
+        private string fNameUtochField;
+        
+        private string iNameUtochField;
+        
+        private string oNameUtochField;
+        
+        private string statusSvedField;
+        
+        private string errorNameStatusField;
+        
+        public Documen2NDFLIdentification() {
+            this.logicsButtonField = "Button";
+        }
+        
+        /// <remarks/>
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long IdDoc {
+            get {
+                return this.idDocField;
+            }
+            set {
+                this.idDocField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<long> IdFile {
+            get {
+                return this.idFileField;
+            }
+            set {
+                this.idFileField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> Yars {
+            get {
+                return this.yarsField;
+            }
+            set {
+                this.yarsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> Priznak {
+            get {
+                return this.priznakField;
+            }
+            set {
+                this.priznakField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DateNameUser {
+            get {
+                return this.dateNameUserField;
+            }
+            set {
+                this.dateNameUserField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<long> Fid {
+            get {
+                return this.fidField;
+            }
+            set {
+                this.fidField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<long> IdFl {
+            get {
+                return this.idFlField;
+            }
+            set {
+                this.idFlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DateNameUserUtoch {
+            get {
+                return this.dateNameUserUtochField;
+            }
+            set {
+                this.dateNameUserUtochField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string INN {
+            get {
+                return this.iNNField;
+            }
+            set {
+                this.iNNField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string FName {
+            get {
+                return this.fNameField;
+            }
+            set {
+                this.fNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string IName {
+            get {
+                return this.iNameField;
+            }
+            set {
+                this.iNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string OName {
+            get {
+                return this.oNameField;
+            }
+            set {
+                this.oNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string FIO {
+            get {
+                return this.fIOField;
+            }
+            set {
+                this.fIOField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Document {
+            get {
+                return this.documentField;
+            }
+            set {
+                this.documentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string SeriaNumber {
+            get {
+                return this.seriaNumberField;
+            }
+            set {
+                this.seriaNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string InnOrganization {
+            get {
+                return this.innOrganizationField;
+            }
+            set {
+                this.innOrganizationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameOrganization {
+            get {
+                return this.nameOrganizationField;
+            }
+            set {
+                this.nameOrganizationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string INNUtoch {
+            get {
+                return this.iNNUtochField;
+            }
+            set {
+                this.iNNUtochField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string FNameUtoch {
+            get {
+                return this.fNameUtochField;
+            }
+            set {
+                this.fNameUtochField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string INameUtoch {
+            get {
+                return this.iNameUtochField;
+            }
+            set {
+                this.iNameUtochField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string ONameUtoch {
+            get {
+                return this.oNameUtochField;
+            }
+            set {
+                this.oNameUtochField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string StatusSved {
+            get {
+                return this.statusSvedField;
+            }
+            set {
+                this.statusSvedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string ErrorNameStatus {
+            get {
+                return this.errorNameStatusField;
+            }
+            set {
+                this.errorNameStatusField = value;
             }
         }
     }
