@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using AisPoco.Ifns51.ToAis;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.PreCheckLog;
 using GalaSoft.MvvmLight.Threading;
-using Ifns51.ToAis;
 using LibraryAIS3Windows.ButtonsClikcs;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
+using ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect;
 
 namespace LibraryCommandPublic.TestAutoit.PreCheck.ReportingMemo
 {
@@ -23,10 +24,12 @@ namespace LibraryCommandPublic.TestAutoit.PreCheck.ReportingMemo
         /// <param name="serviceGetOrPost">Адрес get bkb Post</param>
         /// <param name="pathTemp">Путь сохранения Temp</param>
         /// <param name="pathSaveBank">Путь сохранения выписок из банка</param>
-        ///<param name="idTemplate">УН Шаблонов для веток</param>
-        public void ReportingMemoStartPreCheck(StatusButtonMethod statusButton, string serviceGetOrPost, string pathTemp, string pathSaveBank, int[] idTemplate)
+        ///<param name="templateDb">УН Шаблонов для веток</param>
+        public void ReportingMemoStartPreCheck(StatusButtonMethod statusButton, string serviceGetOrPost, string pathTemp, string pathSaveBank, PublicModelCollectionSelect<TemplateModel> templateDb)
         {
             DispatcherHelper.Initialize();
+            if (templateDb.IsValidation())
+            {
                 Task.Run(delegate
                 {
                     try
@@ -34,7 +37,7 @@ namespace LibraryCommandPublic.TestAutoit.PreCheck.ReportingMemo
                         DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
                         KclicerButton clickerButton = new KclicerButton();
                         LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
-                        var result = ResultGet(serviceGetOrPost, idTemplate);
+                        var result = ResultGet(serviceGetOrPost, string.Join(",",templateDb.SelectModelCollection));
                         if (result != null)
                         {
                             if (ais3.WinexistsAis3() == 1)
@@ -51,12 +54,14 @@ namespace LibraryCommandPublic.TestAutoit.PreCheck.ReportingMemo
                         {
                             DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                         }
+
                     }
                     catch (Exception e)
                     {
                         MessageBox.Show(e.ToString());
                     }
                 });
+            }
         }
         /// <summary>
         /// Проставить статус о подтверждении статуса правонарушения
@@ -98,10 +103,10 @@ namespace LibraryCommandPublic.TestAutoit.PreCheck.ReportingMemo
         /// <param name="serviceGetOrPost">Сервисный адресс</param>
         /// <param name="idTemplate">Id Шаблонов</param>
         /// <returns></returns>
-        public List<SrvToLoad> ResultGet(string serviceGetOrPost,int[] idTemplate)
+        public List<AisPoco.Ifns51.ToAis.SrvToLoad> ResultGet(string serviceGetOrPost,string idTemplate)
         {
             var json = new SerializeJson();
-            var request = (HttpWebRequest) WebRequest.Create($"{serviceGetOrPost}?{string.Join("idTemplate=",idTemplate)}");
+            var request = (HttpWebRequest) WebRequest.Create($"{serviceGetOrPost}?idTemplate={idTemplate}");
             request.Method = "GET";
             request.ContentType = "application/json";
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -136,7 +141,7 @@ namespace LibraryCommandPublic.TestAutoit.PreCheck.ReportingMemo
                 {
                     resultServer = rdr.ReadToEnd();
                 }
-                return (List<SrvToLoad>)json.JsonDeserializeObjectListClass<SrvToLoad>(resultServer) ;
+                return (List<AisPoco.Ifns51.ToAis.SrvToLoad>)json.JsonDeserializeObjectListClass<AisPoco.Ifns51.ToAis.SrvToLoad>(resultServer) ;
             }
             return null;
         }
@@ -157,6 +162,7 @@ namespace LibraryCommandPublic.TestAutoit.PreCheck.ReportingMemo
             {
                 resultServer = rdr.ReadToEnd();
             }
+
             return (List<TemplateModel>)json.JsonDeserializeObjectListClass<TemplateModel>(resultServer);
         }
     }

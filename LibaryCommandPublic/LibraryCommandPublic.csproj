@@ -84,6 +84,7 @@
     <Compile Include="TestAutoit\Okp4\EditPravo\Pravo\CommandPravo.cs" />
     <Compile Include="TestAutoit\Okp4\SnuOneAuto\AutoCommand\AutoCklicsAisCommand.cs" />
     <Compile Include="TestAutoit\Okp5\Identification\IdentificationFace.cs" />
+    <Compile Include="TestAutoit\Okp6\JournalDoc\AutoJournalDoc.cs" />
     <Compile Include="TestAutoit\Orn\TaskOrn\TaskOrn.cs" />
     <Compile Include="TestAutoit\PreCheck\ReportingMemo\ReportingMemoStart.cs" />
     <Compile Include="TestAutoit\PublicCommand\CommandFormirovanie.cs" />

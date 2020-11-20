@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 
 namespace AutomatAis3Full.Config
 {
@@ -26,6 +27,7 @@ namespace AutomatAis3Full.Config
         public static string ServiceGetOrPost = ConfigurationManager.AppSettings["ServiceGetOrPost"];
         public static string AllTemplate = ConfigurationManager.AppSettings["AllTemplate"];
         public static string BankSvedSave = ConfigurationManager.AppSettings["BankSvedSave"];
+        public static int Slepping = Convert.ToInt32(ConfigurationManager.AppSettings["Sleepeng"]);
         /// <summary>
         /// Строка соединения с Sql для массовой загрузки xml
         /// </summary>

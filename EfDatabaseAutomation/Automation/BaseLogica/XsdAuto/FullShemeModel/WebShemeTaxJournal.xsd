@@ -25,6 +25,7 @@
 			<xs:element ref="AllJournal129" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="SignatureBoss" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="Documen2NDFLIdentification" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="FormulNdfl" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxJournalAutoWebPage">
@@ -280,7 +281,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="Id"/>
+				<xs:element ref="IdUl"/>
 			</xs:sequence>
 			<xs:attribute name="LogicsButton" type="xs:string" default="Button">
 				<xs:annotation>
@@ -305,9 +306,9 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="Id"/>
 				<xs:element ref="DateCreate"/>
 				<xs:element ref="IdModel"/>
+				<xs:element ref="IdUl"/>
 			</xs:sequence>
 			<xs:attribute name="LogicsButton" type="xs:string" default="Button">
 				<xs:annotation>
@@ -327,6 +328,11 @@
 			<xs:attribute name="StatusModel" type="xs:string">
 				<xs:annotation>
 					<xs:documentation>Статус обработки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameTemplate" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Шаблон</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
@@ -686,6 +692,77 @@
 	<xs:element name="DateNameUserUtoch" type="xs:dateTime" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Уточненная дата рождения</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IdUl" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Идентификатор лица</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FormulNdfl">
+		<xs:annotation>
+			<xs:documentation>Формула расчета 2 НДФЛ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton"/>
+				<xs:element ref="MoneyNdfl"/>
+				<xs:element ref="CountNdfl"/>
+				<xs:element ref="AvgMoney"/>
+				<xs:element ref="CodeNdfl"/>
+				<xs:element ref="DateOgrn"/>
+				<xs:element ref="CountFl"/>
+			</xs:sequence>
+			<xs:attribute name="NameSmall" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сокращенное наименование</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kpp" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="StatusUl" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус ЮЛ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MoneyNdfl" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Общая сумма</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CountNdfl" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Колличество строк</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AvgMoney" type="xs:decimal">
+		<xs:annotation>
+			<xs:documentation>Средняя сумма</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CodeNdfl" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Код дохода</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateOgrn" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата ОГРН (Основание организации)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CountFl" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Количество Лиц 2000 доход</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

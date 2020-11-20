@@ -36,6 +36,7 @@ using AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket050809020
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket0508090202.Ticket050809020206.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.SigningDecisionApplication.UserControl;
 using AutomatAis3Full.Form.Automat.Okp1.Declaration121.Declaration121;
+using AutomatAis3Full.Form.Automat.Okp6.JournalDoc.ViewJournalDoc;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
 {
@@ -278,7 +279,7 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                                       UserControl = new FormUsnSend()
                                                   }
                                               }
-                                              
+
                                           }
                                       }
 
@@ -294,12 +295,12 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                       {
                           new FullWindowAutoIt()
                           {
-                              NameControl = "121. Камеральная налоговая проверка",
+                              NameControl = "106. Реестр расчетов по страховым взносам",
                               CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                               {
                                   new FullWindowAutoIt()
                                   {
-                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)",
+                                      NameControl = "Реестр расчетов по страховым взносам, сведения о КНП (все)",
                                       UserControl = new ActIzvesheniaResheniaView()
                                   }
                               }
@@ -320,6 +321,25 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                               UserControl = new FaceIdentificationView(),
                                           }
                                       }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  new FullWindowAutoIt()
+                  {
+                      NameControl = "ОКП6",
+                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                      {
+                                                    new FullWindowAutoIt()
+                          {
+                              NameControl = "121. Камеральная налоговая проверка",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "04. Журнал документов, выписанных в ходе налоговой проверки",
+                                      UserControl = new JourrnalDocView()
                                   }
                               }
                           }

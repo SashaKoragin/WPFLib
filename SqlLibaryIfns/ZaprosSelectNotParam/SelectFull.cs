@@ -296,6 +296,10 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                     return serializeJson.JsonLibraryVks((
                         MailSheme)sqlConnect.SelectFullParametrSqlReader<string,string>(connectionString,
                         logic.SelectUser,typeof(MailSheme)));
+                case 36:
+                    return serializeJson.JsonLibary((FullError) sqlConnect.SelectFullParametrSqlReader<string, string>(
+                        connectionString,
+                        logic.SelectUser, typeof(FullError)));
                 default:
                     return "Данная команда не определена!!!";
             }

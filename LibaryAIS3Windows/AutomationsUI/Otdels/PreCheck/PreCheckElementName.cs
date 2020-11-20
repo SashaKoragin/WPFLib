@@ -3,66 +3,9 @@
     public class PreCheckElementName
     {
         /// <summary>
-        /// Подстановка условий
-        /// </summary>
-        private static string FullDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorView\\AutomationId:splitContainer\\AutomationId:navigatorControl\\AutomationId:splitContainer\\";
-        /// <summary>
-        /// Подстановка условий Имущество
-        /// </summary>
-        private static string DataAreaIm = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorMdiView\\AutomationId:splitContainer\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\";
-        /// <summary>
-        /// Подстановка условий 01. Картотека счетов РО, ИО, ИП
-        /// </summary>
-        private static string DataAreaCash = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:ViewIRView3\\AutomationId:navigatorSc\\AutomationId:splitContainer\\";
-        /// <summary>
-        /// Подстановка условий Сведения о среднесписочной численности работников
-        /// </summary>
-        private static string DataAreaSvedFace = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\";
-        /// <summary>
-        /// Поиск условия куда подставлять ИНН
-        /// </summary>
-        public static string TreeInnDataArea = $"{FullDataArea}AutomationId:gridConditions\\Name:List`1 row ";
-        /// <summary>
-        /// Условие Имущество
-        /// </summary>
-        public static string DataAreaImFull = $"{DataAreaIm}AutomationId:gridConditions\\Name:List`1 row ";
-        /// <summary>
-        /// Поиск условия куда подставлять ИНН  01. Картотека счетов РО, ИО, ИП
-        /// </summary>
-        public static string DataAreaCashFull = $"{DataAreaCash}AutomationId:gridConditions\\Name:List`1 row ";
-        /// <summary>
-        /// Условие куда подставить Сведения о среднесписочной численности работников
-        /// </summary>
-        public static string DataAreaSvedFaceFull = $"{DataAreaSvedFace}AutomationId:gridConditions\\Name:List`1 row ";
-        /// <summary>
-        /// Общий журнал для данных
-        /// </summary>
-        public static string GridJournal = $"{FullDataArea}AutomationId:gridData";
-        /// <summary>
-        /// Журнал для Имущества
-        /// </summary>
-        public static string GridJournalIm = $"{DataAreaIm}AutomationId:gridData";
-        //\\Name:select0 row
-        /// <summary>
-        /// Grid Картотеки счетов
-        /// </summary>
-        public static string GridJournalCash = $"{DataAreaCash}AutomationId:gridData";
-        /// <summary>
-        /// GRID Сведения о среднесписычной численности  и НБО
-        /// </summary>
-        public static string GridJournalSvedFace = $"{DataAreaSvedFace}AutomationId:gridData";
-        /// <summary>
         /// Значение
         /// </summary>
         public static string Memo = "Name:Значение";
-        /// <summary>
-        /// фильтр Grid
-        /// </summary>
-        public static string FiltersGrid = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorView\\AutomationId:splitContainer\\AutomationId:navigatorControl\\AutomationId:tsControlPanel\\Name:Фильтр";
-        /// <summary>
-        /// Экспорт Grid
-        /// </summary>
-        public static string ExportGrid = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorView\\AutomationId:splitContainer\\AutomationId:navigatorControl\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка";
         /// <summary>
         /// фильтр Grid Имущество
         /// </summary>
@@ -72,34 +15,9 @@
         /// </summary>
         public static string ExportIm = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorMdiView\\AutomationId:splitContainer\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка";
         /// <summary>
-        /// Фильтр Grid Картотеки счетов
-        /// </summary>
-        public static string FiltersCash = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:ViewIRView3\\AutomationId:navigatorSc\\AutomationId:tsControlPanel\\Name:Фильтр";
-        /// <summary>
-        /// Экспорт Grid Картотеки счетов
-        /// </summary>
-        public static string ExportCash = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:ViewIRView3\\AutomationId:navigatorSc\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка";
-        /// <summary>
-        /// Фильтр Grid Сведения о среднесписычной численности
-        /// </summary>
-        public static string FiltersGridSvedFace = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\Name:Фильтр";
-        /// <summary>
-        /// Экспорт Grid Сведения о среднесписычной численности
-        /// </summary>
-        public static string ExportGridSvedFace = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка";
-
-        /// <summary>
-        /// Обновить Идентификационные характеристики организации
-        /// </summary>
-        public static string UpdateIdentUl = "Name:DockTop\\Name:Ribbon\\Name:Идентификационные характеристики организации\\Name:Навигатор\\Name:Обновить";
-        /// <summary>
         /// Обновить
         /// </summary>
         public static string Update = "Name:DockTop\\Name:Ribbon\\Name:Сведения об учете организации в НО\\Name:Навигатор\\Name:Обновить";
-        /// <summary>
-        /// Экспортировать в Excel
-        /// </summary>
-        public static string ExportXlsx = "Name:DockTop\\Name:Ribbon\\Name:Навигатор\\Name:Экспорт";
         /// <summary>
         /// Колонки для Экспорта данных
         /// </summary>
@@ -117,79 +35,15 @@
         /// </summary>
         public static string Xlsx = "ClassName:XLMAIN";
         /// <summary>
-        /// Сохранить файл
-        /// </summary>
-        public static string SaveXlsx = "ClassName:XLMAIN\\Name:Microsoft Excel\\ClassName:NetUIHWNDElement\\ClassName:NetUINetUIDialog\\Name:Сохранить";       
-        /// <summary>
         /// Проставить наименование листа
         /// </summary>
         public static string ExportNameList = "Name:Экспорт данных\\AutomationId:txtWorksheetName";
-        /// <summary>
-        /// Обновить историю
-        /// </summary>
-        public static string UpdateHistory = "Name:DockTop\\Name:Ribbon\\Name:История изменений сведений об учете организации в НО\\Name:Навигатор\\Name:Обновить";
-        /// <summary>
-        /// Обновить сведения о филиалах
-        /// </summary>
-        public static string UpdateHistoryFil = "Name:DockTop\\Name:Ribbon\\Name:Сведения о филиалах, представительствах, иных обособленных подразделениях\\Name:Навигатор\\Name:Обновить";
-        /// <summary>
-        /// Обновить имущество
-        /// </summary>
-        public static string UpdateDataUlIm = "Name:DockTop\\Name:Ribbon\\Name:Сведения об объектах собственности российской организации – имущество\\Name:Навигатор\\Name:Обновить";
-        /// <summary>
-        /// Обновить земля
-        /// </summary>
-        public static string UpdateDataUlZm = "Name:DockTop\\Name:Ribbon\\Name:Сведения об объектах собственности российской организации – земля\\Name:Навигатор\\Name:Обновить";
-        /// <summary>
-        /// Обновить Транспорт
-        /// </summary>
-        public static string UpdateDataUlTr = "Name:DockTop\\Name:Ribbon\\Name:Сведения об объектах собственности российской организации – транспорт\\Name:Навигатор\\Name:Обновить";
-        /// <summary>
-        /// Обновить средне численную численность
-        /// </summary>
-        public static string UpdateYerFace = "Name:DockTop\\Name:Ribbon\\Name:Сведения о среднесписочной численности работников\\Name:Документ\\Name:Обновить данные";
-        /// <summary>
-        /// Обновить Картотека счетов РО ИО ИП
-        /// </summary>
-        public static string UpdateCashFace = "Name:DockTop\\Name:Ribbon\\Name:Документ\\Name:Документ\\Name:Обновить";
-        /// <summary>
-        /// Обновить реестр НБО
-        /// </summary>
-        public static string UpdateNBO = "Name:DockTop\\Name:Ribbon\\Name:Реестр документов НБО\\Name:Документ\\Name:Обновить данные";
-        /// <summary>
-        /// Обновление имущества ФЛ
-        /// </summary>
-        public static string UpdateFlIm = "Name:DockTop\\Name:Ribbon\\Name:Сведения об объектах собственности физического лица – имущество\\Name:Навигатор\\Name:Обновить";
-        /// <summary>
-        /// Обновление земли ФЛ
-        /// </summary>
-        public static string UpdateFlZm = "Name:DockTop\\Name:Ribbon\\Name:Сведения об объектах собственности физического лица – земля\\Name:Навигатор\\Name:Обновить";
-        /// <summary>
-        /// Обновление транспорта ФЛ
-        /// </summary>
-        public static string UpdateFlTr = "Name:DockTop\\Name:Ribbon\\Name:Сведения об объектах собственности физического лица – транспорт\\Name:Навигатор\\Name:Обновить";
     }
     /// <summary>
     /// Данные ППА
     /// </summary>
     public class PreCheckElementNameIndividualCards
     {
-        /// <summary>
-        /// Путь к Grid индивидуальных карточек
-        /// </summary>
-        public static string FullTreeCard = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:PpaNavigatorView\\AutomationId:uxNavigator\\";
-        /// <summary>
-        /// Условие куда подставить ИНН ППА Отбор
-        /// </summary>
-        public static string DataAreaCard = $"{FullTreeCard}AutomationId:splitContainer\\AutomationId:gridConditions\\Name:List`1 row ";
-        /// <summary>
-        /// Журнал данных Карт
-        /// </summary>
-        public static string GridJournalCard = $"{FullTreeCard}AutomationId:splitContainer\\AutomationId:gridData";
-        /// <summary>
-        /// Фильтр обратно
-        /// </summary>
-        public static string GridFiltersCard = $"{FullTreeCard}AutomationId:tsControlPanel\\Name:Фильтр";
         /// <summary>
         /// Панель ППА
         /// </summary>
@@ -202,14 +56,6 @@
         /// Период до какого
         /// </summary>
         public static string PeriodBegin = $"{PanelElement}AutomationId:comboYearBegin";
-        /// <summary>
-        /// Расчатные показатели
-        /// </summary>
-        public static string RaschetCard = $"{PanelElement}AutomationId:taxpayerTabControl\\Name:Расчетные показатели";
-        /// <summary>
-        /// Обновить Индивидуальные карточки ППА
-        /// </summary>
-        public static string UpdateCashFaceCard = "Name:DockTop\\Name:Ribbon\\Name:Поиск\\Name:Управление\\Name:Обновить";
         /// <summary>
         /// Открыть ИКН
         /// </summary>
@@ -250,18 +96,6 @@
         /// </summary>
         public static string FindButton = $"{FullTaxpayerListControl}ClassName:RadExpander\\AutomationId:HeaderButton\\ClassName:RadButton\\ClassName:TextBlock";
         /// <summary>
-        /// Grid СУР ЦСР 1
-        /// </summary>
-        public static string GridPanel1 = $"{FullTaxpayerListControl}ClassName:RadExpander\\AutomationId:RadDocking\\Name:Rad Split Container\\Name:Rad Pane Group\\AutomationId:RadPane\\";
-        /// <summary>
-        /// Сам Grid 
-        /// </summary>
-        public static string Grid1 = $"{GridPanel1}AutomationId:TaxpayersGrid";
-        /// <summary>
-        /// Загрузка данных в Grid 1
-        /// </summary>
-        public static string LoadGrid1 = $"{GridPanel1}AutomationId:taxpayersProgressBar";
-        /// <summary>
         /// Флажок выбора НП
         /// </summary>
         public static string SelectItem = $"AutomationId:PART_GridViewVirtualizingPanel\\AutomationId:Row_0\\AutomationId:Cell_0_0\\AutomationId:CellElement_0_0";
@@ -293,14 +127,6 @@
         /// Путь сохранения файла  Win 7 Сохранить как Win10 Сохранение
         /// </summary>
         public static string PathSaveWin7 = "Name:Сохранить как\\Name:Сохранить"; //ClassName:WorkerW\\AutomationId:FolderLayoutContainer\\AutomationId:BackgroundClear\\AutomationId:FileNameControlHost";
-
-
-        // GridPanel1 LoadGrid1 SelectItem
-        //  AutomationId:"taxpayersProgressBar"
-
-        //Банки
-        //ClassName:"TaxpayerListControl" AutomationId:	"taxpayersProgressBar"
-        //AutomationId:	"statementsProgressBar"
     }
     /// <summary>
     /// Декларации реестр НБО
@@ -328,18 +154,6 @@
     public class PreCheckFindUl
     {
         /// <summary>
-        /// Подстановка условий в Поиск ЮЛ
-        /// </summary>
-        private static string DataFindUl = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SimpleNavigatorView\\AutomationId:navigatorControl1\\AutomationId:splitContainer\\";
-        /// <summary>
-        ///   Поиск условия куда подставлять Поиск ЮЛ
-        /// </summary>
-        public static string DataAreaFindUl = $"{DataFindUl}AutomationId:gridConditions\\Name:List`1 row ";
-        /// <summary>
-        /// GRID Поиск ЮЛ
-        /// </summary>
-        public static string GridJournalFindUl = $"{DataFindUl}AutomationId:gridData";
-        /// <summary>
         /// Применить фильтр
         /// </summary>
         public static string UseFilter = "Name:DockTop\\Name:Ribbon\\Name:Навигатор\\Name:Основные действия\\Name:Применить фильтр";
@@ -353,4 +167,60 @@
         public static string PrintStatement = "Name:DockTop\\Name:Ribbon\\Name:Навигатор\\Name:Дополнительно\\Name:Печать выписки (Новый формат)";
 
     }
+    /// <summary>
+    /// АСК НДС выгрузка гниг учета
+    /// </summary>
+    public class ModelBookShopping
+    {
+        /// <summary>
+        /// Все книги учета
+        /// </summary>
+        public static string AllBook = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:InspectorDeclarationsView\\AutomationId:preFilterControl\\AutomationId:mainPanel\\AutomationId:rbAll";
+        /// <summary>
+        /// Сбросить фильтр обязательно
+        /// </summary>
+        public static string ResetFilter = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:InspectorDeclarationsView\\AutomationId:grid\\AutomationId:pnlMain\\AutomationId:gridLayoutPanel\\AutomationId:topPanel\\AutomationId:aggregatePanel\\AutomationId:_resetSettingButton";
+
+        /// <summary>
+        /// Журнал Декларация Жупрнал
+        /// </summary>
+        public static string StartJournal = "Name:DockTop\\Name:Ribbon\\Name:Окно оперативной работы\\Name:Функции\\Name:Декларация/Журнал";
+        /// <summary>
+        /// Раздел 8
+        /// </summary>
+        public static string Section8 = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:View\\AutomationId:DeclarationParts\\Name:Раздел 8";
+        /// <summary>
+        /// Раздел 9
+        /// </summary>
+        public static string Section9 = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:View\\AutomationId:DeclarationParts\\Name:Раздел 9";
+        /// <summary>
+        /// Сохранить файл
+        /// </summary>
+        public static string Save = "Name:Сохранение\\Name:Сохранить";
+        /// <summary>
+        /// Экспорт в Xlsx
+        /// </summary>
+        public static string ExportXlsx = "Name:Экспорт в эксель\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnYes";
+        /// <summary>
+        /// IP Адресс отправителя
+        /// </summary>
+        public static string IpAdress = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:View\\AutomationId:grpHeader\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:commonInfoPanel\\AutomationId:tableLayoutPanel1\\AutomationId:flowLayoutPanel3";
+        /// <summary>
+        /// Код абонента
+        /// </summary>
+        public static string Code = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:View\\AutomationId:grpHeader\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:commonInfoPanel\\AutomationId:tableLayoutPanel1\\AutomationId:flowLayoutPanel4";
+        /// <summary>
+        /// Наименование оператора
+        /// </summary>
+        public static string NameOperator = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:View\\AutomationId:grpHeader\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:commonInfoPanel\\AutomationId:tableLayoutPanel1\\AutomationId:flowLayoutPanel12";
+        /// <summary>
+        /// Контейнер документов проверим
+        /// </summary>
+        public static string DocumentContainer = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:View\\AutomationId:DeclarationParts\\AutomationId:tabMain\\AutomationId:rnivcWrapperPanel\\AutomationId:declarationRnivcData\\AutomationId:globalContainer\\AutomationId:mainContainer\\AutomationId:tabsContainer\\AutomationId:documentContainer";
+        /// <summary>
+        /// Ок
+        /// </summary>
+        public static string WinOk = "AutomationId:CustomRowFiltersDialog\\Name:&OK";
+    }
+
 }

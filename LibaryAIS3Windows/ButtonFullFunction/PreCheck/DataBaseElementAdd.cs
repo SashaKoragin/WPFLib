@@ -6,14 +6,16 @@ using EfDatabaseAutomation.Automation.BaseLogica.PreCheck;
 using EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData;
 using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
 using System.Text.RegularExpressions;
-using Ifns51.FromAis;
 using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Data;
 using System.Windows.Forms;
 using Net.SourceForge.Koogra;
 using System.Globalization;
+using AisPoco.Ifns51.FromAis;
 using EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad;
+using LibraryAIS3Windows.AutomationsUI.Otdels.PreCheck;
+using LibraryAIS3Windows.ButtonsClikcs;
 
 namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
 {
@@ -30,7 +32,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddUlFace(ref AisParsedData aisData, string[] memos,string pathXlsx, string sheetName)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GeteDateTableXslx(pathXlsx, sheetName);
+            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
             foreach (DataRow row in dataTable.Rows)
             {
                 var dictionary = new Dictionary<string, string>();
@@ -78,9 +80,11 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                             uiFace.Fid = Convert.ToInt64(value);
                             break;
                     }
+                    
                 }
                 aisData.Data.Add(dictionary);
                 preCheck.AddUlFace(uiFace);
+                break;
             }
             preCheck.Dispose();
         }
@@ -96,7 +100,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddSvedAccoutingUlFace(ref AisParsedData aisData, string innUl, string[] memos, string pathXlsx, string sheetName)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GeteDateTableXslx(pathXlsx, sheetName);
+            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
             foreach (DataRow row in dataTable.Rows)
             {
                 var dictionary = new Dictionary<string, string>();
@@ -168,7 +172,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddHistory(ref AisParsedData aisData, string innUl, string[] memos,  string pathXlsx, string sheetName)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GeteDateTableXslx(pathXlsx, sheetName);
+            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
             foreach (DataRow row in dataTable.Rows)
             {
                 var dictionary = new Dictionary<string, string>();
@@ -222,7 +226,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddBranchUlFace(ref AisParsedData aisData, string innUl, string[] memos, string pathXlsx, string sheetName)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GeteDateTableXslx(pathXlsx, sheetName);  // GeteDateTableXslx(pathXlsx, sheetName);
+            var dataTable = GetDateTableXslx(pathXlsx, sheetName);  // GeteDateTableXslx(pathXlsx, sheetName);
             foreach (DataRow row in dataTable.Rows)
             {
                 var dictionary = new Dictionary<string, string>();
@@ -289,7 +293,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddObjectUl(ref AisParsedData aisData, string innUl, string[] memos, string pathXlsx, string sheetName, string typeObject)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GeteDateTableXslx(pathXlsx, sheetName);
+            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
             foreach (DataRow row in dataTable.Rows)
             {
                 var dictionary = new Dictionary<string, string>();
@@ -352,7 +356,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddStrngthUlFace(ref AisParsedData aisData, string innUl, string[] memos, string pathXlsx, string sheetName)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GeteDateTableXslx(pathXlsx, sheetName);
+            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
             foreach (DataRow row in dataTable.Rows)
             {
                 var dictionary = new Dictionary<string, string>();
@@ -391,12 +395,28 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddCashUlFace(string innUl, string pathXlsx, string sheetName)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GeteDateTableXslx(pathXlsx, sheetName);
+            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
             DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.CashUlFace> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.CashUlFace>();
             var listCashUl = new ArrayBodyDoc() { CashUlFace = mapper.Map(dataTable).ToArray() };
             preCheck.AddCashUlFace(listCashUl, innUl);
             preCheck.Dispose();
         }
+        /// <summary>
+        /// Добавление доходов 2НДФЛ в БД по организациям
+        /// </summary>
+        /// <param name="innUl">Инн ЮЛ</param>
+        /// <param name="pathXlsx">Путь к Temp</param>
+        /// <param name="sheetName">Наименование Листа</param>
+        public void AddNdFl(string innUl, string pathXlsx, string sheetName)
+        {
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
+            DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.NdflFl> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.NdflFl>();
+            var listNdFl = new ArrayBodyDoc() { NdflFl = mapper.Map(dataTable).ToArray() };
+            preCheck.AddNdflDataBase(listNdFl, innUl);
+            preCheck.Dispose();
+        }
+
         /// <summary>
         /// 7. Индивидуальные карточки налогоплательщиков сохранение в БД
         /// </summary>
@@ -493,11 +513,202 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             };
             return declarationUlFace;
         }
+        /// <summary>
+        /// Проверка есть ли декларация в БД
+        /// </summary>
+        /// <param name="regNumberDeclaration">Регистрационный номер декларации</param>
+        /// <returns></returns>
         public bool DeclarationDataExists(long regNumberDeclaration)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            return preCheck.IsExistsDeclaration(regNumberDeclaration);
+            var isExist = preCheck.IsExistsDeclaration(regNumberDeclaration);
+            preCheck.Dispose();
+            return isExist;
         }
+
+        /// <summary>
+        /// Проверка есть ли книга покупок продаж в БД
+        /// </summary>
+        /// <param name="idBook">Регистрационный номер книги</param>
+        /// <returns></returns>
+        public bool BookExists(long idBook)
+        {
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            var isExist = preCheck.IsExistsBook(idBook);
+            preCheck.Dispose();
+            return isExist;
+        }
+
+
+        /// <summary>
+        /// Парсим или создаем Регистрационный номер зашита
+        /// </summary>
+        /// <param name="libraryAutomation">Библиотека Автоматизации</param>
+        /// <param name="automationElement">Автоматизированный элемент книги</param>
+        /// <param name="innUl">ИНН ЮЛ</param>
+        /// <returns></returns>
+        public long ParseAndCreateRegNumberBook(LibraryAutomations libraryAutomation, AutomationElement automationElement, string innUl)
+        {
+            long idBookRegNum;
+            var period = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                      .SelectAutomationColrction(automationElement)
+                      .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный период")));
+            var idBook = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                  .SelectAutomationColrction(automationElement)
+                                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Регистрационный №")));
+            idBookRegNum = string.IsNullOrEmpty(idBook) ? Convert.ToInt64(Convert.ToInt64(innUl.Substring(innUl.Length - 4)) * Convert.ToInt64(period.Substring(period.Length - 4)) * Convert.ToInt64(period.Substring(0, 1))) : Convert.ToInt64(idBook);
+            return idBookRegNum;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="libraryAutomation">Библиотека Автоматизации</param>
+        /// <param name="automationElement">Автоматизированный элемент книги</param>
+        /// <param name="innUl">ИНН ЮЛ</param>
+        /// <returns>Возврат книги заполненной</returns>
+        public Book AddBook(LibraryAutomations libraryAutomation, AutomationElement automationElement, string innUl)
+        {
+            var preCheck = new PreCheckAddObject();
+
+            var period = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                  .SelectAutomationColrction(automationElement)
+                                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный период")));
+            var dateStart = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                  .SelectAutomationColrction(automationElement)
+                                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата представления"))));
+            var summBookPurchase = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                  .SelectAutomationColrction(automationElement)
+                                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Раздел 8")));
+            var summBookSales = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                  .SelectAutomationColrction(automationElement)
+                                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Раздел 9")));
+            var summNds = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                  .SelectAutomationColrction(automationElement)
+                                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Сумма НДС")));
+            var summTotal = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                  .SelectAutomationColrction(automationElement)
+                                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Общая сумма по ООК")));
+            var weightProduct = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    .SelectAutomationColrction(automationElement)
+                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Удельный вес")));
+
+            Book book = new Book
+            {
+                IdBook = ParseAndCreateRegNumberBook(libraryAutomation, automationElement, innUl),
+                Period = period,
+                DateStart = dateStart,
+                SummBookPurchase = string.IsNullOrEmpty(summBookPurchase) ? 0.00 : double.Parse(summBookPurchase),
+                SummBookSales = string.IsNullOrEmpty(summBookSales) ? 0.00 : double.Parse(summBookSales),
+                SummNds = string.IsNullOrEmpty(summNds) ? 0.00 : double.Parse(summNds),
+                SummTotal = string.IsNullOrEmpty(summTotal) ? 0.00 : double.Parse(summTotal),
+                WeightProduct = string.IsNullOrEmpty(weightProduct) ? 0 : int.Parse(weightProduct),
+            };
+
+            //Установка фокуса на ИНН
+            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                .SelectAutomationColrction(automationElement)
+                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
+
+            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.StartJournal);
+            while (true)
+            {
+                if (libraryAutomation.IsEnableElements(ModelBookShopping.DocumentContainer, null, true) != null)
+                {
+                    SendKeys.SendWait(ButtonConstant.Down13);
+                    libraryAutomation.FindFirstElement(ModelBookShopping.DocumentContainer, null, true);
+                    var elements = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement);
+                    if (elements.Count >= 2)
+                    {
+                        book.Telephone = libraryAutomation.SelectAutomationColrction(elements[1])[0].Current.Name;
+                    }
+                    if (libraryAutomation.IsEnableElements(ModelBookShopping.Code, null, true) != null)
+                    {
+                        elements = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement);
+                        if (elements.Count >= 2)
+                        {
+                            book.CodeTaxCom = elements[1].Current.Name;
+                        }
+                        if (libraryAutomation.IsEnableElements(ModelBookShopping.IpAdress, null, true) != null)
+                        {
+                            elements = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement);
+                            if (elements.Count >= 2)
+                            {
+                                book.IpAdres = elements[1].Current.Name;
+                            }
+                        }
+                        if (libraryAutomation.IsEnableElements(ModelBookShopping.NameOperator, null, true) != null)
+                        {
+                            elements = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement);
+                            if (elements.Count >= 2)
+                            {
+                                book.NameOperator = elements[1].Current.Name;
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+            return preCheck.AddBook(book, innUl); ;
+        }
+
+
+        /// <summary>
+        /// Обновление Книн=ги покупок
+        /// </summary>
+        /// <param name="book">Обновление книги покупок</param>
+        public void UpdeteBookSalesParse(ref Book book)
+        {
+            var preCheck = new PreCheckAddObject();
+            preCheck.UpdeteBookSalesParse(ref book);
+            preCheck.Dispose();
+        }
+        /// <summary>
+        /// Обновление книги продаж
+        /// </summary>
+        /// <param name="book">Обновление книги продаж</param>
+        public void UpdeteBookPurchase(ref Book book)
+        {
+            var preCheck = new PreCheckAddObject();
+            preCheck.UpdeteBookPurchase(ref book);
+            preCheck.Dispose();
+        }
+        /// <summary>
+        /// Книга покупок 
+        /// </summary>
+        /// <param name="book">Главная книга</param>
+        /// <param name="pathXlsx">Путь к файлу</param>
+        /// <param name="sheetName">Наименование листа</param>
+        public void AddBookSales(ref Book book, string pathXlsx, string sheetName)
+        {
+            var preCheck = new PreCheckAddObject();
+            DataTable dataTable = GetDateTableXslx(pathXlsx, sheetName, 1, 3);
+            dataTable.Columns.Remove(dataTable.Columns[0]);
+            DataNamesMapper<BookSales> mapper = new DataNamesMapper<BookSales>();
+            var bookSales = new ArrayBodyDoc() { BookSales = mapper.Map(dataTable).ToArray() };
+            preCheck.AddBookSales(ref book, bookSales);
+            preCheck.Dispose();
+        }
+        /// <summary>
+        /// Книга продажи
+        /// </summary>
+        /// <param name="book">Главная книга</param>
+        /// <param name="pathXlsx">Путь к файлу</param>
+        /// <param name="sheetName">Наименование листа</param>
+        public void AddBookPurchase(ref Book book, string pathXlsx, string sheetName)
+        {
+            var preCheck = new PreCheckAddObject();
+            DataTable dataTable = GetDateTableXslx(pathXlsx, sheetName, 1, 3);
+            dataTable.Columns.Remove(dataTable.Columns[0]);
+            DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.BookPurchase> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.BookPurchase>();
+            var bookPurchase = new ArrayBodyDoc() { BookPurchase = mapper.Map(dataTable).ToArray() };
+            preCheck.AddBookPurchase(ref book, bookPurchase);
+            preCheck.Dispose();
+        }
+
+
+
+
 
         /// <summary>
         /// Наименование файла
@@ -545,7 +756,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddObjectFl(ref AisParsedData aisData, string innFl, string[] memos, string pathXlsx, string sheetName, string typeObject)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GeteDateTableXslx(pathXlsx, sheetName);
+            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
             foreach (DataRow row in dataTable.Rows)
             {
                 var dictionary = new Dictionary<string, string>();
@@ -661,14 +872,15 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         /// <param name="pathXlsx">Путь к xlsx</param>
         /// <param name="sheetName">Имя листа</param>
         /// <param name="indexColumn">Индекс колонки по умолчанию 1</param>
+        /// <param name="indexRow">Индекс строки с какой начинать</param>
         /// <returns></returns>
-        private DataTable GeteDateTableXslx(string pathXlsx, string sheetName, int indexColumn = 1)
+        private DataTable GetDateTableXslx(string pathXlsx, string sheetName, int indexColumn = 1, uint indexRow = 0)
         {
             DataTable dt = new DataTable();
             var xlFile = WorkbookFactory.GetExcel2007Reader(pathXlsx);
             var sheet = xlFile.Worksheets.GetWorksheetByName(sheetName, true);
 
-            uint minRow = sheet.FirstRow;
+            uint minRow = sheet.FirstRow + indexRow;
             uint maxRow = sheet.LastRow;
 
             IRow firstRow = sheet.Rows.GetRow(minRow);
@@ -702,7 +914,22 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
 
                         if (cell != null)
                         {
-                            dr[Convert.ToInt32(j)] = cell.Value != null ? cell.GetFormattedValue() : string.Empty;
+                            double result;
+                            // Try parsing in the current culture
+                            if (!double.TryParse(cell.Value.ToString(), NumberStyles.Any, CultureInfo.CurrentCulture, out result) &&
+                                // Then try in US english
+                                !double.TryParse(cell.Value.ToString(), NumberStyles.Any,
+                                 CultureInfo.GetCultureInfo("en-US"), out result) &&
+                                // Then in neutral language
+                                !double.TryParse(cell.Value.ToString(), NumberStyles.Any,
+                                CultureInfo.InvariantCulture, out result))
+                            {
+                                dr[Convert.ToInt32(j)] = cell.Value != null ? cell.GetFormattedValue() : string.Empty;
+                            }
+                            else
+                            {
+                                dr[Convert.ToInt32(j)] = result.ToString();
+                            }
                         }
                     }
                     dt.Rows.Add(dr);

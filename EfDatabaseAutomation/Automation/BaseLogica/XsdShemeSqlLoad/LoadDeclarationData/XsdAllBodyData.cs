@@ -32,6 +32,12 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
         
         private CashBankAllUlFace[] cashBankAllUlFaceField;
         
+        private NdflFl[] ndflFlField;
+        
+        private BookSales[] bookSalesField;
+        
+        private BookPurchase[] bookPurchaseField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("DeclarationData")]
         public DeclarationData[] DeclarationData {
@@ -73,6 +79,39 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
             }
             set {
                 this.cashBankAllUlFaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("NdflFl")]
+        public NdflFl[] NdflFl {
+            get {
+                return this.ndflFlField;
+            }
+            set {
+                this.ndflFlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("BookSales")]
+        public BookSales[] BookSales {
+            get {
+                return this.bookSalesField;
+            }
+            set {
+                this.bookSalesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("BookPurchase")]
+        public BookPurchase[] BookPurchase {
+            get {
+                return this.bookPurchaseField;
+            }
+            set {
+                this.bookPurchaseField = value;
             }
         }
     }
@@ -368,11 +407,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
         
         private System.Nullable<System.DateTime> dataOpenCashField;
         
-      //  private bool dataOpenCashFieldSpecified;
-        
         private System.Nullable<System.DateTime> dataClosedCashField;
-        
-      //  private bool dataClosedCashFieldSpecified;
         
         private int idField;
         
@@ -392,7 +427,6 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
         
         private bool dateCreateFieldSpecified;
         
-
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         [DataNames("Счет: Дата открытия", "Счет: Дата открытия")]
@@ -404,17 +438,6 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
                 this.dataOpenCashField = value;
             }
         }
-        
-        /// <remarks/>
-        //[System.Xml.Serialization.XmlIgnoreAttribute()]
-        //public bool DataOpenCashSpecified {
-        //    get {
-        //        return this.dataOpenCashFieldSpecified;
-        //    }
-        //    set {
-        //        this.dataOpenCashFieldSpecified = value;
-        //    }
-        //}
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
@@ -429,19 +452,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
         }
         
         /// <remarks/>
-        //[System.Xml.Serialization.XmlIgnoreAttribute()]
-        //public bool DataClosedCashSpecified {
-        //    get {
-        //        return this.dataClosedCashFieldSpecified;
-        //    }
-        //    set {
-        //        this.dataClosedCashFieldSpecified = value;
-        //    }
-        //}
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        
         public int Id {
             get {
                 return this.idField;
@@ -562,7 +573,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
         private string idNumField;
         
         private int codeNoField;
-
+        
         private string nameBankField;
         
         private string bikField;
@@ -647,6 +658,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
                 this.codeNoField = value;
             }
         }
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [DataNames("Наименование", "Наименование")]
@@ -788,6 +800,1295 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
             }
             set {
                 this.dateFinishPeriodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.dateCreateField;
+            }
+            set {
+                this.dateCreateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DateCreateSpecified {
+            get {
+                return this.dateCreateFieldSpecified;
+            }
+            set {
+                this.dateCreateFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class NdflFl {
+        
+        private int idField;
+        
+        private bool idFieldSpecified;
+        
+        private int idUlField;
+        
+        private long idSvedField;
+        
+        private long fidFlField;
+        
+        private string innFlField;
+        
+        private string surnameFlField;
+        
+        private string nameFlField;
+        
+        private string patronymicFlField;
+        
+        private string fioFlField;
+        
+        private int numberField;
+        
+        private int idVidNdflField;
+        
+        private int codeNdflField;
+        
+        private string nameNdflField;
+        
+        private decimal moneyNdflField;
+        
+        private System.DateTime dateCreateField;
+        
+        private bool dateCreateFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdSpecified {
+            get {
+                return this.idFieldSpecified;
+            }
+            set {
+                this.idFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdUl {
+            get {
+                return this.idUlField;
+            }
+            set {
+                this.idUlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("УН сведений о доходах и вычетах по месяцам", "УН сведений о доходах и вычетах по месяцам")]
+        public long IdSved {
+            get {
+                return this.idSvedField;
+            }
+            set {
+                this.idSvedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ФИД ФЛ", "ФИД ФЛ")]
+        public long FidFl {
+            get {
+                return this.fidFlField;
+            }
+            set {
+                this.fidFlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ИНН ФЛ", "ИНН ФЛ")]
+        public string InnFl {
+            get {
+                return this.innFlField;
+            }
+            set {
+                this.innFlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Фамилия ФЛ", "Фамилия ФЛ")]
+        public string SurnameFl {
+            get {
+                return this.surnameFlField;
+            }
+            set {
+                this.surnameFlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Имя ФЛ", "Имя ФЛ")]
+        public string NameFl {
+            get {
+                return this.nameFlField;
+            }
+            set {
+                this.nameFlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Отчество ФЛ", "Отчество ФЛ")]
+        public string PatronymicFl {
+            get {
+                return this.patronymicFlField;
+            }
+            set {
+                this.patronymicFlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ФИО ФЛ", "ФИО ФЛ")]
+        public string FioFl {
+            get {
+                return this.fioFlField;
+            }
+            set {
+                this.fioFlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Номер месяца", "Номер месяца")]
+        public int Number {
+            get {
+                return this.numberField;
+            }
+            set {
+                this.numberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("УН справочника видов доходов", "УН справочника видов доходов")]
+        public int IdVidNdfl {
+            get {
+                return this.idVidNdflField;
+            }
+            set {
+                this.idVidNdflField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Код дохода", "Код дохода")]
+        public int CodeNdfl {
+            get {
+                return this.codeNdflField;
+            }
+            set {
+                this.codeNdflField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Наименование дохода", "Наименование дохода")]
+        public string NameNdfl {
+            get {
+                return this.nameNdflField;
+            }
+            set {
+                this.nameNdflField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Сумма дохода", "Сумма дохода")]
+        public decimal MoneyNdfl {
+            get {
+                return this.moneyNdflField;
+            }
+            set {
+                this.moneyNdflField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.dateCreateField;
+            }
+            set {
+                this.dateCreateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DateCreateSpecified {
+            get {
+                return this.dateCreateFieldSpecified;
+            }
+            set {
+                this.dateCreateFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class BookSales {
+        
+        private System.Nullable<System.DateTime> str030Field;
+        
+        private System.Nullable<System.DateTime> str050Field;
+        
+        private System.Nullable<System.DateTime> str070Field;
+        
+        private System.Nullable<System.DateTime> str090Field;
+        
+        private System.Nullable<System.DateTime> str120Field;
+        
+        private int idField;
+        
+        private bool idFieldSpecified;
+        
+        private long idBookField;
+        
+        private string fField;
+        
+        private string kField;
+        
+        private string cField;
+        
+        private int str005Field;
+        
+        private string str010Field;
+        
+        private string str020Field;
+        
+        private string str040Field;
+        
+        private string str060Field;
+        
+        private string str080Field;
+        
+        private string str100110Field;
+        
+        private string inn130Field;
+        
+        private string kpp130Field;
+        
+        private string nameSale130Field;
+        
+        private string inn140Field;
+        
+        private string kpp140Field;
+        
+        private string nameMediator140Field;
+        
+        private string regNumberField;
+        
+        private int str160Field;
+        
+        private double str170Field;
+        
+        private double str180Field;
+        
+        private int countRnpField;
+        
+        private string sfField;
+        
+        private string listDopField;
+        
+        private System.DateTime dateCreateField;
+        
+        private bool dateCreateFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames("Дата\n\n(стр. 030)", "Дата\n\n(стр. 030)")]
+        public System.Nullable<System.DateTime> Str030 {
+            get {
+                return this.str030Field;
+            }
+            set {
+                this.str030Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames("Дата\n\n(стр. 050)", "Дата\n\n(стр. 050)")]
+        public System.Nullable<System.DateTime> Str050 {
+            get {
+                return this.str050Field;
+            }
+            set {
+                this.str050Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames("Дата\n\n(стр. 070)", "Дата\n\n(стр. 070)")]
+        public System.Nullable<System.DateTime> Str070 {
+            get {
+                return this.str070Field;
+            }
+            set {
+                this.str070Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames("Дата\n\n(стр. 090)", "Дата\n\n(стр. 090)")]
+        public System.Nullable<System.DateTime> Str090 {
+            get {
+                return this.str090Field;
+            }
+            set {
+                this.str090Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames("Дата принятия на учет\n\n(стр. 120)", "Дата принятия на учет\n\n(стр. 120)")]
+        public System.Nullable<System.DateTime> Str120 {
+            get {
+                return this.str120Field;
+            }
+            set {
+                this.str120Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdSpecified {
+            get {
+                return this.idFieldSpecified;
+            }
+            set {
+                this.idFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public long IdBook {
+            get {
+                return this.idBookField;
+            }
+            set {
+                this.idBookField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Ф", "Ф")]
+        public string F {
+            get {
+                return this.fField;
+            }
+            set {
+                this.fField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("К", "К")]
+        public string K {
+            get {
+                return this.kField;
+            }
+            set {
+                this.kField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("С", "С")]
+        public string C {
+            get {
+                return this.cField;
+            }
+            set {
+                this.cField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("№\n\n(стр. 005)", "№\n\n(стр. 005)")]
+        public int Str005 {
+            get {
+                return this.str005Field;
+            }
+            set {
+                this.str005Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Код вида операции\n\n(стр. 010)", "Код вида операции\n\n(стр. 010)")]
+        public string Str010 {
+            get {
+                return this.str010Field;
+            }
+            set {
+                this.str010Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("№\n\n(стр. 020)", "№\n\n(стр. 020)")]
+        public string Str020 {
+            get {
+                return this.str020Field;
+            }
+            set {
+                this.str020Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("№\n\n(стр. 040)", "№\n\n(стр. 040)")]
+        public string Str040 {
+            get {
+                return this.str040Field;
+            }
+            set {
+                this.str040Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("№\n\n(стр. 060)", "№\n\n(стр. 060)")]
+        public string Str060 {
+            get {
+                return this.str060Field;
+            }
+            set {
+                this.str060Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("№\n\n(стр. 080)", "№\n\n(стр. 080)")]
+        public string Str080 {
+            get {
+                return this.str080Field;
+            }
+            set {
+                this.str080Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Документ, подтверждающий уплату налога\n\n(стр. 100, 110)", "Документ, подтверждающий уплату налога\n\n(стр. 100, 110)")]
+        public string Str100110 {
+            get {
+                return this.str100110Field;
+            }
+            set {
+                this.str100110Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ИНН\n\n(стр. 130)", "ИНН\n\n(стр. 130)")]
+        public string Inn130 {
+            get {
+                return this.inn130Field;
+            }
+            set {
+                this.inn130Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("КПП\n\n(стр. 130)", "КПП\n\n(стр. 130)")]
+        public string Kpp130 {
+            get {
+                return this.kpp130Field;
+            }
+            set {
+                this.kpp130Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Наименование", "Наименование")]
+        public string NameSale130 {
+            get {
+                return this.nameSale130Field;
+            }
+            set {
+                this.nameSale130Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ИНН\n\n(стр. 140)", "ИНН\n\n(стр. 140)")]
+        public string Inn140 {
+            get {
+                return this.inn140Field;
+            }
+            set {
+                this.inn140Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("КПП\n\n(стр. 140)", "КПП\n\n(стр. 140)")]
+        public string Kpp140 {
+            get {
+                return this.kpp140Field;
+            }
+            set {
+                this.kpp140Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Наименование1", @"Наименование1")]
+        public string NameMediator140 {
+            get {
+                return this.nameMediator140Field;
+            }
+            set {
+                this.nameMediator140Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Регистрационный № ДТ", @"Регистрационный № ДТ")]
+        public string RegNumber {
+            get {
+                return this.regNumberField;
+            }
+            set {
+                this.regNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Код валюты\n\n(стр. 160)", "Код валюты\n\n(стр. 160)")]
+        public int Str160 {
+            get {
+                return this.str160Field;
+            }
+            set {
+                this.str160Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Стоимость покупок с НДС\n\n(стр. 170)", "Стоимость покупок с НДС\n\n(стр. 170)")]
+        public double Str170 {
+            get {
+                return this.str170Field;
+            }
+            set {
+                this.str170Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Сумма НДС\n\n(стр. 180)", "Сумма НДС\n\n(стр. 180)")]
+        public double Str180 {
+            get {
+                return this.str180Field;
+            }
+            set {
+                this.str180Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Кол-во РНПТ", @"Кол-во РНПТ")]
+        public int CountRnp {
+            get {
+                return this.countRnpField;
+            }
+            set {
+                this.countRnpField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"ЭСФ", @"ЭСФ")]
+        public string Sf {
+            get {
+                return this.sfField;
+            }
+            set {
+                this.sfField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Доп.лист", @"Доп.лист")]
+        public string ListDop {
+            get {
+                return this.listDopField;
+            }
+            set {
+                this.listDopField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.dateCreateField;
+            }
+            set {
+                this.dateCreateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DateCreateSpecified {
+            get {
+                return this.dateCreateFieldSpecified;
+            }
+            set {
+                this.dateCreateFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class BookPurchase {
+        
+        private System.Nullable<System.DateTime> str030Field;
+        
+        private System.Nullable<System.DateTime> str050Field;
+        
+        private System.Nullable<System.DateTime> str070Field;
+        
+        private System.Nullable<System.DateTime> str090Field;
+        
+        private int idField;
+        
+        private bool idFieldSpecified;
+        
+        private long idBookField;
+        
+        private string fField;
+        
+        private string kField;
+        
+        private string cField;
+        
+        private int str005Field;
+        
+        private string str010Field;
+        
+        private string str020Field;
+        
+        private string str040Field;
+        
+        private string str060Field;
+        
+        private string str080Field;
+        
+        private string str120130Field;
+        
+        private string inn100Field;
+        
+        private string kpp100Field;
+        
+        private string nameCustomer100Field;
+        
+        private string inn110Field;
+        
+        private string kpp110Field;
+        
+        private string nameMediator110Field;
+        
+        private string regNumberField;
+        
+        private int str140Field;
+        
+        private double str150Field;
+        
+        private double str160Field;
+        
+        private double str170Field;
+        
+        private double str175Field;
+        
+        private double str180Field;
+        
+        private double str190Field;
+        
+        private double str200Field;
+        
+        private double str205Field;
+        
+        private double str210Field;
+        
+        private double str220Field;
+        
+        private int countRnpField;
+        
+        private string sfField;
+        
+        private string listDopField;
+        
+        private string codeProductField;
+        
+        private System.DateTime dateCreateField;
+        
+        private bool dateCreateFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames("Дата\n\n(стр. 030)", "Дата\n\n(стр. 030)")]
+        public System.Nullable<System.DateTime> Str030 {
+            get {
+                return this.str030Field;
+            }
+            set {
+                this.str030Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames("Дата\n\n(стр. 050)", "Дата\n\n(стр. 050)")]
+        public System.Nullable<System.DateTime> Str050 {
+            get {
+                return this.str050Field;
+            }
+            set {
+                this.str050Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames("Дата\n\n(стр. 070)", "Дата\n\n(стр. 070)")]
+        public System.Nullable<System.DateTime> Str070 {
+            get {
+                return this.str070Field;
+            }
+            set {
+                this.str070Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames("Дата\n\n(стр. 090)", "Дата\n\n(стр. 090)")]
+        public System.Nullable<System.DateTime> Str090 {
+            get {
+                return this.str090Field;
+            }
+            set {
+                this.str090Field = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdSpecified {
+            get {
+                return this.idFieldSpecified;
+            }
+            set {
+                this.idFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public long IdBook {
+            get {
+                return this.idBookField;
+            }
+            set {
+                this.idBookField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Ф", @"Ф")]
+        public string F {
+            get {
+                return this.fField;
+            }
+            set {
+                this.fField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"К", @"К")]
+        public string K {
+            get {
+                return this.kField;
+            }
+            set {
+                this.kField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"С", @"С")]
+        public string C {
+            get {
+                return this.cField;
+            }
+            set {
+                this.cField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("№\n\n(стр. 005)", "№\n\n(стр. 005)")]
+        public int Str005 {
+            get {
+                return this.str005Field;
+            }
+            set {
+                this.str005Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Код вида операции\n\n(стр. 010)", "Код вида операции\n\n(стр. 010)")]
+        public string Str010 {
+            get {
+                return this.str010Field;
+            }
+            set {
+                this.str010Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("№\n\n(стр. 020)", "№\n\n(стр. 020)")]
+        public string Str020 {
+            get {
+                return this.str020Field;
+            }
+            set {
+                this.str020Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("№\n\n(стр. 040)", "№\n\n(стр. 040)")]
+        public string Str040 {
+            get {
+                return this.str040Field;
+            }
+            set {
+                this.str040Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("№\n\n(стр. 060)", "№\n\n(стр. 060)")]
+        public string Str060 {
+            get {
+                return this.str060Field;
+            }
+            set {
+                this.str060Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("№\n\n(стр. 080)", "№\n\n(стр. 080)")]
+        public string Str080 {
+            get {
+                return this.str080Field;
+            }
+            set {
+                this.str080Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Документ, подтверждающий оплату\n\n(стр. 120, 130)", "Документ, подтверждающий оплату\n\n(стр. 120, 130)")]
+        public string Str120130 {
+            get {
+                return this.str120130Field;
+            }
+            set {
+                this.str120130Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ИНН\n\n(стр. 100)", "ИНН\n\n(стр. 100)")]
+        public string Inn100 {
+            get {
+                return this.inn100Field;
+            }
+            set {
+                this.inn100Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("КПП\n\n(стр. 100)", "КПП\n\n(стр. 100)")]
+        public string Kpp100 {
+            get {
+                return this.kpp100Field;
+            }
+            set {
+                this.kpp100Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Наименование", "Наименование")]
+        public string NameCustomer100 {
+            get {
+                return this.nameCustomer100Field;
+            }
+            set {
+                this.nameCustomer100Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ИНН\n\n(стр. 110)", "ИНН\n\n(стр. 110)")]
+        public string Inn110 {
+            get {
+                return this.inn110Field;
+            }
+            set {
+                this.inn110Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("КПП\n\n(стр. 110)", "КПП\n\n(стр. 110)")]
+        public string Kpp110 {
+            get {
+                return this.kpp110Field;
+            }
+            set {
+                this.kpp110Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Наименование1", @"Наименование1")]
+        public string NameMediator110 {
+            get {
+                return this.nameMediator110Field;
+            }
+            set {
+                this.nameMediator110Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Регистрационный № ДТ", @"Регистрационный № ДТ")]
+        public string RegNumber {
+            get {
+                return this.regNumberField;
+            }
+            set {
+                this.regNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Код валюты\n\n(стр. 140)", "Код валюты\n\n(стр. 140)")]
+        public int Str140 {
+            get {
+                return this.str140Field;
+            }
+            set {
+                this.str140Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("в валюте\n\n(стр. 150)", "в валюте\n\n(стр. 150)")]
+        public double Str150 {
+            get {
+                return this.str150Field;
+            }
+            set {
+                this.str150Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("в руб. и коп.\n\n(стр. 160)", "в руб. и коп.\n\n(стр. 160)")]
+        public double Str160 {
+            get {
+                return this.str160Field;
+            }
+            set {
+                this.str160Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("20%\n\n(стр. 170)", "20%\n\n(стр. 170)")]
+        public double Str170 {
+            get {
+                return this.str170Field;
+            }
+            set {
+                this.str170Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("18%\n\n(стр. 175)", "18%\n\n(стр. 175)")]
+        public double Str175 {
+            get {
+                return this.str175Field;
+            }
+            set {
+                this.str175Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("10%\n\n(стр. 180)", "10%\n\n(стр. 180)")]
+        public double Str180 {
+            get {
+                return this.str180Field;
+            }
+            set {
+                this.str180Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("0%\n\n(стр. 190)", "0%\n\n(стр. 190)")]
+        public double Str190 {
+            get {
+                return this.str190Field;
+            }
+            set {
+                this.str190Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("20%\n\n(стр. 200)", "20%\n\n(стр. 200)")]
+        public double Str200 {
+            get {
+                return this.str200Field;
+            }
+            set {
+                this.str200Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("18%\n\n(стр. 205)", "18%\n\n(стр. 205)")]
+        public double Str205 {
+            get {
+                return this.str205Field;
+            }
+            set {
+                this.str205Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("10%\n\n(стр. 210)", "10%\n\n(стр. 210)")]
+        public double Str210 {
+            get {
+                return this.str210Field;
+            }
+            set {
+                this.str210Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Стоимость продаж, освобождаемых от налога\n\n(стр. 220)", "Стоимость продаж, освобождаемых от налога\n\n(стр. 220)")]
+        public double Str220 {
+            get {
+                return this.str220Field;
+            }
+            set {
+                this.str220Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Кол-во РНПТ", @"Кол-во РНПТ")]
+        public int CountRnp {
+            get {
+                return this.countRnpField;
+            }
+            set {
+                this.countRnpField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"ЭСФ", @"ЭСФ")]
+        public string Sf {
+            get {
+                return this.sfField;
+            }
+            set {
+                this.sfField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Доп.лист", @"Доп.лист")]
+        public string ListDop {
+            get {
+                return this.listDopField;
+            }
+            set {
+                this.listDopField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Код вида товара", @"Код вида товара")]
+        public string CodeProduct {
+            get {
+                return this.codeProductField;
+            }
+            set {
+                this.codeProductField = value;
             }
         }
         

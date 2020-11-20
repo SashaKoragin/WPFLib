@@ -165,6 +165,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Okp6\JournalDoc\ViewJournalDoc\JourrnalDocView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Orn\ConfirmationNbo\ConfirmationNbo\ConfirmationNbo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -343,6 +347,10 @@
     <Compile Include="Form\Automat\Okp5\Identification\DataContext\FaceIdentificationDataContext.cs" />
     <Compile Include="Form\Automat\Okp5\Identification\FaceIdentification\FaceIdentificationView.xaml.cs">
       <DependentUpon>FaceIdentificationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Okp6\JournalDoc\DataContextJournalDoc\DataContextJourrnalDoc.cs" />
+    <Compile Include="Form\Automat\Okp6\JournalDoc\ViewJournalDoc\JourrnalDocView.xaml.cs">
+      <DependentUpon>JourrnalDocView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Orn\ConfirmationNbo\ConfirmationNbo\ConfirmationNbo.xaml.cs">
       <DependentUpon>ConfirmationNbo.xaml</DependentUpon>

@@ -74,6 +74,10 @@
       <Project>{92017569-2991-4B9A-BFA2-6B41CFA72B83}</Project>
       <Name>LibraryAIS3Windows</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LibaryXMLAuto\LibaryXMLAuto.csproj">
+      <Project>{A2BC3AE2-4A61-4E9E-9FA4-96A02677C79C}</Project>
+      <Name>LibaryXMLAuto</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

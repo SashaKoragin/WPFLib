@@ -3,13 +3,10 @@ using System.IO;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Threading.Tasks;
-using System.Web.Http;
+using AisPoco.Ifns51.FromAis;
 using AisPoco.Ifns51.ToAis;
-using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace;
 using EfDatabaseAutomation.Automation.SelectParametrSheme;
-using Ifns51.FromAis;
-using Ifns51.ToAis;
 using ServiceAutomation.LoginAD.XsdShemeLogin;
 using LogicsSelectAutomation = EfDatabaseAutomation.Automation.SelectParametrSheme.LogicsSelectAutomation;
 
@@ -73,16 +70,16 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadFileTax121", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<Stream> LoadFileTax121(int numberElement);
-
         /// <summary>
         /// Добавление ИНН для ввода
         /// http://localhost:8050/ServiceAutomation/AddInnToModel
         /// </summary>
-        /// <param name="inn">ИНН для ввода</param>
+        /// <param name="templateModel">Шаблон для добавления</param>
+        /// <param name="userIdGuid">GUID Пользователя</param>
         /// <returns></returns>
         [OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddInnToModel", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        string AddInnToModel(string inn);
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddInnToModel?userIdGuid={userIdGuid}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task AddInnToModel(TemplateProcedure templateModel, string userIdGuid);
         /// <summary>
         /// Получение всех шаблонов в БД
         /// http://localhost:8050/ServiceAutomation/LoadAllTemplateDb
@@ -95,11 +92,11 @@ namespace ServiceAutomation.Service
         /// Получение данных что отрабатывать
         /// http://localhost:8050/ServiceAutomation/LoadModelPreCheck
         /// </summary>
-        /// <param name="idTemplate">Уникальные номера шаблонов</param>
+        /// <param name="idTemplate">Уникальные номера шаблонов в виде строки 1,2,3,4</param>
         /// <returns></returns>
         [OperationContract]
-        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadModelPreCheck", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        List<SrvToLoad> LoadModelPreCheck([FromUri] int[] idTemplate);
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadModelPreCheck?idTemplate={idTemplate}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        List<LibaryXMLAutoModelXmlSql.PreCheck.Ifns51.FromAis.SrvToLoad> LoadModelPreCheck(string idTemplate);
         /// <summary>
         /// Постановка статуса что данные отработаны
         /// http://localhost:8050/ServiceAutomation/LoadModelPreCheck

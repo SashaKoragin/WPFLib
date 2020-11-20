@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:dataContext="clr-namespace:AutomatAis3Full.Form.Automat.PreCheck.ReportingMemo.DataContext"
              xmlns:local="clr-namespace:AutomatAis3Full.Form.Automat.PreCheck.ReportingMemo.ReportingMemo"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              d:DataContext="{d:DesignInstance {x:Type dataContext: ReportingMemoContext}}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -17,7 +18,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
+        <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch">
             <ContentControl
                 Margin="5,5,5,5"
                 HorizontalAlignment="Left"
@@ -26,6 +27,63 @@
                 FontSize="16" />
             <Label Content="Команда приостановить Shift+S" FontSize="16" />
             <Label Content="Команда возобновить Shift+A" FontSize="16" />
+            <ListView 
+                x:Name="Template"
+                Margin="5,5,5,5"
+
+                HorizontalAlignment="Stretch">
+                <ListView.Template>
+                    <ControlTemplate>
+                        <StackPanel HorizontalAlignment="Stretch">
+                            <Label Content="Выбор шаблона для работы:"></Label>
+                            <ListView
+                                x:Name="ListView"
+                                Width="Auto"
+                                MaxHeight="200"
+                                SelectedItem="{Binding ModelTemplate.SelectModel, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"
+                                ItemsSource="{Binding ModelTemplate.ModelCollection}"
+                                ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                                Validation.ErrorTemplate="{StaticResource ValidationFailederror}">
+                              <ListView.View>
+                                  <GridView>
+                                      <GridViewColumn Width="Auto" Header="Выбор шаблона">
+                                          <GridViewColumn.CellTemplate>
+                                              <DataTemplate>
+                                                  <CheckBox
+                                                      IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListViewItem}}" >
+                                                      <i:Interaction.Triggers>
+                                                          <i:EventTrigger EventName="Checked">
+                                                                <i:InvokeCommandAction Command="{Binding DataContext.SelectModelTemplate, ElementName=Template}" CommandParameter="{Binding IdTemplate}" />
+                                                          </i:EventTrigger>
+                                                          <i:EventTrigger EventName="Unchecked">
+                                                                <i:InvokeCommandAction Command="{Binding DataContext.DeleteModelTemplate, ElementName=Template}" CommandParameter="{Binding IdTemplate}" />
+                                                          </i:EventTrigger>
+                                                      </i:Interaction.Triggers>
+                                                  </CheckBox>
+                                                </DataTemplate>
+                                          </GridViewColumn.CellTemplate>
+                                      </GridViewColumn>
+                                        <GridViewColumn Width="Auto" Header="Ун шаблона">
+                                          <GridViewColumn.CellTemplate>
+                                              <DataTemplate>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding IdTemplate}"></TextBlock>
+                                              </DataTemplate>
+                                          </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                      <GridViewColumn Width="Auto" Header="Наименование шаблона">
+                                          <GridViewColumn.CellTemplate>
+                                              <DataTemplate>
+                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding NameTemplate}"></TextBlock>
+                                              </DataTemplate>
+                                          </GridViewColumn.CellTemplate>
+                                      </GridViewColumn>
+                                    </GridView>
+                              </ListView.View>
+                            </ListView>
+                        </StackPanel>
+                    </ControlTemplate>
+                </ListView.Template>
+            </ListView>
         </StackPanel>
     </Grid>
 </UserControl>

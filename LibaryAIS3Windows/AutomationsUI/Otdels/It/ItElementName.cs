@@ -19,6 +19,10 @@
         /// </summary>
         public static string GridJournal = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandJrnlView\\AutomationId:gbAll\\AutomationId:grdJournal";
         /// <summary>
+        /// GRID
+        /// </summary>
+        public static string Grid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandJrnlView\\AutomationId:gbAll\\AutomationId:grdJournal";
+        /// <summary>
         /// Журнал Дата
         /// </summary>
         public static string GridJournalRows = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandJrnlView\\AutomationId:gbAll\\AutomationId:grdJournal\\Name:List`1 row ";

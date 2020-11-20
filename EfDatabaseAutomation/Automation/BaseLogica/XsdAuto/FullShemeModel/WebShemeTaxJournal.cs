@@ -41,6 +41,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private Documen2NDFLIdentification[] documen2NDFLIdentificationField;
         
+        private FormulNdfl[] formulNdflField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxJournalAutoWebPage")]
         public TaxJournalAutoWebPage[] TaxJournalAutoWebPage {
@@ -137,6 +139,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.documen2NDFLIdentificationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("FormulNdfl")]
+        public FormulNdfl[] FormulNdfl {
+            get {
+                return this.formulNdflField;
+            }
+            set {
+                this.formulNdflField = value;
             }
         }
     }
@@ -722,7 +735,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class AddUlFace {
         
-        private System.Nullable<int> idField;
+        private System.Nullable<int> idUlField;
         
         private string logicsButtonField;
         
@@ -736,12 +749,12 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> Id {
+        public System.Nullable<int> IdUl {
             get {
-                return this.idField;
+                return this.idUlField;
             }
             set {
-                this.idField = value;
+                this.idUlField = value;
             }
         }
         
@@ -789,11 +802,11 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class ModelTree {
         
-        private System.Nullable<int> idField;
-        
         private System.DateTime dateCreateField;
         
         private System.Nullable<int> idModelField;
+        
+        private System.Nullable<int> idUlField;
         
         private string logicsButtonField;
         
@@ -803,19 +816,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private string statusModelField;
         
+        private string nameTemplateField;
+        
         public ModelTree() {
             this.logicsButtonField = "Button";
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
         }
         
         /// <remarks/>
@@ -836,6 +840,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.idModelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> IdUl {
+            get {
+                return this.idUlField;
+            }
+            set {
+                this.idUlField = value;
             }
         }
         
@@ -881,6 +896,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.statusModelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameTemplate {
+            get {
+                return this.nameTemplateField;
+            }
+            set {
+                this.nameTemplateField = value;
             }
         }
     }
@@ -1778,6 +1804,157 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.errorNameStatusField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class FormulNdfl {
+        
+        private string logicsButtonField;
+        
+        private decimal moneyNdflField;
+        
+        private int countNdflField;
+        
+        private decimal avgMoneyField;
+        
+        private int codeNdflField;
+        
+        private System.Nullable<System.DateTime> dateOgrnField;
+        
+        private int countFlField;
+        
+        private string nameSmallField;
+        
+        private string innField;
+        
+        private string kppField;
+        
+        private string statusUlField;
+        
+        public FormulNdfl() {
+            this.logicsButtonField = "Button";
+        }
+        
+        /// <remarks/>
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal MoneyNdfl {
+            get {
+                return this.moneyNdflField;
+            }
+            set {
+                this.moneyNdflField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int CountNdfl {
+            get {
+                return this.countNdflField;
+            }
+            set {
+                this.countNdflField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal AvgMoney {
+            get {
+                return this.avgMoneyField;
+            }
+            set {
+                this.avgMoneyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int CodeNdfl {
+            get {
+                return this.codeNdflField;
+            }
+            set {
+                this.codeNdflField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DateOgrn {
+            get {
+                return this.dateOgrnField;
+            }
+            set {
+                this.dateOgrnField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int CountFl {
+            get {
+                return this.countFlField;
+            }
+            set {
+                this.countFlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameSmall {
+            get {
+                return this.nameSmallField;
+            }
+            set {
+                this.nameSmallField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Kpp {
+            get {
+                return this.kppField;
+            }
+            set {
+                this.kppField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string StatusUl {
+            get {
+                return this.statusUlField;
+            }
+            set {
+                this.statusUlField = value;
             }
         }
     }

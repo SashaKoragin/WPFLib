@@ -257,6 +257,7 @@
         <util:XmlFile Id="BulkCopyXmlAutomationConnect" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//connectionStrings//add[\[]@name='BulkCopyXml'[\]]//@connectionString" Value="provider=SQLOLEDB;data source=[SERVER];database=[DB];integrated security=SSPI" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetPathXsdScheme" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathXsdScheme'[\]]//@value" Value="[INSTALLFOLDER]XsdShemeLoad\" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetPathDownloadTempXml" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathDownloadTempXml'[\]]//@value" Value="[INSTALLFOLDER]DownloadTempXml\" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="AutomatAis3FullSetServiceTemplate" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='AllTemplate'[\]]//@value" Value="http://[SERVICE]:8050/ServiceAutomation/LoadAllTemplateDb" SelectionLanguage="XPath" Sequence="1" />
       </Component>
 	    <Component Id="MaterialDesignThemes.MahApps.dll" Guid="6c5e4642-dae0-4322-8ca5-96b32b5a83a9">
 	      <File Id="MaterialDesignThemes.MahApps.dll" Name="MaterialDesignThemes.MahApps.dll" Source="$(var.AutomatAis3Full_TargetDir)MaterialDesignThemes.MahApps.dll" />

@@ -7,13 +7,14 @@ using System.Windows.Forms;
 using AutoIt;
 using LibraryAIS3Windows.AutomationsUI.Otdels.PreCheck;
 using LibraryAIS3Windows.AutomationsUI.PublicElement;
+using LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction;
 using LibraryAIS3Windows.ButtonsClikcs;
 
 
 
 namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
 {
-   public class LibraryAutomations
+   public class LibraryAutomations : IDisposable
     {
         /// <summary>
         /// Все месяца календаря АИС 3
@@ -47,6 +48,15 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         public LibraryAutomations(string nameWindowsAis3)
         {
             RootAutomationElements = AutomationElement.FromHandle(AutoItX.WinGetHandle(nameWindowsAis3));
+            ProcessId = RootAutomationElements.Current.ProcessId;
+        }
+        /// <summary>
+        /// Подключение к процессу!
+        /// </summary>
+        /// <param name="nameProcess">Наименоване процессу</param>
+        public LibraryAutomations(IntPtr nameProcess)
+        {
+            RootAutomationElements = AutomationElement.FromHandle(nameProcess);
             ProcessId = RootAutomationElements.Current.ProcessId;
         }
         /// <summary>
@@ -186,6 +196,17 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
             catch(Exception ex)
             {
                 // ignored
+            }
+        }
+        /// <summary>
+        /// Паттерн закрытия окна! 
+        /// </summary>
+        /// <param name="element"></param>
+        public void CloseWindowPattern(AutomationElement element)
+        {
+            WindowPattern windowPattern = (WindowPattern)element.GetCurrentPattern(WindowPattern.Pattern);
+            if(windowPattern.WaitForInputIdle(3000)){
+                windowPattern.Close();
             }
         }
 
@@ -495,9 +516,27 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                 {
                     return null;
                 }
+                AutoItX.Sleep(100);
                 i++;
             }
             return FindElement;
+        }
+        /// <summary>
+        /// Опасная функция проверка и продолжениея если элемент включен
+        /// </summary>
+        /// <param name="nameAutomationId">Поиск элемента</param>
+        public bool IsEnableElement(string nameAutomationId)
+        {
+            var isEnable = false;
+            while (!isEnable)
+            {
+                FindFirstElement(nameAutomationId, null, false, false);
+                if (FindElement != null)
+                {
+                        isEnable = FindElement.Current.IsEnabled;
+                }
+            }
+            return isEnable;
         }
         /// <summary>
         /// Поиск и нажатие на элемент!!!
@@ -579,5 +618,24 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
             }
             return null;
         }
+
+        /// <summary>
+        /// Disposing
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                FindElement = null;
+                RootAutomationElements = null;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
     }
 }

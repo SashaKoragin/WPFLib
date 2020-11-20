@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AssemblyName>AisPoco</AssemblyName>
     <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
@@ -8,5 +8,19 @@
     <LangVersion>8.0</LangVersion>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
-  <ItemGroup />
+  <Target Name="BeforeBuild" DependsOnTargets="CreateXsd" />
+  <Target Name="CreateXsd">
+    <ItemGroup>
+      <XsdFiles Include="Ifns51.ToAis\*.xsd" />
+    </ItemGroup>
+    <Message Importance="high" Text="CreateXsd" />
+    <GetFrameworkSdkPath>
+      <Output TaskParameter="Path" PropertyName="WindowsSdkPath" />
+    </GetFrameworkSdkPath>
+    <PropertyGroup>
+      <XsdToolPath>$(WindowsSdkPath)bin\NETFX 4.7 Tools</XsdToolPath>
+    </PropertyGroup>
+    <Message Importance="high" Text="Processing XSD schemas" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFiles.FullPath)&quot; /classes /namespace:$(RootNamespace).Ifns51.ToAis /outputdir:Ifns51.ToAis\" />
+  </Target>
 </Project>

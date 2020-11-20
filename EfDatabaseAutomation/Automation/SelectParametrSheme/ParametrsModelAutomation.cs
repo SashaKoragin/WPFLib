@@ -42,6 +42,8 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
         
         private string resultSelectProcedureWebField;
         
+        private TemplateProcedure templateProcedureField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public ParametrsSelect ParametrsSelect {
@@ -93,6 +95,16 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
             }
             set {
                 this.resultSelectProcedureWebField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TemplateProcedure TemplateProcedure {
+            get {
+                return this.templateProcedureField;
+            }
+            set {
+                this.templateProcedureField = value;
             }
         }
     }
@@ -398,6 +410,41 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
             }
             set {
                 this.selectUserField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class TemplateProcedure {
+        
+        private int idTemplateField;
+        
+        private string[] innField;
+        
+        /// <remarks/>
+        public int IdTemplate {
+            get {
+                return this.idTemplateField;
+            }
+            set {
+                this.idTemplateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string[] Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
             }
         }
     }

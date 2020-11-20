@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad
@@ -51,9 +52,9 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad
             else if (prop.PropertyType == typeof(int) || prop.PropertyType == typeof(int
             ?))
             {
-                if (value == null)
+                if(string.IsNullOrEmpty(value.ToString()))
                 {
-                    prop.SetValue(entity, null, null);
+                    prop.SetValue(entity, 0, null);
                 }
                 else
                 {
@@ -62,17 +63,18 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad
             }
             else if (prop.PropertyType == typeof(decimal))
             {
-                prop.SetValue(entity, decimal.Parse(value.ToString()), null);
+                decimal number;
+                bool isValid = decimal.TryParse(value.ToString(), out number);
+                if (isValid)
+                {
+                    prop.SetValue(entity, number, null);
+                }
             }
             else if (prop.PropertyType == typeof(double) || prop.PropertyType == typeof(
             double?))
             {
-                double number;
-                bool isValid = double.TryParse(value.ToString(), out number);
-                if (isValid)
-                {
-                    prop.SetValue(entity, double.Parse(value.ToString()), null);
-                }
+                value = Regex.Replace(value.ToString(),@"\s+","");
+                prop.SetValue(entity, GetDouble(value.ToString(),0.00));
             }
             else if (prop.PropertyType == typeof(DateTime) || prop.PropertyType ==
             typeof(Nullable<DateTime>))
@@ -111,6 +113,27 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad
                 }
             }
         }
+
+        public static double GetDouble(string value, double defaultValue)
+        {
+            double result;
+
+            // Try parsing in the current culture
+            if (!double.TryParse(value, System.Globalization.NumberStyles.Any,
+        CultureInfo.CurrentCulture, out result) &&
+                // Then try in US english
+                !double.TryParse(value, System.Globalization.NumberStyles.Any,
+        CultureInfo.GetCultureInfo("en-US"), out result) &&
+                // Then in neutral language
+                !double.TryParse(value, System.Globalization.NumberStyles.Any,
+        CultureInfo.InvariantCulture, out result))
+            {
+                result = defaultValue;
+            }
+            return result;
+        }
+
+
         public static bool ParseBoolean(object value)
         {
             if (value == null || value == DBNull.Value) return false;

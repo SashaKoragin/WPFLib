@@ -1,32 +1,33 @@
-using System;
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 
-namespace Ifns51.FromAis
+
+namespace AisPoco.Ifns51.FromAis
 {
-	public class AisParsedData
-	{
-		public string N134
-		{
-			get;
-			set;
-		}
+   public class AisParsedData
+    {
 
-		public string Tree
-		{
-			get;
-			set;
-		}
-		//УН обрабатываемого шаблона
-        public int IdTemplate
+        public string N134
+        {
+            get; 
+            set;
+        }
+
+        public string Tree
         {
             get;
             set;
-		}
+        }
 
-		public List<Dictionary<string,string>> Data
-		{
-			get;
-			set;
-		} = new List<Dictionary<string, string>>();
-	}
+        public int IdTemplate
+        {
+            get; 
+            set;
+        }
+
+        public List<Dictionary<string, string>> Data
+        {
+            get;
+            set;
+        } = new List<Dictionary<string, string>>();
+    }
 }

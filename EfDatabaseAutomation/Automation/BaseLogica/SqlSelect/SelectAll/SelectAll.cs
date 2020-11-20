@@ -9,6 +9,7 @@ using EfDatabaseAutomation.Automation.Base;
 using ModelKbkOnKbk = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.ModelKbkOnKbk;
 using HelpKbkAuto = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.HelpKbkAuto;
 using SignatureBoss = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.SignatureBoss;
+using FormulNdfl = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.FormulNdfl;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
 {
@@ -82,6 +83,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
                 case 20:
                     result = Automation.Database.SqlQuery<Documen2NDFLIdentification>(sqlSelect.SelectUser).ToArray();
                     webPage.Documen2NDFLIdentification = (Documen2NDFLIdentification[])result;
+                    break;
+                case 22:
+                    result = Automation.Database.SqlQuery<FormulNdfl>(sqlSelect.SelectUser).ToArray();
+                    webPage.FormulNdfl = (FormulNdfl[])result;
                     break;
                 default:
                     return "Данная команда не определена!!!";

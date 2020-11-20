@@ -11,6 +11,9 @@
 				<xs:element ref="StatementData" minOccurs="0" maxOccurs="unbounded" sql:relation="StatementFull"/>
 				<xs:element ref="CashUlFace" minOccurs="0" maxOccurs="unbounded" sql:relation="CashUlFace"/>
 				<xs:element ref="CashBankAllUlFace" minOccurs="0" maxOccurs="unbounded" sql:relation="CashBankAllUlFace"/>
+				<xs:element ref="NdflFl" minOccurs="0" maxOccurs="unbounded" sql:relation="NdflFl"/>
+				<xs:element ref="BookSales" minOccurs="0" maxOccurs="unbounded" sql:relation="BookSales"/>
+				<xs:element ref="BookPurchase" minOccurs="0" maxOccurs="unbounded" sql:relation="BookPurchase"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -135,8 +138,8 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="DataOpenCash" minOccurs="0" sql:datatype="smalldatetime"/>
-				<xs:element ref="DataClosedCash" minOccurs="0" sql:datatype="smalldatetime"/>
+				<xs:element ref="DataOpenCash" sql:datatype="smalldatetime"/>
+				<xs:element ref="DataClosedCash" sql:datatype="smalldatetime"/>
 			</xs:sequence>
 			<xs:attribute name="Id" type="xs:int" use="optional" sql:mapped="false" sql:datatype="int">
 				<xs:annotation>
@@ -304,5 +307,457 @@
 			</xs:attribute>
 			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:mapped="false" sql:datatype="smalldatetime"/>
 		</xs:complexType>
+	</xs:element>
+	<xs:element name="NdflFl">
+		<xs:annotation>
+			<xs:documentation>Сведения 2НДФЛ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" type="xs:int" use="optional" sql:datatype="int" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>УН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdUl" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Ун Юридическогоко лица</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="IdSved" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>УН сведений</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:long"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="FidFl" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>ФИД</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:long"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="InnFl" type="xs:string" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>ИНН ФЛ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="SurnameFl" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameFl" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PatronymicFl" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="FioFl" type="xs:string" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Полное имя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Number" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Номер месяца</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdVidNdfl" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>УН вида дохода</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CodeNdfl" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Код дохода</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameNdfl" type="xs:string" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Наименование дохода</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MoneyNdfl" type="xs:decimal" use="required" sql:datatype="decimal">
+				<xs:annotation>
+					<xs:documentation>Зарплата</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:datatype="datetime" sql:mapped="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BookSales">
+		<xs:annotation>
+			<xs:documentation>Книга покупок</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Str030"/>
+				<xs:element ref="Str050"/>
+				<xs:element ref="Str070"/>
+				<xs:element ref="Str090"/>
+				<xs:element ref="Str120"/>
+			</xs:sequence>
+			<xs:attribute name="Id" type="xs:int" use="optional" sql:mapped="false" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>УН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdBook" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>УН корневой книги</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:long"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="F" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак Ф</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="K" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак К</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="C" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак С</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str005" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Поле 005</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Str010" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Поле 010</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str020" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Поле 020</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str040" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Поле 040</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str060" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Поле 060</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str080" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Поле 080</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str100110" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Поля 100 - 110</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn130" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>ИНН 130</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kpp130" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>КПП 130</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameSale130" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Наименование продавца</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn140" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>ИНН Посредника</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kpp140" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>КПП посредника</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameMediator140" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Наименование посредника</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="RegNumber" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Регистрационный № ДТ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str160" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Поле 160</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str170" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Поле 170</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str180" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Поле 180</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CountRnp" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Количество РНП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Sf" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>ЭСФ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ListDop" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Дополнительные листы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:datatype="smalldatetime" sql:mapped="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BookPurchase">
+		<xs:annotation>
+			<xs:documentation>Книга продаж</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Str030"/>
+				<xs:element ref="Str050"/>
+				<xs:element ref="Str070"/>
+				<xs:element ref="Str090"/>
+			</xs:sequence>
+			<xs:attribute name="Id" type="xs:int" use="optional" sql:datatype="int" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>УН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdBook" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>УН корневой книги</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:long"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="F" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак Ф</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="K" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак К</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="C" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак С</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str005" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Поле 005</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Str010" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Поле 010</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str020" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Поле 020</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str040" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Поле 040</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str060" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Поле 060</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str080" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Поле 080</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str120130" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Документ, подтверждающий оплату</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn100" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>ИНН покупателя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kpp100" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>КПП покупателя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameCustomer100" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Наименование покупателя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn110" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>ИНН Посредника</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kpp110" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>КПП Посредника</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameMediator110" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Наименование посредника</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="RegNumber" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Регистрационный № ДТ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str140" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Поле 140</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str150" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Поле 150</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str160" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Поле 160</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str170" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Поле 170</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str175" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Поле 175</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str180" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Поле 180</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str190" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Поле 190</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str200" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Поле 200</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str205" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Поле 205</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str210" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Поле 210</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Str220" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Поле 220</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CountRnp" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Количество РНП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Sf" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>ЭСФ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ListDop" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Доп.лист</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CodeProduct" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Код вида товара</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:datatype="smalldatetime" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>Дата записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Str030" type="xs:dateTime" nillable="true" sql:datatype="smalldatetime">
+		<xs:annotation>
+			<xs:documentation>Поле 030</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Str050" type="xs:dateTime" nillable="true" sql:datatype="smalldatetime">
+		<xs:annotation>
+			<xs:documentation>Поле 050</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Str070" type="xs:dateTime" nillable="true" sql:datatype="smalldatetime">
+		<xs:annotation>
+			<xs:documentation>Поле 070</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Str090" type="xs:dateTime" nillable="true" sql:datatype="smalldatetime">
+		<xs:annotation>
+			<xs:documentation>Поле 090</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Str120" type="xs:dateTime" nillable="true" sql:datatype="smalldatetime">
+		<xs:annotation>
+			<xs:documentation>Поле 120</xs:documentation>
+		</xs:annotation>
 	</xs:element>
 </xs:schema>

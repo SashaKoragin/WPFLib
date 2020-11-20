@@ -32,7 +32,6 @@ namespace SqlLibaryIfns.SqlZapros.SobytieSql
         /// <summary>
         /// Подпись на событие и переправка его в SignalR
         /// SignalR - Вынесено в отдельную библиотеку
-        /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

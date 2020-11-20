@@ -39,6 +39,37 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
             Automation.SaveChanges();
         }
         /// <summary>
+        /// Добавление или обновление журнала отправки документа
+        /// </summary>
+        /// <param name="taxJournalDelivery">Журнал отправки документа</param>
+        public void AddAndUpdateTaxJournalDelivery(TaxJournalDelivery taxJournalDelivery)
+        {
+            if (!(from taxJournalDeliveries in Automation.TaxJournalDeliveries where taxJournalDeliveries.RegNumber == taxJournalDelivery.RegNumber select new { TaxJournalDeliveries = taxJournalDeliveries }).Any())
+            {
+                Automation.TaxJournalDeliveries.Add(taxJournalDelivery);
+                Automation.SaveChanges();
+            }
+            else
+            {
+                using (var context = new Base.Automation())
+                {
+                    var selectJournalDeliveries = (from taxJournalDeliveries in context.TaxJournalDeliveries where taxJournalDeliveries.RegNumber == taxJournalDelivery.RegNumber select new { TaxJournalDeliveries = taxJournalDeliveries }).FirstOrDefault();
+                    taxJournalDelivery.Id = selectJournalDeliveries.TaxJournalDeliveries.Id;
+                    Automation.Entry(taxJournalDelivery).State = EntityState.Modified;
+                    Automation.SaveChanges();
+                }
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="regNum">Регистрационный номер</param>
+        public bool IsExistsDocument(Int64 regNum)
+        {
+           return (from taxJournalDeliveries in Automation.TaxJournalDeliveries where taxJournalDeliveries.RegNumber == regNum select new { TaxJournalDeliveries = taxJournalDeliveries }).Any();
+        }
+
+        /// <summary>
         /// Добавление в 129 Журнал
         /// </summary>
         /// <param name="journal">Журнал</param>

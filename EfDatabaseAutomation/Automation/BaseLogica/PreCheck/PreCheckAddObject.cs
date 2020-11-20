@@ -7,6 +7,7 @@ using System.Linq;
 using EfDatabaseAutomation.Automation.Base;
 using LibaryXMLAuto.ReadOrWrite;
 using System.Configuration;
+using EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
 {
@@ -287,6 +288,39 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             }
             //Отсутствует лицо сохранение не возможно
         }
+
+        /// <summary>
+        /// Добавление Налоговое администрирование\Физические лица\2.01. Сведения о доходах ФЛ\4.01. Доходы и вычеты по месяцам
+        /// </summary>
+        /// <param name="ndfl">Картотека счетов</param>
+        /// <param name="innUl">ИНН</param>
+        public void AddNdflDataBase(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc ndfl, string innUl)
+        {
+            //ИНН Есть ли лицо
+            int idUl;
+            using (var context = new Base.Automation())
+            {
+                idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
+                ndfl.NdflFl.ToList().ForEach(ndFl => ndFl.IdUl = idUl);
+            }
+            if (ndfl.NdflFl[0].IdUl != 0)
+            {
+                //Удаляем старые записи по выписке заполняем новыми
+                using (var contextDelete = new Base.Automation())
+                {
+                    contextDelete.NdflFls.RemoveRange(contextDelete.NdflFls.Where(x => x.IdUl == idUl));
+                    contextDelete.SaveChanges();
+                }
+                XmlReadOrWrite xml = new XmlReadOrWrite();
+                var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+                var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}CashData.xml";
+                xml.CreateXmlFile(xmlFile, ndfl, typeof(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc));
+                BulkInsertIntoDb(xsdFile, xmlFile);
+            }
+            //Отсутствует лицо сохранение не возможно
+        }
+
+
         /// <summary>
         /// Добавление ОКВЕД
         /// </summary>
@@ -332,6 +366,136 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             }
             return false;
         }
+        /// <summary>
+        /// Проверка наличия кники покупок и книгги продаж если нет наш клиент
+        /// </summary>
+        /// <param name="idBook">Регистрационный номер кники покупок продажи</param>
+        /// <returns></returns>
+        public bool IsExistsBook(long idBook)
+        {
+            if ((from book in Automation.Books where book.IdBook == idBook & (book.IsBookSalesParse == true & book.IsBookPurchase == true) select new {Books = book }).Any())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Добавление сведений о книги Покупки продажи
+        /// </summary>
+        /// <param name="books">Книга покупки продажи</param>
+        /// <param name="innUl">ИНН ЮЛ</param>
+        public Book AddBook(Book books, string innUl)
+        {
+            //ИНН Есть ли лицо
+            using (var context = new Base.Automation())
+            {
+                var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
+                books.IdUl = idUl;
+            }
+            if (books.IdUl != 0)
+            {
+                if (!(from book in Automation.Books where book.IdBook == books.IdBook select new { Book = book }).Any())
+                {
+                    Automation.Books.Add(books);
+                    Automation.SaveChanges();
+                }
+                else
+                {
+                    using (var context = new Base.Automation())
+                    {
+                        var select = (from book in context.Books where book.IdBook == books.IdBook select new { Book = book }).FirstOrDefault();
+                        books.Id = select.Book.Id;
+                        books.IsBookPurchase = select.Book.IsBookPurchase;
+                        books.IsBookSalesParse = select.Book.IsBookSalesParse;
+                        Automation.Entry(books).State = EntityState.Modified;
+                        Automation.SaveChanges();
+                    }
+                }
+            }
+            return books;
+            //Отсутствует лицо сохранение не возможно
+        }
+        /// <summary>
+        /// Обновление признака 
+        /// </summary>
+        /// <param name="books">Книга Покупок обновление признака</param>
+        public void UpdeteBookSalesParse(ref Book books)
+        {
+            var book = books;
+            using (var context = new Base.Automation())
+            {
+                var select = (from b in context.Books where b.IdBook == book.IdBook select new { Book = b }).FirstOrDefault();
+                books.Id = select.Book.Id;
+                books.IsBookSalesParse = true;
+                Automation.Entry(books).State = EntityState.Modified;
+                Automation.SaveChanges();
+            }
+        }
+        /// <summary>
+        /// Обновление признака 
+        /// </summary>
+        /// <param name="books">Книга продаж обновление признака</param>
+        public void UpdeteBookPurchase(ref Book books)
+        {
+            var book = books;
+            using (var context = new Base.Automation())
+            {
+                var select = (from b in context.Books where b.IdBook == book.IdBook select new { Book = b }).FirstOrDefault();
+                books.Id = select.Book.Id;
+                books.IsBookPurchase = true;
+                Automation.Entry(books).State = EntityState.Modified;
+                Automation.SaveChanges();
+            }
+        }
+
+
+        /// <summary>
+        /// Добавление в БД Книги Покупок
+        /// </summary>
+        /// <param name="books">Книга</param>
+        /// <param name="bookSales">Книга покупок</param>
+        public void AddBookSales(ref Book books, ArrayBodyDoc bookSales)
+        {
+            var book = books;
+            bookSales.BookSales.ToList().ForEach(sales => sales.IdBook = book.IdBook);
+            using (var contextDelete = new Base.Automation())
+            {
+                contextDelete.BookSales.RemoveRange(contextDelete.BookSales.Where(x => x.IdBook == book.IdBook));
+                contextDelete.SaveChanges();
+            }
+            XmlReadOrWrite xml = new XmlReadOrWrite();
+            var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+            var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}BookSales.xml";
+            xml.CreateXmlFile(xmlFile, bookSales, typeof(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc));
+            BulkInsertIntoDb(xsdFile, xmlFile);
+            UpdeteBookSalesParse(ref books);
+
+        }
+
+        /// <summary>
+        /// Добавление в БД Книги Продаж
+        /// </summary>
+        /// <param name="books">Книга</param>
+        /// <param name="bookPurchase">Книга продаж</param>
+        public void AddBookPurchase(ref Book books, ArrayBodyDoc bookPurchase)
+        {
+            var book = books;
+            bookPurchase.BookPurchase.ToList().ForEach(sales => sales.IdBook = book.IdBook);
+            using (var contextDelete = new Base.Automation())
+            {
+                contextDelete.BookPurchases.RemoveRange(contextDelete.BookPurchases.Where(x => x.IdBook == book.IdBook));
+                contextDelete.SaveChanges();
+            }
+            XmlReadOrWrite xml = new XmlReadOrWrite();
+            var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+            var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}bookPurchase.xml";
+            xml.CreateXmlFile(xmlFile, bookPurchase, typeof(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc));
+            BulkInsertIntoDb(xsdFile, xmlFile);
+            UpdeteBookPurchase(ref books);
+
+        }
+
 
         /// <summary>
         /// Добавление деклараций на все

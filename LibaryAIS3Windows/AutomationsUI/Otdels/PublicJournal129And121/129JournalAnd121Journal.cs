@@ -17,6 +17,10 @@
         /// </summary>
         public static string AllTaxJournal = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:OtherMaterials1014\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row ";
         /// <summary>
+        ///  Grid 121 Журнал
+        /// </summary>
+        public static string GridTaxJournal121 = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData";
+        /// <summary>
         /// 121 Журнал
         /// </summary>
         public static string AllTaxJournal121 = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row ";
@@ -153,9 +157,30 @@
         /// Установленно Текст
         /// </summary>
         public static string InstallTextGr6 = $"{PublicPanel}AutomationId:gb_6\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\AutomationId:txbUstanovleno";
-
-
-
+        /// <summary>
+        /// Неуплата
+        /// </summary>
+        public static string ErrorFaceGr8 = $"{PublicPanel}AutomationId:gb_8\\AutomationId:exp\\AutomationId:HeaderSite";
+        /// <summary>
+        /// Неуплата
+        /// </summary>
+        public static string NotCash = $"{PublicPanel}AutomationId:gb_8\\AutomationId:exp\\AutomationId:Host\\AutomationId:NeuplataControl\\AutomationId:txbNeuplataTotal";
+        /// <summary>
+        /// Неуплата
+        /// </summary>
+        public static string ErrorFaceGr9 = $"{PublicPanel}AutomationId:gb_9\\AutomationId:exp\\AutomationId:HeaderSite";
+        /// <summary>
+        /// Неуплата
+        /// </summary>
+        public static string Ischesleno = $"{PublicPanel}AutomationId:gb_9\\AutomationId:exp\\AutomationId:Host\\AutomationId:IschisleniaControl\\AutomationId:txbIschisleniaTotal";
+        /// <summary>
+        /// Неуплата
+        /// </summary>
+        public static string ErrorFaceGr10 = $"{PublicPanel}AutomationId:gb_10\\AutomationId:exp\\AutomationId:HeaderSite";
+        /// <summary>
+        /// Неуплата
+        /// </summary>
+        public static string Peny = $"{PublicPanel}AutomationId:gb_10\\AutomationId:exp\\AutomationId:Host\\AutomationId:CalculatePenyaControl\\AutomationId:txbPenyaTotal";
         /// <summary>
         /// Привлечь к ответственности
         /// </summary>
@@ -229,6 +254,7 @@
         /// Обновить данные перед автоматом
         /// </summary>
         public static string UpdateData121 = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Документ\\Name:Обновить данные";
+
         /// <summary>
         /// Начать углублубленную налоговую проверку
         /// </summary>
@@ -369,5 +395,27 @@
         /// Закрыть окно в случае если уже галочка стоит
         /// </summary>
         public static string CloseWinError = "Name:Нарушения\\AutomationId:TitleBar\\Name:Закрыть";
+
+        //Окна для проставки даты вручения
+        /// <summary>
+        /// Обновить данные перед автоматом в ветке 04 Проставить дату вручения
+        /// </summary>
+        public static string UpdateData121Tree04 = "Name:DockTop\\Name:Ribbon\\Name:Журнал документов, выписанных в ходе налоговой проверки\\Name:Документ\\Name:Обновить данные";
+        /// <summary>
+        /// Кнопка проставить дату вручения и отправки
+        /// </summary>
+        public static string DocumentSendDelivery = "Name:DockTop\\Name:Ribbon\\Name:Журнал документов, выписанных в ходе налоговой проверки\\Name:Проставить дату вручения";
+        /// <summary>
+        /// Дата отправки
+        /// </summary>
+        public static string WinSendAndSend = "AutomationId:InfoOfSend\\AutomationId:dateSend";
+        /// <summary>
+        /// Дата вручения
+        /// </summary>
+        public static string WinSendAndDelivery = "AutomationId:InfoOfSend\\AutomationId:dateReceive";
+        /// <summary>
+        /// Кнопка сохранить
+        /// </summary>
+        public static string WindowSave = "AutomationId:InfoOfSend\\AutomationId:buttonSave";
     }
 }

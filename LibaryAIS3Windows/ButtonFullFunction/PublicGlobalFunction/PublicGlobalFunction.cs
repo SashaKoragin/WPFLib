@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using AutoIt;
 using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
 
@@ -9,14 +10,13 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
 {
     public class PublicGlobalFunction
     {
-
         /// <summary>
         /// Поиск последнего файла в папке
         /// </summary>
         /// <param name="path">Путь</param>
         /// <param name="searсhPattern">Pattern Search</param>
         /// <returns>Возврат последнего файла</returns>
-        public static GetFile ReturnNameLastFileTemp(string path,string searсhPattern)
+        public static GetFile ReturnNameLastFileTemp(string path, string searсhPattern)
         {
             var listFile = new List<GetFile>();
             var pdf = Directory.GetFiles(path, searсhPattern);
@@ -55,7 +55,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
                 {
                     process?.CloseMainWindow();
                 }
-                if(processes.Length == 0)
+                if (processes.Length == 0)
                 {
                     break;
                 }
@@ -86,6 +86,46 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
             }
             AutoItX.Sleep(500);
         }
+
+        /// <summary>
+        /// Дожидаемся и сохраняем XLSX 2010 и закрываем
+        /// </summary>
+        public static void ExcelSaveAndClose()
+        {
+            AutoItX.ProcessWait("EXCEL.EXE", 60000);
+            var processExcel = FindIntPtr("[CLASS:XLMAIN]");
+            LibraryAutomations libraryAutomationXlsx = new LibraryAutomations(processExcel);
+            try
+            {
+                var save = "ClassName:MsoCommandBar\\ClassName:MsoWorkPane\\ClassName:NUIPane\\ClassName:NetUIHWNDElement\\ClassName:NetUInetpane\\ClassName:NetUIElement\\Name:Сохранить";
+                var closeLicense = "ClassName:NetUIHWNDElement\\ClassName:NetUINetUIDialog\\Name:Закрыть";
+                while (true)
+                {
+                    var allClass = libraryAutomationXlsx.SelectAutomationColrction(libraryAutomationXlsx.RootAutomationElements);
+                    if (libraryAutomationXlsx.IsEnableElements(save, allClass[1]) != null)
+                    {
+                        AutoItX.Send("^s");
+                        AutoItX.Sleep(2000);
+                        break;
+                    }
+                    if (libraryAutomationXlsx.IsEnableElements(closeLicense, allClass[0]) != null)
+                    {
+                        libraryAutomationXlsx.InvokePattern(libraryAutomationXlsx.FindElement);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                AutoItX.Send("^s");
+                libraryAutomationXlsx.Dispose();
+                CloseProcessProgram("EXCEL");
+            }
+        }
+
         /// <summary>
         /// Поиск элемента и ожидания нажатия на элемент
         /// </summary>
@@ -96,7 +136,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
             var isProcess = true;
             while (isProcess)
             {
-                if (libraryAutomation.IsEnableElements(searсhPatternElement, null, true,1) != null)
+                if (libraryAutomation.IsEnableElements(searсhPatternElement, null, true, 1) != null)
                 {
                     libraryAutomation.ClickElements(searсhPatternElement, null, true);
                     isProcess = false;
@@ -110,14 +150,14 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
         /// <param name="searсhPatternElementGrid">Grid для поиска Caption</param>
         public static string GridNotDataIsWaitUpdate(LibraryAutomations libraryAutomation, string searсhPatternElementGrid)
         {
-           var isExit = true;
+            var isExit = true;
             while (isExit)
             {
-                if (libraryAutomation.IsEnableElements(string.Concat(searсhPatternElementGrid, "\\Name:Caption"), null, false, 1,0,true) == null)
+                if (libraryAutomation.IsEnableElements(string.Concat(searсhPatternElementGrid, "\\Name:Caption"), null, false, 1, 0, true) == null)
                 {
                     isExit = false;
                 }
-                if(libraryAutomation.FindElement != null)
+                if (libraryAutomation.FindElement != null)
                 {
                     if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement) == "Данные, удовлетворяющие заданным условиям не найдены.")
                     {
@@ -134,6 +174,25 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
             }
             return null;
         }
+
+
+        private static IntPtr FindIntPtr(string nameClass)
+        {
+            bool IsExists = false;
+            
+            IntPtr processExcel = IntPtr.Zero;
+            while (!IsExists){
+                AutoItX.WinActivate(nameClass);
+                AutoItX.WinWaitActive(nameClass);
+                processExcel = AutoItX.WinGetHandle(nameClass);
+                if (processExcel != IntPtr.Zero)
+                {
+                    IsExists = true;
+                }
+            }
+            return processExcel;
+        }
+
     }
 
     public class GetFile

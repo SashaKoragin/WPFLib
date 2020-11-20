@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AisPoco.Ifns51.ToAis;
 using Prism.Mvvm;
 using ViewModelLib.Annotations;
 
@@ -29,6 +30,14 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect
         /// Выбор ветви для обработки
         /// </summary>
         public ObservableCollection<T> ModelCollection { get; set; } = new ObservableCollection<T>();
+
+
+        public ObservableCollection<int> SelectModelCollection
+        {
+            get;
+            set;
+        } = new ObservableCollection<int>();
+
         /// <summary>
         /// Выбранная ветка
         /// </summary>
@@ -41,6 +50,7 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect
                 RaisePropertyChanged();
             }
         }
+
 
         public string this[string columnName]
         {
@@ -71,10 +81,28 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect
                     case "SelectModel":
                         if (SelectModel != null)
                         { break; }
-                    { Error = "Нет выбранного параметра!!!"; break; }
+                    { Error = "Не выбранно не одного шаблона!!!"; break; }
                 }
             return Error;
         }
+
+        /// <summary>
+        /// Выбираем Модель
+        /// </summary>
+        /// <param name="param">Объект выбора</param>
+        public void SelectModelTemplate(object param)
+        {
+            SelectModelCollection.Add((int)param);
+        }
+        /// <summary>
+        /// Удаляем Модель
+        /// </summary>
+        /// <param name="param">Объект выбора</param>
+        public void DeleteModelTemplate(object param)
+        {
+            SelectModelCollection.Remove(SelectModelCollection.Single(parameter => parameter.Equals((int)param)));
+        }
+
     }
 
    public class UniversalCollection

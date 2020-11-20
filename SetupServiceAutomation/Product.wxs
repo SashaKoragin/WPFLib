@@ -133,6 +133,33 @@
       <Component Id="SqlLibaryIfns.dll" Guid="BA9F74BB-C0F2-4D5F-878C-11CEA0C5A7B0" >
         <File Id="SqlLibaryIfns.dll" Name="SqlLibaryIfns.dll" Source="$(var.ServiceAutomation_TargetDir)SqlLibaryIfns.dll"/>
       </Component>
+      <Component Id="SignalRLibraryAutomations.dll" Guid="9150AF5C-6372-4DF1-8722-C714EADAD0C8">
+        <File Id="SignalRLibraryAutomations.dll" Name="SignalRLibraryAutomations.dll" Source="$(var.ServiceAutomation_TargetDir)SignalRLibraryAutomations.dll"/>
+      </Component>
+      <Component Id="Microsoft.Owin.dll" Guid="243AA763-A850-4DB2-B74C-85BBAFB1D55D">
+        <File Id="Microsoft.Owin.dll" Name="Microsoft.Owin.dll" Source="$(var.ServiceAutomation_TargetDir)Microsoft.Owin.dll" />
+      </Component>
+      <Component Id="Microsoft.Owin.Hosting.dll" Guid="145BDC93-AF70-47FF-874F-2D41528CFCAA">
+        <File Id="Microsoft.Owin.Hosting.dll" Name="Microsoft.Owin.Hosting.dll" Source="$(var.ServiceAutomation_TargetDir)Microsoft.Owin.Hosting.dll" />
+      </Component>
+      <Component Id="Owin.dll" Guid="FEA17AB5-D8AD-402C-B26A-2F361AA04ACA">
+        <File Id="Owin.dll" Name="Owin.dll" Source="$(var.ServiceAutomation_TargetDir)Owin.dll" />
+      </Component>
+      <Component Id="Microsoft.AspNet.SignalR.Core.dll" Guid="2E6A1ACA-5467-4DDC-BA67-88F7B9E8E3CD">
+        <File Id="Microsoft.AspNet.SignalR.Core.dll" Name="Microsoft.AspNet.SignalR.Core.dll" Source="$(var.ServiceAutomation_TargetDir)Microsoft.AspNet.SignalR.Core.dll" />
+      </Component>
+      <Component Id="Microsoft.Owin.Security.dll" Guid="383F5573-9AF4-4998-B7E9-0AED523F8F0A">
+        <File Id="Microsoft.Owin.Security.dll" Name="Microsoft.Owin.Security.dll" Source="$(var.ServiceAutomation_TargetDir)Microsoft.Owin.Security.dll" />
+      </Component>
+      <Component Id="Microsoft.Owin.Cors.dll" Guid="0A890E58-AAD9-4338-B512-7296F4ACB896">
+        <File Id="Microsoft.Owin.Cors.dll" Name="Microsoft.Owin.Cors.dll" Source="$(var.ServiceAutomation_TargetDir)Microsoft.Owin.Cors.dll" />
+      </Component>
+      <Component Id="System.Web.Cors.dll" Guid="4B6568E5-4D3B-4BE1-A344-9FA44D5126D7">
+        <File Id="System.Web.Cors.dll" Name="System.Web.Cors.dll" Source="$(var.ServiceAutomation_TargetDir)System.Web.Cors.dll" />
+      </Component>
+      <Component Id="Microsoft.Owin.Host.HttpListener.dll" Guid="FC1E3D5D-86EF-4E55-86F1-46FCB2E5AF69">
+        <File Id="Microsoft.Owin.Host.HttpListener.dll" Name="Microsoft.Owin.Host.HttpListener.dll" Source="$(var.ServiceAutomation_TargetDir)Microsoft.Owin.Host.HttpListener.dll" />
+      </Component>
 		</ComponentGroup>
 	</Fragment>
 </Wix>

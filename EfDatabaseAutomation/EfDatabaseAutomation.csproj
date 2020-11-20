@@ -41,6 +41,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>C:\Nuget\Microsoft.AspNet.SignalR.Core.2.4.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -57,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Automation\BaseLogica\AddObjectDb\AddObjectDb.cs" />
+    <Compile Include="Automation\BaseLogica\EventSqlEf\EventSqlEf.cs" />
     <Compile Include="Automation\BaseLogica\IdentificationFace\IdentificationAddorEditFace.cs" />
     <Compile Include="Automation\BaseLogica\ModelGetPost\ModelGetPost.cs" />
     <Compile Include="Automation\BaseLogica\PreCheck\PreCheckAddObject.cs" />
@@ -100,6 +104,10 @@
     <ProjectReference Include="..\LibaryXMLAuto\LibaryXMLAuto.csproj">
       <Project>{a2bc3ae2-4a61-4e9e-9fa4-96a02677c79c}</Project>
       <Name>LibaryXMLAuto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SignalRLibaryAutomations\SignalRLibraryAutomations.csproj">
+      <Project>{94b9f0ff-3300-428f-b95f-bd58dc71ee9a}</Project>
+      <Name>SignalRLibraryAutomations</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

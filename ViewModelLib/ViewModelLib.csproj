@@ -120,7 +120,6 @@
     <Compile Include="ModelTestAutoit\PublicModel\ReportXlsx\ReportXlsx.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ReportXml\ReportJurnalProperty.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\SelectBranch\Branch.cs" />
-    <Compile Include="ModelTestAutoit\PublicModel\TemplateModel\TemplateModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModelPage\AnotherCommandImplementation.cs" />

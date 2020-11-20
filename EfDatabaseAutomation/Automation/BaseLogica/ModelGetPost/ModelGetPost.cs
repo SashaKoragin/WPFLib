@@ -1,14 +1,15 @@
-﻿
-using Ifns51.FromAis;
-using Ifns51.ToAis;
-using LibaryXMLAuto.ReadOrWrite;
+﻿using LibaryXMLAuto.ReadOrWrite;
 using LibaryXMLAutoModelXmlSql.PreCheck.ModelCard;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
+using AisPoco.Ifns51.FromAis;
 using AisPoco.Ifns51.ToAis;
+using EfDatabaseAutomation.Automation.SelectParametrSheme;
+using LibaryXMLAutoModelXmlSql.PreCheck.Ifns51.FromAis;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
 {
@@ -20,28 +21,49 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
             Automation = new Base.Automation();
         }
 
+
         /// <summary>
         /// Добавление ИНН модели для отработки
         /// </summary>
-        /// <param name="inn">ИНН для отработки</param>
-        public string AddInnModel(string inn)
+        /// <param name="templateModel">Шаблон для добавления</param>
+        /// <param name="guidUsers">GUID Пользователя</param>
+        public void AddInnModel(TemplateProcedure templateModel, string guidUsers)
         {
+            DataTable tableInn = new DataTable();
             try
             {
+                tableInn.Columns.Add(new DataColumn("Inn", typeof(string)));
+                foreach (var inn in templateModel.Inn)
+                {
+                    tableInn.Rows.Add(inn);
+                }
                 var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 4);
-
                 if (logicModel != null)
                 {
-                    var result = Automation.Database.SqlQuery<string>(logicModel.SelectUser,
-                            new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn)).ToArray();
-                    return result[0];
+                    EventSqlEf.EventSqlEf eventMessage = new EventSqlEf.EventSqlEf() {UserNameGuid = guidUsers };
+                    var con = (SqlConnection)Automation.Database.Connection;
+                    con.FireInfoMessageEventOnUserErrors = true;
+                    con.InfoMessage += eventMessage.Con_InfoMessageSignalR;
+                    Automation.Database.ExecuteSqlCommand(logicModel.SelectUser,
+                             new SqlParameter
+                             {
+                                 ParameterName = logicModel.SelectedParametr.Split(',')[0],
+                                 Value = tableInn,
+                                 TypeName = "dbo.ListInn",
+                                 SqlDbType = SqlDbType.Structured
+                             },
+                             new SqlParameter(logicModel.SelectedParametr.Split(',')[1], templateModel.IdTemplate));
                 }
             }
             catch (Exception ex)
             {
                 Loggers.Log4NetLogger.Error(ex);
             }
-            return null;
+            finally
+            {
+                tableInn.Clear();
+                tableInn.Dispose();
+            }
         }
         /// <summary>
         /// Выгрузка всех шаблонов в БД
@@ -51,13 +73,11 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
         {
             try
             {
-                var xml = new XmlReadOrWrite();
                 var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 21);
                 if (logicModel != null)
                 {
-                    var result = Automation.Database.SqlQuery<string>(logicModel.SelectUser).ToArray();
-                    var resultServer = (List<TemplateModel>)xml.ReadXmlText(string.Join("", result), typeof(List<TemplateModel>));
-                    return resultServer;
+                    var result = Automation.Database.SqlQuery<TemplateModel>(logicModel.SelectUser).ToList();
+                    return result;
                 }
             }
             catch (Exception ex)
@@ -72,7 +92,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
         /// </summary>
         /// <param name="idTemplate">Уникальные номера шаблонов</param>
         /// <returns></returns>
-        public List<SrvToLoad> LoadModelPreCheck(int[] idTemplate)
+        public List<LibaryXMLAutoModelXmlSql.PreCheck.Ifns51.FromAis.SrvToLoad> LoadModelPreCheck(string idTemplate)
         {
             try
             {
@@ -80,10 +100,13 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                 var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 6);
                 if (logicModel != null)
                 {
-                    var result = Automation.Database.SqlQuery<string>(logicModel.SelectUser,
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[0], string.Join(",",idTemplate))).ToArray();
-                    var resultServer = (List<SrvToLoad>)xml.ReadXmlText(string.Join("", result), typeof(List<SrvToLoad>));
-                    return resultServer;
+                    var sqlSelectModel = logicModel.SelectUser.Replace(logicModel.SelectedParametr.Split(',')[0], idTemplate);
+                    var result = Automation.Database.SqlQuery<string>(sqlSelectModel)?.ToArray();
+                    if (result?[0] != null)
+                    {
+                        var resultServer = ((ArrayOfSrvToLoad)xml.ReadXmlText(string.Join("", result), typeof(ArrayOfSrvToLoad))).SrvToLoad.ToList();
+                        return resultServer;
+                    }
                 }
             }
             catch (Exception ex)

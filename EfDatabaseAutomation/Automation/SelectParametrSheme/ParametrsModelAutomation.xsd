@@ -106,6 +106,7 @@
 			<xs:element ref="InfoViewAutomation" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="ParameterProcedureWeb" minOccurs="0"/>
 			<xs:element ref="ResultSelectProcedureWeb" minOccurs="0"/>
+			<xs:element ref="TemplateProcedure" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="ParameterProcedureWeb">
@@ -156,6 +157,29 @@
 	<xs:element name="IsVisible" type="xs:boolean">
 		<xs:annotation>
 			<xs:documentation>Видимость элемента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TemplateProcedure">
+		<xs:annotation>
+			<xs:documentation>Параметры процедуры добавления шаблона</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="IdTemplate"/>
+			</xs:sequence>
+			<xs:attribute name="Inn">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:list itemType="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IdTemplate" type="xs:int" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Ун шаблона</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

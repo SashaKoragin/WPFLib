@@ -131,6 +131,9 @@
       <SubType>code</SubType>
       <DependentUpon>Reshenie.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ModelXmlSql\PreCheck\Ifns51.FromAis\ModelTemplate.cs">
+      <DependentUpon>ModelTemplate.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModelXmlSql\PreCheck\ModelCard\CardFace.cs">
       <DependentUpon>CardFace.xsd</DependentUpon>
     </Compile>
@@ -233,6 +236,9 @@
     <None Include="ModelXmlSql\Model\Trebovanie\Reshenie.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ModelXmlSql\PreCheck\Ifns51.FromAis\ModelTemplate.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ModelXmlSql\PreCheck\ModelCard\CardFace.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -285,6 +291,7 @@
       <XsdXmlInspection Include="ModelXmlAuto\Inspection\*.xsd" />
       <XsdXmlOtdelRuleUsers Include="ModelXmlAuto\OtdelRuleUsers\*.xsd" />
       <XsdXmlModelCard Include="ModelXmlSql\PreCheck\ModelCard\*.xsd" />
+      <XsdModelAisNalog Include="ModelXmlSql\PreCheck\Ifns51.FromAis\*.xsd" />
     </ItemGroup>
     <Message Importance="high" Text="CreateXsd" />
     <GetFrameworkSdkPath>
@@ -318,5 +325,6 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlInspection.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.Inspection /outputdir:ModelXmlAuto\Inspection\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlOtdelRuleUsers.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.OtdelRuleUsers /outputdir:ModelXmlAuto\OtdelRuleUsers\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlModelCard.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.PreCheck.ModelCard /outputdir:ModelXmlSql\PreCheck\ModelCard\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdModelAisNalog.FullPath)&quot; /classes  /f /namespace:$(RootNamespace)ModelXmlSql.PreCheck.Ifns51.FromAis /outputdir:ModelXmlSql\PreCheck\Ifns51.FromAis\" />
   </Target>
 </Project>

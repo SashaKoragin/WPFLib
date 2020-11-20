@@ -14,9 +14,7 @@ using EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb;
 using EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
 using LibaryDocumentGenerator.Documents.Template;
-using Ifns51.ToAis;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
-using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel;
 using SqlLibaryIfns.ZaprosSelectNotParam;
 
 namespace ServiceAutomation.Service
@@ -123,14 +121,17 @@ namespace ServiceAutomation.Service
         /// <summary>
         /// Метод добавление ИНН для ввода
         /// </summary>
-        /// <param name="inn">ИНН</param>
+        /// <param name="templateModel">Шаблон для добавления</param>
+        /// <param name="userIdGuid">GUID Пользователя</param>
         /// <returns></returns>
-        public string AddInnToModel(string inn)
+        public async Task AddInnToModel(TemplateProcedure templateModel, string userIdGuid)
         {
-            var model = new ModelGetPost();
-            var modelReturn = model.AddInnModel(inn);
-            model.Dispose();
-            return modelReturn;
+            await Task.Factory.StartNew(() =>
+            {
+                var model = new ModelGetPost();
+                model.AddInnModel(templateModel, userIdGuid);
+                model.Dispose();
+            });
         }
         /// <summary>
         /// Выгрузка всех шаблонов в БД
@@ -148,7 +149,7 @@ namespace ServiceAutomation.Service
         /// </summary>
         /// <param name="idTemplate">Уникальные номера шаблонов</param>
         /// <returns></returns>
-        public List<SrvToLoad> LoadModelPreCheck(int[] idTemplate)
+        public List<LibaryXMLAutoModelXmlSql.PreCheck.Ifns51.FromAis.SrvToLoad> LoadModelPreCheck(string idTemplate)
         {
             var model = new ModelGetPost();
             var modelReturn = model.LoadModelPreCheck(idTemplate);
@@ -161,7 +162,7 @@ namespace ServiceAutomation.Service
         /// </summary>
         /// <param name="model">Модель ответа</param>
         /// <returns></returns>
-        public string LoadModelPreCheckModel(Ifns51.FromAis.AisParsedData model)
+        public string LoadModelPreCheckModel(AisPoco.Ifns51.FromAis.AisParsedData model)
         {
             var modelLoad = new ModelGetPost();
             var modelReturn = modelLoad.LoadModelPreCheck(model);

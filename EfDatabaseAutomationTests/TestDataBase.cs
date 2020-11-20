@@ -1,12 +1,9 @@
 ﻿
-using System;
 using System.Reflection;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
 using EfDatabaseAutomation.Automation.SelectParametrSheme;
-using Ifns51.FromAis;
-using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using ModelGetPost = EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost.ModelGetPost;
@@ -29,7 +26,7 @@ namespace EfDatabaseAutomationTests
         public void ServerTestModel()
         {
             ModelGetPost model = new ModelGetPost();
-            var result = model.LoadModelPreCheck();
+            var result = model.LoadModelPreCheck("2");
         }
         [TestMethod]
         public void TestProcedure()
@@ -44,13 +41,6 @@ namespace EfDatabaseAutomationTests
             }
         }
 
-        [TestMethod]
-        public void TestProcedureGet()
-        {
-
-              EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost.ModelGetPost model = new ModelGetPost();
-               model.LoadModelPreCheck(new AisParsedData() { Tree = "Налоговое администрирование\\Централизованная система регистрации\\Поиск\\Поиск ЮЛ\\", N134 = "5003050129" });
-        }
 
     }
 }

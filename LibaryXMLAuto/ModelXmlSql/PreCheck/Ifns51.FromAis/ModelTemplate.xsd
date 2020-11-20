@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ArrayOfSrvToLoad">
+		<xs:annotation>
+			<xs:documentation>Модель взаимодействия с шаблонами</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ArrayOfSrvToLoad"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ArrayOfSrvToLoad">
+		<xs:annotation>
+			<xs:documentation>Модель взаимодействия с шаблонами</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="SrvToLoad" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SrvToLoad">
+		<xs:annotation>
+			<xs:documentation>Модель с сервера</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Tree"/>
+				<xs:element ref="Memo"/>
+				<xs:element ref="IdTemplate"/>
+				<xs:element ref="INN"/>
+				<xs:element ref="TreeExport"/>
+				<xs:element ref="TreeUpdate"/>
+				<xs:element ref="TreeFilter"/>
+				<xs:element ref="TreeGrid"/>
+				<xs:element ref="TreeDataArea"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Tree" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Ветка</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Memo" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Поля ветки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Fields" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IdTemplate" type="xs:int" nillable="false">
+		<xs:annotation>
+			<xs:documentation>УН Шаблона</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="INN" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Список ИНН</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="InnUl" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InnUl" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>ИНН</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Fields" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Поле</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TreeUpdate" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Кнопка обновления элемента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TreeFilter" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Кнопка фильтрации элемента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TreeExport" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>Кнопка экспорта элемента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TreeGrid">
+		<xs:annotation>
+			<xs:documentation>GRID и подстановка поиска</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="FullPathGrid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Полный путь до ветки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="GridToIndexParameter" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Полный путь до ветки с подстановкой индекса</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DataAreaParameters">
+		<xs:annotation>
+			<xs:documentation>Параметры</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="NameParameters" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование параметра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="FindNameMemo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Поле для поиска</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IndexParameters" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Индекс для подстановки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ParametersGrid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Параметр подстановки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TreeDataArea">
+		<xs:annotation>
+			<xs:documentation>Путь до подстановки параметров</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DataAreaParameters" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="FullPathDataArea" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Полный путь до подстановки индекса к параметру</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
