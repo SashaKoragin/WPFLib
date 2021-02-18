@@ -13,7 +13,6 @@ namespace LibaryXMLAuto.ReadOrWrite.LogicaXml
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(path);
-            
             return doc;
         }
         /// <summary>

@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Threading;
+using LibaryXMLAuto.XsdModelAutoGenerate;
 using LibraryAIS3Windows.ButtonsClikcs;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
@@ -226,5 +228,45 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
             });
         }
+
+        /// <summary>
+        /// Запуск БП
+        /// Налоговое администрирование\Урегулирование задолженности\Взыскание задолженности за счет ден. средств\Запуск БП
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        /// <param name="pathList">Полный путь к списку с ИНН</param>
+        public void StartProcess(StatusButtonMethod statusButton, string pathList)
+        {
+            DispatcherHelper.Initialize();
+            if (File.Exists(pathList))
+            {
+                Task.Run(delegate
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                    LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite read = new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
+                    object obj = read.ReadXml(pathList, typeof(AutoGenerateSchemes));
+                    AutoGenerateSchemes modelList = (AutoGenerateSchemes)obj;
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        foreach (var modelListTaxArr in modelList.TaxArrears)
+                        {
+                            if (statusButton.Iswork)
+                            {
+                                clickerButton.Click35(modelListTaxArr.Inn, modelListTaxArr.Kpp);
+                                read.DeleteAtributXml(pathList, LibaryXMLAuto.GenerateAtribyte.GeneratorAtribute.GenerateAtrAutoGenerateSchemes(modelListTaxArr.Inn));
+                            }
+                        }
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    }
+                });
+            }
+        }
+
     }
 }

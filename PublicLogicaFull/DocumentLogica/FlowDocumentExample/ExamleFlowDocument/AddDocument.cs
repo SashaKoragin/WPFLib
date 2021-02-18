@@ -1,4 +1,5 @@
-﻿using System.Windows.Documents;
+﻿using System.Drawing.Printing;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace PublicLogicaFull.DocumentLogica.FlowDocumentExample.ExamleFlowDocument

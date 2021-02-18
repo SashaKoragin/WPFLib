@@ -4,8 +4,6 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EfDatabaseAutomation.Automation.Base;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace
@@ -55,7 +53,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace
                 }
                 catch (DbUpdateException e) when (e.InnerException?.InnerException is SqlException sqlEx && (sqlEx.Number==2601||sqlEx.Number==2627))
                 {
-                    Loggers.Log4NetLogger.Error(sqlEx);
+                    Loggers.Log4NetLogger.Info(new Exception($"Нельзя добавлять дубликаты значений {doc}"));
                     serviceAddFile.ErrorAddId.Add(new ErrorAddId(){IdDoc = doc, NameError = e.Message});
                     countErrorFile++;
                     //Нельзя добавлять дубликаты значений 
@@ -68,18 +66,18 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace
         /// <summary>
         /// Изменение статуса Ошибки
         /// </summary>
-        /// <param name="idFile">Id файла</param>
-        public void IsCheckError(long idFile)
+        /// <param name="idFile">Id файлов</param>
+        public void IsCheckError(List<long> idFile)
         {
-          var doc = Automation.Documen2Ndfl.FirstOrDefault(x => x.IdDoc == idFile);
-          if (doc != null)
+          var documents = Automation.Documen2Ndfl.Where(x => idFile.Contains(x.IdDoc));
+          foreach (var document in documents)
           {
-              using (var context = new Base.Automation())
-              {
-                  doc.ErrorNameStatus = null;
-                  context.Entry(doc).State = EntityState.Modified;
-                  context.SaveChanges();
-              }
+                using (var context = new Base.Automation())
+                {
+                    document.ErrorNameStatus = null;
+                    context.Entry(document).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
           }
         }
 

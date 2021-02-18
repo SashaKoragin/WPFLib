@@ -21,9 +21,6 @@ namespace AutomatAis3Full.Form.Automat.Registration.Rosreestr.DataContext
             StartButton = new StatusButtonMethod();
             StartButton.Button.Command = new DelegateCommand(() => { visualTreatment.VisualFace(StartButton,ConfigFile.VisualId, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
             Update = new DelegateCommand(() => { Xml.UpdateFileXml(ConfigFile.VisualId); });
-
-            //StartButton.Button.Command = new DelegateCommand((() => { commandauto.Update(StartButton, ConfigFile.FidFace, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); }));
-            //VisualTreatment.VisualFace(StartButton);
         }
     }
 }

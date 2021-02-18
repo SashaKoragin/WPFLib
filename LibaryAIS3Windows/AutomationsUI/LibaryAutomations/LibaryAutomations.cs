@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Forms;
 using AutoIt;
@@ -51,11 +53,21 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
             ProcessId = RootAutomationElements.Current.ProcessId;
         }
         /// <summary>
+        /// Подключение к процессу через AutomationElement Tree
+        /// </summary>
+        public LibraryAutomations(AutomationElement element)
+        {
+            RootAutomationElements = element;
+            ProcessId = RootAutomationElements.Current.ProcessId;
+        }
+
+        /// <summary>
         /// Подключение к процессу!
         /// </summary>
         /// <param name="nameProcess">Наименоване процессу</param>
         public LibraryAutomations(IntPtr nameProcess)
         {
+            
             RootAutomationElements = AutomationElement.FromHandle(nameProcess);
             ProcessId = RootAutomationElements.Current.ProcessId;
         }
@@ -82,7 +94,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="isSubtree">Искать в Subtree последний элемент</param>
         /// <param name="isChildren">Искать в Children последний элемент</param>
         /// <returns></returns>
-        public AutomationElement FindFirstElement(string nameAutomationId, AutomationElement auto = null,bool isSubtree=false, bool isChildren = false)
+        public AutomationElement FindFirstElement(string nameAutomationId, AutomationElement auto = null,bool isSubtree=false, bool isChildren = false, char separator = ':')
         {
             var recursion = nameAutomationId.Split('\\');
             FindElement = auto;
@@ -91,7 +103,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
             {
              try
              {
-                 Conditions = AddCondition(str);
+                 Conditions = AddCondition(str, separator);
                  if (auto == null)
                  {
                      FindElement = RootAutomationElements.FindFirst(TreeScope.Children, Conditions);
@@ -119,6 +131,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                                  return FindElement;
                              }
                          }
+                            
                          FindElement = FindElement.FindFirst(TreeScope.Children, Conditions) ?? FindElement.FindFirst(TreeScope.Subtree, Conditions);
                      }
                      else
@@ -192,10 +205,30 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                 var pattern = element.GetCurrentPattern(InvokePatternIdentifiers.Pattern);
                 var valueAuto = (InvokePattern)pattern;
                 valueAuto.Invoke();
+               
             }
-            catch(Exception ex)
+            catch
             {
                 // ignored
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="element"></param>
+        public void SelectionComboBoxPattern(AutomationElement element)
+        {
+            ClickElement(element, -65);
+            var pattern = element.GetCurrentPattern(SelectionItemPattern.Pattern);
+            var select = (SelectionItemPattern)pattern;
+            if (select.Current.IsSelected)
+            {
+                Debug.WriteLine($"{element.Current.Name} - {select.Current.IsSelected}");
+            }
+            else
+            {
+                Debug.WriteLine($"{element.Current.Name} - {select.Current.IsSelected}");
+                ClickElement(element, -65);
             }
         }
         /// <summary>
@@ -242,6 +275,24 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
             return false;
         }
 
+        /// <summary>
+        /// Закрытие элемента Автоматизации
+        /// </summary>
+        /// <param name="nameAutomationId">Имя элемента</param>
+        public bool IsExpandClose(string nameAutomationId)
+        {
+            if (IsEnableElements(nameAutomationId, null, false, 5) != null)
+            {
+                var expand = DefaultActionPattern(FindElement);
+                if (expand == "Collapse")
+                {
+                    InvokePattern(FindElement);
+                }
+                return true;
+            }
+
+            return false;
+        }
 
         /// <summary>
         /// Проверка на доступ и раскрытия элемента 
@@ -311,7 +362,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                 }
                 if (isEnable)
                 {
-                    AutoItX.Send(string.Format(ButtonConstant.UpCountClick, 1));
+                    SendKeys.SendWait(string.Format(ButtonConstant.UpCountClick, 1));
                     AutoItX.Sleep(milesecond);
                     isDown = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
                     if (isDown != isUp)
@@ -326,7 +377,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                 }
                 else
                 {
-                    AutoItX.Send(string.Format(ButtonConstant.DownCountClick, 1));
+                    SendKeys.SendWait(string.Format(ButtonConstant.DownCountClick, 1));
                     AutoItX.Sleep(milesecond);
                     isUp = ParseElementLegacyIAccessiblePatternIdentifiers(automationElement);
                     if (isDown != isUp)
@@ -347,29 +398,6 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="dateTime">Дата и время которое надо подставить</param>
         public void DateControlComboboxNotValue(DateTime dateTime)
         {
-            
-            var dayAutomation = Convert.ToInt32(FindElement.Current.Name.Split(' ')[0].Trim());
-            var dayControl = dateTime.Day;
-            while (dayAutomation != dayControl)
-            {
-                FindElement.SetFocus();
-                ClickElement(FindElement, -180);
-                AutoItX.Send(string.Format(ButtonConstant.UpCountClick, 1));
-                AutoItX.Sleep(100);
-                dayAutomation = Convert.ToInt32(FindElement.Current.Name.Split(' ')[0].Trim());
-            }
-            
-            var mouthAutomation = FindElement.Current.Name.Split(' ')[1].Trim();
-            var mouthControl = Calendar.FirstOrDefault(x => x.Key == dateTime.Month).Value;
-            while (mouthAutomation != mouthControl)
-            {
-                
-                ClickElement(FindElement, -165);
-                AutoItX.Send(string.Format(ButtonConstant.UpCountClick, 1));
-                AutoItX.Sleep(100);
-                mouthAutomation = FindElement.Current.Name.Split(' ')[1].Trim();
-            }
-            
             var yearAutomation = Convert.ToInt32(FindElement.Current.Name.Split(' ')[2].Trim());
             var yearControl = dateTime.Year;
             while (yearAutomation != yearControl)
@@ -382,6 +410,29 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                 AutoItX.Sleep(100);
                 yearAutomation = Convert.ToInt32(FindElement.Current.Name.Split(' ')[2].Trim());
             }
+
+            var mouthAutomation = FindElement.Current.Name.Split(' ')[1].Trim();
+            var mouthControl = Calendar.FirstOrDefault(x => x.Key == dateTime.Month).Value;
+            while (mouthAutomation != mouthControl)
+            {
+                
+                ClickElement(FindElement, -165);
+                AutoItX.Send(string.Format(ButtonConstant.UpCountClick, 1));
+                AutoItX.Sleep(100);
+                mouthAutomation = FindElement.Current.Name.Split(' ')[1].Trim();
+            }
+            
+            var dayAutomation = Convert.ToInt32(FindElement.Current.Name.Split(' ')[0].Trim());
+            var dayControl = dateTime.Day;
+            while (dayAutomation != dayControl)
+            {
+                FindElement.SetFocus();
+                ClickElement(FindElement, -180);
+                AutoItX.Send(string.Format(ButtonConstant.UpCountClick, 1));
+                AutoItX.Sleep(100);
+                dayAutomation = Convert.ToInt32(FindElement.Current.Name.Split(' ')[0].Trim());
+            }
+
         }
 
         /// <summary>
@@ -403,16 +454,8 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                 if (isExit < DateTime.Now.Year)
                 {
                     isExit = Convert.ToInt32(ParseElementLegacyIAccessiblePatternIdentifiers(automationElement));
-                    AutoItX.Send(string.Format(ButtonConstant.UpCountClick, 1));
+                    SendKeys.SendWait(string.Format(ButtonConstant.UpCountClick, 1));
                     AutoItX.Sleep(1000);
-                    if (IsEnableElements(PreCheckElementNameIndividualCards.ErrorYear, null, true,1) != null)
-                    {
-                        ClickElements(PreCheckElementNameIndividualCards.ErrorYear, null, true);
-                        if (IsEnableElements(PreCheckElementNameIndividualCards.ErrorData, null, true) != null)
-                        {
-                            ClickElements(PreCheckElementNameIndividualCards.ErrorData, null, true);
-                        }
-                    }
                     isUp = Convert.ToInt32(ParseElementLegacyIAccessiblePatternIdentifiers(automationElement));
                 }
             }
@@ -493,13 +536,13 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="countsecond">Количество обращений к элементу</param>
         /// <param name="isFocus">Включен: (IsEnabled 0) и (IsKeyboardFocusable 1)</param>
         /// <param name="isChildren">Искать в Children последний элемент</param>
-        public AutomationElement IsEnableElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,  int countsecond =40, int isFocus = 0, bool isChildren = false)
+        public AutomationElement IsEnableElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false,  int countsecond =40, int isFocus = 0, bool isChildren = false, char separator = ':')
         {
             var isEnable = false;
             var i = 0;
             while (!isEnable)
             {
-                FindFirstElement(nameAutomationId, auto, isSubtree, isChildren);
+                FindFirstElement(nameAutomationId, auto, isSubtree, isChildren, separator);
                 if (FindElement != null)
                 {
                     if (isFocus == 0)
@@ -516,13 +559,13 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                 {
                     return null;
                 }
-                AutoItX.Sleep(100);
+                AutoItX.Sleep(50);
                 i++;
             }
             return FindElement;
         }
         /// <summary>
-        /// Опасная функция проверка и продолжениея если элемент включен
+        /// Опасная функция проверка и продолжение если элемент включен
         /// </summary>
         /// <param name="nameAutomationId">Поиск элемента</param>
         public bool IsEnableElement(string nameAutomationId)
@@ -538,6 +581,40 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
             }
             return isEnable;
         }
+
+        /// <summary>
+        /// Опасная функция ожидание отключения элемента
+        /// </summary>
+        /// <param name="nameAutomationId">Поиск элемента</param>
+        public bool IsEnableElementTrue(string nameAutomationId)
+        {
+            var isEnable = true;
+            LegacyIAccessiblePattern valuePattern;
+            uint status = 0;
+            while (isEnable)
+            {
+                FindFirstElement(nameAutomationId);
+                try
+                {
+                    if (FindElement.TryGetCurrentPattern(LegacyIAccessiblePatternIdentifiers.Pattern, out var patternObj))
+                    {
+                        valuePattern = (LegacyIAccessiblePattern)patternObj;
+                        status = valuePattern.Current.State;
+                        if (status != 0)
+                        {
+                            return false;
+                        }
+                        status = 0;
+                    }
+                }
+                catch
+                {
+                    //ignore
+                }
+            }
+            return false;
+        }
+
         /// <summary>
         /// Поиск и нажатие на элемент!!!
         /// </summary>
@@ -568,8 +645,38 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="numClicks">Количество кликов</param>
         public void ClickElement(AutomationElement auto, int x = 0, int y = 0, int numClicks = 1)
         {
-            var clickPoint = auto.GetClickablePoint();
+            Point clickPoint = new Point() { X=0,Y=0};
+            while (clickPoint.X == 0)
+            {
+                try
+                {
+                    clickPoint = auto.GetClickablePoint();
+                }
+                catch
+                {
+                    //ignor NotClickablePoint
+                }
+            }
             AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint.X + x, (int)clickPoint.Y + y, numClicks);
+        }
+        /// <summary>
+        /// Поиск и нажатие на нужное наименование из списка ОПАСНО не всегда кликабельно
+        /// </summary>
+        /// <param name="nameAutomationIdComboBox">Поиск и нажатие элемент списка</param>
+        /// <param name="nameListItem">Элемент в списке</param>
+        /// <param name="nameComboBox">Наименование списка</param>
+        public void FindTextComboboxIsToFocusAndClickElement(string nameAutomationIdComboBox, string nameListItem, string nameComboBox = "LocalizedControlType:панель", char separator = ':', bool isChildren = false, bool isSubtree = true)
+        {
+                IsEnableElements(nameAutomationIdComboBox, null, isSubtree, 40,0, isChildren, separator);
+                var memo = SelectAutomationColrction(FindElement);
+                memo[0].SetFocus();
+                ClickElement(memo[0]);
+                IsEnableElements(nameComboBox);
+                var elemList = SelectAutomationColrction(FindElement);
+                var selectElement = SelectAutomationColrction(elemList[0]);
+                var elemClick = selectElement.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == nameListItem);
+                elemClick.SetFocus();
+                ClickElement(elemClick);
         }
 
 
@@ -578,9 +685,9 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         /// </summary>
         /// <param name="nameAutomationId">Имя Id</param>
         /// <returns></returns>
-        private Condition AddCondition(string nameAutomationId)
+        private Condition AddCondition(string nameAutomationId, char separator = ':')
         {
-           var parameter = nameAutomationId.Split(':');
+           var parameter = nameAutomationId.Split(separator);
             if (parameter[0] == "Name")
             {
                 return new AndCondition(
@@ -593,6 +700,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                   new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
                   new PropertyCondition(AutomationElement.AutomationIdProperty, parameter[1]));
             }
+            //Переделать поиск по контроллерам тест писать
             if (parameter[0] == "ControlType")
             {
                 return new AndCondition(

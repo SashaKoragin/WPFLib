@@ -29,6 +29,10 @@ namespace PublicLogicaFull.DocumentLogica.FlowDocuments
                 };
                 for (int i = 1; i < xmldoc.CountAtribute(documentxml) ; i++)
                 {
+                    if (i == 2)
+                    {
+                        return doc;
+                    }
                     doc.Blocks.Add(new Paragraph(new Run(xmldoc.XmlAtribyte(documentxml, i))));
                 }
                 return doc;

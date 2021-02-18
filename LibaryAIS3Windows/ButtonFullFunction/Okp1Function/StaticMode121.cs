@@ -12,11 +12,11 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
     {
 
         /// <summary>
-        /// Режим проставки статистики по КНД 1151001
+        /// Режим проставки статистики по КНД 1151001 и КНД 1151006
         /// </summary>
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
         /// <param name="listDocError">Список ошибок</param>
-        public void StaticMode1Nk1151001(LibraryAutomations libraryAutomation, AutomationElement[] listDocError)
+        public void StaticMode1Nk1151001And1151006(LibraryAutomations libraryAutomation, AutomationElement[] listDocError)
         {
             LibraryAutomations libraryAutomationDoc = new LibraryAutomations(WindowsAis3.AisNalog3);
             var numHelp = new[] {"3","6","9"};

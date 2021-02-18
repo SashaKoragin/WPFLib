@@ -78,6 +78,9 @@
     <Compile Include="Inventarization\Model\ModelSelectAll\SelectUsers.cs">
       <DependentUpon>SelectUsers.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ModelAutoGenerateList\XsdSchemesGenerate\AutoGenerateSchemes.cs">
+      <DependentUpon>AutoGenerateSchemes.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModelServiceWcfCommand\AngularModel\AngularModel.cs" />
     <Compile Include="ModelServiceWcfCommand\ModelPathReport\ModelPathReport.cs" />
     <Compile Include="ModelServiceWcfCommand\TestIfnsService\WcfServiiceFull.cs">
@@ -103,6 +106,9 @@
     </Compile>
     <Compile Include="ModelXmlAuto\OtdelRuleUsers\OtdelRuleUsers.cs">
       <DependentUpon>OtdelRuleUsers.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ModelXmlAuto\ReportMigration\InfoRuleTemplate.cs">
+      <DependentUpon>InfoRuleTemplate.xsd</DependentUpon>
     </Compile>
     <Compile Include="ModelXmlAuto\ReportMigration\ReportMigration.cs">
       <DependentUpon>ReportMigration.xsd</DependentUpon>
@@ -179,6 +185,9 @@
     <None Include="Inventarization\Model\ModelSelectAll\SelectUsers.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="ModelAutoGenerateList\XsdSchemesGenerate\AutoGenerateSchemes.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="ModelServiceWcfCommand\TestIfnsService\WcfServiiceFull.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -210,6 +219,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ModelXmlAuto\OtdelRuleUsers\OtdelRuleUsers.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ModelXmlAuto\ReportMigration\InfoRuleTemplate.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="ModelXmlAuto\ReportMigration\ReportMigration.xsd">
@@ -256,6 +268,12 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AttributeHelperModelXml\AttributeHelperModelXml.csproj">
+      <Project>{91FAD00A-D052-4DD6-A9BB-544782A0D2C4}</Project>
+      <Name>AttributeHelperModelXml</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="BeforeBuild" DependsOnTargets="CreateXsd" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -292,6 +310,7 @@
       <XsdXmlOtdelRuleUsers Include="ModelXmlAuto\OtdelRuleUsers\*.xsd" />
       <XsdXmlModelCard Include="ModelXmlSql\PreCheck\ModelCard\*.xsd" />
       <XsdModelAisNalog Include="ModelXmlSql\PreCheck\Ifns51.FromAis\*.xsd" />
+      <!--<XsdModelAutoGenerate Include="ModelAutoGenerateList\XsdSchemesGenerate\*.xsd" />-->
     </ItemGroup>
     <Message Importance="high" Text="CreateXsd" />
     <GetFrameworkSdkPath>
@@ -326,5 +345,6 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlOtdelRuleUsers.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.OtdelRuleUsers /outputdir:ModelXmlAuto\OtdelRuleUsers\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlModelCard.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.PreCheck.ModelCard /outputdir:ModelXmlSql\PreCheck\ModelCard\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdModelAisNalog.FullPath)&quot; /classes  /f /namespace:$(RootNamespace)ModelXmlSql.PreCheck.Ifns51.FromAis /outputdir:ModelXmlSql\PreCheck\Ifns51.FromAis\" />
+    <!--<Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdModelAutoGenerate.FullPath)&quot; /classes /namespace:$(RootNamespace).XsdModelAutoGenerate /outputdir:ModelAutoGenerateList\XsdSchemesGenerate\" />-->
   </Target>
 </Project>

@@ -34,7 +34,7 @@ namespace AutomatAis3Full.Form.Automat.Okp4.PrintSnu.DataContext
             Date = new DatePickerPub();
             Xml = new XmlUseMethod();
             StartButton.Button.Command = new DelegateCommand((() => { commandauto.PrintSnu(Date, StartButton, ConfigFile.FileInnFull, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk, ConfigFile.Connection); }));
-            Validate = new DelegateCommand(()=> {PdfModel.CountPdfTemp(ConfigFile.PathPdfTemp);});
+            Validate = new DelegateCommand(()=> {PdfModel.CountPdfTemp(ConfigFile.PathTemp);});
             Validate2 = new DelegateCommand(()=> {PdfModel.CountPdfWork(ConfigFile.PathPdfWork);});
             Moving = new DelegateCommand((() => {PdfModel.MoveWork(ConfigFile.PathPdfWork);}));
             DeleteTemp = new DelegateCommand((() => {PdfModel.DeleteTemp();}));

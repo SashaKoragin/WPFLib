@@ -127,11 +127,16 @@
     <Compile Include="Window\Otdel\Uregulirovanie\Yvedomlenie\TextYvedomlenie.cs" />
     <Compile Include="Window\Otdel\Reg\UtverzdenieSz\SluzZ.cs" />
     <Compile Include="Window\Windows.cs" />
+    <Compile Include="XlsxToDataTable\XlsxToDataTable.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AisPoco\AisPoco.csproj">
       <Project>{ae019cef-782d-41b7-942f-420f3c1b434a}</Project>
       <Name>AisPoco</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AttributeHelperModelXml\AttributeHelperModelXml.csproj">
+      <Project>{91fad00a-d052-4dd6-a9bb-544782a0d2c4}</Project>
+      <Name>AttributeHelperModelXml</Name>
     </ProjectReference>
     <ProjectReference Include="..\EfDatabaseAutomation\EfDatabaseAutomation.csproj">
       <Project>{fdad249d-cd7d-4581-b945-90d2f9dad698}</Project>

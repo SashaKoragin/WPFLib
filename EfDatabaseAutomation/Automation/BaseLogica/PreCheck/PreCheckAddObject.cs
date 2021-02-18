@@ -9,6 +9,7 @@ using LibaryXMLAuto.ReadOrWrite;
 using System.Configuration;
 using EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData;
 
+
 namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
 {
    public class PreCheckAddObject : IDisposable
@@ -490,10 +491,40 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             XmlReadOrWrite xml = new XmlReadOrWrite();
             var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
             var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}bookPurchase.xml";
-            xml.CreateXmlFile(xmlFile, bookPurchase, typeof(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc));
+            xml.CreateXmlFile(xmlFile, bookPurchase, typeof(ArrayBodyDoc));
             BulkInsertIntoDb(xsdFile, xmlFile);
             UpdeteBookPurchase(ref books);
+        }
 
+        /// <summary>
+        /// Добавление контрагентов
+        /// </summary>
+        /// <param name="counterpartyCashBankModelFace">Основа декларации</param>
+        /// <param name="innUl">ИНН</param>
+        public void AddCounterpartyCashBankModel(ArrayBodyDoc counterpartyCashBankModelFace, string innUl)
+        {
+            //ИНН Есть ли лицо
+            int idUl;
+            using (var context = new Base.Automation())
+            {
+                idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
+                counterpartyCashBankModelFace.CounterpartyCashBank.ToList().ForEach(сounterpartyCashBank => сounterpartyCashBank.IdUl = idUl);
+            }
+            if (counterpartyCashBankModelFace.CounterpartyCashBank[0].IdUl != 0)
+            {
+                //Удаляем старые записи по выписке заполняем новыми
+                using (var contextDelete = new Base.Automation())
+                {
+                    contextDelete.CounterpartyCashBanks.RemoveRange(contextDelete.CounterpartyCashBanks.Where(x => x.IdUl == idUl));
+                    contextDelete.SaveChanges();
+                }
+                XmlReadOrWrite xml = new XmlReadOrWrite();
+                var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+                var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}CashDataBank.xml";
+                xml.CreateXmlFile(xmlFile, counterpartyCashBankModelFace, typeof(ArrayBodyDoc));
+                BulkInsertIntoDb(xsdFile, xmlFile);
+            }
+            //Отсутствует лицо сохранение не возможно
         }
 
 
@@ -503,7 +534,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         /// <param name="declarationUl">Основа декларации</param>
         /// <param name="declarationData">Массив строк декларации</param>
         /// <param name="innUl">ИНН</param>
-        public void AddDeclarationModel(DeclarationUl declarationUl, XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc declarationData,  string innUl)
+        public void AddDeclarationModel(DeclarationUl declarationUl, ArrayBodyDoc declarationData,  string innUl)
         {
             using (var context = new Base.Automation())
             {
@@ -548,7 +579,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         /// </summary>
         /// <param name="cashBankAllUlFace">Выписки</param>
         /// <param name="innUl">ИНН ЮЛ</param>
-        public void AddCashBankAllUlFace(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc cashBankAllUlFace, string innUl)
+        public void AddCashBankAllUlFace(ArrayBodyDoc cashBankAllUlFace, string innUl)
         {
             //ИНН Есть ли лицо
             int idUl;
@@ -568,7 +599,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 XmlReadOrWrite xml = new XmlReadOrWrite();
                 var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
                 var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}CashDataBank.xml";
-                xml.CreateXmlFile(xmlFile, cashBankAllUlFace, typeof(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc));
+                xml.CreateXmlFile(xmlFile, cashBankAllUlFace, typeof(ArrayBodyDoc));
                 BulkInsertIntoDb(xsdFile, xmlFile);
             }
             //Отсутствует лицо сохранение не возможно
@@ -613,11 +644,11 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                     contextDelete.StatementFulls.RemoveRange(contextDelete.StatementFulls.Where(x => x.IdUl == idUl));
                     contextDelete.SaveChanges();
                 }
-                    XmlReadOrWrite xml = new XmlReadOrWrite();
-                    var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
-                    var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}DeclarationData.xml";
-                    xml.CreateXmlFile(xmlFile, statementFull, typeof(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc));
-                    BulkInsertIntoDb(xsdFile, xmlFile);
+                XmlReadOrWrite xml = new XmlReadOrWrite();
+                var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+                var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}DeclarationData.xml";
+                xml.CreateXmlFile(xmlFile, statementFull, typeof(ArrayBodyDoc));
+                BulkInsertIntoDb(xsdFile, xmlFile);
             }
             //Процедура вытягивания учредителей и Руководителей Цель Выписки и Карточки организации
             var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 10);

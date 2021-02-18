@@ -182,23 +182,23 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
         /// <summary>
         /// Метод для снятия статуса для повторной отработки
         /// </summary>
-        /// <param name="idModel">Ун модели</param>
+        /// <param name="idModels">Уникальные номера моделей</param>
         /// <param name="status">Статус обработки ветки</param>
-        public void CheckStatus(int idModel,string status)
+        public void CheckStatus(List<int> idModels, string status)
         {
             try
             {
                 using (var context = new Base.Automation())
                 {
-                    var select = (from faceModelTemplateGetPosts in context.FaceModelTemplateGetPosts where faceModelTemplateGetPosts.Id == idModel select new { FaceModelTemplateGetPosts = faceModelTemplateGetPosts }).FirstOrDefault();
-                    if (select != null)
+                    var selectModels = (from faceModelTemplateGetPosts in context.FaceModelTemplateGetPosts where idModels.Contains(faceModelTemplateGetPosts.Id)  select new { FaceModelTemplateGetPosts = faceModelTemplateGetPosts });
+                    foreach (var selectModel in selectModels)
                     {
                         var modelUpdate = new Base.FaceModelTemplateGetPost()
                         {
-                            Id = select.FaceModelTemplateGetPosts.Id,
-                            IdUl = select.FaceModelTemplateGetPosts.IdUl,
-                            IdTemplate = select.FaceModelTemplateGetPosts.IdTemplate,
-                            IdTree = select.FaceModelTemplateGetPosts.IdTree,
+                            Id = selectModel.FaceModelTemplateGetPosts.Id,
+                            IdUl = selectModel.FaceModelTemplateGetPosts.IdUl,
+                            IdTemplate = selectModel.FaceModelTemplateGetPosts.IdTemplate,
+                            IdTree = selectModel.FaceModelTemplateGetPosts.IdTree,
                             StatusModel = status
                         };
                         Automation.Entry(modelUpdate).State = EntityState.Modified;
@@ -209,7 +209,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                         {
                             var resultFullOnBlockStatus = Automation.Database
                                 .SqlQuery<string>(logicModelOnFullStatus.SelectUser,
-                                    new SqlParameter(logicModelOnFullStatus.SelectedParametr.Split(',')[0], idModel))
+                                    new SqlParameter(logicModelOnFullStatus.SelectedParametr.Split(',')[0], selectModel.FaceModelTemplateGetPosts.Id))
                                 .FirstOrDefault();
                         }
                     }
@@ -222,11 +222,12 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
         }
 
         /// <summary>
-        /// Собираем модель карточки
+        /// Собираем модель карточки (полная)
         /// </summary>
         /// <param name="inn">ИНН</param>
+        /// <param name="year">Год выгрузки</param>
         /// <returns></returns>
-        public CardFaceUl CardUi(string inn)
+        public CardFaceUl CardUi(string inn, int year)
         {
             try
             {
@@ -237,28 +238,36 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                 {
                     cardFace.FaceUl = Automation.Database.SqlQuery<FaceUl>(logicModel.SelectUser,
                         new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 1)).FirstOrDefault();
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 1),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).FirstOrDefault();
                     cardFace.BranchUlFace = Automation.Database.SqlQuery<BranchUlFace>(logicModel.SelectUser,
                         new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 2)).ToArray();
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 2),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
                     cardFace.Card.List1Card = Automation.Database.SqlQuery<List1Card>(logicModel.SelectUser,
                         new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 3)).ToArray();
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 3),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
                     cardFace.HistoriUlFace = Automation.Database.SqlQuery<HistoriUlFace>(logicModel.SelectUser,
                         new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 4)).ToArray();
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 4),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
                     cardFace.CashUlFace = Automation.Database.SqlQuery<CashUlFace>(logicModel.SelectUser,
                         new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 5)).ToArray();
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 5),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
                     cardFace.CashBankSpr = Automation.Database.SqlQuery<CashBankSpr>(logicModel.SelectUser,
                         new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 6)).ToArray();
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 6),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
                     cardFace.Card.List2Card = Automation.Database.SqlQuery<List2Card>(logicModel.SelectUser,
                         new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 7)).ToArray();
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 7),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
                     var rukAndUcrh = Automation.Database.SqlQuery<string>(logicModel.SelectUser,
                         new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 8)).ToArray();
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 8),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
                     if (rukAndUcrh[0] != null)
                     {
                         var res = (CardFaceUl)xml.ReadXmlText(string.Join("", rukAndUcrh), typeof(CardFaceUl));
@@ -266,22 +275,36 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                     }
                     cardFace.ImZmTrUl = Automation.Database.SqlQuery<ImZmTrUl>(logicModel.SelectUser,
                         new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 9)).ToArray();
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 9),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
                     cardFace.Active = Automation.Database.SqlQuery<Active>(logicModel.SelectUser,
                         new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 10)).ToArray();
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 10),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
                     cardFace.Balans = Automation.Database.SqlQuery<Balans>(logicModel.SelectUser,
                         new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 11)).ToArray();
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 11),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
                     cardFace.Profit = Automation.Database.SqlQuery<Profit>(logicModel.SelectUser,
                         new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 12)).ToArray();
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 12),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
                     cardFace.Nds = Automation.Database.SqlQuery<Nds>(logicModel.SelectUser,
                         new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 13)).ToArray();
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 13),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
                     cardFace.FlRukUcrh = Automation.Database.SqlQuery<FlRukUcrh>(logicModel.SelectUser,
                         new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
-                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 14)).ToArray();
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 14),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
+                    cardFace.SummaryBankSales = Automation.Database.SqlQuery<SummaryBankSales>(logicModel.SelectUser,
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 15),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
+                    cardFace.SummaryBankPurchase = Automation.Database.SqlQuery<SummaryBankPurchase>(logicModel.SelectUser,
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 16),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
                 }
                 return cardFace;
             }
@@ -291,6 +314,39 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
             }
             return null;
         }
+        /// <summary>
+        /// Book Sales Книги покупок продаж на банк
+        /// </summary>
+        /// <param name="inn">ИНН</param>
+        /// <param name="year">ГОД Данных</param>
+        /// <returns></returns>
+        public CardFaceUl CardUiBookSales(string inn, int year)
+        {
+            try
+            {
+                var cardFace = new CardFaceUl() { Card = new Card() };
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 9);
+                cardFace.FaceUl = Automation.Database.SqlQuery<FaceUl>(logicModel.SelectUser,
+                    new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
+                                 new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 1),
+                                 new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).FirstOrDefault();
+                cardFace.SummaryBankSales = Automation.Database.SqlQuery<SummaryBankSales>(logicModel.SelectUser, 
+                    new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
+                                 new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 15),
+                                 new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
+                cardFace.SummaryBankPurchase = Automation.Database.SqlQuery<SummaryBankPurchase>(logicModel.SelectUser,
+                new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
+                             new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 16),
+                             new SqlParameter(logicModel.SelectedParametr.Split(',')[2], year)).ToArray();
+                return cardFace;
+            }
+            catch (Exception ex)
+            {
+                Loggers.Log4NetLogger.Error(ex);
+            }
+            return null;
+        }
+
 
         /// <summary>
         /// Disposing

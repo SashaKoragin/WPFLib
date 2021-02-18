@@ -37,11 +37,11 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private AllJournal129[] allJournal129Field;
         
-        private SignatureBoss[] signatureBossField;
-        
         private Documen2NDFLIdentification[] documen2NDFLIdentificationField;
         
         private FormulNdfl[] formulNdflField;
+        
+        private DeliveryDocument[] deliveryDocumentField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxJournalAutoWebPage")]
@@ -121,17 +121,6 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("SignatureBoss")]
-        public SignatureBoss[] SignatureBoss {
-            get {
-                return this.signatureBossField;
-            }
-            set {
-                this.signatureBossField = value;
-            }
-        }
-        
-        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Documen2NDFLIdentification")]
         public Documen2NDFLIdentification[] Documen2NDFLIdentification {
             get {
@@ -150,6 +139,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.formulNdflField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("DeliveryDocument")]
+        public DeliveryDocument[] DeliveryDocument {
+            get {
+                return this.deliveryDocumentField;
+            }
+            set {
+                this.deliveryDocumentField = value;
             }
         }
     }
@@ -1413,84 +1413,6 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
-    public partial class SignatureBoss {
-        
-        private string logicsButtonField;
-        
-        private System.Nullable<int> idField;
-        
-        private System.Nullable<bool> isActualField;
-        
-        private string nameUserField;
-        
-        private string isSignatureField;
-        
-        public SignatureBoss() {
-            this.logicsButtonField = "Button";
-        }
-        
-        /// <remarks/>
-        public string LogicsButton {
-            get {
-                return this.logicsButtonField;
-            }
-            set {
-                this.logicsButtonField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<bool> IsActual {
-            get {
-                return this.isActualField;
-            }
-            set {
-                this.isActualField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string NameUser {
-            get {
-                return this.nameUserField;
-            }
-            set {
-                this.nameUserField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string IsSignature {
-            get {
-                return this.isSignatureField;
-            }
-            set {
-                this.isSignatureField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class Documen2NDFLIdentification {
         
         private string logicsButtonField;
@@ -1955,6 +1877,195 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.statusUlField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class DeliveryDocument {
+        
+        private long regNumberField;
+        
+        private System.DateTime dateDocumentField;
+        
+        private System.DateTime dateSendField;
+        
+        private System.DateTime dateDeliveryField;
+        
+        private int numberField;
+        
+        private System.Nullable<int> godField;
+        
+        private string logicsButtonField;
+        
+        private long regNumDeclarationDeliveryField;
+        
+        private string loginUserField;
+        
+        private string nameDocumentField;
+        
+        private string innField;
+        
+        private string typeFaceField;
+        
+        private string kndField;
+        
+        private string nameDeclarationField;
+        
+        public DeliveryDocument() {
+            this.logicsButtonField = "Button";
+        }
+        
+        /// <remarks/>
+        public long RegNumber {
+            get {
+                return this.regNumberField;
+            }
+            set {
+                this.regNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateDocument {
+            get {
+                return this.dateDocumentField;
+            }
+            set {
+                this.dateDocumentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateSend {
+            get {
+                return this.dateSendField;
+            }
+            set {
+                this.dateSendField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateDelivery {
+            get {
+                return this.dateDeliveryField;
+            }
+            set {
+                this.dateDeliveryField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Number {
+            get {
+                return this.numberField;
+            }
+            set {
+                this.numberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> God {
+            get {
+                return this.godField;
+            }
+            set {
+                this.godField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long RegNumDeclarationDelivery {
+            get {
+                return this.regNumDeclarationDeliveryField;
+            }
+            set {
+                this.regNumDeclarationDeliveryField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string LoginUser {
+            get {
+                return this.loginUserField;
+            }
+            set {
+                this.loginUserField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameDocument {
+            get {
+                return this.nameDocumentField;
+            }
+            set {
+                this.nameDocumentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string TypeFace {
+            get {
+                return this.typeFaceField;
+            }
+            set {
+                this.typeFaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Knd {
+            get {
+                return this.kndField;
+            }
+            set {
+                this.kndField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameDeclaration {
+            get {
+                return this.nameDeclarationField;
+            }
+            set {
+                this.nameDeclarationField = value;
             }
         }
     }

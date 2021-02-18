@@ -98,6 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\ConvetrorImage\ConvertorImage.cs" />
+    <Compile Include="ModelTestAutoit\AutoGenerateList\ModelGenerate\GenerateSchemesAutoModel.cs" />
+    <Compile Include="ModelTestAutoit\AutoGenerateList\ModelXlsxGenerate\ModelXlsxGenerate.cs" />
     <Compile Include="ModelTestAutoit\FullWindowAutoIt\FullWindowAutoIt.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\CheckBoxModel\CheckBoxModel.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\DonloadPrintDb\DonloadPrintDb.cs" />
@@ -111,7 +113,7 @@
     <Compile Include="ModelTestAutoit\PublicModel\ButtonStartAutomat\StartOnStopProperty.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\DataPickerItRule\DataPickerRuleItModel.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\DatePicker\DatePickerPub.cs" />
-    <Compile Include="ModelTestAutoit\PublicModel\LableAndErrorModel\LableModel.cs" />
+    <Compile Include="ModelTestAutoit\PublicModel\LabelAndErrorModel\LabelModel.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\ModelDatePickerAdd\DatePickerAdd.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\PdfHelp\PdfHelp.cs" />
     <Compile Include="ModelTestAutoit\PublicModel\PublicModelCollectionSelect\PublicModelCollectionSelect.cs" />

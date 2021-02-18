@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using Prism.Mvvm;
 
-namespace ViewModelLib.ModelTestAutoit.PublicModel.LableAndErrorModel
+namespace ViewModelLib.ModelTestAutoit.PublicModel.LabelAndErrorModel
 {
-   public class LableModel  : BindableBase
+   public class LabelModel : BindableBase
    {
         private Brush _color;
         private string _url;

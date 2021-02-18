@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad
+namespace AttributeHelperModelXml
 {
     public static class AttributeHelper
     {

@@ -114,7 +114,7 @@ namespace LibraryAIS3Windows.RegxFull.RaschetBudg
                 libraryAutomation.FindFirstElement(RashetBudElementName.SendTp, null, true);
                 libraryAutomation.SetValuePattern(tp);
                 modelKbk.TpPayerUtcAfter = tp;
-            }
+           }
        }
     }
 }

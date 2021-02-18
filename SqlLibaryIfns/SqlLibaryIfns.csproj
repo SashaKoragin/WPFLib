@@ -98,6 +98,10 @@
       <Project>{381752f0-f34d-4d3e-96ad-92b7ba6cf213}</Project>
       <Name>SignalRLibary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EfDatabaseAutomation\EfDatabaseAutomation.csproj">
+      <Project>{FDAD249D-CD7D-4581-B945-90D2F9DAD698}</Project>
+      <Name>EfDatabaseAutomation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,10 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using GalaSoft.MvvmLight.Threading;
 using LibaryXMLAuto.ModelServiceWcfCommand.ModelPathReport;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using LibaryXMLAutoModelXmlAuto.MigrationReport;
-using ViewModelLib.ModelTestAutoit.PublicModel.LableAndErrorModel;
+using ViewModelLib.ModelTestAutoit.PublicModel.LabelAndErrorModel;
 
 namespace LibraryCommandPublic.TestAutoit.PublicCommand
 {
@@ -37,16 +38,16 @@ namespace LibraryCommandPublic.TestAutoit.PublicCommand
         /// Коммонда конвертации xml в Excel и открытия файла Excel
         /// </summary>
         /// <param name="reportexcel">отч</param>
-        /// <param name="reportjurnal"></param>
+        /// <param name="reportJournal"></param>
         /// <param name="pathreport"></param>
-        public void ConvertXslToXmlAndOpen(ReportXlsxMethod reportexcel, ReportJurnalMethod reportjurnal,
+        public void ConvertXslToXmlAndOpen(ReportXlsxMethod reportexcel, ReportJurnalMethod reportJournal,
             string pathreport)
         {
             var filefullpath =
-                LibaryXMLAuto.Converts.ConvertXmlToXslx.ConvertXmltoXlsx.ConvertXmlToXls(reportjurnal.XmlFile.Path,
+                LibaryXMLAuto.Converts.ConvertXmlToXslx.ConvertXmltoXlsx.ConvertXmlToXls(reportJournal.XmlFile.Path,
                     pathreport);
             reportexcel.UpdateColectFile(filefullpath.DirectoryName);
-            reportjurnal.OpenFile(filefullpath.FullName);
+            reportJournal.OpenFile(filefullpath.FullName);
         }
 
         /// <summary>
@@ -54,15 +55,15 @@ namespace LibraryCommandPublic.TestAutoit.PublicCommand
         /// </summary>
         /// <param name="model">Модель сообщения</param>
         /// <param name="serverReport">Конечная точка</param>
-        /// <param name="reportjurnal">Журнал ошибок по миграции НП</param>
-        public void SenderServerReport(LableModel model, string serverReport,ReportJurnalMethod reportjurnal)
+        /// <param name="reportJournal">Журнал ошибок по миграции НП</param>
+        public void SenderServerReport(LabelModel model, string serverReport,ReportJurnalMethod reportJournal)
         {
-            if (reportjurnal.XmlFile.Name == "ReportMigration.xml")
+            if (reportJournal.XmlFile.Name == "ReportMigration.xml")
             {
                 try
                 {
                     XmlConvert xmlconverter = new XmlConvert();
-                    var reports =(MigrationParse)xmlconverter.DeserializationXmlToClass(reportjurnal.XmlFile.Path, typeof(MigrationParse));
+                    var reports =(MigrationParse)xmlconverter.DeserializationXmlToClass(reportJournal.XmlFile.Path, typeof(MigrationParse));
                     var report =  (ModelPathReport)ResultPost(serverReport, reports);
                     model.MessageReport = report.Note;
                     model.Url = report.Url;
@@ -81,19 +82,20 @@ namespace LibraryCommandPublic.TestAutoit.PublicCommand
         /// Отправка файла xml UserRule.xml для формирования Формуляров доступа
         /// </summary>
         /// <param name="model">Модель xaml MVVM</param>
-        /// <param name="serverReport">Конечный адресс службы</param>
-        /// <param name="reportjurnal">Модель журнала</param>
-        public async void DepartmentDocumentSenders(LableModel model, string serverReport,ReportJurnalMethod reportjurnal)
+        /// <param name="serverReport">Конечный адрес службы</param>
+        /// <param name="reportJournal">Модель журнала</param>
+        public async void DepartmentDocumentSenders(LabelModel model, string serverReport,ReportJurnalMethod reportJournal)
         {
-           await Task.Factory.StartNew(() =>
+            DispatcherHelper.Initialize();
+            await Task.Factory.StartNew(() =>
                 {
                     try
                     {
-                        if (reportjurnal.XmlFile.Name == "UserRule.xml")
+                        if (reportJournal.XmlFile.Name == "UserRule.xml")
                         {
                             XmlConvert converter = new XmlConvert();
                                 var reports =
-                                    (UserRules) converter.DeserializationXmlToClass(reportjurnal.XmlFile.Path,
+                                    (UserRules) converter.DeserializationXmlToClass(reportJournal.XmlFile.Path,
                                         typeof(UserRules));
                                 var report = (ModelPathReport) ResultPost(serverReport, reports);
                                 model.MessageReport = report.Note;
@@ -111,6 +113,39 @@ namespace LibraryCommandPublic.TestAutoit.PublicCommand
                 }
             );
         }
+        /// <summary>
+        /// Отправка файла xml UserRule.xml для формирования Формуляров доступа
+        /// </summary>
+        /// <param name="model">Модель xaml MVVM</param>
+        /// <param name="serverReport">Конечный адрес службы</param>
+        /// <param name="reportJournal">Модель журнала</param>
+        public async void LoadInfoTemplate(LabelModel model, string serverReport, ReportJurnalMethod reportJournal)
+        {
+            await Task.Factory.StartNew(() =>
+                {
+                    try
+                    {
+                        if (reportJournal.XmlFile.Name == "InfoRuleTemplate.xml")
+                        {
+                            XmlConvert converter = new XmlConvert();
+                            var reports = (InfoRuleTemplate)converter.DeserializationXmlToClass(reportJournal.XmlFile.Path, typeof(InfoRuleTemplate));
+                            var report = (ModelPathReport)ResultPost(serverReport, reports);
+                            model.MessageReport = report.Note;
+                            model.Color = Brushes.Green;
+                            return;
+                        }
+                        model.MessageReport = $"Для загрузки ролей доступен только файл InfoRuleTemplate.xml";
+                        model.Color = Brushes.Red;
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.ToString());
+                    }
+                }
+            );
+        }
+
+
 
         /// <summary>
         /// Отправка запроса на сервер

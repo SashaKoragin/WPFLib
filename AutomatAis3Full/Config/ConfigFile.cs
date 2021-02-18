@@ -5,6 +5,8 @@ namespace AutomatAis3Full.Config
 {
    internal class ConfigFile
     {
+        public static string LoginUser = Environment.UserName;
+        public static string AllListModel = ConfigurationManager.AppSettings["AllListModel"];
         public static string FileInn = ConfigurationManager.AppSettings["FileInn"];
         public static string FileFpd = ConfigurationManager.AppSettings["FileFpd"];
         public static string FileJurnalError = ConfigurationManager.AppSettings["FileJurnalError"];
@@ -19,6 +21,8 @@ namespace AutomatAis3Full.Config
         public static string VisualId = ConfigurationManager.AppSettings["IdZaprosVisual"];
         public static string ReportMigration = ConfigurationManager.AppSettings["ReportMigration"];
         public static string UserRule = ConfigurationManager.AppSettings["UserRule"];
+        public static string InfoRuleTemplate = ConfigurationManager.AppSettings["InfoRuleTemplate"];
+        public static string LoadInfoTemplate = ConfigurationManager.AppSettings["LoadInfoTemplate"];
         public static string ServerReport = ConfigurationManager.AppSettings["ServerReport"];
         public static string ServerRuleUsersWordTemplate = ConfigurationManager.AppSettings["ServerRuleUsersWordTemplate"];
         public static string Ifns = ConfigurationManager.AppSettings["Ifns"];
@@ -26,7 +30,7 @@ namespace AutomatAis3Full.Config
         public static string WebSite = ConfigurationManager.AppSettings["WebSite"];
         public static string ServiceGetOrPost = ConfigurationManager.AppSettings["ServiceGetOrPost"];
         public static string AllTemplate = ConfigurationManager.AppSettings["AllTemplate"];
-        public static string BankSvedSave = ConfigurationManager.AppSettings["BankSvedSave"];
+        public static string PathDownloadsReplaceLogin =string.Format(ConfigurationManager.AppSettings["PathDownloads"], LoginUser);
         public static int Slepping = Convert.ToInt32(ConfigurationManager.AppSettings["Sleepeng"]);
         /// <summary>
         /// Строка соединения с Sql для массовой загрузки xml
@@ -39,10 +43,11 @@ namespace AutomatAis3Full.Config
         /// <summary>
         /// Путь к PDF файлам сохранение Temp
         /// </summary>
-        public static string PathPdfTemp = ConfigurationManager.AppSettings["PathPdfTemp"];
+        public static string PathTemp = System.IO.Path.GetTempPath();
         /// <summary>
         /// Путь к PDF файлам сохранение Work
         /// </summary>
+        /// 
         public static string PathPdfWork = ConfigurationManager.AppSettings["PathPdfWork"];
         /// <summary>
         /// Путь к Xsd схемам

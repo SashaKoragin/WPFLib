@@ -21,7 +21,7 @@ namespace LibaryXMLAuto.ReadOrWrite
                 XmlSerializer serializer = new XmlSerializer(objType);
                 if (serializer.CanDeserialize(reader))
                 {
-                    object o = serializer.Deserialize(reader);
+                    var o = serializer.Deserialize(reader);
                     return o;
                 }
             }
@@ -155,13 +155,13 @@ namespace LibaryXMLAuto.ReadOrWrite
         /// Модель пользователей и ролей xml
         /// </summary>
         /// <param name="path">Путь к файлу</param>
-        /// <param name="userrule">Модель парсинга</param>
-        public void AddRuleUsers(string path, UserRules userrule)
+        /// <param name="userRules">Модель парсинга</param>
+        public void AddRuleUsers(string path, UserRules userRules)
         {
              var doc = LogicaXml.LogicaXml.Document(path);
             XmlElement xRoot = doc.DocumentElement;
             XmlElement userrules = doc.CreateElement("User");
-            foreach (var user in userrule.User)
+            foreach (var user in userRules.User)
             {
                 userrules.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Number",user.Number));
                 userrules.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Dates", user.Dates));
@@ -181,6 +181,50 @@ namespace LibaryXMLAuto.ReadOrWrite
                     userrules.AppendChild(rulexml);
                 }
                 xRoot.AppendChild(userrules);
+            }
+            doc.Save(path);
+        }
+        /// <summary>
+        /// Метод добавление в файл Шаблонов ролей в отчет
+        /// </summary>
+        /// <param name="path">Путь сохранения</param>
+        /// <param name="infoRuleTemplate">Шаблон ролей</param>
+        public void AddInfoRuleTemplate(string path, InfoRuleTemplate infoRuleTemplate)
+        {
+            var doc = LogicaXml.LogicaXml.Document(path);
+            XmlElement xRoot = doc.DocumentElement;
+            XmlElement infoRule = doc.CreateElement("SystemAis");
+            foreach (var systemAis in infoRuleTemplate.SystemAis)
+            {
+                infoRule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Name", systemAis.Name));
+                foreach (var systemAisFolder in systemAis.Folders)
+                {
+                    var folder = doc.CreateElement("Folders");
+                    folder.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Name", systemAisFolder.Name));
+                    infoRule.AppendChild(folder);
+                    foreach (var tasks in systemAisFolder.Tasks)
+                    {
+                        var task = doc.CreateElement("Tasks");
+                        task.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Name", tasks.Name));
+                        task.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Curator", tasks.Curator));
+                        task.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "TypeTask", tasks.TypeTask));
+                        folder.AppendChild(task);
+                        foreach (var rolesTemplates in tasks.RolesTemplate)
+                        {
+                             var rolesTemplate = doc.CreateElement("RolesTemplate");
+                             rolesTemplate.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Name", rolesTemplates.Name));
+                             task.AppendChild(rolesTemplate);
+                             foreach (var templates in rolesTemplates.Templates)
+                             {
+                                 var template = doc.CreateElement("Templates");
+                                 template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Name", templates.Name));
+                                 template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Category", templates.Category));
+                                 rolesTemplate.AppendChild(template);
+                             }
+                        }
+                    }
+                }
+                xRoot.AppendChild(infoRule);
             }
             doc.Save(path);
         }

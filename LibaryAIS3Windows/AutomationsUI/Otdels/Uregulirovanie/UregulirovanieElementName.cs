@@ -254,4 +254,21 @@
         /// </summary>
         public static string WinExit = "Name:Завершение работы\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
     }
+
+
+    public class ProcessStartSash
+    {
+        /// <summary>
+        /// Поле ввода ИНН
+        /// </summary>
+        public static string InnInput = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:LauncherViewGeneric\\AutomationId:grpBig\\AutomationId:txtInn\\LocalizedControlType:поле";
+        /// <summary>
+        /// Поле ввода КПП
+        /// </summary>
+        public static string KppInput = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:LauncherViewGeneric\\AutomationId:grpBig\\AutomationId:txtKpp\\LocalizedControlType:поле";
+        /// <summary>
+        /// Запуск процесса Формирование решения о взыскании, поручений НО, решений о приостановлении операций по счетам
+        /// </summary>
+        public static string StartW = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:LauncherViewGeneric\\AutomationId:grpBig\\AutomationId:btnWthdrwCreateOperationRun";
+    }
 }

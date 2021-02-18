@@ -10,10 +10,9 @@ using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Data;
 using System.Windows.Forms;
-using Net.SourceForge.Koogra;
 using System.Globalization;
 using AisPoco.Ifns51.FromAis;
-using EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad;
+using AttributeHelperModelXml;
 using LibraryAIS3Windows.AutomationsUI.Otdels.PreCheck;
 using LibraryAIS3Windows.ButtonsClikcs;
 
@@ -32,7 +31,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddUlFace(ref AisParsedData aisData, string[] memos,string pathXlsx, string sheetName)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslxFormatNodDouble(pathXlsx, sheetName);
             foreach (DataRow row in dataTable.Rows)
             {
                 var dictionary = new Dictionary<string, string>();
@@ -100,7 +100,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddSvedAccoutingUlFace(ref AisParsedData aisData, string innUl, string[] memos, string pathXlsx, string sheetName)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslxFormatNodDouble(pathXlsx, sheetName);
             foreach (DataRow row in dataTable.Rows)
             {
                 var dictionary = new Dictionary<string, string>();
@@ -172,7 +173,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddHistory(ref AisParsedData aisData, string innUl, string[] memos,  string pathXlsx, string sheetName)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslxFormatNodDouble(pathXlsx, sheetName);
             foreach (DataRow row in dataTable.Rows)
             {
                 var dictionary = new Dictionary<string, string>();
@@ -226,7 +228,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddBranchUlFace(ref AisParsedData aisData, string innUl, string[] memos, string pathXlsx, string sheetName)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GetDateTableXslx(pathXlsx, sheetName);  // GeteDateTableXslx(pathXlsx, sheetName);
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslxFormatNodDouble(pathXlsx, sheetName);  // GeteDateTableXslx(pathXlsx, sheetName);
             foreach (DataRow row in dataTable.Rows)
             {
                 var dictionary = new Dictionary<string, string>();
@@ -293,7 +296,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddObjectUl(ref AisParsedData aisData, string innUl, string[] memos, string pathXlsx, string sheetName, string typeObject)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslxFormatNodDouble(pathXlsx, sheetName);
             foreach (DataRow row in dataTable.Rows)
             {
                 var dictionary = new Dictionary<string, string>();
@@ -356,7 +360,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddStrngthUlFace(ref AisParsedData aisData, string innUl, string[] memos, string pathXlsx, string sheetName)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslxFormatNodDouble(pathXlsx, sheetName);
             foreach (DataRow row in dataTable.Rows)
             {
                 var dictionary = new Dictionary<string, string>();
@@ -395,7 +400,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddCashUlFace(string innUl, string pathXlsx, string sheetName)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslxFormatNodDouble(pathXlsx, sheetName);
             DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.CashUlFace> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.CashUlFace>();
             var listCashUl = new ArrayBodyDoc() { CashUlFace = mapper.Map(dataTable).ToArray() };
             preCheck.AddCashUlFace(listCashUl, innUl);
@@ -410,7 +416,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddNdFl(string innUl, string pathXlsx, string sheetName)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName);
             DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.NdflFl> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.NdflFl>();
             var listNdFl = new ArrayBodyDoc() { NdflFl = mapper.Map(dataTable).ToArray() };
             preCheck.AddNdflDataBase(listNdFl, innUl);
@@ -446,21 +453,20 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             adapter.Fill(ds, "CashBank");
             DataTable dataTable = ds.Tables["CashBank"];
             var indexColumn = 0;
+            var indexName = 1;
+            List<string> nameColumns = new List<string>();
             foreach (DataColumn col in dataTable.Columns)
             {
                 var memo = dataTable.Rows[0][indexColumn].ToString();
-                var val = dataTable.Rows[1][indexColumn].ToString();
-                if (val.Length == 20)
+                if (nameColumns.Contains(memo) || string.IsNullOrWhiteSpace(memo))
                 {
-                    memo = "Номер счета";
+                    memo = $"{memo}{indexName}";
+                    nameColumns.Add(memo);
+                    indexName++;
                 }
-                if(indexColumn == 12)
+                else
                 {
-                    memo = "Сумма остатка на начало периода, в валюте счета";
-                }
-                if (indexColumn == 13)
-                {
-                    memo = "Сумма остатка на конец периода, в валюте счета";
+                    nameColumns.Add(memo);
                 }
                 dataTable.Columns[indexColumn].ColumnName = memo;
                 indexColumn++;
@@ -469,6 +475,50 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.CashBankAllUlFace> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.CashBankAllUlFace>();
             var listCashUl = new ArrayBodyDoc() { CashBankAllUlFace = mapper.Map(dataTable).ToArray() };
             preCheck.AddCashBankAllUlFace(listCashUl, innUl);
+            preCheck.Dispose();
+        }
+
+        /// <summary>
+        /// Добавление Банковские выписки, справки ЮЛ
+        /// </summary>
+        /// <param name="innUl">Инн ЮЛ</param>
+        /// <param name="pathXlsx">Путь к Temp</param>
+        /// <param name="sheetName">Наименование Листа</param>
+        public void AddCashBankCounterparty(string innUl, string pathXlsx, string sheetName)
+        {
+            var preCheck = new PreCheckAddObject();
+            var connectionString = string.Format($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={pathXlsx}; Extended Properties=Excel 12.0;");
+            var adapter = new OleDbDataAdapter($"Select * From [{sheetName}$]", connectionString);
+            var ds = new DataSet();
+            adapter.Fill(ds, "CashBankCounterparty");
+            DataTable dataTable = ds.Tables["CashBankCounterparty"];
+            var indexColumn = 0;
+            var indexName = 1;
+            List<string> nameColumns = new List<string>();
+            foreach (DataColumn col in dataTable.Columns)
+            {
+                var memo = dataTable.Rows[0][indexColumn].ToString();
+                if (nameColumns.Contains(memo) || string.IsNullOrWhiteSpace(memo))
+                {
+                    memo = $"{memo}{indexName}";
+                    nameColumns.Add(memo);
+                    indexName++;
+                    if (memo == "5") { memo = "Расход д/c, в валюте счета"; }
+                    if (memo == "6") { memo = "Расход д/c, в рублях"; }
+                    if (memo == "7") { memo = "Приход д/c, в валюте счета"; }
+                    if (memo == "8") { memo = "Приход д/c, в рублях"; }
+                }
+                else
+                {
+                    nameColumns.Add(memo);
+                }
+                dataTable.Columns[indexColumn].ColumnName = memo;
+                indexColumn++;
+            }
+            dataTable.Rows.Remove(dataTable.Rows[0]);
+            DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.CounterpartyCashBank> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.CounterpartyCashBank>();
+            var counterpartyCashBank = new ArrayBodyDoc() { CounterpartyCashBank = mapper.Map(dataTable).ToArray() };
+            preCheck.AddCounterpartyCashBankModel(counterpartyCashBank, innUl);
             preCheck.Dispose();
         }
 
@@ -682,7 +732,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddBookSales(ref Book book, string pathXlsx, string sheetName)
         {
             var preCheck = new PreCheckAddObject();
-            DataTable dataTable = GetDateTableXslx(pathXlsx, sheetName, 1, 3);
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName, 1, 3);
             dataTable.Columns.Remove(dataTable.Columns[0]);
             DataNamesMapper<BookSales> mapper = new DataNamesMapper<BookSales>();
             var bookSales = new ArrayBodyDoc() { BookSales = mapper.Map(dataTable).ToArray() };
@@ -698,7 +749,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddBookPurchase(ref Book book, string pathXlsx, string sheetName)
         {
             var preCheck = new PreCheckAddObject();
-            DataTable dataTable = GetDateTableXslx(pathXlsx, sheetName, 1, 3);
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName, 1, 3);
             dataTable.Columns.Remove(dataTable.Columns[0]);
             DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.BookPurchase> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.BookPurchase>();
             var bookPurchase = new ArrayBodyDoc() { BookPurchase = mapper.Map(dataTable).ToArray() };
@@ -756,7 +808,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddObjectFl(ref AisParsedData aisData, string innFl, string[] memos, string pathXlsx, string sheetName, string typeObject)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var dataTable = GetDateTableXslx(pathXlsx, sheetName);
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslxFormatNodDouble(pathXlsx, sheetName);
             foreach (DataRow row in dataTable.Rows)
             {
                 var dictionary = new Dictionary<string, string>();
@@ -866,77 +919,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             preCheck.Dispose();
             rtb.Dispose();
         }
-        /// <summary>
-        /// Перевод листа xlsx в DataTable
-        /// </summary>
-        /// <param name="pathXlsx">Путь к xlsx</param>
-        /// <param name="sheetName">Имя листа</param>
-        /// <param name="indexColumn">Индекс колонки по умолчанию 1</param>
-        /// <param name="indexRow">Индекс строки с какой начинать</param>
-        /// <returns></returns>
-        private DataTable GetDateTableXslx(string pathXlsx, string sheetName, int indexColumn = 1, uint indexRow = 0)
-        {
-            DataTable dt = new DataTable();
-            var xlFile = WorkbookFactory.GetExcel2007Reader(pathXlsx);
-            var sheet = xlFile.Worksheets.GetWorksheetByName(sheetName, true);
 
-            uint minRow = sheet.FirstRow + indexRow;
-            uint maxRow = sheet.LastRow;
-
-            IRow firstRow = sheet.Rows.GetRow(minRow);
-
-            uint minCol = sheet.FirstCol;
-            uint maxCol = sheet.LastCol;
-
-            for (uint i = minCol; i <= maxCol; i++)
-            {
-                var valueNameColums = firstRow.GetCell(i).GetFormattedValue();
-                if(!dt.Columns.Contains(valueNameColums))
-                {
-                    dt.Columns.Add(valueNameColums);
-                }
-                else
-                {
-                    dt.Columns.Add(string.Concat(valueNameColums, indexColumn));
-                    indexColumn++;
-                }
-            }
-            for (uint i = minRow + 1; i <= maxRow; i++)
-            {
-                IRow row = sheet.Rows.GetRow(i);
-                if (row != null)
-                {
-                    DataRow dr = dt.NewRow();
-
-                    for (uint j = minCol; j <= maxCol; j++)
-                    {
-                        ICell cell = row.GetCell(j);
-
-                        if (cell != null)
-                        {
-                            double result;
-                            // Try parsing in the current culture
-                            if (!double.TryParse(cell.Value.ToString(), NumberStyles.Any, CultureInfo.CurrentCulture, out result) &&
-                                // Then try in US english
-                                !double.TryParse(cell.Value.ToString(), NumberStyles.Any,
-                                 CultureInfo.GetCultureInfo("en-US"), out result) &&
-                                // Then in neutral language
-                                !double.TryParse(cell.Value.ToString(), NumberStyles.Any,
-                                CultureInfo.InvariantCulture, out result))
-                            {
-                                dr[Convert.ToInt32(j)] = cell.Value != null ? cell.GetFormattedValue() : string.Empty;
-                            }
-                            else
-                            {
-                                dr[Convert.ToInt32(j)] = result.ToString();
-                            }
-                        }
-                    }
-                    dt.Rows.Add(dr);
-                }
-            }
-            return dt;
-        }
 
         public DataTable SelectXslx(string pathXlsx, string sheetName)
         {
@@ -954,42 +937,38 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         /// <returns>Дата</returns>
         public DateTime? ConvertDateTimeXlsxToUser(string value)
         {
-            DateTime dateParse;
             if (string.IsNullOrWhiteSpace(value))
             {
                 return null;
             }
-            else
+
+            DateTime dateParse;
+            try
+            {
+                var dateExtract = DateTime.ParseExact(value, "MM-dd-yy", CultureInfo.InvariantCulture).ToString("dd.MM.yyyy");
+                if (DateTime.TryParse(dateExtract, out dateParse))
+                {
+                    return dateParse;
+                }
+            }
+            catch
             {
                 try
                 {
-                    if (DateTime.TryParse(DateTime.ParseExact(value, "MM-dd-yy", CultureInfo.InvariantCulture).ToString(), out dateParse))
+                    if (DateTime.TryParse(value, out dateParse))
                     {
                         return dateParse;
                     }
                 }
                 catch
                 {
-                    try
-                    {
-                        if (DateTime.TryParse(value, out dateParse))
-                        {
-                            return dateParse;
-                        }
-
-                    }
-                    catch
-                    {
-                        IFormatProvider formatter = new NumberFormatInfo { NumberDecimalSeparator = "." };
-                        double date = double.Parse(value, formatter);
-                        DateTime convDate = DateTime.FromOADate(date);
-                        return convDate;
-                    }
-
-                };
-                return null;
+                    IFormatProvider formatter = new NumberFormatInfo { NumberDecimalSeparator = "." };
+                    double date = double.Parse(value, formatter);
+                    DateTime convDate = DateTime.FromOADate(date);
+                    return convDate;
+                }
             }
+            return null;
         }
-
     }
 }

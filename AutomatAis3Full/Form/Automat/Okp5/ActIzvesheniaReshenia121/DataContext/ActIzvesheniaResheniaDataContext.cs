@@ -23,7 +23,7 @@ namespace AutomatAis3Full.Form.Automat.Okp5.ActIzvesheniaReshenia121.DataContext
             DatePicker = new DatePickerAdd();
             var command = new IdentificationFace();
             StartButton = new StatusButtonMethod();
-            StartButton.Button.Command = new DelegateCommand(() => { command.StartRegisterDeclarations(StartButton, ConfigFile.PathPdfTemp, DatePicker); });
+            StartButton.Button.Command = new DelegateCommand(() => { command.StartRegisterDeclarations(StartButton, ConfigFile.PathTemp, DatePicker); });
         }
     }
 }

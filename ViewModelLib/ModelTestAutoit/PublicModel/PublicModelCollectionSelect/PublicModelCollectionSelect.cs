@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AisPoco.Ifns51.ToAis;
 using Prism.Mvvm;
-using ViewModelLib.Annotations;
 
 namespace ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect
 {
@@ -20,12 +16,14 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect
                 ModelCollection.Add(model);
             }
         }
+
         public PublicModelCollectionSelect(List<T> models)
         {
             models.ForEach(x=>ModelCollection.Add(x));
+            Enumerable.Range(2020, DateTime.Today.Year-2019).ToList().ForEach(y => CollectionYear.Add(y));
         }
 
-        internal T _model { get; set; }
+        internal T _selectModel { get; set; }
         /// <summary>
         /// Выбор ветви для обработки
         /// </summary>
@@ -43,14 +41,31 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect
         /// </summary>
         public T SelectModel
         {
-            get { return _model; }
+            get { return _selectModel; }
             set
             {
-                _model = value;
+                _selectModel = value;
                 RaisePropertyChanged();
             }
         }
 
+        internal int _yearReport { get; set; }
+        /// <summary>
+        /// Параметр год -3 от текущего параметра
+        /// </summary>
+        public ObservableCollection<int> CollectionYear { get; set; } = new ObservableCollection<int>();
+        /// <summary>
+        /// Выбор года
+        /// </summary>
+        public int YearReport
+        {
+            get { return _yearReport; }
+            set
+            {
+                _yearReport = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public string this[string columnName]
         {
@@ -65,6 +80,7 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect
         {
             IsValid = false;
             RaisePropertyChanged("SelectModel");
+            RaisePropertyChanged("YearReport");
             if (String.IsNullOrEmpty(Error))
             {
                 IsValid = true;
@@ -81,7 +97,17 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect
                     case "SelectModel":
                         if (SelectModel != null)
                         { break; }
-                    { Error = "Не выбранно не одного шаблона!!!"; break; }
+                    { Error = "Не выбрано не одного шаблона!!!"; break; }
+                    case "YearReport":
+                        var templateParameter = new[] {1}; //Шаблоны зависящие от выбора года - 3
+                        if (SelectModelCollection.FirstOrDefault(parameter => templateParameter.Contains(parameter)) != 0)
+                        {
+                            if (YearReport != 0)
+                            { break; }
+                            { Error = $"Для шаблонов c УН:  {string.Join("", templateParameter) } требуется выбор отчетного года!"; }
+                        }
+                        break;
+
                 }
             return Error;
         }

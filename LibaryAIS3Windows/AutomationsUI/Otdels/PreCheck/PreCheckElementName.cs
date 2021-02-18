@@ -79,10 +79,24 @@
     /// </summary>
     public class PreCheckElementNameBank
     {
+        public static string PublicTree = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\";
+
         /// <summary>
         /// Путь к TaxpayerListControl банковских справок и выписок
         /// </summary>
-        public static string FullTaxpayerListControl = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:AbdListSmartPart\\ClassName:TaxpayerListControl\\";
+        public static string FullTaxpayerListControl = $"{PublicTree}AutomationId:AbdListSmartPart\\ClassName:TaxpayerListControl\\";
+        /// <summary>
+        /// Полный путь до параметров с выборкой счетов
+        /// </summary>
+        public static string PathCashAllParameter = $"{PublicTree}AutomationId:AbdAccountListSmartPart\\ClassName:Pane\\ClassName:ReportFilterControl\\ClassName:RadTabControl\\ClassName:RadTabItem\\";
+        /// <summary>
+        /// Элемент для поиска счета
+        /// </summary>
+        public static string CashElementFind = $"{PathCashAllParameter}AutomationId:RadDocking\\ClassName:RadSplitContainer\\AutomationId:RadPaneGroup\\ClassName:RadPane\\AutomationId:BankAccountsGrid\\AutomationId:PART_GridViewVirtualizingPanel\\AutomationId:Row_0";
+        /// <summary>
+        /// Панель с контрагентами
+        /// </summary>
+        public static string CounterpartyRowFind = $"{PublicTree}AutomationId:AbdOperationReportSmartPart\\ClassName:OperationsReportControl\\AutomationId:RadDocking\\ClassName:RadSplitContainer\\AutomationId:RadPaneGroup\\ClassName:RadPane\\AutomationId:OperationsGrid\\AutomationId:PART_GridViewVirtualizingPanel\\AutomationId:Row_0\\AutomationId:Cell_0_1";
         /// <summary>
         /// Вставка ИНН параметра
         /// </summary>
@@ -96,37 +110,107 @@
         /// </summary>
         public static string FindButton = $"{FullTaxpayerListControl}ClassName:RadExpander\\AutomationId:HeaderButton\\ClassName:RadButton\\ClassName:TextBlock";
         /// <summary>
+        /// Прогресс бар 1
+        /// </summary>
+        public static string TaxpayersProgressBar1 = $"{PublicTree}AutomationId:AbdListSmartPart\\ClassName:Pane\\ClassName:TaxpayerListControl\\ClassName:RadExpander\\AutomationId:RadDocking\\AutomationId:RadPaneGroup\\AutomationId:RadPane\\AutomationId:taxpayersProgressBar";
+        /// <summary>
+        /// Прогресс бар 2
+        /// </summary>
+        public static string TaxpayersProgressBar2 = $"{PublicTree}AutomationId:AbdListSmartPart\\ClassName:Pane\\ClassName:TaxpayerListControl\\AutomationId:statementsProgressBar";
+        /// <summary>
+        /// Прогресс бар 3
+        /// </summary>
+        public static string TaxpayersProgressBar3 = $"{PathCashAllParameter}AutomationId:RadDocking\\ClassName:RadSplitContainer\\AutomationId:RadPaneGroup\\AutomationId:RadPane\\ClassName:CircularProgressBar";
+        /// <summary>
+        /// Прогресс бар 4
+        /// </summary>
+        public static string TaxpayersProgressBar4 = $"{PublicTree}AutomationId:AbdOperationReportSmartPart\\ClassName:OperationsReportControl\\AutomationId:RadDocking\\ClassName:RadSplitContainer\\AutomationId:RadPaneGroup\\AutomationId:RadPane\\AutomationId:allProgressBar";
+
+
+        /// <summary>
         /// Флажок выбора НП
         /// </summary>
         public static string SelectItem = $"AutomationId:PART_GridViewVirtualizingPanel\\AutomationId:Row_0\\AutomationId:Cell_0_0\\AutomationId:CellElement_0_0";
+        
+        
         /// <summary>
         /// Показать банковские документы выбранного НП
         /// </summary>
-        public static string ViewSpravki = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:AbdListSmartPart\\ClassName:TaxpayerListControl\\AutomationId:ShowStatements\\ClassName:TextBlock";
+        public static string ViewReference = $"{PublicTree}AutomationId:AbdListSmartPart\\ClassName:TaxpayerListControl\\AutomationId:ShowStatements\\ClassName:TextBlock";
         /// <summary>
-        /// Первый элемент в Grid панеле выписок
+        /// Перейти к списку счетов/операций выбранного НП
+        /// </summary>
+        public static string GoOperations = $"{PublicTree}AutomationId:AbdListSmartPart\\ClassName:TaxpayerListControl\\AutomationId:ShowFilter\\ClassName:TextBlock";
+
+        /// <summary>
+        /// Все валюты НП
+        /// </summary>
+        public static string AllCash = $"{PathCashAllParameter}Name:Все валюты\\Name:Все валюты";
+        /// <summary>
+        /// 3 года + текущий
+        /// </summary>
+        public static string AllCashPeriod = $"{PathCashAllParameter}ClassName:PeriodControl\\Name:3 года + текущий\\Name:3 года + текущий";
+        /// <summary>
+        /// Выбрать
+        /// </summary>
+        public static string SelectCash = $"{PathCashAllParameter}AutomationId:FilterBankAccountsButton\\ClassName:TextBlock";
+
+        /// <summary>
+        ///  Кнопка Сформировать
+        /// </summary>
+        public static string FormReport = $"{PathCashAllParameter}Name:Сформировать\\ClassName:TextBlock";
+        /// <summary>
+        /// Предупреждение Ок
+        /// </summary>
+        public static string WarningForm = "Name:Предупреждение\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+        /// <summary>
+        /// Первый элемент в Grid панели выписок
         /// </summary>
         public static string ElementSpr = $"ClassName:RadTabControl\\ClassName:RadTabItem\\AutomationId:RadDocking\\ClassName:RadSplitContainer\\AutomationId:RadPaneGroup\\AutomationId:RadPane\\AutomationId:StatementsGrid\\{SelectItem}";
         /// <summary>
-        /// Выгрузить все в xlsx
+        /// Выгрузить скачать все выписки в xlsx
         /// </summary>
-        public static string DonloadFileXlxsSave = "ClassName:RadTabControl\\ClassName:RadTabItem\\AutomationId:RadDocking\\ClassName:RadSplitContainer\\AutomationId:RadPaneGroup\\AutomationId:RadPane\\AutomationId:StatementsGrid";
+        public static string DownloadFileXlsxSave = "ClassName:RadTabControl\\ClassName:RadTabItem\\AutomationId:RadDocking\\ClassName:RadSplitContainer\\AutomationId:RadPaneGroup\\AutomationId:RadPane\\AutomationId:StatementsGrid";
+        /// <summary>
+        /// Операция скачать всех контрагентов в xlsx
+        /// </summary>
+        public static string DownloadFileXlsxSaveCounterparty = $"{PublicTree}AutomationId:AbdOperationReportSmartPart\\ClassName:OperationsReportControl\\AutomationId:RadDocking\\ClassName:RadSplitContainer\\AutomationId:RadPaneGroup\\AutomationId:RadPane\\AutomationId:OperationsGrid";
+        /// <summary>
+        /// Сохранить
+        /// </summary>
+        public static string Save = "Name:Сохранение\\";
+        /// <summary>
+        /// Сохранить как
+        /// </summary>
+        public static string SaveAs = "Name:Сохранить как\\";
+        /// <summary>
+        /// Загрузки перейти
+        /// </summary>
+        public static string Download = "Name:Загрузки";
         /// <summary>
         /// Ввод имени файла
         /// </summary>
-        public static string SaveDialogNameFileWin10 = "Name:Сохранение\\ClassName:DUIViewWndClassName\\AutomationId:FileNameControlHost\\ClassName:Edit"; //\\AutomationId:FolderLayoutContainer\\AutomationId:BackgroundClear\\AutomationId:FileNameControlHost";
+        public static string SaveDialogNameFileWin10 = $"{Save}ClassName:DUIViewWndClassName\\AutomationId:FileNameControlHost\\ClassName:Edit"; //\\AutomationId:FolderLayoutContainer\\AutomationId:BackgroundClear\\AutomationId:FileNameControlHost";
+        /// <summary>
+        /// Поиск окна для Win 10
+        /// </summary>
+        public static string FindGlobalWinWin10 = $"{Save}ClassName:DUIViewWndClassName";
         /// <summary>
         /// Путь сохранения файла  Win 7 Сохранить как Win10 Сохранение
         /// </summary>
-        public static string PathSaveWin10 = "Name:Сохранение\\Name:Сохранить"; //ClassName:WorkerW\\AutomationId:FolderLayoutContainer\\AutomationId:BackgroundClear\\AutomationId:FileNameControlHost";
+        public static string PathSaveWin10 = $"{Save}Name:Сохранить"; //ClassName:WorkerW\\AutomationId:FolderLayoutContainer\\AutomationId:BackgroundClear\\AutomationId:FileNameControlHost";
         /// <summary>
         /// Ввод имени файла
         /// </summary>
-        public static string SaveDialogNameFileWin7 = "Name:Сохранить как\\ClassName:DUIViewWndClassName\\AutomationId:FileNameControlHost\\ClassName:Edit"; //\\AutomationId:FolderLayoutContainer\\AutomationId:BackgroundClear\\AutomationId:FileNameControlHost";
+        public static string SaveDialogNameFileWin7 = $"{SaveAs}ClassName:DUIViewWndClassName\\AutomationId:FileNameControlHost\\ClassName:Edit"; //\\AutomationId:FolderLayoutContainer\\AutomationId:BackgroundClear\\AutomationId:FileNameControlHost";
+        /// <summary>
+        /// Поиск окна для Win 10
+        /// </summary>
+        public static string FindGlobalWinWin7 = $"{SaveAs}ClassName:DUIViewWndClassName";
         /// <summary>
         /// Путь сохранения файла  Win 7 Сохранить как Win10 Сохранение
         /// </summary>
-        public static string PathSaveWin7 = "Name:Сохранить как\\Name:Сохранить"; //ClassName:WorkerW\\AutomationId:FolderLayoutContainer\\AutomationId:BackgroundClear\\AutomationId:FileNameControlHost";
+        public static string PathSaveWin7 = $"{SaveAs}Name:Сохранить"; //ClassName:WorkerW\\AutomationId:FolderLayoutContainer\\AutomationId:BackgroundClear\\AutomationId:FileNameControlHost";
     }
     /// <summary>
     /// Декларации реестр НБО
@@ -141,10 +225,10 @@
         /// Просмотр декларации
         /// </summary>
         public static string ViewDeclaretion =  "Name:DockTop\\Name:Ribbon\\Name:Реестр документов НБО\\Name:Просмотр документа";
-        /// <summary>
-        /// Экспорт документа в xlsx
-        /// </summary>
-        public static string ExportFile = "Name:DockTop\\Name:Ribbon\\Name:Камеральные налоговые проверки\\Name:Документ\\Name:Экспорт в Excel";
+    //    /// <summary>
+   //     /// Экспорт документа в xlsx
+    //    /// </summary>
+    //    public static string ExportFile = "Name:DockTop\\Name:Ribbon\\Name:Работа с налоговым документом\\Name:Документ\\Name:Экспорт в Excel";
         /// <summary>
         /// Ок экспорт
         /// </summary>

@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Windows.Media;
 using Prism.Mvvm;
 
 namespace ViewModelLib.ModelTestAutoit.FullWindowAutoIt
@@ -36,62 +35,6 @@ namespace ViewModelLib.ModelTestAutoit.FullWindowAutoIt
         /// Элемены UserControl
         /// </summary>
         private UserControl _userControl;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public UserControl users = new UserControl() { Content = new Grid() { },
-          };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public string NameControl
         {
             get { return _nameControl; }

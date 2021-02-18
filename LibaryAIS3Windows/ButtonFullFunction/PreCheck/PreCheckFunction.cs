@@ -152,7 +152,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         /// <param name="tree">Веска для поиска</param>
         /// <param name="serviceGetOrPost">Адрес ответа с клиента</param>
         /// <param name="pathTemp">Путь к папке Temp сохранения</param>
-        public void IndividualCards(StatusButtonMethod statusButton, LibraryAutomations libraryAutomation, SrvToLoad model, string tree, string serviceGetOrPost, string pathTemp)
+        /// <param name="yearReport">Отчетный год</param>
+        public void IndividualCards(StatusButtonMethod statusButton, LibraryAutomations libraryAutomation, SrvToLoad model, string tree, string serviceGetOrPost, string pathTemp, int yearReport)
         {
             if (!libraryAutomation.IsEnableExpandTree(model.Tree)) return;
             DataBaseElementAdd dataBaseAdd = new DataBaseElementAdd();
@@ -191,11 +192,31 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckElementNameIndividualCards.OpenFaceCard);
                             while (true)
                             {
-                                if (libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.PeriodEnd, null, true) != null)
+                                if (libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.PeriodEnd, null, true)!= null)
                                 {
-                                    libraryAutomation.SelectItemComboboxMaxYear(libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.PeriodEnd));
-                                    var minYear = DateTime.Now.Year - 3;
-                                    libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.PeriodBegin), minYear.ToString());
+                                    var selectYear = yearReport - 1; //Костыль - 1 год от входящего
+                                    libraryAutomation.FindTextComboboxIsToFocusAndClickElement(PreCheckElementNameIndividualCards.PeriodEnd, selectYear.ToString());
+                                    if (libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.ErrorYear, null, true, 20) != null)
+                                    {
+                                        libraryAutomation.ClickElements(PreCheckElementNameIndividualCards.ErrorYear, null, true);
+                                        if (libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.ErrorData, null, true) != null)
+                                        {
+                                            libraryAutomation.ClickElements(PreCheckElementNameIndividualCards.ErrorData, null, true);
+                                        }
+                                    }
+
+                                    var minYear = yearReport - 3;
+                                    libraryAutomation.FindTextComboboxIsToFocusAndClickElement(PreCheckElementNameIndividualCards.PeriodBegin, minYear.ToString());
+
+                                    if (libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.ErrorYear, null, true, 20) != null)
+                                    {
+                                        libraryAutomation.ClickElements(PreCheckElementNameIndividualCards.ErrorYear, null, true);
+                                        if (libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.ErrorData, null, true) != null)
+                                        {
+                                            libraryAutomation.ClickElements(PreCheckElementNameIndividualCards.ErrorData, null, true);
+                                        }
+                                    }
+
                                     while (true)
                                     {
                                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckElementNameIndividualCards.TotalCards);
@@ -243,12 +264,13 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         /// <param name="model">Модель загрузки данных</param>
         /// <param name="tree">Дерево</param>
         /// <param name="serviceGetOrPost">Сервис ответов</param>
-        /// <param name="pathSaveBank">Путь сохранения банковских выписок</param>
-        public void BankSpr(StatusButtonMethod statusButton, LibraryAutomations libraryAutomation, SrvToLoad model, string tree, string serviceGetOrPost, string pathSaveBank)
+        /// <param name="pathDownLoads">Путь сохранения банковских выписок</param>
+        public void BankSpr(StatusButtonMethod statusButton, LibraryAutomations libraryAutomation, SrvToLoad model, string tree, string serviceGetOrPost, string pathDownLoads)
         {
             if (!libraryAutomation.IsEnableExpandTree(model.Tree)) return;
             DataBaseElementAdd dataBaseAdd = new DataBaseElementAdd();
             var post = new HttpGetAndPost();
+            var win = new WindowsAis3();
             libraryAutomation.FindFirstElement(tree, null, true);
             libraryAutomation.FindElement.SetFocus();
             libraryAutomation.ClickElements(tree, null, false, 25, 0, 0, 2);
@@ -260,60 +282,121 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                         .SelectAutomationColrction(libraryAutomation.IsEnableElements(PreCheckElementNameBank.FullTaxpayerListControl))
                         .Cast<AutomationElement>().Where(elem => elem.Current.ClassName == "RadExpander").ToList();
                     var modelPost = new AisParsedData() {N134 = inn, Tree = model.Tree};
-                    while (true)
+                    if (libraryAutomation.FindFirstElement(PreCheckElementNameBank.InputInn, null, true) != null)
                     {
-                        if (libraryAutomation.FindFirstElement(PreCheckElementNameBank.InputInn, null, true) != null)
+                        libraryAutomation.SetValuePattern(inn);
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation,PreCheckElementNameBank.PeriodSelect);
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation,PreCheckElementNameBank.FindButton);
+                        libraryAutomation.IsEnableElementTrue(PreCheckElementNameBank.TaxpayersProgressBar1);
+                        if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.SelectItem, elementRadExpanderList[0]) != null)
                         {
-                            libraryAutomation.SetValuePattern(inn);
-                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation,PreCheckElementNameBank.PeriodSelect);
-                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation,PreCheckElementNameBank.FindButton);
-                            while (true)
+                            libraryAutomation.ClickElements(PreCheckElementNameBank.SelectItem,elementRadExpanderList[0]);
+                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation,PreCheckElementNameBank.ViewReference);
+                            libraryAutomation.IsEnableElementTrue(PreCheckElementNameBank.TaxpayersProgressBar2);
+                            if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.ElementSpr, elementRadExpanderList[1]) != null)
                             {
-                                if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.SelectItem, elementRadExpanderList[0], true, 500) != null)
+                                var listGr = libraryAutomation
+                                    .SelectAutomationColrction(
+                                        libraryAutomation.IsEnableElements(
+                                            PreCheckElementNameBank.DownloadFileXlsxSave,
+                                            elementRadExpanderList[1])).Cast<AutomationElement>()
+                                    .Where(elem => elem.Current.ClassName == "RadDropDownButton").ToList();
+                                var buttonList = libraryAutomation.SelectAutomationColrction(listGr[2]);
+                                libraryAutomation.ClickElement(buttonList[1]);
+                                if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.SaveDialogNameFileWin10, null, false, 3) != null)
                                 {
-                                    libraryAutomation.ClickElements(PreCheckElementNameBank.SelectItem,elementRadExpanderList[0]);
-                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation,PreCheckElementNameBank.ViewSpravki);
-                                    while (true)
+                                    if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.Download, libraryAutomation.FindFirstElement(PreCheckElementNameBank.FindGlobalWinWin10), true) != null)
                                     {
-                                        if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.ElementSpr,elementRadExpanderList[1], true, 3000) != null)
-                                        {
-                                            var listGr = libraryAutomation
-                                                .SelectAutomationColrction(
-                                                    libraryAutomation.IsEnableElements(
-                                                        PreCheckElementNameBank.DonloadFileXlxsSave,
-                                                        elementRadExpanderList[1])).Cast<AutomationElement>()
-                                                .Where(elem => elem.Current.ClassName == "RadDropDownButton")
-                                                .ToList();
-                                            var buttonList = libraryAutomation.SelectAutomationColrction(listGr[2]);
-                                            libraryAutomation.ClickElement(buttonList[1]);
-                                            if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.SaveDialogNameFileWin10, null, false,3) != null)
-                                            {
-                                                libraryAutomation.IsEnableElements(PreCheckElementNameBank.PathSaveWin10);
-                                                libraryAutomation.InvokePattern(libraryAutomation.FindElement);
-                                            }
-                                            if (libraryAutomation.IsEnableElements( PreCheckElementNameBank.SaveDialogNameFileWin7, null, false,3) != null)
-                                            {
-                                                libraryAutomation.IsEnableElements(PreCheckElementNameBank.PathSaveWin7);
-                                                libraryAutomation.InvokePattern(libraryAutomation.FindElement);
-                                            }
-                                            while (true)
-                                            {
-                                                if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.ElementSpr, elementRadExpanderList[1], true) != null)
-                                                {
-                                                    var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathSaveBank, "*.xlsx");
-                                                    dataBaseAdd.AddCashBankAllUlFace(inn, file.NamePath, "Sheet1");
-                                                    File.Delete(file.NamePath);
-                                                    break;
-                                                }
-                                            }
-                                        }
+                                        libraryAutomation.InvokePattern(libraryAutomation.FindElement);
+                                    }
+                                    libraryAutomation.IsEnableElements(PreCheckElementNameBank.PathSaveWin10);
+                                    libraryAutomation.InvokePattern(libraryAutomation.FindElement);
+                                }
+                                if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.SaveDialogNameFileWin7, null, false, 3) != null)
+                                {
+                                    if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.Download, libraryAutomation.FindFirstElement(PreCheckElementNameBank.FindGlobalWinWin7), true) != null)
+                                    {
+                                        libraryAutomation.InvokePattern(libraryAutomation.FindElement);
+                                    }
+                                    libraryAutomation.IsEnableElements(PreCheckElementNameBank.PathSaveWin7);
+                                    libraryAutomation.InvokePattern(libraryAutomation.FindElement);
+                                }
+                                libraryAutomation.IsEnableElementTrue(PreCheckElementNameBank.TaxpayersProgressBar2);
+                                var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathDownLoads, "*.xlsx");
+                                dataBaseAdd.AddCashBankAllUlFace(inn, file.NamePath, "Sheet1");
+                                File.Delete(file.NamePath);
+                            }
+                        }
+                        //Перейти к списку счетов/операций выбранного НП
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckElementNameBank.GoOperations);
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckElementNameBank.AllCash);
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckElementNameBank.AllCashPeriod);
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckElementNameBank.SelectCash);
+                        libraryAutomation.IsEnableElementTrue(PreCheckElementNameBank.TaxpayersProgressBar3);
+                        if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.CashElementFind, null, true) != null)
+                        {
+                            //Поле со списком
+                            var listGrMemo = libraryAutomation
+                                .SelectAutomationColrction(
+                                    libraryAutomation.IsEnableElements(
+                                        PreCheckElementNameBank.PathCashAllParameter.TrimEnd(new char[] { '\\' })
+                                    )).Cast<AutomationElement>()
+                                .Where(elem => elem.Current.ClassName == "RadComboBox").ToList();
+                            libraryAutomation.ClickElement(listGrMemo[1]);
+                            var memo = libraryAutomation.SelectAutomationColrction(listGrMemo[1]);
+                            var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == "Информация по операциям");
+                            libraryAutomation.ClickElement(elemClick);
+                            //Сформировать
+                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckElementNameBank.FormReport);
+                            if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.WarningForm, null, true, 2) != null)
+                            {
+                                libraryAutomation.InvokePattern(libraryAutomation.FindElement);
+                            }
+                            libraryAutomation.IsEnableElementTrue(PreCheckElementNameBank.TaxpayersProgressBar4);
+                            if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.CounterpartyRowFind, null, true) != null)
+                            {
+                                //Экспорт и ждем завершения
+                                var listGrButton = libraryAutomation.SelectAutomationColrction(
+                                        libraryAutomation.IsEnableElements(
+                                            PreCheckElementNameBank.DownloadFileXlsxSaveCounterparty)).Cast<AutomationElement>()
+                                    .Where(elem => elem.Current.ClassName == "RadDropDownButton").ToList();
+                                var buttonList = libraryAutomation.SelectAutomationColrction(listGrButton[2]);
+                                libraryAutomation.ClickElement(buttonList[1]);
+                                if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.SaveDialogNameFileWin10, null, false, 3) != null)
+                                {
+                                    if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.Download, libraryAutomation.FindFirstElement(PreCheckElementNameBank.FindGlobalWinWin10), true) != null)
+                                    {
+                                        libraryAutomation.InvokePattern(libraryAutomation.FindElement);
+                                    }
+                                    libraryAutomation.IsEnableElements(PreCheckElementNameBank.PathSaveWin10);
+                                    libraryAutomation.InvokePattern(libraryAutomation.FindElement);
+                                }
+                                if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.SaveDialogNameFileWin7, null, false, 3) != null)
+                                {
+                                    if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.Download, libraryAutomation.FindFirstElement(PreCheckElementNameBank.FindGlobalWinWin7), true) != null)
+                                    {
+                                        libraryAutomation.InvokePattern(libraryAutomation.FindElement);
+                                    }
+                                    libraryAutomation.IsEnableElements(PreCheckElementNameBank.PathSaveWin7);
+                                    libraryAutomation.InvokePattern(libraryAutomation.FindElement);
+                                }
+                                while (true)
+                                {
+                                    libraryAutomation.IsEnableElementTrue(PreCheckElementNameBank.TaxpayersProgressBar4);
+                                    if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.CounterpartyRowFind, null, true) != null)
+                                    {
                                         break;
                                     }
                                 }
-
-                                break;
+                                var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathDownLoads, "*.xlsx");
+                                dataBaseAdd.AddCashBankCounterparty(inn, file.NamePath, "Sheet1");
+                                File.Delete(file.NamePath);
+                                win = new WindowsAis3();
+                                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                                AutoItX.Sleep(1000);
                             }
-                            break;
+                            win = new WindowsAis3();
+                            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
                         }
                     }
                     modelPost.IdTemplate = model.IdTemplate;
@@ -328,7 +411,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                     statusButton.Iswork = false;
                 }
             }
-            var win = new WindowsAis3();
+            win = new WindowsAis3();
             AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20,win.WindowsAis.Y + 160);
         }
         /// <summary>
@@ -341,7 +424,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         /// <param name="tree">Веска для поиска</param>
         /// <param name="serviceGetOrPost">Адрес ответа с клиента</param>
         /// <param name="pathTemp">Путь к сохранению документа</param>
-        public void DeclarationIntelligenceUl(StatusButtonMethod statusButton, LibraryAutomations libraryAutomation, SrvToLoad model, string tree, string serviceGetOrPost, string pathTemp)
+        /// <param name="yearReport">Отчетный год</param>
+        public void DeclarationIntelligenceUl(StatusButtonMethod statusButton, LibraryAutomations libraryAutomation, SrvToLoad model, string tree, string serviceGetOrPost, string pathTemp, int yearReport)
         {
             if (!libraryAutomation.IsEnableExpandTree(model.Tree)) return;
             DataBaseElementAdd dataBaseAdd = new DataBaseElementAdd();
@@ -378,7 +462,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                         "Налоговая декларация по налогу на прибыль организаций",
                         "Налоговая декларация по налогу на добавленную стоимость"
                     };
-                    var controlYears = DateTime.Now.Year - 3;
+                    var controlYears = yearReport - 3;
+              
                     if (PublicGlobalFunction.PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, model.TreeGrid.FullPathGrid) != "Данные, удовлетворяющие заданным условиям не найдены.")
                     {
                         var allReport = libraryAutomation
@@ -403,9 +488,17 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                         foreach (var element in allReport)
                         {
                             var declarationUl = dataBaseAdd.AddDeclaration(libraryAutomation, element);
-                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckElementNameDeclaration.ReestrNbo);
-                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckElementNameDeclaration.ViewDeclaretion);
-                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckElementNameDeclaration.ExportFile);
+                            while (true)
+                            {
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckElementNameDeclaration.ReestrNbo);
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckElementNameDeclaration.ViewDeclaretion);
+                                AutoItX.Sleep(10000);
+                                if (libraryAutomation.IsEnableElements(model.TreeExport) != null)
+                                {
+                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, model.TreeExport);
+                                    break;
+                                }
+                            }
                             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckElementNameDeclaration.ExportFileOk);
                             AutoItX.ProcessWait("EXCEL.EXE", 60000);
                             AutoItX.Sleep(Convert.ToInt32(ConfigurationManager.AppSettings["Sleepeng"]));
@@ -474,9 +567,23 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, model.TreeUpdate);
                     if (PublicGlobalFunction.PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, model.TreeGrid.FullPathGrid) != "Данные, удовлетворяющие заданным условиям не найдены.")
                     {
-                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckFindUl.PrintStatement);
+                        while (true)
+                        {
+                            try
+                            {
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, PreCheckFindUl.PrintStatement);
+                            }
+                            catch
+                            {
+                                //ignore
+                            }
+                            AutoItX.Sleep(10000);
+                            if (AutoItX.ProcessExists("WINWORD.EXE") > 0)
+                            {
+                                break;
+                            }
+                        }
                         AutoItX.ProcessWait("WINWORD.EXE", 60000);
-                        AutoItX.Sleep(Convert.ToInt32(ConfigurationManager.AppSettings["Sleepeng"]));
                         PublicGlobalFunction.PublicGlobalFunction.KillProcessProgram("WINWORD");
                         var fileDelete = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathTemp, "~$*.rtf");
                         PublicGlobalFunction.PublicGlobalFunction.DeleteFile(fileDelete.NamePath);
@@ -507,8 +614,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         /// <param name="model">Модель Поля ИНН Ветка</param>
         /// <param name="tree">Веска для поиска</param>
         /// <param name="serviceGetOrPost">Адрес ответа с клиента</param>
-        /// <param name="pathTemp">Путь к сохранению документа</param>
-        public void ShoppingSaleBook(StatusButtonMethod statusButton, LibraryAutomations libraryAutomation, SrvToLoad model, string tree, string serviceGetOrPost, string pathTemp)
+        /// <param name="pathDownLoads">Путь к сохранению документа</param>
+        public void ShoppingSaleBook(StatusButtonMethod statusButton, LibraryAutomations libraryAutomation, SrvToLoad model, string tree, string serviceGetOrPost, string pathDownLoads)
         {
             if (!libraryAutomation.IsEnableExpandTree(model.Tree)) return;
             DataBaseElementAdd dataBaseAdd = new DataBaseElementAdd();
@@ -573,16 +680,22 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                             automationElement = libraryAutomation.IsEnableElements(string.Concat(model.TreeGrid.FullPathGrid, "\\Name:DeclarationBrief row ", j), null, false);
                             if (dataBaseAdd.BookExists(Convert.ToInt64(dataBaseAdd.ParseAndCreateRegNumberBook(libraryAutomation, automationElement, inn))) == false)
                             {
-
                                 var book = dataBaseAdd.AddBook(libraryAutomation, automationElement, inn);
                                 if (!book.IsBookSalesParse & (libraryAutomation.IsEnableElements(ModelBookShopping.Section8, null, false, 1) != null))
                                 {
                                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.Section8);
                                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, string.Format(model.TreeExport, 8, 8));
+                                    if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.SaveDialogNameFileWin10, null, false, 3) != null)
+                                    {
+                                        if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.Download, libraryAutomation.FindFirstElement(PreCheckElementNameBank.FindGlobalWinWin10), true) != null)
+                                        {
+                                            libraryAutomation.InvokePattern(libraryAutomation.FindElement);
+                                        }
+                                    }
                                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.Save);
                                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.ExportXlsx);
                                     PublicGlobalFunction.PublicGlobalFunction.ExcelSaveAndClose();
-                                    var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathTemp, $"{inn}*.xlsx");
+                                    var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathDownLoads, $"{inn}*.xlsx");
                                     dataBaseAdd.AddBookSales(ref book, file.NamePath, "Раздел_8(1)");
                                     PublicGlobalFunction.PublicGlobalFunction.DeleteFile(file.NamePath);
                                 }
@@ -594,10 +707,17 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                                 {
                                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.Section9);
                                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, string.Format(model.TreeExport, 9, 9));
+                                    if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.SaveDialogNameFileWin10, null, false, 3) != null)
+                                    {
+                                        if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.Download, libraryAutomation.FindFirstElement(PreCheckElementNameBank.FindGlobalWinWin10), true) != null)
+                                        {
+                                            libraryAutomation.InvokePattern(libraryAutomation.FindElement);
+                                        }
+                                    }
                                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.Save);
                                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.ExportXlsx);
                                     PublicGlobalFunction.PublicGlobalFunction.ExcelSaveAndClose();
-                                    var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathTemp, $"{inn}*.xlsx");
+                                    var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathDownLoads, $"{inn}*.xlsx");
                                     dataBaseAdd.AddBookPurchase(ref book, file.NamePath, "Раздел_9(1)");
                                     PublicGlobalFunction.PublicGlobalFunction.DeleteFile(file.NamePath);
                                     //Делаем таблицу закидываем в бд IsBookPurchase ==true
@@ -606,7 +726,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                                 {
                                     dataBaseAdd.UpdeteBookPurchase(ref book);
                                 }
-
                                 WindowsAis3 win = new WindowsAis3();
                                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
                             }

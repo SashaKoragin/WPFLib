@@ -64,5 +64,15 @@ namespace PublicLogicaFull.DocumentLogica.FlowDocumentExample.Examle
                                              "     <IdZapros VisualId=\"98781525\"/>\n" +
                                              "     <IdZapros VisualId=\"98781577\"/>\n" +
                                              "</VisualIdent>";
+
+        /// <summary>
+        /// Результат списка для запуска Тех процесса!
+        /// </summary>
+        public static string TaxArrears = "<?xml version =\"1.0\"encoding=\"UTF-8\"?>\n" +
+                                            "<AutoGenerateSchemes xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"AutoGenerateSchemes.xsd\">\n" +
+                                            "  <TaxArrears Inn=\"7751098112\" Kpp=\"775101001\"/>\n" +
+                                            "  <TaxArrears Inn=\"7751098112\" Kpp=\"775101001\"/>\n" +
+                                            "  <TaxArrears Inn=\"110500384499\"/>\n" +
+                                            "</AutoGenerateSchemes>";
     }
 }

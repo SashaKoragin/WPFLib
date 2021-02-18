@@ -42,5 +42,24 @@ namespace LibaryXMLAuto.ErrorJurnal
                 convert.SerializerClassToXml(pathreport, userrule, typeof(UserRules));
             }
         }
+        /// <summary>
+        /// Сохранение отчета по Информации о ролях и ветках
+        /// </summary>
+        /// <param name="pathReport">Путь сохранения файла с информацией о ролями</param>
+        /// <param name="infoRuleTemplate">Шаблон Подсистем</param>
+        public static void CreateFileInfoRuleTemplate(string pathReport, InfoRuleTemplate infoRuleTemplate)
+        {
+            if (File.Exists(pathReport))
+            {
+                XmlReadOrWrite read = new XmlReadOrWrite();
+                read.AddInfoRuleTemplate(pathReport, infoRuleTemplate);
+            }
+            else
+            {
+                var convert = new Converts.ConvettToXml.XmlConvert();
+                convert.SerializerClassToXml(pathReport, infoRuleTemplate, typeof(InfoRuleTemplate));
+            }
+        }
+
     }
 }

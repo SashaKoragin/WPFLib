@@ -71,6 +71,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
@@ -82,6 +83,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AttributeHelperModelXml\AttributeHelperModelXml.csproj">
+      <Project>{91fad00a-d052-4dd6-a9bb-544782a0d2c4}</Project>
+      <Name>AttributeHelperModelXml</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EfDatabaseAutomation\EfDatabaseAutomation.csproj">
       <Project>{FDAD249D-CD7D-4581-B945-90D2F9DAD698}</Project>
       <Name>EfDatabaseAutomation</Name>

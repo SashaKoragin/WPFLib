@@ -31,8 +31,8 @@
                     x:Name="ListView"
                     Height="150"
                     Margin="5,5,5,5"
-                    ItemsSource="{Binding ReportJurnalAndFile.XmlFileZnach}"
-                    SelectedItem="{Binding ReportJurnalAndFile.XmlFile}">
+                    ItemsSource="{Binding ReportJournalAndFile.XmlFileZnach}"
+                    SelectedItem="{Binding ReportJournalAndFile.XmlFile}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Списки для автоматов!!!">
@@ -60,8 +60,8 @@
                     x:Name="ListView1"
                     Height="150"
                     Margin="5,5,5,5"
-                    ItemsSource="{Binding ReportJurnalAndFile.XmlReportJurnal}"
-                    SelectedItem="{Binding ReportJurnalAndFile.XmlFile}">
+                    ItemsSource="{Binding ReportJournalAndFile.XmlReportJurnal}"
+                    SelectedItem="{Binding ReportJournalAndFile.XmlFile}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Журналы автомата!!!">
@@ -70,10 +70,11 @@
                                         <WrapPanel Tag="{Binding DataContext, ElementName=ListView1}">
                                             <WrapPanel.ContextMenu>
                                                 <ContextMenu>
-                                                    <MenuItem Command="{Binding PlacementTarget.Tag.OpenFile, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Открыть файл!!!" />
-                                                    <MenuItem Command="{Binding PlacementTarget.Tag.DeleteJurnal, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Удалить журнал!!!" />
-                                                    <MenuItem Command="{Binding PlacementTarget.Tag.SendFileToServer, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Выгрузить письмо!!!" />
-                                                    <MenuItem Command="{Binding PlacementTarget.Tag.SenderDepartment, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Заявка на доступ!!!" />
+                                                    <MenuItem Command="{Binding PlacementTarget.Tag.OpenFile, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Открыть файл." />
+                                                    <MenuItem Command="{Binding PlacementTarget.Tag.DeleteJournal, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Удалить журнал." />
+                                                    <MenuItem Command="{Binding PlacementTarget.Tag.SendFileToServer, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Выгрузить письмо." />
+                                                    <MenuItem Command="{Binding PlacementTarget.Tag.SenderDepartment, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Заявка на доступ." />
+                                                    <MenuItem Command="{Binding PlacementTarget.Tag.LoadTemplateInfo, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Загрузка шаблонов."></MenuItem>
                                                 </ContextMenu>
                                             </WrapPanel.ContextMenu>
                                             <Image
@@ -125,18 +126,18 @@
                 <FlowDocumentReader
                     Height="500"
                     HorizontalAlignment="Stretch"
-                    Document="{Binding ReportJurnalAndFile.XmlFile.Document}" />
+                    Document="{Binding ReportJournalAndFile.XmlFile.Document}" />
             </StackPanel>
         </WrapPanel>
         <WrapPanel  
             Grid.Row="1"
             Grid.Column="1">
             <Label FontSize="24" 
-                   Content="{Binding LableModel.MessageReport}" 
-                   Foreground="{Binding LableModel.Color}"></Label>
-            <TextBlock VerticalAlignment="Center" FontSize="24"  Foreground="{Binding LableModel.Color}">
-                <Hyperlink NavigateUri="{Binding LableModel.Url}" RequestNavigate="Hyperlink_Navigate">
-                    <TextBlock FontSize="24" Text="{Binding Path=LableModel.Url}" Foreground="{Binding LableModel.Color}"></TextBlock>
+                   Content="{Binding LabelModel.MessageReport}" 
+                   Foreground="{Binding LabelModel.Color}"></Label>
+            <TextBlock VerticalAlignment="Center" FontSize="24"  Foreground="{Binding LabelModel.Color}">
+                <Hyperlink NavigateUri="{Binding LabelModel.Url}" RequestNavigate="Hyperlink_Navigate">
+                    <TextBlock FontSize="24" Text="{Binding Path=LabelModel.Url}" Foreground="{Binding LabelModel.Color}"></TextBlock>
                 </Hyperlink>
             </TextBlock>
         </WrapPanel>

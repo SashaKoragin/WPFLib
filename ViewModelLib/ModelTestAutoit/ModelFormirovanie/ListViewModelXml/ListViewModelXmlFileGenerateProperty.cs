@@ -75,7 +75,7 @@ namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.ListViewModelXml
             BindingOperations.DisableCollectionSynchronization(XmlFiles);
         }
         /// <summary>
-        /// Метод разрешить обновление из потока патерн MVVM
+        /// Метод разрешить обновление из потока паттерн MVVM
         /// </summary>
         public void UpdateOn()
         {
@@ -91,25 +91,25 @@ namespace ViewModelLib.ModelTestAutoit.ModelFormirovanie.ListViewModelXml
             XmlFiles.Clear();
             lock (Lock)
             {
-                var filelogica = new FileLogica();
+                var fileLogic = new FileLogica();
                 Directory.CreateDirectory(path);
                     foreach (var file in FileLogica.FileinfoMass(path))
                     {
-                       XmlFiles.Add(new ListViewModelXmlFileGenerateProperty { Icon = filelogica.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName });
+                       XmlFiles.Add(new ListViewModelXmlFileGenerateProperty { Icon = fileLogic.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName });
                     }
             }
         }
         /// <summary>
         /// Метод переноса файла списка xml на отработку после формирования
         /// </summary>
-        /// <param name="pathnew">Путь к сформированым спискам </param>
-        public void MoveFile(string pathnew)
+        /// <param name="pathNew">Путь к сформированным спискам</param>
+        public void MoveFile(string pathNew)
         {
             if (System.IO.File.Exists(File.Path))
             {
-                System.IO.File.Delete(pathnew+File.Name);
+                System.IO.File.Delete(pathNew + File.Name);
             }
-            System.IO.File.Move(File.Path, pathnew + File.Name);
+            System.IO.File.Move(File.Path, pathNew + File.Name);
             XmlFiles.Remove(XmlFiles.Single(name => name.Path == File.Path));
         }
     }

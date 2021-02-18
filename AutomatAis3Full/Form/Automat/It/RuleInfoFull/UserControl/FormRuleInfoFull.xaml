@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="AutomatAis3Full.Form.Automat.It.RuleInfoFull.UserControl.FormRuleInfoFull"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:datacontext="clr-namespace:AutomatAis3Full.Form.Automat.It.RuleInfoFull.DataContext"
+             xmlns:local="clr-namespace:AutomatAis3Full.Form.Automat.It.RuleInfoFull.UserControl"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance {x:Type datacontext:RuleInfoFullDataContext}}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Label
+            Grid.Column="0"
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            Content="Автомат для ветки: 'Налоговое администрирование\ЦСУД\Управление ролевой принадлежностью\Мои роли' Сбор информации о перечне всех доступных режимах ПЗ"  />
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="0,0,10,0">
+            <ContentControl
+                Margin="5,5,5,5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="{Binding StartButton.Button}" />
+            <CheckBox Content="Удалить предыдущий файл отчета?" IsChecked="{Binding StartButton.IsChekcs}" />
+            <Label Content="Комманда приостановить Shift+S" />
+            <Label Content="Комманда возобновить Shift+A" />
+        </StackPanel>
+    </Grid>
+</UserControl>

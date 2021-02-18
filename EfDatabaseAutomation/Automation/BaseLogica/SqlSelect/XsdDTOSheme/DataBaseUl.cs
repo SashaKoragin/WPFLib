@@ -47,6 +47,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme {
         
         private HeadingStatement[][] statementField;
         
+        private Book[] bookField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("UlFace")]
         public UlFace[] UlFace {
@@ -170,6 +172,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme {
             }
             set {
                 this.statementField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Book")]
+        public Book[] Book {
+            get {
+                return this.bookField;
+            }
+            set {
+                this.bookField = value;
             }
         }
     }
@@ -1768,6 +1781,167 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme {
             }
             set {
                 this.valuesStatementField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class Book {
+        
+        private System.Nullable<System.DateTime> dateStartField;
+        
+        private System.Nullable<long> idBookField;
+        
+        private double summBookPurchaseField;
+        
+        private double summBookSalesField;
+        
+        private double summNdsField;
+        
+        private double summTotalField;
+        
+        private int weightProductField;
+        
+        private string periodField;
+        
+        private string nameOperatorField;
+        
+        private string codeTaxComField;
+        
+        private string ipAdresField;
+        
+        private string telephoneField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DateStart {
+            get {
+                return this.dateStartField;
+            }
+            set {
+                this.dateStartField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<long> IdBook {
+            get {
+                return this.idBookField;
+            }
+            set {
+                this.idBookField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double SummBookPurchase {
+            get {
+                return this.summBookPurchaseField;
+            }
+            set {
+                this.summBookPurchaseField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double SummBookSales {
+            get {
+                return this.summBookSalesField;
+            }
+            set {
+                this.summBookSalesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double SummNds {
+            get {
+                return this.summNdsField;
+            }
+            set {
+                this.summNdsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double SummTotal {
+            get {
+                return this.summTotalField;
+            }
+            set {
+                this.summTotalField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int WeightProduct {
+            get {
+                return this.weightProductField;
+            }
+            set {
+                this.weightProductField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Period {
+            get {
+                return this.periodField;
+            }
+            set {
+                this.periodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameOperator {
+            get {
+                return this.nameOperatorField;
+            }
+            set {
+                this.nameOperatorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string CodeTaxCom {
+            get {
+                return this.codeTaxComField;
+            }
+            set {
+                this.codeTaxComField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string IpAdres {
+            get {
+                return this.ipAdresField;
+            }
+            set {
+                this.ipAdresField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Telephone {
+            get {
+                return this.telephoneField;
+            }
+            set {
+                this.telephoneField = value;
             }
         }
     }

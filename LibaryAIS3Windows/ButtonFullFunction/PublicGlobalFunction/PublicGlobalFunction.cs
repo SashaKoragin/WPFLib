@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Windows.Automation;
 using AutoIt;
 using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
 
@@ -87,6 +88,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
             AutoItX.Sleep(500);
         }
 
+
+
         /// <summary>
         /// Дожидаемся и сохраняем XLSX 2010 и закрываем
         /// </summary>
@@ -114,9 +117,9 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                // ignored
             }
             finally
             {
@@ -148,12 +151,12 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
         /// </summary>
         /// <param name="libraryAutomation">Автоматизационный элемент</param>
         /// <param name="searсhPatternElementGrid">Grid для поиска Caption</param>
-        public static string GridNotDataIsWaitUpdate(LibraryAutomations libraryAutomation, string searсhPatternElementGrid)
+        public static string GridNotDataIsWaitUpdate(LibraryAutomations libraryAutomation, string searсhPatternElementGrid, AutomationElement auto = null)
         {
             var isExit = true;
             while (isExit)
             {
-                if (libraryAutomation.IsEnableElements(string.Concat(searсhPatternElementGrid, "\\Name:Caption"), null, false, 1, 0, true) == null)
+                if (libraryAutomation.IsEnableElements(string.Concat(searсhPatternElementGrid, "\\Name:Caption"), auto, false, 1, 0, true) == null)
                 {
                     isExit = false;
                 }
@@ -174,12 +177,9 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
             }
             return null;
         }
-
-
         private static IntPtr FindIntPtr(string nameClass)
         {
             bool IsExists = false;
-            
             IntPtr processExcel = IntPtr.Zero;
             while (!IsExists){
                 AutoItX.WinActivate(nameClass);
@@ -192,7 +192,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
             }
             return processExcel;
         }
-
     }
 
     public class GetFile

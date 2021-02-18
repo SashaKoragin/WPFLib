@@ -20,7 +20,6 @@ namespace AutomatAis3Full.Form.Automat.Okp6.JournalDoc.DataContextJournalDoc
         public DataContextJourrnalDoc()
         {
             var docStart = new AutoJournalDoc();
-            StartButton = new StatusButtonMethod();
             StartButton = new StatusButtonMethod
             {
                 Button = { Command = new DelegateCommand(() => { docStart.StartDateJournalDoc(StartButton); }) }

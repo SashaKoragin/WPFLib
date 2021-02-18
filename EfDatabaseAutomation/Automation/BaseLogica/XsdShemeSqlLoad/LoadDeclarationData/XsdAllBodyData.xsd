@@ -14,6 +14,7 @@
 				<xs:element ref="NdflFl" minOccurs="0" maxOccurs="unbounded" sql:relation="NdflFl"/>
 				<xs:element ref="BookSales" minOccurs="0" maxOccurs="unbounded" sql:relation="BookSales"/>
 				<xs:element ref="BookPurchase" minOccurs="0" maxOccurs="unbounded" sql:relation="BookPurchase"/>
+				<xs:element ref="CounterpartyCashBank" minOccurs="0" maxOccurs="unbounded" sql:relation="CounterpartyCashBank"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -759,5 +760,222 @@
 		<xs:annotation>
 			<xs:documentation>Поле 120</xs:documentation>
 		</xs:annotation>
+	</xs:element>
+	<xs:element name="CounterpartyCashBank">
+		<xs:annotation>
+			<xs:documentation>Данные банка по контрагентам</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" use="optional" sql:datatype="int" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>Ун</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdUl" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Ун Юридическогоко лица</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:int"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="TypeCash" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Тип счета</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="PriznakCash" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак операции</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="NumberCash" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Номер</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Currency" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Валюта</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="CorrespondentAccountNumberCounterparty" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Номер корреспондентского счета</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="NameBankCounterparty" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="BikBankCounterparty" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>БИК</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="InnBankCounterparty" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="KppBankCounterparty" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="CashCounterparty" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Номер</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="DateOperation" use="required" sql:datatype="smalldatetime">
+				<xs:annotation>
+					<xs:documentation>Дата совершения</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:dateTime"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="SurOperation" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>СУР</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="NameOperation" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="InnOperation" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="KppOperation" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="OkvedOperation" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>ОКВЭД</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="NumberDocOperation" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Номер документа</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="VieDocOperation" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Вид документа</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="ExpenseSumOperationUSA" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Расход д/c, в валюте счета</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:double"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="ExpenseSumOperationRU" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Расход д/c, в рублях</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:double"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="ComingSumOperationUSA" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Приход д/c, в валюте счета</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:double"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="ComingSumOperationRU" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Приход д/c, в рублях</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:double"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="TypeSumOperation" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Вид платежа</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="TargetSumOperation" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Назначение платежа</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:datatype="smalldatetime" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>Дата записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
 	</xs:element>
 </xs:schema>

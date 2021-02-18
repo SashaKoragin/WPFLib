@@ -51,6 +51,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +65,8 @@
     <Compile Include="Automation\BaseLogica\IdentificationFace\IdentificationAddorEditFace.cs" />
     <Compile Include="Automation\BaseLogica\ModelGetPost\ModelGetPost.cs" />
     <Compile Include="Automation\BaseLogica\PreCheck\PreCheckAddObject.cs" />
+    <Compile Include="Automation\BaseLogica\SelectObjectDbAndAddObjectDb\AddAllObjectDb.cs" />
+    <Compile Include="Automation\BaseLogica\SelectObjectDbAndAddObjectDb\SelectAllObjectDb.cs" />
     <Compile Include="Automation\BaseLogica\SqlSelect\PreCheckLog\SqlPreCheckLog.cs" />
     <Compile Include="Automation\BaseLogica\SqlSelect\ProcedureParametr\SqlSelect.cs" />
     <Compile Include="Automation\BaseLogica\SqlSelect\SelectAll\SelectAll.cs" />
@@ -76,12 +79,9 @@
     <Compile Include="Automation\BaseLogica\XsdAuto\TaxJournalAuto\TaxJournalAuto.cs">
       <DependentUpon>TaxJournalAuto.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Automation\BaseLogica\XsdShemeSqlLoad\AttributeHelper.cs" />
     <Compile Include="Automation\BaseLogica\XsdShemeSqlLoad\LoadDeclarationData\XsdAllBodyData.cs">
       <DependentUpon>XsdAllBodyData.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Automation\BaseLogica\XsdShemeSqlLoad\MappingAttribute.cs" />
-    <Compile Include="Automation\BaseLogica\XsdShemeSqlLoad\PropertyMapHelper.cs" />
     <Compile Include="Automation\Base\DatabaseAutomation1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,6 +100,10 @@
     <ProjectReference Include="..\AisPoco\AisPoco.csproj">
       <Project>{ae019cef-782d-41b7-942f-420f3c1b434a}</Project>
       <Name>AisPoco</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AttributeHelperModelXml\AttributeHelperModelXml.csproj">
+      <Project>{91fad00a-d052-4dd6-a9bb-544782a0d2c4}</Project>
+      <Name>AttributeHelperModelXml</Name>
     </ProjectReference>
     <ProjectReference Include="..\LibaryXMLAuto\LibaryXMLAuto.csproj">
       <Project>{a2bc3ae2-4a61-4e9e-9fa4-96a02677c79c}</Project>

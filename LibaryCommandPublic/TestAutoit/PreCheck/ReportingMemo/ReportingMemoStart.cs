@@ -23,9 +23,9 @@ namespace LibraryCommandPublic.TestAutoit.PreCheck.ReportingMemo
         /// <param name="statusButton">Кнопка</param>
         /// <param name="serviceGetOrPost">Адрес get bkb Post</param>
         /// <param name="pathTemp">Путь сохранения Temp</param>
-        /// <param name="pathSaveBank">Путь сохранения выписок из банка</param>
+        /// <param name="pathDownLoads">Путь сохранения выписок из банка</param>
         ///<param name="templateDb">УН Шаблонов для веток</param>
-        public void ReportingMemoStartPreCheck(StatusButtonMethod statusButton, string serviceGetOrPost, string pathTemp, string pathSaveBank, PublicModelCollectionSelect<TemplateModel> templateDb)
+        public void ReportingMemoStartPreCheck(StatusButtonMethod statusButton, string serviceGetOrPost, string pathTemp, string pathDownLoads, PublicModelCollectionSelect<TemplateModel> templateDb)
         {
             DispatcherHelper.Initialize();
             if (templateDb.IsValidation())
@@ -42,7 +42,7 @@ namespace LibraryCommandPublic.TestAutoit.PreCheck.ReportingMemo
                         {
                             if (ais3.WinexistsAis3() == 1)
                             {
-                                clickerButton.Click29(statusButton, result, serviceGetOrPost, pathTemp, pathSaveBank);
+                                clickerButton.Click29(statusButton, result, serviceGetOrPost, pathTemp, pathDownLoads, templateDb.YearReport);
                                 DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                             }
                             else

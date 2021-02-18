@@ -44,5 +44,37 @@ namespace LibraryCommandPublic.TestAutoit.It.Rule
                });
             }
         }
+        /// <summary>
+        /// Сбор информации ветках ролях и папках
+        /// </summary>
+        /// <param name="statusButton">Кнопка статуса</param>
+        /// <param name="pathJournalInfoRule">Путь к файлу сохранения с ролями и шаблонами</param>
+        public void RuleInfoTemplate(StatusButtonMethod statusButton, string pathJournalInfoRule)
+        {
+
+                DispatcherHelper.Initialize();
+                Task.Run(delegate
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        if (statusButton.IsChekcs)
+                        {
+                            if (File.Exists(pathJournalInfoRule))
+                            {
+                                File.Delete(pathJournalInfoRule);
+                            }
+                        }
+                        clickerButton.Click36(statusButton, pathJournalInfoRule);
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    }
+                });
+        }
     }
 }

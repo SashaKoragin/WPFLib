@@ -50,6 +50,37 @@ namespace LibraryCommandPublic.TestAutoit.Okp2
         }
 
         /// <summary>
+        /// Запуск пользовательского задания на утверждение налоговых обязанностей
+        /// </summary>
+        /// <param name="statusButton"></param>
+        public void StartTaxApprove(StatusButtonMethod statusButton)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                try
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        clickerButton.Click37(statusButton);
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                }
+            });
+        }
+
+        /// <summary>
         /// Загрузка файлов из БД
         /// </summary>
         /// <param name="path">Путь к выгрузке документов</param>
@@ -108,5 +139,7 @@ namespace LibraryCommandPublic.TestAutoit.Okp2
                 });
             }
         }
+
+
     }
 }

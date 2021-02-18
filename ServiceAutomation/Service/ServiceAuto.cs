@@ -10,12 +10,13 @@ using EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost;
 using System.Collections.Generic;
 using System.Reflection;
 using AisPoco.Ifns51.ToAis;
-using EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb;
 using EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace;
+using EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectDb;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
 using LibaryDocumentGenerator.Documents.Template;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using SqlLibaryIfns.ZaprosSelectNotParam;
+using EfDatabaseAutomation.Automation.Base;
 
 namespace ServiceAutomation.Service
 {
@@ -173,33 +174,36 @@ namespace ServiceAutomation.Service
         /// <summary>
         /// Снятие статуса повторной отработки
         /// </summary>
-        /// <param name="idModel">Ун модели</param>
+        /// <param name="idModels">Уникальные номера моделей</param>
         /// <param name="status">Статус обработки ветки</param>
-        public void CheckStatus(int idModel, string status = null)
+        public async Task CheckStatus(List<int> idModels, string status = null)
         {
-            var modelLoad = new ModelGetPost();
-            modelLoad.CheckStatus(idModel, status);
-            modelLoad.Dispose();
+            await Task.Factory.StartNew(() =>{
+                var modelLoad = new ModelGetPost();
+                modelLoad.CheckStatus(idModels, status);
+                modelLoad.Dispose();
+            });
         }
 
         /// <summary>
         /// Генерация докладной записки ЮЛ
         /// </summary>
         /// <param name="innUl">ИНН ЮЛ</param>
+        /// <param name="year">Год отчета выгрузки</param>
         /// <returns></returns>
-        public async Task<Stream> GenerateNoteReportUl(string innUl)
+        public async Task<Stream> GenerateNoteReportUl(string innUl, int year)
         {
             return await Task.Factory.StartNew(() =>
             {
                 try
                 {
                     var model = new ModelGetPost();
-                    var card = model.CardUi(innUl);
+                    var card = model.CardUi(innUl, year);
                     model.Dispose();
                     if (card != null)
                     {
                         ReportNote report = new ReportNote();
-                        report.CreateDocum(_parameterConfig.PathSaveTemplate, card, null);
+                        report.CreateDocum(_parameterConfig.PathSaveTemplate, card, year);
                         return report.FileArray();
                     }
                 }
@@ -210,6 +214,37 @@ namespace ServiceAutomation.Service
                 return null;
             });
         }
+        /// <summary>
+        /// Генерация документа книги покупок продаж шаблон
+        /// </summary>
+        /// <param name="innUl"></param>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public async Task<Stream> GenerateBookSales(string innUl, int year)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    var model = new ModelGetPost();
+                    var card = model.CardUiBookSales(innUl, year);
+                    model.Dispose();
+                    if (card != null)
+                    {
+                        TemplateBookSalesBank report = new TemplateBookSalesBank();
+                        report.CreateDocum(_parameterConfig.PathSaveTemplate, card, year);
+                        return report.FileArray();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Loggers.Log4NetLogger.Error(ex);
+                }
+                return null;
+            });
+        }
+
+
         /// <summary>
         /// Генерация Выписки в docx
         /// </summary>
@@ -242,28 +277,6 @@ namespace ServiceAutomation.Service
         });
         }
         /// <summary>
-        /// Изменение статуса подписывающего лица
-        /// </summary>
-        /// <param name="signatureSenderTaxJournalOkp2">Ун подписи</param>
-        /// <returns></returns>
-        public async Task<bool> ActualizationSignature(int signatureSenderTaxJournalOkp2)
-        {
-            return await Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    AddObjectDb taxJournalSignature = new AddObjectDb();
-                    taxJournalSignature.IsActualStatus(signatureSenderTaxJournalOkp2);
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    Loggers.Log4NetLogger.Error(ex);
-                }
-                return false;
-            });
-        }
-        /// <summary>
         /// Добавление УН файлов для отработки на автомате
         /// </summary>
         /// <param name="listIdFile">УН файлов</param>
@@ -282,11 +295,72 @@ namespace ServiceAutomation.Service
         /// </summary>
         /// <param name="idDocument">Документ</param>
         /// <returns></returns>
-        public async Task CheckStatusError(long idDocument)
+        public async Task CheckStatusError(List<long> idDocument)
         {
             await Task.Factory.StartNew(() => {
                 IdentificationAddorEditFace identification = new IdentificationAddorEditFace();
                 identification.IsCheckError(idDocument);
+            });
+        }
+
+        /// <summary>
+        /// Все подписанты в БД
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> AllSender()
+        {
+            SelectAllObjectDb select = new SelectAllObjectDb();
+            return await Task.Factory.StartNew(() =>
+            {
+                var sender = select.AllSender();
+                select.Dispose();
+                return sender;
+            });
+        }
+
+        /// <summary>
+        /// Справочник подписантов Акты Извещения Решения
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> AllSenderTaxJournal()
+        {
+            SelectAllObjectDb select = new SelectAllObjectDb();
+            return await Task.Factory.StartNew(() =>
+            {
+                var senderDepartment = select.AllSenderDepartment();
+                select.Dispose();
+                return senderDepartment;
+            });
+        }
+        /// <summary>
+        /// Добавление и редактирование Отделов и подписантов к ним
+        /// </summary>
+        /// <param name="department"></param>
+        /// <returns></returns>
+        public async Task<DepartamentOtdel> AddAndEditDepartment(DepartamentOtdel department)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                AddAllObjectDb add = new AddAllObjectDb();
+                var model = add.AddAndEditDepartment(department);
+                add.Dispose();
+                if (model == null) return null;
+                SerializeJson json = new SerializeJson();
+                SignalRLibraryAutomations.ConnectAutomations.HubAutomations.SubscribeDepartmentSender(json.JsonLibaryIgnoreDate(model));
+                return model;
+            });
+        }
+        /// <summary>
+        /// Выгрузка сводной таблицы
+        /// </summary>
+        /// <param name="inn">ИНН</param>
+        /// <returns></returns>
+        public async Task<Stream> LoadFileSummarySales(string inn)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                var selectFull = new SelectFull();
+                return selectFull.GenerateSummarySales(_parameterConfig.PathSaveTemplate, inn);
             });
         }
     }

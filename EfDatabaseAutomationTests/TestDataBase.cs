@@ -25,8 +25,7 @@ namespace EfDatabaseAutomationTests
         [TestMethod]
         public void ServerTestModel()
         {
-            ModelGetPost model = new ModelGetPost();
-            var result = model.LoadModelPreCheck("2");
+            var senderSelect = new SelectAll().SelectSenderJournal("7751-00-469");
         }
         [TestMethod]
         public void TestProcedure()

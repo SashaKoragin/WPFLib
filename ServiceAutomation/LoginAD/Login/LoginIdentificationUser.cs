@@ -16,6 +16,7 @@ namespace ServiceAutomation.LoginAD.Login
                 {
                     using (PrincipalContext context = new PrincipalContext(ContextType.Domain, null, identification.Login, identification.Password))
                     {
+                        
                         if (context.ValidateCredentials(identification.Login, identification.Password))
                         {
                             using (var users = new UserPrincipal(context))

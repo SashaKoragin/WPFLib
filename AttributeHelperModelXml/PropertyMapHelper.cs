@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 
 
-namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad
+namespace AttributeHelperModelXml
 {
     public static class PropertyMapHelper
     {
@@ -19,11 +19,11 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad
                 (columnName))
                 {
                     var propertyValue = row[columnName];
-                        if (propertyValue != DBNull.Value)
-                        {
-                            ParsePrimitive(prop, entity, row[columnName]);
-                            break;
-                        }
+                    if (propertyValue != DBNull.Value)
+                    {
+                        ParsePrimitive(prop, entity, row[columnName]);
+                        break;
+                    }
                 }
             }
         }
@@ -52,7 +52,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad
             else if (prop.PropertyType == typeof(int) || prop.PropertyType == typeof(int
             ?))
             {
-                if(string.IsNullOrEmpty(value.ToString()))
+                if (string.IsNullOrEmpty(value.ToString()))
                 {
                     prop.SetValue(entity, 0, null);
                 }
@@ -73,8 +73,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad
             else if (prop.PropertyType == typeof(double) || prop.PropertyType == typeof(
             double?))
             {
-                value = Regex.Replace(value.ToString(),@"\s+","");
-                prop.SetValue(entity, GetDouble(value.ToString(),0.00));
+                value = Regex.Replace(value.ToString(), @"\s+", "");
+                prop.SetValue(entity, GetDouble(value.ToString(), 0.00));
             }
             else if (prop.PropertyType == typeof(DateTime) || prop.PropertyType ==
             typeof(Nullable<DateTime>))

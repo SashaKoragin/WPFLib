@@ -87,6 +87,7 @@
     <Compile Include="TestAutoit\Okp6\JournalDoc\AutoJournalDoc.cs" />
     <Compile Include="TestAutoit\Orn\TaskOrn\TaskOrn.cs" />
     <Compile Include="TestAutoit\PreCheck\ReportingMemo\ReportingMemoStart.cs" />
+    <Compile Include="TestAutoit\PublicCommand\CommandAddListFull.cs" />
     <Compile Include="TestAutoit\PublicCommand\CommandFormirovanie.cs" />
     <Compile Include="TestAutoit\PublicCommand\CommandSnuOneAuto.cs" />
     <Compile Include="TestAutoit\RaschBydj\Migration\MigrationCKlikCommand.cs" />
@@ -104,6 +105,10 @@
     <ProjectReference Include="..\AisPoco\AisPoco.csproj">
       <Project>{ae019cef-782d-41b7-942f-420f3c1b434a}</Project>
       <Name>AisPoco</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AttributeHelperModelXml\AttributeHelperModelXml.csproj">
+      <Project>{91FAD00A-D052-4DD6-A9BB-544782A0D2C4}</Project>
+      <Name>AttributeHelperModelXml</Name>
     </ProjectReference>
     <ProjectReference Include="..\EfDatabaseAutomation\EfDatabaseAutomation.csproj">
       <Project>{FDAD249D-CD7D-4581-B945-90D2F9DAD698}</Project>

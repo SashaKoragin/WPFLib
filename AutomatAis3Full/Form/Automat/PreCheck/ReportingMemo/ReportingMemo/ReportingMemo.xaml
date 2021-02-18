@@ -25,12 +25,23 @@
                 VerticalAlignment="Top"
                 Content="{Binding Start.Button}"
                 FontSize="16" />
-            <Label Content="Команда приостановить Shift+S" FontSize="16" />
-            <Label Content="Команда возобновить Shift+A" FontSize="16" />
+            <Label Content="Команда приостановить Shift+S" FontSize="12" />
+            <Label Content="Команда возобновить Shift+A" FontSize="12" />
+            <WrapPanel>
+                <Label Content="Выбор года (от текущего -3 года):" FontSize="16" Margin="0,0,5,0"></Label>
+                <ComboBox
+                    Width="55"
+                    ItemsSource="{Binding ModelTemplate.CollectionYear}"
+                    SelectedItem="{Binding ModelTemplate.YearReport, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"
+                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                    Validation.ErrorTemplate="{StaticResource ValidationFailederror}"
+                    FontSize="16"
+                    ></ComboBox>
+            </WrapPanel>
             <ListView 
                 x:Name="Template"
                 Margin="5,5,5,5"
-
+                FontSize="16"
                 HorizontalAlignment="Stretch">
                 <ListView.Template>
                     <ControlTemplate>

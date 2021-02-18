@@ -11,8 +11,9 @@
     x:Name="Window"
     HorizontalContentAlignment="Stretch"
     VerticalContentAlignment="Stretch"
+    Width="1700"
     d:DataContext="{d:DesignInstance {x:Type dataContext:WindowsMvvmAuto}}"
-    mc:Ignorable="d">
+    mc:Ignorable="d" WindowState="Normal">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -55,11 +56,10 @@
             Height="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type WrapPanel}}, Path=ActualHeight}"
             IsLeftDrawerOpen="{Binding FullWindow.IsCheck}">
             <materialDesign:DrawerHost.LeftDrawerContent>
-                <ScrollViewer 
-                    PreviewMouseWheel="UIElement_OnMouseWheel" VerticalScrollBarVisibility="Auto">
-                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                        <StackPanel>
-                            <ToggleButton
+                <DockPanel>
+                    <ScrollViewer PreviewMouseWheel="UIElement_OnMouseWheel" VerticalScrollBarVisibility="Auto" CanContentScroll="False" DockPanel.Dock="Right">
+                            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DockPanel.Dock="Left">
+                                <ToggleButton
                                 Margin="16"
                                 HorizontalAlignment="Right"
                                 IsChecked="{Binding FullWindow.IsCheck}"
@@ -70,25 +70,28 @@
                                 SelectedValuePath="{Binding FullWindow.UseContent}">
                                 <TreeView.ItemTemplate>
                                     <HierarchicalDataTemplate ItemsSource="{Binding CollectionUserControl}">
-                                        <TextBlock Text="{Binding NameControl}">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
-                                                    <i:InvokeCommandAction Command="{Binding DataContext.OpenForms, ElementName=TreeView}" CommandParameter="{Binding SelectedItem, ElementName=TreeView}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
+                                        <TextBlock  Text="{Binding NameControl}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="PreviewMouseLeftButtonUp">
+                                                            <i:InvokeCommandAction Command="{Binding DataContext.OpenForms, ElementName=TreeView}" CommandParameter="{Binding SelectedItem, ElementName=TreeView}" />
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
                                         </TextBlock>
                                     </HierarchicalDataTemplate>
                                 </TreeView.ItemTemplate>
                             </TreeView>
                         </StackPanel>
-                    </StackPanel>
-                </ScrollViewer>
+                        </ScrollViewer>
+                </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
         </materialDesign:DrawerHost>
             <UserControl
-                Margin="5,5,5,5"
+                Margin="10,5,5,5"
+                Width="Auto"
+                Height="Auto"
                 HorizontalContentAlignment="Stretch"
                 VerticalContentAlignment="Stretch"
+                
                 Content="{Binding ElementName=TreeView, Path=SelectedItem.UserControl}"  />
         </WrapPanel>
         <materialDesign:ColorZone

@@ -121,6 +121,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\It\RuleInfoFull\UserControl\FormRuleInfoFull.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\It\Rule\UserControl\RuleParse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -134,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Okp2\TaxJournal\TaxJournal\FormTaxJournal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Okp2\UserTask\TaxApprove\TaxApprove\ViewTaxApprove.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +174,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Okp6\JournalDoc\ViewJournalDoc\JourrnalDocView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Okp6\RegistryDeclaration\ViewRegistryDeclaration\RegistryDeclarationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +233,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Uregulirovanie\StartProcessFace\StartCash\ViewStartCash\ViewStartCash.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090202\Ticket050809020206\UserControl\SignatureOfficeNote.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -254,6 +270,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\SigningDecisionApplication\UserControl\SigningDecisionApplication.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\FormirovanieSpiskov\AutoGenerateListAutomation\ViewGenerator\ViewGenerator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -304,6 +324,10 @@
     <Compile Include="Form\Automat\Analitic\Zadanie\ZacetVozvrat\Signature\SigZacetVozvrat.xaml.cs">
       <DependentUpon>SigZacetVozvrat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\It\RuleInfoFull\DataContext\RuleInfoFullDataContext.cs" />
+    <Compile Include="Form\Automat\It\RuleInfoFull\UserControl\FormRuleInfoFull.xaml.cs">
+      <DependentUpon>FormRuleInfoFull.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\It\Rule\DataContext\RuleDataContext.cs" />
     <Compile Include="Form\Automat\It\Rule\UserControl\RuleParse.xaml.cs">
       <DependentUpon>RuleParse.xaml</DependentUpon>
@@ -319,6 +343,10 @@
     <Compile Include="Form\Automat\Okp2\TaxJournal\DataContext\DataContextTaxJournal.cs" />
     <Compile Include="Form\Automat\Okp2\TaxJournal\TaxJournal\FormTaxJournal.xaml.cs">
       <DependentUpon>FormTaxJournal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Okp2\UserTask\TaxApprove\DataContext\DataContextTaxApprove.cs" />
+    <Compile Include="Form\Automat\Okp2\UserTask\TaxApprove\TaxApprove\ViewTaxApprove.xaml.cs">
+      <DependentUpon>ViewTaxApprove.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Okp3\UsnSend\DataContext\DataContextUsnSend.cs" />
     <Compile Include="Form\Automat\Okp3\UsnSend\UsnSend\FormUsnSend.xaml.cs">
@@ -351,6 +379,10 @@
     <Compile Include="Form\Automat\Okp6\JournalDoc\DataContextJournalDoc\DataContextJourrnalDoc.cs" />
     <Compile Include="Form\Automat\Okp6\JournalDoc\ViewJournalDoc\JourrnalDocView.xaml.cs">
       <DependentUpon>JourrnalDocView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Okp6\RegistryDeclaration\DataContextRegistryDeclaration\DataContextRegistryDeclaration.cs" />
+    <Compile Include="Form\Automat\Okp6\RegistryDeclaration\ViewRegistryDeclaration\RegistryDeclarationView.xaml.cs">
+      <DependentUpon>RegistryDeclarationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Orn\ConfirmationNbo\ConfirmationNbo\ConfirmationNbo.xaml.cs">
       <DependentUpon>ConfirmationNbo.xaml</DependentUpon>
@@ -404,6 +436,10 @@
     <Compile Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\UserControl\FormTrebUplNaloga.xaml.cs">
       <DependentUpon>FormTrebUplNaloga.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\StartProcessFace\StartCash\DataContextStartCash\DataContextStartCash.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\StartProcessFace\StartCash\ViewStartCash\ViewStartCash.xaml.cs">
+      <DependentUpon>ViewStartCash.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090202\Ticket050809020206\DataContext\DataContextSignatureOfficeNote.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090202\Ticket050809020206\UserControl\SignatureOfficeNote.xaml.cs">
       <DependentUpon>SignatureOfficeNote.xaml</DependentUpon>
@@ -439,6 +475,10 @@
     <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\SigningDecisionApplication\DataContext\DataContextSigningDecisionApplication.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\SigningDecisionApplication\UserControl\SigningDecisionApplication.xaml.cs">
       <DependentUpon>SigningDecisionApplication.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormirovanieSpiskov\AutoGenerateListAutomation\DataContext\DataContextGenerator.cs" />
+    <Compile Include="Form\FormirovanieSpiskov\AutoGenerateListAutomation\ViewGenerator\ViewGenerator.xaml.cs">
+      <DependentUpon>ViewGenerator.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\FormirovanieSpiskov\Spiski\DataContext\DataContextSpisok.cs" />
     <Compile Include="Form\FormirovanieSpiskov\Spiski\FormFormirovanie\FormSpisok.xaml.cs">

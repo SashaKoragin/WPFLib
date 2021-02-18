@@ -3,6 +3,10 @@
    public class PublicElementName
    {
         /// <summary>
+        /// Общий журнал заданий
+        /// </summary>
+        public static string PublicTaxViewTask = "Name:_layoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:UserOperationsView\\AutomationId:ultraPanel1\\AutomationId:splitContainer1\\AutomationId:mainGrid\\Name:user_operation row 1";
+        /// <summary>
         /// Дерево элементов
         /// </summary>
         public static string FullTree = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskpaneWorkspace\\AutomationId:ScenarioView\\AutomationId:scenarioTree\\";

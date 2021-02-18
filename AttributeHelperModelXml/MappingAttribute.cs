@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 
 
-namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad
+namespace AttributeHelperModelXml
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class DataNamesAttribute : Attribute
@@ -35,7 +35,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad
     }
     public class DataNamesMapper<TEntity> where TEntity : class, new()
     {
-        public TEntity Map(DataRow row)
+        public TEntity MapRow(DataRow row)
         {
             //Step 1 - Get the Column Names
             var columnNames = row.Table.Columns
@@ -80,11 +80,20 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad
                 {
                     PropertyMapHelper.Map(typeof(TEntity), row, prop, entity);
                 }
+                
                 entities.Add(entity);
             }
 
             return entities;
         }
+        /// <summary>
+        /// Конвертация из листа в массив классов
+        /// </summary>
+        /// <param name="listParamEntities">Массив объектов</param>
+        /// <returns></returns>
+        public TEntity[] ListToClass(List<TEntity> listParamEntities)
+        {
+            return listParamEntities.ToArray();
+        }
     }
-
 }

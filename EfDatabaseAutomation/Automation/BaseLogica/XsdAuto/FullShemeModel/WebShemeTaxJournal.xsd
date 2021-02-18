@@ -23,9 +23,9 @@
 			<xs:element ref="ModelKbkOnKbk" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="HelpKbkAuto" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="AllJournal129" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="SignatureBoss" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="Documen2NDFLIdentification" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="FormulNdfl" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="DeliveryDocument" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxJournalAutoWebPage">
@@ -539,28 +539,6 @@
 			<xs:documentation>Дата выявления нарушения</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="SignatureBoss">
-		<xs:annotation>
-			<xs:documentation>Подпись руководителя (Извещения, Решения)</xs:documentation>
-		</xs:annotation>
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="LogicsButton"/>
-				<xs:element ref="Id"/>
-				<xs:element ref="IsActual"/>
-			</xs:sequence>
-			<xs:attribute name="NameUser" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>ФИО Руководителя</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<xs:attribute name="IsSignature" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>Статус права подписи</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-		</xs:complexType>
-	</xs:element>
 	<xs:element name="IsActual" type="xs:boolean" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Актуальность подписи</xs:documentation>
@@ -763,6 +741,83 @@
 	<xs:element name="CountFl" type="xs:int">
 		<xs:annotation>
 			<xs:documentation>Количество Лиц 2000 доход</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DeliveryDocument">
+		<xs:annotation>
+			<xs:documentation>Отправленные документы</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RegNumber"/>
+				<xs:element ref="DateDocument"/>
+				<xs:element ref="DateSend"/>
+				<xs:element ref="DateDelivery"/>
+				<xs:element ref="Number"/>
+				<xs:element ref="God"/>
+				<xs:element ref="LogicsButton"/>
+				<xs:element ref="RegNumDeclarationDelivery"/>
+			</xs:sequence>
+			<xs:attribute name="LoginUser" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Логин пользователя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameDocument" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TypeFace" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Тип лица</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Knd" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КНД</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameDeclaration" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование декларации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RegNumber" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Регистрационный номер документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateDocument" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Дата документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateSend" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Дата получения документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateDelivery" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Дата отправки документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Number" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Номер</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="RegNumDeclarationDelivery" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Регистрационный номер отправленной декларации</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

@@ -2,11 +2,16 @@
 {
    public class Journal129AndJournal121
     {
-       public static string PublicName = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\";
+        public static string PublicName = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\";
+        /// <summary>
+        /// Публичный путь для нажатия на кнопку
+        /// </summary>
+        public static string PublicName129Click = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf2\\AutomationId:AvailableItemsView\\AutomationId:treeView\\";
+
         /// <summary>
         /// Панель Сведения о времени и месте расмотрения раскрыть
         /// </summary>
-        public static string PublicPanel = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:BusinessEntityViewPartBaseAsync\\AutomationId:contentHost\\ClassName:Pane\\ClassName:ScrollViewer\\ClassName:UCCont\\";
+        public static string PublicPanel = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:BusinessEntityViewPartBaseAsync\\AutomationId:contentHost\\ClassName:Pane\\ClassName:UCCont\\ClassName:ScrollViewer\\";
        /// <summary>
        /// Обновить данные перед автоматом
        /// </summary>
@@ -82,6 +87,10 @@
         /// </summary>
         public static string WindowHours = "AutomationId:TaxpayerDateTimeFormPeriod\\AutomationId:tabControl1\\AutomationId:tabPage2\\AutomationId:nbHour\\Name:Text area";
         /// <summary>
+        /// Минуты
+        /// </summary>
+        public static string WindowMinutes = "AutomationId:TaxpayerDateTimeFormPeriod\\AutomationId:tabControl1\\AutomationId:tabPage2\\AutomationId:nbMinute\\Name:Text area";
+        /// <summary>
         /// Ок кнопка нажатия даты и
         /// </summary>
         public static string WindowsOk = "AutomationId:TaxpayerDateTimeFormPeriod\\AutomationId:btnOk";
@@ -104,13 +113,26 @@
         public static string Izveshenie = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Материалы для рассмотрения\\Name:Извещение о времени и месте рассмотрения Акта\\Name:Извещение о времени и месте рассмотрения Акта\\Name:Извещение о времени и месте рассмотрения Акта";
 
         /// <summary>
+        /// Раскрыть решение о привлечении к ответственности
+        /// </summary>
+        public static string OpenReshenia = $"{PublicName129Click}Name:Рассмотрение материалов\\AutomationId:Expander\\ClassName:TextBlock";
+
+
+        /// <summary>
         /// Решение о привлечении лица к ответственности за налоговое правонарушение
         /// </summary>
-        public static string Reshenia = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Рассмотрение материалов\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение";
+        public static string Reshenia = $"{PublicName129Click}Name:Рассмотрение материалов\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение"; //    AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Рассмотрение материалов\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение";
+
+        /// <summary>
+        /// Раскрыть решение о привлечении к ответственности
+        /// </summary>
+        public static string OpenClosedComplex = $"{PublicName129Click}Name:Налоговые правонарушения\\AutomationId:Expander\\ClassName:TextBlock";
         /// <summary>
         /// Закрыть комплекс мероприятий
         /// </summary>
-        public static string ClosedComplex = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Налоговые правонарушения\\Name:Закрыть комплекс НПН\\Name:Закрыть комплекс НПН\\Name:Закрыть комплекс НПН";
+        public static string ClosedComplex = $"{PublicName129Click}Name:Налоговые правонарушения\\Name:Закрыть комплекс НПН";
+
+
         /// <summary>
         /// Раскрыть Сведения о времени и месте расмотрения раскрыть
         /// </summary>
@@ -234,6 +256,11 @@
         /// </summary>
         public static string Close = "Name:Отправка документов\\LocalizedControlType:название\\Name:Закрыть";
 
+        /// <summary>
+        /// Координаты от точки закрыть проблемный блок на Win 10 и Win 7 т.к. используется разное окно из разных api.
+        /// </summary>
+        public static string CloseA01 = "LocalizedControlType:название\\Name:Закрыть";
+
         ////Для задачи 121 Налоговое администрирование\Контрольная работа (налоговые проверки)\121. Камеральная налоговая проверка\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
 
         /// <summary>
@@ -279,6 +306,30 @@
         /// Акт налоговой проверки
         /// </summary>
         public static string IsAktKnp = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:_this\\Name:Материалы для рассмотрения\\Name:Rnivc.Cam.Knp.Client.PfTemp.CustomOperations.OperationCustomEntity.DfCEXamlViewSingle\\AutomationId:Header\\ClassName:DfCEXamlViewSingle\\Name:Акт налоговой проверки";
+
+        /////////Новое окно с делителем ;
+        /// <summary>
+        /// Дата окончания налоговой проверки
+        /// </summary>
+        public static string NewWindowEnable = "Name;Признак наличия нарушений:"; // \\dateTimePicker1";
+        /// <summary>
+        /// Признак наличие нарушений
+        /// </summary>
+        public static string NewComboBoxError = "Name;Признак наличия нарушений:\\ClassName;ComboBox";
+        /// <summary>
+        /// Ок Редактирование
+        /// </summary>
+        public static string NewOkEdit = "AutomationId:BtnOk";
+        /// <summary>
+        /// Окно Внимание!
+        /// </summary>
+        public static string NewWarningOk = "Внимание!";
+        /// <summary>
+        /// На новом окне кнопка Button
+        /// </summary>
+        public static string NewWarningButtonOk = "ClassName:Button";
+        /////////Конец нового окна с делителем ;
+
         /// <summary>
         /// Ловим окно Редактировать
         /// </summary>
@@ -299,11 +350,11 @@
         /// Окно Внимание!
         /// </summary>
         public static string WarningOk = "AutomationId:KnpComplexFieldsEditor\\Name:Внимание!\\AutomationId:1";
+        
         /// <summary>
         /// Акт налоговой проверки
         /// </summary>
         public static string AktNo = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Материалы для рассмотрения\\Name:Акт налоговой проверки\\Name:Акт налоговой проверки\\ClassName:TextBlock";
-
         /// <summary>
         /// Установленно
         /// </summary>
@@ -313,23 +364,48 @@
         /// </summary>
         public static string EstablishedNote = $"{PublicPanel}AutomationId:gb_6\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\AutomationId:txbUstanovleno";
         /// <summary>
+        /// Загрузить шаблон!
+        /// </summary>
+        public static string DonloadButton = $"{PublicPanel}AutomationId:gb_6\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\AutomationId:ubDownload";
+        /// <summary>
         /// Шаблон текста для проверки
         /// {0} Период 
         /// {1} Год
         /// {2} Срок предоставления
         /// {3} Фактическое предоставление
         /// </summary>
-        public static string Template1151085 = @"     В соответствии с пунктом 2 статьи 80 НК РФ лицо, признаваемое налогоплательщиком по одному или нескольким налогам, не осуществляющее операций, в результате которых происходит движение денежных средств на его счетах в банках (в кассе организации), и не имеющее по этим налогам объектов налогообложения, представляет по данным налогам единую (упрощенную) налоговую декларацию."+
-                                          "\n     Единая (упрощенная) налоговая декларация представляется в налоговый орган по месту нахождения организации или месту жительства физического лица не позднее 20-го числа месяца, следующего за истекшими кварталом, полугодием, 9 месяцами, календарным годом." +
-                                          "\n     Таким образом, в нарушение п. 2 ст. 80 НК РФ налогоплательщиком не выполнена обязанность по своевременному представлению в налоговый орган единой (упрощенной) налоговой декларации {0} {1}. При установленном сроке представления – {2}, календарным годом, налоговая декларация фактически представлена - {3}." +
-                                          "\n     В силу п. 1 ст. 119 НК РФ непредставление налогоплательщиком в установленный законодательством о налогах и сборах срок налоговой декларации в налоговый орган по месту учета влечет взыскание штрафа в размере 5 процентов неуплаченной суммы налога, подлежащей уплате (доплате) на основании этой декларации, за каждый полный или неполный месяц со дня, установленного для ее представления, но не более 30 процентов указанной суммы и не менее 1000 рублей.";
-
-        public static string Template1151006 = @"     Согласно подпункту 4 пункта 1 статьи 23 Налогового кодекса Российской Федерации (далее – НК РФ) налогоплательщики обязаны представлять в установленном порядке в налоговый орган по месту учета налоговые декларации (расчеты), если такая обязанность предусмотрена законодательством о налогах и сборах." +
+        public static string AktTemplate1151085 = @"     В соответствии с пунктом 2 статьи 80 НК РФ лицо, признаваемое налогоплательщиком по одному или нескольким налогам, не осуществляющее операций, в результате которых происходит движение денежных средств на его счетах в банках (в кассе организации), и не имеющее по этим налогам объектов налогообложения, представляет по данным налогам единую (упрощенную) налоговую декларацию."+
+                                                  "\n     Единая (упрощенная) налоговая декларация представляется в налоговый орган по месту нахождения организации или месту жительства физического лица не позднее 20-го числа месяца, следующего за истекшими кварталом, полугодием, 9 месяцами, календарным годом." +
+                                                  "\n     Таким образом, в нарушение п. 2 ст. 80 НК РФ налогоплательщиком не выполнена обязанность по своевременному представлению в налоговый орган единой (упрощенной) налоговой декларации {0} {1}. При установленном сроке представления – {2}, календарным годом, налоговая декларация фактически представлена - {3}." +
+                                                  "\n     В силу п. 1 ст. 119 НК РФ непредставление налогоплательщиком в установленный законодательством о налогах и сборах срок налоговой декларации в налоговый орган по месту учета влечет взыскание штрафа в размере 5 процентов неуплаченной суммы налога, подлежащей уплате (доплате) на основании этой декларации, за каждый полный или неполный месяц со дня, установленного для ее представления, но не более 30 процентов указанной суммы и не менее 1000 рублей.";
+        /// <summary>
+        /// Шаблон акта по КНД 1151006
+        /// </summary>
+        public static string AktTemplate1151006 = @"     Согласно подпункту 4 пункта 1 статьи 23 Налогового кодекса Российской Федерации (далее – НК РФ) налогоплательщики обязаны представлять в установленном порядке в налоговый орган по месту учета налоговые декларации (расчеты), если такая обязанность предусмотрена законодательством о налогах и сборах." +
                                            "\n     В силу пункта 6 статьи 80 НК РФ налоговая декларация (расчет) представляется в установленные законодательством о налогах и сборах сроки." +
                                            "\n     В соответствии с пунктом 1 статьи 289 НК РФ налогоплательщики независимо от наличия у них обязанности по уплате налога и (или) авансовых платежей по налогу на прибыль, особенностей исчисления и уплаты налога обязаны по истечении каждого отчетного и налогового периода представлять в налоговые органы по месту своего нахождения и месту нахождения каждого обособленного подразделения, если иное не предусмотрено настоящим пунктом, соответствующие налоговые декларации в порядке, определенном настоящей статьей." +
                                            "\n     На основании пункта 4 статьи 289 НК РФ налогоплательщики (налоговые агенты) представляют налоговые декларации по налогу на прибыль по итогам налогового периода не позднее 28 марта года, следующего за истекшим налоговым периодом. Налоговым периодом по налогу признается календарный год (п. 1 ст. 285 НК РФ)." +
                                            "\n     Таким образом, в нарушение подпункта 4 пункта 1 статьи 23, пункта 6 статьи 80, пункта 4 статьи 289 НК РФ, Обществом не выполнена обязанность по своевременному представлению в налоговый орган по месту своего нахождения налоговой декларации по налогу на прибыль организаций {0} {1} года. При установленном сроке представления – {2}, календарным годом, налоговая декларация фактически представлена – {3}." +
                                            "\n     В силу п. 1 ст. 119 НК РФ непредставление налогоплательщиком в установленный законодательством о налогах и сборах срок налоговой декларации в налоговый орган по месту учета влечет взыскание штрафа в размере 5 процентов неуплаченной суммы налога, подлежащей уплате (доплате) на основании этой декларации, за каждый полный или неполный месяц со дня, установленного для ее представления, но не более 30 процентов указанной суммы и не менее 1000 рублей.";
+        /// <summary>
+        /// Шаблон акта по КНД 1151111
+        /// </summary>
+        public static string AktTemplate1151111 = @"     Налогоплательщиками, плательщиками сборов, плательщиками страховых взносов признаются организации и физические лица, на которых в соответствии с НК РФ возложена обязанность уплачивать соответственно налоги, сборы, страховые взносы (ст. 19 НК РФ)." +
+                                           "\n    Согласно пп. 1 п. 1 ст. 419 НК РФ плательщиками страховых взносов признаются следующие лица, являющиеся страхователями в соответствии с федеральными законами о конкретных видах обязательного социального страхования:" +
+                                           "\n  1) лица, производящие выплаты и иные вознаграждения физическим лицам:" +
+                                           "\n      организации;" +
+                                           "\n      индивидуальные предприниматели;" +
+                                           "\n  физические лица, не являющиеся индивидуальными предпринимателями." +
+                                           "\n    На основании пп. 3 п. 3,4 ст. 23 НК РФ плательщики страховых взносов обязаны представлять в установленном порядке в налоговый орган по месту учета расчеты по страховым взносам." +
+                                           "\n    Расчет по страховым взносам представляет собой письменное заявление или заявление плательщика страховых взносов, составленное в электронной форме и переданное по телекоммуникационным каналам связи с применением усиленной квалифицированной электронной подписи или через личный кабинет налогоплательщика, об объекте обложения страховыми взносами, о базе для исчисления страховых взносов, об исчисленной сумме страховых взносов и о других данных, служащих основанием для исчисления и уплаты страховых взносов, если иное не предусмотрено НК РФ. Расчет по страховым взносам представляется в случаях, предусмотренных главой 34 (п. 1ст. 80 НК РФ)." +
+                                           "\n    Согласно ст. 80 Налогового кодекса Российской Федерации (далее НК РФ) налоговая декларация представляет собой письменное заявление налогоплательщика об объектах налогообложения, о полученных доходах и произведенных расходах, об источниках доходов, о налоговой базе, налоговых льготах, об исчисленной сумме налога и (или) о других данных, служащих основанием для исчисления и уплаты налога." +
+                                           "\n    П. 4 ст. 80 НК РФ предусмотрено, что налоговая декларация (расчет по страховым взносам) может быть представлена налогоплательщиком (плательщиком сбора, налоговым агентом) в налоговый орган следующими способами: лично или через представителя, направлена в виде почтового отправления с описью вложения, передана по телекоммуникационным каналам связи." +
+                                           "\n    В соответствии с п.7 ст. 431 НК РФ плательщики, указанные в пп. 1 п. 1 ст. 419 НК РФ  (за исключением физических лиц, производящих выплаты, указанные в пп. 3 п. 3 ст. 422), представляют расчет по страховым взносам не позднее 30-го числа месяца, следующего за расчетным (отчетным) периодом, в налоговый орган по месту нахождения организации и по месту нахождения обособленных подразделений организаций, которые начисляют выплаты и иные вознаграждения в пользу физических лиц, по месту жительства физического лица, производящего выплаты и иные вознаграждения физическим лицам" +
+                                           "\n    В нарушение вышеуказанной статьи первичный расчет по страховым взносам {0} {1} года в налоговый орган поступил только {2} согласно которой сумма страховых взносов, подлежащая уплате, исчислена в размере  {3}  руб." +
+                                           "\n    Установлено несвоевременное представление в нарушение установленного  пп.4 п. 1 ст. 23, п. 6 ст. 80,  пп. 1 п. 1 ст. 419 и п. 7 ст. 431 НК РФ срока, установленного для представления расчета по страховым взносам за 03 месяца 2020 года.";
+
+
+
         /// <summary>
         /// Шаблон под номера извещений для ОКП 5 
         /// </summary>
@@ -346,8 +422,11 @@
         /// Протокол шаблон
         /// </summary>
         public static string Protokol = "Протокол рассмотрения материалов налоговой проверки № {0} от {1}";
+        
+        
+        
         /// <summary>
-        /// Добавление к шаблону установленно
+        /// Добавление к шаблону установлено
         /// </summary>
         public static string TemplateAddText = @"     По результатам камеральной налоговой проверки в рамках ст.88 Налогового кодекса РФ выявлено, что налогоплательщик не исполнил свою обязанность по представлению в налоговый орган расчета по страховым взносам {0} {1} года и тем самым совершил виновное противоправное деяние, за которое п.1  ст.119 НК РФ предусмотрена налоговая ответственность." +
                                                 "     В соответствии с п.п.4, п.5 ст.101 НК РФ обстоятельства, исключающие вину лица в совершении налогового правонарушения или обстоятельства, смягчающие или отягчающие ответственность за совершение налогового правонарушения, не установлены.";
@@ -372,6 +451,11 @@
         /// Закрыть комплекс мероприятий по 121 статье
         /// </summary>
         public static string ClosedComplex121 = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Камеральная налоговая проверка\\Name:Закрыть комплекс КНП\\Name:Закрыть комплекс КНП\\Name:Закрыть комплекс КНП";
+
+        /// <summary>
+        /// Не сохранять Акт налоговой проверки
+        /// </summary>
+        public static string WinCloseErrorAct = "Name:Сохранить изменения.Акт Налоговой Проверки\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnNo";
         /// <summary>
         /// Не сохранять изменения в случае ошибки
         /// </summary>
@@ -406,6 +490,22 @@
         /// </summary>
         public static string DocumentSendDelivery = "Name:DockTop\\Name:Ribbon\\Name:Журнал документов, выписанных в ходе налоговой проверки\\Name:Проставить дату вручения";
         /// <summary>
+        /// Способ отправки нажать
+        /// </summary>
+        public static string SendMailGrid = $"{PublicName}AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer";
+        /// <summary>
+        /// Документы в панеле по отправки
+        /// </summary>
+        public static string Sender = "AutomationId:detailsTab\\AutomationId:NavigatorDetailsControl\\AutomationId:navigator\\AutomationId:splitContainer\\AutomationId:gridData";
+        /// <summary>
+        /// Отправить в A01
+        /// </summary>
+        public static string SendA01 = "Name:DockTop\\Name:Ribbon\\Name:Журнал документов, выписанных в ходе налоговой проверки\\Name:Отправить в А01";
+        /// <summary>
+        /// Сообщение ОК
+        /// </summary>
+        public static string WinA01Ok = "Name:Отправка документа\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:ОК";
+        /// <summary>
         /// Дата отправки
         /// </summary>
         public static string WinSendAndSend = "AutomationId:InfoOfSend\\AutomationId:dateSend";
@@ -417,5 +517,15 @@
         /// Кнопка сохранить
         /// </summary>
         public static string WindowSave = "AutomationId:InfoOfSend\\AutomationId:buttonSave";
+
+
+        /// <summary>
+        /// Утвердить документ об утверждении налоговых обязательств
+        /// </summary>
+        public static string Approve = "Name:DockTop\\Name:Ribbon\\Name:Налоговые обязанности\\Name:Изменения в НО\\Name:Утвердить";
+        /// <summary>
+        /// Проверка поля на утверждение
+        /// </summary>
+        public static string ApproveInspector = "Name:_layoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:ViewApproveNO\\AutomationId:ws_Main\\Name:Событие об изменении данных налогоплательщика\\AutomationId:ViewEvenInfo\\AutomationId:tst_EventStateProcess";
     }
 }

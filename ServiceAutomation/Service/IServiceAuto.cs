@@ -5,6 +5,7 @@ using System.ServiceModel.Web;
 using System.Threading.Tasks;
 using AisPoco.Ifns51.FromAis;
 using AisPoco.Ifns51.ToAis;
+using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace;
 using EfDatabaseAutomation.Automation.SelectParametrSheme;
 using ServiceAutomation.LoginAD.XsdShemeLogin;
@@ -110,19 +111,31 @@ namespace ServiceAutomation.Service
         /// Снять статус для повторения отработки
         /// http://localhost:8050/ServiceAutomation/CheckStatusNone
         /// </summary>
-        /// <param name="idModel">Ун модели</param>
+        /// <param name="idModels">Уникальные номера моделей</param>
         /// <param name="status">Статус обработки ветки</param>
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/CheckStatusNone?status={status}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        void CheckStatus(int idModel, string status=null);
+        Task CheckStatus(List<int> idModels, string status=null);
         /// <summary>
         /// Генерация докладной записки Юридического лица
         /// </summary>
         /// <param name="innUl">ИНН ЮЛ</param>
+        /// <param name="year">Год отчета выгрузки</param>
         /// <returns></returns>
         [OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/GenerateNoteReportUl", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        Task<Stream> GenerateNoteReportUl(string innUl);
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/GenerateNoteReportUl?year={year}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> GenerateNoteReportUl(string innUl, int year);
+
+        /// <summary>
+        /// Генерация доходов и расходов по банку книги покупок продаж
+        /// </summary>
+        /// <param name="innUl">ИНН ЮЛ</param>
+        /// <param name="year">Год отчета выгрузки</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/GenerateBookSales?year={year}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> GenerateBookSales(string innUl, int year);
+
         /// <summary>
         /// Формирование выписки данных в БД
         /// </summary>
@@ -131,14 +144,6 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/GenerateStatement", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<Stream> GenerateStatement(ModelSelect model);
-        /// <summary>
-        /// Формирование выписки данных в БД
-        /// </summary>
-        /// <param name="signatureSenderTaxJournalOkp2">Ун подписи</param>
-        /// <returns></returns>
-        [OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/ActualizationSignature", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        Task<bool> ActualizationSignature(int signatureSenderTaxJournalOkp2);
 
         /// <summary>
         /// Генерация отчета документа на сервере
@@ -161,6 +166,38 @@ namespace ServiceAutomation.Service
         /// <param name="idDocument">Документ</param>
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/CheckStatusError", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        Task CheckStatusError(long idDocument);
+        Task CheckStatusError(List<long> idDocument);
+        /// <summary>
+        /// Все подписанты в БД
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AllSender", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> AllSender();
+        /// <summary>
+        /// Таблица с подписантами Акты Извещение Решения
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AllSenderTaxJournal", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> AllSenderTaxJournal();
+
+        /// <summary>
+        /// Добавление или редактирование Отдела и подписанта к нему
+        /// </summary>
+        /// <param name="department">Отдел и подписант</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddAndEditDepartment", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<DepartamentOtdel> AddAndEditDepartment(DepartamentOtdel department);
+        /// <summary>
+        /// Выгрузка сводной таблицы по книгам продаж
+        /// http://localhost:8050/ServiceAutomation/LoadFileSummarySales
+        /// </summary>
+        /// <param name="inn">Запрос</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadFileSummarySales", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> LoadFileSummarySales(string inn);
     }
 }

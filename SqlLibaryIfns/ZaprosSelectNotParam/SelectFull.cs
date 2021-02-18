@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.IO;
-using System.Runtime.InteropServices;
 using EfDatabaseErrorInventory;
 using EfDatabaseInvoice;
 using EfDatabaseParametrsModel;
@@ -23,6 +23,7 @@ using ServiceWcf = LibaryXMLAutoModelServiceWcfCommand.TestIfnsService.ServiceWc
 using LogicaSelect = EfDatabaseParametrsModel.LogicaSelect;
 using EfDatabaseXsdMail;
 using Mail = LibaryXMLAutoModelXmlSql.Model.ModelMail.Mail;
+using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll;
 
 namespace SqlLibaryIfns.ZaprosSelectNotParam
 {
@@ -228,7 +229,7 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                                 typeof(Book)));
                 case 14:
                     return
-                        serializeJson.JsonLibary(
+                        serializeJson.JsonLibraryVks(
                             (FullError)
                             sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
                                 typeof(FullError)));
@@ -356,6 +357,29 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
             var tableTelephone = sqlConnect.ReportQbe(connectionString, sqlSelect);
             xlsx.ReportSave(pathSaveReport, nameFile, nameReport, tableTelephone);
             return DownloadFile(Path.Combine(pathSaveReport, $"{nameFile}.xlsx"));
+        }
+        /// <summary>
+        /// Выгрузка сводной таблицы по покупкам из таблицы ReportXlsx
+        /// </summary>
+        /// <param name="pathSaveReport">Путь сохранения</param>
+        /// <param name="inn">ИНН</param>
+        /// <returns></returns>
+        public Stream GenerateSummarySales(string pathSaveReport, string inn)
+        {
+            DataSet dataReport = new DataSet();
+            var selectProcedureReport = new SelectAll();
+            var reportModel = selectProcedureReport.ReturnReportModelXlsx(1);
+            var fullPath = Path.Combine(pathSaveReport, reportModel.NameFile);
+            dataReport.Tables.Add(selectProcedureReport.ReturnModelReport(reportModel, inn));
+            selectProcedureReport.Dispose();
+            if (dataReport.Tables[0] != null)
+            {
+                var xlsx = new ReportExcel();
+                xlsx.ReportSaveFullDataSet(fullPath, dataReport);
+                xlsx.Dispose();
+                return DownloadFile(fullPath);
+            }
+            return null;
         }
 
         /// <summary>

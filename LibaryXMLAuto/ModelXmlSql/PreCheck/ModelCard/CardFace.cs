@@ -49,6 +49,10 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
         
         private FlRukUcrh[] flRukUcrhField;
         
+        private SummaryBankSales[] summaryBankSalesField;
+        
+        private SummaryBankPurchase[] summaryBankPurchaseField;
+        
         /// <remarks/>
         public FaceUl FaceUl {
             get {
@@ -187,6 +191,28 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
             }
             set {
                 this.flRukUcrhField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("SummaryBankSales")]
+        public SummaryBankSales[] SummaryBankSales {
+            get {
+                return this.summaryBankSalesField;
+            }
+            set {
+                this.summaryBankSalesField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("SummaryBankPurchase")]
+        public SummaryBankPurchase[] SummaryBankPurchase {
+            get {
+                return this.summaryBankPurchaseField;
+            }
+            set {
+                this.summaryBankPurchaseField = value;
             }
         }
     }
@@ -1045,9 +1071,9 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
         
         private string addresObjectField;
         
-        private string dateFactStartField;
+        private string dateStartField;
         
-        private string dateFactFinishField;
+        private string dateFinishField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -1073,23 +1099,23 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string DateFactStart {
+        public string DateStart {
             get {
-                return this.dateFactStartField;
+                return this.dateStartField;
             }
             set {
-                this.dateFactStartField = value;
+                this.dateStartField = value;
             }
         }
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string DateFactFinish {
+        public string DateFinish {
             get {
-                return this.dateFactFinishField;
+                return this.dateFinishField;
             }
             set {
-                this.dateFactFinishField = value;
+                this.dateFinishField = value;
             }
         }
     }
@@ -1697,6 +1723,338 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
             }
             set {
                 this.priznakField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class SummaryBankSales {
+        
+        private int idField;
+        
+        private string nameField;
+        
+        private string innField;
+        
+        private string kppField;
+        
+        private decimal yearBookSalesSumm1Field;
+        
+        private decimal yearCashBankSumm1Field;
+        
+        private decimal yearBookSalesSumm2Field;
+        
+        private decimal yearCashBankSumm2Field;
+        
+        private decimal yearBookSalesSumm3Field;
+        
+        private decimal yearCashBankSumm3Field;
+        
+        private decimal yearBookSalesSumm4Field;
+        
+        private decimal yearCashBankSumm4Field;
+        
+        public SummaryBankSales() {
+            this.yearBookSalesSumm1Field = ((decimal)(0.00m));
+            this.yearCashBankSumm1Field = ((decimal)(0.00m));
+            this.yearBookSalesSumm2Field = ((decimal)(0.00m));
+            this.yearCashBankSumm2Field = ((decimal)(0.00m));
+            this.yearBookSalesSumm3Field = ((decimal)(0.00m));
+            this.yearCashBankSumm3Field = ((decimal)(0.00m));
+            this.yearBookSalesSumm4Field = ((decimal)(0.00m));
+            this.yearCashBankSumm4Field = ((decimal)(0.00m));
+        }
+        
+        /// <remarks/>
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Kpp {
+            get {
+                return this.kppField;
+            }
+            set {
+                this.kppField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearBookSalesSumm1 {
+            get {
+                return this.yearBookSalesSumm1Field;
+            }
+            set {
+                this.yearBookSalesSumm1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearCashBankSumm1 {
+            get {
+                return this.yearCashBankSumm1Field;
+            }
+            set {
+                this.yearCashBankSumm1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearBookSalesSumm2 {
+            get {
+                return this.yearBookSalesSumm2Field;
+            }
+            set {
+                this.yearBookSalesSumm2Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearCashBankSumm2 {
+            get {
+                return this.yearCashBankSumm2Field;
+            }
+            set {
+                this.yearCashBankSumm2Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearBookSalesSumm3 {
+            get {
+                return this.yearBookSalesSumm3Field;
+            }
+            set {
+                this.yearBookSalesSumm3Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearCashBankSumm3 {
+            get {
+                return this.yearCashBankSumm3Field;
+            }
+            set {
+                this.yearCashBankSumm3Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearBookSalesSumm4 {
+            get {
+                return this.yearBookSalesSumm4Field;
+            }
+            set {
+                this.yearBookSalesSumm4Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearCashBankSumm4 {
+            get {
+                return this.yearCashBankSumm4Field;
+            }
+            set {
+                this.yearCashBankSumm4Field = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class SummaryBankPurchase {
+        
+        private int idField;
+        
+        private string innField;
+        
+        private string kppField;
+        
+        private string nameField;
+        
+        private decimal yearBookSalesSumm1Field;
+        
+        private decimal yearCashBankSumm1Field;
+        
+        private decimal yearBookSalesSumm2Field;
+        
+        private decimal yearCashBankSumm2Field;
+        
+        private decimal yearBookSalesSumm3Field;
+        
+        private decimal yearCashBankSumm3Field;
+        
+        private decimal yearBookSalesSumm4Field;
+        
+        private decimal yearCashBankSumm4Field;
+        
+        public SummaryBankPurchase() {
+            this.yearBookSalesSumm1Field = ((decimal)(0.00m));
+            this.yearCashBankSumm1Field = ((decimal)(0.00m));
+            this.yearBookSalesSumm2Field = ((decimal)(0.00m));
+            this.yearCashBankSumm2Field = ((decimal)(0.00m));
+            this.yearBookSalesSumm3Field = ((decimal)(0.00m));
+            this.yearCashBankSumm3Field = ((decimal)(0.00m));
+            this.yearBookSalesSumm4Field = ((decimal)(0.00m));
+            this.yearCashBankSumm4Field = ((decimal)(0.00m));
+        }
+        
+        /// <remarks/>
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string Kpp {
+            get {
+                return this.kppField;
+            }
+            set {
+                this.kppField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearBookSalesSumm1 {
+            get {
+                return this.yearBookSalesSumm1Field;
+            }
+            set {
+                this.yearBookSalesSumm1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearCashBankSumm1 {
+            get {
+                return this.yearCashBankSumm1Field;
+            }
+            set {
+                this.yearCashBankSumm1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearBookSalesSumm2 {
+            get {
+                return this.yearBookSalesSumm2Field;
+            }
+            set {
+                this.yearBookSalesSumm2Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearCashBankSumm2 {
+            get {
+                return this.yearCashBankSumm2Field;
+            }
+            set {
+                this.yearCashBankSumm2Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearBookSalesSumm3 {
+            get {
+                return this.yearBookSalesSumm3Field;
+            }
+            set {
+                this.yearBookSalesSumm3Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearCashBankSumm3 {
+            get {
+                return this.yearCashBankSumm3Field;
+            }
+            set {
+                this.yearCashBankSumm3Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearBookSalesSumm4 {
+            get {
+                return this.yearBookSalesSumm4Field;
+            }
+            set {
+                this.yearBookSalesSumm4Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal YearCashBankSumm4 {
+            get {
+                return this.yearCashBankSumm4Field;
+            }
+            set {
+                this.yearCashBankSumm4Field = value;
             }
         }
     }

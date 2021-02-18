@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Automation;
@@ -12,6 +13,7 @@ using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb;
 using EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll;
+using LibaryXMLAutoInventarization.Model.ModelSelectAll;
 using LibraryAIS3Windows.ButtonFullFunction.PreCheck;
 using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
 using LibraryAIS3Windows.AutomationsUI.Otdels.It;
@@ -47,6 +49,7 @@ using ViewModelLib.ModelTestAutoit.PublicModel.ModelDatePickerAdd;
 using LibraryAIS3Windows.AutomationsUI.Otdels.PublicJournal129And121;
 using ViewModelLib.ModelTestAutoit.PublicModel.RaschetBuh;
 using LibraryAIS3Windows.ButtonFullFunction.Okp1Function;
+
 
 namespace LibraryAIS3Windows.ButtonsClikcs
 {
@@ -919,120 +922,147 @@ namespace LibraryAIS3Windows.ButtonsClikcs
             libraryAutomation.FindFirstElement(RashetBudElementName.DateGrid);
             var addObjectPl = new AddObjectDb();
             RegxStart regStart = new RegxStart();
-            var listMemo = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement).Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("List"));
-            var listNotNull = listMemo.Where(elem => libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.SelectAutomationColrction(elem)
-                                                     .Cast<AutomationElement>().First(elemMemo => elemMemo.Current.Name.Contains("Номер расчетного документа (3)"))) != ""
-                                                     && libraryAutomation.GetColorPixel(libraryAutomation.SelectAutomationColrction(elem)
-                                                     .Cast<AutomationElement>().First(elemMemo => elemMemo.Current.Name.Contains("Состояние уточнения")))!= "e79621").ToArray();
+            var listMemo = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement)
+                .Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("List"));
+            var listNotNull = listMemo.Where(elem => libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                                         libraryAutomation.SelectAutomationColrction(elem)
+                                                             .Cast<AutomationElement>().First(elemMemo =>
+                                                                 elemMemo.Current.Name.Contains(
+                                                                     "Номер расчетного документа (3)"))) != ""
+                                                     && libraryAutomation.GetColorPixel(libraryAutomation
+                                                         .SelectAutomationColrction(elem)
+                                                         .Cast<AutomationElement>().First(elemMemo =>
+                                                             elemMemo.Current.Name.Contains("Состояние уточнения"))) !=
+                                                     "e79621").ToArray();
             foreach (var automationElement in listNotNull)
             {
-                    if (statusButton.Iswork)
-                    {
-                        var kbkOnKbk = new ModelKbkOnKbk();
-                        automationElement.SetFocus();
+                if (statusButton.Iswork)
+                {
+                    var kbkOnKbk = new ModelKbkOnKbk();
+                    automationElement.SetFocus();
 
-                        kbkOnKbk.IdDoc = Convert.ToInt64(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                            libraryAutomation.SelectAutomationColrction(automationElement)
-                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Номер расчетного документа (3)"))));
+                    kbkOnKbk.IdDoc = Convert.ToInt64(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation.SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("Номер расчетного документа (3)"))));
 
-                        kbkOnKbk.InnPayer = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                            libraryAutomation.SelectAutomationColrction(automationElement)
-                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН плательщика (60)"))).Trim();
-                    
-                        kbkOnKbk.KbkIfns = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                            libraryAutomation.SelectAutomationColrction(automationElement)
-                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КБК (104)")));
+                    kbkOnKbk.InnPayer = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation.SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("ИНН плательщика (60)"))).Trim();
 
-                        kbkOnKbk.Kbk100Before = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                            libraryAutomation.SelectAutomationColrction(automationElement)
-                                .Cast<AutomationElement>().First(elem => elem.Current.Name=="КБК"));
+                    kbkOnKbk.KbkIfns = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation.SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КБК (104)")));
 
-                        kbkOnKbk.Oktmo105 = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                            libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>()
-                                .First(elem => elem.Current.Name.Contains("ОКТМО (ОКАТО) (105)")));
+                    kbkOnKbk.Kbk100Before = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation.SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name == "КБК"));
+
+                    kbkOnKbk.Oktmo105 = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("ОКТМО (ОКАТО) (105)")));
 
                     kbkOnKbk.OktmoUfk = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                            libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>()
-                                .First(elem => elem.Current.Name =="ОКТМО (ОКАТО)"));
+                        libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name == "ОКТМО (ОКАТО)"));
 
 
                     kbkOnKbk.TpPayerBefore = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                            libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>()
-                                .First(elem => elem.Current.Name.Contains("Основание платежа (106)")));
+                        libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("Основание платежа (106)")));
 
-                        kbkOnKbk.StatusPayerBefore = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                            libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>()
-                                .First(elem => elem.Current.Name.Contains("Тип платежа (110)")));
+                    kbkOnKbk.StatusPayerBefore = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("Тип платежа (110)")));
 
-                        kbkOnKbk.Payment = Convert.ToDecimal(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                    kbkOnKbk.Payment = Convert.ToDecimal(
+                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
                             libraryAutomation.SelectAutomationColrction(automationElement)
                                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Сумма (7)"))));
 
-                        kbkOnKbk.InnBank = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    kbkOnKbk.InnBank = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation
                             .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН получателя (61)")));
+                            .Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("ИНН получателя (61)")));
 
-                        kbkOnKbk.KppBank = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    kbkOnKbk.KppBank = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation
                             .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КПП получателя (103)")));
+                            .Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("КПП получателя (103)")));
 
-                        if ((String.IsNullOrWhiteSpace(kbkOnKbk.Oktmo105) || Regex.Matches(kbkOnKbk.Oktmo105, @"(0{6})").Count > 0)|| (String.IsNullOrWhiteSpace(kbkOnKbk.OktmoUfk) || Regex.Matches(kbkOnKbk.OktmoUfk, @"(0{6})").Count > 0))
+                    if ((String.IsNullOrWhiteSpace(kbkOnKbk.Oktmo105) ||
+                         Regex.Matches(kbkOnKbk.Oktmo105, @"(0{6})").Count > 0) ||
+                        (String.IsNullOrWhiteSpace(kbkOnKbk.OktmoUfk) ||
+                         Regex.Matches(kbkOnKbk.OktmoUfk, @"(0{6})").Count > 0))
+                    {
+                        kbkOnKbk.StatusError = "#E80A0A";
+                        kbkOnKbk.Conclusion = "Провести уточнение не возможно надо проверять ОКТМО!!!";
+                        addObjectPl.AddModelKbkOnKbk(kbkOnKbk);
+                    }
+                    else
+                    {
+                        PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.StartUtoch);
+                        while (true)
                         {
-                            kbkOnKbk.StatusError = "#E80A0A";
-                            kbkOnKbk.Conclusion = "Провести уточнение не возможно надо проверять ОКТМО!!!";
+                            if (libraryAutomation.IsEnableElements(RashetBudElementName.WindowsStartYes, null, true) !=
+                                null)
+                            {
+                                libraryAutomation.ClickElements(RashetBudElementName.WindowsStartYes, null, true);
+                                while (true)
+                                {
+                                    if (libraryAutomation.IsEnableElements(RashetBudElementName.SendKbk, null, true) !=
+                                        null)
+                                    {
+                                        break;
+                                    }
+                                }
+
+                                break;
+                            }
+                        }
+
+                        if (regStart.UseNalog(libraryAutomation, kbkOnKbk))
+                        {
+                            PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                RashetBudElementName.Utverjdenie);
+                            while (true)
+                            {
+                                if (libraryAutomation.IsEnableElements(RashetBudElementName.WinUtoch, null, true) !=
+                                    null)
+                                {
+                                    libraryAutomation.ClickElements(RashetBudElementName.WinUtoch, null, true);
+                                    break;
+                                }
+                            }
+
+                            kbkOnKbk.StatusError = "#50D413";
+                            kbkOnKbk.Conclusion = "Уточнение проведено успешно!!!";
                             addObjectPl.AddModelKbkOnKbk(kbkOnKbk);
                         }
                         else
                         {
-                            PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.StartUtoch);
+                            //Выход из уточнения
+                            PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                RashetBudElementName.ButtonNotUtoch);
                             while (true)
                             {
-                                if (libraryAutomation.IsEnableElements(RashetBudElementName.WindowsStartYes, null, true) != null)
+                                if (libraryAutomation.IsEnableElements(RashetBudElementName.WinNotUtoch, null, true) !=
+                                    null)
                                 {
-                                    libraryAutomation.ClickElements(RashetBudElementName.WindowsStartYes, null, true);
-                                    while(true)
-                                    {
-                                        if (libraryAutomation.IsEnableElements(RashetBudElementName.SendKbk, null, true) != null)
-                                        {
-                                            break;
-                                        }
-                                    }
+                                    libraryAutomation.ClickElements(RashetBudElementName.WinNotUtoch, null, true);
                                     break;
                                 }
                             }
-                            if (regStart.UseNalog(libraryAutomation, kbkOnKbk))
-                            {
-                                PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.Utverjdenie);
-                                while (true)
-                                {
-                                    if (libraryAutomation.IsEnableElements(RashetBudElementName.WinUtoch, null, true) != null)
-                                    {
-                                        libraryAutomation.ClickElements(RashetBudElementName.WinUtoch, null, true);
-                                        break;
-                                    }
-                                }
-                                kbkOnKbk.StatusError = "#50D413";
-                                kbkOnKbk.Conclusion = "Уточнение проведено успешно!!!";
-                                addObjectPl.AddModelKbkOnKbk(kbkOnKbk);
-                            }
-                            else
-                            {
-                                //Выход из уточнения
-                                PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.ButtonNotUtoch);
-                                while (true)
-                                {
-                                    if (libraryAutomation.IsEnableElements(RashetBudElementName.WinNotUtoch, null, true) != null)
-                                    {
-                                        libraryAutomation.ClickElements(RashetBudElementName.WinNotUtoch, null, true);
-                                        break;
-                                    }
-                                }
-                                kbkOnKbk.StatusError = "#E80A0A";
-                                kbkOnKbk.Conclusion = "Не найдено КБК в БД логика не определена!!!";
-                                addObjectPl.AddModelKbkOnKbk(kbkOnKbk);
-                            }
+
+                            kbkOnKbk.StatusError = "#E80A0A";
+                            kbkOnKbk.Conclusion = "Не найдено КБК в БД логика не определена!!!";
+                            addObjectPl.AddModelKbkOnKbk(kbkOnKbk);
                         }
                     }
+                }
             }
         }
 
@@ -1044,26 +1074,32 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// <param name="reportMigration">Путь к отчету парсинга миграции</param>
         /// <param name="code">Код налогового органа</param>
         /// <param name="collectionException">Исключенные ИНН</param>
-        public void Click11(StatusButtonMethod statusButton, SelectVibor select, string reportMigration, string code, ObservableCollection<string> collectionException)
+        public void Click11(StatusButtonMethod statusButton, SelectVibor select, string reportMigration, string code,
+            ObservableCollection<string> collectionException)
         {
             var rowNumber = 1;
             LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
             libraryAutomation.SendParameter(string.Concat(Migration.GridPanel, 1), "10");
-            libraryAutomation.SendParameter(@select.Sel.Num == 1 ? string.Concat(Migration.GridPanel, 17) : string.Concat(Migration.GridPanel, 16),code);
+            libraryAutomation.SendParameter(
+                @select.Sel.Num == 1 ? string.Concat(Migration.GridPanel, 17) : string.Concat(Migration.GridPanel, 16),
+                code);
             PublicGlobalFunction.WindowElementClick(libraryAutomation, Migration.UpdateGrid);
             PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, Migration.GridData);
             AutomationElement automationElement;
-            while ((automationElement = libraryAutomation.IsEnableElements(string.Concat(Migration.GridDataRow, rowNumber), null, true, 30)) !=null)
+            while ((automationElement =
+                       libraryAutomation.IsEnableElements(string.Concat(Migration.GridDataRow, rowNumber), null, true,
+                           30)) != null)
             {
                 automationElement.SetFocus();
                 if (statusButton.Iswork)
                 {
-                    MigrationParse model = new MigrationParse() { ReportMigration = new ReportMigration[1] };
+                    MigrationParse model = new MigrationParse() {ReportMigration = new ReportMigration[1]};
                     ReportMigration report = new ReportMigration
                     {
                         NameOrg = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                             .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Наименование/ФИО НП"))),
+                            .Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("Наименование/ФИО НП"))),
                         Fid = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                             .SelectAutomationColrction(automationElement)
                             .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ФИД НП"))),
@@ -1076,11 +1112,13 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                     };
                     report.CodeIfns = select.Sel.Num == 1
                         ? libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                          .SelectAutomationColrction(automationElement)
-                                          .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("НО передающий данные")))
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("НО передающий данные")))
                         : libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                          .SelectAutomationColrction(automationElement)
-                                          .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("НО принимающий данные")));
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("НО принимающий данные")));
                     var find = collectionException.Where(i => i == report.Inn);
                     if (!find.Any())
                     {
@@ -1088,22 +1126,28 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                         while (true)
                         {
                             AutomationElement automationElementError;
-                            if ((automationElementError = libraryAutomation.IsEnableElements(Migration.PathFullError, null, true)) != null)
+                            if ((automationElementError =
+                                    libraryAutomation.IsEnableElements(Migration.PathFullError, null, true)) != null)
                             {
-                                report.Date = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                              .SelectAutomationColrction(automationElementError)
-                                              .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Время")));
+                                report.Date = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomation
+                                        .SelectAutomationColrction(automationElementError)
+                                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Время")));
 
-                                report.Stage = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                    .SelectAutomationColrction(automationElementError)
-                                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Этап")));
-                                report.Problem = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                    .SelectAutomationColrction(automationElementError)
-                                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Причина")));
+                                report.Stage = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomation
+                                        .SelectAutomationColrction(automationElementError)
+                                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Этап")));
+                                report.Problem = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomation
+                                        .SelectAutomationColrction(automationElementError)
+                                        .Cast<AutomationElement>()
+                                        .First(elem => elem.Current.Name.Contains("Причина")));
                                 model.ReportMigration[0] = report;
                                 LibaryXMLAuto.ErrorJurnal.ReportMigration.CreateReportMigration(reportMigration, model);
                                 WindowsAis3 win = new WindowsAis3();
-                                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                                AutoItX.MouseClick(ButtonConstant.MouseLeft,
+                                    win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
                                 break;
                             }
                         }
@@ -1113,6 +1157,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                 {
                     break;
                 }
+
                 AutoItX.Sleep(1000);
                 rowNumber++;
             }
@@ -1596,12 +1641,15 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                 libraryAutomation.InvokePattern(libraryAutomation.FindElement);
                                 libraryAutomation.ClickElements(SettlementDebts.ButtonSettlement);
                             }
+
                             break;
                         }
+
                         if (libraryAutomation.IsEnableElements(SettlementDebts.ButtonSettlement) == null) continue;
                         libraryAutomation.ClickElements(SettlementDebts.ButtonSettlement);
                         isChecked = true;
                     }
+
                     while (true)
                     {
                         if (libraryAutomation.IsEnableElements(SluzZ.WinCloseNalog, null, false, 1) != null)
@@ -1610,7 +1658,8 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                             break;
                         }
 
-                        if (libraryAutomation.IsEnableElements(SettlementDebts.ButtonSend, null, false, 1) == null) continue;
+                        if (libraryAutomation.IsEnableElements(SettlementDebts.ButtonSend, null, false, 1) == null)
+                            continue;
                         libraryAutomation.ClickElements(SettlementDebts.ButtonSend);
                     }
                 }
@@ -1866,8 +1915,10 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                         return;
                                     }
                                 }
+
                                 break;
                             }
+
                             break;
                         }
                     }
@@ -1935,7 +1986,8 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                             if (libraryAutomation.IsEnableElements(Trebovanie.Save) != null)
                             {
                                 libraryAutomation.ClickElements(Trebovanie.TabIfo, null, false, 10);
-                                libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(Trebovanie.ComboBoxSelect),"Вручено");
+                                libraryAutomation.SelectItemCombobox(
+                                    libraryAutomation.IsEnableElements(Trebovanie.ComboBoxSelect), "Вручено");
                                 var dateVAdd = Convert.ToDateTime(valueDate).AddDays(valueTypeNp == "ФЛ" ? 5 : 3);
                                 if (dateVAdd.DayOfWeek == DayOfWeek.Saturday)
                                     dateVAdd = dateVAdd.AddDays(2);
@@ -1952,10 +2004,12 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                         break;
                                     }
                                 }
+
                                 //Способ вручения Направлено письмом
                                 //if (valueStatusEnd != "Направлено письмом" & valueTypeNp == "ФЛ")
                                 //{
-                                    libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(Trebovanie.ComboboxSend),"Направлено письмом");
+                                libraryAutomation.SelectItemCombobox(
+                                    libraryAutomation.IsEnableElements(Trebovanie.ComboboxSend), "Направлено письмом");
                                 //}
                                 //if (valueStatusEnd != "По каналам ТКС" & valueTypeNp != "ФЛ")
                                 //{
@@ -1967,17 +2021,20 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                     libraryAutomation.ClickElements(Trebovanie.Save);
                                     break;
                                 }
+
                                 while (true)
                                 {
                                     if (libraryAutomation.IsEnableElements(Trebovanie.Back) == null) continue;
                                     libraryAutomation.ClickElements(Trebovanie.Back);
                                     break;
                                 }
+
                                 LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk,
                                     $"Номер ТУ: {valueNumber}; Тип лица:{valueTypeNp} Дата ТУ: {valueDate}; Дата вручения: {dateVAdd}; ИНН Налогоплательщика: {valueInn}",
                                     "Проставили вручение успешно!");
                                 break;
                             }
+
                             if (libraryAutomation.IsEnableElements(Trebovanie.Back) != null)
                             {
                                 //Запись лога что сохранили не доступно
@@ -2219,6 +2276,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                 $"ИНН Налогоплательщика: {valuesInn}; ФИО НО: {valuesFio} Адрес: {valuesAddress}; Сумма: {valuesScore} ",
                                 "Утверждение руководителем служебной записки прошло успешно!");
                         }
+
                         libraryAutomation.ClickElements(TextStatementOfficeNote.Exit);
                     }
                 }
@@ -2241,7 +2299,8 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         {
             LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
             LibraryAutomations libraryAutomationCheck = new LibraryAutomations(WindowsAis3.AisNalog3);
-            while ((libraryAutomation.IsEnableElements(TextSignatureOfficeNote.JournalSignatureOffice, null, true)) != null)
+            while ((libraryAutomation.IsEnableElements(TextSignatureOfficeNote.JournalSignatureOffice, null, true)) !=
+                   null)
             {
                 if (statusButton.Iswork)
                 {
@@ -2258,17 +2317,20 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                             break;
                         }
                     }
+
                     while (true)
                     {
                         if (isChecked)
                         {
                             break;
                         }
+
                         if (libraryAutomation.IsEnableElements(TextSignatureOfficeNote.ButtonIsCheckAll) == null)
                             continue;
                         libraryAutomation.ClickElements(TextSignatureOfficeNote.ButtonIsCheckAll);
                         isChecked = true;
                     }
+
                     while (true)
                     {
                         if (libraryAutomation.IsEnableElements(TextSignatureOfficeNote.WinExit, null, true, 1) != null)
@@ -2276,6 +2338,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                             libraryAutomation.InvokePattern(libraryAutomation.FindElement);
                             break;
                         }
+
                         if (libraryAutomation.IsEnableElements(TextSignatureOfficeNote.Exit, null, true) == null)
                             continue;
                         var listMemo = libraryAutomation
@@ -2305,6 +2368,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                 $"ИНН Налогоплательщика: {valuesInn}; ФИО НО: {valuesFio} Адрес: {valuesAddress}; Сумма: {valuesScore} ",
                                 "Подписание руководителем служебной записки прошло успешно!");
                         }
+
                         libraryAutomation.ClickElements(TextSignatureOfficeNote.Exit);
                     }
                 }
@@ -2327,11 +2391,18 @@ namespace LibraryAIS3Windows.ButtonsClikcs
             Okp2GlobalFunction globalFunction = new Okp2GlobalFunction();
             LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
             LibraryAutomations libraryAutomationDoc = new LibraryAutomations(WindowsAis3.AisNalog3);
-            var senderSelect = new SelectAll().SelectSenderJournal();
+            var senderSelect = new SelectAll().SelectSenderJournal(Environment.UserName);
+            if (senderSelect == null)
+            {
+                throw new InvalidOperationException($"Пользователь подписывающий документ не определен!");
+            }
+
             var rowNumber = 1;
             libraryAutomation.ClickElements(Journal129AndJournal121.UpdateData);
             AutomationElement automationElement;
-            while ((automationElement = libraryAutomation.IsEnableElements(string.Concat(Journal129AndJournal121.AllTaxJournal, rowNumber), null, false, 50)) != null)
+            while ((automationElement =
+                       libraryAutomation.IsEnableElements(
+                           string.Concat(Journal129AndJournal121.AllTaxJournal, rowNumber), null, false, 50)) != null)
             {
                 var taxFace = new TaxJournal();
                 if (statusButton.Iswork)
@@ -2339,13 +2410,16 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                     automationElement.SetFocus();
                     AutoItX.Sleep(1000);
                     taxFace.LoginUser = Environment.UserName;
-                    taxFace.IdDelo = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                        .SelectAutomationColrction(automationElement)
-                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН дела"))));
-                    taxFace.DateError = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                    taxFace.IdDelo = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
                         libraryAutomation
                             .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата обнаружения нарушения"))));
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН дела"))));
+                    taxFace.DateError = Convert.ToDateTime(
+                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>()
+                                .First(elem => elem.Current.Name.Contains("Дата обнаружения нарушения"))));
                     taxFace.Inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                         .SelectAutomationColrction(automationElement)
                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
@@ -2361,7 +2435,10 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                         libraryAutomation
                             .SelectAutomationColrction(automationElement)
                             .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ФИД НП")));
-                    var status = libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name != "Column Headers").First(elem => elem.Current.Name.Contains(""));
+                    var status = libraryAutomation.SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>()
+                        .Where(automationElemenst => automationElemenst.Current.Name != "Column Headers")
+                        .First(elem => elem.Current.Name.Contains(""));
                     var color = libraryAutomation.GetColorPixel(status);
                     taxFace.Color = color;
                     AddObjectDb dbAutomation = null;
@@ -2369,25 +2446,32 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                     {
                         case "ff":
                             //Реестр всех документов
-                            var listDocMemo = libraryAutomationDoc.SelectAutomationColrction(libraryAutomationDoc.FindFirstElement(Journal129AndJournal121.DocAllJournal)).Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("select0 row"));
+                            var listDocMemo = libraryAutomationDoc
+                                .SelectAutomationColrction(
+                                    libraryAutomationDoc.FindFirstElement(Journal129AndJournal121.DocAllJournal))
+                                .Cast<AutomationElement>().Distinct()
+                                .Where(elem => elem.Current.Name.Contains("select0 row"));
 
                             //Желтый акт или Зеленый отбор
                             var isActYellowAndGreen = listDocMemo.FirstOrDefault(doc =>
-                                  libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(
                                     libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>()
                                         .First(elem => elem.Current.Name.Contains("КНД"))) == "1160100" &&
-                                    libraryAutomationDoc.GetColorPixel(libraryAutomationDoc.SelectAutomationColrction(doc)
-                                        .Cast<AutomationElement>()
-                                        .Where(automationElemenst => automationElemenst.Current.Name != "Column Headers")
-                                        .First(elem => elem.Current.Name.Contains(""))) == "8000" ||
-                                    libraryAutomationDoc.GetColorPixel(libraryAutomationDoc.SelectAutomationColrction(doc)
-                                        .Cast<AutomationElement>()
-                                       .Where(automationElemenst => automationElemenst.Current.Name != "Column Headers")
-                                       .First(elem => elem.Current.Name.Contains(""))) == "ffff00"
-                                 );
+                                libraryAutomationDoc.GetColorPixel(libraryAutomationDoc.SelectAutomationColrction(doc)
+                                    .Cast<AutomationElement>()
+                                    .Where(automationElemenst => automationElemenst.Current.Name != "Column Headers")
+                                    .First(elem => elem.Current.Name.Contains(""))) == "8000" ||
+                                libraryAutomationDoc.GetColorPixel(libraryAutomationDoc.SelectAutomationColrction(doc)
+                                    .Cast<AutomationElement>()
+                                    .Where(automationElemenst => automationElemenst.Current.Name != "Column Headers")
+                                    .First(elem => elem.Current.Name.Contains(""))) == "ffff00"
+                            );
 
                             //Выбор отсутствует ли извещение
-                            var isIzvestia = listDocMemo.FirstOrDefault(doc => libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КНД"))) == "1165213");
+                            var isIzvestia = listDocMemo.FirstOrDefault(doc =>
+                                libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>()
+                                        .First(elem => elem.Current.Name.Contains("КНД"))) == "1165213");
 
                             //Зеленый акт отбор
                             var isActGreen = listDocMemo.FirstOrDefault(doc =>
@@ -2398,7 +2482,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                     .Cast<AutomationElement>()
                                     .Where(automationElemenst => automationElemenst.Current.Name != "Column Headers")
                                     .First(elem => elem.Current.Name.Contains(""))) == "8000"
-                                );
+                            );
 
                             //Выбор зеленого извещение
                             var isIzvestiaGreen = listDocMemo.FirstOrDefault(doc =>
@@ -2409,25 +2493,28 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                     .Cast<AutomationElement>()
                                     .Where(automationElemenst => automationElemenst.Current.Name != "Column Headers")
                                     .First(elem => elem.Current.Name.Contains(""))) == "8000"
-                                );
+                            );
 
                             //Есть ли наличие решения
                             var isReshenie = listDocMemo.FirstOrDefault(doc =>
-                                 libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(
-                                     libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>()
-                                         .First(elem => elem.Current.Name.Contains("КНД"))) == "1165022"
-                                );
+                                libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>()
+                                        .First(elem => elem.Current.Name.Contains("КНД"))) == "1165022"
+                            );
 
                             //Выставление извещений
                             if (isActYellowAndGreen != null && isIzvestia == null)
                             {
                                 //Обработка Отсутствует извещение но есть акт желтый статус
                                 libraryAutomation.ClickElements(Journal129AndJournal121.OpenComplex, null, true);
-                                PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Izveshenie);
-                                PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ButtonSved);
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                    Journal129AndJournal121.Izveshenie);
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                    Journal129AndJournal121.ButtonSved);
                                 while (true)
                                 {
-                                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.NumKabinet, null, true) != null)
+                                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.NumKabinet, null,
+                                            true) != null)
                                     {
                                         libraryAutomation.FindFirstElement(Journal129AndJournal121.NumKabinet);
                                         libraryAutomation.SetValuePattern("366.2");
@@ -2436,7 +2523,8 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                         AutoItX.WinActivate(Journal129AndJournal121.DateTime);
                                         while (true)
                                         {
-                                            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.WindowDateTime, null, true) != null)
+                                            if (libraryAutomation.IsEnableElements(
+                                                    Journal129AndJournal121.WindowDateTime, null, true) != null)
                                             {
                                                 taxFace.DateIzveshenie = datePicker.Date;
                                                 libraryAutomation.SetValuePattern(datePicker.Date.ToString("dd.MM.yy"));
@@ -2447,20 +2535,28 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                                 break;
                                             }
                                         }
+
                                         break;
                                     }
                                 }
+
                                 while (true)
                                 {
-                                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceName, null, true) != null)
+                                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceName, null,
+                                            true) != null)
                                     {
                                         libraryAutomation.ClickElements(Journal129AndJournal121.FaceName, null, true);
-                                        libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceNameSign), senderSelect);
-                                        PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Save);
-                                        PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.SignAll);
+                                        libraryAutomation.SelectItemCombobox(
+                                            libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceNameSign),
+                                            senderSelect);
+                                        PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                            Journal129AndJournal121.Save);
+                                        PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                            Journal129AndJournal121.SignAll);
                                         break;
                                     }
                                 }
+
                                 globalFunction.SignAndSendDoc(libraryAutomation);
                                 taxFace.IsLk3 = globalFunction.IsLk3;
                                 taxFace.IsMail = globalFunction.IsMail;
@@ -2469,7 +2565,9 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                 taxFace.MessageInfo = "Извещение успешно выставлено!!!";
                                 taxFace.TypeDocument = "Извещение";
                                 globalFunction.AddFile(ref taxFace, pathPdfTemp);
-                                LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, $"Цвет обработки: 9 Ун дела: {taxFace.IdDelo}; Дата обнаружения нарушения: {taxFace.DateError}; ИНН налогоплательщика: {taxFace.Inn}; КПП: {taxFace.Kpp}; Наименование: {taxFace.NameFace}; Фид: {taxFace.Fid}; Дата вручения извещения: {taxFace.DateIzveshenie.Value.ToString("dd.MM.yy")} ТКС: {Convert.ToInt32(taxFace.IsTks)}; Почта: {Convert.ToInt32(taxFace.IsMail)}; ЛК3: {Convert.ToInt32(taxFace.IsLk3)} Путь к файлу длфя печати:{taxFace.FullPath}", taxFace.MessageInfo);
+                                LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk,
+                                    $"Цвет обработки: 9 Ун дела: {taxFace.IdDelo}; Дата обнаружения нарушения: {taxFace.DateError}; ИНН налогоплательщика: {taxFace.Inn}; КПП: {taxFace.Kpp}; Наименование: {taxFace.NameFace}; Фид: {taxFace.Fid}; Дата вручения извещения: {taxFace.DateIzveshenie.Value.ToString("dd.MM.yy")} ТКС: {Convert.ToInt32(taxFace.IsTks)}; Почта: {Convert.ToInt32(taxFace.IsMail)}; ЛК3: {Convert.ToInt32(taxFace.IsLk3)} Путь к файлу длфя печати:{taxFace.FullPath}",
+                                    taxFace.MessageInfo);
                                 dbAutomation = new AddObjectDb();
                                 dbAutomation.AddTaxJournal(taxFace);
                             }
@@ -2480,48 +2578,70 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                 {
                                     //Обработка присутствует Акт и извещение зеленое
                                     libraryAutomation.ClickElements(Journal129AndJournal121.OpenComplex, null, true);
-                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Reshenia);
-                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.PublicInfo);
+                                    PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                        Journal129AndJournal121.OpenReshenia);
+                                    PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                        Journal129AndJournal121.Reshenia);
+                                    PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                        Journal129AndJournal121.PublicInfo);
                                     while (true)
                                     {
-                                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.DateReshenia, null, true) != null)
+                                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.DateReshenia,
+                                                null, true) != null)
                                         {
                                             taxFace.DateIzveshenie = datePicker.DateResh;
                                             libraryAutomation.SetValuePattern(datePicker.DateResh.ToString("dd.MM.yy"));
                                             while (true)
                                             {
-                                                if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ResheniaFaceSignOpen, null, true) != null)
+                                                if (libraryAutomation.IsEnableElements(
+                                                        Journal129AndJournal121.ResheniaFaceSignOpen, null, true) !=
+                                                    null)
                                                 {
-                                                    libraryAutomation.ClickElements(Journal129AndJournal121.ResheniaFaceSignOpen, null, true);
-                                                    libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(Journal129AndJournal121.ResheniaFaceSign), senderSelect, 0);
-                                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Save);
-                                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.SignAll);
+                                                    libraryAutomation.ClickElements(
+                                                        Journal129AndJournal121.ResheniaFaceSignOpen, null, true);
+                                                    libraryAutomation.SelectItemCombobox(
+                                                        libraryAutomation.IsEnableElements(Journal129AndJournal121
+                                                            .ResheniaFaceSign), senderSelect, 0);
+                                                    PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                                        Journal129AndJournal121.Save);
+                                                    PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                                        Journal129AndJournal121.SignAll);
                                                     break;
                                                 }
                                             }
+
                                             break;
                                         }
                                     }
+
                                     globalFunction.SignAndSendDoc(libraryAutomation);
                                     taxFace.IsLk3 = globalFunction.IsLk3;
                                     taxFace.IsMail = globalFunction.IsMail;
                                     taxFace.IsTks = globalFunction.IsTks;
                                     WindowsAis3 win = new WindowsAis3();
-                                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                                    AutoItX.MouseClick(ButtonConstant.MouseLeft,
+                                        win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
                                     AutoItX.Sleep(1000);
-                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex);
+                                    PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                        Journal129AndJournal121.OpenClosedComplex);
+                                    PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                        Journal129AndJournal121.ClosedComplex);
                                     taxFace.MessageInfo = "Решение успешно выставлено!!!";
                                     taxFace.TypeDocument = "Решение";
                                     globalFunction.AddFile(ref taxFace, pathPdfTemp);
-                                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, $"Цвет обработки: 9 Ун дела: {taxFace.IdDelo}; Дата обнаружения нарушения: {taxFace.DateError}; ИНН налогоплательщика: {taxFace.Inn}; КПП: {taxFace.Kpp}; Наименование: {taxFace.NameFace}; Фид: {taxFace.Fid}; Дата вручения решения: {taxFace.DateIzveshenie.Value.ToString("dd.MM.yy")} ТКС: {Convert.ToInt32(taxFace.IsTks)}; Почта: {Convert.ToInt32(taxFace.IsMail)}; ЛК3: {Convert.ToInt32(taxFace.IsLk3)} Путь к файлу длфя печати:{taxFace.FullPath}", taxFace.MessageInfo);
+                                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk,
+                                        $"Цвет обработки: 9 Ун дела: {taxFace.IdDelo}; Дата обнаружения нарушения: {taxFace.DateError}; ИНН налогоплательщика: {taxFace.Inn}; КПП: {taxFace.Kpp}; Наименование: {taxFace.NameFace}; Фид: {taxFace.Fid}; Дата вручения решения: {taxFace.DateIzveshenie.Value.ToString("dd.MM.yy")} ТКС: {Convert.ToInt32(taxFace.IsTks)}; Почта: {Convert.ToInt32(taxFace.IsMail)}; ЛК3: {Convert.ToInt32(taxFace.IsLk3)} Путь к файлу длфя печати:{taxFace.FullPath}",
+                                        taxFace.MessageInfo);
                                     dbAutomation = new AddObjectDb();
                                     dbAutomation.AddTaxJournal(taxFace);
                                 }
                             }
+
                             break;
                         case "ff0000":
                             libraryAutomation.ClickElements(Journal129AndJournal121.OpenComplex, null, true);
-                            PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.EditTask);
+                            PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                Journal129AndJournal121.EditTask);
                             PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.SignAll);
                             globalFunction.SignAndSendDoc(libraryAutomation);
                             taxFace.IsLk3 = globalFunction.IsLk3;
@@ -2531,13 +2651,17 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                             taxFace.MessageInfo = "Акт успешно выставлен!!!";
                             taxFace.TypeDocument = "Акт";
                             globalFunction.AddFile(ref taxFace, pathPdfTemp);
-                            LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, $"Цвет обработки: 12 Ун дела: {taxFace.IdDelo}; Дата обнаружения нарушения: {taxFace.DateError}; ИНН налогоплательщика: {taxFace.Inn}; КПП: {taxFace.Kpp}; Наименование: {taxFace.NameFace}; Фид: {taxFace.Fid}; ТКС: {Convert.ToInt32(taxFace.IsTks)}; Почта: {Convert.ToInt32(taxFace.IsMail)}; ЛК3: {Convert.ToInt32(taxFace.IsLk3)}", taxFace.MessageInfo);
+                            LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk,
+                                $"Цвет обработки: 12 Ун дела: {taxFace.IdDelo}; Дата обнаружения нарушения: {taxFace.DateError}; ИНН налогоплательщика: {taxFace.Inn}; КПП: {taxFace.Kpp}; Наименование: {taxFace.NameFace}; Фид: {taxFace.Fid}; ТКС: {Convert.ToInt32(taxFace.IsTks)}; Почта: {Convert.ToInt32(taxFace.IsMail)}; ЛК3: {Convert.ToInt32(taxFace.IsLk3)}",
+                                taxFace.MessageInfo);
                             dbAutomation = new AddObjectDb();
                             dbAutomation.AddTaxJournal(taxFace);
                             break;
                         default:
                             taxFace.MessageInfo = "Цвет обработки не определен";
-                            LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk, $"Цвет обработки: {color} Ун дела: {taxFace.IdDelo}; Дата обнаружения нарушения: {taxFace.DateError}; ИНН налогоплательщика: {taxFace.Inn}; КПП: {taxFace.Kpp}; Наименование: {taxFace.NameFace}; Фид: {taxFace.Fid}; ТКС: {Convert.ToInt32(taxFace.IsTks)}; Почта: {Convert.ToInt32(taxFace.IsMail)}; ЛК3: {Convert.ToInt32(taxFace.IsLk3)}", taxFace.MessageInfo);
+                            LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk,
+                                $"Цвет обработки: {color} Ун дела: {taxFace.IdDelo}; Дата обнаружения нарушения: {taxFace.DateError}; ИНН налогоплательщика: {taxFace.Inn}; КПП: {taxFace.Kpp}; Наименование: {taxFace.NameFace}; Фид: {taxFace.Fid}; ТКС: {Convert.ToInt32(taxFace.IsTks)}; Почта: {Convert.ToInt32(taxFace.IsMail)}; ЛК3: {Convert.ToInt32(taxFace.IsLk3)}",
+                                taxFace.MessageInfo);
                             dbAutomation = new AddObjectDb();
                             dbAutomation.AddTaxJournal(taxFace);
                             break;
@@ -2547,9 +2671,11 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                 {
                     break;
                 }
+
                 rowNumber++;
             }
         }
+
         /// <summary>
         /// Налоговое администрирование\Контрольная работа (налоговые проверки)\121. Камеральная налоговая проверка\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
         /// </summary>
@@ -2558,13 +2684,22 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// <param name="datePicker">Дата вызова плательщика</param>
         public void Click28(StatusButtonMethod statusButton, string pathPdfTemp, DatePickerAdd datePicker)
         {
-            Okp2ActAndSolutionAndNotification createActAndSolutionAndNotification = new Okp2ActAndSolutionAndNotification(pathPdfTemp);
+            Okp2ActAndSolutionAndNotification createActAndSolutionAndNotification =
+                new Okp2ActAndSolutionAndNotification(pathPdfTemp);
             LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
-            var senderSelect = new SelectAll().SelectSenderJournal();
+            var senderSelect = new SelectAll().SelectSenderJournal(Environment.UserName);
+            if (senderSelect == null)
+            {
+                throw new InvalidOperationException($"Пользователь подписывающий документ не определен!");
+            }
+
             var rowNumber = 1;
             libraryAutomation.ClickElements(Journal129AndJournal121.UpdateData121);
+            PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, Journal129AndJournal121.GridTaxJournal121);
             AutomationElement automationElement;
-            while ((automationElement = libraryAutomation.IsEnableElements(string.Concat(Journal129AndJournal121.AllTaxJournal121, rowNumber), null, true, 50)) != null)
+            while ((automationElement =
+                       libraryAutomation.IsEnableElements(
+                           string.Concat(Journal129AndJournal121.AllTaxJournal121, rowNumber), null, true, 30)) != null)
             {
                 var journal = new TaxJournal121();
                 if (statusButton.Iswork)
@@ -2572,79 +2707,119 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                     automationElement.SetFocus();
                     AutoItX.Sleep(1000);
                     journal.LoginUser = Environment.UserName;
-                    journal.RegNumDeclaration = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                        .SelectAutomationColrction(automationElement)
-                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Рег. номер декларации (расчета)"))));
+                    journal.RegNumDeclaration = Convert.ToInt32(
+                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem =>
+                                elem.Current.Name.Contains("Рег. номер декларации (расчета)"))));
                     journal.Period = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                         .SelectAutomationColrction(automationElement)
-                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный период")));
-                    journal.God = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                         .SelectAutomationColrction(automationElement)
-                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный год"))));
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный период")));
+                    journal.God = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный год"))));
                     journal.Knd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                         .SelectAutomationColrction(automationElement)
                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КНД")));
-                    journal.NameKnd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                        .SelectAutomationColrction(automationElement)
-                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Документ")));
+                    journal.NameKnd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Документ")));
 
                     //Убранно в версии 20.11.4.1 по КНД 1151111
                     //journal.Fid = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                     //    .SelectAutomationColrction(automationElement)
                     //    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ФИД НП")));
 
-                    journal.NameFace = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    journal.NameFace = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Налогоплательщик")));
+                    journal.Inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                         .SelectAutomationColrction(automationElement)
-                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Налогоплательщик")));
-                   journal.Inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                         .SelectAutomationColrction(automationElement)
-                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
-                    journal.IdComplex = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                         .SelectAutomationColrction(automationElement)
-                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН комплекса"))));
-                    journal.DateStartCheck = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                         .SelectAutomationColrction(automationElement)
-                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата начала проверки"))));
-                    journal.DateFinishCheck = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                         .SelectAutomationColrction(automationElement)
-                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Срок проверки по регламенту"))));
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
+                    journal.IdComplex = Convert.ToInt32(
+                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН комплекса"))));
+                    journal.DateStartCheck = Convert.ToDateTime(
+                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("Дата начала проверки"))));
+                    journal.DateFinishCheck = Convert.ToDateTime(
+                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("Срок проверки по регламенту"))));
                     var dateEnd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                         .SelectAutomationColrction(automationElement)
-                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Окончание срока")));
-                    journal.DateFinishKnp = string.IsNullOrWhiteSpace(dateEnd) ? (DateTime?)null : Convert.ToDateTime(dateEnd);
-                    journal.DateStartDeclaration = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                         .SelectAutomationColrction(automationElement)
-                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата представления декларации"))));
-                    journal.DateFinishDeclaration = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                         .SelectAutomationColrction(automationElement)
-                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Срок  представления декларации"))));
-                    var status = libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name == "").ToList();
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Окончание срока")));
+                    journal.DateFinishKnp = string.IsNullOrWhiteSpace(dateEnd)
+                        ? (DateTime?) null
+                        : Convert.ToDateTime(dateEnd);
+                    journal.DateStartDeclaration = Convert.ToDateTime(
+                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("Дата представления декларации"))));
+                    journal.DateFinishDeclaration = Convert.ToDateTime(
+                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("Срок  представления декларации"))));
+                    var status = libraryAutomation.SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name == "")
+                        .ToList();
 
-                    var dateEndValidation = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                  .SelectAutomationColrction(automationElement)
-                                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата окончания проверки")));
-                    var dateCloseValidation = string.IsNullOrWhiteSpace(dateEndValidation) ? (DateTime?)null : Convert.ToDateTime(dateEndValidation);
+                    var dateEndValidation = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("Дата окончания проверки")));
+                    var dateCloseValidation = string.IsNullOrWhiteSpace(dateEndValidation)
+                        ? (DateTime?) null
+                        : Convert.ToDateTime(dateEndValidation);
 
                     journal.GlobalColor = libraryAutomation.GetColorPixel(status[1]);
                     journal.GlobalProcessColor = libraryAutomation.GetColorPixel(status[2]);
                     //Поиск и нажатие на Исходящие документы
-                    var panel = libraryAutomation.SelectAutomationColrction(libraryAutomation.IsEnableElements(Journal129AndJournal121.PanelDoc)).Cast<AutomationElement>().ToArray();
-                    if(libraryAutomation.IsEnableElements(Journal129AndJournal121.IshDoc, panel[1], false, 1) != null)
+                    var panel = libraryAutomation
+                        .SelectAutomationColrction(libraryAutomation.IsEnableElements(Journal129AndJournal121.PanelDoc))
+                        .Cast<AutomationElement>().ToArray();
+                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.IshDoc, panel[1], false, 1) != null)
                     {
                         libraryAutomation.ClickElements(Journal129AndJournal121.IshDoc, panel[1], false, 1);
+                        AutoItX.Sleep(5000);
                     }
-                    var listDocMemo = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindFirstElement(Journal129AndJournal121.JournalIsh, panel[1])).Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("select0 row")).ToArray();
+                    var listDocMemo = libraryAutomation
+                        .SelectAutomationColrction(
+                            libraryAutomation.FindFirstElement(Journal129AndJournal121.JournalIsh, panel[1]))
+                        .Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("select0 row"))
+                        .ToArray();
                     //Выставляем Акты Решения и Извещения по разным КНД
                     switch (journal.Knd)
                     {
                         case "1151085":
-                            createActAndSolutionAndNotification.CreateForm1151085(libraryAutomation, listDocMemo, journal, datePicker, senderSelect, dateCloseValidation);
+                            createActAndSolutionAndNotification.CreateForm1151085(libraryAutomation, listDocMemo,
+                                journal, datePicker, senderSelect, dateCloseValidation);
                             break;
                         case "1151006":
-                            createActAndSolutionAndNotification.CreateForm1151006(libraryAutomation, listDocMemo, journal, datePicker, senderSelect, dateCloseValidation);
+                            createActAndSolutionAndNotification.CreateForm1151006(libraryAutomation, listDocMemo,
+                                journal, datePicker, senderSelect, dateCloseValidation);
                             break;
                         case "1151111":
-                            createActAndSolutionAndNotification.CreateForm1151111(libraryAutomation, listDocMemo, journal, datePicker, senderSelect);
+                            var summNp = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                libraryAutomation.SelectAutomationColrction(automationElement)
+                                    .Cast<AutomationElement>()
+                                    .First(elem => elem.Current.Name.Contains("Сумма по данным НП")));
+                            var colorError = libraryAutomation.GetColorPixel(status[4]);
+                            createActAndSolutionAndNotification.CreateForm1151111(libraryAutomation, listDocMemo,
+                                journal, datePicker, senderSelect, dateCloseValidation, summNp, colorError);
+                            break;
+                        case "1151020":
+                            createActAndSolutionAndNotification.CreateForm1151020(libraryAutomation, journal);
                             break;
                         default:
                             break;
@@ -2654,6 +2829,8 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                 {
                     break;
                 }
+
+                automationElement.SetFocus();
                 rowNumber++;
             }
         }
@@ -2665,8 +2842,10 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// <param name="srvToLoad">Модель с сервера</param>
         /// <param name="serviceGetOrPost">Запросы на сервер</param>
         /// <param name="pathTemp">Путь сохранения Temp</param>
-        /// <param name="pathSaveBank">Путь сохранения выписок из банка</param>
-        public void Click29(StatusButtonMethod statusButton, List<SrvToLoad> srvToLoad,string serviceGetOrPost, string pathTemp,string pathSaveBank)
+        /// <param name="pathDownLoads">Путь сохранения выписок из банка</param>
+        /// <param name="yearReport">Отчетный год по шаблонам</param>
+        public void Click29(StatusButtonMethod statusButton, List<SrvToLoad> srvToLoad, string serviceGetOrPost,
+            string pathTemp, string pathDownLoads, int yearReport)
         {
             var function = new PreCheckFunction();
             LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
@@ -2677,66 +2856,85 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                 {
                     var sw = model.Tree.Split('\\').Last();
                     var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
-                    if (model.INN!=null)
+                    if (model.INN != null)
                     {
                         switch (sw)
                         {
                             case "1.01. Идентификационные характеристики организации":
-                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp);
                                 break;
                             case "1.03. Сведения об учете организации в НО":
-                                function.ParseDataBase(statusButton,libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp);
                                 break;
                             case "1.12. Сведения о филиалах, представительствах, иных обособленных подразделениях":
-                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp);
                                 break;
                             case "1.18. Сведения об объектах собственности российской организации – имущество":
-                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp);
                                 break;
                             case "1.19. Сведения об объектах собственности российской организации – земля":
-                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp);
                                 break;
                             case "1.20. Сведения об объектах собственности российской организации – транспорт":
-                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp);
                                 break;
                             case "2.02. История изменений сведений об учете организации в НО":
-                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp);
                                 break;
                             case "01. Сведения о среднесписочной численности работников":
-                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp);
                                 break;
                             case "01. Картотека счетов РО, ИО, ИП":
-                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp);
                                 break;
-                            case "7. Индивидуальные карточки налогоплательщиков": 
-                                function.IndividualCards(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                            case "7. Индивидуальные карточки налогоплательщиков":
+                                function.IndividualCards(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp, yearReport);
                                 break;
                             case "4.01. Доходы и вычеты по месяцам":
-                                function.ParseDataBase(statusButton,libraryAutomation,model,fullTree, serviceGetOrPost, pathTemp);
+                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp);
                                 break;
                             case "Банковские выписки, справки":
-                                function.BankSpr(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathSaveBank);
+                                function.BankSpr(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost,
+                                    pathDownLoads);
                                 break;
                             case "Реестр документов НБО":
-                                function.DeclarationIntelligenceUl(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.DeclarationIntelligenceUl(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp, yearReport);
                                 break;
                             case "1. Реестр документов НБО":
-                                function.DeclarationIntelligenceUl(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.DeclarationIntelligenceUl(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp, yearReport);
                                 break;
                             case "1.18. Сведения об объектах собственности физического лица – имущество":
-                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp);
                                 break;
                             case "1.19. Сведения об объектах собственности физического лица – земля":
-                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp);
                                 break;
                             case "1.20. Сведения об объектах собственности физического лица – транспорт":
-                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.ParseDataBase(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp);
                                 break;
                             case "Поиск ЮЛ":
-                                function.FindUlStatement(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathTemp);
+                                function.FindUlStatement(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathTemp);
                                 break;
                             case "Окно оперативной работы":
-                                function.ShoppingSaleBook(statusButton, libraryAutomation, model, fullTree, serviceGetOrPost, pathSaveBank);
+                                function.ShoppingSaleBook(statusButton, libraryAutomation, model, fullTree,
+                                    serviceGetOrPost, pathDownLoads);
                                 break;
                         }
                     }
@@ -2747,6 +2945,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                 }
             }
         }
+
         /// <summary>
         /// Подстановка статуса о подтверждении отметки о правонарушении
         /// </summary>
@@ -2757,7 +2956,9 @@ namespace LibraryAIS3Windows.ButtonsClikcs
             var rowNumber = 1;
             libraryAutomation.ClickElements(Journal129AndJournal121.UpdateData);
             AutomationElement automationElement;
-            while ((automationElement = libraryAutomation.IsEnableElements(string.Concat(Journal129AndJournal121.AllTaxJournal, rowNumber), null, false, 50)) != null)
+            while ((automationElement =
+                       libraryAutomation.IsEnableElements(
+                           string.Concat(Journal129AndJournal121.AllTaxJournal, rowNumber), null, false, 50)) != null)
             {
                 var taxFace129 = new TaxJournal129();
                 if (statusButton.Iswork)
@@ -2765,13 +2966,16 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                     automationElement.SetFocus();
                     AutoItX.Sleep(1000);
                     taxFace129.LoginUser = Environment.UserName;
-                    taxFace129.IdDelo = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                        .SelectAutomationColrction(automationElement)
-                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН дела"))));
-                    taxFace129.DateError = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                        libraryAutomation
+                    taxFace129.IdDelo = Convert.ToInt32(
+                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                             .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата обнаружения нарушения"))));
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН дела"))));
+                    taxFace129.DateError = Convert.ToDateTime(
+                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>()
+                                .First(elem => elem.Current.Name.Contains("Дата обнаружения нарушения"))));
                     taxFace129.Inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                         .SelectAutomationColrction(automationElement)
                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
@@ -2787,8 +2991,10 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                         libraryAutomation
                             .SelectAutomationColrction(automationElement)
                             .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ФИД НП")));
-                    taxFace129.StateColor = $"#{libraryAutomation.GetColorPixel(libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name != "Column Headers").ToArray()[0])}";
-                    taxFace129.StateTaxPayerColor = $"#{libraryAutomation.GetColorPixel(libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name != "Column Headers").ToArray()[1])}";
+                    taxFace129.StateColor =
+                        $"#{libraryAutomation.GetColorPixel(libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name != "Column Headers").ToArray()[0])}";
+                    taxFace129.StateTaxPayerColor =
+                        $"#{libraryAutomation.GetColorPixel(libraryAutomation.SelectAutomationColrction(automationElement).Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name != "Column Headers").ToArray()[1])}";
                     //Red #ff0000
                     taxFace129.MessageInfo = "Цвет не соответствует не одному атрибуту (Признак ставить не надо)";
                     if (taxFace129.StateColor.Equals("#ff0000"))
@@ -2799,20 +3005,27 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                         }
                         else
                         {
-                            taxFace129.MessageInfo = taxFace129.Kpp.Contains("7751") ? "Документы представлены своевременно" : "Организация мигрировала в др. НО";
+                            taxFace129.MessageInfo = taxFace129.Kpp.Contains("7751")
+                                ? "Документы представлены своевременно"
+                                : "Организация мигрировала в др. НО";
                         }
+
                         libraryAutomation.ClickElements(Journal129AndJournal121.ButonState);
                         while (true)
                         {
-                            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.WinDialogComment, null, true) != null)
+                            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.WinDialogComment, null,
+                                    true) != null)
                             {
                                 libraryAutomation.SetValuePattern(taxFace129.MessageInfo);
-                                PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.WinDialogSave);
-                                PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.WinOk);
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                    Journal129AndJournal121.WinDialogSave);
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                    Journal129AndJournal121.WinOk);
                                 break;
                             }
                         }
                     }
+
                     var dbAutomation = new AddObjectDb();
                     dbAutomation.AddJournal129(taxFace129);
                 }
@@ -2820,9 +3033,11 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                 {
                     break;
                 }
+
                 rowNumber++;
             }
         }
+
         /// <summary>
         /// Функция автоматизации задачи подписания пользовательских заданий
         /// Общие задания\Урегулирование задолженности\05.09 Формирование решения об отказе по заявлению\Подписание руководителем НО
@@ -2831,7 +3046,8 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         public void Click31(StatusButtonMethod statusButton)
         {
             LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
-            while ((libraryAutomation.IsEnableElements(TextSignatureOfficeNote.JournalSignatureOffice, null, true)) != null)
+            while ((libraryAutomation.IsEnableElements(TextSignatureOfficeNote.JournalSignatureOffice, null, true)) !=
+                   null)
             {
                 if (statusButton.Iswork)
                 {
@@ -2845,6 +3061,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                             break;
                         }
                     }
+
                     PublicGlobalFunction.WindowElementClick(libraryAutomation, TextSignatureOfficeNote.WinOk);
                     PublicGlobalFunction.WindowElementClick(libraryAutomation, TextSignatureOfficeNote.WinOk1);
                 }
@@ -2869,22 +3086,24 @@ namespace LibraryAIS3Windows.ButtonsClikcs
             LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
             if (identificationFaceList.Count == 0) return;
             var listSelect = new List<Documen2Ndfl>();
-            int[] memoNumWin = { 5, 6, 7, 11 }; //По которым ищем
+            int[] memoNumWin = {5, 6, 7, 11}; //По которым ищем
             var sw = IdentificationElementName.TreeIdentification.Split('\\').Last();
             var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
             libraryAutomation.IsEnableExpandTree(IdentificationElementName.TreeIdentification);
             libraryAutomation.FindFirstElement(fullTree, null, true);
             libraryAutomation.FindElement.SetFocus();
             libraryAutomation.ClickElements(fullTree, null, false, 25, 0, 0, 2);
-            foreach(var doc in identificationFaceList)
+            foreach (var doc in identificationFaceList)
             {
                 if (statusButton.Iswork)
                 {
                     while (true)
                     {
-                        if (libraryAutomation.FindFirstElement(string.Concat(IdentificationElementName.GridIdentification, 3), null, true) != null)
+                        if (libraryAutomation.FindFirstElement(
+                                string.Concat(IdentificationElementName.GridIdentification, 3), null, true) != null)
                         {
-                            libraryAutomation.FindFirstElement(IdentificationElementName.Memo, libraryAutomation.FindElement, true);
+                            libraryAutomation.FindFirstElement(IdentificationElementName.Memo,
+                                libraryAutomation.FindElement, true);
                             libraryAutomation.FindElement.SetFocus();
                             SendKeys.SendWait(ButtonConstant.Enter);
                             SendKeys.SendWait("");
@@ -2894,207 +3113,292 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                             break;
                         }
                     }
+
                     while (true)
                     {
                         AutoItX.Sleep(1000);
-                        PublicGlobalFunction.WindowElementClick(libraryAutomation, IdentificationElementName.Update2NDFL);
-                        if (PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, IdentificationElementName.Grid) == "Данные, удовлетворяющие заданным условиям не найдены.")
+                        PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                            IdentificationElementName.Update2NDFL);
+                        if (PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation,
+                                IdentificationElementName.Grid) ==
+                            "Данные, удовлетворяющие заданным условиям не найдены.")
                         {
                             doc.ErrorNameStatus = $"Данный документ не найден в АИС 3";
                             identification.UpdateDocument(doc);
                             break;
                         }
-                        if(libraryAutomation.IsEnableElements(string.Concat(IdentificationElementName.GridData, 1), null, false, 50) != null)
+
+                        if (libraryAutomation.IsEnableElements(string.Concat(IdentificationElementName.GridData, 1),
+                                null, false, 50) != null)
                         {
                             AutomationElement automationElement = libraryAutomation.FindElement;
-                                doc.Inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                              .SelectAutomationColrction(automationElement)
-                                              .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН ФЛ")));
-                                if (doc.IdFile == null) //В случае добавления УН файлов на уточнение 
-                                {
-                                    doc.IdFile = Convert.ToInt64(Regex.Replace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                            doc.Inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                libraryAutomation
+                                    .SelectAutomationColrction(automationElement)
+                                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН ФЛ")));
+                            if (doc.IdFile == null) //В случае добавления УН файлов на уточнение 
+                            {
+                                doc.IdFile = Convert.ToInt64(Regex.Replace(
+                                    libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                                         .SelectAutomationColrction(automationElement)
-                                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН файла"))), @"\s+", ""));
-                                    doc.Ifns = 7751;
-                                    doc.Yars = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                        .Cast<AutomationElement>()
+                                        .First(elem => elem.Current.Name.Contains("УН файла"))), @"\s+", ""));
+                                doc.Ifns = 7751;
+                                doc.Yars = Convert.ToInt32(
+                                    libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                                         .SelectAutomationColrction(automationElement)
-                                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный год"))));
-                                    doc.FName = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                        .Cast<AutomationElement>()
+                                        .First(elem => elem.Current.Name.Contains("Отчетный год"))));
+                                doc.FName = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomation
                                         .SelectAutomationColrction(automationElement).Cast<AutomationElement>()
                                         .First(elem => elem.Current.Name.Contains("Фамилия ФЛ")));
-                                    doc.IName = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                doc.IName = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomation
                                         .SelectAutomationColrction(automationElement).Cast<AutomationElement>()
                                         .First(elem => elem.Current.Name.Contains("Имя ФЛ")));
-                                    doc.OName = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                doc.OName = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomation
                                         .SelectAutomationColrction(automationElement).Cast<AutomationElement>()
                                         .First(elem => elem.Current.Name.Contains("Отчество ФЛ")));
-                                    doc.Fio = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                doc.Fio = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomation
                                         .SelectAutomationColrction(automationElement).Cast<AutomationElement>()
                                         .First(elem => elem.Current.Name.Contains("ФИО ФЛ")));
-                                    doc.Document = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                doc.Document = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomation
                                         .SelectAutomationColrction(automationElement).Cast<AutomationElement>()
-                                        .First(elem => elem.Current.Name.Contains("Документ, удостоверяющий личность")));
-                                    doc.SeriaNumber = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                        .First(elem =>
+                                            elem.Current.Name.Contains("Документ, удостоверяющий личность")));
+                                doc.SeriaNumber = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomation
                                         .SelectAutomationColrction(automationElement).Cast<AutomationElement>()
                                         .First(elem => elem.Current.Name.Contains("Серия и номер документа")));
-                                    var dateR = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                var dateR = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomation
                                         .SelectAutomationColrction(automationElement)
-                                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата рождения")));
-                                    doc.DateNameUser = string.IsNullOrWhiteSpace(dateR) ? null : (DateTime?)Convert.ToDateTime(dateR);
-                                    doc.InnOrganization = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                        .Cast<AutomationElement>()
+                                        .First(elem => elem.Current.Name.Contains("Дата рождения")));
+                                doc.DateNameUser = string.IsNullOrWhiteSpace(dateR)
+                                    ? null
+                                    : (DateTime?) Convert.ToDateTime(dateR);
+                                doc.InnOrganization = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomation
                                         .SelectAutomationColrction(automationElement).Cast<AutomationElement>()
                                         .First(elem => elem.Current.Name.Contains("ИНН НА")));
-                                    doc.NameOrganization = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                doc.NameOrganization =
+                                    libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                                         .SelectAutomationColrction(automationElement).Cast<AutomationElement>()
                                         .First(elem => elem.Current.Name.Contains("Наименование НА")));
-                                }
-                                PublicGlobalFunction.WindowElementClick(libraryAutomation, IdentificationElementName.Setting);
-                                SendKeys.SendWait(ButtonConstant.Down1);
-                                SendKeys.SendWait(ButtonConstant.Enter);
-                                while (true)
+                            }
+
+                            PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                IdentificationElementName.Setting);
+                            SendKeys.SendWait(ButtonConstant.Down1);
+                            SendKeys.SendWait(ButtonConstant.Enter);
+                            while (true)
+                            {
+                                if (libraryAutomation.FindFirstElement(IdentificationElementName.GridWin, null, true) ==
+                                    null) continue;
+                                foreach (var memo in memoNumWin)
                                 {
-                                    if (libraryAutomation.FindFirstElement(IdentificationElementName.GridWin, null, true) == null) continue;
-                                    foreach (var memo in memoNumWin)
+                                    if (libraryAutomation.FindFirstElement(
+                                            string.Concat(IdentificationElementName.GridWinList, memo), null, true) !=
+                                        null)
                                     {
-                                        if (libraryAutomation.FindFirstElement(string.Concat(IdentificationElementName.GridWinList, memo), null, true) != null)
-                                        {
-                                            libraryAutomation.FindFirstElement(IdentificationElementName.Memo, libraryAutomation.FindElement, true);
-                                            libraryAutomation.FindElement.SetFocus();
-                                            SendKeys.SendWait(ButtonConstant.Enter);
-                                            SendKeys.SendWait(ButtonConstant.Enter);
-                                        }
+                                        libraryAutomation.FindFirstElement(IdentificationElementName.Memo,
+                                            libraryAutomation.FindElement, true);
+                                        libraryAutomation.FindElement.SetFocus();
+                                        SendKeys.SendWait(ButtonConstant.Enter);
+                                        SendKeys.SendWait(ButtonConstant.Enter);
                                     }
-                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, IdentificationElementName.WinUpdete);
+                                }
+
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                    IdentificationElementName.WinUpdete);
+                                break;
+                            }
+
+                            if (PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation,
+                                    IdentificationElementName.GridDataWin) ==
+                                "Данные, удовлетворяющие заданным условиям не найдены.")
+                            {
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                    IdentificationElementName.WinCancel);
+                                automationElement.SetFocus();
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                    IdentificationElementName.Setting);
+                                SendKeys.SendWait(ButtonConstant.Down2);
+                                SendKeys.SendWait(ButtonConstant.Enter);
+                                AutoItX.Sleep(500);
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                    IdentificationElementName.Update2NDFL);
+                                AutomationElement automationElementMemo;
+                                while ((automationElementMemo =
+                                           libraryAutomation.IsEnableElements(
+                                               string.Concat(IdentificationElementName.GridData, 1), null, false,
+                                               50)) != null)
+                                {
+                                    var idCun = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                        libraryAutomation
+                                            .SelectAutomationColrction(automationElementMemo)
+                                            .Cast<AutomationElement>().First(elem =>
+                                                elem.Current.Name.Contains("УН заявки в ПП ЦУН")));
+                                    doc.ErrorNameStatus = $"Лицо не найдено будет создана заявка в ЦУН УН {idCun}";
+                                    identification.UpdateDocument(doc);
                                     break;
                                 }
-                                if (PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, IdentificationElementName.GridDataWin) == "Данные, удовлетворяющие заданным условиям не найдены.")
+                            }
+                            else
+                            {
+                                var rowNumber = 1;
+                                AutomationElement automationElementFace;
+                                var listMemo = new List<AutomationElement>();
+                                while ((automationElementFace =
+                                           libraryAutomation.IsEnableElements(
+                                               string.Concat(IdentificationElementName.GridDataFaceWin, rowNumber),
+                                               null, true, 5)) != null)
                                 {
-                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, IdentificationElementName.WinCancel);
-                                    automationElement.SetFocus();
-                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, IdentificationElementName.Setting);
-                                    SendKeys.SendWait(ButtonConstant.Down2);
-                                    SendKeys.SendWait(ButtonConstant.Enter);
-                                    AutoItX.Sleep(500);
-                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, IdentificationElementName.Update2NDFL);
-                                    AutomationElement automationElementMemo;
-                                    while ((automationElementMemo = libraryAutomation.IsEnableElements(string.Concat(IdentificationElementName.GridData, 1), null, false, 50)) != null)
+                                    var dateRClarification =
+                                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                            libraryAutomation
+                                                .SelectAutomationColrction(automationElementFace)
+                                                .Cast<AutomationElement>().First(elem =>
+                                                    elem.Current.Name.Contains("Дата рождени")));
+                                    var fidClarification = Convert.ToInt64(Regex.Replace(
+                                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                            libraryAutomation
+                                                .SelectAutomationColrction(automationElementFace)
+                                                .Cast<AutomationElement>()
+                                                .First(elem => elem.Current.Name.Contains("ФИД лица"))), @"\s+", ""));
+                                    var idFacesClarification = Convert.ToInt64(Regex.Replace(
+                                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                            libraryAutomation
+                                                .SelectAutomationColrction(automationElementFace)
+                                                .Cast<AutomationElement>().First(elem =>
+                                                    elem.Current.Name.Contains("УН ФЛ в ЕГРН"))), @"\s+", ""));
+                                    var innClarification =
+                                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                            libraryAutomation
+                                                .SelectAutomationColrction(automationElementFace)
+                                                .Cast<AutomationElement>()
+                                                .First(elem => elem.Current.Name.Contains("ИНН")));
+                                    var fNameClarification =
+                                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                            libraryAutomation
+                                                .SelectAutomationColrction(automationElementFace)
+                                                .Cast<AutomationElement>()
+                                                .First(elem => elem.Current.Name.Contains("Фамилия ФЛ")));
+                                    var iNameClarification =
+                                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                            libraryAutomation
+                                                .SelectAutomationColrction(automationElementFace)
+                                                .Cast<AutomationElement>()
+                                                .First(elem => elem.Current.Name.Contains("Имя ФЛ")));
+                                    var oNameClarification =
+                                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                            libraryAutomation
+                                                .SelectAutomationColrction(automationElementFace)
+                                                .Cast<AutomationElement>().First(elem =>
+                                                    elem.Current.Name.Contains("Отчество ФЛ")));
+                                    var dateNameUserClarification = string.IsNullOrWhiteSpace(dateRClarification)
+                                        ? null
+                                        : (DateTime?) Convert.ToDateTime(dateRClarification);
+                                    var statusClarification =
+                                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                            libraryAutomation
+                                                .SelectAutomationColrction(automationElementFace)
+                                                .Cast<AutomationElement>().First(elem =>
+                                                    elem.Current.Name.Contains("Наименование статуса сведений")));
+                                    listSelect.Add(new Documen2Ndfl()
                                     {
-                                        var idCun = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                                       .SelectAutomationColrction(automationElementMemo)
-                                                       .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН заявки в ПП ЦУН")));
-                                        doc.ErrorNameStatus = $"Лицо не найдено будет создана заявка в ЦУН УН {idCun}";
+                                        Fid = fidClarification,
+                                        IdFl = idFacesClarification,
+                                        InnUtoch = innClarification,
+                                        FNameUtoch = fNameClarification,
+                                        INameUtoch = iNameClarification,
+                                        ONameUtoch = oNameClarification,
+                                        DateNameUserUtoch = dateNameUserClarification,
+                                        StatusSved = statusClarification
+                                    });
+                                    listMemo.Add(automationElementFace);
+                                    libraryAutomation.ClickElement(automationElementFace, 0, 15);
+                                    rowNumber++;
+                                }
+
+                                var isDouble = listSelect.Where(x => x.StatusSved == "Включен в ИЛ");
+                                var firstFace = listSelect.FirstOrDefault(x => x.StatusSved == "Включен в ИЛ");
+                                if (firstFace != null)
+                                {
+                                    if (isDouble.Count() == 1)
+                                    {
+                                        doc.Fid = firstFace.Fid;
+                                        doc.IdFl = firstFace.IdFl;
+                                        doc.InnUtoch = firstFace.InnUtoch;
+                                        doc.FNameUtoch = firstFace.FNameUtoch;
+                                        doc.INameUtoch = firstFace.INameUtoch;
+                                        doc.ONameUtoch = firstFace.ONameUtoch;
+                                        doc.DateNameUserUtoch = firstFace.DateNameUserUtoch;
+                                        doc.StatusSved = firstFace.StatusSved;
+                                        doc.ErrorNameStatus = $"Данный документ идентифицирован!!!";
+                                        AutomationElement selectElement = null;
+                                        listMemo.ForEach(element =>
+                                        {
+                                            var fidElem = libraryAutomation.SelectAutomationColrction(element)
+                                                .Cast<AutomationElement>().First(elem =>
+                                                    elem.Current.Name.Contains("УН ФЛ в ЕГРН"));
+                                            var parameter = Regex.Replace(
+                                                libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                                    fidElem), @"\s+", "");
+                                            if (string.Equals(parameter, firstFace.IdFl.ToString()))
+                                            {
+                                                selectElement = element;
+                                            }
+                                        });
+                                        libraryAutomation.ClickElement(selectElement, 0, 0, 2);
+                                        PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                            IdentificationElementName.WinSelect);
                                         identification.UpdateDocument(doc);
-                                        break;
+                                    }
+                                    else
+                                    {
+                                        PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                            IdentificationElementName.WinCancel);
+                                        automationElement.SetFocus();
+                                        doc.ErrorNameStatus =
+                                            $"Найдено несколько лиц со статусом Включен в ИЛ Идентифицировать документ риск!УН лиц {isDouble.Select(x => x.IdFl.ToString()).Aggregate((element, next) => element + (string.IsNullOrWhiteSpace(element) ? string.Empty : "/") + next)}";
+                                        identification.UpdateDocument(doc);
                                     }
                                 }
                                 else
                                 {
-                                    var rowNumber = 1;
-                                    AutomationElement automationElementFace;
-                                    var listMemo = new List<AutomationElement>();
-                                    while ((automationElementFace = libraryAutomation.IsEnableElements(string.Concat(IdentificationElementName.GridDataFaceWin, rowNumber), null, true, 5)) != null)
-                                    {
-                                        var dateRClarification = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                               .SelectAutomationColrction(automationElementFace)
-                                               .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата рождени")));
-                                        var fidClarification = Convert.ToInt64(Regex.Replace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                               .SelectAutomationColrction(automationElementFace)
-                                               .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ФИД лица"))), @"\s+", ""));
-                                        var idFacesClarification = Convert.ToInt64(Regex.Replace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                                      .SelectAutomationColrction(automationElementFace)
-                                                      .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН ФЛ в ЕГРН"))), @"\s+", ""));
-                                        var innClarification = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                                      .SelectAutomationColrction(automationElementFace)
-                                                      .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
-                                        var fNameClarification = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                                         .SelectAutomationColrction(automationElementFace)
-                                                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Фамилия ФЛ")));
-                                        var iNameClarification = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                                         .SelectAutomationColrction(automationElementFace)
-                                                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Имя ФЛ")));
-                                        var oNameClarification = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                                         .SelectAutomationColrction(automationElementFace)
-                                                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчество ФЛ")));
-                                        var dateNameUserClarification = string.IsNullOrWhiteSpace(dateRClarification) ? null : (DateTime?)Convert.ToDateTime(dateRClarification);
-                                        var statusClarification = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                                         .SelectAutomationColrction(automationElementFace)
-                                                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Наименование статуса сведений")));
-                                        listSelect.Add(new Documen2Ndfl()
-                                        {
-                                            Fid = fidClarification,
-                                            IdFl = idFacesClarification,
-                                            InnUtoch = innClarification,
-                                            FNameUtoch = fNameClarification,
-                                            INameUtoch = iNameClarification,
-                                            ONameUtoch = oNameClarification,
-                                            DateNameUserUtoch = dateNameUserClarification,
-                                            StatusSved = statusClarification
-                                        });
-                                        listMemo.Add(automationElementFace);
-                                        libraryAutomation.ClickElement(automationElementFace, 0, 15);
-                                        rowNumber++;
-                                    }
-                                    var isDouble = listSelect.Where(x => x.StatusSved == "Включен в ИЛ");
-                                    var firstFace = listSelect.FirstOrDefault(x => x.StatusSved == "Включен в ИЛ");
-                                    if (firstFace != null)
-                                    {
-                                        if (isDouble.Count() == 1)
-                                        {
-                                            doc.Fid = firstFace.Fid;
-                                            doc.IdFl = firstFace.IdFl;
-                                            doc.InnUtoch = firstFace.InnUtoch;
-                                            doc.FNameUtoch = firstFace.FNameUtoch;
-                                            doc.INameUtoch = firstFace.INameUtoch;
-                                            doc.ONameUtoch = firstFace.ONameUtoch;
-                                            doc.DateNameUserUtoch = firstFace.DateNameUserUtoch;
-                                            doc.StatusSved = firstFace.StatusSved;
-                                            doc.ErrorNameStatus = $"Данный документ идентифицирован!!!";
-                                            AutomationElement selectElement = null;
-                                            listMemo.ForEach(element =>
-                                            {
-                                                var fidElem = libraryAutomation.SelectAutomationColrction(element).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН ФЛ в ЕГРН"));
-                                                var parameter = Regex.Replace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(fidElem), @"\s+", "");
-                                                if (string.Equals(parameter, firstFace.IdFl.ToString()))
-                                                {
-                                                    selectElement = element;
-                                                }
-                                            });
-                                            libraryAutomation.ClickElement(selectElement, 0, 0, 2);
-                                            PublicGlobalFunction.WindowElementClick(libraryAutomation, IdentificationElementName.WinSelect);
-                                            identification.UpdateDocument(doc);
-                                        }
-                                        else
-                                        {
-                                            PublicGlobalFunction.WindowElementClick(libraryAutomation, IdentificationElementName.WinCancel);
-                                            automationElement.SetFocus();
-                                            doc.ErrorNameStatus = $"Найдено несколько лиц со статусом Включен в ИЛ Идентифицировать документ риск!УН лиц {isDouble.Select(x => x.IdFl.ToString()).Aggregate((element, next) => element + (string.IsNullOrWhiteSpace(element) ? string.Empty : "/") + next)}";
-                                            identification.UpdateDocument(doc);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        doc.Fid = listSelect[0].Fid;
-                                        doc.IdFl = listSelect[0].IdFl;
-                                        doc.InnUtoch = listSelect[0].InnUtoch;
-                                        doc.FNameUtoch = listSelect[0].FNameUtoch;
-                                        doc.INameUtoch = listSelect[0].INameUtoch;
-                                        doc.ONameUtoch = listSelect[0].ONameUtoch;
-                                        doc.DateNameUserUtoch = listSelect[0].DateNameUserUtoch;
-                                        doc.StatusSved = listSelect[0].StatusSved;
-                                        doc.ErrorNameStatus = $"Статус лица/лиц не содержит Включен в ИЛ!";
-                                        identification.UpdateDocument(doc);
-                                        PublicGlobalFunction.WindowElementClick(libraryAutomation, IdentificationElementName.WinCancel);
-                                    }
+                                    doc.Fid = listSelect[0].Fid;
+                                    doc.IdFl = listSelect[0].IdFl;
+                                    doc.InnUtoch = listSelect[0].InnUtoch;
+                                    doc.FNameUtoch = listSelect[0].FNameUtoch;
+                                    doc.INameUtoch = listSelect[0].INameUtoch;
+                                    doc.ONameUtoch = listSelect[0].ONameUtoch;
+                                    doc.DateNameUserUtoch = listSelect[0].DateNameUserUtoch;
+                                    doc.StatusSved = listSelect[0].StatusSved;
+                                    doc.ErrorNameStatus = $"Статус лица/лиц не содержит Включен в ИЛ!";
+                                    identification.UpdateDocument(doc);
+                                    PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                        IdentificationElementName.WinCancel);
                                 }
+                            }
+
                             break;
                         }
                     }
+
                     listSelect.Clear();
                     PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, IdentificationElementName.Grid);
                     while (true)
                     {
-                        PublicGlobalFunction.WindowElementClick(libraryAutomation, IdentificationElementName.GridFilter);
-                        if (libraryAutomation.FindFirstElement(string.Concat(IdentificationElementName.GridIdentification, 3), null, true) != null)
+                        PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                            IdentificationElementName.GridFilter);
+                        if (libraryAutomation.FindFirstElement(
+                                string.Concat(IdentificationElementName.GridIdentification, 3), null, true) != null)
                         {
                             break;
                         }
@@ -3105,26 +3409,30 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                     break;
                 }
             }
+
             identification.Dispose();
             WindowsAis3 win = new WindowsAis3();
-            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+            AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20,
+                win.WindowsAis.Y + 160);
         }
-    
 
-    /// <summary>
-    /// Налоговое администрирование\Контрольная работа (налоговые проверки)\121. Камеральная налоговая проверка\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
-    /// Задача Режим для статистики проставление статуса для Нарушения для 1 НТК
-    /// </summary>
-    /// <param name="statusButton">Кнопка Старт</param>
-    public void Click33(StatusButtonMethod statusButton)
-    {
-        StaticMode121 staticMode = new StaticMode121();
-        LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
-        var rowNumber = 1;
-        libraryAutomation.ClickElements(Journal129AndJournal121.UpdateData121);
-        PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, IdentificationElementName.Grid);
-        AutomationElement automationElement;
-            while ((automationElement = libraryAutomation.IsEnableElements(string.Concat(Journal129AndJournal121.AllTaxJournal121, rowNumber), null, true, 50)) != null)
+
+        /// <summary>
+        /// Налоговое администрирование\Контрольная работа (налоговые проверки)\121. Камеральная налоговая проверка\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
+        /// Задача Режим для статистики проставление статуса для Нарушения для 1 НТК
+        /// </summary>
+        /// <param name="statusButton">Кнопка Старт</param>
+        public void Click33(StatusButtonMethod statusButton)
+        {
+            StaticMode121 staticMode = new StaticMode121();
+            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
+            var rowNumber = 1;
+            libraryAutomation.ClickElements(Journal129AndJournal121.UpdateData121);
+            PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, IdentificationElementName.Grid);
+            AutomationElement automationElement;
+            while ((automationElement =
+                       libraryAutomation.IsEnableElements(
+                           string.Concat(Journal129AndJournal121.AllTaxJournal121, rowNumber), null, true, 50)) != null)
             {
                 if (statusButton.Iswork)
                 {
@@ -3134,25 +3442,37 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                         .SelectAutomationColrction(automationElement)
                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КНД")));
                     //Поиск и нажатие на Нарушения
-                    var panel = libraryAutomation.SelectAutomationColrction(libraryAutomation.IsEnableElements(Journal129AndJournal121.PanelDoc)).Cast<AutomationElement>().ToArray(); ;
+                    var panel = libraryAutomation
+                        .SelectAutomationColrction(libraryAutomation.IsEnableElements(Journal129AndJournal121.PanelDoc))
+                        .Cast<AutomationElement>().ToArray();
+                    ;
                     if (libraryAutomation.IsEnableElements(Journal129AndJournal121.Error, panel[1], false, 1) != null)
                     {
                         libraryAutomation.ClickElements(Journal129AndJournal121.Error, panel[1], false, 1);
                     }
+
                     //Список нарушений
-                    var listDocError = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindFirstElement(Journal129AndJournal121.JournalIsh, panel[1])).Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("select0 row")).ToArray();
+                    var listDocError = libraryAutomation
+                        .SelectAutomationColrction(
+                            libraryAutomation.FindFirstElement(Journal129AndJournal121.JournalIsh, panel[1]))
+                        .Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("select0 row"))
+                        .ToArray();
                     //Выставляем Акты Решения и Извещения по разным КНД
-                       switch (knd)
-                       {
-                         case "1151001":
-                             staticMode.StaticMode1Nk1151001(libraryAutomation,listDocError);
-                             break;
-                       }
+                    switch (knd)
+                    {
+                        case "1151001":
+                            staticMode.StaticMode1Nk1151001And1151006(libraryAutomation, listDocError);
+                            break;
+                        case "1151006":
+                            staticMode.StaticMode1Nk1151001And1151006(libraryAutomation, listDocError);
+                            break;
+                    }
                 }
                 else
                 {
                     break;
                 }
+
                 rowNumber++;
             }
         }
@@ -3164,88 +3484,377 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// <param name="statusButton">Кнопка запуска функции проставления даты вручения!</param>
         public void Click34(StatusButtonMethod statusButton)
         {
-            Okp2ActAndSolutionAndNotification createActAndSolutionAndNotification = new Okp2ActAndSolutionAndNotification(null);
+            Okp2ActAndSolutionAndNotification createActAndSolutionAndNotification =
+                new Okp2ActAndSolutionAndNotification(null);
             LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
             var rowNumber = 1;
             libraryAutomation.ClickElements(Journal129AndJournal121.UpdateData121Tree04);
+            var kndNotSendA01 = new[] {"1160098", "1160099", "115050", "1165009"}; //По этим КНД не отправляем в А01
             PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, Journal129AndJournal121.GridTaxJournal121);
             AutomationElement automationElement;
             var dbAutomation = new AddObjectDb();
-            while ((automationElement = libraryAutomation.IsEnableElements(string.Concat(Journal129AndJournal121.AllTaxJournal121, rowNumber), null, true)) != null)
+            while ((automationElement =
+                       libraryAutomation.IsEnableElements(
+                           string.Concat(Journal129AndJournal121.AllTaxJournal121, rowNumber), null, true)) != null)
             {
                 if (statusButton.Iswork)
                 {
                     automationElement.SetFocus();
-                    var regNumber = Convert.ToInt64(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    var regNumber = Convert.ToInt64(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Рег. номер"))));
+
+                    string dateSend = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("Срок вручения/Дата отправки")));
+
+                    string dateDelivery = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата вручения")));
+
+                    string knd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                         .SelectAutomationColrction(automationElement)
-                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Рег. номер"))));
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КНД")));
+
+                    var panel = libraryAutomation
+                        .SelectAutomationColrction(
+                            libraryAutomation.FindFirstElement(Journal129AndJournal121.SendMailGrid))
+                        .Cast<AutomationElement>().ToArray();
+                    AutoItX.Sleep(1000);
+                    PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, Journal129AndJournal121.Sender,
+                        panel[1]);
                     if (!dbAutomation.IsExistsDocument(regNumber))
                     {
                         var journalDelivery = new TaxJournalDelivery();
                         journalDelivery.LoginUser = Environment.UserName;
                         journalDelivery.RegNumber = regNumber;
-                        journalDelivery.DateDocument = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                             .SelectAutomationColrction(automationElement)
-                             .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата документа"))));
-                        journalDelivery.Number = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Номер"))));
-                        journalDelivery.Knd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КНД")));
-                        journalDelivery.NameDocument = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Документ"))); 
-                        journalDelivery.Inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
-                        journalDelivery.Kpp = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КПП")));
-                        journalDelivery.TypeFace = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Тип лица")));
-                        journalDelivery.RegNumDeclaration = Convert.ToInt64(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Рег. номер декларации"))));
-                        journalDelivery.NameDeclaration = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Название декларации")));
-                        journalDelivery.God = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный год"))));
+                        journalDelivery.DateDocument = Convert.ToDateTime(
+                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>()
+                                .First(elem => elem.Current.Name.Contains("Дата документа"))));
+                        journalDelivery.Number = Convert.ToInt32(
+                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Номер"))));
+                        journalDelivery.Knd = knd;
+                        journalDelivery.NameDocument =
+                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Документ")));
+                        journalDelivery.Inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
+                        journalDelivery.Kpp = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КПП")));
+                        journalDelivery.TypeFace = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Тип лица")));
+                        journalDelivery.RegNumDeclaration = Convert.ToInt64(
+                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>()
+                                .First(elem => elem.Current.Name.Contains("Рег. номер декларации"))));
+                        journalDelivery.NameDeclaration =
+                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>()
+                                .First(elem => elem.Current.Name.Contains("Название декларации")));
+                        journalDelivery.God = Convert.ToInt32(
+                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный год"))));
 
-                         var dateSend = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Срок вручения/Дата отправки")));
+                        if (!string.IsNullOrEmpty(dateDelivery) && !kndNotSendA01.Contains(knd))
+                        {
+                            journalDelivery.DateSend = Convert.ToDateTime(dateSend);
+                            journalDelivery.DateDelivery = Convert.ToDateTime(dateDelivery);
+                            createActAndSolutionAndNotification.SendA01(libraryAutomation);
+                        }
+                        else
+                        {
+                            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.DocumentSendDelivery, null,
+                                    true, 1) != null)
+                            {
+                                createActAndSolutionAndNotification.AddDateDelivery(libraryAutomation,
+                                    ref journalDelivery);
+                            }
+                            else
+                            {
+                                journalDelivery.DateDelivery = DateTime.Now;
+                                journalDelivery.DateSend = DateTime.Now;
+                            }
+                        }
 
-                         var dateDelivery = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Дата вручения")));
+                        AutoItX.Sleep(3000);
+                        createActAndSolutionAndNotification.SaveAndUpdateDocumet(journalDelivery);
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(dateDelivery) && !kndNotSendA01.Contains(knd))
+                        {
+                            createActAndSolutionAndNotification.SendA01(libraryAutomation);
+                        }
 
-                         if (libraryAutomation.IsEnableElements(Journal129AndJournal121.DocumentSendDelivery, null, true, 1) != null)
-                         {
-                             if (string.IsNullOrEmpty(dateDelivery))
-                             {
-                                 createActAndSolutionAndNotification.AddDateDelivery(libraryAutomation, ref journalDelivery);
-                             }
-                             else
-                             {
-                                 journalDelivery.DateSend = Convert.ToDateTime(dateSend);
-                                 journalDelivery.DateDelivery = Convert.ToDateTime(dateDelivery);
-                             }
-                             createActAndSolutionAndNotification.SaveAndUpdateDocumet(journalDelivery);
-                             AutoItX.Sleep(5000);
-                         }
+                        rowNumber++;
                     }
                 }
                 else
                 {
-                   break;
+                    break;
                 }
-                rowNumber++;
+            }
+        }
+
+        /// <summary>
+        /// Задача по запуску БП по списку 
+        /// </summary>
+        /// <param name="inn">ИНН</param>
+        /// <param name="kpp">КПП</param>
+        public void Click35(string inn, string kpp)
+        {
+            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
+            if (libraryAutomation.IsEnableElement(ProcessStartSash.StartW))
+            {
+                libraryAutomation.IsEnableElements(ProcessStartSash.InnInput, null, true);
+                libraryAutomation.SetValuePattern(inn);
+                if (kpp != null)
+                {
+                    libraryAutomation.IsEnableElements(ProcessStartSash.KppInput, null, true);
+                    libraryAutomation.SetValuePattern(kpp);
+                }
+
+                PublicGlobalFunction.WindowElementClick(libraryAutomation, ProcessStartSash.StartW);
+            }
+        }
+
+        /// <summary>
+        /// Сбор информации о шаблонах папках и ветках
+        /// </summary>
+        /// <param name="statusButton">Кнопка запуска</param>
+        /// <param name="pathJournalInfoRule">Путь сохранения информации</param>
+        public void Click36(StatusButtonMethod statusButton, string pathJournalInfoRule)
+        {
+            var rowNumber = 1;
+            var tree = "Налоговое администрирование\\ЦСУД\\Управление ролевой принадлежностью\\Мои роли";
+            var sw = tree.Split('\\').Last();
+            var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
+            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
+            if (!libraryAutomation.IsEnableExpandTree(tree)) return;
+            libraryAutomation.FindFirstElement(fullTree, null, true);
+            libraryAutomation.FindElement.SetFocus();
+            libraryAutomation.ClickElements(fullTree, null, false, 25, 0, 0, 2);
+            PublicGlobalFunction.WindowElementClick(libraryAutomation, ItElementName.ApplicationTab);
+            PublicGlobalFunction.WindowElementClick(libraryAutomation, ItElementName.ButtonAdd);
+            PublicGlobalFunction.WindowElementClick(libraryAutomation, ItElementName.AutoInfo);
+            libraryAutomation.IsEnableElement(ItElementName.GridRule);
+
+            if (File.Exists(pathJournalInfoRule))
+            {
+                var readFileInfoRule = new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
+                var fileInfoRuleTemplate = (InfoRuleTemplate)readFileInfoRule.ReadXml(pathJournalInfoRule, typeof(InfoRuleTemplate));
+                var nameAttributes = fileInfoRuleTemplate.SystemAis.Last().Name;
+                var index = 0;
+                    libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement).Cast<AutomationElement>()
+                       .Where(elem => elem.Current.Name.Contains("List`"))
+                       .ToList().ForEach(element =>
+                        {
+                            if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.SelectAutomationColrction(element)
+                                   .Cast<AutomationElement>()
+                                   .First(elem => elem.Current.Name.Contains("Подсистема"))) == nameAttributes)
+                            {
+                               rowNumber = index;
+                            }
+                            index++;
+                       }); 
+                readFileInfoRule.DeleteAtributXml(pathJournalInfoRule, $"/InfoRuleTemplate/SystemAis[@Name=\"{nameAttributes}\"]");
+            }
+
+            AutomationElement automationElementRow;
+            while ((automationElementRow = libraryAutomation.IsEnableElements(string.Format(ItElementName.ListRow, rowNumber), null, true, 30)) != null)
+            {
+                if (statusButton.Iswork)
+                {
+                
+                    var infoRuleTemplate = new InfoRuleTemplate() { SystemAis = new SystemAis[1] };
+                    automationElementRow.SetFocus();
+                    SendKeys.SendWait(ButtonConstant.Plus);
+
+                    infoRuleTemplate.SystemAis[0] = new SystemAis()
+                    {
+                         Name = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                             libraryAutomation.SelectAutomationColrction(automationElementRow).Cast<AutomationElement>()
+                                .First(elem => elem.Current.Name.Contains("Подсистема")))
+                    };
+
+                    var foldersNumber = 1;
+                    var listFolder = libraryAutomation
+                        .SelectAutomationColrction(automationElementRow).Cast<AutomationElement>()
+                        .Where(elem => elem.Current.Name.Contains("Folders row"));
+                    infoRuleTemplate.SystemAis[0].Folders = new Folders[listFolder.Count()];
+
+                        AutomationElement automationElementFolder;
+                        while ((automationElementFolder = libraryAutomation.IsEnableElements(string.Format(ItElementName.ListFolders, rowNumber, foldersNumber), null, true, 30)) != null)
+                        {
+                             automationElementFolder.SetFocus();
+                             SendKeys.SendWait(ButtonConstant.Plus);
+
+                             infoRuleTemplate.SystemAis[0].Folders[foldersNumber - 1] = new Folders()
+                               {
+                                  Name = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                     libraryAutomation.SelectAutomationColrction(automationElementFolder)
+                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Папка")))
+                               };
+
+                             var tasksNumber = 1;
+                             var listTask = libraryAutomation
+                                .SelectAutomationColrction(automationElementFolder).Cast<AutomationElement>()
+                                .Where(elem => elem.Current.Name.Contains("Tasks row"));
+
+                             infoRuleTemplate.SystemAis[0].Folders[foldersNumber - 1].Tasks = new Tasks[listTask.Count()];
+
+                                 AutomationElement automationElementTask;
+                                 while ((automationElementTask = libraryAutomation.IsEnableElements(string.Format(ItElementName.ListTasks, rowNumber, foldersNumber, tasksNumber), null,true, 1)) != null)
+                                 {
+                                     automationElementTask.SetFocus();
+                                     SendKeys.SendWait(ButtonConstant.Plus);
+
+                                     infoRuleTemplate.SystemAis[0].Folders[foldersNumber - 1].Tasks[tasksNumber - 1] = new Tasks()
+                                         {
+                                             Name = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                                 libraryAutomation.SelectAutomationColrction(automationElementTask)
+                                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Задача"))),
+                                             TypeTask = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                                 libraryAutomation.SelectAutomationColrction(automationElementTask)
+                                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Тип"))),
+                                             Curator = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                                 libraryAutomation.SelectAutomationColrction(automationElementTask)
+                                                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Куратор")))
+                                         };
+
+                                     var rolesNumber = 1;
+
+                                     var listRole = libraryAutomation
+                                         .SelectAutomationColrction(automationElementTask).Cast<AutomationElement>()
+                                         .Where(elem => elem.Current.Name.Contains("Roles row"));
+                                     infoRuleTemplate.SystemAis[0].Folders[foldersNumber - 1].Tasks[tasksNumber - 1]
+                                         .RolesTemplate = new RolesTemplate[listRole.Count()];
+
+
+                                           AutomationElement automationElementRole;
+                                           while ((automationElementRole = libraryAutomation.IsEnableElements(string.Format(ItElementName.ListRoles, rowNumber, foldersNumber, tasksNumber, rolesNumber), null, true, 1)) != null)
+                                           {
+                                               automationElementRole.SetFocus();
+                                               SendKeys.SendWait(ButtonConstant.Plus);
+
+                                               infoRuleTemplate.SystemAis[0].Folders[foldersNumber - 1].Tasks[tasksNumber - 1]
+                                                   .RolesTemplate[rolesNumber - 1] = new RolesTemplate()
+                                               {
+                                                   Name = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                                       libraryAutomation.SelectAutomationColrction(automationElementRole)
+                                                           .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Роль")))
+                                               };
+                                               var taskTemplateNumber = 1;
+
+                                               var listTaskTemplate = libraryAutomation
+                                                   .SelectAutomationColrction(automationElementRole).Cast<AutomationElement>()
+                                                   .Where(elem => elem.Current.Name.Contains("TaskTemplates row"));
+                                               infoRuleTemplate.SystemAis[0].Folders[foldersNumber - 1].Tasks[tasksNumber - 1]
+                                                   .RolesTemplate[rolesNumber - 1].Templates = new Templates[listTaskTemplate.Count()];
+                                               
+                                                    AutomationElement automationElementTaskTemplate;
+                                                    while ((automationElementTaskTemplate =libraryAutomation.IsEnableElements(string.Format(ItElementName.ListTaskTemplates, rowNumber, foldersNumber, tasksNumber, rolesNumber, taskTemplateNumber), null, true, 1)) != null)
+                                                    {
+                                                        automationElementTaskTemplate.SetFocus();
+
+                                                        infoRuleTemplate.SystemAis[0].Folders[foldersNumber - 1]
+                                                            .Tasks[tasksNumber - 1].RolesTemplate[rolesNumber - 1]
+                                                            .Templates[taskTemplateNumber - 1] = new Templates()
+                                                        {
+                                                            Name = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                                                libraryAutomation.SelectAutomationColrction(automationElementTaskTemplate)
+                                                                    .Cast<AutomationElement>()
+                                                                    .First(elem => elem.Current.Name.Contains("Шаблон"))),
+                                                            Category = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                                                libraryAutomation.SelectAutomationColrction(automationElementTaskTemplate)
+                                                                    .Cast<AutomationElement>()
+                                                                    .First(elem => elem.Current.Name.Contains("Категории")))
+                                                        };
+                                                        taskTemplateNumber++;
+                                               }
+                                               automationElementRole.SetFocus();
+                                               SendKeys.SendWait(ButtonConstant.Minus);
+                                               rolesNumber++;
+                                     }
+                                     automationElementTask.SetFocus();
+                                     SendKeys.SendWait(ButtonConstant.Minus);
+                                     tasksNumber++;
+                                 }
+                                 automationElementFolder.SetFocus();
+                                 SendKeys.SendWait(ButtonConstant.Minus);
+                                 foldersNumber++;
+                        }
+                        automationElementRow.SetFocus();
+                        SendKeys.SendWait(ButtonConstant.Minus);
+                        LibaryXMLAuto.ErrorJurnal.ReportMigration.CreateFileInfoRuleTemplate(pathJournalInfoRule, infoRuleTemplate);
+                        rowNumber++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Утверждение налоговых обязанностей
+        /// </summary>
+        /// <param name="statusButton">Кнопка запуска</param>
+        public void Click37(StatusButtonMethod statusButton)
+        {
+            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
+            while ((libraryAutomation.IsEnableElements(PublicElementName.PublicTaxViewTask, null, true)) != null)
+            {
+                if (statusButton.Iswork)
+                {
+                    PublicGlobalFunction.WindowElementClick(libraryAutomation, PublicElementName.StartUser);
+                    while (true)
+                    {
+                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ApproveInspector,null,true)!=null)
+                        {
+                            if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement) == "Событие обработано")
+                            {
+                                while (true)
+                                {
+                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Approve);
+                                    if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(Journal129AndJournal121.ApproveInspector)) == "Событие утверждено инспектором")
+                                    {
+                                        break;
+                                    }
+                                    AutoItX.Sleep(10000);
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    WindowsAis3 win = new WindowsAis3();
+                    AutoItX.Sleep(1000);
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                    AutoItX.Sleep(2000);
+                }
+                else
+                {
+                    break;
+                }
             }
         }
     }
-
 }

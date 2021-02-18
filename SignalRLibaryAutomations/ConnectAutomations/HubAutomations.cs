@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
@@ -86,6 +87,28 @@ namespace SignalRLibraryAutomations.ConnectAutomations
         {
             IHubContext context = GlobalHost.ConnectionManager.GetHubContext<HubAutomations>();
             await context.Clients.Client(usernameGuid).SqlServer(message);
+        }
+
+        /// <summary>
+        /// Отдел и подписанты подписка
+        /// </summary>
+        /// <param name="department">JSON Отдел и подписанты</param>
+        public static void SubscribeDepartmentSender(string department)
+        {
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<HubAutomations>();
+            Loggers.Log4NetLogger.Info(new Exception("Модель Отдел и подписанты рассылка пошла!!!"));
+            context.Clients.All.SubscribeDepartmentSender(department);
+        }
+
+        /// <summary>
+        /// Отдел и подписанты подписка на удаление записи
+        /// </summary>
+        /// <param name="department">JSON Отдел и подписанты удаление</param>
+        public static void SubscribeDepartmentSenderDelete(string department)
+        {
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<HubAutomations>();
+            Loggers.Log4NetLogger.Info(new Exception("Модель Отдел и подписанты рассылка пошла!!!"));
+            context.Clients.All.SubscribeDepartmentSenderDelete(department);
         }
     }
 }

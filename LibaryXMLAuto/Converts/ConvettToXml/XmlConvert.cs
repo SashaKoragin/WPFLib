@@ -342,7 +342,6 @@ namespace LibaryXMLAuto.Converts.ConvettToXml
             XmlSerializer serializer = new XmlSerializer(objType);
             using (Stream reader = new FileStream(path, FileMode.Open))
             {
-
                 obj = serializer.Deserialize(reader);
             }
             return obj;

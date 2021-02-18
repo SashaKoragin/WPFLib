@@ -1,6 +1,9 @@
 ﻿using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using System;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
+using System.DirectoryServices.AccountManagement;
 using System.IO;
 using System.Linq;
 using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel;
@@ -8,8 +11,8 @@ using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
 using EfDatabaseAutomation.Automation.Base;
 using ModelKbkOnKbk = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.ModelKbkOnKbk;
 using HelpKbkAuto = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.HelpKbkAuto;
-using SignatureBoss = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.SignatureBoss;
 using FormulNdfl = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.FormulNdfl;
+using DeliveryDocument = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.DeliveryDocument;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
 {
@@ -69,8 +72,6 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
                     webPage.AllJournal129 = (XsdAuto.FullShemeModel.AllJournal129[])result;
                     break;
                 case 17:
-                    result = Automation.Database.SqlQuery<SignatureBoss>(sqlSelect.SelectUser).ToArray();
-                    webPage.SignatureBoss = (SignatureBoss[]) result;
                     break;
                 case 18:
                     result = Automation.Database.SqlQuery<Documen2NDFLIdentification>(sqlSelect.SelectUser).ToArray();
@@ -88,11 +89,52 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
                     result = Automation.Database.SqlQuery<FormulNdfl>(sqlSelect.SelectUser).ToArray();
                     webPage.FormulNdfl = (FormulNdfl[])result;
                     break;
+                case 23:
+                    result = Automation.Database.SqlQuery<XsdDTOSheme.UlFace>(sqlSelect.SelectUser).ToArray();
+                    dataBaseUlSelect.UlFace = (XsdDTOSheme.UlFace[])result;
+                    return serializeJson.JsonLibary(dataBaseUlSelect);
+                case 24:
+                    result = Automation.Database.SqlQuery<DeliveryDocument>(sqlSelect.SelectUser).ToArray();
+                    webPage.DeliveryDocument = (DeliveryDocument[])result;
+                    break;
+                case 25:
+                    result = Automation.Database.SqlQuery<XsdDTOSheme.UlFace>(sqlSelect.SelectUser).ToArray();
+                    dataBaseUlSelect.UlFace = (XsdDTOSheme.UlFace[])result;
+                    return serializeJson.JsonLibary(dataBaseUlSelect);
                 default:
                     return "Данная команда не определена!!!";
             }
             var json = serializeJson.JsonLibary(webPage);
             return json;
+        }
+
+        /// <summary>
+        /// Выгрузка отчета по id параметру!
+        /// </summary>
+        /// <param name="idReport">Ун Отчета</param>
+        /// <returns></returns>
+        public ReportXlsx ReturnReportModelXlsx(int idReport)
+        {
+           return Automation.ReportXlsxes.FirstOrDefault(report => report.IdReport == idReport);
+        }
+        /// <summary>
+        /// Выгрузка Отчета по покупкам
+        /// На другие отчеты надо думать!!! Как сделать модель массово на разные отчеты!
+        /// </summary>
+        /// <param name="reportModel">Модель с параметром</param>
+        /// <param name="inn">Параметр ИНН</param>
+        /// <returns></returns>
+        public DataTable ReturnModelReport(ReportXlsx reportModel,string inn)
+        {
+            var dateTable = new DataTable();
+            dateTable.TableName = reportModel.NameTable + inn;
+            var cmd = Automation.Database.Connection.CreateCommand();
+            cmd.CommandText = reportModel.ProcedureReport;
+            cmd.Parameters.Add(new SqlParameter(reportModel.ParameterProcedure.Split(',')[0], inn));
+            cmd.Connection.Open();
+            dateTable.Load(cmd.ExecuteReader());
+            cmd.Dispose();
+            return dateTable;
         }
 
         /// <summary>
@@ -156,9 +198,38 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
         /// Подписант документов для ОКП 2
         /// </summary>
         /// <returns></returns>
-        public string SelectSenderJournal()
+        /// <param name="idUserDomain">Табельный номер пользователя</param>
+        public string SelectSenderJournal(string idUserDomain)
         {
-            return Automation.SenderTaxJournalOkp2.First(sender => sender.IsActual == true).NameUser;
+            string[] groups;
+            using (PrincipalContext context = new PrincipalContext(ContextType.Domain, "regions.tax.nalog.ru"))
+            {
+                using (var user = UserPrincipal.FindByIdentity(context, idUserDomain))
+                {
+                    if (user != null)
+                    {
+                        var group = user.GetGroups();
+                        {
+                            groups = new string[@group.Count()];
+                            var i = 0;
+                            foreach (var gr in @group)
+                            {
+                                groups[i] = gr.Name;
+                                i++;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException($"Пользователь по табельному номеру {idUserDomain} не найден в Active Directory!");
+                    }
+                }
+            }
+            var senderUser = from departmentOdell in Automation.DepartamentOtdels
+                where groups.Any(gr => gr.Contains(departmentOdell.NameDepartamentActiveDerectory))
+                join sender in Automation.SenderTaxJournalOkp2 on departmentOdell.IdSender equals sender.Id
+                select sender.NameUser;
+            return senderUser.FirstOrDefault();
         }
 
         /// <summary>

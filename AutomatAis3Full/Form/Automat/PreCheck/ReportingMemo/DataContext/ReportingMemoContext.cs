@@ -25,8 +25,8 @@ namespace AutomatAis3Full.Form.Automat.PreCheck.ReportingMemo.DataContext
             {
                 Button = {Command = new DelegateCommand(() => { reportMemoStart.ReportingMemoStartPreCheck(Start, 
                     ConfigFile.ServiceGetOrPost, 
-                    ConfigFile.PathPdfTemp, 
-                    ConfigFile.BankSvedSave, ModelTemplate
+                    ConfigFile.PathTemp, 
+                    ConfigFile.PathDownloadsReplaceLogin, ModelTemplate
                     ); })}
             };
             SelectModelTemplate = new DelegateCommand<object>(param => { ModelTemplate.SelectModelTemplate(param); });

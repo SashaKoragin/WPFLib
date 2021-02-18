@@ -23,8 +23,9 @@ namespace AutomatAis3Full.Form.Automat.Okp2.TaxJournal.DataContext
             DownloadPrintDb = new DownloadPrintDb();
             StartButton = new StatusButtonMethod();
             StartButton.Button.Command = new DelegateCommand(() => { 
-                command.StartTaxJournal(StartButton,ConfigFile.FileJurnalOk, ConfigFile.PathPdfTemp, DatePicker); 
-            }); DownloadDb = new DelegateCommand(() => { command.DownloadDbFile(ConfigFile.PathPdfWork, DownloadPrintDb); });
+                command.StartTaxJournal(StartButton,ConfigFile.FileJurnalOk, ConfigFile.PathTemp, DatePicker); 
+            }); 
+            DownloadDb = new DelegateCommand(() => { command.DownloadDbFile(ConfigFile.PathPdfWork, DownloadPrintDb); });
             PrintFile = new DelegateCommand(() => { command.PrintFiles(DownloadPrintDb); });
         }
     }

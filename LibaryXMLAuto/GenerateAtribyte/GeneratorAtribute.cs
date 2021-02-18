@@ -64,5 +64,16 @@ namespace LibaryXMLAuto.GenerateAtribyte
         {
             return String.Format("/Face/Fid[@FidFace =\"{0}\"]", fid);
         }
+
+        /// <summary>
+        /// Удаление атрибута по ИНН TaxArrears
+        /// </summary>
+        /// <param name="inn">ИНН</param>
+        /// <returns></returns>
+        public static string GenerateAtrAutoGenerateSchemes(string inn)
+        {
+            return String.Format("/AutoGenerateSchemes/TaxArrears[@Inn =\"{0}\"]", inn);
+        }
+
     }
 }

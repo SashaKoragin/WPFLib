@@ -32,6 +32,7 @@ namespace AutomatAis3Full.Config
             var exeptions = ConfigurationManager.AppSettings["ExeptionsIfns"].Split(',');
             if (exeptions[0] != "")
             {
+                
                 foreach (var strexeption in exeptions)
                 {
                     ExceptionIfns.Add(strexeption);

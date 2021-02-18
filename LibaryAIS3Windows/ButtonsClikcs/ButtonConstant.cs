@@ -14,9 +14,9 @@ namespace LibraryAIS3Windows.ButtonsClikcs
        internal const string Down10 = "{Down 10}";
        internal const string Down13 = "{Down 13}";
        internal const string Down20 = "{Down 20}";
-       internal const string Right1 = "{right}";
-       internal const string Right5 = "{right 5}";
-       internal const string Right6 = "{right 6}";
+       internal const string Right1 = "{Right}";
+       internal const string Right5 = "{Right 5}";
+       internal const string Right6 = "{Right 6}";
        internal const string Enter = "{Enter}";
        internal const string CtrlV = "^v";
        internal const string CtrlA = "^a";
@@ -39,5 +39,8 @@ namespace LibraryAIS3Windows.ButtonsClikcs
        internal const string TabCountClick = "{{Tab {0} }}";
        internal const string DownCountClick = "{{Down {0}}}";
        internal const string UpCountClick = "{{Up {0}}}";
+       internal const string Plus = "{+}";
+       internal const string Minus = "{-}";
+
     }
 }

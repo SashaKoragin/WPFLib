@@ -32,9 +32,7 @@
         <!--Диалоговые окна по ссылкам UI-->
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
     
-    <!--Custom Folder User Download-->
-    <SetProperty Id="USER" Value="C:\Users\[LogonUser]\Downloads\" Before="FileCost" Sequence="ui"></SetProperty>
-    
+
     <UIRef Id="WixUI_InstallAutomatAis3" />
       
 		<Feature Id="ProductFeature" Title="AutomatAis3Full" Level="1">
@@ -227,17 +225,19 @@
 	    <Component Id="MaterialDesignThemes.Wpf.dll" Guid="5563fb9b-9ca5-489c-a908-5207c1e2d203">
 	      <File Id="MaterialDesignThemes.Wpf.dll" Name="MaterialDesignThemes.Wpf.dll" Source="$(var.AutomatAis3Full_TargetDir)MaterialDesignThemes.Wpf.dll" />
 	    </Component>
-	    <Component Id="AutomatAis3Full.exe.config" Guid="2efdc2eb-9e01-49a6-8204-b7f99614a513" > 
-	      <File Id="AutomatAis3Full.exe.config" Name="AutomatAis3Full.exe.config" Source="$(var.AutomatAis3Full_TargetDir)AutomatAis3Full.exe.config" KeyPath="yes" Vital="yes"/>
+	    <Component Id="AutomatAis3Full.exe.config" Guid="2efdc2eb-9e01-49a6-8204-b7f99614a513" >
+        
+        <File Id="AutomatAis3Full.exe.config" Name="AutomatAis3Full.exe.config" Source="$(var.AutomatAis3Full_TargetDir)AutomatAis3Full.exe.config" KeyPath="yes" Vital="yes"/>
         <util:XmlFile Id="AutomatAis3FullSet1" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='Ifns'[\]]//@value" Value="[IFNS]" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSet4" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServerReport'[\]]//@value" Value="http://[SERVICE]:8181/ServiceRest/MigrationError" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSet5" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServerRuleUsersWordTemplate'[\]]//@value" Value="http://[SERVICE]:8181/ServiceRest/GenerateTemplateRule" SelectionLanguage="XPath" Sequence="1" />
-        <util:XmlFile Id="AutomatAis3FullSet3" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathPdfTemp'[\]]//@value" Value="[TEMPFOLDER]" SelectionLanguage="XPath" Sequence="1" />
-
+        <util:XmlFile Id="AutomatAis3FullSet6" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='LoadInfoTemplate'[\]]//@value" Value="http://[SERVICE]:8181/ServiceRest/LoadInfoTemplateToDataBase" SelectionLanguage="XPath" Sequence="1" />
+        
         <util:XmlFile Id="AutomatAis3FullSetHelp" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='Help'[\]]//@value" Value="[INSTALLFOLDER]Help\AutomateAis3Full.pdf" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="AutomatAis3FullSetAllListModel" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='AllListModel'[\]]//@value" Value="[INSTALLFOLDER]XmlFile\AutoGenerateSchemes.xml" SelectionLanguage="XPath" Sequence="1" />
+        
         <util:XmlFile Id="AutomatAis3FullSetFileFid" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='FileFid'[\]]//@value" Value="[INSTALLFOLDER]XmlFile\Fid.xml" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetFileInn" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='FileInn'[\]]//@value" Value="[INSTALLFOLDER]XmlFile\Fpd.xml" SelectionLanguage="XPath" Sequence="1" />
-
         <util:XmlFile Id="AutomatAis3FullSetFileFpd" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='FileFpd'[\]]//@value" Value="[INSTALLFOLDER]XmlFile\Fpd.xml" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetFileInnFull" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='FileInnFull'[\]]//@value" Value="[INSTALLFOLDER]XmlFile\InnFull.xml" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetIdZaprosVisual" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='IdZaprosVisual'[\]]//@value" Value="[INSTALLFOLDER]XmlFile\IdZaprosVisual.xml" SelectionLanguage="XPath" Sequence="1" />
@@ -252,7 +252,6 @@
         <util:XmlFile Id="AutomatAis3FullSetExcelReportFile" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ExcelReportFile'[\]]//@value" Value="[INSTALLFOLDER]ExcelReport\" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetPathPdfWork" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathPdfWork'[\]]//@value" Value="[INSTALLFOLDER]PdfReport\" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetServiceGetOrPost" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServiceGetOrPost'[\]]//@value" Value="http://[SERVICE]:8050/ServiceAutomation/LoadModelPreCheck" SelectionLanguage="XPath" Sequence="1" />
-        <util:XmlFile Id="AutomatAis3FullSetBankSvedSave" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='BankSvedSave'[\]]//@value" Value="[USER]" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="DatabaseAutomationConnect" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//connectionStrings//add[\[]@name='DatabaseAutomation'[\]]//@connectionString" Value="Data Source=[SERVER];Initial Catalog=[DB];Integrated Security=True;MultipleActiveResultSets=True" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="BulkCopyXmlAutomationConnect" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//connectionStrings//add[\[]@name='BulkCopyXml'[\]]//@connectionString" Value="provider=SQLOLEDB;data source=[SERVER];database=[DB];integrated security=SSPI" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetPathXsdScheme" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='PathXsdScheme'[\]]//@value" Value="[INSTALLFOLDER]XsdShemeLoad\" SelectionLanguage="XPath" Sequence="1" />
@@ -343,7 +342,9 @@
       <Component Id="Ionic.Utils.Zip.dll" Guid="F422B9C3-C3C8-4C34-ADEB-5FC616EC951B">
         <File Id="Ionic.Utils.Zip.dll" Name="Ionic.Utils.Zip.dll" Source="$(var.AutomatAis3Full_TargetDir)Ionic.Utils.Zip.dll" />
       </Component>
-
+      <Component Id="AttributeHelperModelXml.dll" Guid="4C990695-88E6-4A20-8FE1-EC350E94975F">
+        <File Id="AttributeHelperModelXml.dll" Name="AttributeHelperModelXml.dll" Source="$(var.AutomatAis3Full_TargetDir)AttributeHelperModelXml.dll" />
+      </Component>
 
     </ComponentGroup>
     <Component Id="XsdAllBodyData.xsd" Guid="143E7EF5-8794-445B-B41A-0EEF062C006D" Directory="XsdShemeLoad">
