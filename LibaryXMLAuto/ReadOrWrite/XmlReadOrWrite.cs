@@ -228,5 +228,62 @@ namespace LibaryXMLAuto.ReadOrWrite
             }
             doc.Save(path);
         }
+        /// <summary>
+        /// Метод добавление в файл пользователй и их ролей с шаблонами
+        /// </summary>
+        /// <param name="path">Путь сохранения</param>
+        /// <param name="infoUserTemlateAndRule">Шаблоны пользователей и ролей</param>
+        public void AddInfoUserRuleTemplate(string path, InfoUserTemlateAndRule infoUserTemlateAndRule)
+        {
+            var doc = LogicaXml.LogicaXml.Document(path);
+            XmlElement xRoot = doc.DocumentElement;
+            XmlElement infoUserRule = doc.CreateElement("Users");
+            foreach (var user in infoUserTemlateAndRule.Users)
+            {
+                infoUserRule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Name", user.Name));
+                infoUserRule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Code", user.Code.ToString()));
+                infoUserRule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "TabelNumber", user.TabelNumber));
+                infoUserRule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Department", user.Department));
+                infoUserRule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Position", user.Position));
+                infoUserRule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Organization", user.Organization));
+                infoUserRule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Bloking", user.Bloking));
+                infoUserRule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "NumberActiveDirectory", user.NumberActiveDirectory));
+                foreach (var templates in user.Template)
+                {
+                    XmlElement template = doc.CreateElement("Template");
+                    template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "NameTemplate", templates.NameTemplate));
+                    template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Info", templates.Info));
+                    template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Category", templates.Category));
+                    template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "DateStart", templates.DateStart.ToString()));
+                    template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "DateFinish", templates.DateFinish.ToString()));
+                    infoUserRule.AppendChild(template);
+                }
+                foreach(var segments in user.Sigment)
+                {
+                    XmlElement segment = doc.CreateElement("Sigment");
+                    segment.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Name", segments.Name));
+                    foreach(var app in segments.Applications)
+                    {
+                        XmlElement application = doc.CreateElement("Applications");
+                        application.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Name", app.Name));
+                            foreach(var rules in app.RuleTemplate)
+                            {
+                                XmlElement rule = doc.CreateElement("RuleTemplate");
+                                rule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "NameRule", rules.NameRule));
+                                rule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Context", rules.Context));
+                                rule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Info", rules.Info));
+                                rule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Category", rules.Category));
+                                rule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "DateStart", rules.DateStart.ToString()));
+                                rule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "DateFinish", rules.DateFinish.ToString()));
+                                application.AppendChild(rule);
+                            }
+                        segment.AppendChild(application);
+                    }
+                    infoUserRule.AppendChild(segment);
+                }
+                xRoot.AppendChild(infoUserRule);
+            }
+            doc.Save(path);
+        }
     }
 }

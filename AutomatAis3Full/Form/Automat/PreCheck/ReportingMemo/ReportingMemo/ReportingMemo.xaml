@@ -3,11 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:dataContext="clr-namespace:AutomatAis3Full.Form.Automat.PreCheck.ReportingMemo.DataContext"
+             
              xmlns:local="clr-namespace:AutomatAis3Full.Form.Automat.PreCheck.ReportingMemo.ReportingMemo"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             d:DataContext="{d:DesignInstance {x:Type dataContext: ReportingMemoContext}}"
+             xmlns:dataContext="clr-namespace:AutomatAis3Full.Form.Automat.PreCheck.ReportingMemo.DataContext"
+             d:DataContext="{d:DesignInstance {x:Type dataContext:ReportingMemoContext}}"
+                     
              mc:Ignorable="d" 
+             
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>

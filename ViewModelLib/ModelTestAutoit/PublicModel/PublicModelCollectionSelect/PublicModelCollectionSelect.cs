@@ -80,6 +80,10 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect
         {
             IsValid = false;
             RaisePropertyChanged("SelectModel");
+            if (!String.IsNullOrEmpty(Error))
+            {
+                return IsValid;
+            }
             RaisePropertyChanged("YearReport");
             if (String.IsNullOrEmpty(Error))
             {
@@ -103,8 +107,13 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect
                         if (SelectModelCollection.FirstOrDefault(parameter => templateParameter.Contains(parameter)) != 0)
                         {
                             if (YearReport != 0)
-                            { break; }
-                            { Error = $"Для шаблонов c УН:  {string.Join("", templateParameter) } требуется выбор отчетного года!"; }
+                            {
+                                break;
+                            }
+
+                            {
+                                Error = $"Для шаблонов c УН:  {string.Join("", templateParameter)} требуется выбор отчетного года!";
+                            }
                         }
                         break;
 

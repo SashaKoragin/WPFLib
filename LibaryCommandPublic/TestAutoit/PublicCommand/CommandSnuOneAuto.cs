@@ -157,7 +157,7 @@ namespace LibraryCommandPublic.TestAutoit.PublicCommand
         {
             string resultServer;
             var json = new SerializeJson();
-            var js = json.JsonLibary(requesttype);
+            var js = json.JsonLibraryNullInclude(requesttype);
             var body = Encoding.UTF8.GetBytes(js);
             var request = (HttpWebRequest) WebRequest.Create(serviceadress);
             request.Method = "POST";

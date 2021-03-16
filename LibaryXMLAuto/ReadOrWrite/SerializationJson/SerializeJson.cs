@@ -32,13 +32,26 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
         /// <returns>JSON string</returns>
         public string JsonLibary(object model)
         {
-           
-         return  JsonConvert.SerializeObject(model,new JsonSerializerSettings()
+            return  JsonConvert.SerializeObject(model,new JsonSerializerSettings()
           {
             NullValueHandling = NullValueHandling.Ignore,
             DateFormatString = "dd-MM-yyyy"
           });
         }
+        /// <summary>
+        /// Библиотечная функция получения данных JSON
+        /// </summary>
+        /// <param name="model">Объект модели класса</param>
+        /// <returns>JSON string</returns>
+        public string JsonLibraryNullInclude(object model)
+        {
+            return JsonConvert.SerializeObject(model, new JsonSerializerSettings()
+            {
+                NullValueHandling = NullValueHandling.Include,
+                DateFormatString = "dd-MM-yyyy"
+            });
+        }
+
         /// <summary>
         /// Библиотечная функция получения данных JSON
         /// </summary>

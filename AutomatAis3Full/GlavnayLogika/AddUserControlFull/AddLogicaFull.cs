@@ -2,6 +2,7 @@
 using AutomatAis3Full.Form.Automat.Analitic.Zadanie.ZacetVozvrat.Signature;
 using AutomatAis3Full.Form.Automat.It.Rule.UserControl;
 using AutomatAis3Full.Form.Automat.It.RuleInfoFull.UserControl;
+using AutomatAis3Full.Form.Automat.It.UserTemplateAndRule.UserControl;
 using AutomatAis3Full.Form.Automat.Okp2.RegisterDeclarations.RegisterDeclarations;
 using AutomatAis3Full.Form.Automat.Okp2.TaxJournal.TaxJournal;
 using AutomatAis3Full.Form.Automat.Okp3.UsnSend.UsnSend;
@@ -82,6 +83,11 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                           {
                                               NameControl = "Мои роли (Сбор всех веток!)",
                                               UserControl = new FormRuleInfoFull()
+                                          },
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Просмотр ролей (Сбор пользователей, ролей, шаблонов)",
+                                              UserControl = new FormUserTemplateAndRule()
                                           }
                                       }
                                   }

@@ -1,9 +1,11 @@
 ﻿namespace LibraryAIS3Windows.AutomationsUI.Otdels.It
 {
    public class ItElementName
-    {
+   {
+
+       public static string FullPath = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1";
         /// <summary>
-        /// Колличество строк
+        /// Количество строк
         /// </summary>
         public static string PanelDocksCountRow = "Name:DockTop\\AutomationId:gbFilter\\AutomationId:rowCount";
         /// <summary>
@@ -15,43 +17,95 @@
         /// </summary>
         public static string PanelDocksDbStart = "Name:DockTop\\AutomationId:gbFilter\\AutomationId:dtStart";
         /// <summary>
-        /// Журнал
-        /// </summary>
-        public static string GridJournal = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandJrnlView\\AutomationId:gbAll\\AutomationId:grdJournal";
-        /// <summary>
         /// GRID
         /// </summary>
-        public static string Grid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandJrnlView\\AutomationId:gbAll\\AutomationId:grdJournal";
+        public static string Grid = $"{FullPath}\\AutomationId:DemandJrnlView\\AutomationId:gbAll\\AutomationId:grdJournal";
         /// <summary>
         /// Журнал Дата
         /// </summary>
-        public static string GridJournalRows = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandJrnlView\\AutomationId:gbAll\\AutomationId:grdJournal\\Name:List`1 row ";
+        public static string GridJournalRows = $"{FullPath}\\AutomationId:DemandJrnlView\\AutomationId:gbAll\\AutomationId:grdJournal\\Name:List`1 row ";
         /// <summary>
         /// История ролей
         /// </summary>
-        public static string HistoryJournal = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandHistoryView\\AutomationId:grdDemands";
+        public static string HistoryJournal = $"{FullPath}\\AutomationId:DemandHistoryView\\AutomationId:grdDemands";
         /// <summary>
         /// Имя
         /// </summary>
-        public static string Name = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandHistoryView\\AutomationId:gbUser\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:userInfoCtrl\\AutomationId:groupBox\\AutomationId:txtFIO";
+        public static string Name = $"{FullPath}\\AutomationId:DemandHistoryView\\AutomationId:gbUser\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:userInfoCtrl\\AutomationId:groupBox\\AutomationId:txtFIO";
         /// <summary>
         /// Должность
         /// </summary>
-        public static string Doljnost = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandHistoryView\\AutomationId:gbUser\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:userInfoCtrl\\AutomationId:groupBox\\AutomationId:txtTitle";
+        public static string Doljnost = $"{FullPath}\\AutomationId:DemandHistoryView\\AutomationId:gbUser\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:userInfoCtrl\\AutomationId:groupBox\\AutomationId:txtTitle";
         /// <summary>
         /// Отдел
         /// </summary>
-        public static string Department = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandHistoryView\\AutomationId:gbUser\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:userInfoCtrl\\AutomationId:groupBox\\AutomationId:txtDepartment";
+        public static string Department = $"{FullPath}\\AutomationId:DemandHistoryView\\AutomationId:gbUser\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:userInfoCtrl\\AutomationId:groupBox\\AutomationId:txtDepartment";
         /// <summary>
         /// Логин
         /// </summary>
-        public static string Logon = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DemandHistoryView\\AutomationId:gbUser\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:userInfoCtrl\\AutomationId:groupBox\\AutomationId:txtLogon";
+        public static string Logon = $"{FullPath}\\AutomationId:DemandHistoryView\\AutomationId:gbUser\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:userInfoCtrl\\AutomationId:groupBox\\AutomationId:txtLogon";
 
         ///Сбор информации о ролях папках и т.п.
         /// <summary>
         /// Кнопка заявки
         /// </summary>
-        public static string ApplicationTab = "Name:_layoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:RoleListView\\AutomationId:gbAll\\AutomationId:userRolesCtrl\\AutomationId:tabCtrl\\Name:Заявки";
+        public static string ApplicationTab = $"{FullPath}\\AutomationId:RoleListView\\AutomationId:gbAll\\AutomationId:userRolesCtrl\\AutomationId:tabCtrl\\Name:Заявки";
+
+        /// <summary>
+        /// Вкладка По пользователям в ветке (Просмотр ролей)
+        /// </summary>
+        public static string ApplicationTabUsers = $"{FullPath}\\AutomationId:RoleViewerView\\AutomationId:gbAll\\AutomationId:utcRoleViewer\\Name:По пользователям";
+        /// <summary>
+        /// Контейнер для поиска вкладок
+        /// </summary>
+        public static string ApplicationContainerTab = $"{FullPath}\\AutomationId:RoleViewerView\\AutomationId:gbAll\\AutomationId:utcRoleViewer\\AutomationId:ultraTabPageControl2\\AutomationId:gbAll1\\AutomationId:listUserRolesCtrl\\AutomationId:splitContainer1";
+        /// <summary>
+        /// Шаблоны вкладка в ветке (Просмотр ролей)
+        /// </summary>
+        public static string ApplicationTabTemplate = "AutomationId:userRolesCtrl\\AutomationId:tabCtrl\\Name:Шаблоны";
+        /// <summary>
+        /// Роли вкладка в ветке (Просмотр ролей)
+        /// </summary>
+        public static string ApplicationTabRule = "AutomationId:userRolesCtrl\\AutomationId:tabCtrl\\Name:Роли";
+        /// <summary>
+        /// Найти пользователя в ветке (Просмотр ролей)
+        /// </summary>
+        public static string FindUsers = $"{FullPath}\\AutomationId:RoleViewerView\\AutomationId:gbAll\\AutomationId:utcRoleViewer\\AutomationId:ultraTabPageControl2\\AutomationId:gbAll1\\AutomationId:listUserRolesCtrl\\AutomationId:splitContainer1\\AutomationId:userFindCtrl\\AutomationId:grbParams\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:paramCtrl\\AutomationId:ultraGroupBox1\\AutomationId:btnFind";
+
+
+        /// <summary>
+        /// Grid List Row User
+        /// </summary>
+        public static string ListRowUsersGrid = $"{FullPath}\\AutomationId:RoleViewerView\\AutomationId:gbAll\\AutomationId:utcRoleViewer\\AutomationId:ultraTabPageControl2\\AutomationId:gbAll1\\AutomationId:listUserRolesCtrl\\AutomationId:splitContainer1\\AutomationId:userFindCtrl\\AutomationId:grdUsers";
+        /// <summary>
+        /// Строка
+        /// </summary>
+        public static string ListRowUsers = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:RoleViewerView\\AutomationId:gbAll\\AutomationId:utcRoleViewer\\AutomationId:ultraTabPageControl2\\AutomationId:gbAll1\\AutomationId:listUserRolesCtrl\\AutomationId:splitContainer1\\AutomationId:userFindCtrl\\AutomationId:grdUsers\\Name:List`1 row {0}";
+        /// <summary>
+        /// Общее количество шаблонов
+        /// </summary>
+        public static string ListAllTemplatesUsers = "AutomationId:userRolesCtrl\\AutomationId:tabCtrl\\AutomationId:ultraTabPageControl2\\AutomationId:grdTemplates";
+        /// <summary>
+        /// Общее количество сигментов
+        /// </summary>
+        public static string ListAllRulesUsers = "AutomationId:userRolesCtrl\\AutomationId:tabCtrl\\AutomationId:ultraTabPageControl1\\AutomationId:grdRoles";
+        /// <summary>
+        /// Шаблоны пользователей
+        /// </summary>
+        public static string ListTemplatesUsers = "AutomationId:userRolesCtrl\\AutomationId:tabCtrl\\AutomationId:ultraTabPageControl2\\AutomationId:grdTemplates\\Name:List`1 row {0}";
+        /// <summary>
+        /// Шаблоны пользователей
+        /// </summary>
+        public static string ListRulesUsers = "AutomationId:userRolesCtrl\\AutomationId:tabCtrl\\AutomationId:ultraTabPageControl1\\AutomationId:grdRoles\\Name:List`1 row {0}";
+        /// <summary>
+        /// Приложение в сегменте
+        /// </summary>
+        public static string ListRulesAppUsers = "AutomationId:userRolesCtrl\\AutomationId:tabCtrl\\AutomationId:ultraTabPageControl1\\AutomationId:grdRoles\\Name:List`1 row {0}\\Name:Apps row {1}";
+        /// <summary>
+        /// Роль в приложении в сегменте
+        /// </summary>
+        public static string ListRulesAppRuleUsers = "AutomationId:userRolesCtrl\\AutomationId:tabCtrl\\AutomationId:ultraTabPageControl1\\AutomationId:grdRoles\\Name:List`1 row {0}\\Name:Apps row {1}\\Name:RoleList row {2}";
+
         /// <summary>
         /// Кнопка добавить
         /// </summary>
@@ -64,7 +118,7 @@
         /// <summary>
         /// Grid Ролей шаблонов
         /// </summary>
-        public static string GridRule = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:AuthorizationPropsView\\AutomationId:AuthorizationPropsView_Fill_Panel\\AutomationId:grdProps";
+        public static string GridRule = $"{FullPath}\\AutomationId:AuthorizationPropsView\\AutomationId:AuthorizationPropsView_Fill_Panel\\AutomationId:grdProps";
         /// <summary>
         /// Строка
         /// </summary>

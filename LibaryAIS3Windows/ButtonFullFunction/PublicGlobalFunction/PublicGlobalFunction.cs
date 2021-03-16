@@ -35,6 +35,27 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
             return list;
         }
         /// <summary>
+        /// Определяет блокировку файла
+        /// </summary>
+        /// <param name="file">Файл</param>
+        /// <returns></returns>
+        public static bool IsFileLocked(GetFile file)
+        {
+            try
+            {
+                using (FileStream stream = new FileInfo(file.NamePath).Open(FileMode.Open, FileAccess.Read, FileShare.None))
+                {
+                    stream.Close();
+                    return false;
+                }
+            }
+            catch
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Удаление файла
         /// </summary>
         /// <param name="fileName">Имя файла</param>
@@ -134,14 +155,14 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
         /// </summary>
         /// <param name="libraryAutomation">Элемент</param>
         /// <param name="searсhPatternElement">Pattern элемент</param>
-        public static void WindowElementClick(LibraryAutomations libraryAutomation, string searсhPatternElement)
+        public static void WindowElementClick(LibraryAutomations libraryAutomation, string searсhPatternElement, AutomationElement auto = null)
         {
             var isProcess = true;
             while (isProcess)
             {
-                if (libraryAutomation.IsEnableElements(searсhPatternElement, null, true, 1) != null)
+                if (libraryAutomation.IsEnableElements(searсhPatternElement, auto, true, 1) != null)
                 {
-                    libraryAutomation.ClickElements(searсhPatternElement, null, true);
+                    libraryAutomation.ClickElements(searсhPatternElement, auto, true);
                     isProcess = false;
                 }
             }

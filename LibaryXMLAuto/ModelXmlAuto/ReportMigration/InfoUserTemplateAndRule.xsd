@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="InfoUserTemlateAndRule" type="InfoUserTemlateAndRule">
+		<xs:annotation>
+			<xs:documentation>Информация о ролях и шаблонах пользователя</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="InfoUserTemlateAndRule">
+		<xs:annotation>
+			<xs:documentation>Информация о ролях и шаблонах пользователя</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="Users" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Users">
+		<xs:annotation>
+			<xs:documentation>Пользователь</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DateIn" minOccurs="0"/>
+				<xs:element ref="Template" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Sigment" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="Name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Имя пользователя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Code" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Код НО</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TabelNumber" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Табельный номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Department" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Отдел</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Position" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Должность</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Organization" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Организация</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Bloking" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Блокировка</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NumberActiveDirectory" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер Active Directory</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateIn" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата последнего входа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Template">
+		<xs:annotation>
+			<xs:documentation>Шаблоны</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DateStart" minOccurs="0"/>
+				<xs:element ref="DateFinish" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="NameTemplate" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование шаблона</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Info" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Описание</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Category" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Категория</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateStart" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата начала</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateFinish" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата окончания</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Applications">
+		<xs:annotation>
+			<xs:documentation>Приложение</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RuleTemplate" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="Name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RuleTemplate">
+		<xs:annotation>
+			<xs:documentation>Описание ролей</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DateStart" minOccurs="0"/>
+				<xs:element ref="DateFinish" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="NameRule" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование роли</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Context" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Контекст</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Info" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Описание</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Category" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Категория</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Sigment">
+		<xs:annotation>
+			<xs:documentation>Сегмент</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Applications" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="Name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -257,6 +257,10 @@
     public class ModelBookShopping
     {
         /// <summary>
+        /// Загрузка
+        /// </summary>
+        public static string Loading = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:InspectorDeclarationsView\\AutomationId:grid\\AutomationId:pnlMain\\AutomationId:gridLayoutPanel\\AutomationId:pnlGridBottom\\AutomationId:pnlLoading"; //\\AutomationId:pnlLoading
+        /// <summary>
         /// Все книги учета
         /// </summary>
         public static string AllBook = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:InspectorDeclarationsView\\AutomationId:preFilterControl\\AutomationId:mainPanel\\AutomationId:rbAll";

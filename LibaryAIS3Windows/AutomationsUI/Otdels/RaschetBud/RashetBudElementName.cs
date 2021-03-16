@@ -5,6 +5,7 @@
 
        public static string MainView = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\";
 
+    
         /// <summary>
         /// Кнопка начать выяснения
         /// </summary>
@@ -17,8 +18,11 @@
         /// <summary>
         /// Все данные Grid Платежи
         /// </summary>
-       public static string DateGrid = $"{MainView}AutomationId:UncertainJournalNavView\\AutomationId:ctlUncertainJournal_R1\\AutomationId:grdUncertainJournal";
-
+       public static string DateGrid = $"{MainView}AutomationId:UncertainJournalNavView\\AutomationId:ctlUncertainJournal_R1\\AutomationId:grdUncertainJournal\\Name:List`1 row ";
+        /// <summary>
+        /// Загрузка
+        /// </summary>
+       public static string Load = "AutomationId:ultraStatusBar";
        /// <summary>
        /// Начинаем выяснение платежа
        /// </summary>
@@ -26,7 +30,7 @@
        /// <summary>
        /// Подстановка нового КБК
        /// </summary>
-       public static string SendKbk = $"{MainView}AutomationId:UncertainDecisionNewView\\AutomationId:grpMain\\AutomationId:ctlDecision\\AutomationId:grpMain\\AutomationId:grpPayment\\AutomationId:ltbKBK\\AutomationId:utbLike\\AutomationId:umeUniversal";
+        public static string SendKbk = $"{MainView}AutomationId:UncertainDecisionNewView\\AutomationId:grpMain\\AutomationId:ctlDecision\\AutomationId:grpMain\\AutomationId:grpPayment\\AutomationId:ltbKBK\\AutomationId:utbLike\\AutomationId:umeUniversal";
        /// <summary>
        /// Подстановка статуса КБК
        /// </summary>

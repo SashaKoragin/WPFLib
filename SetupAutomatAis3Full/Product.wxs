@@ -235,7 +235,10 @@
         
         <util:XmlFile Id="AutomatAis3FullSetHelp" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='Help'[\]]//@value" Value="[INSTALLFOLDER]Help\AutomateAis3Full.pdf" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetAllListModel" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='AllListModel'[\]]//@value" Value="[INSTALLFOLDER]XmlFile\AutoGenerateSchemes.xml" SelectionLanguage="XPath" Sequence="1" />
-        
+
+        <util:XmlFile Id="AutomatAis3FullSetInfoRuleTemplate" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='InfoRuleTemplate'[\]]//@value" Value="[INSTALLFOLDER]XmlJurnal\InfoRuleTemplate.xml" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="AutomatAis3FullSetInfoUserTemplateRule" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='InfoUserTemplateRule'[\]]//@value" Value="[INSTALLFOLDER]XmlJurnal\InfoUserTemplateRule.xml" SelectionLanguage="XPath" Sequence="1" />
+
         <util:XmlFile Id="AutomatAis3FullSetFileFid" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='FileFid'[\]]//@value" Value="[INSTALLFOLDER]XmlFile\Fid.xml" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetFileInn" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='FileInn'[\]]//@value" Value="[INSTALLFOLDER]XmlFile\Fpd.xml" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetFileFpd" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='FileFpd'[\]]//@value" Value="[INSTALLFOLDER]XmlFile\Fpd.xml" SelectionLanguage="XPath" Sequence="1" />

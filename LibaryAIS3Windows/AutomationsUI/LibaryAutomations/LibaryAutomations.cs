@@ -586,14 +586,14 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         /// Опасная функция ожидание отключения элемента
         /// </summary>
         /// <param name="nameAutomationId">Поиск элемента</param>
-        public bool IsEnableElementTrue(string nameAutomationId)
+        public bool IsEnableElementTrue(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false)
         {
             var isEnable = true;
             LegacyIAccessiblePattern valuePattern;
             uint status = 0;
             while (isEnable)
             {
-                FindFirstElement(nameAutomationId);
+                FindFirstElement(nameAutomationId, auto,isSubtree);
                 try
                 {
                     if (FindElement.TryGetCurrentPattern(LegacyIAccessiblePatternIdentifiers.Pattern, out var patternObj))

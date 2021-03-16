@@ -100,6 +100,7 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<UlFace> UlFaces { get; set; } // UlFace
         System.Data.Entity.DbSet<UlFaceAll> UlFaceAlls { get; set; } // UlFaceAll
         System.Data.Entity.DbSet<UlFaceAllSale> UlFaceAllSales { get; set; } // UlFaceAllSales
+        System.Data.Entity.DbSet<UlFaceSalesBookBank> UlFaceSalesBookBanks { get; set; } // UlFaceSalesBookBank
 
         int SaveChanges();
         System.Threading.Tasks.Task<int> SaveChangesAsync();
@@ -185,6 +186,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<UlFace> UlFaces { get; set; } // UlFace
         public System.Data.Entity.DbSet<UlFaceAll> UlFaceAlls { get; set; } // UlFaceAll
         public System.Data.Entity.DbSet<UlFaceAllSale> UlFaceAllSales { get; set; } // UlFaceAllSales
+        public System.Data.Entity.DbSet<UlFaceSalesBookBank> UlFaceSalesBookBanks { get; set; } // UlFaceSalesBookBank
 
         static Automation()
         {
@@ -297,6 +299,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new UlFaceConfiguration());
             modelBuilder.Configurations.Add(new UlFaceAllConfiguration());
             modelBuilder.Configurations.Add(new UlFaceAllSaleConfiguration());
+            modelBuilder.Configurations.Add(new UlFaceSalesBookBankConfiguration());
         }
 
         public static System.Data.Entity.DbModelBuilder CreateModel(System.Data.Entity.DbModelBuilder modelBuilder, string schema)
@@ -364,6 +367,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new UlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new UlFaceAllConfiguration(schema));
             modelBuilder.Configurations.Add(new UlFaceAllSaleConfiguration(schema));
+            modelBuilder.Configurations.Add(new UlFaceSalesBookBankConfiguration(schema));
             return modelBuilder;
         }
     }
@@ -712,7 +716,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public string BikBankCounterparty { get; set; } // BikBankCounterparty (length: 32)
         public string InnBankCounterparty { get; set; } // InnBankCounterparty (length: 12)
         public string KppBankCounterparty { get; set; } // KppBankCounterparty (length: 12)
-        public string CashCounterparty { get; set; } // CashCounterparty (length: 20)
+        public string CashCounterparty { get; set; } // CashCounterparty (length: 64)
         public System.DateTime DateOperation { get; set; } // DateOperation
         public string SurOperation { get; set; } // SurOperation (length: 256)
         public string NameOperation { get; set; } // NameOperation (length: 512)
@@ -2209,7 +2213,7 @@ namespace EfDatabaseAutomation.Automation.Base
     public class UlFaceAll
     {
         public int IdUl { get; set; } // IdUl (Primary key)
-        public string StatusFull { get; set; } // StatusFull (Primary key) (length: 7)
+        public string StatusFull { get; set; } // StatusFull (length: 7)
         public long IdNum { get; set; } // IdNum (Primary key)
         public long Fid { get; set; } // Fid (Primary key)
         public string Inn { get; set; } // Inn (Primary key) (length: 12)
@@ -2227,7 +2231,25 @@ namespace EfDatabaseAutomation.Automation.Base
     public class UlFaceAllSale
     {
         public int IdUl { get; set; } // IdUl (Primary key)
-        public string StatusFull { get; set; } // StatusFull (Primary key) (length: 7)
+        public string StatusFull { get; set; } // StatusFull (length: 7)
+        public long IdNum { get; set; } // IdNum (Primary key)
+        public long Fid { get; set; } // Fid (Primary key)
+        public string Inn { get; set; } // Inn (Primary key) (length: 12)
+        public string NameFull { get; set; } // NameFull (Primary key) (length: 1024)
+        public string Kpp { get; set; } // Kpp (length: 12)
+        public string Ogrn { get; set; } // Ogrn (length: 18)
+        public System.DateTime? DateOgrn { get; set; } // DateOgrn
+        public string StatusUl { get; set; } // StatusUl (length: 1024)
+        public string NameSmall { get; set; } // NameSmall (Primary key) (length: 1024)
+        public string Address { get; set; } // Address (length: 1024)
+    }
+
+    // UlFaceSalesBookBank
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class UlFaceSalesBookBank
+    {
+        public int IdUl { get; set; } // IdUl (Primary key)
+        public string StatusFull { get; set; } // StatusFull (length: 7)
         public long IdNum { get; set; } // IdNum (Primary key)
         public long Fid { get; set; } // Fid (Primary key)
         public string Inn { get; set; } // Inn (Primary key) (length: 12)
@@ -2566,7 +2588,7 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.BikBankCounterparty).HasColumnName(@"BikBankCounterparty").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(32);
             Property(x => x.InnBankCounterparty).HasColumnName(@"InnBankCounterparty").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
             Property(x => x.KppBankCounterparty).HasColumnName(@"KppBankCounterparty").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
-            Property(x => x.CashCounterparty).HasColumnName(@"CashCounterparty").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.CashCounterparty).HasColumnName(@"CashCounterparty").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(64);
             Property(x => x.DateOperation).HasColumnName(@"DateOperation").HasColumnType("smalldatetime").IsRequired();
             Property(x => x.SurOperation).HasColumnName(@"SurOperation").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(256);
             Property(x => x.NameOperation).HasColumnName(@"NameOperation").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(512);
@@ -4062,10 +4084,10 @@ namespace EfDatabaseAutomation.Automation.Base
         public UlFaceAllConfiguration(string schema)
         {
             ToTable("UlFaceAll", schema);
-            HasKey(x => new { x.IdUl, x.StatusFull, x.IdNum, x.Fid, x.Inn, x.NameFull, x.NameSmall });
+            HasKey(x => new { x.IdUl, x.IdNum, x.Fid, x.Inn, x.NameFull, x.NameSmall });
 
             Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.StatusFull).HasColumnName(@"StatusFull").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(7).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.StatusFull).HasColumnName(@"StatusFull").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(7);
             Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.Fid).HasColumnName(@"Fid").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
@@ -4091,10 +4113,39 @@ namespace EfDatabaseAutomation.Automation.Base
         public UlFaceAllSaleConfiguration(string schema)
         {
             ToTable("UlFaceAllSales", schema);
-            HasKey(x => new { x.IdUl, x.StatusFull, x.IdNum, x.Fid, x.Inn, x.NameFull, x.NameSmall });
+            HasKey(x => new { x.IdUl, x.IdNum, x.Fid, x.Inn, x.NameFull, x.NameSmall });
 
             Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
-            Property(x => x.StatusFull).HasColumnName(@"StatusFull").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(7).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.StatusFull).HasColumnName(@"StatusFull").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(7);
+            Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Fid).HasColumnName(@"Fid").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.NameFull).HasColumnName(@"NameFull").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Kpp).HasColumnName(@"Kpp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.Ogrn).HasColumnName(@"Ogrn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(18);
+            Property(x => x.DateOgrn).HasColumnName(@"DateOgrn").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.StatusUl).HasColumnName(@"StatusUl").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.NameSmall).HasColumnName(@"NameSmall").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Address).HasColumnName(@"Address").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+        }
+    }
+
+    // UlFaceSalesBookBank
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class UlFaceSalesBookBankConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<UlFaceSalesBookBank>
+    {
+        public UlFaceSalesBookBankConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public UlFaceSalesBookBankConfiguration(string schema)
+        {
+            ToTable("UlFaceSalesBookBank", schema);
+            HasKey(x => new { x.IdUl, x.IdNum, x.Fid, x.Inn, x.NameFull, x.NameSmall });
+
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.StatusFull).HasColumnName(@"StatusFull").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(7);
             Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.Fid).HasColumnName(@"Fid").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);

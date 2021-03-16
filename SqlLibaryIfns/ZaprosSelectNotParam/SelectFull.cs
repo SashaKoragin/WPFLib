@@ -183,15 +183,15 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                 case 1:
                     return
                         serializeJson.JsonLibary(
-                            (AllTechnicalUsersAndOtdel)
+                            (AllTechnicalUsersAndOtdelAndTreeAis3)
                             sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(AllTechnicalUsersAndOtdel)));
+                                typeof(AllTechnicalUsersAndOtdelAndTreeAis3)));
                 case 2:
                     return
                         serializeJson.JsonLibary(
-                            (AllTechnicalUsersAndOtdel)
+                            (AllTechnicalUsersAndOtdelAndTreeAis3)
                             sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(AllTechnicalUsersAndOtdel)));
+                                typeof(AllTechnicalUsersAndOtdelAndTreeAis3)));
                 case 4:
                     return
                         serializeJson.JsonLibary(
@@ -301,6 +301,11 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                     return serializeJson.JsonLibary((FullError) sqlConnect.SelectFullParametrSqlReader<string, string>(
                         connectionString,
                         logic.SelectUser, typeof(FullError)));
+                case 38:
+                   return serializeJson.JsonLibary(
+                        (AllTechnicalUsersAndOtdelAndTreeAis3)
+                        sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
+                            typeof(AllTechnicalUsersAndOtdelAndTreeAis3)));
                 default:
                     return "Данная команда не определена!!!";
             }

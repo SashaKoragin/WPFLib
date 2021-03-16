@@ -76,5 +76,36 @@ namespace LibraryCommandPublic.TestAutoit.It.Rule
                     }
                 });
         }
+        /// <summary>
+        /// Сбор информации о пользователях и шаблонах с ролями которые у них открыты
+        /// </summary>
+        /// <param name="statusButton">Кнопка статуса</param>
+        /// <param name="pathJournalInfoUserTemplateRule">Путь к файлу сохранения с пользователями и шаблонами ролей</param>
+        public void UserTemplateRule(StatusButtonMethod statusButton, string pathJournalInfoUserTemplateRule)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                KclicerButton clickerButton = new KclicerButton();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                if (ais3.WinexistsAis3() == 1)
+                {
+                    if (statusButton.IsChekcs)
+                    {
+                        if (File.Exists(pathJournalInfoUserTemplateRule))
+                        {
+                            File.Delete(pathJournalInfoUserTemplateRule);
+                        }
+                    }
+                    clickerButton.Click38(statusButton, pathJournalInfoUserTemplateRule);
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                }
+                else
+                {
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                }
+            });
+        }
     }
 }

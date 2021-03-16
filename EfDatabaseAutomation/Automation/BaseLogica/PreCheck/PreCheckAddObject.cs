@@ -655,6 +655,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             if (logicModel != null)
                 using (var context = new Base.Automation())
                 {
+                    context.Database.CommandTimeout = 1200;
                     var resultDb = context.Database.SqlQuery<string>(logicModel.SelectUser, new SqlParameter(logicModel.SelectedParametr.Split(',')[0], innUl)).FirstOrDefault();
                 }
         }

@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Linq;
+using System.Text.RegularExpressions;
 using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll;
 using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
@@ -17,9 +18,16 @@ namespace LibraryAIS3Windows.RegxFull.RaschetBudg
         public bool UseNalog(LibraryAutomations libraryAutomation, ModelKbkOnKbk modelKbk)
         {
             bool isTp = false; //Проверяем логику подстановки ТП
+            var kbk = new[] { "18210803010014000110", "18210803010011000110" };
             if (Regex.Matches(modelKbk.Kbk100Before, @"^(100[0-9]+)$").Count > 0)
             {
                 isTp = true;
+                libraryAutomation.FindFirstElement(RashetBudElementName.SendKbk, null, true);
+                libraryAutomation.SetValuePattern(modelKbk.KbkIfns);
+            }
+            if (kbk.Any(x => kbk.Contains(modelKbk.KbkIfns)))
+            {
+                modelKbk.KbkIfns = "18210803010011050110";
                 libraryAutomation.FindFirstElement(RashetBudElementName.SendKbk, null, true);
                 libraryAutomation.SetValuePattern(modelKbk.KbkIfns);
             }
@@ -59,7 +67,7 @@ namespace LibraryAIS3Windows.RegxFull.RaschetBudg
                         else
                         {
                             status = "09";
-                            SendsStatus(status, libraryAutomation);
+                            SendsStatus(IsSberbank(status, modelKbk), libraryAutomation);
                             SendsTp(isTp, libraryAutomation, modelKbk);
                         }
                         break;

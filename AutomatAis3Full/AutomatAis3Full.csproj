@@ -129,6 +129,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\It\UserTemplateAndRule\UserControl\FormUserTemplateAndRule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Okp1\Declaration121\Declaration121\FormDeclaration121.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -331,6 +335,10 @@
     <Compile Include="Form\Automat\It\Rule\DataContext\RuleDataContext.cs" />
     <Compile Include="Form\Automat\It\Rule\UserControl\RuleParse.xaml.cs">
       <DependentUpon>RuleParse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\It\UserTemplateAndRule\DataContext\UserTemplateAndRuleDataContext.cs" />
+    <Compile Include="Form\Automat\It\UserTemplateAndRule\UserControl\FormUserTemplateAndRule.xaml.cs">
+      <DependentUpon>FormUserTemplateAndRule.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Okp1\Declaration121\DataContext\DataContextDeclaration121.cs" />
     <Compile Include="Form\Automat\Okp1\Declaration121\Declaration121\FormDeclaration121.xaml.cs">

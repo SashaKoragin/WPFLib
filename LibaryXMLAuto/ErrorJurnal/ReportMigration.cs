@@ -61,5 +61,25 @@ namespace LibaryXMLAuto.ErrorJurnal
             }
         }
 
+        /// <summary>
+        /// Сохранение отчета по Информации о пользователях и их ролях и шаблонах
+        /// </summary>
+        /// <param name="path">Путь сохранения</param>
+        /// <param name="infoUserTemlateAndRule">Шаблоны пользователей и ролей</param>
+        public static void CreateFileInfoUserRuleTemplate(string pathReport, InfoUserTemlateAndRule infoUserTemlateAndRule)
+        {
+            if (File.Exists(pathReport))
+            {
+                XmlReadOrWrite read = new XmlReadOrWrite();
+                read.AddInfoUserRuleTemplate(pathReport, infoUserTemlateAndRule);
+            }
+            else
+            {
+                var convert = new Converts.ConvettToXml.XmlConvert();
+                convert.SerializerClassToXml(pathReport, infoUserTemlateAndRule, typeof(InfoUserTemlateAndRule));
+            }
+        }
+
+
     }
 }

@@ -22,6 +22,7 @@ namespace AutomatAis3Full.Config
         public static string ReportMigration = ConfigurationManager.AppSettings["ReportMigration"];
         public static string UserRule = ConfigurationManager.AppSettings["UserRule"];
         public static string InfoRuleTemplate = ConfigurationManager.AppSettings["InfoRuleTemplate"];
+        public static string InfoUserTemplateRule = ConfigurationManager.AppSettings["InfoUserTemplateRule"];
         public static string LoadInfoTemplate = ConfigurationManager.AppSettings["LoadInfoTemplate"];
         public static string ServerReport = ConfigurationManager.AppSettings["ServerReport"];
         public static string ServerRuleUsersWordTemplate = ConfigurationManager.AppSettings["ServerRuleUsersWordTemplate"];

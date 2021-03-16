@@ -110,6 +110,9 @@
     <Compile Include="ModelXmlAuto\ReportMigration\InfoRuleTemplate.cs">
       <DependentUpon>InfoRuleTemplate.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ModelXmlAuto\ReportMigration\InfoUserTemplateAndRule.cs">
+      <DependentUpon>InfoUserTemplateAndRule.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ModelXmlAuto\ReportMigration\ReportMigration.cs">
       <DependentUpon>ReportMigration.xsd</DependentUpon>
     </Compile>
@@ -222,6 +225,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="ModelXmlAuto\ReportMigration\InfoRuleTemplate.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ModelXmlAuto\ReportMigration\InfoUserTemplateAndRule.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="ModelXmlAuto\ReportMigration\ReportMigration.xsd">

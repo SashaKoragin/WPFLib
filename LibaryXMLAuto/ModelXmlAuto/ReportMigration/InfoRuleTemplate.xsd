@@ -84,7 +84,7 @@
 			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Templates">
+	<xs:element name="Templates" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Шаблоны</xs:documentation>
 		</xs:annotation>

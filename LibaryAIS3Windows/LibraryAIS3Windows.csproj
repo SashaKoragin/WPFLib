@@ -79,6 +79,7 @@
     <Compile Include="AutomationsUI\Otdels\Registration\RegistrationElementName.cs" />
     <Compile Include="AutomationsUI\Otdels\Uregulirovanie\UregulirovanieElementName.cs" />
     <Compile Include="AutomationsUI\PublicElement\PublicElementName.cs" />
+    <Compile Include="ButtonFullFunction\ItFunctionAutomation\ItFunctionAutomation.cs" />
     <Compile Include="ButtonFullFunction\Okp1Function\StaticMode121.cs" />
     <Compile Include="ButtonFullFunction\Okp2Function\Okp2ActReshIzvesehenie.cs" />
     <Compile Include="ButtonFullFunction\Okp2Function\Okp2GlobalFunction.cs" />
