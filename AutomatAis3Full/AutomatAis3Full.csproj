@@ -149,6 +149,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Okp3\JournalPatent\Patent\FormPatent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Okp3\UsnSend\UsnSend\FormUsnSend.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -355,6 +359,10 @@
     <Compile Include="Form\Automat\Okp2\UserTask\TaxApprove\DataContext\DataContextTaxApprove.cs" />
     <Compile Include="Form\Automat\Okp2\UserTask\TaxApprove\TaxApprove\ViewTaxApprove.xaml.cs">
       <DependentUpon>ViewTaxApprove.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Okp3\JournalPatent\DataContext\DataContextPatent.cs" />
+    <Compile Include="Form\Automat\Okp3\JournalPatent\Patent\FormPatent.xaml.cs">
+      <DependentUpon>FormPatent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Okp3\UsnSend\DataContext\DataContextUsnSend.cs" />
     <Compile Include="Form\Automat\Okp3\UsnSend\UsnSend\FormUsnSend.xaml.cs">
@@ -571,6 +579,10 @@
     <ProjectReference Include="..\LibaryCommandPublic\LibraryCommandPublic.csproj">
       <Project>{0a0c77af-9fe5-4c32-b32e-40ab40ffeff9}</Project>
       <Name>LibraryCommandPublic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibaryXMLAuto\LibaryXMLAuto.csproj">
+      <Project>{A2BC3AE2-4A61-4E9E-9FA4-96A02677C79C}</Project>
+      <Name>LibaryXMLAuto</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewModelLib\ViewModelLib.csproj">
       <Project>{08bb509f-ead1-4666-a539-6d60f464db2f}</Project>

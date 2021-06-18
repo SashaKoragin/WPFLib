@@ -135,7 +135,15 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/GenerateBookSales?year={year}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<Stream> GenerateBookSales(string innUl, int year);
-
+        /// <summary>
+        /// Генерация отчета по АСК НДС ИНН и ГОД отсчета периода 3 последних года от текущего
+        /// </summary>
+        /// <param name="innUl">ИНН ЮЛ</param>
+        /// <param name="year">Год отчета выгрузки</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/GenerateReportAskNds?year={year}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> GenerateReportAskNds(string innUl, int year);
         /// <summary>
         /// Формирование выписки данных в БД
         /// </summary>
@@ -190,6 +198,7 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddAndEditDepartment", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<DepartamentOtdel> AddAndEditDepartment(DepartamentOtdel department);
+
         /// <summary>
         /// Выгрузка сводной таблицы по книгам продаж
         /// http://localhost:8050/ServiceAutomation/LoadFileSummarySales
@@ -197,7 +206,19 @@ namespace ServiceAutomation.Service
         /// <param name="inn">Запрос</param>
         /// <returns></returns>
         [OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadFileSummarySales", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadFileSummarySales",
+            ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<Stream> LoadFileSummarySales(string inn);
+        /// <summary>
+        /// Добавление регистрационных номеров патента для отработки
+        /// http://localhost:8050/ServiceAutomation/AddRegNumberPatent
+        /// </summary>
+        /// <param name="templatePatent">Шаблон для добавления</param>
+        /// <param name="userIdGuid">GUID Пользователя</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddRegNumberPatent?userIdGuid={userIdGuid}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task AddRegNumberPatent(TemplatePatent templatePatent, string userIdGuid);
+
     }
 }

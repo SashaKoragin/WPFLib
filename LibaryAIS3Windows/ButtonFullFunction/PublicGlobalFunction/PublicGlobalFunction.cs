@@ -4,8 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Automation;
+using System.Windows.Forms;
 using AutoIt;
 using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
+using LibraryAIS3Windows.ButtonsClikcs;
 
 namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
 {
@@ -68,7 +70,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
         /// Закрытие процесса обработки файла
         /// </summary>
         /// <param name="name">Наименование процесса</param>
-        public static void CloseProcessProgram(string name)
+        /// <param name="isKill">Убивать процес принудительно</param>
+        public static void CloseProcessProgram(string name,bool isKill = false)
         {
             while (true)
             {
@@ -76,6 +79,17 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
                 foreach (var process in processes)
                 {
                     process?.CloseMainWindow();
+                    if (isKill)
+                    {
+                        try
+                        {
+                            process?.Kill();
+                        }
+                        catch
+                        {
+                            //ignore
+                        }
+                    }
                 }
                 if (processes.Length == 0)
                 {
@@ -155,15 +169,21 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
         /// </summary>
         /// <param name="libraryAutomation">Элемент</param>
         /// <param name="searсhPatternElement">Pattern элемент</param>
-        public static void WindowElementClick(LibraryAutomations libraryAutomation, string searсhPatternElement, AutomationElement auto = null)
+        /// <param name="auto">В элементе который ищем</param>
+        /// <param name="isFocus">Ставим фокус на элемент</param>
+        public static void WindowElementClick(LibraryAutomations libraryAutomation, string searсhPatternElement, AutomationElement auto = null,bool isFocus = false)
         {
             var isProcess = true;
             while (isProcess)
             {
                 if (libraryAutomation.IsEnableElements(searсhPatternElement, auto, true, 1) != null)
                 {
-                    libraryAutomation.ClickElements(searсhPatternElement, auto, true);
-                    isProcess = false;
+                    if (isFocus)
+                    {
+                       AutoItX.Sleep(3000);
+                       libraryAutomation.FindElement.SetFocus();
+                    }
+                    isProcess = libraryAutomation.ClickElements(searсhPatternElement, auto, true);
                 }
             }
         }
@@ -177,6 +197,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
             var isExit = true;
             while (isExit)
             {
+                AutoItX.Sleep(1000);
                 if (libraryAutomation.IsEnableElements(string.Concat(searсhPatternElementGrid, "\\Name:Caption"), auto, false, 1, 0, true) == null)
                 {
                     isExit = false;
@@ -185,7 +206,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
                 {
                     if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement) == "Данные, удовлетворяющие заданным условиям не найдены.")
                     {
-
                         isExit = false;
                         return "Данные, удовлетворяющие заданным условиям не найдены.";
                     }
@@ -193,6 +213,17 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
                     {
                         isExit = false;
                         return "";
+                    }
+                    if(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement) == "Произошла ошибка при загрузке данных.")
+                    {
+                        isExit = false;
+                        return "Произошла ошибка при загрузке данных.";
+                    }
+
+                    if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement) == "При загрузке данных произошла ошибка.")
+                    {
+                        isExit = false;
+                        return "При загрузке данных произошла ошибка.";
                     }
                 }
             }

@@ -11,7 +11,7 @@
 // 
 // Этот исходный код был создан с помощью xsd, версия=4.7.2046.0.
 // 
-namespace LibaryXMLAutoModelXmlAuto.MigrationReport {
+namespace LibaryXMLAuto.ModelXmlAuto.MigrationReport {
     using System.Xml.Serialization;
     
     
@@ -24,8 +24,12 @@ namespace LibaryXMLAutoModelXmlAuto.MigrationReport {
     public partial class InfoUserTemlateAndRule {
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Users")]
+        [System.Xml.Serialization.XmlElementAttribute("Users", IsNullable=true)]
         public Users[] Users;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Template", IsNullable=true)]
+        public Template[] Template;
     }
     
     /// <remarks/>
@@ -34,23 +38,15 @@ namespace LibaryXMLAutoModelXmlAuto.MigrationReport {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=true)]
     public partial class Users {
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> DateIn;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool DateInSpecified;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Template")]
+        [System.Xml.Serialization.XmlElementAttribute("Template", IsNullable=true)]
         public Template[] Template;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Sigment")]
+        [System.Xml.Serialization.XmlElementAttribute("Sigment", IsNullable=true)]
         public Sigment[] Sigment;
         
         /// <remarks/>
@@ -96,24 +92,12 @@ namespace LibaryXMLAutoModelXmlAuto.MigrationReport {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=true)]
     public partial class Template {
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> DateStart;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool DateStartSpecified;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> DateFinish;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool DateFinishSpecified;
+        [System.Xml.Serialization.XmlElementAttribute("Sigment", IsNullable=true)]
+        public Sigment[] Sigment;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -134,11 +118,11 @@ namespace LibaryXMLAutoModelXmlAuto.MigrationReport {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=true)]
     public partial class Sigment {
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Applications")]
+        [System.Xml.Serialization.XmlElementAttribute("Applications", IsNullable=true)]
         public Applications[] Applications;
         
         /// <remarks/>
@@ -152,11 +136,11 @@ namespace LibaryXMLAutoModelXmlAuto.MigrationReport {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=true)]
     public partial class Applications {
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("RuleTemplate")]
+        [System.Xml.Serialization.XmlElementAttribute("RuleTemplate", IsNullable=true)]
         public RuleTemplate[] RuleTemplate;
         
         /// <remarks/>
@@ -170,24 +154,8 @@ namespace LibaryXMLAutoModelXmlAuto.MigrationReport {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=true)]
     public partial class RuleTemplate {
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> DateStart;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool DateStartSpecified;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> DateFinish;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public bool DateFinishSpecified;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

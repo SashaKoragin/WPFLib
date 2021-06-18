@@ -26,6 +26,8 @@
 			<xs:element ref="Documen2NDFLIdentification" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="FormulNdfl" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="DeliveryDocument" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="IsPatentParse" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="AllPatent" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxJournalAutoWebPage">
@@ -818,6 +820,207 @@
 	<xs:element name="RegNumDeclarationDelivery" type="xs:long">
 		<xs:annotation>
 			<xs:documentation>Регистрационный номер отправленной декларации</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IsPatentParse">
+		<xs:annotation>
+			<xs:documentation>Собранные и не собранные патенты</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton"/>
+				<xs:element ref="IdNum"/>
+				<xs:element ref="RegNumPatent"/>
+				<xs:element ref="IsParseFullPatent"/>
+				<xs:element ref="IsParseDocPatent"/>
+				<xs:element ref="IsParsePlaceOfBusiness"/>
+				<xs:element ref="IsParseSvedTr"/>
+				<xs:element ref="IsParseSvedObject"/>
+				<xs:element ref="IsParseParametrNalog"/>
+				<xs:element ref="IsParseSvedFactPatent"/>
+				<xs:element ref="DateCreate"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RegNumPatent" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Регистрационный номер патента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IdNum" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Порядковый номер</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IsParseFullPatent" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Состояние обработки патента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IsParseDocPatent" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Состояние Документы объекта ПСН</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IsParsePlaceOfBusiness" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Состояние Сведения о месте осуществления деятельности</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IsParseSvedTr" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Состояние Сведения о транспортных средствах</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IsParseSvedObject" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Состояние Сведения об обособленных объектах</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IsParseParametrNalog" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Состояние Параметры расчета налога</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IsParseSvedFactPatent" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Состояние Сведения по фактическому действию патента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AllPatent">
+		<xs:annotation>
+			<xs:documentation>Патенты предпринимателей</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton"/>
+				<xs:element ref="NumberPatent"/>
+				<xs:element ref="DateStartPatent"/>
+				<xs:element ref="DateFinishPatent"/>
+				<xs:element ref="DateCancel"/>
+				<xs:element ref="DateResh"/>
+				<xs:element ref="NalogPsnPeriod"/>
+				<xs:element ref="IdPatent"/>
+				<xs:element ref="Weight"/>
+				<xs:element ref="NumberSeqts"/>
+				<xs:element ref="NalogFact"/>
+				<xs:element ref="IndexId"/>
+			</xs:sequence>
+			<xs:attribute name="NameFull" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ФИО ИП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="OgrnIp" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ОГРНИП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Address" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Адрес регистрации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="AddressObject" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Место осуществления деятельности</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameVid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование вида предпринимательской деятельности ПСН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="AvgPeople" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Средняя численность наемных работников</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CountMouth" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Количество месяцев, на которое выдан патент</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdNumber" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификационный номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Model" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Марка</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="RegNumber" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CodeWork" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код вида предпринимательской деятельности ПСН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NumberPatent" type="xs:long" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Номер патента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateStartPatent" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Дата начала действия патента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateFinishPatent" type="xs:dateTime">
+		<xs:annotation>
+			<xs:documentation>Дата окончания действия патента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateResh" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата принятия решения</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NalogPsnPeriod" type="xs:decimal" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Стоимость</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateCancel" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата принятия решения</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IdPatent" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Регистрационный номер патента</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Weight" type="xs:decimal" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Грузоподъемность</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NumberSeqts" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Количество посадочных мест</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NalogFact" type="xs:decimal" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Налог за фактический период</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IndexId" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Индекс построения (Нумерация)</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

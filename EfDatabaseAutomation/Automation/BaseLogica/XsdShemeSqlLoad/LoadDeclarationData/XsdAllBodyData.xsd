@@ -15,6 +15,12 @@
 				<xs:element ref="BookSales" minOccurs="0" maxOccurs="unbounded" sql:relation="BookSales"/>
 				<xs:element ref="BookPurchase" minOccurs="0" maxOccurs="unbounded" sql:relation="BookPurchase"/>
 				<xs:element ref="CounterpartyCashBank" minOccurs="0" maxOccurs="unbounded" sql:relation="CounterpartyCashBank"/>
+				<xs:element ref="DocPatent" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="PlaceOfBusiness" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SvedTr" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SvedObject" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="ParametrNalog" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="SvedFactPatent" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -211,6 +217,9 @@
 			<xs:documentation>Банковские Выписки по счетам</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DatePriem" sql:datatype="smalldatetime"/>
+			</xs:sequence>
 			<xs:attribute name="Id" type="xs:int" use="optional" sql:mapped="false" sql:datatype="int">
 				<xs:annotation>
 					<xs:documentation>Ун</xs:documentation>
@@ -277,14 +286,6 @@
 			<xs:attribute name="DateWay" use="required" sql:datatype="smalldatetime">
 				<xs:annotation>
 					<xs:documentation>Дата направления</xs:documentation>
-				</xs:annotation>
-				<xs:simpleType>
-					<xs:restriction base="xs:dateTime"/>
-				</xs:simpleType>
-			</xs:attribute>
-			<xs:attribute name="DatePriem" use="required" sql:datatype="smalldatetime">
-				<xs:annotation>
-					<xs:documentation>Дата получения</xs:documentation>
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:restriction base="xs:dateTime"/>
@@ -977,5 +978,469 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
+	</xs:element>
+	<xs:element name="DatePriem" type="xs:dateTime" nillable="true" sql:datatype="smalldatetime">
+		<xs:annotation>
+			<xs:documentation>Дата получения</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DocPatent" sql:relation="DocPatent">
+		<xs:annotation>
+			<xs:documentation>Документы объекта ПСН</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RegNum" sql:datatype="bigint"/>
+				<xs:element ref="Number" sql:datatype="bigint"/>
+				<xs:element ref="Knd" sql:datatype="int"/>
+				<xs:element ref="VidDoc" sql:datatype="int"/>
+				<xs:element ref="DateCreatePatent" sql:datatype="smalldatetime"/>
+				<xs:element ref="DateIn" sql:datatype="smalldatetime"/>
+				<xs:element ref="DateOutTksMail" sql:datatype="smalldatetime"/>
+				<xs:element ref="IdInIst" sql:datatype="int"/>
+			</xs:sequence>
+			<xs:attribute name="IdNum" type="xs:int" use="optional" sql:datatype="int" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>УН Документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdPatent" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер патента</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ActualPatent" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Актуальность патента (заявления на патент)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="KodePr" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Код по ИР ПСН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameDoc" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CodeIfns" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Кодо СОНО</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Fid" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>ФИД</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdDoc" type="xs:long" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>УН документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdWrite" type="xs:long" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>УН записи об объекте ПСН налогоплательщика</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdIn" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>УН способа представления</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>Дата записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RegNum" type="xs:long" nillable="true" sql:datatype="bigint">
+		<xs:annotation>
+			<xs:documentation>РегНомер</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Number" type="xs:long" nillable="true" sql:datatype="bigint">
+		<xs:annotation>
+			<xs:documentation>Номер</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Knd" type="xs:int" nillable="true" sql:datatype="int">
+		<xs:annotation>
+			<xs:documentation>КНД</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="VidDoc" type="xs:int" nillable="true" sql:datatype="int">
+		<xs:annotation>
+			<xs:documentation>Вид документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateCreatePatent" type="xs:dateTime" nillable="true" sql:datatype="smalldatetime">
+		<xs:annotation>
+			<xs:documentation>Дата создания</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateIn" type="xs:dateTime" nillable="true" sql:datatype="smalldatetime">
+		<xs:annotation>
+			<xs:documentation>Дата поступления в инспекцию</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateOutTksMail" type="xs:dateTime" nillable="true" sql:datatype="smalldatetime">
+		<xs:annotation>
+			<xs:documentation>Дата отправки по почте/ТКС</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="PlaceOfBusiness" sql:relation="PlaceOfBusiness">
+		<xs:annotation>
+			<xs:documentation>Сведения о месте осуществления деятельности</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="IdPlace" sql:datatype="bigint"/>
+			</xs:sequence>
+			<xs:attribute name="IdNum" type="xs:int" use="optional" sql:datatype="int" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>УН Документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdPatent" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер патента</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="AddressPlace" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>УН записи о месте осуществления деятельности</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdWrite" type="xs:long" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>УН записи об объекте ПСН налогоплательщика</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:datatype="smalldatetime" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>Дата записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IdPlace" type="xs:long" nillable="true" sql:datatype="bigint">
+		<xs:annotation>
+			<xs:documentation>УН места</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SvedTr" sql:relation="SvedTr">
+		<xs:annotation>
+			<xs:documentation>Сведения о транспортных средствах</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IdNum" type="xs:int" use="optional" sql:datatype="int" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>УН Документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdPatent" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер патента</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdTr" type="xs:long" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>УН записи о ТС</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Code" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Код</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TypeTr" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Тип</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdNumber" type="xs:string" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Идентификационный номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Model" type="xs:string" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Марка</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="RegNumber" type="xs:string" use="required" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Weight" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Грузоподъемность </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NumberSeqts" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Количество посадочных мест</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdWrite" type="xs:long" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>УН записи об объекте ПСН налогоплательщика</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:datatype="smalldatetime" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>Дата записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SvedObject" sql:relation="SvedObject">
+		<xs:annotation>
+			<xs:documentation>Сведения об обособленных объектах</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IdNum" type="xs:int" use="optional" sql:datatype="int" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>УН Документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdPatent" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер патента</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdObject" type="xs:long" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>УН записи об обособленном объекте</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Code" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Код</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TypeObject" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Тип</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="AreaObject" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Площадь</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="AddressObject" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Адрес места нахождения объекта</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdWrite" type="xs:long" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>УН записи об объекте ПСН налогоплательщика</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:datatype="smalldatetime" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>Дата записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ParametrNalog" sql:relation="ParametrNalog">
+		<xs:annotation>
+			<xs:documentation>Параметры расчета налога</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="IdKbk" sql:datatype="int"/>
+				<xs:element ref="IdVktmo" sql:datatype="int"/>
+			</xs:sequence>
+			<xs:attribute name="IdNum" type="xs:int" use="optional" sql:datatype="int" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>УН Документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdPatent" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер патента</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PrizSum" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак: считать по суммарным значениям</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PrizCountWork" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак: умножение на кол-во наемных работников</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PrizCountTr" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак: умножение на кол-во ТС</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PrizCountSeqts" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак: умножение на кол-во посадочных мест</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PrizCountWeight" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак: умножение на грузоподъемность</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PrizCountObject" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак: умножение на кол-во обособленных объектов</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PrizCountObjectArea" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак: умножение на площадь обособленного объекта</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PrizRukVvod" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Признак: ручной ввод дохода</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Kbk" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>КБК</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameNalog" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Наименование налога</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Oktmo" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>ОКТМО</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Vktmo" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Наименование по ВКТМО1</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NalogDateBase" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Налоговая база</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NalogPsnYear" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Налог ПСН за год</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NalogPsnPeriod" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Налог ПСН за период действия патента</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inspector" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Инспектор</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdWrite" type="xs:long" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>УН записи об объекте ПСН налогоплательщика</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdNalogWrite" type="xs:long" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>УН записи о расчете налога</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:datatype="smalldatetime" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>Дата записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IdKbk" type="xs:int" nillable="true" sql:datatype="int">
+		<xs:annotation>
+			<xs:documentation>УН записи КБК</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IdVktmo" type="xs:int" nillable="true" sql:datatype="int">
+		<xs:annotation>
+			<xs:documentation>УН по ВКТМО1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SvedFactPatent" sql:relation="SvedFactPatent">
+		<xs:annotation>
+			<xs:documentation>Сведения по фактическому действию патента</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IdNum" type="xs:int" use="optional" sql:datatype="int" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>УН Документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdPatent" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер патента</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="FactDaysPatent" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Фактический период действия патента (дни)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NalogDays" type="xs:int" use="required" sql:datatype="int">
+				<xs:annotation>
+					<xs:documentation>Налоговая база за фактический период</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NalogFact" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Налог за фактический период</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Delta" type="xs:double" use="required" sql:datatype="float">
+				<xs:annotation>
+					<xs:documentation>Корректировка по фактическому периоду (дельта)</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inspector" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>ФИО инспектора, сделавшего расчет</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdWrite" type="xs:long" use="required" sql:datatype="bigint">
+				<xs:annotation>
+					<xs:documentation>УН записи об объекте ПСН налогоплательщика</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DeltaWriteError" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Корректировка по первому сроку / дельта</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NalogDaysDelta" type="xs:string" use="optional" sql:datatype="varchar">
+				<xs:annotation>
+					<xs:documentation>Срок уплаты налога в размере 1/3</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:datatype="datetime" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>Дата записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IdInIst" type="xs:int" nillable="true" sql:datatype="int">
+		<xs:annotation>
+			<xs:documentation>УН способа представления (подсистема-источник)</xs:documentation>
+		</xs:annotation>
 	</xs:element>
 </xs:schema>

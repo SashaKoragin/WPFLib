@@ -160,6 +160,9 @@
       <Component Id="Microsoft.Owin.Host.HttpListener.dll" Guid="FC1E3D5D-86EF-4E55-86F1-46FCB2E5AF69">
         <File Id="Microsoft.Owin.Host.HttpListener.dll" Name="Microsoft.Owin.Host.HttpListener.dll" Source="$(var.ServiceAutomation_TargetDir)Microsoft.Owin.Host.HttpListener.dll" />
       </Component>
+      <Component Id="AttributeHelperModelXml.dll" Guid="E68B6C58-9CEE-4222-968E-29BBA64C3DEB">
+        <File Id="AttributeHelperModelXml.dll" Name="AttributeHelperModelXml.dll" Source="$(var.ServiceAutomation_TargetDir)AttributeHelperModelXml.dll" />
+      </Component>
 		</ComponentGroup>
 	</Fragment>
 </Wix>

@@ -1,10 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
+using System.Net;
+using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 
 namespace AutomatAis3Full.Config
 {
    internal class ConfigFile
     {
+        /// <summary>
+        /// Компьютер где расположен сервис
+        /// </summary>
+        public static string HostNameService = ConfigurationManager.AppSettings["HostNameService"];
+        /// <summary>
+        /// Список api Model
+        /// </summary>
+        public static string ServiceModelInventory = ConfigurationManager.AppSettings["ServiceModelInventory"];
         public static string LoginUser = Environment.UserName;
         public static string AllListModel = ConfigurationManager.AppSettings["AllListModel"];
         public static string FileInn = ConfigurationManager.AppSettings["FileInn"];
@@ -23,9 +35,6 @@ namespace AutomatAis3Full.Config
         public static string UserRule = ConfigurationManager.AppSettings["UserRule"];
         public static string InfoRuleTemplate = ConfigurationManager.AppSettings["InfoRuleTemplate"];
         public static string InfoUserTemplateRule = ConfigurationManager.AppSettings["InfoUserTemplateRule"];
-        public static string LoadInfoTemplate = ConfigurationManager.AppSettings["LoadInfoTemplate"];
-        public static string ServerReport = ConfigurationManager.AppSettings["ServerReport"];
-        public static string ServerRuleUsersWordTemplate = ConfigurationManager.AppSettings["ServerRuleUsersWordTemplate"];
         public static string Ifns = ConfigurationManager.AppSettings["Ifns"];
         public static string Help = ConfigurationManager.AppSettings["Help"];
         public static string WebSite = ConfigurationManager.AppSettings["WebSite"];
@@ -59,5 +68,25 @@ namespace AutomatAis3Full.Config
         /// </summary>
         public static string PathDownloadTempXml = ConfigurationManager.AppSettings["PathDownloadTempXml"];
 
+        /// <summary>
+        /// Загрузка Данных через сервис Get
+        /// </summary>
+        /// <param name="serviceGetTemplate">Маршрут для конфигурации</param>
+        /// <returns></returns>
+        public static List<T> ResultGetTemplate<T>(string serviceGetTemplate)
+        {
+            var json = new SerializeJson();
+            var request = (HttpWebRequest)WebRequest.Create(serviceGetTemplate);
+            request.Method = "GET";
+            request.ContentType = "application/json";
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            string resultServer;
+            using (StreamReader rdr = new StreamReader(response.GetResponseStream()))
+            {
+                resultServer = rdr.ReadToEnd();
+            }
+
+            return (List<T>)json.JsonDeserializeObjectListClass<T>(resultServer);
+        }
     }
 }

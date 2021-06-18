@@ -43,6 +43,18 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
 
         private CounterpartyCashBank[] counterpartyCashBankField;
 
+        private DocPatent[] docPatentField;
+
+        private PlaceOfBusiness[] placeOfBusinessField;
+
+        private SvedTr[] svedTrField;
+
+        private SvedObject[] svedObjectField;
+
+        private ParametrNalog[] parametrNalogField;
+
+        private SvedFactPatent[] svedFactPatentField;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("DeclarationData")]
         public DeclarationData[] DeclarationData
@@ -152,6 +164,90 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
             set
             {
                 this.counterpartyCashBankField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("DocPatent")]
+        public DocPatent[] DocPatent
+        {
+            get
+            {
+                return this.docPatentField;
+            }
+            set
+            {
+                this.docPatentField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("PlaceOfBusiness")]
+        public PlaceOfBusiness[] PlaceOfBusiness
+        {
+            get
+            {
+                return this.placeOfBusinessField;
+            }
+            set
+            {
+                this.placeOfBusinessField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("SvedTr")]
+        public SvedTr[] SvedTr
+        {
+            get
+            {
+                return this.svedTrField;
+            }
+            set
+            {
+                this.svedTrField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("SvedObject")]
+        public SvedObject[] SvedObject
+        {
+            get
+            {
+                return this.svedObjectField;
+            }
+            set
+            {
+                this.svedObjectField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ParametrNalog")]
+        public ParametrNalog[] ParametrNalog
+        {
+            get
+            {
+                return this.parametrNalogField;
+            }
+            set
+            {
+                this.parametrNalogField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("SvedFactPatent")]
+        public SvedFactPatent[] SvedFactPatent
+        {
+            get
+            {
+                return this.svedFactPatentField;
+            }
+            set
+            {
+                this.svedFactPatentField = value;
             }
         }
     }
@@ -701,6 +797,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
     public partial class CashBankAllUlFace
     {
 
+        private System.Nullable<System.DateTime> datePriemField;
+
         private int idField;
 
         private bool idFieldSpecified;
@@ -729,8 +827,6 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
 
         private System.DateTime dateWayField;
 
-        private System.DateTime datePriemField;
-
         private System.DateTime dateStartPeriodField;
 
         private System.DateTime dateFinishPeriodField;
@@ -738,6 +834,21 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
         private System.DateTime dateCreateField;
 
         private bool dateCreateFieldSpecified;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable = true)]
+        [DataNames("Дата получения", "Дата получения")]
+        public System.Nullable<System.DateTime> DatePriem
+        {
+            get
+            {
+                return this.datePriemField;
+            }
+            set
+            {
+                this.datePriemField = value;
+            }
+        }
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
@@ -903,7 +1014,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [DataNames("Сумма остатка на начало периода, в валюте счета", "Сумма остатка на начало периода, в валюте счета")]
+        [DataNames("Сумма остатка на начало периода, в валюте счета", "2")]
         public double CashScoreStartPeriod
         {
             get
@@ -918,7 +1029,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [DataNames("Сумма остатка на конец периода, в валюте счета", "Сумма остатка на конец периода, в валюте счета")]
+        [DataNames("Сумма остатка на конец периода, в валюте счета", "3")]
         public double CashScoreFinishPeriod
         {
             get
@@ -943,21 +1054,6 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
             set
             {
                 this.dateWayField = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [DataNames("Дата получения", "Дата получения")]
-        public System.DateTime DatePriem
-        {
-            get
-            {
-                return this.datePriemField;
-            }
-            set
-            {
-                this.datePriemField = value;
             }
         }
 
@@ -2584,487 +2680,1804 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
             }
         }
     }
+
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    public partial class CounterpartyCashBank
+    {
+
+        private string idField;
+
+        private int idUlField;
+
+        private string typeCashField;
+
+        private string priznakCashField;
+
+        private string numberCashField;
+
+        private string currencyField;
+
+        private string correspondentAccountNumberCounterpartyField;
+
+        private string nameBankCounterpartyField;
+
+        private string bikBankCounterpartyField;
+
+        private string innBankCounterpartyField;
+
+        private string kppBankCounterpartyField;
+
+        private string cashCounterpartyField;
+
+        private System.DateTime dateOperationField;
+
+        private string surOperationField;
+
+        private string nameOperationField;
+
+        private string innOperationField;
+
+        private string kppOperationField;
+
+        private string okvedOperationField;
+
+        private string numberDocOperationField;
+
+        private string vieDocOperationField;
+
+        private double expenseSumOperationUSAField;
+
+        private double expenseSumOperationRUField;
+
+        private double comingSumOperationUSAField;
+
+        private double comingSumOperationRUField;
+
+        private string typeSumOperationField;
+
+        private string targetSumOperationField;
+
+        private System.DateTime dateCreateField;
+
+        private bool dateCreateFieldSpecified;
+
         /// <remarks/>
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
-        [System.SerializableAttribute()]
-        [System.Diagnostics.DebuggerStepThroughAttribute()]
-        [System.ComponentModel.DesignerCategoryAttribute("code")]
-        [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-        [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-        public partial class CounterpartyCashBank
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Id
         {
-
-            private string idField;
-
-            private int idUlField;
-
-            private string typeCashField;
-
-            private string priznakCashField;
-
-            private string numberCashField;
-
-            private string currencyField;
-
-            private string correspondentAccountNumberCounterpartyField;
-
-            private string nameBankCounterpartyField;
-
-            private string bikBankCounterpartyField;
-
-            private string innBankCounterpartyField;
-
-            private string kppBankCounterpartyField;
-
-            private string cashCounterpartyField;
-
-            private System.DateTime dateOperationField;
-
-            private string surOperationField;
-
-            private string nameOperationField;
-
-            private string innOperationField;
-
-            private string kppOperationField;
-
-            private string okvedOperationField;
-
-            private string numberDocOperationField;
-
-            private string vieDocOperationField;
-
-            private double expenseSumOperationUSAField;
-
-            private double expenseSumOperationRUField;
-
-            private double comingSumOperationUSAField;
-
-            private double comingSumOperationRUField;
-
-            private string typeSumOperationField;
-
-            private string targetSumOperationField;
-
-            private System.DateTime dateCreateField;
-
-            private bool dateCreateFieldSpecified;
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            public string Id
+            get
             {
-                get
-                {
-                    return this.idField;
-                }
-                set
-                {
-                    this.idField = value;
-                }
+                return this.idField;
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            public int IdUl
+            set
             {
-                get
-                {
-                    return this.idUlField;
-                }
-                set
-                {
-                    this.idUlField = value;
-                }
+                this.idField = value;
             }
+        }
 
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Тип счета", @"Тип счета")]
-            public string TypeCash
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdUl
+        {
+            get
             {
-                get
-                {
-                    return this.typeCashField;
-                }
-                set
-                {
-                    this.typeCashField = value;
-                }
+                return this.idUlField;
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Признак операции", @"Признак операции")]
-            public string PriznakCash
+            set
             {
-                get
-                {
-                    return this.priznakCashField;
-                }
-                set
-                {
-                    this.priznakCashField = value;
-                }
+                this.idUlField = value;
             }
+        }
 
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Номер", @"Номер")]
-            public string NumberCash
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Тип счета", @"Тип счета")]
+        public string TypeCash
+        {
+            get
             {
-                get
-                {
-                    return this.numberCashField;
-                }
-                set
-                {
-                    this.numberCashField = value;
-                }
+                return this.typeCashField;
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Валюта", @"Валюта")]
-            public string Currency
+            set
             {
-                get
-                {
-                    return this.currencyField;
-                }
-                set
-                {
-                    this.currencyField = value;
-                }
+                this.typeCashField = value;
             }
+        }
 
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Номер корреспондентского счета", @"Номер корреспондентского счета")]
-            public string CorrespondentAccountNumberCounterparty
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Признак операции", @"Признак операции")]
+        public string PriznakCash
+        {
+            get
             {
-                get
-                {
-                    return this.correspondentAccountNumberCounterpartyField;
-                }
-                set
-                {
-                    this.correspondentAccountNumberCounterpartyField = value;
-                }
+                return this.priznakCashField;
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Наименование", @"Наименование")]
-            public string NameBankCounterparty
+            set
             {
-                get
-                {
-                    return this.nameBankCounterpartyField;
-                }
-                set
-                {
-                    this.nameBankCounterpartyField = value;
-                }
+                this.priznakCashField = value;
             }
+        }
 
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"БИК", @"БИК")]
-            public string BikBankCounterparty
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Номер", @"Номер")]
+        public string NumberCash
+        {
+            get
             {
-                get
-                {
-                    return this.bikBankCounterpartyField;
-                }
-                set
-                {
-                    this.bikBankCounterpartyField = value;
-                }
+                return this.numberCashField;
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"ИНН", @"ИНН")]
-            public string InnBankCounterparty
+            set
             {
-                get
-                {
-                    return this.innBankCounterpartyField;
-                }
-                set
-                {
-                    this.innBankCounterpartyField = value;
-                }
+                this.numberCashField = value;
             }
+        }
 
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"КПП", @"КПП")]
-            public string KppBankCounterparty
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Валюта", @"Валюта")]
+        public string Currency
+        {
+            get
             {
-                get
-                {
-                    return this.kppBankCounterpartyField;
-                }
-                set
-                {
-                    this.kppBankCounterpartyField = value;
-                }
+                return this.currencyField;
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Номер1", @"Номер1")]
-            public string CashCounterparty
+            set
             {
-                get
-                {
-                    return this.cashCounterpartyField;
-                }
-                set
-                {
-                    this.cashCounterpartyField = value;
-                }
+                this.currencyField = value;
             }
+        }
 
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Дата совершения", @"Дата совершения")]
-            public System.DateTime DateOperation
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Номер корреспондентского счета", @"Номер корреспондентского счета")]
+        public string CorrespondentAccountNumberCounterparty
+        {
+            get
             {
-                get
-                {
-                    return this.dateOperationField;
-                }
-                set
-                {
-                    this.dateOperationField = value;
-                }
+                return this.correspondentAccountNumberCounterpartyField;
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"СУР", @"СУР")]
-            public string SurOperation
+            set
             {
-                get
-                {
-                    return this.surOperationField;
-                }
-                set
-                {
-                    this.surOperationField = value;
-                }
+                this.correspondentAccountNumberCounterpartyField = value;
             }
+        }
 
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Наименование2", @"Наименование2")]
-            public string NameOperation
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Наименование", @"Наименование")]
+        public string NameBankCounterparty
+        {
+            get
             {
-                get
-                {
-                    return this.nameOperationField;
-                }
-                set
-                {
-                    this.nameOperationField = value;
-                }
+                return this.nameBankCounterpartyField;
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"ИНН3", @"ИНН3")]
-            public string InnOperation
+            set
             {
-                get
-                {
-                    return this.innOperationField;
-                }
-                set
-                {
-                    this.innOperationField = value;
-                }
+                this.nameBankCounterpartyField = value;
             }
+        }
 
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"КПП4", @"КПП4")]
-            public string KppOperation
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"БИК", @"БИК")]
+        public string BikBankCounterparty
+        {
+            get
             {
-                get
-                {
-                    return this.kppOperationField;
-                }
-                set
-                {
-                    this.kppOperationField = value;
-                }
+                return this.bikBankCounterpartyField;
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"ОКВЭД", @"ОКВЭД")]
-            public string OkvedOperation
+            set
             {
-                get
-                {
-                    return this.okvedOperationField;
-                }
-                set
-                {
-                    this.okvedOperationField = value;
-                }
+                this.bikBankCounterpartyField = value;
             }
+        }
 
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Номер документа", @"Номер документа")]
-            public string NumberDocOperation
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"ИНН", @"ИНН")]
+        public string InnBankCounterparty
+        {
+            get
             {
-                get
-                {
-                    return this.numberDocOperationField;
-                }
-                set
-                {
-                    this.numberDocOperationField = value;
-                }
+                return this.innBankCounterpartyField;
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Вид документа", @"Вид документа")]
-            public string VieDocOperation
+            set
             {
-                get
-                {
-                    return this.vieDocOperationField;
-                }
-                set
-                {
-                    this.vieDocOperationField = value;
-                }
+                this.innBankCounterpartyField = value;
             }
+        }
 
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Расход д/c, в валюте счета", @"Расход д/c, в валюте счета")]
-            public double ExpenseSumOperationUSA
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"КПП", @"КПП")]
+        public string KppBankCounterparty
+        {
+            get
             {
-                get
-                {
-                    return this.expenseSumOperationUSAField;
-                }
-                set
-                {
-                    this.expenseSumOperationUSAField = value;
-                }
+                return this.kppBankCounterpartyField;
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Расход д/c, в рублях", @"Расход д/c, в рублях")]
-            public double ExpenseSumOperationRU
+            set
             {
-                get
-                {
-                    return this.expenseSumOperationRUField;
-                }
-                set
-                {
-                    this.expenseSumOperationRUField = value;
-                }
+                this.kppBankCounterpartyField = value;
             }
+        }
 
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Приход д/c, в валюте счета", @"Приход д/c, в валюте счета")]
-            public double ComingSumOperationUSA
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Номер1", @"Номер1")]
+        public string CashCounterparty
+        {
+            get
             {
-                get
-                {
-                    return this.comingSumOperationUSAField;
-                }
-                set
-                {
-                    this.comingSumOperationUSAField = value;
-                }
+                return this.cashCounterpartyField;
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Приход д/c, в рублях", @"Приход д/c, в рублях")]
-            public double ComingSumOperationRU
+            set
             {
-                get
-                {
-                    return this.comingSumOperationRUField;
-                }
-                set
-                {
-                    this.comingSumOperationRUField = value;
-                }
+                this.cashCounterpartyField = value;
             }
+        }
 
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Вид платежа", @"Вид платежа")]
-            public string TypeSumOperation
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Дата совершения", @"Дата совершения")]
+        public System.DateTime DateOperation
+        {
+            get
             {
-                get
-                {
-                    return this.typeSumOperationField;
-                }
-                set
-                {
-                    this.typeSumOperationField = value;
-                }
+                return this.dateOperationField;
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            [DataNames(@"Назначение платежа", @"Назначение платежа")]
-            public string TargetSumOperation
+            set
             {
-                get
-                {
-                    return this.targetSumOperationField;
-                }
-                set
-                {
-                    this.targetSumOperationField = value;
-                }
+                this.dateOperationField = value;
             }
+        }
 
-            /// <remarks/>
-            [System.Xml.Serialization.XmlAttributeAttribute()]
-            public System.DateTime DateCreate
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"СУР", @"СУР")]
+        public string SurOperation
+        {
+            get
             {
-                get
-                {
-                    return this.dateCreateField;
-                }
-                set
-                {
-                    this.dateCreateField = value;
-                }
+                return this.surOperationField;
             }
-
-            /// <remarks/>
-            [System.Xml.Serialization.XmlIgnoreAttribute()]
-            public bool DateCreateSpecified
+            set
             {
-                get
-                {
-                    return this.dateCreateFieldSpecified;
-                }
-                set
-                {
-                    this.dateCreateFieldSpecified = value;
-                }
+                this.surOperationField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Наименование2", @"Наименование2")]
+        public string NameOperation
+        {
+            get
+            {
+                return this.nameOperationField;
+            }
+            set
+            {
+                this.nameOperationField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"ИНН3", @"ИНН3")]
+        public string InnOperation
+        {
+            get
+            {
+                return this.innOperationField;
+            }
+            set
+            {
+                this.innOperationField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"КПП4", @"КПП4")]
+        public string KppOperation
+        {
+            get
+            {
+                return this.kppOperationField;
+            }
+            set
+            {
+                this.kppOperationField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"ОКВЭД", @"ОКВЭД")]
+        public string OkvedOperation
+        {
+            get
+            {
+                return this.okvedOperationField;
+            }
+            set
+            {
+                this.okvedOperationField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Номер документа", @"Номер документа")]
+        public string NumberDocOperation
+        {
+            get
+            {
+                return this.numberDocOperationField;
+            }
+            set
+            {
+                this.numberDocOperationField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Вид документа", @"Вид документа")]
+        public string VieDocOperation
+        {
+            get
+            {
+                return this.vieDocOperationField;
+            }
+            set
+            {
+                this.vieDocOperationField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Расход д/c, в валюте счета", @"Расход д/c, в валюте счета")]
+        public double ExpenseSumOperationUSA
+        {
+            get
+            {
+                return this.expenseSumOperationUSAField;
+            }
+            set
+            {
+                this.expenseSumOperationUSAField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Расход д/c, в рублях", @"Расход д/c, в рублях")]
+        public double ExpenseSumOperationRU
+        {
+            get
+            {
+                return this.expenseSumOperationRUField;
+            }
+            set
+            {
+                this.expenseSumOperationRUField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Приход д/c, в валюте счета", @"Приход д/c, в валюте счета")]
+        public double ComingSumOperationUSA
+        {
+            get
+            {
+                return this.comingSumOperationUSAField;
+            }
+            set
+            {
+                this.comingSumOperationUSAField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Приход д/c, в рублях", @"Приход д/c, в рублях")]
+        public double ComingSumOperationRU
+        {
+            get
+            {
+                return this.comingSumOperationRUField;
+            }
+            set
+            {
+                this.comingSumOperationRUField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Вид платежа", @"Вид платежа")]
+        public string TypeSumOperation
+        {
+            get
+            {
+                return this.typeSumOperationField;
+            }
+            set
+            {
+                this.typeSumOperationField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Назначение платежа", @"Назначение платежа")]
+        public string TargetSumOperation
+        {
+            get
+            {
+                return this.targetSumOperationField;
+            }
+            set
+            {
+                this.targetSumOperationField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime DateCreate
+        {
+            get
+            {
+                return this.dateCreateField;
+            }
+            set
+            {
+                this.dateCreateField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DateCreateSpecified
+        {
+            get
+            {
+                return this.dateCreateFieldSpecified;
+            }
+            set
+            {
+                this.dateCreateFieldSpecified = value;
             }
         }
     }
-
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class DocPatent {
+        
+        private System.Nullable<long> regNumField;
+        
+        private System.Nullable<long> numberField;
+        
+        private System.Nullable<int> kndField;
+        
+        private System.Nullable<int> vidDocField;
+        
+        private System.Nullable<System.DateTime> dateCreatePatentField;
+        
+        private System.Nullable<System.DateTime> dateInField;
+        
+        private System.Nullable<System.DateTime> dateOutTksMailField;
+        
+        private System.Nullable<int> idInIstField;
+        
+        private int idNumField;
+        
+        private bool idNumFieldSpecified;
+        
+        private int idPatentField;
+        
+        private string actualPatentField;
+        
+        private string kodePrField;
+        
+        private string nameDocField;
+        
+        private int codeIfnsField;
+        
+        private string fidField;
+        
+        private long idDocField;
+        
+        private long idWriteField;
+        
+        private int idInField;
+        
+        private System.DateTime dateCreateField;
+        
+        private bool dateCreateFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames(@"РегНомер", @"РегНомер")]
+        public System.Nullable<long> RegNum {
+            get {
+                return this.regNumField;
+            }
+            set {
+                this.regNumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames(@"Номер", @"Номер")]
+        public System.Nullable<long> Number {
+            get {
+                return this.numberField;
+            }
+            set {
+                this.numberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames(@"КНД", @"КНД")]
+        public System.Nullable<int> Knd {
+            get {
+                return this.kndField;
+            }
+            set {
+                this.kndField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames(@"Вид документа", @"Вид документа")]
+        public System.Nullable<int> VidDoc {
+            get {
+                return this.vidDocField;
+            }
+            set {
+                this.vidDocField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames(@"Дата создания", @"Дата создания")]
+        public System.Nullable<System.DateTime> DateCreatePatent {
+            get {
+                return this.dateCreatePatentField;
+            }
+            set {
+                this.dateCreatePatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames(@"Дата поступления в инспекцию", @"Дата поступления в инспекцию")]
+        public System.Nullable<System.DateTime> DateIn {
+            get {
+                return this.dateInField;
+            }
+            set {
+                this.dateInField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames(@"Дата отправки по почте/ТКС", @"Дата отправки по почте/ТКС")]
+        public System.Nullable<System.DateTime> DateOutTksMail {
+            get {
+                return this.dateOutTksMailField;
+            }
+            set {
+                this.dateOutTksMailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames(@"УН способа представления (подсистема-источник)", @"УН способа представления (подсистема-источник)")]
+        public System.Nullable<int> IdInIst {
+            get {
+                return this.idInIstField;
+            }
+            set {
+                this.idInIstField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdNum {
+            get {
+                return this.idNumField;
+            }
+            set {
+                this.idNumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdNumSpecified {
+            get {
+                return this.idNumFieldSpecified;
+            }
+            set {
+                this.idNumFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdPatent {
+            get {
+                return this.idPatentField;
+            }
+            set {
+                this.idPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Актуальность патента (заявления на патент)_Актуальность патента ", @"Актуальность патента (заявления на патент)")]
+        public string ActualPatent {
+            get {
+                return this.actualPatentField;
+            }
+            set {
+                this.actualPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Код по ИР ПСН", @"Код по ИР ПСН")]
+        public string KodePr {
+            get {
+                return this.kodePrField;
+            }
+            set {
+                this.kodePrField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Наименование", @"Наименование")]
+        public string NameDoc {
+            get {
+                return this.nameDocField;
+            }
+            set {
+                this.nameDocField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Кодо СОНО", @"Кодо СОНО")]
+        public int CodeIfns {
+            get {
+                return this.codeIfnsField;
+            }
+            set {
+                this.codeIfnsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"ФИД", @"ФИД")]
+        public string Fid {
+            get {
+                return this.fidField;
+            }
+            set {
+                this.fidField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"УН документа", @"УН документа")]
+        public long IdDoc {
+            get {
+                return this.idDocField;
+            }
+            set {
+                this.idDocField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"УН записи об объекте ПСН налогоплательщика", @"УН записи об объекте ПСН налогоплательщика")]
+        public long IdWrite {
+            get {
+                return this.idWriteField;
+            }
+            set {
+                this.idWriteField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"УН способа представления", @"УН способа представления")]
+        public int IdIn {
+            get {
+                return this.idInField;
+            }
+            set {
+                this.idInField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.dateCreateField;
+            }
+            set {
+                this.dateCreateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DateCreateSpecified {
+            get {
+                return this.dateCreateFieldSpecified;
+            }
+            set {
+                this.dateCreateFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class PlaceOfBusiness {
+        
+        private System.Nullable<long> idPlaceField;
+        
+        private int idNumField;
+        
+        private bool idNumFieldSpecified;
+        
+        private int idPatentField;
+        
+        private string addressPlaceField;
+        
+        private long idWriteField;
+        
+        private System.DateTime dateCreateField;
+        
+        private bool dateCreateFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames(@"УН записи о месте осуществления деятельности", @"УН записи о месте осуществления деятельности")]
+        public System.Nullable<long> IdPlace {
+            get {
+                return this.idPlaceField;
+            }
+            set {
+                this.idPlaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdNum {
+            get {
+                return this.idNumField;
+            }
+            set {
+                this.idNumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdNumSpecified {
+            get {
+                return this.idNumFieldSpecified;
+            }
+            set {
+                this.idNumFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdPatent {
+            get {
+                return this.idPatentField;
+            }
+            set {
+                this.idPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Адрес места осуществления деятельности", @"Адрес места осуществления деятельности")]
+        public string AddressPlace {
+            get {
+                return this.addressPlaceField;
+            }
+            set {
+                this.addressPlaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"УН записи об объекте ПСН налогоплательщика", @"УН записи об объекте ПСН налогоплательщика")]
+        public long IdWrite {
+            get {
+                return this.idWriteField;
+            }
+            set {
+                this.idWriteField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.dateCreateField;
+            }
+            set {
+                this.dateCreateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DateCreateSpecified {
+            get {
+                return this.dateCreateFieldSpecified;
+            }
+            set {
+                this.dateCreateFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class SvedTr {
+        
+        private int idNumField;
+        
+        private bool idNumFieldSpecified;
+        
+        private int idPatentField;
+        
+        private long idTrField;
+        
+        private string codeField;
+        
+        private string typeTrField;
+        
+        private string idNumberField;
+        
+        private string modelField;
+        
+        private string regNumberField;
+        
+        private double weightField;
+        
+        private int numberSeqtsField;
+        
+        private long idWriteField;
+        
+        private System.DateTime dateCreateField;
+        
+        private bool dateCreateFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdNum {
+            get {
+                return this.idNumField;
+            }
+            set {
+                this.idNumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdNumSpecified {
+            get {
+                return this.idNumFieldSpecified;
+            }
+            set {
+                this.idNumFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdPatent {
+            get {
+                return this.idPatentField;
+            }
+            set {
+                this.idPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"УН записи о ТС", @"УН записи о ТС")]
+        public long IdTr {
+            get {
+                return this.idTrField;
+            }
+            set {
+                this.idTrField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Код", @"Код")]
+        public string Code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Тип", @"Тип")]
+        public string TypeTr {
+            get {
+                return this.typeTrField;
+            }
+            set {
+                this.typeTrField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Идентификационный номер", @"Идентификационный номер")]
+        public string IdNumber {
+            get {
+                return this.idNumberField;
+            }
+            set {
+                this.idNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Марка", @"Марка")]
+        public string Model {
+            get {
+                return this.modelField;
+            }
+            set {
+                this.modelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Регистрационный номер", @"Регистрационный номер")]
+        public string RegNumber {
+            get {
+                return this.regNumberField;
+            }
+            set {
+                this.regNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Грузоподъемность", @"Грузоподъемность")]
+        public double Weight {
+            get {
+                return this.weightField;
+            }
+            set {
+                this.weightField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Количество посадочных мест", @"Количество посадочных мест")]
+        public int NumberSeqts {
+            get {
+                return this.numberSeqtsField;
+            }
+            set {
+                this.numberSeqtsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"УН записи об объекте ПСН налогоплательщика", @"УН записи об объекте ПСН налогоплательщика")]
+        public long IdWrite {
+            get {
+                return this.idWriteField;
+            }
+            set {
+                this.idWriteField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.dateCreateField;
+            }
+            set {
+                this.dateCreateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DateCreateSpecified {
+            get {
+                return this.dateCreateFieldSpecified;
+            }
+            set {
+                this.dateCreateFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class SvedObject {
+        
+        private int idNumField;
+        
+        private bool idNumFieldSpecified;
+        
+        private int idPatentField;
+        
+        private long idObjectField;
+        
+        private string codeField;
+        
+        private string typeObjectField;
+        
+        private double areaObjectField;
+        
+        private string addressObjectField;
+        
+        private long idWriteField;
+        
+        private System.DateTime dateCreateField;
+        
+        private bool dateCreateFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdNum {
+            get {
+                return this.idNumField;
+            }
+            set {
+                this.idNumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdNumSpecified {
+            get {
+                return this.idNumFieldSpecified;
+            }
+            set {
+                this.idNumFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdPatent {
+            get {
+                return this.idPatentField;
+            }
+            set {
+                this.idPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"УН записи об обособленном объекте", @"УН записи об обособленном объекте")]
+        public long IdObject {
+            get {
+                return this.idObjectField;
+            }
+            set {
+                this.idObjectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Код", @"Код")]
+        public string Code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Тип", @"Тип")]
+        public string TypeObject {
+            get {
+                return this.typeObjectField;
+            }
+            set {
+                this.typeObjectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Площадь", @"Площадь")]
+        public double AreaObject {
+            get {
+                return this.areaObjectField;
+            }
+            set {
+                this.areaObjectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Адрес места нахождения объекта", @"Адрес места нахождения объекта")]
+        public string AddressObject {
+            get {
+                return this.addressObjectField;
+            }
+            set {
+                this.addressObjectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"УН записи об объекте ПСН налогоплательщика", @"УН записи об объекте ПСН налогоплательщика")]
+        public long IdWrite {
+            get {
+                return this.idWriteField;
+            }
+            set {
+                this.idWriteField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.dateCreateField;
+            }
+            set {
+                this.dateCreateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DateCreateSpecified {
+            get {
+                return this.dateCreateFieldSpecified;
+            }
+            set {
+                this.dateCreateFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class ParametrNalog {
+        
+        private System.Nullable<int> idKbkField;
+        
+        private System.Nullable<int> idVktmoField;
+        
+        private int idNumField;
+        
+        private bool idNumFieldSpecified;
+        
+        private int idPatentField;
+        
+        private string prizSumField;
+        
+        private string prizCountWorkField;
+        
+        private string prizCountTrField;
+        
+        private string prizCountSeqtsField;
+        
+        private string prizCountWeightField;
+        
+        private string prizCountObjectField;
+        
+        private string prizCountObjectAreaField;
+        
+        private string prizRukVvodField;
+        
+        private string kbkField;
+        
+        private string nameNalogField;
+        
+        private string oktmoField;
+        
+        private string vktmoField;
+        
+        private double nalogDateBaseField;
+        
+        private double nalogPsnYearField;
+        
+        private double nalogPsnPeriodField;
+        
+        private string inspectorField;
+        
+        private long idWriteField;
+        
+        private long idNalogWriteField;
+        
+        private System.DateTime dateCreateField;
+        
+        private bool dateCreateFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames(@"УН записи КБК", @"УН записи КБК")]
+        public System.Nullable<int> IdKbk {
+            get {
+                return this.idKbkField;
+            }
+            set {
+                this.idKbkField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        [DataNames(@"УН по ВКТМО1", @"УН по ВКТМО1")]
+        public System.Nullable<int> IdVktmo {
+            get {
+                return this.idVktmoField;
+            }
+            set {
+                this.idVktmoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdNum {
+            get {
+                return this.idNumField;
+            }
+            set {
+                this.idNumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdNumSpecified {
+            get {
+                return this.idNumFieldSpecified;
+            }
+            set {
+                this.idNumFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdPatent {
+            get {
+                return this.idPatentField;
+            }
+            set {
+                this.idPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Признак: считать по суммарным значениям", @"Признак: считать по суммарным значениям")]
+        public string PrizSum {
+            get {
+                return this.prizSumField;
+            }
+            set {
+                this.prizSumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Признак: умножение на кол-во наемных работников", @"Признак: умножение на кол-во наемных работников")]
+        public string PrizCountWork {
+            get {
+                return this.prizCountWorkField;
+            }
+            set {
+                this.prizCountWorkField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Признак: умножение на кол-во ТС", @"Признак: умножение на кол-во ТС")]
+        public string PrizCountTr {
+            get {
+                return this.prizCountTrField;
+            }
+            set {
+                this.prizCountTrField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Признак: умножение на кол-во посадочных мест", @"Признак: умножение на кол-во посадочных мест")]
+        public string PrizCountSeqts {
+            get {
+                return this.prizCountSeqtsField;
+            }
+            set {
+                this.prizCountSeqtsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Признак: умножение на грузоподъемность", @"Признак: умножение на грузоподъемность")]
+        public string PrizCountWeight {
+            get {
+                return this.prizCountWeightField;
+            }
+            set {
+                this.prizCountWeightField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Признак: умножение на кол-во обособленных объектов", @"Признак: умножение на кол-во обособленных объектов")]
+        public string PrizCountObject {
+            get {
+                return this.prizCountObjectField;
+            }
+            set {
+                this.prizCountObjectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Признак: умножение на площадь обособленного объекта", @"Признак: умножение на площадь обособленного объекта")]
+        public string PrizCountObjectArea {
+            get {
+                return this.prizCountObjectAreaField;
+            }
+            set {
+                this.prizCountObjectAreaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Признак: ручной ввод дохода", @"Признак: ручной ввод дохода")]
+        public string PrizRukVvod {
+            get {
+                return this.prizRukVvodField;
+            }
+            set {
+                this.prizRukVvodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"КБК", @"КБК")]
+        public string Kbk {
+            get {
+                return this.kbkField;
+            }
+            set {
+                this.kbkField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Наименование налога", @"Наименование налога")]
+        public string NameNalog {
+            get {
+                return this.nameNalogField;
+            }
+            set {
+                this.nameNalogField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"ОКТМО", @"ОКТМО")]
+        public string Oktmo {
+            get {
+                return this.oktmoField;
+            }
+            set {
+                this.oktmoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Наименование по ВКТМО1", @"Наименование по ВКТМО1")]
+        public string Vktmo {
+            get {
+                return this.vktmoField;
+            }
+            set {
+                this.vktmoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Налоговая база", @"Налоговая база")]
+        public double NalogDateBase {
+            get {
+                return this.nalogDateBaseField;
+            }
+            set {
+                this.nalogDateBaseField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Налог ПСН за год", @"Налог ПСН за год")]
+        public double NalogPsnYear {
+            get {
+                return this.nalogPsnYearField;
+            }
+            set {
+                this.nalogPsnYearField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Налог ПСН за период действия патента", @"Налог ПСН за период действия патента")]
+        public double NalogPsnPeriod {
+            get {
+                return this.nalogPsnPeriodField;
+            }
+            set {
+                this.nalogPsnPeriodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Инспектор", @"Инспектор")]
+        public string Inspector {
+            get {
+                return this.inspectorField;
+            }
+            set {
+                this.inspectorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"УН записи об объекте ПСН налогоплательщика", @"УН записи об объекте ПСН налогоплательщика")]
+        public long IdWrite {
+            get {
+                return this.idWriteField;
+            }
+            set {
+                this.idWriteField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"УН записи о расчете налога", @"УН записи о расчете налога")]
+        public long IdNalogWrite {
+            get {
+                return this.idNalogWriteField;
+            }
+            set {
+                this.idNalogWriteField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.dateCreateField;
+            }
+            set {
+                this.dateCreateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DateCreateSpecified {
+            get {
+                return this.dateCreateFieldSpecified;
+            }
+            set {
+                this.dateCreateFieldSpecified = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class SvedFactPatent {
+        
+        private int idNumField;
+        
+        private bool idNumFieldSpecified;
+        
+        private int idPatentField;
+        
+        private int factDaysPatentField;
+        
+        private int nalogDaysField;
+        
+        private double nalogFactField;
+        
+        private double deltaField;
+        
+        private string inspectorField;
+        
+        private long idWriteField;
+        
+        private string deltaWriteErrorField;
+        
+        private string nalogDaysDeltaField;
+        
+        private System.DateTime dateCreateField;
+        
+        private bool dateCreateFieldSpecified;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdNum {
+            get {
+                return this.idNumField;
+            }
+            set {
+                this.idNumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdNumSpecified {
+            get {
+                return this.idNumFieldSpecified;
+            }
+            set {
+                this.idNumFieldSpecified = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int IdPatent {
+            get {
+                return this.idPatentField;
+            }
+            set {
+                this.idPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Фактический период действия патента (дни)", @"Фактический период действия патента (дни)")]
+        public int FactDaysPatent {
+            get {
+                return this.factDaysPatentField;
+            }
+            set {
+                this.factDaysPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Налоговая база за фактический период", @"Налоговая база за фактический период")]
+        public int NalogDays {
+            get {
+                return this.nalogDaysField;
+            }
+            set {
+                this.nalogDaysField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Налог за фактический период", @"Налог за фактический период")]
+        public double NalogFact {
+            get {
+                return this.nalogFactField;
+            }
+            set {
+                this.nalogFactField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Корректировка по фактическому периоду (дельта)", @"Корректировка по фактическому периоду (дельта)")]
+        public double Delta {
+            get {
+                return this.deltaField;
+            }
+            set {
+                this.deltaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"ФИО инспектора, сделавшего расчет", @"ФИО инспектора, сделавшего расчет")]
+        public string Inspector {
+            get {
+                return this.inspectorField;
+            }
+            set {
+                this.inspectorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"УН записи об объекте ПСН налогоплательщика", @"УН записи об объекте ПСН налогоплательщика")]
+        public long IdWrite {
+            get {
+                return this.idWriteField;
+            }
+            set {
+                this.idWriteField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Корректировка по первому сроку / дельта", @"Корректировка по первому сроку / дельта")]
+        public string DeltaWriteError {
+            get {
+                return this.deltaWriteErrorField;
+            }
+            set {
+                this.deltaWriteErrorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"Срок уплаты налога в размере 1/3", @"Срок уплаты налога в размере 1/3")]
+        public string NalogDaysDelta {
+            get {
+                return this.nalogDaysDeltaField;
+            }
+            set {
+                this.nalogDaysDeltaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime DateCreate {
+            get {
+                return this.dateCreateField;
+            }
+            set {
+                this.dateCreateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DateCreateSpecified {
+            get {
+                return this.dateCreateFieldSpecified;
+            }
+            set {
+                this.dateCreateFieldSpecified = value;
+            }
+        }
+    }
+}

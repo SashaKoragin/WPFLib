@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using EfDatabaseErrorInventory;
-using EfDatabaseInvoice;
-using EfDatabaseParametrsModel;
+using EfDatabase.XsdBookAccounting;
 using EfDatabaseTelephoneHelp;
-using EfDatabaseXsdBookAccounting;
 using LibaryXMLAuto.ModelServiceWcfCommand.AngularModel;
 using LibaryXMLAuto.ModelXmlSql.Model.FullSetting;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
@@ -21,7 +18,6 @@ using LibaryXMLAutoModelXmlSql.Model.ServerAndComputer;
 using SqlLibaryIfns.ExcelReport.Report;
 using ServiceWcf = LibaryXMLAutoModelServiceWcfCommand.TestIfnsService.ServiceWcf;
 using LogicaSelect = EfDatabaseParametrsModel.LogicaSelect;
-using EfDatabaseXsdMail;
 using Mail = LibaryXMLAutoModelXmlSql.Model.ModelMail.Mail;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll;
 
@@ -68,7 +64,7 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
             var sqlConnect = new SqlConnectionType();
             SerializeJson serializeJson = new SerializeJson();
             return
-                serializeJson.JsonLibary(
+                serializeJson.JsonLibrary(
                     (AnalisBdkFull)
                     sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, select,
                         typeof(AnalisBdkFull)));
@@ -84,7 +80,7 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
         {
             var sqlConnect = new SqlConnectionType();
             SerializeJson serializeJson = new SerializeJson();
-            return serializeJson.JsonLibary(
+            return serializeJson.JsonLibrary(
                 (ServiceWcf)
                 sqlConnect.SelectFullParametrSqlReader(connectionString, ModelSqlFullService.ProcedureSelectParametr,
                     typeof(ServiceWcf), ModelSqlFullService.ParamCommand(setting.ParamService.IdCommand.ToString())));
@@ -104,37 +100,37 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
             {
                 case 1:
                     return
-                        serializeJson.JsonLibary(
+                        serializeJson.JsonLibrary(
                             (SysNum)
                             sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, command.Command,
                                 typeof(SysNum)));
                 case 12:
                     return
-                        serializeJson.JsonLibary(
+                        serializeJson.JsonLibrary(
                             (Mail)
                             sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, command.Command,
                                 typeof(Mail)));
                 case 13:
                     return
-                        serializeJson.JsonLibary(
+                        serializeJson.JsonLibrary(
                             (ModelFull)
                             sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, command.Command,
                                 typeof(ModelFull)));
                 case 14:
                     return
-                        serializeJson.JsonLibary(
+                        serializeJson.JsonLibrary(
                             (Soprovod)
                             sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, command.Command,
                                 typeof(Soprovod)));
                 case 21:
                     return
-                        serializeJson.JsonLibary(
+                        serializeJson.JsonLibrary(
                             (No)
                             sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, command.Command,
                                 typeof(No)));
                 case 29:
                     return
-                        serializeJson.JsonLibary(
+                        serializeJson.JsonLibrary(
                             (ServerAndComputer)
                             sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, command.Command,
                                 typeof(ServerAndComputer)));
@@ -162,150 +158,7 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                             (ServerAndComputer)
                             sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString,
                                 Service(connectionString, setting).ServiceWcfCommand.Command, typeof(ServerAndComputer)));
-                    return serializeJson.JsonLibary(server);
-                default:
-                    return "Данная команда не определена!!!";
-            }
-        }
-
-        /// <summary>
-        /// Это для инвентаризации выборка
-        /// </summary>
-        /// <param name="connectionString">Строка соединения</param>
-        /// <param name="logic">Логика</param>
-        /// <returns></returns>
-        public string SqlModelInventory(string connectionString, LogicaSelect logic)
-        {
-            var sqlConnect = new SqlConnectionType();
-            SerializeJson serializeJson = new SerializeJson();
-            switch (logic.Id)
-            {
-                case 1:
-                    return
-                        serializeJson.JsonLibary(
-                            (AllTechnicalUsersAndOtdelAndTreeAis3)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(AllTechnicalUsersAndOtdelAndTreeAis3)));
-                case 2:
-                    return
-                        serializeJson.JsonLibary(
-                            (AllTechnicalUsersAndOtdelAndTreeAis3)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(AllTechnicalUsersAndOtdelAndTreeAis3)));
-                case 4:
-                    return
-                        serializeJson.JsonLibary(
-                            (Documents)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(Documents)));
-                case 6:
-                    return serializeJson.JsonLibary(
-                        (FullError)
-                        sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                            typeof(FullError)));
-                case 7:
-                    return
-                        serializeJson.JsonLibary(
-                            (FullError)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(FullError)));
-                case 8:
-                    return
-                        serializeJson.JsonLibary(
-                            (FullError)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(FullError)));
-                case 9:
-                    return
-                        serializeJson.JsonLibary(
-                            (FullError)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(FullError)));
-                case 11:
-                    return
-                        serializeJson.JsonLibary(
-                            (Book)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(Book)));
-                case 14:
-                    return
-                        serializeJson.JsonLibraryVks(
-                            (FullError)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(FullError)));
-                case 15:
-                    return
-                        serializeJson.JsonLibary(
-                            (FullError)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(FullError)));
-                case 16:
-                    return
-                        serializeJson.JsonLibary(
-                            (FullError)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(FullError)));
-                case 17:
-                    return
-                        serializeJson.JsonLibary(
-                            (FullError)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(FullError)));
-                case 18:
-                    return
-                        serializeJson.JsonLibary(
-                            (FullError)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(FullError)));
-                case 20:
-                    return
-                        serializeJson.JsonLibary(
-                            (FullError)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(FullError)));
-                case 21:
-                    return
-                        serializeJson.JsonLibary(
-                            (FullError)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(FullError)));
-                case 22:
-                    return
-                        serializeJson.JsonLibary(
-                            (FullError)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(FullError)));
-                case 25:
-                    return serializeJson.JsonLibary(
-                            (MailSheme)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                                typeof(MailSheme)));
-                case 27:
-                    return serializeJson.JsonLibary(
-                        (MailSheme)
-                        sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                            typeof(MailSheme)));
-                case 29:
-                    return serializeJson.JsonLibary((
-                        FullError) sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString,
-                        logic.SelectUser, typeof(FullError)));
-                case 31:
-                    return serializeJson.JsonLibary((
-                        FullError)sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString,
-                        logic.SelectUser, typeof(FullError)));
-                case 33:
-                    return serializeJson.JsonLibraryVks((
-                        MailSheme)sqlConnect.SelectFullParametrSqlReader<string,string>(connectionString,
-                        logic.SelectUser,typeof(MailSheme)));
-                case 36:
-                    return serializeJson.JsonLibary((FullError) sqlConnect.SelectFullParametrSqlReader<string, string>(
-                        connectionString,
-                        logic.SelectUser, typeof(FullError)));
-                case 38:
-                   return serializeJson.JsonLibary(
-                        (AllTechnicalUsersAndOtdelAndTreeAis3)
-                        sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, logic.SelectUser,
-                            typeof(AllTechnicalUsersAndOtdelAndTreeAis3)));
+                    return serializeJson.JsonLibrary(server);
                 default:
                     return "Данная команда не определена!!!";
             }
@@ -347,7 +200,7 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
             }
         }
         /// <summary>
-        /// Запрос на выгрузку данных в таблицу XLSX
+        /// Запрос на выгрузку данных в таблицу XLSX по заданной выборки View
         /// </summary>
         /// <param name="connectionString">Строка соединения с сервером</param>
         /// <param name="sqlSelect">Sql запрос</param>
@@ -386,33 +239,6 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
             }
             return null;
         }
-
-        /// <summary>
-        /// Функция преобразования View в Файл
-        /// </summary>
-        /// <param name="connectionString">Строка соединения</param>
-        /// <param name="logic">Логика</param>
-        /// <param name="pathSaveReport">Путь сохранения</param>
-        /// <returns></returns>
-        public Stream GenerateStreamToSqlViewFile(string connectionString, LogicaSelect logic, string pathSaveReport)
-        {
-            var sqlConnect = new SqlConnectionType();
-            var xlsx = new ReportExcel();
-            switch (logic.Id)
-            {
-                case 23:
-                    var tableTelephone = sqlConnect.ReportQbe(connectionString, logic.SelectUser);
-                    xlsx.ReportSave(pathSaveReport, "Все телефоны", "Телефоны и пользователи", tableTelephone);
-                    return  DownloadFile(Path.Combine(pathSaveReport, "Все телефоны.xlsx"));
-                case 30:
-                    var tableAllTechnics = sqlConnect.ReportQbe(connectionString, logic.SelectUser);
-                    xlsx.ReportSave(pathSaveReport, "Вся техника в БД", "Техника", tableAllTechnics);
-                    return DownloadFile(Path.Combine(pathSaveReport, "Вся техника в БД.xlsx"));
-                default:
-                    return null;
-            }
-        }
-
         /// <summary>
         /// Конвертация файла в массив данных
         /// </summary>

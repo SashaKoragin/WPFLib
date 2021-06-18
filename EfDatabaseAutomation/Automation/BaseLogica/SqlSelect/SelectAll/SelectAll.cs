@@ -58,7 +58,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
                 case 13:
                     result = Automation.Database.SqlQuery<XsdDTOSheme.UlFace>(sqlSelect.SelectUser).ToArray();
                     dataBaseUlSelect.UlFace = (XsdDTOSheme.UlFace[])result;
-                    return serializeJson.JsonLibary(dataBaseUlSelect);
+                    return serializeJson.JsonLibrary(dataBaseUlSelect);
                 case 14:
                     result = Automation.Database.SqlQuery<ModelKbkOnKbk>(sqlSelect.SelectUser).ToArray();
                     webPage.ModelKbkOnKbk = (ModelKbkOnKbk[])result;
@@ -92,7 +92,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
                 case 23:
                     result = Automation.Database.SqlQuery<XsdDTOSheme.UlFace>(sqlSelect.SelectUser).ToArray();
                     dataBaseUlSelect.UlFace = (XsdDTOSheme.UlFace[])result;
-                    return serializeJson.JsonLibary(dataBaseUlSelect);
+                    return serializeJson.JsonLibrary(dataBaseUlSelect);
                 case 24:
                     result = Automation.Database.SqlQuery<DeliveryDocument>(sqlSelect.SelectUser).ToArray();
                     webPage.DeliveryDocument = (DeliveryDocument[])result;
@@ -100,11 +100,19 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
                 case 25:
                     result = Automation.Database.SqlQuery<XsdDTOSheme.UlFace>(sqlSelect.SelectUser).ToArray();
                     dataBaseUlSelect.UlFace = (XsdDTOSheme.UlFace[])result;
-                    return serializeJson.JsonLibary(dataBaseUlSelect);
+                    return serializeJson.JsonLibrary(dataBaseUlSelect);
+                case 26:
+                    result = Automation.Database.SqlQuery<XsdAuto.FullShemeModel.IsPatentParse>(sqlSelect.SelectUser).ToArray();
+                    webPage.IsPatentParse = (XsdAuto.FullShemeModel.IsPatentParse[])result;
+                    break;
+                case 28:
+                    result = Automation.Database.SqlQuery<AllPatent>(sqlSelect.SelectUser).ToArray();
+                    webPage.AllPatent = (AllPatent[])result;
+                    break;
                 default:
                     return "Данная команда не определена!!!";
             }
-            var json = serializeJson.JsonLibary(webPage);
+            var json = serializeJson.JsonLibrary(webPage);
             return json;
         }
 

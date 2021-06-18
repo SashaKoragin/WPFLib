@@ -12,15 +12,15 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element ref="Users" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Template" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
-	<xs:element name="Users">
+	<xs:element name="Users" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Пользователь</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="DateIn" minOccurs="0"/>
 				<xs:element ref="Template" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="Sigment" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
@@ -66,19 +66,13 @@
 			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="DateIn" type="xs:dateTime" nillable="true">
-		<xs:annotation>
-			<xs:documentation>Дата последнего входа</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	<xs:element name="Template">
+	<xs:element name="Template" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Шаблоны</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="DateStart" minOccurs="0"/>
-				<xs:element ref="DateFinish" minOccurs="0"/>
+				<xs:element ref="Sigment" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 			<xs:attribute name="NameTemplate" type="xs:string">
 				<xs:annotation>
@@ -97,17 +91,7 @@
 			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="DateStart" type="xs:dateTime" nillable="true">
-		<xs:annotation>
-			<xs:documentation>Дата начала</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	<xs:element name="DateFinish" type="xs:dateTime" nillable="true">
-		<xs:annotation>
-			<xs:documentation>Дата окончания</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	<xs:element name="Applications">
+	<xs:element name="Applications" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Приложение</xs:documentation>
 		</xs:annotation>
@@ -122,15 +106,11 @@
 			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="RuleTemplate">
+	<xs:element name="RuleTemplate" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Описание ролей</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="DateStart" minOccurs="0"/>
-				<xs:element ref="DateFinish" minOccurs="0"/>
-			</xs:sequence>
 			<xs:attribute name="NameRule" type="xs:string">
 				<xs:annotation>
 					<xs:documentation>Наименование роли</xs:documentation>
@@ -153,7 +133,7 @@
 			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Sigment">
+	<xs:element name="Sigment" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Сегмент</xs:documentation>
 		</xs:annotation>

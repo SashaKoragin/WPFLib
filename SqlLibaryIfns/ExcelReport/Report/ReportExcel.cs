@@ -16,15 +16,15 @@ namespace SqlLibaryIfns.ExcelReport.Report
         /// <summary>
         /// Метод сохранения отчета в файл
         /// </summary>
-        /// <param name="pathsave">Путь сохранения</param>
-        /// <param name="namesavefile">Наименование файла</param>
-        /// <param name="namereport">Наименование листа xlsx</param>
+        /// <param name="pathSave">Путь сохранения</param>
+        /// <param name="nameSaveFile">Наименование файла</param>
+        /// <param name="nameReport">Наименование листа xlsx</param>
         /// <param name="table">Таблица которая вставляется в отчет</param>
-        public void ReportSave(string pathsave, string namesavefile,string namereport, DataSet table)
+        public void ReportSave(string pathSave, string nameSaveFile,string nameReport, DataSet table)
         {
-            var worksheet = XlWorkbook.Worksheets.Add(namereport);
+            var worksheet = XlWorkbook.Worksheets.Add(nameReport);
             worksheet.Cell("A1").InsertTable(table.Tables[0]).Worksheet.Columns().AdjustToContents();
-            XlWorkbook.SaveAs(pathsave + namesavefile+ ".xlsx");
+            XlWorkbook.SaveAs(pathSave + nameSaveFile + ".xlsx");
         }
         /// <summary>
         /// Сохранение таблицы DataSet по всем листам

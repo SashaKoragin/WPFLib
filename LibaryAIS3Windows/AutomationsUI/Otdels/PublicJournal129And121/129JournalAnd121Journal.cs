@@ -98,15 +98,23 @@
         /// <summary>
         /// Просмотреть форму
         /// </summary>
-        public static string ViewPrint = "AutomationId:ubtShowPrintForm";
+        public static string ViewPrint = "Name:Подписание документа\\ClassName:Button\\Name:Просмотреть печатную форму документа";
         /// <summary>
-        /// Ознакомится
+        /// Ознакомится 1
         /// </summary>
-        public static string ViewCheks = "AutomationId:groupBox1\\AutomationId:checkBox1";
+        public static string ViewCheks = "Name:Подписание документа\\ClassName:CheckBox";
+        /// <summary>
+        /// Ознакомится 2
+        /// </summary>
+        public static string ViewCheksText = "Name:Подписание документа\\ClassName:CheckBox\\ClassName:TextBlock";
+        /// <summary>
+        /// Подписант документа
+        /// </summary>
+        public static string SenderSign = "Name:Подписание документа\\ClassName:ComboBox\\AutomationId:PART_EditableTextBox";
         /// <summary>
         /// Подписать
         /// </summary>
-        public static string Sign = "AutomationId:ubtSign";
+        public static string Sign = "ClassName:Button\\Name:Подписать";
         /// <summary>
         /// Извещение о времени и месте рассмотрения Акта
         /// </summary>
@@ -224,12 +232,12 @@
         /// <summary>
         /// Должностные лица по 14 группе Раскрыть элемент
         /// </summary>
-        public static string FaceNameGr14 = $"{PublicPanel}AutomationId:gb_14\\AutomationId:exp\\AutomationId:HeaderSite";
+        public static string FaceNameGr15 = $"{PublicPanel}AutomationId:gb_15\\AutomationId:exp\\AutomationId:HeaderSite";
 
         /// <summary>
         /// Подписал документ Выбор по 14 группе
         /// </summary>
-        public static string FaceNameSignGr14 = $"{PublicPanel}AutomationId:gb_14\\AutomationId:exp\\AutomationId:Host\\AutomationId:ultraGroupBox1\\AutomationId:ultraCombo1";
+        public static string FaceNameSignGr15 = $"{PublicPanel}AutomationId:gb_15\\AutomationId:exp\\AutomationId:Host\\AutomationId:ultraGroupBox1\\AutomationId:ultraCombo1";
 
         /// <summary>
         /// Окно отпарвка документов
@@ -444,6 +452,10 @@
         /// </summary>
         public static string IzveshenieActNo = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Материалы для рассмотрения\\Name:Извещение о времени и месте рассмотрения материалов налоговой проверки\\AutomationId:Header\\Name:Извещение о времени и месте рассмотрения материалов налоговой проверки";
         /// <summary>
+        /// Элемент колесик
+        /// </summary>
+        public static string ReshScroll = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Результаты рассмотрения материалов проверки";
+        /// <summary>
         /// Решение о привлечении к ответственности
         /// </summary>
         public static string ReshNo = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Результаты рассмотрения материалов проверки\\Name:Решение о привлечении к ответственности\\AutomationId:Header\\Name:Решение о привлечении к ответственности";
@@ -452,6 +464,14 @@
         /// </summary>
         public static string ClosedComplex121 = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Камеральная налоговая проверка\\Name:Закрыть комплекс КНП\\Name:Закрыть комплекс КНП\\Name:Закрыть комплекс КНП";
 
+        /// <summary>
+        /// Наименование окна Внимание!
+        /// </summary>
+        public static string WinNameComplex = "Внимание";
+        /// <summary>
+        /// Закрыть окно комплекса мероприятий!
+        /// </summary>
+        public static string WinOkCloseComplex = "ClassName:Button\\Name:ОК";
         /// <summary>
         /// Не сохранять Акт налоговой проверки
         /// </summary>

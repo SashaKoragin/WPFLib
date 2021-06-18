@@ -7,9 +7,7 @@ using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Forms;
 using AutoIt;
-using LibraryAIS3Windows.AutomationsUI.Otdels.PreCheck;
 using LibraryAIS3Windows.AutomationsUI.PublicElement;
-using LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction;
 using LibraryAIS3Windows.ButtonsClikcs;
 
 
@@ -47,6 +45,13 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         /// Подключение к процессу
         /// </summary>
         /// <param name="nameWindowsAis3"></param>
+       
+        public LibraryAutomations()
+        {
+            RootAutomationElements = AutomationElement.RootElement;
+            ProcessId = RootAutomationElements.Current.ProcessId;
+        }
+
         public LibraryAutomations(string nameWindowsAis3)
         {
             RootAutomationElements = AutomationElement.FromHandle(AutoItX.WinGetHandle(nameWindowsAis3));
@@ -67,7 +72,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="nameProcess">Наименоване процессу</param>
         public LibraryAutomations(IntPtr nameProcess)
         {
-            
+
             RootAutomationElements = AutomationElement.FromHandle(nameProcess);
             ProcessId = RootAutomationElements.Current.ProcessId;
         }
@@ -170,7 +175,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                 using (StreamWriter sw = new StreamWriter(path, true))
                 {
                     var values = ParseElementLegacyIAccessiblePatternIdentifiers(child);
-                    sw.WriteLine(child.Current.Name + ":"+child.Current.AutomationId + ":" + values);
+                    sw.WriteLine(child.Current.ClassName + ":"+child.Current.AutomationId + ":" + values);
                 }
                 child = tw.GetNextSibling(child);
                 
@@ -238,11 +243,30 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         public void CloseWindowPattern(AutomationElement element)
         {
             WindowPattern windowPattern = (WindowPattern)element.GetCurrentPattern(WindowPattern.Pattern);
-            if(windowPattern.WaitForInputIdle(3000)){
-                windowPattern.Close();
+            AutoItX.Sleep(2000);
+            windowPattern.Close();
+        }
+        /// <summary>
+        /// Паттерн прокрутки до элемента нажатия
+        /// </summary>
+        /// <param name="nameAutomationId"></param>
+        public void ScrollPatternViewElement(string nameAutomationId)
+        {
+            var isProcess = true;
+            while (isProcess)
+            {
+                if (IsEnableElements(nameAutomationId, null, false, 5) != null)
+                {
+                    FindElement.SetFocus();
+                    if (FindElement.TryGetCurrentPattern(ScrollItemPatternIdentifiers.Pattern, out var patternObj))
+                    {
+                        var valuePattern = (ScrollItemPattern)patternObj;
+                        valuePattern.ScrollIntoView();
+                        isProcess = false;
+                    }
+                }
             }
         }
-
         private string DefaultActionPattern(AutomationElement element)
         {
             if (element != null)
@@ -342,6 +366,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
             var valueAuto = (ValuePattern)pattern;
             valueAuto.SetValue(value);
         }
+
         /// <summary>
         /// Элемент и  название в ComboBox которое нужно поставить 
         /// </summary>
@@ -553,7 +578,6 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                     {
                         isEnable = FindElement.Current.IsKeyboardFocusable;
                     }
-                    
                 }
                 if (i == countsecond)
                 {
@@ -627,14 +651,22 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="y">Координата смещения если не ловит элемент</param>
         public bool ClickElements(string nameAutomationId, AutomationElement auto = null, bool isSubtree = false, int countSecond = 25,int x = 0,int y = 0, int numClicks = 1)
         {
-            var isClicks = false;
-            if (IsEnableElements(nameAutomationId, auto, isSubtree, countSecond) != null)
+            try
             {
-                var clickPoint = FindElement.GetClickablePoint();
-                AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint.X + x, (int)clickPoint.Y + y,numClicks);
-                isClicks = true;
+                var isClicks = true;
+                if (IsEnableElements(nameAutomationId, auto, isSubtree, countSecond) != null)
+                {
+                    var clickPoint = FindElement.GetClickablePoint();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int)clickPoint.X + x, (int)clickPoint.Y + y, numClicks);
+                    isClicks = false;
+                }
+                return isClicks;
             }
-            return isClicks;
+            catch
+            {
+                //ignore
+            }
+            return true;
         }
         /// <summary>
         /// Нажать на элемент без поиска

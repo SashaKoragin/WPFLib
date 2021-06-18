@@ -62,6 +62,10 @@
     <Compile Include="TestDataBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\My\LibaryDocumentGenerator\LibaryDocumentGenerator.csproj">
+      <Project>{939B256E-591B-40CC-8097-5D34456404CD}</Project>
+      <Name>LibaryDocumentGenerator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AisPoco\AisPoco.csproj">
       <Project>{ae019cef-782d-41b7-942f-420f3c1b434a}</Project>
       <Name>AisPoco</Name>

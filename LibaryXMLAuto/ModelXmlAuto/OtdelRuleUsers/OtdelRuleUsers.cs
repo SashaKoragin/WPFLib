@@ -60,17 +60,21 @@ namespace LibaryXMLAutoModelXmlAuto.OtdelRuleUsers {
         
         private Users[] usersField;
         
+        private System.Nullable<System.DateTime> dateStatementField;
+        
+        private System.Nullable<System.DateTime> datesField;
+        
         private string numberField;
         
         private string rnameOtdelField;
         
         private string nameOtdelField;
         
+        private string regulationsField;
+        
         private string smallNameField;
         
         private string namePositionField;
-        
-        private string datesField;
         
         private string contactField;
         
@@ -82,6 +86,28 @@ namespace LibaryXMLAutoModelXmlAuto.OtdelRuleUsers {
             }
             set {
                 this.usersField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DateStatement {
+            get {
+                return this.dateStatementField;
+            }
+            set {
+                this.dateStatementField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> Dates {
+            get {
+                return this.datesField;
+            }
+            set {
+                this.datesField = value;
             }
         }
         
@@ -120,6 +146,17 @@ namespace LibaryXMLAutoModelXmlAuto.OtdelRuleUsers {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Regulations {
+            get {
+                return this.regulationsField;
+            }
+            set {
+                this.regulationsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public string SmallName {
             get {
                 return this.smallNameField;
@@ -137,17 +174,6 @@ namespace LibaryXMLAutoModelXmlAuto.OtdelRuleUsers {
             }
             set {
                 this.namePositionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Dates {
-            get {
-                return this.datesField;
-            }
-            set {
-                this.datesField = value;
             }
         }
         

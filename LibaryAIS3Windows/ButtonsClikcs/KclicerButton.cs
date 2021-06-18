@@ -37,7 +37,7 @@ using LibraryAIS3Windows.Window.Otdel.Reg.ActualStatus;
 using LibraryAIS3Windows.Window.Otdel.Reg.Fpd;
 using LibraryAIS3Windows.Window.Otdel.Reg.IdFace;
 using LibraryAIS3Windows.Window.Otdel.Uregulirovanie.UtverzdenieSz;
-using LibaryXMLAutoModelXmlAuto.MigrationReport;
+using LibaryXMLAuto.ModelXmlAuto.MigrationReport;
 using LibraryAIS3Windows.AutomationsUI.Otdels.Okp2;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 using ViewModelLib.ModelTestAutoit.PublicModel.DataPickerItRule;
@@ -48,6 +48,8 @@ using LibraryAIS3Windows.AutomationsUI.Otdels.PublicJournal129And121;
 using LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation;
 using ViewModelLib.ModelTestAutoit.PublicModel.RaschetBuh;
 using LibraryAIS3Windows.ButtonFullFunction.Okp1Function;
+using LibraryAIS3Windows.ButtonFullFunction.Okp3Function;
+using ViewModelLib.ModelTestAutoit.PublicModel.QbeSelect;
 
 namespace LibraryAIS3Windows.ButtonsClikcs
 {
@@ -920,9 +922,14 @@ namespace LibraryAIS3Windows.ButtonsClikcs
             var addObjectPl = new AddObjectDb();
             RegxStart regStart = new RegxStart();
             var rowNumber = 2;
+            var allList = libraryAutomation.SelectAutomationColrction(libraryAutomation.IsEnableElements(RashetBudElementName.DateGridAllListExit, null, true)).Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("List`")).ToList().Count();
             AutomationElement automationElement;
             while ((automationElement = libraryAutomation.IsEnableElements( string.Concat(RashetBudElementName.DateGrid, rowNumber), null, true)) != null)
             {
+                if (rowNumber == allList)
+                {
+                    break;
+                }
                 if (statusButton.Iswork)
                 {
                     var kbkOnKbk = new ModelKbkOnKbk();
@@ -982,42 +989,52 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                 .Cast<AutomationElement>()
                                 .First(elem => elem.Current.Name.Contains("КПП плательщика (102)")));
 
-                        if ((String.IsNullOrWhiteSpace(kbkOnKbk.Oktmo105) ||
-                             Regex.Matches(kbkOnKbk.Oktmo105, @"(0{6})").Count > 0) ||
-                            (String.IsNullOrWhiteSpace(kbkOnKbk.OktmoUfk) ||
-                             Regex.Matches(kbkOnKbk.OktmoUfk, @"(0{6})").Count > 0))
+                        var errorIsnullFind = regStart.FindNpIsNull(libraryAutomation, kbkOnKbk.InnPayer);
+                        if (errorIsnullFind != null)
                         {
                             kbkOnKbk.StatusError = "#E80A0A";
-                            kbkOnKbk.Conclusion = "Провести уточнение не возможно надо проверять ОКТМО!!!";
+                            kbkOnKbk.Conclusion = errorIsnullFind;
                             addObjectPl.AddModelKbkOnKbk(kbkOnKbk);
                         }
                         else
                         {
-                            PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.StartUtoch);
-                            PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.WindowsStartYes);
-                            while (true)
+                            if ((String.IsNullOrWhiteSpace(kbkOnKbk.Oktmo105) ||
+                                 Regex.Matches(kbkOnKbk.Oktmo105, @"(0{6})").Count > 0) ||
+                                 (String.IsNullOrWhiteSpace(kbkOnKbk.OktmoUfk) ||
+                                 Regex.Matches(kbkOnKbk.OktmoUfk, @"(0{6})").Count > 0))
                             {
-                                if(libraryAutomation.IsEnableElements(RashetBudElementName.ButtonNotUtoch, null, true) != null)
-                                {
-                                    break;
-                                }
-                            }
-                            if (regStart.UseNalog(libraryAutomation, kbkOnKbk))
-                            {
-                                PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.Utverjdenie);
-                                PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.WinUtoch);
-                                kbkOnKbk.StatusError = "#50D413";
-                                kbkOnKbk.Conclusion = "Уточнение проведено успешно!!!";
+                                kbkOnKbk.StatusError = "#E80A0A";
+                                kbkOnKbk.Conclusion = "Провести уточнение не возможно надо проверять ОКТМО!!!";
                                 addObjectPl.AddModelKbkOnKbk(kbkOnKbk);
                             }
                             else
                             {
-                                //Выход из уточнения
-                                PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.ButtonNotUtoch);
-                                PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.WinNotUtoch);
-                                kbkOnKbk.StatusError = "#E80A0A";
-                                kbkOnKbk.Conclusion = "Не найдено КБК в БД логика не определена!!!";
-                                addObjectPl.AddModelKbkOnKbk(kbkOnKbk);
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.StartUtoch);
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.WindowsStartYes);
+                                while (true)
+                                {
+                                    if (libraryAutomation.IsEnableElements(RashetBudElementName.ButtonNotUtoch, null, true) != null)
+                                    {
+                                        break;
+                                    }
+                                }
+                                if (regStart.UseNalog(libraryAutomation, kbkOnKbk))
+                                {
+                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.Utverjdenie);
+                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.WinUtoch);
+                                    kbkOnKbk.StatusError = "#50D413";
+                                    kbkOnKbk.Conclusion = "Уточнение проведено успешно!!!";
+                                    addObjectPl.AddModelKbkOnKbk(kbkOnKbk);
+                                }
+                                else
+                                {
+                                    //Выход из уточнения
+                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.ButtonNotUtoch);
+                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, RashetBudElementName.WinNotUtoch);
+                                    kbkOnKbk.StatusError = "#E80A0A";
+                                    kbkOnKbk.Conclusion = "Не найдено КБК в БД логика не определена!!!";
+                                    addObjectPl.AddModelKbkOnKbk(kbkOnKbk);
+                                }
                             }
                         }
                     }
@@ -1459,7 +1476,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                         Dates = dates
                                     };
                                     var listHistory = historyRule.Cast<AutomationElement>()
-                                        .Where(elem => elem.Current.Name.Contains("Appointments"));
+                                        .Where(elem => elem.Current.Name.Contains("Appointments")).Distinct();
                                     foreach (AutomationElement rule in listHistory)
                                     {
                                         //Формируем заявку поиск пользователя
@@ -1515,15 +1532,16 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                             break;
                         }
                     }
-
-                    LibaryXMLAuto.ErrorJurnal.ReportMigration.CreateFileRule(pathJournalOk, userRule);
-                    userRule.User = null;
+                    if (userRule.User != null)
+                    {
+                        LibaryXMLAuto.ErrorJurnal.ReportMigration.CreateFileRule(pathJournalOk, userRule);
+                        userRule.User = null;
+                    }
                 }
                 else
                 {
                     break;
                 }
-
                 AutoItX.Send(ButtonConstant.Tab);
             }
         }
@@ -2576,6 +2594,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
             }
 
             var rowNumber = 1;
+            var korrectNumber = 0;
             libraryAutomation.ClickElements(Journal129AndJournal121.UpdateData121);
             PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, Journal129AndJournal121.GridTaxJournal121);
             AutomationElement automationElement;
@@ -2597,6 +2616,11 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                     journal.Period = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                         .SelectAutomationColrction(automationElement)
                         .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный период")));
+
+                    korrectNumber = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Номер корректировки"))));
+
                     journal.God = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
                         libraryAutomation
                             .SelectAutomationColrction(automationElement)
@@ -2625,11 +2649,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                         libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                             .SelectAutomationColrction(automationElement)
                             .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН комплекса"))));
-                    journal.DateStartCheck = Convert.ToDateTime(
-                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>()
-                            .First(elem => elem.Current.Name.Contains("Дата начала проверки"))));
+
                     journal.DateFinishCheck = Convert.ToDateTime(
                         libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                             .SelectAutomationColrction(automationElement)
@@ -2641,11 +2661,29 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                     journal.DateFinishKnp = string.IsNullOrWhiteSpace(dateEnd)
                         ? (DateTime?) null
                         : Convert.ToDateTime(dateEnd);
+
+                    if (korrectNumber != 0)
+                    {
+                        journal.DateStartCheck = Convert.ToDateTime(
+                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>()
+                                .First(elem => elem.Current.Name.Contains("Дата представления первичной декларации"))));
+                    }
+                    else
+                    {
+                        journal.DateStartCheck = Convert.ToDateTime(
+                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>()
+                                .First(elem => elem.Current.Name.Contains("Дата начала проверки"))));
+                    }
+
                     journal.DateStartDeclaration = Convert.ToDateTime(
                         libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                            .SelectAutomationColrction(automationElement)
-                            .Cast<AutomationElement>()
-                            .First(elem => elem.Current.Name.Contains("Дата представления декларации"))));
+                             .SelectAutomationColrction(automationElement)
+                             .Cast<AutomationElement>()
+                             .First(elem => elem.Current.Name.Contains("Дата представления декларации"))));
                     journal.DateFinishDeclaration = Convert.ToDateTime(
                         libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                             .SelectAutomationColrction(automationElement)
@@ -2678,8 +2716,11 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                     var listDocMemo = libraryAutomation
                         .SelectAutomationColrction(
                             libraryAutomation.FindFirstElement(Journal129AndJournal121.JournalIsh, panel[1]))
-                        .Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("select0 row"))
-                        .ToArray();
+                        .Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("select0 row") &&
+                             libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                             libraryAutomation.SelectAutomationColrction(elem).Cast<AutomationElement>()
+                             .First(doc => doc.Current.Name.Contains("КНД"))) != "1165050"
+                        ).ToArray();
                     //Выставляем Акты Решения и Извещения по разным КНД
                     switch (journal.Knd)
                     {
@@ -3571,6 +3612,16 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         {
             ItFunctionAutomation itFunctionAutomation = new ItFunctionAutomation();
             itFunctionAutomation.SelectAllUserTemplateAndRule(statusButton, pathJournalInfoUserTemplateRule);
+        }
+        /// <summary>
+        /// Сбор информации по СПН
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт автомат</param>
+        /// <param name="pathTemp">Путь сохранения Temp</param>
+        public void Click39(StatusButtonMethod statusButton, string pathTemp)
+        {
+            Okp3Patent patern = new Okp3Patent();
+            patern.LoadPatent(statusButton, pathTemp);
         }
     }
 }

@@ -21,7 +21,7 @@ namespace LibraryAIS3Windows.ModelData.PreCheck
             try
             {
                 var json = new SerializeJson();
-                var js = json.JsonLibary(requestType);
+                var js = json.JsonLibrary(requestType);
                 var body = Encoding.UTF8.GetBytes(js);
                 var request = (HttpWebRequest)WebRequest.Create(serviceAddress);
                 request.Method = "POST";

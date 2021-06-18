@@ -43,6 +43,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private DeliveryDocument[] deliveryDocumentField;
         
+        private IsPatentParse[] isPatentParseField;
+        
+        private AllPatent[] allPatentField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxJournalAutoWebPage")]
         public TaxJournalAutoWebPage[] TaxJournalAutoWebPage {
@@ -150,6 +154,28 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.deliveryDocumentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("IsPatentParse")]
+        public IsPatentParse[] IsPatentParse {
+            get {
+                return this.isPatentParseField;
+            }
+            set {
+                this.isPatentParseField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("AllPatent")]
+        public AllPatent[] AllPatent {
+            get {
+                return this.allPatentField;
+            }
+            set {
+                this.allPatentField = value;
             }
         }
     }
@@ -2066,6 +2092,473 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.nameDeclarationField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class IsPatentParse {
+        
+        private string logicsButtonField;
+        
+        private int idNumField;
+        
+        private long regNumPatentField;
+        
+        private bool isParseFullPatentField;
+        
+        private bool isParseDocPatentField;
+        
+        private bool isParsePlaceOfBusinessField;
+        
+        private bool isParseSvedTrField;
+        
+        private bool isParseSvedObjectField;
+        
+        private bool isParseParametrNalogField;
+        
+        private bool isParseSvedFactPatentField;
+        
+        private System.DateTime dateCreateField;
+        
+        public IsPatentParse() {
+            this.logicsButtonField = "Button";
+        }
+        
+        /// <remarks/>
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int IdNum {
+            get {
+                return this.idNumField;
+            }
+            set {
+                this.idNumField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long RegNumPatent {
+            get {
+                return this.regNumPatentField;
+            }
+            set {
+                this.regNumPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsParseFullPatent {
+            get {
+                return this.isParseFullPatentField;
+            }
+            set {
+                this.isParseFullPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsParseDocPatent {
+            get {
+                return this.isParseDocPatentField;
+            }
+            set {
+                this.isParseDocPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsParsePlaceOfBusiness {
+            get {
+                return this.isParsePlaceOfBusinessField;
+            }
+            set {
+                this.isParsePlaceOfBusinessField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsParseSvedTr {
+            get {
+                return this.isParseSvedTrField;
+            }
+            set {
+                this.isParseSvedTrField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsParseSvedObject {
+            get {
+                return this.isParseSvedObjectField;
+            }
+            set {
+                this.isParseSvedObjectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsParseParametrNalog {
+            get {
+                return this.isParseParametrNalogField;
+            }
+            set {
+                this.isParseParametrNalogField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsParseSvedFactPatent {
+            get {
+                return this.isParseSvedFactPatentField;
+            }
+            set {
+                this.isParseSvedFactPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateCreate {
+            get {
+                return this.dateCreateField;
+            }
+            set {
+                this.dateCreateField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class AllPatent {
+        
+        private string logicsButtonField;
+        
+        private System.Nullable<long> numberPatentField;
+        
+        private System.DateTime dateStartPatentField;
+        
+        private System.DateTime dateFinishPatentField;
+        
+        private System.Nullable<System.DateTime> dateCancelField;
+        
+        private System.Nullable<System.DateTime> dateReshField;
+        
+        private System.Nullable<decimal> nalogPsnPeriodField;
+        
+        private int idPatentField;
+        
+        private System.Nullable<decimal> weightField;
+        
+        private System.Nullable<int> numberSeqtsField;
+        
+        private System.Nullable<decimal> nalogFactField;
+        
+        private long indexIdField;
+        
+        private string nameFullField;
+        
+        private string ogrnIpField;
+        
+        private string innField;
+        
+        private string addressField;
+        
+        private string addressObjectField;
+        
+        private string nameVidField;
+        
+        private string avgPeopleField;
+        
+        private string countMouthField;
+        
+        private string idNumberField;
+        
+        private string modelField;
+        
+        private string regNumberField;
+        
+        private string codeWorkField;
+        
+        public AllPatent() {
+            this.logicsButtonField = "Button";
+        }
+        
+        /// <remarks/>
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<long> NumberPatent {
+            get {
+                return this.numberPatentField;
+            }
+            set {
+                this.numberPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateStartPatent {
+            get {
+                return this.dateStartPatentField;
+            }
+            set {
+                this.dateStartPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateFinishPatent {
+            get {
+                return this.dateFinishPatentField;
+            }
+            set {
+                this.dateFinishPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DateCancel {
+            get {
+                return this.dateCancelField;
+            }
+            set {
+                this.dateCancelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DateResh {
+            get {
+                return this.dateReshField;
+            }
+            set {
+                this.dateReshField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> NalogPsnPeriod {
+            get {
+                return this.nalogPsnPeriodField;
+            }
+            set {
+                this.nalogPsnPeriodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int IdPatent {
+            get {
+                return this.idPatentField;
+            }
+            set {
+                this.idPatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> Weight {
+            get {
+                return this.weightField;
+            }
+            set {
+                this.weightField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> NumberSeqts {
+            get {
+                return this.numberSeqtsField;
+            }
+            set {
+                this.numberSeqtsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> NalogFact {
+            get {
+                return this.nalogFactField;
+            }
+            set {
+                this.nalogFactField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long IndexId {
+            get {
+                return this.indexIdField;
+            }
+            set {
+                this.indexIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameFull {
+            get {
+                return this.nameFullField;
+            }
+            set {
+                this.nameFullField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string OgrnIp {
+            get {
+                return this.ogrnIpField;
+            }
+            set {
+                this.ogrnIpField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Address {
+            get {
+                return this.addressField;
+            }
+            set {
+                this.addressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string AddressObject {
+            get {
+                return this.addressObjectField;
+            }
+            set {
+                this.addressObjectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameVid {
+            get {
+                return this.nameVidField;
+            }
+            set {
+                this.nameVidField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string AvgPeople {
+            get {
+                return this.avgPeopleField;
+            }
+            set {
+                this.avgPeopleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string CountMouth {
+            get {
+                return this.countMouthField;
+            }
+            set {
+                this.countMouthField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string IdNumber {
+            get {
+                return this.idNumberField;
+            }
+            set {
+                this.idNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Model {
+            get {
+                return this.modelField;
+            }
+            set {
+                this.modelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string RegNumber {
+            get {
+                return this.regNumberField;
+            }
+            set {
+                this.regNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string CodeWork {
+            get {
+                return this.codeWorkField;
+            }
+            set {
+                this.codeWorkField = value;
             }
         }
     }

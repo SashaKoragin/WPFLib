@@ -1,18 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using LibaryXMLAuto.Converts.ConvettToXml;
 using ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXlsx;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXml;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Media;
-using GalaSoft.MvvmLight.Threading;
+using AisPoco.ModelServiceDataBase;
 using LibaryXMLAuto.ModelServiceWcfCommand.ModelPathReport;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
-using LibaryXMLAutoModelXmlAuto.MigrationReport;
 using ViewModelLib.ModelTestAutoit.PublicModel.LabelAndErrorModel;
 
 namespace LibraryCommandPublic.TestAutoit.PublicCommand
@@ -20,146 +19,75 @@ namespace LibraryCommandPublic.TestAutoit.PublicCommand
     public class CommandSnuOneAuto
     {
         /// <summary>
-        /// Команда Update вынесена в отдельный клас чтобы не загромождать логику MVVM
+        /// Команда Update вынесена в отдельный класс чтобы не загромождать логику MVVM
         /// </summary>
-        /// <param name="xmlusemethod">XmlUseMethod Метод файла xml</param>
-        /// <param name="reportjurnalmethod">ReportJurnalMethod метод журнала файла xml</param>
-        /// <param name="pathfileinn">Путь к файлу FullName</param>
-        /// <param name="pathjurnal">Просто путь к журналу</param>
-        /// <param name="pathinn">Просто путь к ИНН</param>
-        public void UpdateModel(XmlUseMethod xmlusemethod, ReportJurnalMethod reportjurnalmethod, string pathfileinn,string pathjurnal, string pathinn)
+        /// <param name="xmlUseMethod">XmlUseMethod Метод файла xml</param>
+        /// <param name="reportJournalMethod">ReportJournalMethod метод журнала файла xml</param>
+        /// <param name="pathFileInn">Путь к файлу FullName</param>
+        /// <param name="pathJournal">Просто путь к журналу</param>
+        /// <param name="pathInn">Просто путь к ИНН</param>
+        public void UpdateModel(XmlUseMethod xmlUseMethod, ReportJournalMethod reportJournalMethod, string pathFileInn, string pathJournal, string pathInn)
         {
-            xmlusemethod.UpdateFileXml(pathfileinn);
-            reportjurnalmethod.AddFileXml(pathinn);
-            reportjurnalmethod.AddJurnal(pathjurnal);
+            xmlUseMethod.UpdateFileXml(pathFileInn);
+            reportJournalMethod.AddFileXml(pathInn);
+            reportJournalMethod.AddJournal(pathJournal);
         }
 
         /// <summary>
-        /// Коммонда конвертации xml в Excel и открытия файла Excel
+        /// Команда конвертации xml в Excel и открытия файла Excel
         /// </summary>
-        /// <param name="reportexcel">отч</param>
+        /// <param name="reportExcel">отч</param>
         /// <param name="reportJournal"></param>
-        /// <param name="pathreport"></param>
-        public void ConvertXslToXmlAndOpen(ReportXlsxMethod reportexcel, ReportJurnalMethod reportJournal,
-            string pathreport)
+        /// <param name="pathReport"></param>
+        public void ConvertXslToXmlAndOpen(ReportXlsxMethod reportExcel, ReportJournalMethod reportJournal,
+            string pathReport)
         {
-            var filefullpath =
+            var fileFullPath =
                 LibaryXMLAuto.Converts.ConvertXmlToXslx.ConvertXmltoXlsx.ConvertXmlToXls(reportJournal.XmlFile.Path,
-                    pathreport);
-            reportexcel.UpdateColectFile(filefullpath.DirectoryName);
-            reportJournal.OpenFile(filefullpath.FullName);
+                    pathReport);
+            reportExcel.UpdateColectFile(fileFullPath.DirectoryName);
+            reportJournal.OpenFile(fileFullPath.FullName);
         }
 
         /// <summary>
-        /// Отправка письм
+        /// Отправка файла на сервер для анализа или отчета
         /// </summary>
-        /// <param name="model">Модель сообщения</param>
-        /// <param name="serverReport">Конечная точка</param>
-        /// <param name="reportJournal">Журнал ошибок по миграции НП</param>
-        public void SenderServerReport(LabelModel model, string serverReport,ReportJurnalMethod reportJournal)
+        /// <param name="model">Возвращаемая модель</param>
+        /// <param name="serverApi">Моделька с api</param>
+        /// <param name="reportJournal">Выбор файла в журнале</param>
+        public void FileToServerApiReport(LabelModel model, List<ModelServiceDataBase>  serverApi, ReportJournalMethod reportJournal)
         {
-            if (reportJournal.XmlFile.Name == "ReportMigration.xml")
+            var modelFileApi = serverApi.FirstOrDefault(api => api.ModelNameFileXml == reportJournal.XmlFile.Name);
+            if (modelFileApi != null)
             {
-                try
-                {
-                    XmlConvert xmlconverter = new XmlConvert();
-                    var reports =(MigrationParse)xmlconverter.DeserializationXmlToClass(reportJournal.XmlFile.Path, typeof(MigrationParse));
-                    var report =  (ModelPathReport)ResultPost(serverReport, reports);
-                    model.MessageReport = report.Note;
-                    model.Url = report.Url;
-                    model.Color = Brushes.Green;
-                    return;
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.ToString());
-                }
+                XmlConvert xmlConverter = new XmlConvert();
+                var type = Type.GetType($"{modelFileApi.TypeFileNameSpaceClass},{modelFileApi.FileNameDll}");
+                var reports = xmlConverter.DeserializationXmlToClass(reportJournal.XmlFile.Path, type);
+                var report = (ModelPathReport)ResultPost(modelFileApi.ApiService, reports);
+                model.MessageReport = report.Note;
+                model.Url = report.Url;
+                model.Color = Brushes.Green;
             }
-            model.MessageReport = $"Для формирования писем возможно отправить только ReportMigration.xml";
-            model.Color = Brushes.Red;
+            else
+            {
+                model.MessageReport = $"Для данной команды выбран не тот файл!!!";
+                model.Color = Brushes.Red;
+            }
         }
-        /// <summary>
-        /// Отправка файла xml UserRule.xml для формирования Формуляров доступа
-        /// </summary>
-        /// <param name="model">Модель xaml MVVM</param>
-        /// <param name="serverReport">Конечный адрес службы</param>
-        /// <param name="reportJournal">Модель журнала</param>
-        public async void DepartmentDocumentSenders(LabelModel model, string serverReport,ReportJurnalMethod reportJournal)
-        {
-            DispatcherHelper.Initialize();
-            await Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        if (reportJournal.XmlFile.Name == "UserRule.xml")
-                        {
-                            XmlConvert converter = new XmlConvert();
-                                var reports =
-                                    (UserRules) converter.DeserializationXmlToClass(reportJournal.XmlFile.Path,
-                                        typeof(UserRules));
-                                var report = (ModelPathReport) ResultPost(serverReport, reports);
-                                model.MessageReport = report.Note;
-                                model.Url = report.Url;
-                                model.Color = Brushes.Green;
-                                return;
-                        }
-                        model.MessageReport = $"Для формирования писем возможно отправить только UserRule.xml";
-                        model.Color = Brushes.Red;
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(e.ToString());
-                    }
-                }
-            );
-        }
-        /// <summary>
-        /// Отправка файла xml UserRule.xml для формирования Формуляров доступа
-        /// </summary>
-        /// <param name="model">Модель xaml MVVM</param>
-        /// <param name="serverReport">Конечный адрес службы</param>
-        /// <param name="reportJournal">Модель журнала</param>
-        public async void LoadInfoTemplate(LabelModel model, string serverReport, ReportJurnalMethod reportJournal)
-        {
-            await Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        if (reportJournal.XmlFile.Name == "InfoRuleTemplate.xml")
-                        {
-                            XmlConvert converter = new XmlConvert();
-                            var reports = (InfoRuleTemplate)converter.DeserializationXmlToClass(reportJournal.XmlFile.Path, typeof(InfoRuleTemplate));
-                            var report = (ModelPathReport)ResultPost(serverReport, reports);
-                            model.MessageReport = report.Note;
-                            model.Color = Brushes.Green;
-                            return;
-                        }
-                        model.MessageReport = $"Для загрузки ролей доступен только файл InfoRuleTemplate.xml";
-                        model.Color = Brushes.Red;
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(e.ToString());
-                    }
-                }
-            );
-        }
-
-
 
         /// <summary>
         /// Отправка запроса на сервер
         /// </summary>
-        /// <param name="serviceadress">Сервисный адресс</param>
-        /// <param name="requesttype">Тип объекта класса</param>
+        /// <param name="service">Сервисный адрес</param>
+        /// <param name="requestType">Тип объекта класса</param>
         /// <returns></returns>
-        private object ResultPost(string serviceadress, object requesttype)
+        private object ResultPost(string service, object requestType)
         {
             string resultServer;
             var json = new SerializeJson();
-            var js = json.JsonLibraryNullInclude(requesttype);
+            var js = json.JsonLibraryNullInclude(requestType);
             var body = Encoding.UTF8.GetBytes(js);
-            var request = (HttpWebRequest) WebRequest.Create(serviceadress);
+            var request = (HttpWebRequest) WebRequest.Create(service);
             request.Method = "POST";
             request.ContentType = "application/json";
             request.ContentLength = body.Length;

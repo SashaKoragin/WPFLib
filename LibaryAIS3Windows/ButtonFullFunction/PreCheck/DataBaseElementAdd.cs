@@ -636,9 +636,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             var summNds = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                                   .SelectAutomationColrction(automationElement)
                                   .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Сумма НДС")));
-            var summTotal = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                  .SelectAutomationColrction(automationElement)
-                                  .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Общая сумма по ООК")));
+            var summTotal = "0";
             var weightProduct = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                     .SelectAutomationColrction(automationElement)
                     .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Удельный вес")));
@@ -969,6 +967,140 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                 }
             }
             return null;
+        }
+        /// <summary>
+        /// Выгрузка первой 1000 для отработки
+        /// </summary>
+        /// <returns></returns>
+        public IsPatentParse[] PatentExportFull()
+        {
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            return preCheck.PatentExportFull();
+        }
+
+        /// <summary>
+        /// Добавление патента и лица в БД
+        /// </summary>
+        /// <param name="face">Лицо</param>
+        /// <param name="patent">Патент</param>
+        public IsPatentParse AddFlFaceAndPatent(FlFaceMain face,ref Patent patent)
+        {
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            return preCheck.AddFlFaceAndPatent(face, ref patent);
+        }
+        /// <summary>
+        /// Обновление модели патента в работе
+        /// </summary>
+        /// <param name="isParseModel">Модель в работе</param>
+        public void UpdateIsParseModel(IsPatentParse isParseModel)
+        {
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            preCheck.UpdateIsParsePatent(isParseModel);
+        }
+        /// <summary>
+        /// Загрузка документа патента
+        /// </summary>
+        /// <param name="patent">Патент</param>
+        /// <param name="pathXlsx">Путь к xlsx</param>
+        /// <param name="sheetName">Наименование листа</param>
+        public void AddDocPatent(Patent patent, string pathXlsx, string sheetName)
+        {
+            PreCheckAddObject preCheckLoad = new PreCheckAddObject();
+            var connectionString = string.Format($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={pathXlsx}; Extended Properties=Excel 12.0;");
+            var adapter = new OleDbDataAdapter($"Select * From [{sheetName}$]", connectionString);
+            var ds = new DataSet();
+            adapter.Fill(ds, "DocPatent");
+            DataTable dataTable = ds.Tables["DocPatent"];
+            DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DocPatent> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DocPatent>();
+            var listDoc = new ArrayBodyDoc() { DocPatent = mapper.Map(dataTable).ToArray() };
+            listDoc.DocPatent.ToList().ForEach(doc => doc.IdPatent = patent.IdPatent);
+            preCheckLoad.AddDocPatent(listDoc);
+            preCheckLoad.Dispose();
+        }
+        /// <summary>
+        /// Загрузка сведений о месте осуществления деятельности
+        /// </summary>
+        /// <param name="patent">Патент</param>
+        /// <param name="pathXlsx">Путь к xlsx</param>
+        /// <param name="sheetName">Наименование листа</param>
+        public void AddPlaceOfBusiness(Patent patent, string pathXlsx, string sheetName)
+        {
+            PreCheckAddObject preCheckLoad = new PreCheckAddObject();
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName);
+            DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.PlaceOfBusiness> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.PlaceOfBusiness>();
+            var listDoc = new ArrayBodyDoc() { PlaceOfBusiness = mapper.Map(dataTable).ToArray() };
+            listDoc.PlaceOfBusiness.ToList().ForEach(doc => doc.IdPatent = patent.IdPatent);
+            preCheckLoad.AddPlaceOfBusiness(listDoc);
+            preCheckLoad.Dispose();
+        }
+        /// <summary>
+        /// Загрузка сведений о транспортных средствах
+        /// </summary>
+        /// <param name="patent">Патент</param>
+        /// <param name="pathXlsx">Путь к xlsx</param>
+        /// <param name="sheetName">Наименование листа</param>
+        public void AddSvedTr(Patent patent, string pathXlsx, string sheetName)
+        {
+            PreCheckAddObject preCheckLoad = new PreCheckAddObject();
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName);
+            DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.SvedTr> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.SvedTr>();
+            var listDoc = new ArrayBodyDoc() { SvedTr = mapper.Map(dataTable).ToArray() };
+            listDoc.SvedTr.ToList().ForEach(doc => doc.IdPatent = patent.IdPatent);
+            preCheckLoad.AddSvedTr(listDoc);
+            preCheckLoad.Dispose();
+        }
+        /// <summary>
+        /// Загрузка сведений об обособленных объектах
+        /// </summary>
+        /// <param name="patent">Патент</param>
+        /// <param name="pathXlsx">Путь к xlsx</param>
+        /// <param name="sheetName">Наименование листа</param>
+        public void AddSvedObject(Patent patent, string pathXlsx, string sheetName)
+        {
+            PreCheckAddObject preCheckLoad = new PreCheckAddObject();
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName);
+            DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.SvedObject> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.SvedObject>();
+            var listDoc = new ArrayBodyDoc() { SvedObject = mapper.Map(dataTable).ToArray() };
+            listDoc.SvedObject.ToList().ForEach(doc => doc.IdPatent = patent.IdPatent);
+            preCheckLoad.AddSvedObject(listDoc);
+            preCheckLoad.Dispose();
+        }
+        /// <summary>
+        /// Загрузка параметров расчета налога
+        /// </summary>
+        /// <param name="patent">Патент</param>
+        /// <param name="pathXlsx">Путь к xlsx</param>
+        /// <param name="sheetName">Наименование листа</param>
+        public void AddParametrNalog(Patent patent, string pathXlsx, string sheetName)
+        {
+            PreCheckAddObject preCheckLoad = new PreCheckAddObject();
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName);
+            DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.ParametrNalog> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.ParametrNalog>();
+            var listDoc = new ArrayBodyDoc() { ParametrNalog = mapper.Map(dataTable).ToArray() };
+            listDoc.ParametrNalog.ToList().ForEach(doc => doc.IdPatent = patent.IdPatent);
+            preCheckLoad.AddParametrNalog(listDoc);
+            preCheckLoad.Dispose();
+        }
+        /// <summary>
+        /// Загрузка сведений по фактическому действию патента
+        /// </summary>
+        /// <param name="patent">Патент</param>
+        /// <param name="pathXlsx">Путь к xlsx</param>
+        /// <param name="sheetName">Наименование листа</param>
+        public void AddSvedFactPatent(Patent patent, string pathXlsx, string sheetName)
+        {
+            PreCheckAddObject preCheckLoad = new PreCheckAddObject();
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName);
+            DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.SvedFactPatent> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.SvedFactPatent>();
+            var listDoc = new ArrayBodyDoc() { SvedFactPatent = mapper.Map(dataTable).ToArray() };
+            listDoc.SvedFactPatent.ToList().ForEach(doc => doc.IdPatent = patent.IdPatent);
+            preCheckLoad.AddSvedFactPatent(listDoc);
+            preCheckLoad.Dispose();
         }
     }
 }

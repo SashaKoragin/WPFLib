@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
+using AisPoco.ModelServiceDataBase;
 using AutomatAis3Full.Config;
 using LibraryCommandPublic.TestAutoit.PublicCommand;
 using Prism.Commands;
@@ -11,40 +13,43 @@ namespace AutomatAis3Full.Form.Report.ReportXml.DataContext
 {
    public class DataContextReport
    {
+        /// <summary>
+        /// Модель адресов api
+        /// </summary>
+        public List<ModelServiceDataBase> ModelApi { get; }
         public LabelModel LabelModel { get; }
         public ICommand Update { get; }
-        public ReportJurnalMethod ReportJournalAndFile { get; }
+        public ReportJournalMethod ReportJournalAndFile { get; }
         public ReportXlsxMethod Report { get; }
         public ICommand OpenFile { get; }
-        public ICommand SendFileToServer { get; }
+        /// <summary>
+        /// Команда отправки файла на сервер
+        /// </summary>
+        public ICommand FileToServerApiReport { get; }
         public ICommand DeleteJournal { get; }
         public ICommand DeleteReport { get; }
 
         public ICommand OpenReport { get; }
-
-        public ICommand SenderDepartment { get; }
-
-        public ICommand LoadTemplateInfo { get; }
 
         public DataContextReport()
         {
             try
             {
                 var command = new CommandSnuOneAuto();
+                ModelApi = ConfigFile.ResultGetTemplate<ModelServiceDataBase>(ConfigFile.ServiceModelInventory);
+                ModelApi.ForEach(service=>service.ApiService = string.Format(service.ApiService, ConfigFile.HostNameService));
                 Report = new ReportXlsxMethod(ConfigFile.ExcelReportFile);
-                ReportJournalAndFile = new ReportJurnalMethod(ConfigFile.PathJurnal, ConfigFile.PathInn);
+                ReportJournalAndFile = new ReportJournalMethod(ConfigFile.PathJurnal, ConfigFile.PathInn, ModelApi);
                 LabelModel = new LabelModel();
-                DeleteJournal = new DelegateCommand(()=> { ReportJournalAndFile.DeleteXmlReportJurnal();});
+                DeleteJournal = new DelegateCommand(()=> { ReportJournalAndFile.DeleteXmlReportJournal();});
                 DeleteReport = new DelegateCommand(() => { Report.DeleteReportFile(); });
                 OpenReport = new DelegateCommand(() => { Report.OpenReport(); });
                 OpenFile = new DelegateCommand(() => { command.ConvertXslToXmlAndOpen(Report, ReportJournalAndFile, ConfigFile.ExcelReportFile); });
-                SendFileToServer = new DelegateCommand(() => command.SenderServerReport(LabelModel, ConfigFile.ServerReport, ReportJournalAndFile));
-                SenderDepartment = new DelegateCommand(()=>command.DepartmentDocumentSenders(LabelModel, ConfigFile.ServerRuleUsersWordTemplate, ReportJournalAndFile));
-                LoadTemplateInfo = new DelegateCommand(()=>command.LoadInfoTemplate(LabelModel, ConfigFile.LoadInfoTemplate, ReportJournalAndFile));
+                FileToServerApiReport = new DelegateCommand(() => command.FileToServerApiReport(LabelModel, ModelApi, ReportJournalAndFile));
                 Update = new DelegateCommand(() =>
                 {
                     ReportJournalAndFile.AddFileXml(ConfigFile.PathInn);
-                    ReportJournalAndFile.AddJurnal(ConfigFile.PathJurnal);
+                    ReportJournalAndFile.AddJournal(ConfigFile.PathJurnal);
                 });
             }
             catch (Exception e)

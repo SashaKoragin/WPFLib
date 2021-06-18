@@ -39,6 +39,7 @@ using AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket050809020
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.SigningDecisionApplication.UserControl;
 using AutomatAis3Full.Form.Automat.Okp1.Declaration121.Declaration121;
 using AutomatAis3Full.Form.Automat.Okp2.UserTask.TaxApprove.TaxApprove;
+using AutomatAis3Full.Form.Automat.Okp3.JournalPatent.Patent;
 using AutomatAis3Full.Form.Automat.Okp6.JournalDoc.ViewJournalDoc;
 using AutomatAis3Full.Form.Automat.Okp6.RegistryDeclaration.ViewRegistryDeclaration;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.StartProcessFace.StartCash.ViewStartCash;
@@ -327,6 +328,25 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                                       UserControl = new FormUsnSend()
                                                   }
                                               }
+                                          }
+                                      }
+                                  }
+                              }
+                          },
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Контрольная работа (налоговые проверки)",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "203. Применение патентной системы налогообложения",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "03. Журнал учета и формирования документов, связанных с применением ПСН",
+                                              UserControl = new FormPatent()
                                           }
                                       }
                                   }

@@ -88,7 +88,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr
                                  new SqlParameter(model.ParameterProcedureWeb.ParameterProcedure.Split(',')[2], model.ParametrsSelect.RegNumber)).ToList();
                 dynamic expand = new ExpandoObject();
                 AddProperty(expand, model.ParameterProcedureWeb.ModelClassFind, result);
-                model.ResultSelectProcedureWeb = serializeJson.JsonLibary(expand);
+                model.ResultSelectProcedureWeb = serializeJson.JsonLibrary(expand);
                 return model;
             }
             catch (Exception e)
@@ -126,7 +126,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr
                              new SqlParameter(model.ParameterProcedureWeb.ParameterProcedure.Split(',')[1], string.IsNullOrWhiteSpace(model.ParametrsSelect.Inn) ? (object)DBNull.Value : model.ParametrsSelect.Inn),
                              new SqlParameter(model.ParameterProcedureWeb.ParameterProcedure.Split(',')[2], model.ParametrsSelect.RegNumber)).ToArray();
                 var resultServer = (T)xml.ReadXmlText(string.Join("", result), typeof(T));
-                model.ResultSelectProcedureWeb = serializeJson.JsonLibary(resultServer);
+                model.ResultSelectProcedureWeb = serializeJson.JsonLibrary(resultServer);
                 return model;
             }
             catch (Exception e)

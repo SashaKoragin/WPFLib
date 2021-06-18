@@ -60,30 +60,29 @@
                     x:Name="ListView1"
                     Height="150"
                     Margin="5,5,5,5"
-                    ItemsSource="{Binding ReportJournalAndFile.XmlReportJurnal}"
+                    ItemsSource="{Binding ReportJournalAndFile.XmlReportJournal}"
                     SelectedItem="{Binding ReportJournalAndFile.XmlFile}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Журналы автомата!!!">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <WrapPanel Tag="{Binding DataContext, ElementName=ListView1}">
+                                        <WrapPanel Tag="{Binding DataContext, ElementName=ListView1}" ToolTip="{Binding InfoFile}">
                                             <WrapPanel.ContextMenu>
                                                 <ContextMenu>
                                                     <MenuItem Command="{Binding PlacementTarget.Tag.OpenFile, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Открыть файл." />
                                                     <MenuItem Command="{Binding PlacementTarget.Tag.DeleteJournal, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Удалить журнал." />
-                                                    <MenuItem Command="{Binding PlacementTarget.Tag.SendFileToServer, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Выгрузить письмо." />
-                                                    <MenuItem Command="{Binding PlacementTarget.Tag.SenderDepartment, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Заявка на доступ." />
-                                                    <MenuItem Command="{Binding PlacementTarget.Tag.LoadTemplateInfo, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Загрузка шаблонов."></MenuItem>
+                                                    <MenuItem Command="{Binding PlacementTarget.Tag.FileToServerApiReport, RelativeSource={RelativeSource AncestorType={x:Type ContextMenu}}}" Header="Отправка файла на сервер" />
                                                 </ContextMenu>
                                             </WrapPanel.ContextMenu>
                                             <Image
                                                 Width="16"
                                                 Height="16"
                                                 Source="{Binding Icon, Converter={StaticResource ConverteImage}}" />
-                                            <TextBlock HorizontalAlignment="Stretch" Text="{Binding Name}" />
+                                            <Label HorizontalAlignment="Stretch" Content="{Binding Name}" />
                                         </WrapPanel>
                                     </DataTemplate>
+                                    
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                         </GridView>

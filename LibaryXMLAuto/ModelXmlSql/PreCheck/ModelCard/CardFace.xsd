@@ -30,6 +30,7 @@
 			<xs:element ref="FlRukUcrh" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="SummaryBankSales" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="SummaryBankPurchase" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="FullReportAskNds" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="FaceUl">
@@ -675,6 +676,95 @@
 	<xs:element name="YearBookSalesSumm4" type="xs:decimal" default="0.00">
 		<xs:annotation>
 			<xs:documentation>Год по книги покупок\продаж текущего года</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="FullReportAskNds">
+		<xs:annotation>
+			<xs:documentation>Полный отчет по АСК НДС для Excel</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Id"/>
+				<xs:element ref="Name"/>
+				<xs:element ref="Inn"/>
+				<xs:element ref="Kpp" minOccurs="0"/>
+				<xs:element ref="YearCashBankSalesSumm1"/>
+				<xs:element ref="YearBookSalesSumm1"/>
+				<xs:element ref="YearCashBankPurchaseSumm1"/>
+				<xs:element ref="YearBookPurchaseSumm1"/>
+				<xs:element ref="YearCashBankSalesSumm2"/>
+				<xs:element ref="YearBookSalesSumm2"/>
+				<xs:element ref="YearCashBankPurchaseSumm2"/>
+				<xs:element ref="YearBookPurchaseSumm2"/>
+				<xs:element ref="YearCashBankSalesSumm3"/>
+				<xs:element ref="YearBookSalesSumm3"/>
+				<xs:element ref="YearCashBankPurchaseSumm3"/>
+				<xs:element ref="YearBookPurchaseSumm3"/>
+				<xs:element ref="YearCashBankSalesSumm4"/>
+				<xs:element ref="YearBookSalesSumm4"/>
+				<xs:element ref="YearCashBankPurchaseSumm4"/>
+				<xs:element ref="YearBookPurchaseSumm4"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="YearCashBankSalesSumm1" type="xs:decimal" default="0.00">
+		<xs:annotation>
+			<xs:documentation>Год Раздел 8 по банку от текущего   - 3</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="YearCashBankSalesSumm2" type="xs:decimal" default="0.00">
+		<xs:annotation>
+			<xs:documentation>Год Раздел 8 по банку от текущего   - 2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="YearCashBankSalesSumm3" type="xs:decimal" default="0.00">
+		<xs:annotation>
+			<xs:documentation>Год Раздел 8 по банку от текущего   - 1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="YearCashBankSalesSumm4" type="xs:decimal" default="0.00">
+		<xs:annotation>
+			<xs:documentation>Год Раздел 8 по банку текущего года</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="YearCashBankPurchaseSumm1" type="xs:decimal" default="0.00">
+		<xs:annotation>
+			<xs:documentation>Год Раздел 9 по банку от текущего   - 3</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="YearCashBankPurchaseSumm2" type="xs:decimal" default="0.00">
+		<xs:annotation>
+			<xs:documentation>Год Раздел 9 по банку от текущего   - 2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="YearCashBankPurchaseSumm3" type="xs:decimal" default="0.00">
+		<xs:annotation>
+			<xs:documentation>Год Раздел 9 по банку от текущего   - 1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="YearCashBankPurchaseSumm4" type="xs:decimal" default="0.00">
+		<xs:annotation>
+			<xs:documentation>Год Раздел 9 по банку текущего года</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="YearBookPurchaseSumm1" type="xs:decimal" default="0.00">
+		<xs:annotation>
+			<xs:documentation>Год по книги покупок от текущего  - 3</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="YearBookPurchaseSumm2" type="xs:decimal" default="0.00">
+		<xs:annotation>
+			<xs:documentation>Год по книги покупок от текущего  - 2</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="YearBookPurchaseSumm3" type="xs:decimal" default="0.00">
+		<xs:annotation>
+			<xs:documentation>Год по книги покупок от текущего  - 1</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="YearBookPurchaseSumm4" type="xs:decimal" default="0.00">
+		<xs:annotation>
+			<xs:documentation>Год по книги покупок от текущего</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

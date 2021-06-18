@@ -32,6 +32,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Content="{Binding StartButton.Button}" />
+            <CheckBox Content="Собирать справочник шаблонов?" IsChecked="{Binding StartButton.IsLk2}" />
             <CheckBox Content="Удалить предыдущий файл отчета?" IsChecked="{Binding StartButton.IsChekcs}" />
             <Label Content="Команда приостановить Shift+S" />
             <Label Content="Команда возобновить Shift+A" />

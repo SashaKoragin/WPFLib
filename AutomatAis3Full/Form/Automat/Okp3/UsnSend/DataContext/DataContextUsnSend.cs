@@ -11,7 +11,7 @@ using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
 namespace AutomatAis3Full.Form.Automat.Okp3.UsnSend.DataContext
 {
-    class DataContextUsnSend
+   public class DataContextUsnSend
     {
 
         public StatusButtonMethod StartButton { get; }

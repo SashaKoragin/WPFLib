@@ -43,7 +43,7 @@ namespace SqlLibaryIfns.Inventory.Select
             {
                 case 1:
                     return
-                                serializeJson.JsonLibary(
+                                serializeJson.JsonLibrary(
                                     (AllUsers)
                                     sqlconnect.SelectFullParametrSqlReader(Connection, Command.InfoLogic.NameProcedure,
                                         typeof(AllUsers), ModelProcedure.ModelProcedure.ParamCommand(parametr.IdParamSelect.ToString())));

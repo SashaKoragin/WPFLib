@@ -276,7 +276,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AttributeHelperModelXml\AttributeHelperModelXml.csproj">
-      <Project>{91FAD00A-D052-4DD6-A9BB-544782A0D2C4}</Project>
+      <Project>{91fad00a-d052-4dd6-a9bb-544782a0d2c4}</Project>
       <Name>AttributeHelperModelXml</Name>
     </ProjectReference>
   </ItemGroup>
@@ -346,7 +346,7 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlInventarSelect.FullPath)&quot; /classes /namespace:$(RootNamespace)Inventarization.Model.ModelSelectAll /outputdir:Inventarization\Model\ModelSelectAll\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlServer.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.Model.ServerAndComputer /outputdir:ModelXmlSql\Model\ServerAndComputer\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdFileVisualId.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.FileVisualId /outputdir:ModelXmlAuto\ModelIdVisual\" />
-    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlMigration.FullPath)&quot; /classes /f /namespace:$(RootNamespace)ModelXmlAuto.MigrationReport /outputdir:ModelXmlAuto\ReportMigration\" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlMigration.FullPath)&quot; /classes /f /namespace:$(RootNamespace).ModelXmlAuto.MigrationReport /outputdir:ModelXmlAuto\ReportMigration\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlInspection.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.Inspection /outputdir:ModelXmlAuto\Inspection\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlOtdelRuleUsers.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlAuto.OtdelRuleUsers /outputdir:ModelXmlAuto\OtdelRuleUsers\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlModelCard.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.PreCheck.ModelCard /outputdir:ModelXmlSql\PreCheck\ModelCard\" />

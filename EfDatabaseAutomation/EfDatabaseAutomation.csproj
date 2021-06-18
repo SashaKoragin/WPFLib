@@ -98,7 +98,7 @@
       <Name>Loggers</Name>
     </ProjectReference>
     <ProjectReference Include="..\AisPoco\AisPoco.csproj">
-      <Project>{ae019cef-782d-41b7-942f-420f3c1b434a}</Project>
+      <Project>{1a319b6f-449e-4f61-bbe4-d2aa043de215}</Project>
       <Name>AisPoco</Name>
     </ProjectReference>
     <ProjectReference Include="..\AttributeHelperModelXml\AttributeHelperModelXml.csproj">

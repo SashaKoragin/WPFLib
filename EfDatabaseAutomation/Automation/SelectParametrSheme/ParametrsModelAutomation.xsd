@@ -107,6 +107,7 @@
 			<xs:element ref="ParameterProcedureWeb" minOccurs="0"/>
 			<xs:element ref="ResultSelectProcedureWeb" minOccurs="0"/>
 			<xs:element ref="TemplateProcedure" minOccurs="0"/>
+			<xs:element ref="TemplatePatent" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="ParameterProcedureWeb">
@@ -181,5 +182,20 @@
 		<xs:annotation>
 			<xs:documentation>Ун шаблона</xs:documentation>
 		</xs:annotation>
+	</xs:element>
+	<xs:element name="TemplatePatent">
+		<xs:annotation>
+			<xs:documentation>Параметры процедуры патента</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="RegNumberPatent">
+				<xs:annotation>
+					<xs:documentation>Регистрационные номера патентов для добавления</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:list itemType="xs:int"/>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
 	</xs:element>
 </xs:schema>

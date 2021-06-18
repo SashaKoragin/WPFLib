@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using LibaryXMLAuto.ReadOrWrite;
-using LibaryXMLAutoModelXmlAuto.MigrationReport;
+using LibaryXMLAuto.ModelXmlAuto.MigrationReport;
 
 namespace LibaryXMLAuto.ErrorJurnal
 {
@@ -71,7 +71,15 @@ namespace LibaryXMLAuto.ErrorJurnal
             if (File.Exists(pathReport))
             {
                 XmlReadOrWrite read = new XmlReadOrWrite();
-                read.AddInfoUserRuleTemplate(pathReport, infoUserTemlateAndRule);
+                if (infoUserTemlateAndRule.Users != null)
+                {
+                 
+                    read.AddInfoUserRuleTemplate(pathReport, infoUserTemlateAndRule);
+                }
+                if (infoUserTemlateAndRule.Template != null)
+                {
+                    read.AddInfoRuleTemplate(pathReport, infoUserTemlateAndRule);
+                }
             }
             else
             {

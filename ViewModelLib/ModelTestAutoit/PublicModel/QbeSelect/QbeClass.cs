@@ -39,16 +39,9 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.QbeSelect
     public class QbeClassMethod : QbeClass
     {
         /// <summary>
-        /// Объявление класса
-        /// </summary>
-        public QbeClassMethod()
-        {
-            AddColectionQbe();
-        }
-        /// <summary>
         /// Добавление QBE полей
         /// </summary>
-        private void AddColectionQbe()
+        public void AddCollectionQbe()
         {
             StatusC.Add(new ParamQbe() { ColorNum = Brushes.Yellow, Num = 14 });
             StatusC.Add(new ParamQbe() {ColorNum = Brushes.Aqua, Num = 11});
@@ -101,5 +94,6 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.QbeSelect
     {
         public int Num { get; set; }
         public Brush ColorNum { get; set; }
+        public bool IsChecked { get; set; }
     }
 }

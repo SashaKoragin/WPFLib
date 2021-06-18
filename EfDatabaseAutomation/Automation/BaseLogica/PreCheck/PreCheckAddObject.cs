@@ -660,6 +660,180 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 }
         }
 
+        /// <summary>
+        /// Выгрузка первых 1000 удовлетворяющих условию
+        /// </summary>
+        /// <returns></returns>
+        public IsPatentParse[] PatentExportFull()
+        {
+           return Automation.IsPatentParses.Where(patent => patent.IsParseFullPatent == false
+                                                            || patent.IsParseDocPatent == false
+                                                            || patent.IsParsePlaceOfBusiness == false
+                                                            || patent.IsParseSvedTr == false
+                                                            || patent.IsParseSvedObject == false
+                                                            || patent.IsParseParametrNalog == false
+                                                            || patent.IsParseSvedFactPatent == false).Take(150).ToArray();
+        }
+
+        /// <summary>
+        /// Добавление лица и патента в БД
+        /// </summary>
+        /// <param name="face">Лицо ФЛ</param>
+        /// <param name="patent">Патент</param>
+        public IsPatentParse AddFlFaceAndPatent(FlFaceMain face,ref Patent patent)
+        {
+            var p = patent;
+            if (!(from flFaceMain in Automation.FlFaceMains where flFaceMain.Inn == face.Inn select new { FlFaceMains = flFaceMain }).Any())
+            {
+                Automation.FlFaceMains.Add(face);
+                Automation.SaveChanges();
+            }
+            if (!(from patents in Automation.Patents where patents.RegNumInfo == p.RegNumInfo && patents.RegNumPatent == p.RegNumPatent select new { Patents = patents }).Any())
+            {
+                var select = (from flFaceMain in Automation.FlFaceMains where flFaceMain.Inn == face.Inn select new { FlFaceMains = flFaceMain }).FirstOrDefault();
+                patent.IdFl = select.FlFaceMains.IdFl;
+                Automation.Patents.Add(patent);
+                Automation.SaveChanges();
+            }
+            else
+            {
+                var selectFace = (from FlFaceMain in Automation.FlFaceMains where FlFaceMain.Inn == face.Inn select new { FlFaceMains = FlFaceMain }).FirstOrDefault();
+                var selectPatent = (from Patent in Automation.Patents where Patent.RegNumInfo == p.RegNumInfo && Patent.RegNumPatent == p.RegNumPatent select new { Patents = Patent }).FirstOrDefault();
+                patent.IdFl = selectFace.FlFaceMains.IdFl;
+                patent.IdPatent = selectPatent.Patents.IdPatent;
+            }
+            return Automation.IsPatentParses.First(x => x.RegNumPatent == p.RegNumPatent);
+        }
+        /// <summary>
+        /// Обновление модели патента
+        /// </summary>
+        /// <param name="isParsePatent">Модель в работе</param>
+        public void UpdateIsParsePatent(IsPatentParse isParsePatent)
+        {
+            var isPatentParse = new IsPatentParse()
+            {
+                IdNum =isParsePatent.IdNum,
+                RegNumPatent = isParsePatent.RegNumPatent,
+                IsParseFullPatent = isParsePatent.IsParseFullPatent,
+                IsParseDocPatent = isParsePatent.IsParseDocPatent,
+                IsParsePlaceOfBusiness = isParsePatent.IsParsePlaceOfBusiness,
+                IsParseSvedObject = isParsePatent.IsParseSvedObject,
+                IsParseSvedTr = isParsePatent.IsParseSvedTr,
+                IsParseParametrNalog = isParsePatent.IsParseParametrNalog,
+                IsParseSvedFactPatent = isParsePatent.IsParseSvedFactPatent
+            };
+            Automation.Entry(isPatentParse).State = EntityState.Modified;
+            Automation.SaveChanges();
+        }
+        /// <summary>
+        /// Загрузка документов патента
+        /// </summary>
+        /// <param name="docPatent">Модель для загрузки документа патента</param>
+        public void AddDocPatent(ArrayBodyDoc docPatent)
+        {
+            var index = docPatent.DocPatent[0].IdPatent;
+            if (index != 0)
+            {
+                Automation.DocPatents.RemoveRange(Automation.DocPatents.Where(x => x.IdPatent == index));
+                Automation.SaveChanges();
+                XmlReadOrWrite xml = new XmlReadOrWrite();
+                var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+                var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}DocPatent.xml";
+                xml.CreateXmlFile(xmlFile, docPatent, typeof(ArrayBodyDoc));
+                BulkInsertIntoDb(xsdFile, xmlFile);
+            }
+        }
+        /// <summary>
+        /// Загрузка сведений о месте осуществления деятельности
+        /// </summary>
+        /// <param name="docPatent">Модель для загрузки сведений о месте осуществления деятельности</param>
+        public void AddPlaceOfBusiness(ArrayBodyDoc docPatent)
+        {
+            var index = docPatent.PlaceOfBusiness[0].IdPatent;
+            if (index != 0)
+            {
+                Automation.PlaceOfBusinesses.RemoveRange(Automation.PlaceOfBusinesses.Where(x => x.IdPatent == index));
+                Automation.SaveChanges();
+                XmlReadOrWrite xml = new XmlReadOrWrite();
+                var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+                var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}PlaceOfBusiness.xml";
+                xml.CreateXmlFile(xmlFile, docPatent, typeof(ArrayBodyDoc));
+                BulkInsertIntoDb(xsdFile, xmlFile);
+            }
+        }
+        /// <summary>
+        /// Загрузка сведений о транспортных средствах
+        /// </summary>
+        /// <param name="docPatent">Модель для загрузки сведений о транспортных средствах</param>
+        public void AddSvedTr(ArrayBodyDoc docPatent)
+        {
+            var index = docPatent.SvedTr[0].IdPatent;
+            if (index != 0)
+            {
+                Automation.SvedTrs.RemoveRange(Automation.SvedTrs.Where(x => x.IdPatent == index));
+                Automation.SaveChanges();
+                XmlReadOrWrite xml = new XmlReadOrWrite();
+                var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+                var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}SvedTr.xml";
+                xml.CreateXmlFile(xmlFile, docPatent, typeof(ArrayBodyDoc));
+                BulkInsertIntoDb(xsdFile, xmlFile);
+            }
+        }
+
+        /// <summary>
+        /// Загрузка сведений об обособленных объектах
+        /// </summary>
+        /// <param name="docPatent">Модель для загрузки сведений об обособленных объектах</param>
+        public void AddSvedObject(ArrayBodyDoc docPatent)
+        {
+            var index = docPatent.SvedObject[0].IdPatent;
+            if (index != 0)
+            {
+                Automation.SvedObjects.RemoveRange(Automation.SvedObjects.Where(x => x.IdPatent == index));
+                Automation.SaveChanges();
+                XmlReadOrWrite xml = new XmlReadOrWrite();
+                var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+                var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}SvedObject.xml";
+                xml.CreateXmlFile(xmlFile, docPatent, typeof(ArrayBodyDoc));
+                BulkInsertIntoDb(xsdFile, xmlFile);
+            }
+        }
+        /// <summary>
+        /// Загрузка параметров расчета налога
+        /// </summary>
+        /// <param name="docPatent">Модель для загрузки параметров расчета налога</param>
+        public void AddParametrNalog(ArrayBodyDoc docPatent)
+        {
+            var index = docPatent.ParametrNalog[0].IdPatent;
+            if (index != 0)
+            {
+                Automation.ParametrNalogs.RemoveRange(Automation.ParametrNalogs.Where(x => x.IdPatent == index));
+                Automation.SaveChanges();
+                XmlReadOrWrite xml = new XmlReadOrWrite();
+                var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+                var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}ParametrNalog.xml";
+                xml.CreateXmlFile(xmlFile, docPatent, typeof(ArrayBodyDoc));
+                BulkInsertIntoDb(xsdFile, xmlFile);
+            }
+        }
+        /// <summary>
+        /// Загрузка сведений по фактическому действию патента
+        /// </summary>
+        /// <param name="docPatent">Модель для загрузки сведений по фактическому действию патента</param>
+        public void AddSvedFactPatent(ArrayBodyDoc docPatent)
+        {
+            var index = docPatent.SvedFactPatent[0].IdPatent;
+            if (index != 0)
+            {
+                Automation.SvedFactPatents.RemoveRange(Automation.SvedFactPatents.Where(x => x.IdPatent == index));
+                Automation.SaveChanges();
+                XmlReadOrWrite xml = new XmlReadOrWrite();
+                var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+                var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}SvedFactPatent.xml";
+                xml.CreateXmlFile(xmlFile, docPatent, typeof(ArrayBodyDoc));
+                BulkInsertIntoDb(xsdFile, xmlFile);
+            }
+        }
 
         /// <summary>
         /// Загрузка 

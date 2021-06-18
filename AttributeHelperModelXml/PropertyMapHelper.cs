@@ -49,6 +49,16 @@ namespace AttributeHelperModelXml
             {
                 prop.SetValue(entity, long.Parse(value.ToString()), null);
             }
+            else if (prop.PropertyType == typeof(Nullable<long>)){
+                if (string.IsNullOrWhiteSpace(value.ToString()))
+                {
+                    prop.SetValue(entity, null, null);
+                }
+                else
+                {
+                    prop.SetValue(entity, long.Parse(value.ToString()), null);
+                }
+            }
             else if (prop.PropertyType == typeof(int) || prop.PropertyType == typeof(int
             ?))
             {
@@ -83,6 +93,7 @@ namespace AttributeHelperModelXml
                 bool isValid = DateTime.TryParse(value.ToString(), out date);
                 if (isValid)
                 {
+                    //Минимальная дата проставлять 
                     prop.SetValue(entity, date, null);
                 }
                 else

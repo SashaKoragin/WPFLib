@@ -22,6 +22,8 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="Users" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="DateStatement"/>
+				<xs:element ref="Dates"/>
 			</xs:sequence>
 			<xs:attribute name="Number" type="xs:string">
 				<xs:annotation>
@@ -38,6 +40,11 @@
 					<xs:documentation>Наименование отдела</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
+			<xs:attribute name="Regulations" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Регламент отдела</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="SmallName" type="xs:string">
 				<xs:annotation>
 					<xs:documentation>Начальник отдела</xs:documentation>
@@ -46,11 +53,6 @@
 			<xs:attribute name="NamePosition" type="xs:string">
 				<xs:annotation>
 					<xs:documentation>Должность</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<xs:attribute name="Dates" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>Дата заявки</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="Contact" type="xs:string">
@@ -169,5 +171,15 @@
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateStatement" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата утверждения</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Dates" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата заявки</xs:documentation>
+		</xs:annotation>
 	</xs:element>
 </xs:schema>

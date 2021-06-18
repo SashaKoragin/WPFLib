@@ -20,9 +20,9 @@ namespace AutomatAis3Full.Form.Automat.It.Rule.DataContext
 
         public RuleDataContext()
         {
+            StartButton = new StatusButtonMethod();
             DataPickerSettings = new DataPickerRuleItModel();
             var command = new ItRuleParse();
-            StartButton = new StatusButtonMethod();
             StartButton.Button.Command = new DelegateCommand(() => { command.RuleUsers(StartButton, DataPickerSettings, ConfigFile.UserRule); });
         }
     }

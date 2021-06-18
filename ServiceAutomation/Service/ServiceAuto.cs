@@ -8,7 +8,6 @@ using ServiceAutomation.LoginAD.XsdShemeLogin;
 using LogicsSelectAutomation = EfDatabaseAutomation.Automation.SelectParametrSheme.LogicsSelectAutomation;
 using EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost;
 using System.Collections.Generic;
-using System.Reflection;
 using AisPoco.Ifns51.ToAis;
 using EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace;
 using EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectDb;
@@ -17,6 +16,7 @@ using LibaryDocumentGenerator.Documents.Template;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using SqlLibaryIfns.ZaprosSelectNotParam;
 using EfDatabaseAutomation.Automation.Base;
+using LibaryDocumentGenerator.Documents.TemplateExcel;
 
 namespace ServiceAutomation.Service
 {
@@ -84,11 +84,9 @@ namespace ServiceAutomation.Service
             {
                 model = (ModelSelect) typeof(SqlSelect).GetMethod("ParameterSelect")
                     ?.Invoke(new SqlSelect(), new object[] {model});
-                Assembly db = typeof(DataBaseUlSelect).Assembly;
                 if (model != null)
                 {
-                    var type = db.GetType(
-                        $"EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme.{model.ParameterProcedureWeb.ModelClassFind}");
+                    var type = Type.GetType($"{model.ParameterProcedureWeb.ModelClassFind}, EfDatabaseAutomation");
                     if (model.ParametrsSelect.Id == 12)
                     {
                         return (ModelSelect) typeof(SqlSelect).GetMethod("ResultSelectProcedureString")
@@ -203,7 +201,7 @@ namespace ServiceAutomation.Service
                     if (card != null)
                     {
                         ReportNote report = new ReportNote();
-                        report.CreateDocum(_parameterConfig.PathSaveTemplate, card, year);
+                        report.CreateDocument(_parameterConfig.PathSaveTemplate, card, year);
                         return report.FileArray();
                     }
                 }
@@ -214,6 +212,37 @@ namespace ServiceAutomation.Service
                 return null;
             });
         }
+        /// <summary>
+        /// Генерация отчета по АСК НДС ИНН и ГОД отсчета периода 3 последних года от текущего
+        /// </summary>
+        /// <param name="innUl">ИНН ЮЛ</param>
+        /// <param name="year">Год отчета выгрузки</param>
+        /// <returns></returns>
+        public async Task<Stream> GenerateReportAskNds(string innUl, int year)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    var model = new ModelGetPost();
+                    var card = model.CardUiAskNds(innUl, year);
+                    model.Dispose();
+                    if (card != null)
+                    {
+                        ReportAskNds report = new ReportAskNds();
+                        report.CreateDocument(_parameterConfig.PathSaveTemplate, card, year);
+                        return report.FileArray();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Loggers.Log4NetLogger.Error(ex);
+                }
+                return null;
+            });
+        }
+
+
         /// <summary>
         /// Генерация документа книги покупок продаж шаблон
         /// </summary>
@@ -232,7 +261,7 @@ namespace ServiceAutomation.Service
                     if (card != null)
                     {
                         TemplateBookSalesBank report = new TemplateBookSalesBank();
-                        report.CreateDocum(_parameterConfig.PathSaveTemplate, card, year);
+                        report.CreateDocument(_parameterConfig.PathSaveTemplate, card, year);
                         return report.FileArray();
                     }
                 }
@@ -258,14 +287,13 @@ namespace ServiceAutomation.Service
                     {
                         SerializeJson serializeJson = new SerializeJson();
                         model = (ModelSelect) typeof(SqlSelect).GetMethod("ParameterSelect")?.Invoke(new SqlSelect(), new object[] {model});
-                        Assembly db = typeof(DataBaseUlSelect).Assembly;
-                        var type = db.GetType($"EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme.{model.ParameterProcedureWeb.ModelClassFind}");
+                        var type = Type.GetType($"{model.ParameterProcedureWeb.ModelClassFind}, EfDatabaseAutomation");
                         model = (ModelSelect)typeof(SqlSelect).GetMethod("ResultSelectProcedureString")?.MakeGenericMethod(type).Invoke(new SqlSelect(), new object[] {model});
                         Statement statement = (Statement)serializeJson.JsonDeserializeObjectClass<Statement>(model.ResultSelectProcedureWeb);
                         if (statement != null)
                         {
                             ReportStatement reportStatement = new ReportStatement();
-                            reportStatement.CreateDocum(_parameterConfig.PathSaveTemplate, statement);
+                            reportStatement.CreateDocument(_parameterConfig.PathSaveTemplate, statement);
                             return reportStatement.FileArray();
                         }
                     }
@@ -361,6 +389,22 @@ namespace ServiceAutomation.Service
             {
                 var selectFull = new SelectFull();
                 return selectFull.GenerateSummarySales(_parameterConfig.PathSaveTemplate, inn);
+            });
+        }
+        /// <summary>
+        /// Добавление регистрационных номеров патента для отработки
+        /// 
+        /// </summary>
+        /// <param name="templatePatent">Шаблон для добавления</param>
+        /// <param name="userIdGuid">GUID Пользователя</param>
+        /// <returns></returns>
+        public async Task AddRegNumberPatent(TemplatePatent templatePatent, string userIdGuid)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                var model = new ModelGetPost();
+                model.AddRegNumPatentModel(templatePatent, userIdGuid);
+                model.Dispose();
             });
         }
     }

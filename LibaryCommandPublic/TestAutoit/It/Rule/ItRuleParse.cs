@@ -23,7 +23,7 @@ namespace LibraryCommandPublic.TestAutoit.It.Rule
         /// <param name="pathjurnalok">Путь к файлу сохранения</param>
         public void RuleUsers(StatusButtonMethod statusButton, DataPickerRuleItModel dataPickerSettings, string pathjurnalok)
         {
-            if (dataPickerSettings.IsValidation())
+            if (dataPickerSettings.IsValidationFull())
             {
                DispatcherHelper.Initialize();
               Task.Run(delegate

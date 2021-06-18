@@ -145,25 +145,6 @@ namespace LibraryCommandPublic.TestAutoit.PreCheck.ReportingMemo
             }
             return null;
         }
-        /// <summary>
-        /// Все шаблоны для Выбора
-        /// </summary>
-        /// <param name="serviceGetTemplate">Маршрут для шаблонов</param>
-        /// <returns></returns>
-        public List<TemplateModel> ResultGetTemplate(string serviceGetTemplate)
-        {
-            var json = new SerializeJson();
-            var request = (HttpWebRequest)WebRequest.Create(serviceGetTemplate);
-            request.Method = "GET";
-            request.ContentType = "application/json";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            string resultServer;
-            using (StreamReader rdr = new StreamReader(response.GetResponseStream()))
-            {
-                resultServer = rdr.ReadToEnd();
-            }
 
-            return (List<TemplateModel>)json.JsonDeserializeObjectListClass<TemplateModel>(resultServer);
-        }
     }
 }

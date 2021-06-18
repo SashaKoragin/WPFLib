@@ -52,6 +52,10 @@
         public static string ApplicationTab = $"{FullPath}\\AutomationId:RoleListView\\AutomationId:gbAll\\AutomationId:userRolesCtrl\\AutomationId:tabCtrl\\Name:Заявки";
 
         /// <summary>
+        /// Вкладка По ролям в ветке (Просмотр ролей)
+        /// </summary>
+        public static string ApplicationTabRules = $"{FullPath}\\AutomationId:RoleViewerView\\AutomationId:gbAll\\AutomationId:utcRoleViewer\\Name:По ролям";
+        /// <summary>
         /// Вкладка По пользователям в ветке (Просмотр ролей)
         /// </summary>
         public static string ApplicationTabUsers = $"{FullPath}\\AutomationId:RoleViewerView\\AutomationId:gbAll\\AutomationId:utcRoleViewer\\Name:По пользователям";
@@ -67,16 +71,28 @@
         /// Роли вкладка в ветке (Просмотр ролей)
         /// </summary>
         public static string ApplicationTabRule = "AutomationId:userRolesCtrl\\AutomationId:tabCtrl\\Name:Роли";
+
+        /// <summary>
+        /// Кнопка Применить в Ролях
+        /// </summary>
+        public static string SendRulesTemplate = $"{FullPath}\\AutomationId:RoleViewerView\\AutomationId:gbAll\\AutomationId:utcRoleViewer\\AutomationId:ultraTabPageControl1\\AutomationId:gbTaxCode\\AutomationId:btnApply";
         /// <summary>
         /// Найти пользователя в ветке (Просмотр ролей)
         /// </summary>
         public static string FindUsers = $"{FullPath}\\AutomationId:RoleViewerView\\AutomationId:gbAll\\AutomationId:utcRoleViewer\\AutomationId:ultraTabPageControl2\\AutomationId:gbAll1\\AutomationId:listUserRolesCtrl\\AutomationId:splitContainer1\\AutomationId:userFindCtrl\\AutomationId:grbParams\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:paramCtrl\\AutomationId:ultraGroupBox1\\AutomationId:btnFind";
 
-
+        /// <summary>
+        /// Grid List Row Rules
+        /// </summary>
+        public static string ListRowRulesGrid = $"{FullPath}\\AutomationId:RoleViewerView\\AutomationId:gbAll\\AutomationId:utcRoleViewer\\AutomationId:ultraTabPageControl1\\AutomationId:roleUserListCtrl\\AutomationId:groupBox\\AutomationId:splitContainer1\\AutomationId:utcRoles\\AutomationId:upcSRoles\\AutomationId:grdTemplates";
         /// <summary>
         /// Grid List Row User
         /// </summary>
         public static string ListRowUsersGrid = $"{FullPath}\\AutomationId:RoleViewerView\\AutomationId:gbAll\\AutomationId:utcRoleViewer\\AutomationId:ultraTabPageControl2\\AutomationId:gbAll1\\AutomationId:listUserRolesCtrl\\AutomationId:splitContainer1\\AutomationId:userFindCtrl\\AutomationId:grdUsers";
+        /// <summary>
+        /// Строка Роли Шаблоны
+        /// </summary>
+        public static string ListRowRules = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:RoleViewerView\\AutomationId:gbAll\\AutomationId:utcRoleViewer\\AutomationId:ultraTabPageControl1\\AutomationId:roleUserListCtrl\\AutomationId:groupBox\\AutomationId:splitContainer1\\AutomationId:utcRoles\\AutomationId:upcSRoles\\AutomationId:grdTemplates\\Name:List`1 row {0}";
         /// <summary>
         /// Строка
         /// </summary>
@@ -140,7 +156,14 @@
         /// Шаблон задачи
         /// </summary>
         public static string ListTaskTemplates = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:AuthorizationPropsView\\AutomationId:AuthorizationPropsView_Fill_Panel\\AutomationId:grdProps\\Name:List`1 row {0}\\Name:Folders row {1}\\Name:Tasks row {2}\\Name:Roles row {3}\\Name:TaskTemplates row {4}";
-
+        /// <summary>
+        /// Окно Шаблонов
+        /// </summary>
+        public static string WinAll = "LocalizedControlType:окно";
+        /// <summary>
+        /// Шаблон Сигмента
+        /// </summary>
+        public static string WinSigment = "LocalizedControlType:окно\\AutomationId:RolesView\\AutomationId:roleListCtrl\\AutomationId:gbAll\\AutomationId:pnList\\AutomationId:ugRoles";
 
     }
 }

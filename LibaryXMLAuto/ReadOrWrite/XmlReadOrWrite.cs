@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
-using LibaryXMLAutoModelXmlAuto.MigrationReport;
+using LibaryXMLAuto.ModelXmlAuto.MigrationReport;
 
 namespace LibaryXMLAuto.ReadOrWrite
 {
@@ -161,7 +161,7 @@ namespace LibaryXMLAuto.ReadOrWrite
              var doc = LogicaXml.LogicaXml.Document(path);
             XmlElement xRoot = doc.DocumentElement;
             XmlElement userrules = doc.CreateElement("User");
-            foreach (var user in userRules.User)
+                foreach (var user in userRules.User)
             {
                 userrules.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Number",user.Number));
                 userrules.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Dates", user.Dates));
@@ -254,8 +254,6 @@ namespace LibaryXMLAuto.ReadOrWrite
                     template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "NameTemplate", templates.NameTemplate));
                     template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Info", templates.Info));
                     template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Category", templates.Category));
-                    template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "DateStart", templates.DateStart.ToString()));
-                    template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "DateFinish", templates.DateFinish.ToString()));
                     infoUserRule.AppendChild(template);
                 }
                 foreach(var segments in user.Sigment)
@@ -273,8 +271,6 @@ namespace LibaryXMLAuto.ReadOrWrite
                                 rule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Context", rules.Context));
                                 rule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Info", rules.Info));
                                 rule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Category", rules.Category));
-                                rule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "DateStart", rules.DateStart.ToString()));
-                                rule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "DateFinish", rules.DateFinish.ToString()));
                                 application.AppendChild(rule);
                             }
                         segment.AppendChild(application);
@@ -282,6 +278,45 @@ namespace LibaryXMLAuto.ReadOrWrite
                     infoUserRule.AppendChild(segment);
                 }
                 xRoot.AppendChild(infoUserRule);
+            }
+            doc.Save(path);
+        }
+        /// <summary>
+        /// Создание модели Шаблонов и ролей в них
+        /// </summary>
+        /// <param name="path">Путь сохранения</param>
+        /// <param name="infoUserTemlateAndRule">Шаблоны пользователей и ролей</param>
+        public void AddInfoRuleTemplate(string path, InfoUserTemlateAndRule infoUserTemlateAndRule)
+        {
+            var doc = LogicaXml.LogicaXml.Document(path);
+            XmlElement xRoot = doc.DocumentElement;
+            foreach (var templates in infoUserTemlateAndRule.Template)
+            {
+                XmlElement template = doc.CreateElement("Template");
+                template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "NameTemplate", templates.NameTemplate));
+                template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Info", templates.Info));
+                template.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Category", templates.Category));
+                foreach(var segments in templates.Sigment)
+                {
+                    XmlElement segment = doc.CreateElement("Sigment");
+                    segment.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Name", segments.Name));
+                    foreach (var app in segments.Applications)
+                    {
+                        XmlElement application = doc.CreateElement("Applications");
+                        application.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Name", app.Name));
+                        foreach (var rules in app.RuleTemplate)
+                        {
+                            XmlElement rule = doc.CreateElement("RuleTemplate");
+                            rule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "NameRule", rules.NameRule));
+                            rule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Info", rules.Info));
+                            rule.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Category", rules.Category));
+                            application.AppendChild(rule);
+                        }
+                        segment.AppendChild(application);
+                    }
+                    template.AppendChild(segment);
+                }
+                xRoot.AppendChild(template);
             }
             doc.Save(path);
         }

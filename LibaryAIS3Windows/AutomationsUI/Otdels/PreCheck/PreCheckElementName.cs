@@ -175,42 +175,6 @@
         /// Операция скачать всех контрагентов в xlsx
         /// </summary>
         public static string DownloadFileXlsxSaveCounterparty = $"{PublicTree}AutomationId:AbdOperationReportSmartPart\\ClassName:OperationsReportControl\\AutomationId:RadDocking\\ClassName:RadSplitContainer\\AutomationId:RadPaneGroup\\AutomationId:RadPane\\AutomationId:OperationsGrid";
-        /// <summary>
-        /// Сохранить
-        /// </summary>
-        public static string Save = "Name:Сохранение\\";
-        /// <summary>
-        /// Сохранить как
-        /// </summary>
-        public static string SaveAs = "Name:Сохранить как\\";
-        /// <summary>
-        /// Загрузки перейти
-        /// </summary>
-        public static string Download = "Name:Загрузки";
-        /// <summary>
-        /// Ввод имени файла
-        /// </summary>
-        public static string SaveDialogNameFileWin10 = $"{Save}ClassName:DUIViewWndClassName\\AutomationId:FileNameControlHost\\ClassName:Edit"; //\\AutomationId:FolderLayoutContainer\\AutomationId:BackgroundClear\\AutomationId:FileNameControlHost";
-        /// <summary>
-        /// Поиск окна для Win 10
-        /// </summary>
-        public static string FindGlobalWinWin10 = $"{Save}ClassName:DUIViewWndClassName";
-        /// <summary>
-        /// Путь сохранения файла  Win 7 Сохранить как Win10 Сохранение
-        /// </summary>
-        public static string PathSaveWin10 = $"{Save}Name:Сохранить"; //ClassName:WorkerW\\AutomationId:FolderLayoutContainer\\AutomationId:BackgroundClear\\AutomationId:FileNameControlHost";
-        /// <summary>
-        /// Ввод имени файла
-        /// </summary>
-        public static string SaveDialogNameFileWin7 = $"{SaveAs}ClassName:DUIViewWndClassName\\AutomationId:FileNameControlHost\\ClassName:Edit"; //\\AutomationId:FolderLayoutContainer\\AutomationId:BackgroundClear\\AutomationId:FileNameControlHost";
-        /// <summary>
-        /// Поиск окна для Win 10
-        /// </summary>
-        public static string FindGlobalWinWin7 = $"{SaveAs}ClassName:DUIViewWndClassName";
-        /// <summary>
-        /// Путь сохранения файла  Win 7 Сохранить как Win10 Сохранение
-        /// </summary>
-        public static string PathSaveWin7 = $"{SaveAs}Name:Сохранить"; //ClassName:WorkerW\\AutomationId:FolderLayoutContainer\\AutomationId:BackgroundClear\\AutomationId:FileNameControlHost";
     }
     /// <summary>
     /// Декларации реестр НБО
@@ -225,10 +189,6 @@
         /// Просмотр декларации
         /// </summary>
         public static string ViewDeclaretion =  "Name:DockTop\\Name:Ribbon\\Name:Реестр документов НБО\\Name:Просмотр документа";
-    //    /// <summary>
-   //     /// Экспорт документа в xlsx
-    //    /// </summary>
-    //    public static string ExportFile = "Name:DockTop\\Name:Ribbon\\Name:Работа с налоговым документом\\Name:Документ\\Name:Экспорт в Excel";
         /// <summary>
         /// Ок экспорт
         /// </summary>

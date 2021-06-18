@@ -44,6 +44,8 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
         
         private TemplateProcedure templateProcedureField;
         
+        private TemplatePatent templatePatentField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public ParametrsSelect ParametrsSelect {
@@ -105,6 +107,16 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
             }
             set {
                 this.templateProcedureField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TemplatePatent TemplatePatent {
+            get {
+                return this.templatePatentField;
+            }
+            set {
+                this.templatePatentField = value;
             }
         }
     }
@@ -445,6 +457,29 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
             }
             set {
                 this.innField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class TemplatePatent {
+        
+        private int[] regNumberPatentField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int[] RegNumberPatent {
+            get {
+                return this.regNumberPatentField;
+            }
+            set {
+                this.regNumberPatentField = value;
             }
         }
     }

@@ -12,9 +12,9 @@ namespace LibraryCommandPublic.TestAutoit.Okp3.UsnSend
         /// Запуск пользовательского задания 
         /// </summary>
         /// <param name="statusButton">Кнопка</param>
-        /// <param name="pathjurnalerror">Путь к журналу к ошибкам</param>
-        /// <param name="pathjurnalok">Путь к журналу готоывых</param>
-        public void UsnStart(StatusButtonMethod statusButton, string pathjurnalerror, string pathjurnalok)
+        /// <param name="pathJournalError">Путь к журналу к ошибкам</param>
+        /// <param name="pathJournalOk">Путь к журналу готовых</param>
+        public void UsnStart(StatusButtonMethod statusButton, string pathJournalError, string pathJournalOk)
         {
             DispatcherHelper.Initialize();
             Task.Run(delegate
@@ -26,7 +26,7 @@ namespace LibraryCommandPublic.TestAutoit.Okp3.UsnSend
                 {
                     while (statusButton.Iswork)
                     {
-                        var status = clickerButton.Click14(statusButton.IsChekcs,pathjurnalerror,pathjurnalok);
+                        var status = clickerButton.Click14(statusButton.IsChekcs, pathJournalError, pathJournalOk);
                         if (status.Equals(LibraryAIS3Windows.Status.StatusAis.Status6))
                         {
                             DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);

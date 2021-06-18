@@ -19,7 +19,7 @@ namespace AutomatAis3Full.Form.Automat.PreCheck.ReportingMemo.DataContext
         public ReportingMemoContext()
         {
             var  reportMemoStart = new ReportingMemoStart();
-            var model = reportMemoStart.ResultGetTemplate(ConfigFile.AllTemplate);
+            var model = ConfigFile.ResultGetTemplate<TemplateModel>(ConfigFile.AllTemplate);
             ModelTemplate = new PublicModelCollectionSelect<TemplateModel>(model);
             Start = new StatusButtonMethod
             {

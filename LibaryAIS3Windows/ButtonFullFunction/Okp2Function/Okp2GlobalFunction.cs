@@ -1,4 +1,5 @@
 ﻿using AutoIt;
+using System.Windows.Automation;
 using EfDatabaseAutomation.Automation.Base;
 using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
 using LibraryAIS3Windows.AutomationsUI.Otdels.PublicJournal129And121;
@@ -28,17 +29,17 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
         /// <param name="x">Координата смещения x для отправки</param>
         /// <param name="y">Координата смещения y для отправки</param>
-        public void SignAndSendDoc(LibraryAutomations libraryAutomation, int x =-30, int y = 30)
+        /// <param name="sender">Подписант на форме документа</param>
+        public void SignAndSendDoc(LibraryAutomations libraryAutomation, int x =-30, int y = 30, string sender = null)
         {
-            AutoItX.WinWait(Journal129AndJournal121.ViewName);
-            AutoItX.WinActivate(Journal129AndJournal121.ViewName);
-            LibraryAutomations libraryAutomationSign = new LibraryAutomations(Journal129AndJournal121.ViewName);
             while (true)
             {
+                LibraryAutomations libraryAutomationDiaolog = new LibraryAutomations(WindowsAis3.AisNalog3);
+                AutoItX.Sleep(2000);
+                LibraryAutomations libraryAutomationSign = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomationDiaolog.RootAutomationElements));
                 if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewPrint, null, true) != null)
                 {
-
-                    libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewPrint));
+                    libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
                     while (true)
                     {
                         var toggle = libraryAutomationSign.TogglePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewCheks));
@@ -46,9 +47,9 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                         {
                             while (true)
                             {
-                                if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewCheks, null, true) !=null)
+                                if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewCheksText, null, true) != null)
                                 {
-                                    libraryAutomationSign.InvokePattern(libraryAutomationSign.FindElement);
+                                    libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
                                     break;
                                 }
                             }
@@ -57,10 +58,16 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                         {
                             while (true)
                             {
-                                if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.Sign, null, true) !=null)
+                                if (!string.IsNullOrEmpty(sender))
                                 {
-                                    AutoItX.WinActivate(Journal129AndJournal121.ViewName);
-                                    libraryAutomationSign.InvokePattern(libraryAutomationSign.FindElement);
+                                    if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.SenderSign, null, true) != null)
+                                    {
+                                        libraryAutomationSign.SetValuePattern(sender);
+                                    }
+                                }
+                                if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.Sign, null, true) != null)
+                                {
+                                    libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
                                     break;
                                 }
                             }
@@ -75,7 +82,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
             {
                 if (isSend == false)
                 {
-                    PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("AcroRd32");
+                    PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("AcroRd32", true);
                     PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("FoxitPhantom");
                     AutoItX.WinActivate(WindowsAis3.AisNalog3);
                     if (libraryAutomation.IsEnableElements(Journal129AndJournal121.SendAll, null, true) != null)

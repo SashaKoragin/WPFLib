@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Automation;
 using System.Windows.Forms;
-using LibaryXMLAutoModelXmlAuto.MigrationReport;
+using LibaryXMLAuto.ModelXmlAuto.MigrationReport;
 using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
 using LibraryAIS3Windows.AutomationsUI.Otdels.It;
 using LibraryAIS3Windows.AutomationsUI.PublicElement;
@@ -52,19 +52,28 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
                 var fileInfoRuleTemplate = (InfoRuleTemplate)readFileInfoRule.ReadXml(pathJournalInfoRule, typeof(InfoRuleTemplate));
                 var nameAttributes = fileInfoRuleTemplate.SystemAis.Last().Name;
                 var index = 0;
+                var stop = false;
                 libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement).Cast<AutomationElement>()
                    .Where(elem => elem.Current.Name.Contains("List`"))
                    .ToList().ForEach(element =>
                    {
-                       if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.SelectAutomationColrction(element)
-                                  .Cast<AutomationElement>()
-                                  .First(elem => elem.Current.Name.Contains("Подсистема"))) == nameAttributes)
+                       if (stop)
                        {
-                           rowNumber = index;
+                           return;
                        }
-                       index++;
+                       else
+                       {
+                           if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.SelectAutomationColrction(element)
+                                      .Cast<AutomationElement>()
+                                      .First(elem => elem.Current.Name.Contains("Подсистема"))) == nameAttributes)
+                           {
+                               rowNumber = index;
+                               rowNumber++;
+                               stop = true;
+                           }
+                           index++;
+                       }
                    });
-                readFileInfoRule.DeleteAtributXml(pathJournalInfoRule, $"/InfoRuleTemplate/SystemAis[@Name=\"{nameAttributes}\"]"); //?? Сомнительная операция!!! Надо проверять
             }
 
             AutomationElement automationElementRow;
@@ -208,7 +217,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
         /// <param name="pathJournalInfoUserTemplateRule">Путь сохранения информации по пользователям и их ролям с шаблонами</param>
         public void SelectAllUserTemplateAndRule(StatusButtonMethod statusButton, string pathJournalInfoUserTemplateRule)
         {
-            var rowNumber = 1;
+            
             var sw = modelSettingRule.Split('\\').Last();
             var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
             LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
@@ -216,30 +225,220 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
             libraryAutomation.FindFirstElement(fullTree, null, true);
             libraryAutomation.FindElement.SetFocus();
             libraryAutomation.ClickElements(fullTree, null, false, 25, 0, 0, 2);
-            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ItElementName.ApplicationTabUsers);
-            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ItElementName.FindUsers);
-            libraryAutomation.IsEnableElement(ItElementName.ListRowUsersGrid);
+            //Шаблоны и роли 
+            if (statusButton.IsLk2)
+            {
+                FindAllTemplateAndRule(statusButton, libraryAutomation, pathJournalInfoUserTemplateRule);
+            }
+            //Шаблоны Пользователи и роли
+            if (statusButton.Iswork)
+            {
+                FindUserTemplateAndRule(statusButton, libraryAutomation, pathJournalInfoUserTemplateRule);
+            }
+        }
 
+        /// <summary>
+        /// Поиск только шаблонов и ролей в них
+        /// </summary>
+        /// <param name="statusButton">Кнопка запуска</param>
+        /// <param name="libraryAutomation">Автоматизация библиотека</param>
+        /// <param name="pathJournalInfoUserTemplateRule">Путь сохранения информации по пользователям и их ролям с шаблонами</param>
+        private void FindAllTemplateAndRule(StatusButtonMethod statusButton, LibraryAutomations libraryAutomation, string pathJournalInfoUserTemplateRule)
+        {
+            var rowNumber = 1;
+            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ItElementName.ApplicationTabRules);
+            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ItElementName.SendRulesTemplate);
+            libraryAutomation.IsEnableElement(ItElementName.ListRowRulesGrid);
             if (File.Exists(pathJournalInfoUserTemplateRule))
             {
                 var readFileInfoRule = new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
                 var fileInfoRuleTemplate = (InfoUserTemlateAndRule)readFileInfoRule.ReadXml(pathJournalInfoUserTemplateRule, typeof(InfoUserTemlateAndRule));
-                var nameAttributes = fileInfoRuleTemplate.Users.Last().Name;
-                var elementNumbers = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement)
-                    .Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("List`")).ToList()
-                    .FirstOrDefault(element => libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.SelectAutomationColrction(element)
-                    .Cast<AutomationElement>()
-                    .First(elem => elem.Current.Name.Contains("Пользователь"))) == nameAttributes);
-                if (elementNumbers != null)
-                    rowNumber = Convert.ToInt32(Regex.Matches(elementNumbers.Current.Name, @"(\d{1,4})").Cast<Match>()
-                        .Select(m => m.Value).ToArray().Last());
-                readFileInfoRule.DeleteAtributXml(pathJournalInfoUserTemplateRule, $"/InfoUserTemlateAndRule/Users[@Name=\"{nameAttributes}\"]"); //?? Сомнительная операция!!! вроде +1 делать надо Надо проверять
+                if (fileInfoRuleTemplate.Template != null)
+                {
+                    var nameAttributes = fileInfoRuleTemplate.Template.Last().NameTemplate;
+                    var index = 0;
+                    var stop = false;
+                    libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement)
+                        .Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("List`")).ToList().ForEach(elem =>
+                        {
+                            if (stop)
+                            {
+                                return;
+                            }
+                            else
+                            {
+                                elem.SetFocus();
+                                AutoIt.AutoItX.Sleep(1000);
+                                if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.SelectAutomationColrction(elem).Cast<AutomationElement>()
+                                                           .First(element => element.Current.Name.Contains("Шаблон"))) == nameAttributes)
+                                {
+                                    
+                                    rowNumber = index;
+                                    rowNumber++;
+                                    stop = true;
+                                }
+                                index++;
+                            }
+                        });
+                }
             }
 
+            AutomationElement automationElementRow;
+            while ((automationElementRow = libraryAutomation.IsEnableElements(string.Format(ItElementName.ListRowRules, rowNumber), null, true,5)) != null)
+            {
+                if (statusButton.Iswork)
+                {
+                    var infoRuleTemplate = new InfoUserTemlateAndRule()  { Template = new Template[1] } ;
+                    automationElementRow.SetFocus();
+                    AutoIt.AutoItX.Sleep(1000);
+                    infoRuleTemplate.Template[0] = new Template()
+                    {
+                        NameTemplate = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                          libraryAutomation.SelectAutomationColrction(automationElementRow).Cast<AutomationElement>()
+                              .First(elem => elem.Current.Name.Contains("Шаблон"))),
+                        Info = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                          libraryAutomation.SelectAutomationColrction(automationElementRow).Cast<AutomationElement>()
+                              .First(elem => elem.Current.Name.Contains("Описание"))),
+                        Category = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                          libraryAutomation.SelectAutomationColrction(automationElementRow).Cast<AutomationElement>()
+                              .First(elem => elem.Current.Name.Contains("Категории"))),
+                    };
 
+                    while (true)
+                    {
+                        libraryAutomation.ClickElement(libraryAutomation.SelectAutomationColrction(automationElementRow).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Шаблон")), 180);
+                        if(libraryAutomation.IsEnableElements(ItElementName.WinAll)!=null)
+                        {
+                            break;
+                        }
+                    }
+                    var winElement = libraryAutomation.FindElement;
+                    var sigmentNumber = 1;
+                    List<AutomationElement> listSegment = libraryAutomation.SelectAutomationColrction(
+                                         libraryAutomation.IsEnableElements(ItElementName.WinSigment, null, true)).Cast<AutomationElement>()
+                                         .Where(elem => elem.Current.Name.Contains("List")).ToList();
+                    infoRuleTemplate.Template[0].Sigment = new Sigment[listSegment.Count()];
+                    foreach (AutomationElement automationElementTemplates in listSegment)
+                    {
+                        automationElementTemplates.SetFocus();
+                        SendKeys.SendWait(ButtonConstant.Plus);
+                        infoRuleTemplate.Template[0].Sigment[sigmentNumber - 1] = new Sigment()
+                        {
+                            Name = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                libraryAutomation.SelectAutomationColrction(automationElementTemplates)
+                                    .Cast<AutomationElement>()
+                                    .First(elem => elem.Current.Name.Contains("Сегмент")))
+                        };
+                        List<AutomationElement> listApp = libraryAutomation.SelectAutomationColrction(automationElementTemplates).Cast<AutomationElement>()
+                                                        .Where(elem => elem.Current.Name.Contains("Apps row")).ToList();
+                        infoRuleTemplate.Template[0].Sigment[sigmentNumber - 1].Applications = new Applications[listApp.Count()];
+
+                        var rulesAppNumber = 1;
+                        foreach (AutomationElement automationElementTemplatesRulesApp in listApp)
+                        {
+                            automationElementTemplatesRulesApp.SetFocus();
+                            SendKeys.SendWait(ButtonConstant.Plus);
+                            infoRuleTemplate.Template[0].Sigment[sigmentNumber - 1].Applications[rulesAppNumber - 1] = new Applications()
+                            {
+                                Name = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                    libraryAutomation.SelectAutomationColrction(automationElementTemplatesRulesApp)
+                                        .Cast<AutomationElement>()
+                                        .First(elem => elem.Current.Name.Contains("Приложение")))
+                            };
+
+                            List<AutomationElement> listRole = libraryAutomation.SelectAutomationColrction(automationElementTemplatesRulesApp).Cast<AutomationElement>()
+                                          .Where(elem => elem.Current.Name.Contains("RoleList row")).ToList();
+                            infoRuleTemplate.Template[0].Sigment[sigmentNumber - 1].Applications[rulesAppNumber - 1].RuleTemplate = new RuleTemplate[listRole.Count()];
+
+                            var rulesRulesAppRuleNumber = 1;
+                            foreach (AutomationElement automationElementTemplatesRulesAppRule in listRole)
+                            {
+                                infoRuleTemplate.Template[0].Sigment[sigmentNumber - 1].Applications[rulesAppNumber - 1].RuleTemplate[rulesRulesAppRuleNumber - 1] = new RuleTemplate()
+                                {
+                                    NameRule = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                        libraryAutomation.SelectAutomationColrction(automationElementTemplatesRulesAppRule)
+                                            .Cast<AutomationElement>()
+                                            .First(elem => elem.Current.Name.Contains("Роль"))),
+
+                                    Info = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                        libraryAutomation.SelectAutomationColrction(automationElementTemplatesRulesAppRule)
+                                            .Cast<AutomationElement>()
+                                            .First(elem => elem.Current.Name.Contains("Описание"))),
+
+                                    Category = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                        libraryAutomation.SelectAutomationColrction(automationElementTemplatesRulesAppRule)
+                                            .Cast<AutomationElement>()
+                                            .First(elem => elem.Current.Name.Contains("Категории"))),
+                                };
+                                rulesRulesAppRuleNumber++;
+                            }
+                            automationElementTemplatesRulesApp.SetFocus();
+                            AutoIt.AutoItX.Sleep(500);
+                            SendKeys.SendWait(ButtonConstant.Minus);
+                            rulesAppNumber++;
+                        }
+                        automationElementTemplates.SetFocus();
+                        AutoIt.AutoItX.Sleep(500);
+                        SendKeys.SendWait(ButtonConstant.Minus);
+                        sigmentNumber++;
+                    }
+                    libraryAutomation.CloseWindowPattern(winElement);
+                    LibaryXMLAuto.ErrorJurnal.ReportMigration.CreateFileInfoUserRuleTemplate(pathJournalInfoUserTemplateRule, infoRuleTemplate);
+                    rowNumber++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+        /// <summary>
+        /// Поиск пользователей и ролей по сегментам
+        /// </summary>
+        /// <param name="statusButton">Кнопка запуска</param>
+        /// <param name="libraryAutomation">Автоматизация библиотека</param>
+        /// <param name="pathJournalInfoUserTemplateRule">Путь сохранения информации по пользователям и их ролям с шаблонами</param>
+        private void FindUserTemplateAndRule(StatusButtonMethod statusButton, LibraryAutomations libraryAutomation, string pathJournalInfoUserTemplateRule)
+        {
+            var rowNumber = 1;
+            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ItElementName.ApplicationTabUsers);
+            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ItElementName.FindUsers);
+            libraryAutomation.IsEnableElement(ItElementName.ListRowUsersGrid);
+            if (File.Exists(pathJournalInfoUserTemplateRule))
+            {
+                var readFileInfoRule = new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
+                var fileInfoRuleTemplate = (InfoUserTemlateAndRule)readFileInfoRule.ReadXml(pathJournalInfoUserTemplateRule, typeof(InfoUserTemlateAndRule));
+                if (fileInfoRuleTemplate.Users != null)
+                {
+                    var nameAttributes = fileInfoRuleTemplate.Users.Last().Name;
+                    var index = 0;
+                    var stop = false;
+                    libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement).Cast<AutomationElement>()
+                             .Where(elem => elem.Current.Name.Contains("List`"))
+                             .ToList().ForEach(element =>
+                             {
+                                 if (stop){
+                                     return;
+                                 }
+                                 else{
+                                     element.SetFocus();
+                                     AutoIt.AutoItX.Sleep(2000);
+                                     if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.SelectAutomationColrction(element)
+                                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Пользователь"))) == nameAttributes)
+                                     {
+                                         rowNumber = index;
+                                         rowNumber++;
+                                         stop = true;
+
+                                     }
+                                     index++;
+                                 }
+                             });
+                }
+            }
 
             AutomationElement automationElementRow;
-            while ((automationElementRow = libraryAutomation.IsEnableElements(string.Format(ItElementName.ListRowUsers, rowNumber), null, true)) != null)
+            while ((automationElementRow = libraryAutomation.IsEnableElements(string.Format(ItElementName.ListRowUsers, rowNumber), null, true, 5)) != null)
             {
                 if (statusButton.Iswork)
                 {
@@ -271,14 +470,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
                                 .First(elem => elem.Current.Name.Contains("Блокировка"))),
                         NumberActiveDirectory = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
                             libraryAutomation.SelectAutomationColrction(automationElementRow).Cast<AutomationElement>()
-                                .First(elem => elem.Current.Name.Contains("Учетная запись"))),
-                        DateIn = string.IsNullOrWhiteSpace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                                libraryAutomation.SelectAutomationColrction(automationElementRow).Cast<AutomationElement>()
-                                    .First(elem => elem.Current.Name.Contains("Дата входа в ЕКП"))))
-                                ? (DateTime?)null
-                                : Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                                    libraryAutomation.SelectAutomationColrction(automationElementRow).Cast<AutomationElement>()
-                                        .First(elem => elem.Current.Name.Contains("Дата входа в ЕКП"))))
+                                .First(elem => elem.Current.Name.Contains("Учетная запись")))
                     };
                     var containerTab = libraryAutomation.SelectAutomationColrction(libraryAutomation.IsEnableElements(ItElementName.ApplicationContainerTab, null, true));
                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ItElementName.ApplicationTabTemplate, containerTab[1]);
@@ -287,10 +479,10 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
                     List<AutomationElement> listTemplate = libraryAutomation.SelectAutomationColrction(
                                             libraryAutomation.IsEnableElements(ItElementName.ListAllTemplatesUsers, containerTab[1], true, 1)).Cast<AutomationElement>()
                                             .Where(elem => elem.Current.Name.Contains("List`1 row")).ToList();
-                   infoRuleTemplate.Users[0].Template = new Template[listTemplate.Count()];
+                    infoRuleTemplate.Users[0].Template = new Template[listTemplate.Count()];
 
-                    foreach(AutomationElement automationElement in listTemplate)
-                    { 
+                    foreach (AutomationElement automationElement in listTemplate)
+                    {
                         automationElement.SetFocus();
                         infoRuleTemplate.Users[0].Template[templatesNumber - 1] = new Template()
                         {
@@ -298,26 +490,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
                                 libraryAutomation.SelectAutomationColrction(automationElement)
                                     .Cast<AutomationElement>()
                                     .First(elem => elem.Current.Name.Contains("Шаблон"))),
-
-                            DateStart = string.IsNullOrWhiteSpace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                                libraryAutomation.SelectAutomationColrction(automationElement)
-                                    .Cast<AutomationElement>()
-                                    .First(elem => elem.Current.Name.Contains("Дата начала"))))
-                                ? (DateTime?)null
-                                : Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                                    libraryAutomation.SelectAutomationColrction(automationElement)
-                                        .Cast<AutomationElement>()
-                                        .First(elem => elem.Current.Name.Contains("Дата начала")))),
-
-                            DateFinish = string.IsNullOrWhiteSpace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                                libraryAutomation.SelectAutomationColrction(automationElement)
-                                    .Cast<AutomationElement>()
-                                    .First(elem => elem.Current.Name.Contains("Дата окончания"))))
-                                ? (DateTime?)null
-                                : Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                                    libraryAutomation.SelectAutomationColrction(automationElement)
-                                        .Cast<AutomationElement>()
-                                        .First(elem => elem.Current.Name.Contains("Дата окончания")))),
 
                             Info = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
                                 libraryAutomation.SelectAutomationColrction(automationElement)
@@ -338,8 +510,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
                     List<AutomationElement> listSegment = libraryAutomation.SelectAutomationColrction(
                                           libraryAutomation.IsEnableElements(ItElementName.ListAllRulesUsers, containerTab[1], true, 1)).Cast<AutomationElement>()
                                           .Where(elem => elem.Current.Name.Contains("List`1 row")).ToList();
-                        infoRuleTemplate.Users[0].Sigment = new Sigment[listSegment.Count()];
-                    foreach(AutomationElement automationElementTemplates in listSegment)
+                    infoRuleTemplate.Users[0].Sigment = new Sigment[listSegment.Count()];
+                    foreach (AutomationElement automationElementTemplates in listSegment)
                     {
 
                         automationElementTemplates.SetFocus();
@@ -383,26 +555,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
                                         libraryAutomation.SelectAutomationColrction(automationElementTemplatesRulesAppRule)
                                             .Cast<AutomationElement>()
                                             .First(elem => elem.Current.Name.Contains("Роль"))),
-                                 
-                                    DateStart = string.IsNullOrWhiteSpace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                                        libraryAutomation.SelectAutomationColrction(automationElementTemplatesRulesAppRule)
-                                            .Cast<AutomationElement>()
-                                            .First(elem => elem.Current.Name.Contains("Дата начала"))))
-                                        ? (DateTime?)null
-                                        : Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                                            libraryAutomation.SelectAutomationColrction(automationElementTemplatesRulesAppRule)
-                                                .Cast<AutomationElement>()
-                                                .First(elem => elem.Current.Name.Contains("Дата начала")))),
-
-                                    DateFinish = string.IsNullOrWhiteSpace(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                                        libraryAutomation.SelectAutomationColrction(automationElementTemplatesRulesAppRule)
-                                            .Cast<AutomationElement>()
-                                            .First(elem => elem.Current.Name.Contains("Дата окончания"))))
-                                        ? (DateTime?)null
-                                        : Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                                            libraryAutomation.SelectAutomationColrction(automationElementTemplatesRulesAppRule)
-                                                .Cast<AutomationElement>()
-                                                .First(elem => elem.Current.Name.Contains("Дата окончания")))),
 
                                     Info = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
                                         libraryAutomation.SelectAutomationColrction(automationElementTemplatesRulesAppRule)

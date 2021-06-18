@@ -80,6 +80,7 @@
     <Compile Include="TestAutoit\Okp1\RegisterDeclarations.cs" />
     <Compile Include="TestAutoit\Okp2\RegisterDeclarations.cs" />
     <Compile Include="TestAutoit\Okp2\TaxJournal.cs" />
+    <Compile Include="TestAutoit\Okp3\Patent\Patent.cs" />
     <Compile Include="TestAutoit\Okp3\UsnSend\CommandUsn.cs" />
     <Compile Include="TestAutoit\Okp4\EditPravo\Pravo\CommandPravo.cs" />
     <Compile Include="TestAutoit\Okp4\SnuOneAuto\AutoCommand\AutoCklicsAisCommand.cs" />

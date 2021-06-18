@@ -30,6 +30,7 @@ namespace AutomatAis3Full.Form.Automat.Registration.TreatmentFPD.Zemly.DataConte
         {
             Branch = new SelectBranch().AddBranhc();
             QbeStatus = new QbeClassMethod();
+            QbeStatus.AddCollectionQbe();
             var commandauto = new LibraryCommandPublic.TestAutoit.Reg.TreatmentFPD.Zemly.Zemly();
             StartButton2 = new StatusButtonMethod();
             Xml1 = new XmlUseMethod();

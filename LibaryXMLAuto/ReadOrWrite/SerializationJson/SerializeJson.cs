@@ -14,6 +14,10 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
             {
                 prop.Ignored = true;
             }
+            if (prop.ToString() == "DateCreate")
+            {
+                prop.Ignored = true;
+            }
             return prop;
         }
     }
@@ -23,19 +27,19 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
     public class SerializeJson
     {
 
-       
 
         /// <summary>
         /// Библиотечная функция получения данных JSON
         /// </summary>
         /// <param name="model">Объект модели класса</param>
+        /// <param name="dateFormat">Формат даты</param>
         /// <returns>JSON string</returns>
-        public string JsonLibary(object model)
+        public string JsonLibrary(object model, string dateFormat = "dd-MM-yyyy")
         {
-            return  JsonConvert.SerializeObject(model,new JsonSerializerSettings()
+          return  JsonConvert.SerializeObject(model,new JsonSerializerSettings()
           {
-            NullValueHandling = NullValueHandling.Ignore,
-            DateFormatString = "dd-MM-yyyy"
+              NullValueHandling = NullValueHandling.Ignore,
+              DateFormatString = dateFormat
           });
         }
         /// <summary>
@@ -48,7 +52,8 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
             return JsonConvert.SerializeObject(model, new JsonSerializerSettings()
             {
                 NullValueHandling = NullValueHandling.Include,
-                DateFormatString = "dd-MM-yyyy"
+                DateFormatString = "dd-MM-yyyy",
+
             });
         }
 
@@ -76,7 +81,8 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
             {
                 NullValueHandling = NullValueHandling.Ignore,
                 ContractResolver = new IgnoreGuidsResolver(),
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                DateFormatString = "dd-MM-yyyy"
             });
         }
         /// <summary>

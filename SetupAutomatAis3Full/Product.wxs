@@ -229,10 +229,10 @@
         
         <File Id="AutomatAis3Full.exe.config" Name="AutomatAis3Full.exe.config" Source="$(var.AutomatAis3Full_TargetDir)AutomatAis3Full.exe.config" KeyPath="yes" Vital="yes"/>
         <util:XmlFile Id="AutomatAis3FullSet1" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='Ifns'[\]]//@value" Value="[IFNS]" SelectionLanguage="XPath" Sequence="1" />
-        <util:XmlFile Id="AutomatAis3FullSet4" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServerReport'[\]]//@value" Value="http://[SERVICE]:8181/ServiceRest/MigrationError" SelectionLanguage="XPath" Sequence="1" />
-        <util:XmlFile Id="AutomatAis3FullSet5" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServerRuleUsersWordTemplate'[\]]//@value" Value="http://[SERVICE]:8181/ServiceRest/GenerateTemplateRule" SelectionLanguage="XPath" Sequence="1" />
-        <util:XmlFile Id="AutomatAis3FullSet6" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='LoadInfoTemplate'[\]]//@value" Value="http://[SERVICE]:8181/ServiceRest/LoadInfoTemplateToDataBase" SelectionLanguage="XPath" Sequence="1" />
-        
+
+        <util:XmlFile Id="HostNameService" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='HostNameService'[\]]//@value" Value="[SERVICE]" SelectionLanguage="XPath" Sequence="1" />
+        <util:XmlFile Id="ServiceModelInventory" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='ServiceModelInventory'[\]]//@value" Value="http://[SERVICE]:8181/ServiceRest/GetServiceApi" SelectionLanguage="XPath" Sequence="1" />
+
         <util:XmlFile Id="AutomatAis3FullSetHelp" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='Help'[\]]//@value" Value="[INSTALLFOLDER]Help\AutomateAis3Full.pdf" SelectionLanguage="XPath" Sequence="1" />
         <util:XmlFile Id="AutomatAis3FullSetAllListModel" File="[#AutomatAis3Full.exe.config]" Action="setValue" ElementPath="//configuration//appSettings//add[\[]@key='AllListModel'[\]]//@value" Value="[INSTALLFOLDER]XmlFile\AutoGenerateSchemes.xml" SelectionLanguage="XPath" Sequence="1" />
 
@@ -276,6 +276,9 @@
 	    <Component Id="Prism.dll" Guid="5eab3abe-4eb5-47a3-8d2e-331367bf21a5">
 	      <File Id="Prism.dll" Name="Prism.dll" Source="$(var.AutomatAis3Full_TargetDir)Prism.dll" />
 	    </Component>
+      <Component Id="Prism.Wpf.dll" Guid="EAEDFBDF-D5E8-4D69-A2DE-302ABF9DC9F5">
+        <File Id="Prism.Wpf.dll" Name="Prism.Wpf.dll" Source="$(var.AutomatAis3Full_TargetDir)Prism.Wpf.dll" />
+      </Component>
 	    <Component Id="MaterialDesignColors.dll" Guid="349a8fe7-3aa1-4914-bc3c-840b929e9030">
 	      <File Id="MaterialDesignColors.dll" Name="MaterialDesignColors.dll" Source="$(var.AutomatAis3Full_TargetDir)MaterialDesignColors.dll" />
 	    </Component>

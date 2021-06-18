@@ -15,6 +15,15 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
         {
             Automation = new Base.Automation();
         }
+        /// <summary>
+        /// Проверить праздничный день
+        /// </summary>
+        /// <param name="dateTime">День который проверяем</param>
+        /// <returns></returns>
+        public bool IsHolidays(DateTime dateTime)
+        {
+            return Automation.RbHolidays.Any(x => x.DateTimeHoliday == dateTime && x.IsHoliday);
+        }
 
         /// <summary>
         /// Добавление отработанного КМ

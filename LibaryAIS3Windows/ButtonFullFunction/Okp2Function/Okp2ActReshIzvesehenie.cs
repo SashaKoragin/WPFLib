@@ -203,14 +203,14 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ReshNo);
                         while (true)
                         {
-                            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceNameGr14, null, true) != null)
+                            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceNameGr15, null, true) != null)
                             {
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.AnyDocumentsGr3);
                                 libraryAutomation.IsEnableElements(Journal129AndJournal121.AnyPastDocumentsGr3, null, true);
                                 libraryAutomation.SetValuePattern(string.Join("\r\n", allMaterial));
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.AnyDocumentsGr3);
-                                libraryAutomation.ClickElements(Journal129AndJournal121.FaceNameGr14, null, true);
-                                libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceNameSignGr14), senderSelect, 0);
+                                libraryAutomation.ClickElements(Journal129AndJournal121.FaceNameGr15, null, true);
+                                libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceNameSignGr15), senderSelect, 0);
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Save);
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.SignAll);
                                 break;
@@ -407,7 +407,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
             {
                 //Акты
                 journal.ColorDoc = null;
-
                 if (dateCloseValidation == null && colorError != "ffffff")
                 {
                     DateTime dateControl = DateTime.Now;
@@ -588,7 +587,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                                 }
                             }
                             //Документ сохранить
-                            SaveSendDoc(libraryAutomation, journal, "Извещение успешно выставлено!!!", "Извещение");
+                            SaveSendDoc(libraryAutomation, journal, "Извещение успешно выставлено!!!", "Извещение", -30, 30, senderSelect);
                             MouseCloseForm();
                         }
                     }
@@ -608,7 +607,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                       {
                         journal.ColorDoc = colorAct;
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.OpenKnp);
-                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ReshNo);
+                        libraryAutomation.ScrollPatternViewElement(Journal129AndJournal121.ReshScroll);
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ReshNo, null, true);
                         while (true)
                         {
                             if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ErrorFaceGr8, null, true) != null)
@@ -650,8 +650,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                                     var template = libraryAutomation.ParseValuePattern(libraryAutomation.IsEnableElements(Journal129AndJournal121.InstallTextGr6));
                                     libraryAutomation.SetValuePattern(string.Join("\r\n", template, string.Format(Journal129AndJournal121.TemplateAddText, journal.Period, journal.God)));
                                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.InstallGr6);
-                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.FaceNameGr14);
-                                    libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceNameSignGr14), senderSelect, 0);
+                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.FaceNameGr15);
+                                    libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceNameSignGr15), senderSelect, 0);
                                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Save);
                                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.SignAll);
                                     //Если есть просрочка то не отправляем документ плательщику 
@@ -666,7 +666,20 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                                     WindowsAis3 win = new WindowsAis3();
                                     AutoItX.Sleep(1000);
                                     AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
-                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex121);
+                                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ClosedComplex121, null, false, 5) != null)
+                                    {
+                                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex121);
+                                        AutoItX.WinWait(Journal129AndJournal121.WinNameComplex);
+                                        AutoItX.WinActivate(Journal129AndJournal121.WinNameComplex);
+                                        LibraryAutomations libraryAutomationWin = new LibraryAutomations(Journal129AndJournal121.WinNameComplex);
+                                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin, Journal129AndJournal121.WinOkCloseComplex);
+                                    }
+                                    else
+                                    {
+                                        WindowsAis3 winClose = new WindowsAis3();
+                                        AutoItX.Sleep(1000);
+                                        AutoItX.MouseClick(ButtonConstant.MouseLeft, winClose.WindowsAis.X + winClose.WindowsAis.Width - 20, winClose.WindowsAis.Y + 160);
+                                    }
                                     break;
                                 }
                                 else
@@ -791,10 +804,11 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
         /// <param name="typeDocument">Тип документа</param>
         /// <param name="x">Координата смещения x для отправки</param>
         /// <param name="y">Координата смещения y для отправки</param>
-        private void SaveSendDoc(LibraryAutomations libraryAutomation, TaxJournal121 journal,string messageInfo,string typeDocument, int x = -30, int y = 30)
+        /// <param name="sender">Подписант на форме документа</param>
+        private void SaveSendDoc(LibraryAutomations libraryAutomation, TaxJournal121 journal,string messageInfo,string typeDocument, int x = -30, int y = 30, string sender = null)
         {
             Okp2GlobalFunction globalFunction = new Okp2GlobalFunction();
-            globalFunction.SignAndSendDoc(libraryAutomation,x,y);
+            globalFunction.SignAndSendDoc(libraryAutomation,x,y, sender);
             journal.IsLk3 = globalFunction.IsLk3;
             journal.IsMail = globalFunction.IsMail;
             journal.IsTks = globalFunction.IsTks;
@@ -913,6 +927,9 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
 
 
     }
+    /// <summary>
+    /// Прибавляем рабочие дни
+    /// </summary>
     public static class DateTimeExtensions
     {
         public static DateTime AddWorkdays(this DateTime originalDate, int workDays)
@@ -926,13 +943,27 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                     !tmpDate.IsHoliday())
                     workDays--;
             }
+            while (workDays < 0)
+            {
+                tmpDate = tmpDate.AddDays(-1);
+                if (tmpDate.DayOfWeek < DayOfWeek.Saturday &&
+                    tmpDate.DayOfWeek > DayOfWeek.Sunday &&
+                    !tmpDate.IsHoliday())
+                    workDays++;
+            }
             return tmpDate;
         }
-
+        /// <summary>
+        /// Праздничный день
+        /// </summary>
+        /// <param name="originalDate">Дата</param>
+        /// <returns></returns>
         public static bool IsHoliday(this DateTime originalDate)
         {
-            // INSERT YOUR HOlIDAY-CODE HERE!
-            return false;
+            var dbAutomation = new AddObjectDb();
+            var isHoliday = dbAutomation.IsHolidays(originalDate);
+            dbAutomation.Dispose();
+            return isHoliday;
         }
     }
 

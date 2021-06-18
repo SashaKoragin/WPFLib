@@ -20,7 +20,23 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
         {
             Automation = new Base.Automation();
         }
-
+        /// <summary>
+        /// Создание таблицы в виде параметра
+        /// </summary>
+        /// <param name="tModelParameterArray"></param>
+        /// <param name="nameColumns">Наименование колонки для таблицы</param>
+        /// <param name="type">Тип колонки</param>
+        /// <returns></returns>
+        private DataTable CreteParameterTableSql<T>(T[] tModelParameterArray, string nameColumns, Type type)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add(new DataColumn(nameColumns, type));
+            foreach (var parameter in tModelParameterArray)
+            {
+                table.Rows.Add(parameter);
+            }
+            return table;
+        }
 
         /// <summary>
         /// Добавление ИНН модели для отработки
@@ -29,14 +45,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
         /// <param name="guidUsers">GUID Пользователя</param>
         public void AddInnModel(TemplateProcedure templateModel, string guidUsers)
         {
-            DataTable tableInn = new DataTable();
             try
             {
-                tableInn.Columns.Add(new DataColumn("Inn", typeof(string)));
-                foreach (var inn in templateModel.Inn)
-                {
-                    tableInn.Rows.Add(inn);
-                }
                 var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 4);
                 if (logicModel != null)
                 {
@@ -48,7 +58,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                              new SqlParameter
                              {
                                  ParameterName = logicModel.SelectedParametr.Split(',')[0],
-                                 Value = tableInn,
+                                 Value = CreteParameterTableSql(templateModel.Inn, "Inn", typeof(string)),
                                  TypeName = "dbo.ListInn",
                                  SqlDbType = SqlDbType.Structured
                              },
@@ -59,12 +69,40 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
             {
                 Loggers.Log4NetLogger.Error(ex);
             }
-            finally
+        }
+        //dbo.PatentRegNum
+        /// <summary>
+        /// Добавление регистрационных номеров в систему для отработки
+        /// </summary>
+        /// <param name="templatePatent">Шаблон для добавления</param>
+        /// <param name="userIdGuid">GUID Пользователя</param>
+        public void AddRegNumPatentModel(TemplatePatent templatePatent, string userIdGuid)
+        {
+            try
             {
-                tableInn.Clear();
-                tableInn.Dispose();
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 27);
+                if (logicModel != null)
+                {
+                    EventSqlEf.EventSqlEf eventMessage = new EventSqlEf.EventSqlEf() { UserNameGuid = userIdGuid };
+                    var con = (SqlConnection)Automation.Database.Connection;
+                    con.FireInfoMessageEventOnUserErrors = true;
+                    con.InfoMessage += eventMessage.Con_InfoMessageSignalR;
+                    Automation.Database.ExecuteSqlCommand(logicModel.SelectUser,
+                        new SqlParameter
+                        {
+                            ParameterName = logicModel.SelectedParametr.Split(',')[0],
+                            Value = CreteParameterTableSql(templatePatent.RegNumberPatent, "RegNumPatent", typeof(long)),
+                            TypeName = "dbo.PatentRegNum",
+                            SqlDbType = SqlDbType.Structured
+                        });
+                }
+            }
+            catch (Exception ex)
+            {
+                Loggers.Log4NetLogger.Error(ex);
             }
         }
+
         /// <summary>
         /// Выгрузка всех шаблонов в БД
         /// </summary>
@@ -233,6 +271,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
             {
                 var xml = new XmlReadOrWrite();
                 var cardFace = new CardFaceUl() {Card = new Card()};
+                Automation.Database.CommandTimeout = 120000;
                 var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 9);
                 if (logicModel != null)
                 {
@@ -314,6 +353,35 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
             }
             return null;
         }
+
+        /// <summary>
+        /// Собираем модель карточки Только АСК НДС по банку и покупкам продажам
+        /// </summary>
+        /// <param name="inn">ИНН</param>
+        /// <param name="year">Год выгрузки</param>
+        /// <returns></returns>
+        public CardFaceUl CardUiAskNds(string inn, int year)
+        {
+            try
+            {
+                var cardFace = new CardFaceUl() { Card = new Card() };
+                Automation.Database.CommandTimeout = 120000;
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 29);
+                if (logicModel != null)
+                {
+                    cardFace.FullReportAskNds = Automation.Database.SqlQuery<FullReportAskNds>(logicModel.SelectUser,
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
+                        new SqlParameter(logicModel.SelectedParametr.Split(',')[1], year)).ToArray();
+                }
+                return cardFace;
+            }
+            catch (Exception ex)
+            {
+                Loggers.Log4NetLogger.Error(ex);
+            }
+            return null;
+        }
+
         /// <summary>
         /// Book Sales Книги покупок продаж на банк
         /// </summary>

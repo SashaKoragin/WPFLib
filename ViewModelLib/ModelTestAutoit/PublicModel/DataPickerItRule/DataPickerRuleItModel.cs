@@ -44,10 +44,29 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.DataPickerItRule
         /// Проверка Validation
         /// </summary>
         /// <returns></returns>
-        public bool IsValidation()
+        public bool IsValidationFull()
+        {
+            IsValidationDateStart();
+            IsValidationCountRow();
+            return IsValid;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool IsValidationDateStart()
         {
             IsValid = false;
             RaisePropertyChanged("DateStart");
+            return IsValid;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool IsValidationCountRow()
+        {
             IsValid = false;
             RaisePropertyChanged("CountRow");
             return IsValid;
