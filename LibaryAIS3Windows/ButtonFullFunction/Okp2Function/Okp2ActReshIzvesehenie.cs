@@ -460,7 +460,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                             //Если есть просрочка то не отправляем документ плательщику 
                             if (journal.IsPriznak)
                             {
-                                SaveSendDoc(libraryAutomation, journal, "Акт успешно выставлено!!!", "Акт", 0, 0);
+                                SaveSendDoc(libraryAutomation, journal, "Акт успешно выставлено!!!", "Акт", true);
                             }
                             else
                             {
@@ -587,7 +587,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                                 }
                             }
                             //Документ сохранить
-                            SaveSendDoc(libraryAutomation, journal, "Извещение успешно выставлено!!!", "Извещение", -30, 30, senderSelect);
+                            SaveSendDoc(libraryAutomation, journal, "Извещение успешно выставлено!!!", "Извещение",false, senderSelect);
                             MouseCloseForm();
                         }
                     }
@@ -657,7 +657,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                                     //Если есть просрочка то не отправляем документ плательщику 
                                     if (journal.IsPriznak)
                                     {
-                                        SaveSendDoc(libraryAutomation, journal, "Решение успешно выставлено!!!", "Решение", 0, 0);
+                                        SaveSendDoc(libraryAutomation, journal, "Решение успешно выставлено!!!", "Решение", true);
                                     }
                                     else
                                     {
@@ -703,19 +703,86 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
             AutoItX.Sleep(1000);
         }
         /// <summary>
-        /// Метод закрытия комплекса менроприятий КНП 1151020
+        /// Метод закрытия комплекса мероприятий КНП 1151020
         /// </summary>
         /// <param name="libraryAutomation">Библиотека Автомата</param>
         /// <param name="journal">Журнал</param>
         public void CreateForm1151020(LibraryAutomations libraryAutomation, TaxJournal121 journal)
         {
-            if (journal.GlobalProcessColor == "ff0000")
+            if (journal.GlobalColor == "ff0000")
             {
                 return;
             }
+            if (journal.GlobalColor == "6400")
+            {
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.StartKnp);
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex121);
+                AutoItX.WinWait(Journal129AndJournal121.WinNameComplex);
+                AutoItX.WinActivate(Journal129AndJournal121.WinNameComplex);
+                LibraryAutomations libraryAutomationWin = new LibraryAutomations(Journal129AndJournal121.WinNameComplex);
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin, Journal129AndJournal121.WinOkCloseComplex);
+                AutoItX.Sleep(1000);
+                return;
+            }
+            var isError = false;
             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.StartKnp);
-            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex121);
-            AutoItX.Sleep(2000);
+            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.WinErrorWin) != null){
+                libraryAutomation.InvokePattern(libraryAutomation.IsEnableElements(Journal129AndJournal121.WinErrorWin));
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.OpenKnp);
+            }
+            while (true)
+            {
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.CloseKnp);
+                AutoItX.Sleep(1000);
+                while (true)
+                {
+                    LibraryAutomations libraryAutomationSign = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomation.RootAutomationElements));
+                    if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewWindowEnable, null, true, 40, 0, false, ';') != null)
+                    {
+                        libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
+                        libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
+                        var memo = libraryAutomationSign.SelectAutomationColrction(libraryAutomationSign.FindElement);
+                        var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == "Нарушения не выявлены");
+                        libraryAutomationSign.ClickElement(elemClick);
+                        libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewOkEdit));
+                        AutoItX.Sleep(1000);
+                        if (AutoItX.WinExists(Journal129AndJournal121.NewWarningError) != 0)
+                        {
+                            AutoItX.WinActivate(Journal129AndJournal121.NewWarningError);
+                            AutoItX.Send(ButtonConstant.Enter);
+                            libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
+                            libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
+                            memo = libraryAutomationSign.SelectAutomationColrction(libraryAutomationSign.FindElement);
+                            elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == "Выявлены нарушения (но не учитываются в 2НК)");
+                            libraryAutomationSign.ClickElement(elemClick);
+                            libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewOkEdit));
+                            isError = true;
+                        }
+                        AutoItX.WinWait(Journal129AndJournal121.NewWarningOk);
+                        AutoItX.WinActivate(Journal129AndJournal121.NewWarningOk);
+                        libraryAutomationSign = new LibraryAutomations(Journal129AndJournal121.NewWarningOk);
+                        libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewWarningButtonOk));
+                        AutoItX.Sleep(1000);
+                        break;
+                    }
+                }
+                break;
+            }
+            if (isError)
+            {
+                WindowsAis3 win = new WindowsAis3();
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                AutoItX.Sleep(1000);
+            }
+            else
+            {
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex121);
+                AutoItX.WinWait(Journal129AndJournal121.WinNameComplex);
+                AutoItX.WinActivate(Journal129AndJournal121.WinNameComplex);
+                LibraryAutomations libraryAutomationWin = new LibraryAutomations(Journal129AndJournal121.WinNameComplex);
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin, Journal129AndJournal121.WinOkCloseComplex);
+                AutoItX.Sleep(1000);
+            }
         }
 
         /// <summary>
@@ -802,13 +869,12 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
         /// <param name="journal">Журнал</param>
         /// <param name="messageInfo">Сообщение о документе</param>
         /// <param name="typeDocument">Тип документа</param>
-        /// <param name="x">Координата смещения x для отправки</param>
-        /// <param name="y">Координата смещения y для отправки</param>
+        /// <param name="isClose">Отправить или закрыть</param>
         /// <param name="sender">Подписант на форме документа</param>
-        private void SaveSendDoc(LibraryAutomations libraryAutomation, TaxJournal121 journal,string messageInfo,string typeDocument, int x = -30, int y = 30, string sender = null)
+        private void SaveSendDoc(LibraryAutomations libraryAutomation, TaxJournal121 journal,string messageInfo,string typeDocument, bool isClose = false, string sender = null)
         {
             Okp2GlobalFunction globalFunction = new Okp2GlobalFunction();
-            globalFunction.SignAndSendDoc(libraryAutomation,x,y, sender);
+            globalFunction.SignAndSendDoc(libraryAutomation, isClose, sender);
             journal.IsLk3 = globalFunction.IsLk3;
             journal.IsMail = globalFunction.IsMail;
             journal.IsTks = globalFunction.IsTks;

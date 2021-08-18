@@ -250,19 +250,31 @@
         /// <summary>
         /// ТКС
         /// </summary>
-        public static string Tks = "AutomationId:ViewA01Host\\AutomationId:elementHost1\\Name:elementHost1\\ClassName:CamA01MainView\\ClassName:TabControl\\ClassName:ScrollViewer\\Name:ТКС";
+        public static string Tks = "AutomationId:ViewA01Host\\AutomationId:elementHost1\\ClassName:CamA01ClaimView\\Name:ТКС";
         /// <summary>
         /// ЛК 3
         /// </summary>
-        public static string Lk3 = "AutomationId:ViewA01Host\\AutomationId:elementHost1\\Name:elementHost1\\ClassName:CamA01MainView\\ClassName:TabControl\\ClassName:ScrollViewer\\Name:ЛК3";
+        public static string Lk3 = "AutomationId:ViewA01Host\\AutomationId:elementHost1\\ClassName:CamA01ClaimView\\Name:ЛК3";
         /// <summary>
         /// Почта
         /// </summary>
-        public static string Mail = "AutomationId:ViewA01Host\\AutomationId:elementHost1\\Name:elementHost1\\ClassName:CamA01MainView\\ClassName:TabControl\\ClassName:ScrollViewer\\Name:Почта";
+        public static string Mail = "AutomationId:ViewA01Host\\AutomationId:elementHost1\\ClassName:CamA01ClaimView\\Name:Почта";
         /// <summary>
-        /// Координаты от точки закрыть проблемный блок на Win 10 и Win 7 т.к. используется разное окно из разных api.
+        /// Закрыть форму
         /// </summary>
-        public static string Close = "Name:Отправка документов\\LocalizedControlType:название\\Name:Закрыть";
+        public static string Close = "Name:Отправка документов\\AutomationId:TitleBar\\Name:Закрыть";
+        /// <summary>
+        /// Отправить
+        /// </summary>
+        public static string SendMail = "Name:Отправка документов\\AutomationId:ViewA01Host\\AutomationId:elementHost1\\ClassName:CamA01ClaimView\\AutomationId:SendCommand\\Name:Отправить";
+        /// <summary>
+        /// Закрыть форму
+        /// </summary>
+        public static string CloseWin = "AutomationId:TitleBar\\Name:Закрыть";
+        /// <summary>
+        /// Отправить
+        /// </summary>
+        public static string SendMailWin = "AutomationId:ViewA01Host\\AutomationId:elementHost1\\ClassName:CamA01ClaimView\\AutomationId:SendCommand\\Name:Отправить";
 
         /// <summary>
         /// Координаты от точки закрыть проблемный блок на Win 10 и Win 7 т.к. используется разное окно из разных api.
@@ -294,6 +306,10 @@
         /// Начать углублубленную налоговую проверку
         /// </summary>
         public static string StartKnp = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Начать углубленную КНП";
+        /// <summary>
+        /// Окно ошибки 
+        /// </summary>
+        public static string WinErrorWin = "Name:Внимание\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:ОК";
         /// <summary>
         /// Открыть комплекс мероприятий
         /// </summary>
@@ -332,6 +348,10 @@
         /// Окно Внимание!
         /// </summary>
         public static string NewWarningOk = "Внимание!";
+        /// <summary>
+        /// Окно ошибка
+        /// </summary>
+        public static string NewWarningError = "Ошибка";
         /// <summary>
         /// На новом окне кнопка Button
         /// </summary>
@@ -459,6 +479,11 @@
         /// Решение о привлечении к ответственности
         /// </summary>
         public static string ReshNo = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Результаты рассмотрения материалов проверки\\Name:Решение о привлечении к ответственности\\AutomationId:Header\\Name:Решение о привлечении к ответственности";
+        
+        /// <summary>
+        /// Завершить проверку текст
+        /// </summary>
+        public static string CloseKnp = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Камеральная налоговая проверка\\Name:Завершить проверку\\Name:Завершить проверку\\Name:Завершить проверку";
         /// <summary>
         /// Закрыть комплекс мероприятий по 121 статье
         /// </summary>
@@ -481,7 +506,7 @@
         /// </summary>
         public static string WinCloseError = "Name:Сохранить изменения. Решение о привлечении к ответственности\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnNo";
 
-        //Проставка статуса 1НК Нарушения выявленны или нет
+        ///Проставка статуса 1НК Нарушения выявленны или нет
         private static string WinError = "Name:Нарушения\\AutomationId:VnpSignViolControl\\";
         /// <summary>
         /// Таблица

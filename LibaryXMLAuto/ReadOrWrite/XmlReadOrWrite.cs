@@ -2,6 +2,7 @@
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using LibaryXMLAuto.ModelXmlAuto.MigrationReport;
 
 namespace LibaryXMLAuto.ReadOrWrite
@@ -43,7 +44,6 @@ namespace LibaryXMLAuto.ReadOrWrite
                 stream.Position = 0;
                 XmlReader reader = new XmlTextReader(stream);
                 XmlSerializer serializer = new XmlSerializer(objType);
-               
                 if (serializer.CanDeserialize(reader))
                 {
                     object o = serializer.Deserialize(reader);

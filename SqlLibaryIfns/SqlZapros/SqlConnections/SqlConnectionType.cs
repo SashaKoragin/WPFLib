@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
+using FastMember;
 using LibaryXMLAuto.ModelXmlSql.ConvertModel.DesirializationSql;
 using SqlLibaryIfns.SqlZapros.SobytieSql;
 
@@ -179,15 +181,15 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
         /// <summary>
         /// Возврат string из for xml command
         /// </summary>
-        /// <param name="connectionstring">Строка соединения с БД</param>
-        /// <param name="sqlforxmlcommand">Комманда возврата string</param>
+        /// <param name="connectionString">Строка соединения с БД</param>
+        /// <param name="sqlForXmlCommand">Команда возврата string</param>
         /// <returns></returns>
-        public string XmlString(string connectionstring, string sqlforxmlcommand)
+        public string XmlString(string connectionString, string sqlForXmlCommand)
         {
             StringBuilder sb = new StringBuilder();
-            using (var con = new SqlConnection(connectionstring))
+            using (var con = new SqlConnection(connectionString))
             {
-                using (var cmd = new SqlCommand(sqlforxmlcommand, con))
+                using (var cmd = new SqlCommand(sqlForXmlCommand, con))
                 {
                     cmd.Connection.Open();
                     using (XmlReader reader = cmd.ExecuteXmlReader())

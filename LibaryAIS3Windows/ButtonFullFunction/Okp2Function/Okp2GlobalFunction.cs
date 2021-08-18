@@ -27,19 +27,28 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
         /// Автоматизация глобального блока надо добавить сохранение
         /// </summary>
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
-        /// <param name="x">Координата смещения x для отправки</param>
-        /// <param name="y">Координата смещения y для отправки</param>
+        /// <param name="isClose">Координата смещения x для отправки</param>
         /// <param name="sender">Подписант на форме документа</param>
-        public void SignAndSendDoc(LibraryAutomations libraryAutomation, int x =-30, int y = 30, string sender = null)
+        public void SignAndSendDoc(LibraryAutomations libraryAutomation, bool isClose = false, string sender = null)
         {
             while (true)
             {
                 LibraryAutomations libraryAutomationDiaolog = new LibraryAutomations(WindowsAis3.AisNalog3);
                 AutoItX.Sleep(2000);
                 LibraryAutomations libraryAutomationSign = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomationDiaolog.RootAutomationElements));
+                if (!string.IsNullOrEmpty(sender))
+                {
+                    if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.SenderSign, null, true) != null)
+                    {
+                        libraryAutomationSign.SetValuePattern(sender);
+                    }
+                }
                 if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewPrint, null, true) != null)
                 {
                     libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
+                    AutoItX.Sleep(10000);
+                    PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("AcroRd32", true);
+                    PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("FoxitPhantom");
                     while (true)
                     {
                         var toggle = libraryAutomationSign.TogglePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewCheks));
@@ -58,13 +67,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                         {
                             while (true)
                             {
-                                if (!string.IsNullOrEmpty(sender))
-                                {
-                                    if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.SenderSign, null, true) != null)
-                                    {
-                                        libraryAutomationSign.SetValuePattern(sender);
-                                    }
-                                }
                                 if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.Sign, null, true) != null)
                                 {
                                     libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
@@ -95,20 +97,93 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                 {
                     var auto = libraryAutomation.FindElement;
                     libraryAutomation.IsEnableElements(Journal129AndJournal121.Tks, auto);
-                    IsTks = libraryAutomation.FindElement.Current.IsEnabled;
+                    var statusTks = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiersState(libraryAutomation.FindElement);
                     libraryAutomation.IsEnableElements(Journal129AndJournal121.Mail, auto);
-                    IsMail = libraryAutomation.FindElement.Current.IsEnabled;
+                    var statusMail = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiersState(libraryAutomation.FindElement);
                     libraryAutomation.IsEnableElements(Journal129AndJournal121.Lk3, auto);
-                    IsLk3 = libraryAutomation.FindElement.Current.IsEnabled;
+                    var statusLk3 = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiersState(libraryAutomation.FindElement);
+                    if (statusTks == 0)
+                    {
+                        IsTks = true;
+                    }
+                    if (statusMail == 0)
+                    {
+                        IsMail = true;
+                    }
+                    if (statusLk3 == 0)
+                    {
+                        IsLk3 = true;
+                    }
                     while (true)
                     {
-                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.Close, null, true) != null)
+                        if (isClose)
                         {
-                            libraryAutomation.ClickElements(Journal129AndJournal121.Close, null, false, 25, x, y);
-                            break;
+                            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.Close, null, true) != null)
+                            {
+                                libraryAutomation.ClickElements(Journal129AndJournal121.Close);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.SendMail, null, true) != null)
+                            {
+                                libraryAutomation.ClickElements(Journal129AndJournal121.SendMail);
+                                break;
+                            }
                         }
                     }
                     break;
+                }
+                try
+                {
+                    LibraryAutomations libraryAutomationWindows = new LibraryAutomations(Journal129AndJournal121.WindowSend);
+                    if (libraryAutomationWindows.RootAutomationElements != null)
+                    {
+                        var auto = libraryAutomationWindows.RootAutomationElements;
+                        libraryAutomationWindows.IsEnableElements(Journal129AndJournal121.Tks, auto);
+                        var statusTks = libraryAutomationWindows.ParseElementLegacyIAccessiblePatternIdentifiersState(libraryAutomationWindows.FindElement);
+                        libraryAutomationWindows.IsEnableElements(Journal129AndJournal121.Mail, auto);
+                        var statusMail = libraryAutomationWindows.ParseElementLegacyIAccessiblePatternIdentifiersState(libraryAutomationWindows.FindElement);
+                        libraryAutomationWindows.IsEnableElements(Journal129AndJournal121.Lk3, auto);
+                        var statusLk3 = libraryAutomationWindows.ParseElementLegacyIAccessiblePatternIdentifiersState(libraryAutomationWindows.FindElement);
+                        if (statusTks == 0)
+                        {
+                            IsTks = true;
+                        }
+                        if (statusMail == 0)
+                        {
+                            IsMail = true;
+                        }
+                        if (statusLk3 == 0)
+                        {
+                            IsLk3 = true;
+                        }
+                        while (true)
+                        {
+                            if (isClose)
+                            {
+                                if (libraryAutomationWindows.IsEnableElements(Journal129AndJournal121.CloseWin, null, true) != null)
+                                {
+                                    libraryAutomationWindows.ClickElements(Journal129AndJournal121.CloseWin);
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                if (libraryAutomationWindows.IsEnableElements(Journal129AndJournal121.SendMailWin, null, true) != null)
+                                {
+                                    libraryAutomationWindows.ClickElements(Journal129AndJournal121.SendMailWin);
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+                catch
+                {
+                    // ignored
                 }
             }
         }
