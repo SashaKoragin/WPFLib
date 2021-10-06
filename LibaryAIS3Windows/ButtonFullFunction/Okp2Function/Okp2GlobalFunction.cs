@@ -48,7 +48,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                     libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
                     AutoItX.Sleep(10000);
                     PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("AcroRd32", true);
-                    PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("FoxitPhantom");
+                    PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("FoxitPhantom",true);
                     while (true)
                     {
                         var toggle = libraryAutomationSign.TogglePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewCheks));

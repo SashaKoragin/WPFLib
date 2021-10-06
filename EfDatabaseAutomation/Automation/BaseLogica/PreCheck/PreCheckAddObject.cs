@@ -575,6 +575,54 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             //Отсутствует лицо сохранение не возможно
         }
         /// <summary>
+        /// Загрузка деклараций всех в БД
+        /// </summary>
+        /// <param name="declarationAll">Декларации</param>
+        /// <param name="declarationData">Массив строк декларации</param>
+        public void AddDeclarationAllModel(DeclarationAll declarationAll, ArrayBodyDoc declarationData)
+        {
+            if (!(from declarationAlls in Automation.DeclarationAlls
+                  where declarationAlls.RegNumDecl == declarationAll.RegNumDecl
+                select new { DeclarationAlls = declarationAlls }).Any())
+            {
+                XmlReadOrWrite xml = new XmlReadOrWrite();
+                var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+                var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}DeclarationDataAll.xml";
+                xml.CreateXmlFile(xmlFile, declarationData, typeof(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc));
+                Automation.DeclarationAlls.Add(declarationAll);
+                try
+                {
+                    Automation.SaveChanges();
+                    BulkInsertIntoDb(xsdFile, xmlFile);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                    {
+                        Trace.WriteLine(validationError.Entry.Entity.ToString());
+                        Trace.WriteLine("");
+                        foreach (DbValidationError err in validationError.ValidationErrors)
+                        {
+                            Trace.WriteLine(err.ErrorMessage);
+                        }
+                    }
+                }
+            }
+            //Обновление данных и внутренних полей не требуется
+        }
+        /// <summary>
+        /// Получить информацию по декларации расхождения
+        /// </summary>
+        /// <param name="regNumDecl"></param>
+        /// <returns></returns>
+        public decimal SumDeclaration(int regNumDecl)
+        {
+          return Automation.Database.SqlQuery<decimal>(
+                @"Select SUM(CONVERT(decimal(28,2),ISNULL(Error,0))) as Error From DeclarationDataAll " +
+                " Where CodeString in ('П0743', 'П0043', 'П0044') and RegNumDecl = " +
+                regNumDecl).FirstOrDefault();
+        }
+        /// <summary>
         /// Добавление выписок в БД 
         /// </summary>
         /// <param name="cashBankAllUlFace">Выписки</param>
@@ -673,6 +721,24 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                                                             || patent.IsParseSvedObject == false
                                                             || patent.IsParseParametrNalog == false
                                                             || patent.IsParseSvedFactPatent == false).Take(150).ToArray();
+        }
+        /// <summary>
+        /// Выборка первых 100 в которых нет ошибок
+        /// </summary>
+        /// <returns></returns>
+        public FlFaceMainRegistration[] FlSelect100()
+        {
+            return Automation.FlFaceMainRegistrations.Where(fl => fl.IdStatus == 1 || fl.IdStatus == 2 || fl.IdStatus == 3
+                                                                  && fl.IdError == null).Take(100).ToArray();
+        }
+        /// <summary>
+        /// Выборка пола м/ж 
+        /// </summary>
+        /// <param name="name">Имя испытуемого</param>
+        /// <returns></returns>
+        public HName SelectName(string name)
+        {
+            return Automation.HNames.Where(fl => fl.N142 == name).FirstOrDefault();
         }
 
         /// <summary>

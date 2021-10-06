@@ -28,6 +28,8 @@
 			<xs:element ref="DeliveryDocument" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="IsPatentParse" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="AllPatent" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="TaxJournal121Error" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="AllJournalRegistrationFl" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxJournalAutoWebPage">
@@ -1021,6 +1023,187 @@
 	<xs:element name="IndexId" type="xs:long">
 		<xs:annotation>
 			<xs:documentation>Индекс построения (Нумерация)</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TaxJournal121Error">
+		<xs:annotation>
+			<xs:documentation>Журнал правонарушений ОКП 1</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Id"/>
+				<xs:element ref="RegNumDeclaration"/>
+				<xs:element ref="God"/>
+				<xs:element ref="KorrectNumber"/>
+				<xs:element ref="Fid"/>
+				<xs:element ref="IdComplex"/>
+				<xs:element ref="DateStartCheck"/>
+				<xs:element ref="DateFinishCheck"/>
+				<xs:element ref="DateStartDeclaration"/>
+				<xs:element ref="DateFinishDeclaration"/>
+				<xs:element ref="DateFinishKnp"/>
+				<xs:element ref="DataCreate"/>
+			</xs:sequence>
+			<xs:attribute name="NameKnd" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование КНД</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Knd" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КНД</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Period" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Период</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameFace" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование лица</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageInfoR1" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Информация о нарушении</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageError" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение об ошибки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="LoginUser">
+				<xs:annotation>
+					<xs:documentation>Пользователь</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="KorrectNumber" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Номер кооректировки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IdComplex" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>УН комплекса</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateFinishKnp" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата окончания КНП</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AllJournalRegistrationFl">
+		<xs:annotation>
+			<xs:documentation>Физические лица регистрации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton"/>
+				<xs:element ref="IdNum"/>
+				<xs:element ref="Fid"/>
+				<xs:element ref="DateOfBirth"/>
+				<xs:element ref="DateCreateDoc"/>
+				<xs:element ref="DateCreate"/>
+			</xs:sequence>
+			<xs:attribute name="Inn">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:whiteSpace value="collapse"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="F" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="I" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="O" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PlaceBirth" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Место рождения</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CodeSd" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код СПДУЛ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Document" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Документ, удостоверяющий личность</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="SeriaDoc" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Серия документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NumberDoc" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="WhoDoc" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Кем выдан документ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CodePodr" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Код подразделения</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Citizenship" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Гражданство</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Address" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Адрес места жительства</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageStatus" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageError">
+				<xs:annotation>
+					<xs:documentation>Ошибка</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateOfBirth" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата рождения</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DateCreateDoc" type="xs:dateTime" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Дата выдачи документа</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

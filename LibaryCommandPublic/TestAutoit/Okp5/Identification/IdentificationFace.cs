@@ -84,6 +84,38 @@ namespace LibraryCommandPublic.TestAutoit.Okp5.Identification
             });
         }
 
+        /// <summary>
+        /// Налоговое администрирование\Контрольная работа(налоговые проверки)\
+        /// 121. Камеральная налоговая проверка\03. Реестр налоговых деклараций(расчетов), сведения о КНП(все)
+        /// </summary>
+        /// <param name="statusButton">Кнопка запустить задание</param>
+        /// <param name="pathPdfTemp">Genm к Temp</param>
+        public void StartRegisterDeclarationsErrorOkp1(StatusButtonMethod statusButton, string pathPdfTemp)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                try
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        clickerButton.Click40(statusButton, pathPdfTemp);
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Windows.MessageBox.Show(e.ToString());
+                }
+            });
+        }
 
     }
 }

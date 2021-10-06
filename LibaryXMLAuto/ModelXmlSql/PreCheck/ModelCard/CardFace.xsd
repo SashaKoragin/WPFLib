@@ -115,41 +115,6 @@
 					<xs:documentation>Регион</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="DistrictAddress" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>Район</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<xs:attribute name="TownAddress" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>Город</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<xs:attribute name="LocalityAddress" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>Населенный пункт</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<xs:attribute name="StreetAddress" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>Улица</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<xs:attribute name="HouseAddress" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>Дом</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<xs:attribute name="BodyAddress" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>Корпус строение</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
-			<xs:attribute name="ApartmentAddress" type="xs:string">
-				<xs:annotation>
-					<xs:documentation>Квартира</xs:documentation>
-				</xs:annotation>
-			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="DateResh" type="xs:dateTime" nillable="true">

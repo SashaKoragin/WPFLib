@@ -219,6 +219,24 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddRegNumberPatent?userIdGuid={userIdGuid}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task AddRegNumberPatent(TemplatePatent templatePatent, string userIdGuid);
-
+        /// <summary>
+        /// Добавление ИНН для регистрации учетных действий
+        /// http://localhost:8050/ServiceAutomation/AddFlFaceMainRegistration
+        /// </summary>
+        /// <param name="templateInnPattern">Шаблон для добавления</param>
+        /// <param name="userIdGuid">GUID Пользователя</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddFlFaceMainRegistration?userIdGuid={userIdGuid}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task AddFlFaceMainRegistration(TemplateInnPattern templateInnPattern, string userIdGuid);
+        /// <summary>
+        /// Принудительное завершение обработки!
+        /// http://localhost:8050/ServiceAutomation/CheckStatusFl
+        /// </summary>
+        /// <param name="inn">ИНН</param>
+        /// <param name="isExecute">Id ошибки</param>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/CheckStatusFl?isExecute={isExecute}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task CheckStatusFl(string inn, bool isExecute);
     }
 }

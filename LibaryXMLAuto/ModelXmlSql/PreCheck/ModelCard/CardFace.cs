@@ -499,20 +499,6 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
         
         private string regionAddressField;
         
-        private string districtAddressField;
-        
-        private string townAddressField;
-        
-        private string localityAddressField;
-        
-        private string streetAddressField;
-        
-        private string houseAddressField;
-        
-        private string bodyAddressField;
-        
-        private string apartmentAddressField;
-        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public System.Nullable<System.DateTime> DataCreateBranch {
@@ -576,83 +562,6 @@ namespace LibaryXMLAutoModelXmlSql.PreCheck.ModelCard {
             }
             set {
                 this.regionAddressField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string DistrictAddress {
-            get {
-                return this.districtAddressField;
-            }
-            set {
-                this.districtAddressField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string TownAddress {
-            get {
-                return this.townAddressField;
-            }
-            set {
-                this.townAddressField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string LocalityAddress {
-            get {
-                return this.localityAddressField;
-            }
-            set {
-                this.localityAddressField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string StreetAddress {
-            get {
-                return this.streetAddressField;
-            }
-            set {
-                this.streetAddressField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string HouseAddress {
-            get {
-                return this.houseAddressField;
-            }
-            set {
-                this.houseAddressField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string BodyAddress {
-            get {
-                return this.bodyAddressField;
-            }
-            set {
-                this.bodyAddressField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string ApartmentAddress {
-            get {
-                return this.apartmentAddressField;
-            }
-            set {
-                this.apartmentAddressField = value;
             }
         }
     }

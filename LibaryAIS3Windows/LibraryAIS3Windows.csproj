@@ -88,6 +88,7 @@
     <Compile Include="ButtonFullFunction\PreCheck\DataBaseElementAdd.cs" />
     <Compile Include="ButtonFullFunction\PreCheck\PreCheckFunction.cs" />
     <Compile Include="ButtonFullFunction\PublicGlobalFunction\PublicGlobalFunction.cs" />
+    <Compile Include="ButtonFullFunction\RegistrationFunction\AcceptanceDocumentsFunction.cs" />
     <Compile Include="ButtonsClikcs\ButtonConstant.cs" />
     <Compile Include="ButtonsClikcs\ClikcCheker\Cheker.cs" />
     <Compile Include="ButtonsClikcs\KclicerButton.cs" />

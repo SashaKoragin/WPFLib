@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using EfDatabaseAutomation.Automation.Base;
 
@@ -79,6 +81,47 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace
                     context.SaveChanges();
                 }
           }
+        }
+        /// <summary>
+        /// Подстановка статуса принудительно обработан
+        /// </summary>
+        /// <param name="inn">ИНН</param>
+        /// <param name="isExecute">Ун принудительного статуса</param>
+        public void IsCheckErrorRegInn(string inn, bool isExecute)
+        {
+            var model = Automation.FlFaceMainRegistrations.FirstOrDefault(fl => fl.Inn == inn);
+            if (model != null)
+            {
+                var modelEdit = new FlFaceMainRegistration()
+                {
+                    IdFl = model.IdFl,
+                    IdNum = model.IdNum,
+                    Fid = model.Fid,
+                    Inn = model.Inn,
+                    F = model.F,
+                    I = model.I,
+                    O = model.O,
+                    DateOfBirth = model.DateOfBirth,
+                    PlaceBirth = model.PlaceBirth,
+                    CodeSd = model.CodeSd,
+                    Document = model.Document,
+                    SeriaDoc = model.SeriaDoc,
+                    NumberDoc = model.NumberDoc,
+                    DateCreateDoc = model.DateCreateDoc,
+                    WhoDoc = model.WhoDoc,
+                    CodePodr = model.CodePodr,
+                    Citizenship = model.Citizenship,
+                    Address = model.Address,
+                    IdStatus = isExecute ? model.IdStatus : 1,
+                    IdError = isExecute ? (int?)5 : null,
+                    DateCreate = model.DateCreate
+                };
+                using (var context = new Base.Automation())
+                {
+                    context.Entry(modelEdit).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+            }
         }
 
         /// <summary>

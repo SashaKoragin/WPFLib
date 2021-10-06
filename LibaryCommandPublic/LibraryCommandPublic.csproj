@@ -93,6 +93,7 @@
     <Compile Include="TestAutoit\PublicCommand\CommandSnuOneAuto.cs" />
     <Compile Include="TestAutoit\RaschBydj\Migration\MigrationCKlikCommand.cs" />
     <Compile Include="TestAutoit\RaschBydj\Vedomost1\StartVedomost1.cs" />
+    <Compile Include="TestAutoit\Reg\AcceptanceDocuments\AcceptanceDocuments.cs" />
     <Compile Include="TestAutoit\Reg\Status\StatusReg.cs" />
     <Compile Include="TestAutoit\Reg\TechinicalUpdate\TchinicalUpdate.cs" />
     <Compile Include="TestAutoit\Reg\TreatmentFPD\Zemly\Zemly.cs" />

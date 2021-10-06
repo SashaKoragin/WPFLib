@@ -58,7 +58,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                         case "Сокращенное наименование ЮЛ":
                             uiFace.NameSmall = value;
                             break;
-                        case "Адрес МН ЮЛ":
+                        case "Адрес МН ЮЛ по КЛАДР":
                             uiFace.Address = value;
                             break;
                         case "Дата принятия решения о ликвидации":
@@ -252,29 +252,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                         case "Индекс":
                             branchUlFace.IndexAddress = value;
                             break;
-                        case "Субъект РФ /регион/":
+                        case "Адрес по КЛАДР":
                             branchUlFace.RegionAddress = value;
-                            break;
-                        case "Район":
-                            branchUlFace.DistrictAddress = value;
-                            break;
-                        case "Город":
-                            branchUlFace.TownAddress = value;
-                            break;
-                        case "Населенный пункт":
-                            branchUlFace.LocalityAddress = value;
-                            break;
-                        case "Улица":
-                            branchUlFace.StreetAddress = value;
-                            break;
-                        case "Дом /владение/":
-                            branchUlFace.HouseAddress = value;
-                            break;
-                        case "Корпус /строение/":
-                            branchUlFace.BodyAddress = value;
-                            break;
-                        case "Квартира /офис/":
-                            branchUlFace.ApartmentAddress = value;
                             break;
                     }
                 }
@@ -563,6 +542,49 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             };
             return declarationUlFace;
         }
+
+        /// <summary>
+        /// Данные декларации всей
+        /// </summary>
+        /// <param name="libraryAutomation">Библиотека Автоматизации</param>
+        /// <param name="automationElement">Автоматизированный элемент</param>
+        /// <returns>Возврат Рег номера декларации</returns>
+        public DeclarationAll AddDeclarationAll(LibraryAutomations libraryAutomation, AutomationElement automationElement)
+        {
+            DeclarationAll declarationAll = new DeclarationAll
+            {
+                RegNumDecl = Convert.ToInt64(Regex.Replace(
+                    libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("РегНомер"))), @"\s+", "")),
+                Psumm = Convert.ToDouble(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                    libraryAutomation
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("П-Сумма")))),
+                Knd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    .SelectAutomationColrction(automationElement)
+                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КНД"))),
+                NameDocument = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    .SelectAutomationColrction(automationElement)
+                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Документ"))),
+                VidDoc = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    .SelectAutomationColrction(automationElement)
+                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Вид документа"))),
+                NumberKor = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                    libraryAutomation
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Номер корректировки")))),
+                Period = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                    .SelectAutomationColrction(automationElement)
+                    .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный период"))),
+                God = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                    libraryAutomation
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный год"))))
+            };
+            return declarationAll;
+        }
+
         /// <summary>
         /// Проверка есть ли декларация в БД
         /// </summary>
@@ -756,10 +778,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             preCheck.Dispose();
         }
 
-
-
-
-
         /// <summary>
         /// Наименование файла
         /// </summary>
@@ -794,6 +812,50 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             preCheck.Dispose();
         }
 
+        /// <summary>
+        /// Раскладка деклараций по другой модели
+        /// </summary>
+        /// <param name="fileName">Имя файла</param>
+        /// <param name="declarationAll">Декларация</param>
+        public void AddDeclarationDataAll(string fileName, DeclarationAll declarationAll)
+        {
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            var connectionString = string.Format($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={fileName}; Extended Properties=Excel 12.0;");
+            var adapter = new OleDbDataAdapter("Select * From [Sheet0$]", connectionString);
+            var ds = new DataSet();
+            adapter.Fill(ds, "DeclarationAll");
+            DataTable data = ds.Tables["DeclarationAll"];
+            var listDeclarationDataFace = new ArrayBodyDoc() { DeclarationDataAll = new EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DeclarationDataAll[data.Rows.Count] };
+            var i = 0;
+            foreach (DataRow row in data.Rows)
+            {
+                listDeclarationDataFace.DeclarationDataAll[i] = new EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DeclarationDataAll()
+                {
+                    RegNumDecl = declarationAll.RegNumDecl,
+                    CodeString = row.Field<string>("Код строки"),
+                    NameParametr = row.Field<string>("Наименование показателя"),
+                    CodeParametr = row.Field<string>("Код показателя"),
+                    DataFace = row.Field<string>("По данным плательщика"),
+                    DataInspector = row.Field<string>("По данным инспектора"),
+                    Error = row.Field<string>("Отклонение")
+                };
+                i++;
+            }
+            preCheck.AddDeclarationAllModel(declarationAll, listDeclarationDataFace);
+            preCheck.Dispose();
+        }
+        /// <summary>
+        /// Сумма расхождения
+        /// </summary>
+        /// <param name="regNumDecl">Регистрационный номер декларации</param>
+        /// <returns></returns>
+        public decimal DeclarationSumError(int regNumDecl)
+        {
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            var sum = preCheck.SumDeclaration(regNumDecl);
+            preCheck.Dispose();
+            return sum;
+        }
         /// <summary>
         /// Добавление объектов собственности Руководителей и учередителей
         /// </summary>

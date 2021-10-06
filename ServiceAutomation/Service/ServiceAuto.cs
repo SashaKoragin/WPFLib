@@ -407,5 +407,36 @@ namespace ServiceAutomation.Service
                 model.Dispose();
             });
         }
+        /// <summary>
+        /// Добавление ИНН для регистрации учетных действий
+        /// </summary>
+        /// <param name="templateInnPattern">Шаблон для добавления</param>
+        /// <param name="userIdGuid">GUID Пользователя</param>
+        /// <returns></returns>
+        public async Task AddFlFaceMainRegistration(TemplateInnPattern templateInnPattern, string userIdGuid)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                var model = new ModelGetPost();
+                model.AddFlFaceMainRegistration(templateInnPattern, userIdGuid);
+                model.Dispose();
+            });
+        }
+
+        /// <summary>
+        /// Подстановка статуса принудительно обработан
+        /// </summary>
+        /// <param name="inn">ИНН</param>
+        /// <param name="isExecute">Ун принудительного статуса</param>
+        /// <returns></returns>
+        public async Task CheckStatusFl(string inn, bool isExecute)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                IdentificationAddorEditFace identification = new IdentificationAddorEditFace();
+                identification.IsCheckErrorRegInn(inn, isExecute);
+                identification.Dispose();
+            });
+        }
     }
 }

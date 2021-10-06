@@ -133,6 +133,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Okp1\Declaration121ActIsh\Declaration121ActIsh\FormDeclaration121ActIsh.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Okp1\Declaration121Error\Declaration121Error\FormDeclaration121Error.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Okp1\Declaration121\Declaration121\FormDeclaration121.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -206,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\RaschetBudg\VedRazd1\VedRaz1\VedRaz1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Registration\AcceptanceDocuments\UserControl\UserControlAcceptanceDocuments.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -344,6 +356,14 @@
     <Compile Include="Form\Automat\It\UserTemplateAndRule\UserControl\FormUserTemplateAndRule.xaml.cs">
       <DependentUpon>FormUserTemplateAndRule.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\Okp1\Declaration121ActIsh\DataContext\DataContextDeclaration121ActIsh.cs" />
+    <Compile Include="Form\Automat\Okp1\Declaration121ActIsh\Declaration121ActIsh\FormDeclaration121ActIsh.xaml.cs">
+      <DependentUpon>FormDeclaration121ActIsh.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Okp1\Declaration121Error\DataContext\DataContextDeclaration121Error.cs" />
+    <Compile Include="Form\Automat\Okp1\Declaration121Error\Declaration121Error\FormDeclaration121Error.xaml.cs">
+      <DependentUpon>FormDeclaration121Error.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\Okp1\Declaration121\DataContext\DataContextDeclaration121.cs" />
     <Compile Include="Form\Automat\Okp1\Declaration121\Declaration121\FormDeclaration121.xaml.cs">
       <DependentUpon>FormDeclaration121.xaml</DependentUpon>
@@ -419,6 +439,10 @@
     <Compile Include="Form\Automat\RaschetBudg\VedRazd1\DataContext\VedRazd1.cs" />
     <Compile Include="Form\Automat\RaschetBudg\VedRazd1\VedRaz1\VedRaz1.xaml.cs">
       <DependentUpon>VedRaz1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Registration\AcceptanceDocuments\DataContext\DataContextAcceptanceDocuments.cs" />
+    <Compile Include="Form\Automat\Registration\AcceptanceDocuments\UserControl\UserControlAcceptanceDocuments.xaml.cs">
+      <DependentUpon>UserControlAcceptanceDocuments.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Registration\ActualStatus\DataContext\DataContextActual.cs" />
     <Compile Include="Form\Automat\Registration\ActualStatus\UserControlStatus\ActualStatus.xaml.cs">

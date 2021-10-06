@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using System.Linq;
 using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.TaxJournalAuto;
@@ -45,6 +47,50 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
             Automation.TaxJournal121.Add(journal);
             Automation.SaveChanges();
         }
+        /// <summary>
+        /// Сохранение журнала Ошибок
+        /// </summary>
+        /// <param name="journal">Журнал сохраняем</param>
+        public void TaxJournal121Error(TaxJournal121Error journal)
+        {
+            if (!(from taxJournal121Error in Automation.TaxJournal121Error
+                  where taxJournal121Error.RegNumDeclaration == journal.RegNumDeclaration
+                  select new { TaxJournal121Error = taxJournal121Error }).Any())
+            {
+                Automation.TaxJournal121Error.Add(journal);
+                Automation.SaveChanges();
+            }
+        }
+        /// <summary>
+        /// Сохранение ФЛ в реестр
+        /// </summary>
+        /// <param name="fl">Физическое лицо</param>
+        public void SaveFlFace(FlFaceMainRegistration fl)
+        {
+            if ((from flFaceMainRegistrations in Automation.FlFaceMainRegistrations
+                  where flFaceMainRegistrations.Inn == fl.Inn
+                  select new { FlFaceMainRegistrations = flFaceMainRegistrations }).Any())
+            {
+                try
+                {
+                    Automation.Entry(fl).State = EntityState.Modified;
+                    Automation.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                    {
+                        Trace.WriteLine(validationError.Entry.Entity.ToString());
+                        Trace.WriteLine("");
+                        foreach (DbValidationError err in validationError.ValidationErrors)
+                        {
+                            Trace.WriteLine(err.ErrorMessage);
+                        }
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Выбор записи из БД Акта 
         /// </summary>

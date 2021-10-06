@@ -13,6 +13,8 @@ using ModelKbkOnKbk = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShe
 using HelpKbkAuto = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.HelpKbkAuto;
 using FormulNdfl = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.FormulNdfl;
 using DeliveryDocument = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.DeliveryDocument;
+using AllPatent = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.AllPatent;
+using TaxJournal121Error = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.TaxJournal121Error;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
 {
@@ -108,6 +110,14 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
                 case 28:
                     result = Automation.Database.SqlQuery<AllPatent>(sqlSelect.SelectUser).ToArray();
                     webPage.AllPatent = (AllPatent[])result;
+                    break;
+                case 30:
+                    result = Automation.Database.SqlQuery<TaxJournal121Error>(sqlSelect.SelectUser).ToArray();
+                    webPage.TaxJournal121Error = (TaxJournal121Error[]) result;
+                    break;
+                case 31:
+                    result = Automation.Database.SqlQuery<AllJournalRegistrationFl>(sqlSelect.SelectUser).ToArray();
+                    webPage.AllJournalRegistrationFl = (AllJournalRegistrationFl[])result;
                     break;
                 default:
                     return "Данная команда не определена!!!";

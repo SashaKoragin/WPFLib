@@ -50,6 +50,7 @@ using ViewModelLib.ModelTestAutoit.PublicModel.RaschetBuh;
 using LibraryAIS3Windows.ButtonFullFunction.Okp1Function;
 using LibraryAIS3Windows.ButtonFullFunction.Okp3Function;
 using ViewModelLib.ModelTestAutoit.PublicModel.QbeSelect;
+using LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction;
 
 namespace LibraryAIS3Windows.ButtonsClikcs
 {
@@ -2407,17 +2408,16 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                             {
                                 //Обработка Отсутствует извещение но есть акт желтый статус
                                 libraryAutomation.ClickElements(Journal129AndJournal121.OpenComplex, null, true);
-                                PublicGlobalFunction.WindowElementClick(libraryAutomation,
-                                    Journal129AndJournal121.Izveshenie);
-                                PublicGlobalFunction.WindowElementClick(libraryAutomation,
-                                    Journal129AndJournal121.ButtonSved);
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Izveshenie);
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ButtonSved);
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ButtonSvedOpen);
                                 while (true)
                                 {
                                     if (libraryAutomation.IsEnableElements(Journal129AndJournal121.NumKabinet, null,
                                             true) != null)
                                     {
                                         libraryAutomation.FindFirstElement(Journal129AndJournal121.NumKabinet);
-                                        libraryAutomation.SetValuePattern("366.2");
+                                        libraryAutomation.SetValuePattern("367-1");
                                         libraryAutomation.ClickElements(Journal129AndJournal121.AddButton);
                                         AutoItX.WinWait(Journal129AndJournal121.DateTime);
                                         AutoItX.WinActivate(Journal129AndJournal121.DateTime);
@@ -2435,20 +2435,19 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                                 break;
                                             }
                                         }
-
                                         break;
                                     }
                                 }
 
+                                
+                                //Подписание
                                 while (true)
                                 {
                                     if (libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceName, null,
                                             true) != null)
                                     {
                                         libraryAutomation.ClickElements(Journal129AndJournal121.FaceName, null, true);
-                                        libraryAutomation.SelectItemCombobox(
-                                            libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceNameSign),
-                                            senderSelect);
+                                        libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceNameSign), senderSelect, 0);
                                         PublicGlobalFunction.WindowElementClick(libraryAutomation,
                                             Journal129AndJournal121.Save);
                                         PublicGlobalFunction.WindowElementClick(libraryAutomation,
@@ -2477,6 +2476,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                 if (isActGreen != null && isIzvestiaGreen != null && isReshenie == null)
                                 {
                                     //Обработка присутствует Акт и извещение зеленое
+                                    //Решение надо делать так как вход изменился
                                     libraryAutomation.ClickElements(Journal129AndJournal121.OpenComplex, null, true);
                                     PublicGlobalFunction.WindowElementClick(libraryAutomation,
                                         Journal129AndJournal121.OpenReshenia);
@@ -2541,7 +2541,11 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                         case "ff0000":
                             libraryAutomation.ClickElements(Journal129AndJournal121.OpenComplex, null, true);
                             PublicGlobalFunction.WindowElementClick(libraryAutomation,
-                                Journal129AndJournal121.EditTask);
+                                Journal129AndJournal121.EditTask1);
+                            PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                Journal129AndJournal121.EditTask2);
+                            PublicGlobalFunction.WindowElementClick(libraryAutomation,
+                                Journal129AndJournal121.EditTask3);
                             PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.SignAll);
                             globalFunction.SignAndSendDoc(libraryAutomation);
                             taxFace.IsLk3 = globalFunction.IsLk3;
@@ -2571,7 +2575,6 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                 {
                     break;
                 }
-
                 rowNumber++;
             }
         }
@@ -2592,7 +2595,6 @@ namespace LibraryAIS3Windows.ButtonsClikcs
             {
                 throw new InvalidOperationException($"Пользователь подписывающий документ не определен!");
             }
-
             var rowNumber = 1;
             var korrectNumber = 0;
             libraryAutomation.ClickElements(Journal129AndJournal121.UpdateData121);
@@ -2704,23 +2706,37 @@ namespace LibraryAIS3Windows.ButtonsClikcs
 
                     journal.GlobalColor = libraryAutomation.GetColorPixel(status[1]);
                     journal.GlobalProcessColor = libraryAutomation.GetColorPixel(status[2]);
+                    var panel = libraryAutomation.SelectAutomationColrction(libraryAutomation.IsEnableElements(Journal129AndJournal121.PanelDoc))
+                                .Cast<AutomationElement>().ToArray();
                     //Поиск и нажатие на Исходящие документы
-                    var panel = libraryAutomation
-                        .SelectAutomationColrction(libraryAutomation.IsEnableElements(Journal129AndJournal121.PanelDoc))
-                        .Cast<AutomationElement>().ToArray();
-                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.IshDoc, panel[1], false, 1) != null)
+                    while (true)
                     {
-                        libraryAutomation.ClickElements(Journal129AndJournal121.IshDoc, panel[1], false, 1);
-                        AutoItX.Sleep(5000);
+                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.IshDoc, panel[1], false, 1) != null)
+                        {
+                               libraryAutomation.ClickElements(Journal129AndJournal121.IshDoc, panel[1], false, 1);
+                               AutoItX.Sleep(5000);
+                        }
+                        var grid = PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, Journal129AndJournal121.JournalIsh, panel[1]); //Здесь баг если ошибка обновляем данные нужно кидать на обновить кнопку до 3 раз
+                        if (string.IsNullOrWhiteSpace(grid))
+                        {
+                            break;
+                        }
+                        if (grid == "Данные, удовлетворяющие заданным условиям не найдены.")
+                        {
+                            break;
+                        }
+                        libraryAutomation.ClickElements(Journal129AndJournal121.Mnk, panel[1], false, 1);
                     }
-                    var listDocMemo = libraryAutomation
-                        .SelectAutomationColrction(
-                            libraryAutomation.FindFirstElement(Journal129AndJournal121.JournalIsh, panel[1]))
-                        .Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("select0 row") &&
-                             libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                             libraryAutomation.SelectAutomationColrction(elem).Cast<AutomationElement>()
-                             .First(doc => doc.Current.Name.Contains("КНД"))) != "1165050"
-                        ).ToArray();
+                    var listDocMemo = libraryAutomation.SelectAutomationColrction(
+                                       libraryAutomation.FindFirstElement(Journal129AndJournal121.JournalIsh, panel[1]))
+                                       .Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("select0 row") &&
+                                       libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                       libraryAutomation.SelectAutomationColrction(elem).Cast<AutomationElement>()
+                                     .First(doc => doc.Current.Name.Contains("КНД"))) != "1165050"
+                                     ).ToArray();
+
+                    var summNp = "";
+                    var colorError = "";
                     //Выставляем Акты Решения и Извещения по разным КНД
                     switch (journal.Knd)
                     {
@@ -2733,17 +2749,40 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                 journal, datePicker, senderSelect, dateCloseValidation);
                             break;
                         case "1151111":
-                            var summNp = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                             summNp = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
                                 libraryAutomation.SelectAutomationColrction(automationElement)
                                     .Cast<AutomationElement>()
                                     .First(elem => elem.Current.Name.Contains("Сумма по данным НП")));
-                            var colorError = libraryAutomation.GetColorPixel(status[4]);
+                             colorError = libraryAutomation.GetColorPixel(status[4]);
                             createActAndSolutionAndNotification.CreateForm1151111(libraryAutomation, listDocMemo,
                                 journal, datePicker, senderSelect, dateCloseValidation, summNp, colorError);
                             break;
                         case "1151020":
                             createActAndSolutionAndNotification.CreateForm1151020(libraryAutomation, journal);
                             break;
+                        case "1151001":
+                            var knd = new[] {"1160098", "1160099"};
+                             summNp = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                libraryAutomation.SelectAutomationColrction(automationElement)
+                                    .Cast<AutomationElement>()
+                                    .First(elem => elem.Current.Name.Contains("Сумма по данным НП")));
+                             colorError = libraryAutomation.GetColorPixel(status[4]);
+                             if (Convert.ToDecimal(summNp) >= (decimal)0.00 && !listDocMemo.Any())
+                             {
+                                 summNp = createActAndSolutionAndNotification.FindSum(libraryAutomation, Convert.ToDecimal(summNp), journal);
+                             }
+                             //Проверять если есть такие КНД то решение выносим с проверкой КРСБ
+                             if (Convert.ToDecimal(summNp) >= (decimal)0.00 && listDocMemo.Any(doc => knd.Any(decl=>decl.Equals(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                     libraryAutomation.SelectAutomationColrction(doc).Cast<AutomationElement>()
+                                         .First(elem => elem.Current.Name.Contains("КНД")))))))
+                             {
+                                 summNp = createActAndSolutionAndNotification.FindSum(libraryAutomation, Convert.ToDecimal(summNp), journal);
+                             }
+                             if (Convert.ToDecimal(summNp) >= (decimal)0.00)
+                             {
+                                createActAndSolutionAndNotification.CreateForm1151001(libraryAutomation, listDocMemo, journal, datePicker, senderSelect, dateCloseValidation, summNp, colorError);
+                             }
+                             break;
                         default:
                             break;
                     }
@@ -3622,6 +3661,163 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         {
             Okp3Patent patern = new Okp3Patent();
             patern.LoadPatent(statusButton, pathTemp);
+        }
+
+
+        /// <summary>
+        /// Налоговое администрирование\Контрольная работа (налоговые проверки)\121. Камеральная налоговая проверка\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
+        /// </summary>
+        /// <param name="statusButton">Кнопка Старт</param>
+        /// <param name="pathPdfTemp">Путь к Temp</param>
+        public void Click40(StatusButtonMethod statusButton, string pathPdfTemp)
+        {
+            StaticMode121 staticMode121 = new StaticMode121();
+            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
+            var rowNumber = 1;
+            libraryAutomation.ClickElements(Journal129AndJournal121.UpdateData121);
+            PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, Journal129AndJournal121.GridTaxJournal121);
+            AutomationElement automationElement;
+            while ((automationElement =
+                       libraryAutomation.IsEnableElements(
+                           string.Concat(Journal129AndJournal121.AllTaxJournal121, rowNumber), null, true, 30)) != null)
+            {
+                var journal = new TaxJournal121Error();
+                if (statusButton.Iswork)
+                {
+                    automationElement.SetFocus();
+                    AutoItX.Sleep(1000);
+                    journal.LoginUser = Environment.UserName;
+                    journal.RegNumDeclaration = Convert.ToInt32(
+                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem =>
+                                elem.Current.Name.Contains("Рег. номер декларации (расчета)"))));
+                    journal.Knd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                               .SelectAutomationColrction(automationElement)
+                               .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КНД")));
+
+                    journal.RegNumDeclaration = Convert.ToInt32(
+                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem =>
+                                    elem.Current.Name.Contains("Рег. номер декларации (расчета)"))));
+                    journal.Period = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный период")));
+
+                    journal.KorrectNumber = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Номер корректировки"))));
+
+                    journal.God = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный год"))));
+                    journal.NameKnd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Документ")));
+
+                    journal.NameFace = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                            libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Налогоплательщик")));
+                    journal.Inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
+                    journal.IdComplex = Convert.ToInt32(
+                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("УН комплекса"))));
+
+                    journal.DateFinishCheck = Convert.ToDateTime(
+                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>()
+                                .First(elem => elem.Current.Name.Contains("Срок проверки по регламенту"))));
+                    var dateEnd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                        .SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Окончание срока")));
+                    journal.DateFinishKnp = string.IsNullOrWhiteSpace(dateEnd)
+                            ? (DateTime?)null
+                            : Convert.ToDateTime(dateEnd);
+
+                    if (journal.KorrectNumber != 0)
+                    {
+                        journal.DateStartCheck = Convert.ToDateTime(
+                                libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                    .SelectAutomationColrction(automationElement)
+                                    .Cast<AutomationElement>()
+                                    .First(elem => elem.Current.Name.Contains("Дата представления первичной декларации"))));
+                    }
+                    else
+                    {
+                        journal.DateStartCheck = Convert.ToDateTime(
+                                libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                    .SelectAutomationColrction(automationElement)
+                                    .Cast<AutomationElement>()
+                                    .First(elem => elem.Current.Name.Contains("Дата начала проверки"))));
+                    }
+
+                    journal.DateStartDeclaration = Convert.ToDateTime(
+                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                 .SelectAutomationColrction(automationElement)
+                                 .Cast<AutomationElement>()
+                                 .First(elem => elem.Current.Name.Contains("Дата представления декларации"))));
+                    journal.DateFinishDeclaration = Convert.ToDateTime(
+                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                .SelectAutomationColrction(automationElement)
+                                .Cast<AutomationElement>()
+                                .First(elem => elem.Current.Name.Contains("Срок  представления декларации"))));
+                    var status = libraryAutomation.SelectAutomationColrction(automationElement)
+                        .Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name == "")
+                        .ToList();
+
+                    var dateEndValidation = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains("Дата окончания проверки")));
+                    journal.DateCloseValidation = string.IsNullOrWhiteSpace(dateEndValidation)
+                            ? (DateTime?)null
+                            : Convert.ToDateTime(dateEndValidation);
+
+                    journal.Color1 = libraryAutomation.GetColorPixel(status[0]);
+                    journal.Color2 = libraryAutomation.GetColorPixel(status[1]);
+                    journal.Color3 = libraryAutomation.GetColorPixel(status[2]);
+                    journal.Color4 = libraryAutomation.GetColorPixel(status[3]);
+                    journal.Color5 = libraryAutomation.GetColorPixel(status[4]);
+                    //Выставляем Акты Решения и Извещения по разным КНД
+                    if (journal.Color2 != "6400")
+                    {
+                        switch (journal.Knd)
+                        {
+                            case "1151001":
+                                staticMode121.IsErrorDeclaration(libraryAutomation, journal, pathPdfTemp, rowNumber);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    break;
+                }
+
+                automationElement.SetFocus();
+                rowNumber++;
+            }
+        }
+        /// <summary>
+        /// Запуск выполнения задания регистрации документов по списку
+        /// Налоговое администрирование\Учет документов\Прием документов учета НП\Прием документов учета НП (ФЛ)
+        /// </summary>
+        /// <param name="statusButton">Кнопка автомата</param>
+        public void Click41(StatusButtonMethod statusButton)
+        {
+            var flCreateDocument = new AcceptanceDocumentsFunction();
+            flCreateDocument.AcceptanceDocuments(statusButton);
         }
     }
 }

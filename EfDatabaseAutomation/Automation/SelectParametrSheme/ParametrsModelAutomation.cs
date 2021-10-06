@@ -46,6 +46,8 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
         
         private TemplatePatent templatePatentField;
         
+        private TemplateInnPattern templateInnPatternField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public ParametrsSelect ParametrsSelect {
@@ -117,6 +119,16 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
             }
             set {
                 this.templatePatentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TemplateInnPattern TemplateInnPattern {
+            get {
+                return this.templateInnPatternField;
+            }
+            set {
+                this.templateInnPatternField = value;
             }
         }
     }
@@ -480,6 +492,29 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
             }
             set {
                 this.regNumberPatentField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class TemplateInnPattern {
+        
+        private string[] innField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string[] Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
             }
         }
     }

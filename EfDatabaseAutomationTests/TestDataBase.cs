@@ -27,7 +27,12 @@ namespace EfDatabaseAutomationTests
         [TestMethod]
         public void ServerTestModel()
         {
-            var senderSelect = new SelectAll().SelectSenderJournal("7751-00-469");
+            System.DateTime date1 = new System.DateTime(2021,4,26);
+            System.DateTime date2 = new System.DateTime(2021, 4, 28);
+            var ratchet = ((date1.Year - date2.Year) * 12) + date1.Month - date2.Month;
+            ratchet = ratchet == 0 ? 1 : ratchet;
+
+            //var senderSelect = new SelectAll().SelectSenderJournal("7751-00-469");
         }
         [TestMethod]
         public void TestProcedure()

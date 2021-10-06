@@ -137,6 +137,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr
         }
 
 
+
         /// <summary>
         /// Выборка модели для манипуляции
         /// </summary>
@@ -170,6 +171,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr
             else
                 expandoDict.Add(propertyName, propertyValue);
         }
+
         /// <summary>
         /// Dispose
         /// </summary>

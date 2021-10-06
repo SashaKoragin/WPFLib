@@ -62,15 +62,40 @@ namespace SqlLibaryIfns.SqlSelect.ImnsKadrsSelect
                                         ORDER BY DICTIONARY_POST.LINK
                                         For Xml Auto";
 
+        ///// <summary>
+        ///// Диапазоны отпусков
+        ///// </summary>
+        //public string ItemVacation = @"Select DATE_BEGIN as Date_begin,
+        //                                      DATE_END as Date_end,
+        //                                      CODE as Code
+        //                                      From ITEM_VACATION as ItemVacation 
+        //                                      INNER JOIN DICTIONARY_VACATION as TypeVacation on TypeVacation.LINK = ItemVacation.TYPE_LINK
+        //                                      Where TAB_NUM = '{0}' and YEAR(DATE_BEGIN) = '{1}' For Xml Auto";
         /// <summary>
         /// Диапазоны отпусков
         /// </summary>
         public string ItemVacation = @"Select DATE_BEGIN as Date_begin,
-                                              DATE_END as Date_end,
-                                              CODE as Code
-                                              From ITEM_VACATION as ItemVacation 
-                                              INNER JOIN DICTIONARY_VACATION as TypeVacation on TypeVacation.LINK = ItemVacation.TYPE_LINK
-                                              Where TAB_NUM = '{0}' and YEAR(DATE_BEGIN) = '{1}' For Xml Auto";
+                                              CASE WHEN DATE_BEGIN <= DATE_3 THEN DATE_3
+	                                          ELSE DATE_END 
+	                                          END as Date_end,
+                                       CODE as Code From dbo.VACATION_REAL as ItemVacation  
+	                                   INNER JOIN DICTIONARY_VACATION as TypeVacation on TypeVacation.LINK = ItemVacation.TYPE_LINK
+	                                   Where ItemVacation.TAB_NUM = '{0}' and YEAR(ItemVacation.DATE_BEGIN) = '{1}' and( ItemVacation.DATE_3 is null or ItemVacation.DATE_3 >= ItemVacation.DATE_BEGIN)
+	                                   For Xml Auto";
+        /// <summary>
+        /// Новые отпуска
+        /// </summary>
+        public string ItemVacationNew = @"Select DATE_BEGIN as Date_begin,
+                                                 CASE WHEN DATE_BEGIN <= DATE_3 THEN DATE_3
+	                                             ELSE DATE_END 
+	                                             END as Date_end,
+                                          CODE as Code From dbo.VACATION_REAL as ItemVacation  
+	                                      INNER JOIN DICTIONARY_VACATION as TypeVacation on TypeVacation.LINK = ItemVacation.TYPE_LINK
+	                                      Where ItemVacation.TAB_NUM = '{0}' and (YEAR(ItemVacation.DATE_BEGIN) = '{1}' or 
+									                                           YEAR(CASE WHEN DATE_BEGIN <= DATE_3 THEN DATE_3
+	                                                                           ELSE DATE_END END)  = '{2}') and ( ItemVacation.DATE_3 is null or ItemVacation.DATE_3 >= ItemVacation.DATE_BEGIN)
+	                                   For Xml Auto";
+
         /// <summary>
         /// Больничные листы
         /// </summary>
@@ -83,8 +108,14 @@ namespace SqlLibaryIfns.SqlSelect.ImnsKadrsSelect
         /// <summary>
         /// Даты командировки
         /// </summary>
-        public string Business = @"Select Business.DATE_BEGIN as BusinessStart, Business.DATE_END as BusinessFinish From dbo.ITEM_TRAVEL as Business
-						           Where TAB_NUM = '{0}' and YEAR(DATE_BEGIN) = '{1}' For Xml Auto";
+        public string Business = @"Select Business.DATE_BEGIN as BusinessStart, 
+                                   CASE WHEN Business.DATE_BEGIN = ITEM_TRAVEL_BREAK.DATE_BREAK_REAL THEN ITEM_TRAVEL_BREAK.DATE_BREAK_REAL
+	                               ELSE Business.DATE_END 
+	                               END as BusinessFinish From dbo.ITEM_TRAVEL as Business
+                                   Left Join ITEM_TRAVEL_BREAK on Business.TAB_NUM = ITEM_TRAVEL_BREAK.TAB_NUM and
+                                        (ITEM_TRAVEL_BREAK.NEW_DATE_END = Business.DATE_BEGIN OR ITEM_TRAVEL_BREAK.DATE_BREAK_REAL = Business.DATE_BEGIN )
+                                   Where Business.TAB_NUM = '{0}' and YEAR(Business.DATE_BEGIN) = '{1}' and (ITEM_TRAVEL_BREAK.NEW_DATE_END is null OR Business.DATE_BEGIN = ITEM_TRAVEL_BREAK.DATE_BREAK_REAL)
+                                   For Xml Auto";
 
         /// <summary>
         /// Номер последнего приказа о переводе

@@ -236,6 +236,22 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                 ClickElement(element, -65);
             }
         }
+
+        /// <summary>
+        /// Проверка элемента на выбор
+        /// </summary>
+        /// <param name="element">Элемент проверка на выбор</param>
+        public string SelectionComboBoxPatternIsSelect(AutomationElement element)
+        {
+            var pattern = element.GetCurrentPattern(SelectionPatternIdentifiers.Pattern);
+            var select = (SelectionPattern)pattern;
+            if (select.Current.GetSelection().Count() > 0)
+            {
+                return select.Current.GetSelection()[0].Current.Name;
+            }
+            return "";
+        }
+
         /// <summary>
         /// Паттерн закрытия окна! 
         /// </summary>
@@ -364,6 +380,16 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         {
             var pattern = FindElement.GetCurrentPattern(ValuePatternIdentifiers.Pattern);
             var valueAuto = (ValuePattern)pattern;
+            valueAuto.SetValue(value);
+        }
+
+        /// <summary>
+        /// Проставить значение в найденный элемент
+        /// </summary>
+        public void SetLegacyIAccessibleValuePattern(string value)
+        {
+            var pattern = FindElement.GetCurrentPattern(LegacyIAccessiblePatternIdentifiers.Pattern);
+            var valueAuto = (LegacyIAccessiblePattern)pattern;
             valueAuto.SetValue(value);
         }
 

@@ -108,6 +108,7 @@
 			<xs:element ref="ResultSelectProcedureWeb" minOccurs="0"/>
 			<xs:element ref="TemplateProcedure" minOccurs="0"/>
 			<xs:element ref="TemplatePatent" minOccurs="0"/>
+			<xs:element ref="TemplateInnPattern" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="ParameterProcedureWeb">
@@ -194,6 +195,21 @@
 				</xs:annotation>
 				<xs:simpleType>
 					<xs:list itemType="xs:int"/>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TemplateInnPattern">
+		<xs:annotation>
+			<xs:documentation>ИНН модель</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Inn">
+				<xs:annotation>
+					<xs:documentation>Модель ИНН ФЛ/ЮЛ</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:list itemType="xs:string"/>
 				</xs:simpleType>
 			</xs:attribute>
 		</xs:complexType>

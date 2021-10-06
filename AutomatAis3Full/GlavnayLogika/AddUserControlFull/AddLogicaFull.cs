@@ -38,12 +38,15 @@ using AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket050809020
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Ticket05080902.Ticket0508090202.Ticket050809020206.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.SigningDecisionApplication.UserControl;
 using AutomatAis3Full.Form.Automat.Okp1.Declaration121.Declaration121;
+using AutomatAis3Full.Form.Automat.Okp1.Declaration121ActIsh.Declaration121ActIsh;
 using AutomatAis3Full.Form.Automat.Okp2.UserTask.TaxApprove.TaxApprove;
 using AutomatAis3Full.Form.Automat.Okp3.JournalPatent.Patent;
 using AutomatAis3Full.Form.Automat.Okp6.JournalDoc.ViewJournalDoc;
 using AutomatAis3Full.Form.Automat.Okp6.RegistryDeclaration.ViewRegistryDeclaration;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.StartProcessFace.StartCash.ViewStartCash;
 using AutomatAis3Full.Form.FormirovanieSpiskov.AutoGenerateListAutomation.ViewGenerator;
+using AutomatAis3Full.Form.Automat.Okp1.Declaration121Error.Declaration121Error;
+using AutomatAis3Full.Form.Automat.Registration.AcceptanceDocuments.UserControl;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
 {
@@ -247,6 +250,15 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                   {
                                       NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)",
                                       UserControl = new  FormDeclaration121()
+                                  },                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все) (Нарушения)",
+                                      UserControl = new FormDeclaration121Error()
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все) (Акты Извещения Решения)",
+                                      UserControl = new FormDeclaration121ActIsh()
                                   }
                               }
                           }
@@ -569,6 +581,25 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                       {
                           new FullWindowAutoIt()
                           {
+                              NameControl = "Учет документов",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Прием документов учета НП",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Прием документов учета НП (ФЛ)",
+                                              UserControl = new UserControlAcceptanceDocuments()
+                                          }
+                                      }
+                                  }
+                              }
+                          },
+                          new FullWindowAutoIt()
+                          {
                               NameControl = "Банковские и лицевые счета",                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                               {
                                   new FullWindowAutoIt()
@@ -673,8 +704,8 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                           }
                                       }
                                   },
-                                new FullWindowAutoIt()
-                                {
+                                  new FullWindowAutoIt()
+                                  {
                                    NameControl = "07. Учет физических лиц",
                                    CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                                     {

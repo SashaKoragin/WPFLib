@@ -29,6 +29,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
 
         private DeclarationData[] declarationDataField;
 
+        private DeclarationDataAll[] declarationDataAllField;
+
         private StatementData[] statementDataField;
 
         private CashUlFace[] cashUlFaceField;
@@ -66,6 +68,20 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
             set
             {
                 this.declarationDataField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("DeclarationDataAll")]
+        public DeclarationDataAll[] DeclarationDataAll
+        {
+            get
+            {
+                return this.declarationDataAllField;
+            }
+            set
+            {
+                this.declarationDataAllField = value;
             }
         }
 
@@ -438,6 +454,195 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyD
             }
         }
     }
+
+
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    public partial class DeclarationDataAll
+    {
+
+        private int idField;
+
+        private bool idFieldSpecified;
+
+        private long regNumDeclField;
+
+        private string codeStringField;
+
+        private string nameParametrField;
+
+        private string codeParametrField;
+
+        private string dataFaceField;
+
+        private string dataInspectorField;
+
+        private string errorField;
+
+        private System.DateTime dateCreateField;
+
+        private bool dateCreateFieldSpecified;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int Id
+        {
+            get
+            {
+                return this.idField;
+            }
+            set
+            {
+                this.idField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool IdSpecified
+        {
+            get
+            {
+                return this.idFieldSpecified;
+            }
+            set
+            {
+                this.idFieldSpecified = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public long RegNumDecl
+        {
+            get
+            {
+                return this.regNumDeclField;
+            }
+            set
+            {
+                this.regNumDeclField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string CodeString
+        {
+            get
+            {
+                return this.codeStringField;
+            }
+            set
+            {
+                this.codeStringField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameParametr
+        {
+            get
+            {
+                return this.nameParametrField;
+            }
+            set
+            {
+                this.nameParametrField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string CodeParametr
+        {
+            get
+            {
+                return this.codeParametrField;
+            }
+            set
+            {
+                this.codeParametrField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string DataFace
+        {
+            get
+            {
+                return this.dataFaceField;
+            }
+            set
+            {
+                this.dataFaceField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string DataInspector
+        {
+            get
+            {
+                return this.dataInspectorField;
+            }
+            set
+            {
+                this.dataInspectorField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Error
+        {
+            get
+            {
+                return this.errorField;
+            }
+            set
+            {
+                this.errorField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public System.DateTime DateCreate
+        {
+            get
+            {
+                return this.dateCreateField;
+            }
+            set
+            {
+                this.dateCreateField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public bool DateCreateSpecified
+        {
+            get
+            {
+                return this.dateCreateFieldSpecified;
+            }
+            set
+            {
+                this.dateCreateFieldSpecified = value;
+            }
+        }
+    }
+
 
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]

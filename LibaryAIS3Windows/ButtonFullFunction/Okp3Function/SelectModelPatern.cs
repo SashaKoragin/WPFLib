@@ -9,6 +9,54 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
     public class ModelDataArea
     {
 
+        public DataArea DataAreaRegFl = new DataArea()
+        {
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorMdiView\\AutomationId:splitContainer\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorMdiView\\AutomationId:splitContainer\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+            ListRowDataArea = "Name:List`1 row ",
+            ListRowDataGrid = "\\Name:select0 row ",
+            Headers = "Name:Column Headers",
+            Update = "Name:DockTop\\Name:Ribbon\\Name:Идентификационные характеристики физического лица\\Name:Навигатор\\Name:Обновить",
+            Parameters = new Parameters[]
+            {
+                new Parameters() { NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "8" }
+            }
+        };
+        /// <summary>
+        /// Регистрация ФЛ
+        /// </summary>
+        public DataArea DataAreaRegistrationFl = new DataArea()
+        {
+            FullPathDataArea = "Name:Данные из справочника ЕГРН\\AutomationId:navigatorControl\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "Name:Данные из справочника ЕГРН\\AutomationId:navigatorControl\\AutomationId:splitContainer\\AutomationId:gridData",
+            ListRowDataArea = "Name:List`1 row ",
+            ListRowDataGrid = "\\Name:select0 row ",
+            Headers = "Name:Column Headers",
+            Update = "Name:Данные из справочника ЕГРН\\AutomationId:toolStrip\\Name:Обновить",
+            Riborn = "Name:Данные из справочника ЕГРН\\AutomationId:toolStrip\\Name:Выбрать",
+            Parameters = new Parameters[]
+            {
+                new Parameters() { NameParameters = "ИНН",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "3" }
+            }
+        };
+        /// <summary>
+        /// Ввод данных ФЛ
+        /// </summary>
+        public DataArea DataAreaSendFl = new DataArea()
+        {
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorView\\AutomationId:splitContainer\\AutomationId:navigatorControl\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorView\\AutomationId:splitContainer\\AutomationId:navigatorControl\\AutomationId:splitContainer\\AutomationId:gridData",
+            ListRowDataArea = "Name:List`1 row ",
+            ListRowDataGrid = "\\Name:select0 row ",
+            Update = "Name:DockTop\\Name:Ribbon\\Name:Ввод поступивших документов ФЛ\\Name:Навигатор\\Name:Обновить",
+            Riborn = "Name:Данные из справочника ЕГРН\\AutomationId:toolStrip\\Name:Выбрать",
+            Parameters = new Parameters[]
+            {
+                new Parameters() { NameParameters = "ИНН",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "16" }
+            }
+        };
+
+
         public DataArea DataArea = new DataArea()
         {
             FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
