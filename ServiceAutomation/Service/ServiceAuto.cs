@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using AisPoco.Ifns51.ToAis;
 using EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace;
 using EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectDb;
-using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
 using LibaryDocumentGenerator.Documents.Template;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using SqlLibaryIfns.ZaprosSelectNotParam;
@@ -58,8 +57,8 @@ namespace ServiceAutomation.Service
         /// <returns></returns>
         public async Task<Stream> GenerateFileXlsxSqlView(LogicsSelectAutomation sqlSelect)
         {
-            var selectFull = new SelectFull();
-            return await Task.Factory.StartNew(() => selectFull.GenerateStreamToSqlViewFile(_parameterConfig.ConnectionString, sqlSelect.SelectUser, "REPORTSQLSERVER", sqlSelect.SelectInfo, _parameterConfig.PathSaveTemplate));
+            var selectFull = new SelectFull(_parameterConfig.ConnectionString);
+            return await Task.Factory.StartNew(() => selectFull.GenerateStreamToSqlViewFile( sqlSelect.SelectUser, "REPORTSQLSERVER", sqlSelect.SelectInfo, _parameterConfig.PathSaveTemplate));
         }
 
         /// <summary>
@@ -69,8 +68,16 @@ namespace ServiceAutomation.Service
         /// <returns></returns>
         public async Task<string> Select(LogicsSelectAutomation sqlSelect)
         {
-            var selectAll = new SelectAll();
-            return await Task.Factory.StartNew(() => selectAll.SelectSqlAll(sqlSelect));
+            return await Task.Factory.StartNew(() =>
+            {
+                string model = null;
+                if (sqlSelect.SelectUser != null)
+                {
+                    Type type = Type.GetType($"{sqlSelect.FindNameSpace}, {sqlSelect.NameDll}");
+                    model = (string)typeof(SelectAll).GetMethod("SqlModelAutomation")?.MakeGenericMethod(type).Invoke(new SelectAll(), new object[] { sqlSelect });
+                }
+                return model;
+            });
         }
 
         /// <summary>
@@ -289,7 +296,7 @@ namespace ServiceAutomation.Service
                         model = (ModelSelect) typeof(SqlSelect).GetMethod("ParameterSelect")?.Invoke(new SqlSelect(), new object[] {model});
                         var type = Type.GetType($"{model.ParameterProcedureWeb.ModelClassFind}, EfDatabaseAutomation");
                         model = (ModelSelect)typeof(SqlSelect).GetMethod("ResultSelectProcedureString")?.MakeGenericMethod(type).Invoke(new SqlSelect(), new object[] {model});
-                        Statement statement = (Statement)serializeJson.JsonDeserializeObjectClass<Statement>(model.ResultSelectProcedureWeb);
+                        EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme.Statement statement = (EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme.Statement)serializeJson.JsonDeserializeObjectClass<EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme.Statement>(model.ResultSelectProcedureWeb);
                         if (statement != null)
                         {
                             ReportStatement reportStatement = new ReportStatement();
@@ -387,7 +394,7 @@ namespace ServiceAutomation.Service
         {
             return await Task.Factory.StartNew(() =>
             {
-                var selectFull = new SelectFull();
+                var selectFull = new SelectFull(_parameterConfig.ConnectionString);
                 return selectFull.GenerateSummarySales(_parameterConfig.PathSaveTemplate, inn);
             });
         }

@@ -47,12 +47,13 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
         {
             try
             {
-                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 4);
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 3);
                 if (logicModel != null)
                 {
                     EventSqlEf.EventSqlEf eventMessage = new EventSqlEf.EventSqlEf() {UserNameGuid = guidUsers };
                     var con = (SqlConnection)Automation.Database.Connection;
                     con.FireInfoMessageEventOnUserErrors = true;
+                    Automation.Database.CommandTimeout = 120000;
                     con.InfoMessage += eventMessage.Con_InfoMessageSignalR;
                     Automation.Database.ExecuteSqlCommand(logicModel.SelectUser,
                              new SqlParameter
@@ -80,12 +81,13 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
         {
             try
             {
-                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 27);
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 25);
                 if (logicModel != null)
                 {
                     EventSqlEf.EventSqlEf eventMessage = new EventSqlEf.EventSqlEf() { UserNameGuid = userIdGuid };
                     var con = (SqlConnection)Automation.Database.Connection;
                     con.FireInfoMessageEventOnUserErrors = true;
+                    Automation.Database.CommandTimeout = 120000;
                     con.InfoMessage += eventMessage.Con_InfoMessageSignalR;
                     Automation.Database.ExecuteSqlCommand(logicModel.SelectUser,
                         new SqlParameter
@@ -111,12 +113,13 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
         {
             try
             {
-                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 32);
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 30);
                 if (logicModel != null)
                 {
                     EventSqlEf.EventSqlEf eventMessage = new EventSqlEf.EventSqlEf() { UserNameGuid = userIdGuid };
                     var con = (SqlConnection)Automation.Database.Connection;
                     con.FireInfoMessageEventOnUserErrors = true;
+                    Automation.Database.CommandTimeout = 120000;
                     con.InfoMessage += eventMessage.Con_InfoMessageSignalR;
                     Automation.Database.ExecuteSqlCommand(logicModel.SelectUser,
                         new SqlParameter
@@ -142,7 +145,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
         {
             try
             {
-                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 21);
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 19);
                 if (logicModel != null)
                 {
                     var result = Automation.Database.SqlQuery<TemplateModel>(logicModel.SelectUser).ToList();
@@ -166,7 +169,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
             try
             {
                 var xml = new XmlReadOrWrite();
-                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 6);
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 5);
                 if (logicModel != null)
                 {
                     var sqlSelectModel = logicModel.SelectUser.Replace(logicModel.SelectedParametr.Split(',')[0], idTemplate);
@@ -193,7 +196,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
         {
             try
             {
-                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 7);
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 6);
                 if (logicModel != null)
                 {
                     int result;
@@ -224,7 +227,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                                 Base.LogicsSelectAutomation logicModelFullStatus;
                                 using (var context2 = new Base.Automation())
                                 {
-                                    logicModelFullStatus = context2.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 11);
+                                    logicModelFullStatus = context2.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 10);
                                 }
                                 if (logicModelFullStatus != null)
                                 {
@@ -272,7 +275,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                         };
                         Automation.Entry(modelUpdate).State = EntityState.Modified;
                         Automation.SaveChanges();
-                        var parameterControl = string.IsNullOrWhiteSpace(status) ? 12 : 11; //Если null или Empty то УН 12 в противном случае 11;
+                        var parameterControl = string.IsNullOrWhiteSpace(status) ? 11 : 10; //Если null или Empty то УН 12 в противном случае 11;
                         var logicModelOnFullStatus = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == parameterControl);
                         if (logicModelOnFullStatus != null)
                         {
@@ -303,7 +306,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                 var xml = new XmlReadOrWrite();
                 var cardFace = new CardFaceUl() {Card = new Card()};
                 Automation.Database.CommandTimeout = 120000;
-                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 9);
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 8);
                 if (logicModel != null)
                 {
                     cardFace.FaceUl = Automation.Database.SqlQuery<FaceUl>(logicModel.SelectUser,
@@ -397,7 +400,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
             {
                 var cardFace = new CardFaceUl() { Card = new Card() };
                 Automation.Database.CommandTimeout = 120000;
-                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 29);
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 27);
                 if (logicModel != null)
                 {
                     cardFace.FullReportAskNds = Automation.Database.SqlQuery<FullReportAskNds>(logicModel.SelectUser,
@@ -425,7 +428,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
             {
                 var cardFace = new CardFaceUl() { Card = new Card() };
                 Automation.Database.CommandTimeout = 120000;
-                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 9);
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 8);
                 cardFace.FaceUl = Automation.Database.SqlQuery<FaceUl>(logicModel.SelectUser,
                     new SqlParameter(logicModel.SelectedParametr.Split(',')[0], inn),
                                  new SqlParameter(logicModel.SelectedParametr.Split(',')[1], 1),

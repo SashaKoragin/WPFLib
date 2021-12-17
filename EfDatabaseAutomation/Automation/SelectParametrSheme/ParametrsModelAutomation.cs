@@ -216,6 +216,16 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
         
         private string selectInfoField;
         
+        private string nameDllField;
+        
+        private string findNameSpaceField;
+        
+        private bool isResultXmlField;
+        
+        private string nameReportListField;
+        
+        private string nameReportFileField;
+        
         private string selectedParametrField;
         
         private string selectUserField;
@@ -238,6 +248,61 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
             }
             set {
                 this.selectInfoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameDll {
+            get {
+                return this.nameDllField;
+            }
+            set {
+                this.nameDllField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string FindNameSpace {
+            get {
+                return this.findNameSpaceField;
+            }
+            set {
+                this.findNameSpaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public bool IsResultXml {
+            get {
+                return this.isResultXmlField;
+            }
+            set {
+                this.isResultXmlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameReportList {
+            get {
+                return this.nameReportListField;
+            }
+            set {
+                this.nameReportListField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameReportFile {
+            get {
+                return this.nameReportFileField;
+            }
+            set {
+                this.nameReportFileField = value;
             }
         }
         

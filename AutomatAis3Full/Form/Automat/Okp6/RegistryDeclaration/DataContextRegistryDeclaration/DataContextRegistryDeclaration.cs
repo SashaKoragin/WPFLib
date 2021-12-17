@@ -1,4 +1,5 @@
-﻿using LibraryCommandPublic.TestAutoit.Okp6.JournalDoc;
+﻿using AutomatAis3Full.Config;
+using LibraryCommandPublic.TestAutoit.Okp6.JournalDoc;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
@@ -19,7 +20,7 @@ namespace AutomatAis3Full.Form.Automat.Okp6.RegistryDeclaration.DataContextRegis
             var docStart = new AutoJournalDoc();
             StartButton = new StatusButtonMethod
             {
-                Button = { Command = new DelegateCommand(() => { docStart.StartRegistryDeclaration(StartButton); }) }
+                Button = { Command = new DelegateCommand(() => { docStart.StartRegistryDeclaration(StartButton, ConfigFile.PathTemp); }) }
             };
         }
     }

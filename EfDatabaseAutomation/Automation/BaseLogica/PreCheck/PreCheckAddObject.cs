@@ -19,6 +19,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         public PreCheckAddObject()
         {
             Automation = new Base.Automation();
+            Automation.Database.CommandTimeout = 120000;
         }
         /// <summary>
         /// Добавление Юридического лица
@@ -26,6 +27,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         /// <param name="ulFace">Юридическое лицо</param>
         public void AddUlFace(UlFace ulFace)
         {
+           
             if (!(from ulFaces in Automation.UlFaces where ulFaces.IdNum == ulFace.IdNum select new { UlFaces = ulFaces }).Any())
             {
                 Automation.UlFaces.Add(ulFace);
@@ -35,6 +37,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             {
                 using(var context = new Base.Automation())
                 {
+                    context.Database.CommandTimeout = 120000;
                     var select = (from ulFaces in context.UlFaces where ulFaces.IdNum == ulFace.IdNum select new { UlFaces = ulFaces }).FirstOrDefault();
                     ulFace.IdUl = select.UlFaces.IdUl;
                     Automation.Entry(ulFace).State = EntityState.Modified;
@@ -52,6 +55,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             //ИНН Есть ли лицо
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
                 svedAccoutingUlFace.IdUl = idUl;
             }
@@ -66,6 +70,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 {
                     using (var context = new Base.Automation())
                     {
+                        context.Database.CommandTimeout = 120000;
                         var select = (from svedAccoutingUlFaces in context.SvedAccoutingUlFaces where svedAccoutingUlFaces.IdNum == svedAccoutingUlFace.IdNum select new { SvedAccoutingUlFaces = svedAccoutingUlFaces }).FirstOrDefault();
                         svedAccoutingUlFace.Id = select.SvedAccoutingUlFaces.Id;
                         Automation.Entry(svedAccoutingUlFace).State = EntityState.Modified;
@@ -86,6 +91,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             //ИНН Есть ли лицо
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
                 historyUl.IdUl = idUl;
             }
@@ -100,6 +106,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 {
                     using (var context = new Base.Automation())
                     {
+                        context.Database.CommandTimeout = 120000;
                         var select = (from historiUlFaces in context.HistoriUlFaces where historiUlFaces.IdNum == historyUl.IdNum select new { HistoriUlFaces = historiUlFaces }).FirstOrDefault();
                         historyUl.Id = select.HistoriUlFaces.Id;
                         Automation.Entry(historyUl).State = EntityState.Modified;
@@ -119,6 +126,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             //ИНН Есть ли лицо
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
                 branchFace.IdUl = idUl;
             }
@@ -153,6 +161,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             //ИНН Есть ли лицо
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 var idUl = (from users in Automation.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
                 imZmTrUl.IdUl = idUl;
             }
@@ -173,6 +182,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 {
                     using (var context = new Base.Automation())
                     {
+                        context.Database.CommandTimeout = 120000;
                         var select = (from imZmTrUls in context.ImZmTrUls where imZmTrUls.IdNum == imZmTrUl.IdNum select new { ImZmTrUl = imZmTrUls }).FirstOrDefault();
                         imZmTrUl.Id = select.ImZmTrUl.Id;
                         Automation.Entry(imZmTrUl).State = EntityState.Modified;
@@ -193,6 +203,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         {
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 var idFl = (from users in context.FlFaces where users.Inn == innFl select users.IdFl).SingleOrDefault();
                 imZmTrFl.IdFl = idFl;
             }
@@ -213,7 +224,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 {
                     using (var context = new Base.Automation())
                     {
-                       var select = (from imZmTrFls in context.ImZmTrFls where imZmTrFls.IdNum == imZmTrFl.IdNum select new { ImZmTrFl = imZmTrFls }).FirstOrDefault();
+                        context.Database.CommandTimeout = 120000;
+                        var select = (from imZmTrFls in context.ImZmTrFls where imZmTrFls.IdNum == imZmTrFl.IdNum select new { ImZmTrFl = imZmTrFls }).FirstOrDefault();
                        imZmTrFl.Id = select.ImZmTrFl.Id;
                        Automation.Entry(imZmTrFl).State = EntityState.Modified;
                        Automation.SaveChanges();
@@ -235,6 +247,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             //ИНН Есть ли лицо
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
                 strngthUlFace.IdUl = idUl;
             }
@@ -249,6 +262,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 {
                     using (var context = new Base.Automation())
                     {
+                        context.Database.CommandTimeout = 120000;
                         var select = (from strngthUlFaces in context.StrngthUlFaces where strngthUlFaces.IdNum == strngthUlFace.IdNum select new { StrngthUlFace = strngthUlFaces }).FirstOrDefault();
                         strngthUlFace.Id = select.StrngthUlFace.Id;
                         Automation.Entry(strngthUlFace).State = EntityState.Modified;
@@ -270,6 +284,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             int idUl;
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
                 cashFull.CashUlFace.ToList().ForEach(cash=>cash.IdUl = idUl);
             }
@@ -278,6 +293,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 //Удаляем старые записи по выписке заполняем новыми
                 using (var contextDelete = new Base.Automation())
                 {
+                    contextDelete.Database.CommandTimeout = 120000;
                     contextDelete.CashUlFaces.RemoveRange(contextDelete.CashUlFaces.Where(x => x.IdUl == idUl));
                     contextDelete.SaveChanges();
                 }
@@ -301,6 +317,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             int idUl;
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
                 ndfl.NdflFl.ToList().ForEach(ndFl => ndFl.IdUl = idUl);
             }
@@ -309,6 +326,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 //Удаляем старые записи по выписке заполняем новыми
                 using (var contextDelete = new Base.Automation())
                 {
+                    contextDelete.Database.CommandTimeout = 120000;
                     contextDelete.NdflFls.RemoveRange(contextDelete.NdflFls.Where(x => x.IdUl == idUl));
                     contextDelete.SaveChanges();
                 }
@@ -331,6 +349,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         {
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
                 individualCardsUlFace.IdUl = idUl;
             }
@@ -345,6 +364,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 {
                     using (var context = new Base.Automation())
                     {
+                        context.Database.CommandTimeout = 120000;
                         var select = (from individualCardsUlFaces in context.IndividualCardsUlFaces where individualCardsUlFaces.IdUl == individualCardsUlFace.IdUl select new { IndividualCardsUlFace = individualCardsUlFaces }).FirstOrDefault();
                         individualCardsUlFace.Id = select.IndividualCardsUlFace.Id;
                         Automation.Entry(individualCardsUlFace).State = EntityState.Modified;
@@ -391,6 +411,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             //ИНН Есть ли лицо
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
                 books.IdUl = idUl;
             }
@@ -405,6 +426,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 {
                     using (var context = new Base.Automation())
                     {
+                        context.Database.CommandTimeout = 120000;
                         var select = (from book in context.Books where book.IdBook == books.IdBook select new { Book = book }).FirstOrDefault();
                         books.Id = select.Book.Id;
                         books.IsBookPurchase = select.Book.IsBookPurchase;
@@ -426,6 +448,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             var book = books;
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 var select = (from b in context.Books where b.IdBook == book.IdBook select new { Book = b }).FirstOrDefault();
                 books.Id = select.Book.Id;
                 books.IsBookSalesParse = true;
@@ -442,6 +465,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             var book = books;
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 var select = (from b in context.Books where b.IdBook == book.IdBook select new { Book = b }).FirstOrDefault();
                 books.Id = select.Book.Id;
                 books.IsBookPurchase = true;
@@ -462,6 +486,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             bookSales.BookSales.ToList().ForEach(sales => sales.IdBook = book.IdBook);
             using (var contextDelete = new Base.Automation())
             {
+                contextDelete.Database.CommandTimeout = 120000;
                 contextDelete.BookSales.RemoveRange(contextDelete.BookSales.Where(x => x.IdBook == book.IdBook));
                 contextDelete.SaveChanges();
             }
@@ -485,6 +510,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             bookPurchase.BookPurchase.ToList().ForEach(sales => sales.IdBook = book.IdBook);
             using (var contextDelete = new Base.Automation())
             {
+                contextDelete.Database.CommandTimeout = 120000;
                 contextDelete.BookPurchases.RemoveRange(contextDelete.BookPurchases.Where(x => x.IdBook == book.IdBook));
                 contextDelete.SaveChanges();
             }
@@ -507,6 +533,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             int idUl;
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
                 counterpartyCashBankModelFace.CounterpartyCashBank.ToList().ForEach(сounterpartyCashBank => сounterpartyCashBank.IdUl = idUl);
             }
@@ -515,6 +542,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 //Удаляем старые записи по выписке заполняем новыми
                 using (var contextDelete = new Base.Automation())
                 {
+                    contextDelete.Database.CommandTimeout = 120000;
                     contextDelete.CounterpartyCashBanks.RemoveRange(contextDelete.CounterpartyCashBanks.Where(x => x.IdUl == idUl));
                     contextDelete.SaveChanges();
                 }
@@ -538,6 +566,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         {
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 var idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
                 declarationUl.IdUl = idUl;
             }
@@ -633,6 +662,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             int idUl;
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
                 cashBankAllUlFace.CashBankAllUlFace.ToList().ForEach(cashBank=>cashBank.IdUl = idUl);
             }
@@ -641,6 +671,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 //Удаляем старые записи по выписке заполняем новыми
                 using (var contextDelete = new Base.Automation())
                 {
+                    contextDelete.Database.CommandTimeout = 120000;
                     contextDelete.CashBankAllUlFaces.RemoveRange(contextDelete.CashBankAllUlFaces.Where(x => x.IdUl == idUl));
                     contextDelete.SaveChanges();
                 }
@@ -666,6 +697,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             }
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 var headingStatementFirst = (from head in context.HeadingStatements where head.NameIndex == headingStatement.NameIndex select head).SingleOrDefault();
                 return headingStatementFirst;
             }
@@ -681,14 +713,16 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             int idUl;
             using (var context = new Base.Automation())
             {
+                context.Database.CommandTimeout = 120000;
                 idUl = (from users in context.UlFaces where users.Inn == innUl select users.IdUl).SingleOrDefault();
                 statementFull.StatementData.ToList().ForEach(state=>state.IdUl= idUl);
             }
             if (statementFull.StatementData[0].IdUl != 0)
             {
-                //Удаляем старые записи по выписке заполняем новыми
+                ////Удаляем старые записи по выписке заполняем новыми
                 using (var contextDelete = new Base.Automation())
                 {
+                    contextDelete.Database.CommandTimeout = 120000;
                     contextDelete.StatementFulls.RemoveRange(contextDelete.StatementFulls.Where(x => x.IdUl == idUl));
                     contextDelete.SaveChanges();
                 }
@@ -699,11 +733,11 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 BulkInsertIntoDb(xsdFile, xmlFile);
             }
             //Процедура вытягивания учредителей и Руководителей Цель Выписки и Карточки организации
-            var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 10);
+            var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 9);
             if (logicModel != null)
                 using (var context = new Base.Automation())
                 {
-                    context.Database.CommandTimeout = 1200;
+                    context.Database.CommandTimeout = 120000;
                     var resultDb = context.Database.SqlQuery<string>(logicModel.SelectUser, new SqlParameter(logicModel.SelectedParametr.Split(',')[0], innUl)).FirstOrDefault();
                 }
         }

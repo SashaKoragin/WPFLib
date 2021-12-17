@@ -91,6 +91,7 @@
     <Compile Include="TestAutoit\PublicCommand\CommandAddListFull.cs" />
     <Compile Include="TestAutoit\PublicCommand\CommandFormirovanie.cs" />
     <Compile Include="TestAutoit\PublicCommand\CommandSnuOneAuto.cs" />
+    <Compile Include="TestAutoit\RaschBydj\Krsb\StartKrsb.cs" />
     <Compile Include="TestAutoit\RaschBydj\Migration\MigrationCKlikCommand.cs" />
     <Compile Include="TestAutoit\RaschBydj\Vedomost1\StartVedomost1.cs" />
     <Compile Include="TestAutoit\Reg\AcceptanceDocuments\AcceptanceDocuments.cs" />

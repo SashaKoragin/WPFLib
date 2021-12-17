@@ -19,10 +19,9 @@ namespace LibraryCommandPublic.TestAutoit.Okp2
         /// 2. Журнал налоговых правонарушений
         /// </summary>
         /// <param name="statusButton">Кнопка запустить задание</param>
-        /// <param name="pathJournalOk">Путь к журналу</param>
         /// <param name="pathPdfTemp">Путь к Temp</param>
         /// <param name="datePicker">Дата вызова плательщика</param>
-        public void StartTaxJournal(StatusButtonMethod statusButton, string pathJournalOk, string pathPdfTemp, DatePickerAdd datePicker)
+        public void StartTaxJournal(StatusButtonMethod statusButton, string pathPdfTemp, DatePickerAdd datePicker)
         {
             DispatcherHelper.Initialize();
             Task.Run(delegate
@@ -34,7 +33,7 @@ namespace LibraryCommandPublic.TestAutoit.Okp2
                     LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                     if (ais3.WinexistsAis3() == 1)
                     {
-                        clickerButton.Click27(statusButton,pathJournalOk,pathPdfTemp, datePicker);
+                        clickerButton.Click27(statusButton, pathPdfTemp, datePicker);
                         DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                     }
                     else
@@ -77,40 +76,6 @@ namespace LibraryCommandPublic.TestAutoit.Okp2
                 {
                     MessageBox.Show(e.ToString());
                 }
-            });
-        }
-
-        /// <summary>
-        /// Загрузка файлов из БД
-        /// </summary>
-        /// <param name="path">Путь к выгрузке документов</param>
-        /// <param name="downloadPrintDb">Модель документов</param>
-        public async void DownloadDbFile(string path, DownloadPrintDb downloadPrintDb)
-        {
-            DispatcherHelper.Initialize();
-            await Task.Run(delegate
-            {
-                var db = new AddObjectDb();
-                downloadPrintDb.FileCollection.Clear();
-                var listDoc = db.DownloadFileNotPrint();
-                DispatcherHelper.CheckBeginInvokeOnUI(delegate { downloadPrintDb.ProgressMaxDownload(listDoc.Count); });
-                foreach (var listFile in listDoc)
-                {
-                    var nameFile = $"{listFile.TypeDocument}-{listFile.IdDelo}-{listFile.Inn}{listFile.Extensions}";
-                    var fullPathPdf = Path.Combine(path, nameFile);
-                    using (FileStream file = new FileStream(fullPathPdf, FileMode.Create))
-                    {
-                        for (int i = 0; i < listFile.Document.Length; i++)
-                        {
-                            file.WriteByte(listFile.Document[i]);
-                        }
-                        file.Seek(0, SeekOrigin.Begin);
-                    }
-                    downloadPrintDb.DownloadFileDb(fullPathPdf, nameFile, listFile.Id);
-                    DispatcherHelper.CheckBeginInvokeOnUI(delegate { downloadPrintDb.ProgressDownloadFile(nameFile); });
-                }
-                DispatcherHelper.CheckBeginInvokeOnUI(downloadPrintDb.ProgressDownloadFileDefault);
-                DispatcherHelper.CheckBeginInvokeOnUI(delegate { downloadPrintDb.CountFile(downloadPrintDb.FileCollection.Count); });
             });
         }
         /// <summary>

@@ -18,7 +18,7 @@
 		<xs:sequence>
 			<xs:element ref="TaxJournalAutoWebPage" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="TaxJournal121AutoWebPage" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="AddUlFace" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="AddUlFaceWeb" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="ModelTree" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="ModelKbkOnKbk" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="HelpKbkAuto" minOccurs="0" maxOccurs="unbounded"/>
@@ -26,7 +26,7 @@
 			<xs:element ref="Documen2NDFLIdentification" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="FormulNdfl" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="DeliveryDocument" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="IsPatentParse" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="IsPatentParses" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="AllPatent" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="TaxJournal121Error" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="AllJournalRegistrationFl" minOccurs="0" maxOccurs="unbounded"/>
@@ -279,7 +279,7 @@
 			<xs:documentation>Просрочка дней</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="AddUlFace">
+	<xs:element name="AddUlFaceWeb">
 		<xs:annotation>
 			<xs:documentation>Лицо для добавления (Предпроверка)</xs:documentation>
 		</xs:annotation>
@@ -824,7 +824,7 @@
 			<xs:documentation>Регистрационный номер отправленной декларации</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="IsPatentParse">
+	<xs:element name="IsPatentParses">
 		<xs:annotation>
 			<xs:documentation>Собранные и не собранные патенты</xs:documentation>
 		</xs:annotation>

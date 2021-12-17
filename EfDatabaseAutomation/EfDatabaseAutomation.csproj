@@ -63,6 +63,7 @@
     <Compile Include="Automation\BaseLogica\AddObjectDb\AddObjectDb.cs" />
     <Compile Include="Automation\BaseLogica\EventSqlEf\EventSqlEf.cs" />
     <Compile Include="Automation\BaseLogica\IdentificationFace\IdentificationAddorEditFace.cs" />
+    <Compile Include="Automation\BaseLogica\KrsbJournal\KrsbJournal.cs" />
     <Compile Include="Automation\BaseLogica\ModelGetPost\ModelGetPost.cs" />
     <Compile Include="Automation\BaseLogica\PreCheck\PreCheckAddObject.cs" />
     <Compile Include="Automation\BaseLogica\SelectObjectDbAndAddObjectDb\AddAllObjectDb.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Automation\BaseLogica\SqlSelect\XsdDTOSheme\DataBaseUl.cs">
       <DependentUpon>DataBaseUl.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Automation\BaseLogica\StatementJournal\StatementJournal.cs" />
     <Compile Include="Automation\BaseLogica\XsdAuto\FullShemeModel\WebShemeTaxJournal.cs">
       <DependentUpon>WebShemeTaxJournal.xsd</DependentUpon>
     </Compile>
@@ -158,6 +160,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

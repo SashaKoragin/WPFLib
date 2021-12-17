@@ -143,17 +143,6 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
             Automation.SaveChanges();
         }
         /// <summary>
-        /// Поиск извещений в БД таблице
-        /// </summary>
-        /// <returns></returns>
-        public List<TaxJournalAuto> DownloadFileNotPrint()
-        {
-           var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 1);
-           if (logicModel != null) 
-               return Automation.Database.SqlQuery<TaxJournalAuto>(logicModel.SelectUser).ToList();
-           return null;
-        }
-        /// <summary>
         /// Обновления статуса печати
         /// </summary>
         /// <param name="idDoc">Ун документа</param>

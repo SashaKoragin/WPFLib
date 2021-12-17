@@ -34,6 +34,7 @@
       <HintPath>C:\Nuget\ClosedXML.0.93.0\lib\net40\ClosedXML.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
       <Private>True</Private>
@@ -77,6 +78,7 @@
     <Compile Include="SqlZapros\SobytieSql\Sobytie.cs" />
     <Compile Include="SqlZapros\SqlConnections\SqlConnectionType.cs" />
     <Compile Include="ZaprosSelectNotParam\SelectFull.cs" />
+    <Compile Include="ZaprosSelectNotParam\SelectReportPassportTechnique.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="SqlEntytiCommand\ConnectSql\" />

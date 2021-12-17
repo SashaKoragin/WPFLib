@@ -71,6 +71,24 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
             }
         };
 
+        /// <summary>
+        /// Заявления онулирование
+        /// </summary>
+        public DataArea DataAreaStatement = new DataArea()
+        {
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:TransferClaimDocNavListView\\AutomationId:grpBig\\AutomationId:navControl\\AutomationId:ctlNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TransferClaimDocNavListView\\AutomationId:grpBig\\AutomationId:navControl\\AutomationId:ctlNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+            ListRowDataArea = "Name:List`1 row ",
+            Headers = "Name:Column Headers",
+            Update = "Name:DockTop\\Name:Ribbon\\Name:Список заявлений\\Name:Действия\\Name:Обновить",
+            Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TransferClaimDocNavListView\\AutomationId:grpBig\\AutomationId:navControl\\AutomationId:ctlNavigator\\AutomationId:tsControlPanel\\Name:Фильтр",
+            Parameters = new Parameters[]
+            {
+                new Parameters() {NameParameters = "ИНН",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "4"},
+                new Parameters() {NameParameters = "Номер заявления",FindNameMemo = "Name:Значение",FindSelectParameter = "Из перечня (без учета регистра)",IndexParameters = "7"},
+            }
+        };
+
         public DataArea[] DataAreaModel = new DataArea[] {
 
             new DataArea()
@@ -159,6 +177,10 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
         /// Экспорт
         /// </summary>
         public string Export { get; set; }
+        /// <summary>
+        /// Фильтр
+        /// </summary>
+        public string Filters { get; set; }
 
         public bool IsParseModel { get; set; }
         /// <summary>

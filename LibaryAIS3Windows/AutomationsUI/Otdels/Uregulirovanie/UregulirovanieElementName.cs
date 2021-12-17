@@ -271,4 +271,50 @@
         /// </summary>
         public static string StartW = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:LauncherViewGeneric\\AutomationId:grpBig\\AutomationId:btnWthdrwCreateOperationRun";
     }
+    /// <summary>
+    /// Зачеты возвраты заявления
+    /// </summary>
+    public class StatementNp
+    {
+        /// <summary>
+        /// Редактировать
+        /// </summary>
+        public static string EditStatement = "Name:DockTop\\Name:Ribbon\\Name:Список заявлений\\Name:Действия\\Name:Редактировать";
+        /// <summary>
+        /// Создать решение об отказе
+        /// </summary>
+        public static string Create = "Name:DockTop\\Name:Ribbon\\Name:Заявление на зачет / возврат\\Name:Решение об отказе\\Name:Создать";
+        /// <summary>
+        /// Создать решение об отказе
+        /// </summary>
+        public static string CreateResh = "Name:DockTop\\Name:Ribbon\\Name:Решение об отказе\\Name:Действия\\Name:Создать решение об отказе";
+        /// <summary>
+        /// Утвердить и отправить на подписание
+        /// </summary>
+        public static string Send = "Name:DockTop\\Name:Ribbon\\Name:Решение об отказе\\Name:Утвердить и отправить на подписание";
+        /// <summary>
+        /// Вернутся
+        /// </summary>
+        public static string Back = "Name:DockTop\\Name:Ribbon\\Name:Заявление на зачет / возврат\\Name:Навигация\\Name:Вернуться";
+        /// <summary>
+        /// Возвращение
+        /// </summary>
+        public static string Return = "Name:DockTop\\Name:Ribbon\\Name:Ribbon Tabs\\Name:Список заявлений";
+        /// <summary>
+        /// Ок
+        /// </summary>
+        public static string WinOk = "Name:Решение об отказе\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:Да";
+        /// <summary>
+        /// Ок
+        /// </summary>
+        public static string WinOkResh = "Name:Формирование решения об отказе\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:Да";
+        /// <summary>
+        /// Утверждение и отправка на подписание
+        /// </summary>
+        public static string WinOk1 = "Name:Утверждение и отправка на подписание\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:Да";
+        /// <summary>
+        /// Утверждение Ок
+        /// </summary>
+        public static string WinOk2 = "Name:Утверждение\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:ОК";
+    }
 }

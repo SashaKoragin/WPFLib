@@ -29,7 +29,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectD
                 Id = department.Id,
                 IdSender = department.IdSender,
                 NameDepartament = department.NameDepartament,
-                NameDepartamentActiveDerectory = department.NameDepartamentActiveDerectory
+                NameDepartamentActiveDerectory = department.NameDepartamentActiveDerectory,
+                StatusFace = department.StatusFace,
+                Office = department.Office,
+                Telephon = department.Telephon
             };
             try
             {

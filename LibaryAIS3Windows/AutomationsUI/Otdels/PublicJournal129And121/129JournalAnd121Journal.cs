@@ -136,19 +136,28 @@
         /// <summary>
         /// Извещение о времени и месте рассмотрения Акта
         /// </summary>
-        public static string ButtonSved = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\Name:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf2\\AutomationId:AvailableItemsView\\AutomationId:treeView\\Name:Материалы для рассмотрения\\Name:Извещение о времени и месте рассмотрения Акта";
+        public static string ButtonSved = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\Name:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf2\\AutomationId:AvailableItemsView\\AutomationId:treeView\\Name:Материалы для рассмотрения\\Name:Извещение о времени и месте расмотрения Акта";
 
 
         /// <summary>
-        /// Раскрыть решение о привлечении к ответственности
+        /// Раскрыть Решение о привлечении лица к ответственности за налоговое правонарушение
         /// </summary>
         public static string OpenReshenia = $"{PublicName129Click}Name:Рассмотрение материалов\\AutomationId:Expander\\ClassName:TextBlock";
+
+
 
 
         /// <summary>
         /// Решение о привлечении лица к ответственности за налоговое правонарушение
         /// </summary>
         public static string Reshenia = $"{PublicName129Click}Name:Рассмотрение материалов\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение"; //    AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Рассмотрение материалов\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение";
+
+        /// <summary>
+        /// Раскрыть Решение об отказе в привлечении лица к ответственности за налоговое правонарушение
+        /// </summary>
+        public static string ResheniaCancel = $"{PublicName129Click}Name:Рассмотрение материалов\\Name:Решение об отказе в привлечении лица к ответственности за налоговое правонарушение";
+
+
 
         /// <summary>
         /// Раскрыть решение о привлечении к ответственности
@@ -179,11 +188,52 @@
         /// Общая информация о документе
         /// </summary>
         public static string PublicInfo = $"{PublicPanel}AutomationId:gb_0\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Общая информация о документе";
+
+        /// <summary>
+        /// Установил
+        /// </summary>
+        public static string Install = $"{PublicPanel}AutomationId:gb_4\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Установил";
+        /// <summary>
+        /// Иные предложения
+        /// </summary>
+        public static string IPred = $"{PublicPanel}AutomationId:gb_6\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Иные предложения";
+        /// <summary>
+        /// Текстовка
+        /// </summary>
+        public static string InfoAct = @"        Лицо, привлекаемое к ответственности, извещено надлежащим образом о времени и месте рассмотрения акта, что подтверждается извещением о времени и месте рассмотрения акта об обнаружении фактов, свидетельствующих о предусмотренных НК РФ налоговых правонарушениях (за исключением налоговых правонарушений, дела о выявлении которых рассматриваются в порядке, установленном ст. 101 НК РФ) № {0} от {1} г." +
+                                  "\n Налоговый орган установил отсутствия событий налогового правонарушения." +
+                                  "\n Таким образом, принимая во внимание вышеуказанное обстоятельство, налоговым органом принято решение об отказе в привлечении к ответственности, предусмотренной п. 1 ст. 129.1 НК РФ.";
+
+        /// <summary>
+        /// Добавить текст
+        /// </summary>
+        public static string InstallAdd = $"{PublicPanel}AutomationId:gb_4\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\Name:RichEdit Control";
+        /// <summary>
+        /// Привлечь к ответственности, предусмотренной
+        /// </summary>
+        public static string ErrorGroup = $"{PublicPanel}AutomationId:gb_5\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Привлечь к ответственности, предусмотренной";
+
+        /// <summary>
+        /// Добавить обстоятельство
+        /// </summary>
+        public static string AddNewCircumstance129 = $"{PublicPanel}AutomationId:gb_5\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations\\Name:AddNew Area\\Name:Добавить обстоятельство";
+        /// <summary>
+        /// Добавить нарушение 1000
+        /// </summary>
+        public static string AddNewErrror129 = $"{PublicPanel}AutomationId:gb_5\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations\\Name:AddNew Area\\Name:Добавить нарушение";
         /// <summary>
         /// Должностные лица решения подпись
         /// </summary>
-        public static string ResheniaFaceSignOpen = $"{PublicPanel}AutomationId:gb_10\\AutomationId:exp\\AutomationId:HeaderSite";
+        public static string ResheniaFaceSignOpen = $"{PublicPanel}AutomationId:gb_11\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Должностные лица";
 
+        /// <summary>
+        /// Лист нарушений
+        /// </summary>
+        public static string ListCashFaceGr5 = $"{PublicPanel}AutomationId:gb_5\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations";
+        /// <summary>
+        /// Лист нарушений
+        /// </summary>
+        public static string ListCashFaceRowNumberGr5 = $"{PublicPanel}AutomationId:gb_5\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations\\Name:Sanctions row 1";
         /// <summary>
         /// Проставить номер кабита
         /// </summary>
@@ -191,8 +241,11 @@
         /// <summary>
         /// Дата решения
         /// </summary>
-        public static string DateReshenia = $"{PublicPanel}AutomationId:gb_0\\AutomationId:exp\\AutomationId:Host\\AutomationId:MainAttributesControl\\AutomationId:dtpDate";
-
+        // public static string DateReshenia = $"{PublicPanel}AutomationId:gb_0\\AutomationId:exp\\AutomationId:Host\\AutomationId:MainAttributesControl\\AutomationId:dtpDate";
+        /// <summary>
+        /// Дата решения
+        /// </summary>
+        public static string DateReshenia = $"{PublicPanel}AutomationId:gb_0\\AutomationId:exp\\ClassName:MainAttributesControlWpf\\ClassName:DatePicker\\AutomationId:PART_TextBox";
         /// <summary>
         /// Добавить дату и время вызова
         /// </summary>
@@ -261,7 +314,25 @@
         /// Добавить нарушение 1000
         /// </summary>
         public static string AddNewErrror = $"{PublicPanel}AutomationId:gb_11\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations\\Name:AddNew Area\\Name:Добавить нарушение";
+        /// <summary>
+        /// Добавить обстоятельство
+        /// </summary>
+        public static string AddNewCircumstance = $"{PublicPanel}AutomationId:gb_11\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations\\Name:AddNew Area\\Name:Добавить обстоятельство";
 
+        /// <summary>
+        /// Выбор обстоятельства 1
+        /// </summary>
+        public static string WinSelectCircumstance1 = "LocalizedControlType:окно\\AutomationId:ultraGridRowEditTemplate2\\AutomationId:ucCType\\LocalizedControlType:поле со списком";
+
+        /// <summary>
+        /// Выбор обстоятельства 2
+        /// </summary>
+        public static string WinSelectCircumstance2 = "LocalizedControlType:окно\\AutomationId:ultraGridRowEditTemplate2\\AutomationId:ucTVid\\LocalizedControlType:поле со списком";
+
+        /// <summary>
+        /// Выбор обстоятельства Ок
+        /// </summary>
+        public static string WinSelectCircumstanceOk = "LocalizedControlType:окно\\AutomationId:ultraGridRowEditTemplate2\\AutomationId:btnTemplateOk1";
         /// <summary>
         /// Выбор нарушения 1
         /// </summary>
@@ -274,7 +345,7 @@
         /// <summary>
         /// Выбор нарушения Ok
         /// </summary>
-        public static string WinSelectOk = "LocalizedControlType:окно\\AutomationId:ultraGridRowEditTemplate1\\Name:OK";
+        public static string WinSelectOk = "LocalizedControlType:окно\\AutomationId:ultraGridRowEditTemplate1\\AutomationId:btnTemplateOk";
         /// <summary>
         /// Лист нарушений
         /// </summary>
@@ -292,7 +363,7 @@
         /// <summary>
         /// Подписал документ решения Выбор 
         /// </summary>
-        public static string ResheniaFaceSign = $"{PublicPanel}AutomationId:gb_10\\AutomationId:exp\\AutomationId:Host\\AutomationId:EndOfDocumentControl\\AutomationId:ultraGroupBox1\\AutomationId:ultraCombo1";
+        public static string ResheniaFaceSign = $"{PublicPanel}AutomationId:gb_11\\AutomationId:exp\\AutomationId:Host\\AutomationId:EndOfDocumentControl\\AutomationId:ultraGroupBox1\\AutomationId:ultraCombo1";
 
         /// <summary>
         /// Должностные лица по 14 группе Раскрыть элемент
@@ -470,6 +541,19 @@
         /// </summary>
         public static string EstablishedNote = $"{PublicPanel}AutomationId:gb_6\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\AutomationId:txbUstanovleno";
         /// <summary>
+        /// Вставить текст форматированный
+        /// </summary>
+        public static string ButtonSend = $"{PublicPanel}AutomationId:gb_6\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\AutomationId:ubtPreFormed";
+
+        /// <summary>
+        /// Текстовый документ установленно 
+        /// </summary>
+        public static string EstablishedNotePred = "Name:Сформированно предварительно\\AutomationId:PreFormedControl\\AutomationId:elementHost\\Name:elementHost\\ClassName:PreFormedControl\\AutomationId:reason";
+        /// <summary>
+        /// Добавить
+        /// </summary>
+        public static string AddNote = "Name:Сформированно предварительно\\AutomationId:PreFormedControl\\AutomationId:elementHost\\Name:elementHost\\ClassName:PreFormedControl\\AutomationId:buttonAdd\\ClassName:TextBlock";
+        /// <summary>
         /// Загрузить шаблон!
         /// </summary>
         public static string DonloadButton = $"{PublicPanel}AutomationId:gb_6\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\AutomationId:ubDownload";
@@ -524,12 +608,12 @@
         /// {5} Колличество месяцев просрочки = Срок предоставления - Фактическое предоставление
         /// {6} Сумма
         /// </summary>
-        public static string AktTemplate1151001 = @"     Согласно подпункту 4 пункта 1 статьи 23 Налогового кодекса Российской Федерации (далее – НК РФ) налогоплательщики обязаны представлять в установленном порядке в налоговый орган по месту учета налоговые декларации (расчеты), если такая обязанность предусмотрена законодательством о налогах и сборах. В силу пункта 6 статьи 80 НК РФ налоговая декларация (расчет) представляется в установленные законодательством о налогах и сборах сроки."+
+        public static string AktTemplate1151001 = @"     Согласно подпункту 4 пункта 1 статьи 23 Налогового кодекса Российской Федерации (далее – НК РФ) налогоплательщики обязаны представлять в установленном порядке в налоговый орган по месту учета налоговые декларации (расчеты), если такая обязанность предусмотрена законодательством о налогах и сборах. В силу пункта 6 статьи 80 НК РФ налоговая декларация (расчет) представляется в установленные законодательством о налогах и сборах сроки." +
                                           "\n В соответствии с пунктом 5 статьи 174 НК РФ налогоплательщики (налоговые агенты) обязаны представить в налоговые органы по месту своего учёта налоговую декларацию по налогу на добавленную стоимость в срок не позднее 25 числа месяца, следующего за истекшим налоговым периодом-кварталом (ст.163 НК РФ)." +
                                           "\n В нарушение подпункта 4 пункта 1 статьи 23, пункта 6 статьи 80, пункта 5 статьи 174 НК РФ налогоплательщиком {0} не выполнена обязанность по своевременному представлению в налоговый орган налоговой декларации. Налоговая декларация по налогу на добавленную стоимость {1} {2} года, при установленном сроке представления – {3}г. включительно, фактически представлена {4}г., количество полных или неполных месяцев просрочки – {5}." +
-                                          "\n {6}"+
+                                          "\n {6}" +
                                           "\n Камеральной налоговой проверкой выявлено, что организация не исполнила свою обязанность, тем самым совершила виновное противоправное деяние, за которое ст. 119 Налогового кодекса РФ предусмотрена налоговая ответственность в виде штрафа в размере 5% не уплаченной в установленный законодательством о налогах и сборах срок суммы налога, подлежащей уплате(доплате) на основании декларации, за каждый полный или неполный месяц со дня, установленного для ее представления, но не более 30% указанной суммы и не менее 1000 рублей." +
-                                          "\n По возникающим вопросам просьба обращаться по телефону 8(495)400-46-91.";
+                                          "\n По возникающим вопросам просьба обращаться по телефону {7}.";
         /// <summary>
         /// Шаблон решения 1000
         /// </summary>
@@ -578,6 +662,14 @@
         /// Сохранить Акт налоговой проверки!
         /// </summary>
         public static string SaveAktNo = "Name:DockTop\\Name:Ribbon\\Name:Документ\\Name:Общие\\Name:Сохранить";
+        /// <summary>
+        /// Назад
+        /// </summary>
+        public static string Breake = "Name:DockTop\\Name:Ribbon\\Name:Сервис\\Name:Навигация по окнам\\Name:Назад";
+        /// <summary>
+        /// Внимание!
+        /// </summary>
+        public static string Ok = "Name:Внимание!\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
         /// <summary>
         /// Подписать Акт налоговой проверки!
         /// </summary>
@@ -710,8 +802,10 @@
         /// </summary>
         public static string ApproveInspector = "Name:_layoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:ViewApproveNO\\AutomationId:ws_Main\\Name:Событие об изменении данных налогоплательщика\\AutomationId:ViewEvenInfo\\AutomationId:tst_EventStateProcess";
     }
-
-    public class Krsb
+    /// <summary>
+    /// Класс моделей КРСБ
+    /// </summary>
+    public class KrsbAis3
     {
         /// <summary>
         /// Публичный путь к КРСБ
@@ -726,7 +820,10 @@
         /// Найти ИНН
         /// </summary>
         public static string FindInn = $"{PublicName}AutomationId:PersonsUiUnit\\AutomationId:windowDockingArea1\\AutomationId:dockableWindow1\\AutomationId:findPan\\AutomationId:btnFind";
-
+        /// <summary>
+        /// Галочка искать во всех крсб
+        /// </summary>
+        public static string VielListKrsb = $"{PublicName}AutomationId:PersonsUiUnit\\AutomationId:windowDockingArea1\\AutomationId:dockableWindow1\\AutomationId:findPan\\AutomationId:chkInAllIfns\\Name:Искать во всех налоговых органах";
         /// <summary>
         /// Поиск панели по масиву
         /// </summary>
@@ -739,6 +836,19 @@
         /// Лист всех КРСБ
         /// </summary>
         public static string ListKrsb = $"{PublicName}AutomationId:PAListUiUnit\\AutomationId:PAListView_Fill_Panel\\AutomationId:grpMain\\AutomationId:grdPAList";
+        /// <summary>
+        /// Обновить
+        /// </summary>
+        public static string UpdateButton = "Name:DockTop\\Name:Ribbon\\Name:Список КРСБ\\Name:Список\\Name:Обновить список";
+        /// <summary>
+        /// Модель при закрытии крсб
+        /// </summary>
+        public static string ListKrsbClosed = $"{PublicName}AutomationId:CloseKRSBUiUnit\\AutomationId:ultraTab\\AutomationId:ultraTabPageControl1\\AutomationId:TPMigrationView_Fill_Panel\\AutomationId:grdPAList";
+
+        /// <summary>
+        /// Ввод основания для закрытия
+        /// </summary>
+        public static string MemoClosed = $"{PublicName}AutomationId:CloseKRSBUiUnit\\AutomationId:cmbReasonClosePA";
         /// <summary>
         /// Лист Счетов уплата погашение
         /// </summary>
@@ -764,5 +874,65 @@
         /// Затчтенные суммы
         /// </summary>
         public static string Summ = "Name:DockTop\\Name:Ribbon\\Name:Карточка \"Расчёты с бюджетом\"\\Name:Данные карточки\\Name:Зачтённые суммы";
+
+        /// <summary>
+        /// Закрыть КРСБ Меню
+        /// </summary>
+        public static string ClosedKrsbMenu = "Name:DockTop\\Name:Ribbon\\Name:Список КРСБ\\Name:Список\\Name:Закрыть КРСБ\\Name:Закрыть КРСБ";
+
+        /// <summary>
+        /// Кнопка обновить
+        /// </summary>
+        public static string ClosedUpdate = "Name:DockTop\\Name:Ribbon\\Name:КРСБ\\Name:Действия\\Name:Обновить";
+        /// <summary>
+        /// Закрыть КРСБ Меню
+        /// </summary>
+        public static string ClosedKrsbButton = "Name:DockTop\\Name:Ribbon\\Name:КРСБ\\Name:Действия\\Name:Закрыть КРСБ";
+        /// <summary>
+        /// Ок на первом окне
+        /// </summary>
+        public static string Win1Ok = "Name:Вопрос\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnYes";
+        
+        /// <summary>
+        /// Вопрос
+        /// </summary>
+        public static string Win2Qwetion = "Name:Вопрос\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpTop\\Name:По данному налогоплательщику существуют невыясненные платежи.. Показать список?";
+
+        /// <summary>
+        /// Вопрос
+        /// </summary>
+        public static string Win2QwetionKill = "Name:Вопрос\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpTop\\Name:Нет данных о выписке из УФК. Продолжить?";
+        /// <summary>
+        /// Ок на втором окне
+        /// </summary>
+        public static string Win2No = "Name:Вопрос\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnNo";
+        /// <summary>
+        /// Ок на втором окне
+        /// </summary>
+        public static string Win2Yes = "Name:Вопрос\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnYes";
+        /// <summary>
+        /// Ок на третьем окне
+        /// </summary>
+        public static string Win3Ok = "Name:Сообщение\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+        /// <summary>
+        /// Окно не понятной ошибки может быть или не быть
+        /// </summary>
+        public static string WinError1 = "Name:Сообщение\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+        /// <summary>
+        /// Ошибка не отмечена не одна КРСБ
+        /// </summary>
+        public static string WinError2 = "Name:Ошибка\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+        /// <summary>
+        /// Ошибка ввода
+        /// </summary>
+        public static string WinError3 = "Name:Ошибка ввода\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+        /// <summary>
+        /// Сообщение не отрицательное сальдо
+        /// </summary>
+        public static string WinError4Cancel = "Name:Внимание!\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnCancel";
+        /// <summary>
+        /// Сообщение не отрицательное сальдо
+        /// </summary>
+        public static string WinError4Ok = "Name:Внимание!\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
     }
 }

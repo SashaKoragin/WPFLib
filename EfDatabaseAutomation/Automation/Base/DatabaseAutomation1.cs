@@ -38,7 +38,9 @@ namespace EfDatabaseAutomation.Automation.Base
     public interface IAutomation : System.IDisposable
     {
         System.Data.Entity.DbSet<AddUlFace> AddUlFaces { get; set; } // AddUlFace
+        System.Data.Entity.DbSet<AddUlFaceWeb> AddUlFaceWebs { get; set; } // AddUlFaceWeb
         System.Data.Entity.DbSet<AllJournal129> AllJournal129 { get; set; } // AllJournal129
+        System.Data.Entity.DbSet<AllJournalRegistrationFl> AllJournalRegistrationFls { get; set; } // AllJournalRegistrationFl
         System.Data.Entity.DbSet<AllPatent> AllPatents { get; set; } // AllPatent
         System.Data.Entity.DbSet<Book> Books { get; set; } // Book
         System.Data.Entity.DbSet<BookPurchase> BookPurchases { get; set; } // BookPurchase
@@ -73,9 +75,12 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<ImZmTrUl> ImZmTrUls { get; set; } // ImZmTrUl
         System.Data.Entity.DbSet<IndividualCardsUlFace> IndividualCardsUlFaces { get; set; } // IndividualCardsUlFace
         System.Data.Entity.DbSet<InfoViewAutomation> InfoViewAutomations { get; set; } // InfoViewAutomation
+        System.Data.Entity.DbSet<IsPatentPars> IsPatentPars { get; set; } // IsPatentParses
         System.Data.Entity.DbSet<IsPatentParse> IsPatentParses { get; set; } // IsPatentParse
         System.Data.Entity.DbSet<KbkPayment> KbkPayments { get; set; } // KbkPayment
         System.Data.Entity.DbSet<KbkPlat> KbkPlats { get; set; } // KbkPlat
+        System.Data.Entity.DbSet<Krsb> Krsbs { get; set; } // Krsb
+        System.Data.Entity.DbSet<KrsbNp> KrsbNps { get; set; } // KrsbNp
         System.Data.Entity.DbSet<LogicsSelectAutomation> LogicsSelectAutomations { get; set; } // LogicsSelectAutomation
         System.Data.Entity.DbSet<LogPreCheck> LogPreChecks { get; set; } // LogPreCheck
         System.Data.Entity.DbSet<ModelKbkOnKbk> ModelKbkOnKbks { get; set; } // ModelKbkOnKbk
@@ -90,7 +95,9 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh
         System.Data.Entity.DbSet<SenderTaxJournalOkp2> SenderTaxJournalOkp2 { get; set; } // SenderTaxJournalOkp2
         System.Data.Entity.DbSet<SignatureBoss> SignatureBosses { get; set; } // SignatureBoss
+        System.Data.Entity.DbSet<Statement> Statements { get; set; } // Statement
         System.Data.Entity.DbSet<StatementFull> StatementFulls { get; set; } // StatementFull
+        System.Data.Entity.DbSet<StatementNp> StatementNps { get; set; } // StatementNp
         System.Data.Entity.DbSet<StatusFlRegistration> StatusFlRegistrations { get; set; } // StatusFlRegistration
         System.Data.Entity.DbSet<StrngthUlFace> StrngthUlFaces { get; set; } // StrngthUlFace
         System.Data.Entity.DbSet<SvedAccoutingUlFace> SvedAccoutingUlFaces { get; set; } // SvedAccoutingUlFace
@@ -142,7 +149,9 @@ namespace EfDatabaseAutomation.Automation.Base
     public class Automation : System.Data.Entity.DbContext, IAutomation
     {
         public System.Data.Entity.DbSet<AddUlFace> AddUlFaces { get; set; } // AddUlFace
+        public System.Data.Entity.DbSet<AddUlFaceWeb> AddUlFaceWebs { get; set; } // AddUlFaceWeb
         public System.Data.Entity.DbSet<AllJournal129> AllJournal129 { get; set; } // AllJournal129
+        public System.Data.Entity.DbSet<AllJournalRegistrationFl> AllJournalRegistrationFls { get; set; } // AllJournalRegistrationFl
         public System.Data.Entity.DbSet<AllPatent> AllPatents { get; set; } // AllPatent
         public System.Data.Entity.DbSet<Book> Books { get; set; } // Book
         public System.Data.Entity.DbSet<BookPurchase> BookPurchases { get; set; } // BookPurchase
@@ -177,9 +186,12 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<ImZmTrUl> ImZmTrUls { get; set; } // ImZmTrUl
         public System.Data.Entity.DbSet<IndividualCardsUlFace> IndividualCardsUlFaces { get; set; } // IndividualCardsUlFace
         public System.Data.Entity.DbSet<InfoViewAutomation> InfoViewAutomations { get; set; } // InfoViewAutomation
+        public System.Data.Entity.DbSet<IsPatentPars> IsPatentPars { get; set; } // IsPatentParses
         public System.Data.Entity.DbSet<IsPatentParse> IsPatentParses { get; set; } // IsPatentParse
         public System.Data.Entity.DbSet<KbkPayment> KbkPayments { get; set; } // KbkPayment
         public System.Data.Entity.DbSet<KbkPlat> KbkPlats { get; set; } // KbkPlat
+        public System.Data.Entity.DbSet<Krsb> Krsbs { get; set; } // Krsb
+        public System.Data.Entity.DbSet<KrsbNp> KrsbNps { get; set; } // KrsbNp
         public System.Data.Entity.DbSet<LogicsSelectAutomation> LogicsSelectAutomations { get; set; } // LogicsSelectAutomation
         public System.Data.Entity.DbSet<LogPreCheck> LogPreChecks { get; set; } // LogPreCheck
         public System.Data.Entity.DbSet<ModelKbkOnKbk> ModelKbkOnKbks { get; set; } // ModelKbkOnKbk
@@ -194,7 +206,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh
         public System.Data.Entity.DbSet<SenderTaxJournalOkp2> SenderTaxJournalOkp2 { get; set; } // SenderTaxJournalOkp2
         public System.Data.Entity.DbSet<SignatureBoss> SignatureBosses { get; set; } // SignatureBoss
+        public System.Data.Entity.DbSet<Statement> Statements { get; set; } // Statement
         public System.Data.Entity.DbSet<StatementFull> StatementFulls { get; set; } // StatementFull
+        public System.Data.Entity.DbSet<StatementNp> StatementNps { get; set; } // StatementNp
         public System.Data.Entity.DbSet<StatusFlRegistration> StatusFlRegistrations { get; set; } // StatusFlRegistration
         public System.Data.Entity.DbSet<StrngthUlFace> StrngthUlFaces { get; set; } // StrngthUlFace
         public System.Data.Entity.DbSet<SvedAccoutingUlFace> SvedAccoutingUlFaces { get; set; } // SvedAccoutingUlFace
@@ -273,7 +287,9 @@ namespace EfDatabaseAutomation.Automation.Base
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Configurations.Add(new AddUlFaceConfiguration());
+            modelBuilder.Configurations.Add(new AddUlFaceWebConfiguration());
             modelBuilder.Configurations.Add(new AllJournal129Configuration());
+            modelBuilder.Configurations.Add(new AllJournalRegistrationFlConfiguration());
             modelBuilder.Configurations.Add(new AllPatentConfiguration());
             modelBuilder.Configurations.Add(new BookConfiguration());
             modelBuilder.Configurations.Add(new BookPurchaseConfiguration());
@@ -308,9 +324,12 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new ImZmTrUlConfiguration());
             modelBuilder.Configurations.Add(new IndividualCardsUlFaceConfiguration());
             modelBuilder.Configurations.Add(new InfoViewAutomationConfiguration());
+            modelBuilder.Configurations.Add(new IsPatentParsConfiguration());
             modelBuilder.Configurations.Add(new IsPatentParseConfiguration());
             modelBuilder.Configurations.Add(new KbkPaymentConfiguration());
             modelBuilder.Configurations.Add(new KbkPlatConfiguration());
+            modelBuilder.Configurations.Add(new KrsbConfiguration());
+            modelBuilder.Configurations.Add(new KrsbNpConfiguration());
             modelBuilder.Configurations.Add(new LogicsSelectAutomationConfiguration());
             modelBuilder.Configurations.Add(new LogPreCheckConfiguration());
             modelBuilder.Configurations.Add(new ModelKbkOnKbkConfiguration());
@@ -325,7 +344,9 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new RukAndUcrhConfiguration());
             modelBuilder.Configurations.Add(new SenderTaxJournalOkp2Configuration());
             modelBuilder.Configurations.Add(new SignatureBossConfiguration());
+            modelBuilder.Configurations.Add(new StatementConfiguration());
             modelBuilder.Configurations.Add(new StatementFullConfiguration());
+            modelBuilder.Configurations.Add(new StatementNpConfiguration());
             modelBuilder.Configurations.Add(new StatusFlRegistrationConfiguration());
             modelBuilder.Configurations.Add(new StrngthUlFaceConfiguration());
             modelBuilder.Configurations.Add(new SvedAccoutingUlFaceConfiguration());
@@ -359,7 +380,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public static System.Data.Entity.DbModelBuilder CreateModel(System.Data.Entity.DbModelBuilder modelBuilder, string schema)
         {
             modelBuilder.Configurations.Add(new AddUlFaceConfiguration(schema));
+            modelBuilder.Configurations.Add(new AddUlFaceWebConfiguration(schema));
             modelBuilder.Configurations.Add(new AllJournal129Configuration(schema));
+            modelBuilder.Configurations.Add(new AllJournalRegistrationFlConfiguration(schema));
             modelBuilder.Configurations.Add(new AllPatentConfiguration(schema));
             modelBuilder.Configurations.Add(new BookConfiguration(schema));
             modelBuilder.Configurations.Add(new BookPurchaseConfiguration(schema));
@@ -394,9 +417,12 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new ImZmTrUlConfiguration(schema));
             modelBuilder.Configurations.Add(new IndividualCardsUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new InfoViewAutomationConfiguration(schema));
+            modelBuilder.Configurations.Add(new IsPatentParsConfiguration(schema));
             modelBuilder.Configurations.Add(new IsPatentParseConfiguration(schema));
             modelBuilder.Configurations.Add(new KbkPaymentConfiguration(schema));
             modelBuilder.Configurations.Add(new KbkPlatConfiguration(schema));
+            modelBuilder.Configurations.Add(new KrsbConfiguration(schema));
+            modelBuilder.Configurations.Add(new KrsbNpConfiguration(schema));
             modelBuilder.Configurations.Add(new LogicsSelectAutomationConfiguration(schema));
             modelBuilder.Configurations.Add(new LogPreCheckConfiguration(schema));
             modelBuilder.Configurations.Add(new ModelKbkOnKbkConfiguration(schema));
@@ -411,7 +437,9 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new RukAndUcrhConfiguration(schema));
             modelBuilder.Configurations.Add(new SenderTaxJournalOkp2Configuration(schema));
             modelBuilder.Configurations.Add(new SignatureBossConfiguration(schema));
+            modelBuilder.Configurations.Add(new StatementConfiguration(schema));
             modelBuilder.Configurations.Add(new StatementFullConfiguration(schema));
+            modelBuilder.Configurations.Add(new StatementNpConfiguration(schema));
             modelBuilder.Configurations.Add(new StatusFlRegistrationConfiguration(schema));
             modelBuilder.Configurations.Add(new StrngthUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new SvedAccoutingUlFaceConfiguration(schema));
@@ -483,10 +511,21 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // AddUlFaceWeb
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class AddUlFaceWeb
+    {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
+        public int IdUl { get; set; } // IdUl (Primary key)
+        public string InnUl { get; set; } // InnUl (length: 12)
+        public string FullStatus { get; set; } // FullStatus (length: 124)
+    }
+
     // AllJournal129
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class AllJournal129
     {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
         public int Id { get; set; } // Id (Primary key)
         public string StateColor { get; set; } // StateColor (length: 12)
         public string StateTaxPayerColor { get; set; } // State_TaxPayerColor (length: 12)
@@ -498,6 +537,33 @@ namespace EfDatabaseAutomation.Automation.Base
         public string Fid { get; set; } // Fid (length: 512)
         public string LoginUser { get; set; } // LoginUser (length: 1024)
         public string MessageInfo { get; set; } // MessageInfo (length: 512)
+    }
+
+    // AllJournalRegistrationFl
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class AllJournalRegistrationFl
+    {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
+        public string MessageStatus { get; set; } // MessageStatus (length: 1024)
+        public string MessageError { get; set; } // MessageError (length: 1024)
+        public long? IdNum { get; set; } // IdNum
+        public long? Fid { get; set; } // Fid
+        public string Inn { get; set; } // Inn (Primary key) (length: 12)
+        public string F { get; set; } // F (length: 128)
+        public string I { get; set; } // I (length: 128)
+        public string O { get; set; } // O (length: 128)
+        public System.DateTime? DateOfBirth { get; set; } // DateOfBirth
+        public string PlaceBirth { get; set; } // PlaceBirth (length: 1024)
+        public string CodeSd { get; set; } // CodeSd (length: 32)
+        public string Document { get; set; } // Document (length: 512)
+        public string SeriaDoc { get; set; } // SeriaDoc (length: 32)
+        public string NumberDoc { get; set; } // NumberDoc (length: 32)
+        public System.DateTime? DateCreateDoc { get; set; } // DateCreateDoc
+        public string WhoDoc { get; set; } // WhoDoc (length: 1024)
+        public string CodePodr { get; set; } // CodePodr (length: 1024)
+        public string Citizenship { get; set; } // Citizenship (length: 1024)
+        public string Address { get; set; } // Address (length: 1024)
+        public System.DateTime DateCreate { get; set; } // DateCreate (Primary key)
     }
 
     // AllPatent
@@ -576,6 +642,10 @@ namespace EfDatabaseAutomation.Automation.Base
         {
             IsBookSalesParse = false;
             IsBookPurchase = false;
+            SummBookPurchase = 0.00;
+            SummBookSales = 0.00;
+            SummNds = 0.00;
+            SummTotal = 0.00;
             WeightProduct = 0;
             DateCreate = System.DateTime.Now;
             BookPurchases = new System.Collections.Generic.List<BookPurchase>();
@@ -636,6 +706,16 @@ namespace EfDatabaseAutomation.Automation.Base
 
         public BookPurchase()
         {
+            Str150 = 0.00;
+            Str160 = 0.00;
+            Str170 = 0.00;
+            Str175 = 0.00;
+            Str180 = 0.00;
+            Str190 = 0.00;
+            Str200 = 0.00;
+            Str205 = 0.00;
+            Str210 = 0.00;
+            Str220 = 0.00;
             CountRnp = 0;
             DateCreate = System.DateTime.Now;
         }
@@ -687,6 +767,8 @@ namespace EfDatabaseAutomation.Automation.Base
         public BookSale()
         {
             Str160 = 0;
+            Str170 = 0.00;
+            Str180 = 0.00;
             CountRnp = 0;
             DateCreate = System.DateTime.Now;
         }
@@ -828,6 +910,10 @@ namespace EfDatabaseAutomation.Automation.Base
 
         public CounterpartyCashBank()
         {
+            ExpenseSumOperationUsa = 0.00;
+            ExpenseSumOperationRu = 0.00;
+            ComingSumOperationUsa = 0.00;
+            ComingSumOperationRu = 0.00;
             DateCreate = System.DateTime.Now;
         }
     }
@@ -983,6 +1069,7 @@ namespace EfDatabaseAutomation.Automation.Base
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class DeliveryDocument
     {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
         public long RegNumber { get; set; } // RegNumber (Primary key)
         public string LoginUser { get; set; } // LoginUser (Primary key) (length: 1024)
         public System.DateTime DateDocument { get; set; } // DateDocument (Primary key)
@@ -1006,6 +1093,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public int? IdSender { get; set; } // IdSender
         public string NameDepartament { get; set; } // NameDepartament (length: 256)
         public string NameDepartamentActiveDerectory { get; set; } // NameDepartamentActiveDerectory (length: 256)
+        public string StatusFace { get; set; } // StatusFace (length: 32)
+        public string Office { get; set; } // Office (length: 32)
+        public string Telephon { get; set; } // Telephon (length: 32)
         public System.DateTime? DataCreate { get; set; } // DataCreate
 
         // Foreign keys
@@ -1311,6 +1401,7 @@ namespace EfDatabaseAutomation.Automation.Base
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class FormulNdfl
     {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
         public string NameSmall { get; set; } // NameSmall (Primary key) (length: 1024)
         public string Inn { get; set; } // Inn (Primary key) (length: 12)
         public string Kpp { get; set; } // Kpp (length: 12)
@@ -1537,6 +1628,23 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // IsPatentParses
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class IsPatentPars
+    {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
+        public int IdNum { get; set; } // IdNum (Primary key)
+        public long RegNumPatent { get; set; } // RegNumPatent (Primary key)
+        public bool IsParseFullPatent { get; set; } // IsParseFullPatent (Primary key)
+        public bool IsParseDocPatent { get; set; } // IsParseDocPatent (Primary key)
+        public bool IsParsePlaceOfBusiness { get; set; } // IsParsePlaceOfBusiness (Primary key)
+        public bool IsParseSvedTr { get; set; } // IsParseSvedTr (Primary key)
+        public bool IsParseSvedObject { get; set; } // IsParseSvedObject (Primary key)
+        public bool IsParseParametrNalog { get; set; } // IsParseParametrNalog (Primary key)
+        public bool IsParseSvedFactPatent { get; set; } // IsParseSvedFactPatent (Primary key)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+    }
+
     // IsPatentParse
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class IsPatentParse
@@ -1602,20 +1710,73 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // Krsb
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class Krsb
+    {
+        public int IdKrsb { get; set; } // IdKrsb (Primary key)
+        public int? IdNp { get; set; } // IdNp
+        public string Kbk { get; set; } // Kbk (length: 20)
+        public string NameKrsb { get; set; } // NameKrsb (length: 1024)
+        public string Oktmo { get; set; } // Oktmo (length: 15)
+        public long IdParameter { get; set; } // IdParameter
+        public bool IsPriznak { get; set; } // IsPriznak
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent KrsbNp pointed by [Krsb].([IdNp]) (FK_KrsbNp_Krsb)
+        /// </summary>
+        public virtual KrsbNp KrsbNp { get; set; } // FK_KrsbNp_Krsb
+
+        public Krsb()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // KrsbNp
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class KrsbNp
+    {
+        public int IdNp { get; set; } // IdNp (Primary key)
+        public long Fid { get; set; } // Fid
+        public string Kpp { get; set; } // Kpp (length: 12)
+        public string Inn { get; set; } // Inn (length: 12)
+        public string NameNp { get; set; } // NameNp (length: 1024)
+        public bool IsPriznakFullClosed { get; set; } // IsPriznakFullClosed
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child Krsbs where [Krsb].[IdNp] point to this entity (FK_KrsbNp_Krsb)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<Krsb> Krsbs { get; set; } // Krsb.FK_KrsbNp_Krsb
+
+        public KrsbNp()
+        {
+            DateCreate = System.DateTime.Now;
+            Krsbs = new System.Collections.Generic.List<Krsb>();
+        }
+    }
+
     // LogicsSelectAutomation
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class LogicsSelectAutomation
     {
         public int Id { get; set; } // Id (Primary key)
         public string SelectInfo { get; set; } // SelectInfo (length: 512)
+        public string NameDll { get; set; } // NameDll (length: 128)
+        public string FindNameSpace { get; set; } // FindNameSpace (length: 512)
+        public bool? IsResultXml { get; set; } // IsResultXml
+        public string NameReportList { get; set; } // NameReportList (length: 128)
+        public string NameReportFile { get; set; } // NameReportFile (length: 128)
         public string SelectedParametr { get; set; } // SelectedParametr
         public string SelectUser { get; set; } // SelectUser
         public System.DateTime? DataCreate { get; set; } // DataCreate
-
-        public LogicsSelectAutomation()
-        {
-            DataCreate = System.DateTime.Now;
-        }
     }
 
     // LogPreCheck
@@ -1668,6 +1829,7 @@ namespace EfDatabaseAutomation.Automation.Base
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class ModelTree
     {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
         public int IdUl { get; set; } // IdUl (Primary key)
         public int IdModel { get; set; } // IdModel (Primary key)
         public string InnUl { get; set; } // InnUl (length: 12)
@@ -1765,6 +1927,9 @@ namespace EfDatabaseAutomation.Automation.Base
 
         public ParametrNalog()
         {
+            NalogDateBase = 0.00;
+            NalogPsnYear = 0.00;
+            NalogPsnPeriod = 0.00;
             DateCreate = System.DateTime.Now;
         }
     }
@@ -1965,6 +2130,31 @@ namespace EfDatabaseAutomation.Automation.Base
         public bool IsActual { get; set; } // IsActual (Primary key)
     }
 
+    // Statement
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class Statement
+    {
+        public int IdStatement { get; set; } // IdStatement (Primary key)
+        public int? IdNp { get; set; } // IdNp
+        public string NumberStatement { get; set; } // NumberStatement (length: 128)
+        public string Kbk { get; set; } // Kbk (length: 20)
+        public string Oktmo { get; set; } // Oktmo (length: 15)
+        public string IsPriznak { get; set; } // IsPriznak (length: 1024)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent StatementNp pointed by [Statement].([IdNp]) (FK_StatementNp_Statement)
+        /// </summary>
+        public virtual StatementNp StatementNp { get; set; } // FK_StatementNp_Statement
+
+        public Statement()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
     // StatementFull
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class StatementFull
@@ -1992,6 +2182,31 @@ namespace EfDatabaseAutomation.Automation.Base
         public StatementFull()
         {
             DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // StatementNp
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class StatementNp
+    {
+        public int IdNp { get; set; } // IdNp (Primary key)
+        public string Inn { get; set; } // Inn (length: 12)
+        public string NameNp { get; set; } // NameNp (length: 1024)
+        public string IsPriznakFullClosed { get; set; } // IsPriznakFullClosed (length: 1024)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child Statements where [Statement].[IdNp] point to this entity (FK_StatementNp_Statement)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<Statement> Statements { get; set; } // Statement.FK_StatementNp_Statement
+
+        public StatementNp()
+        {
+            DateCreate = System.DateTime.Now;
+            Statements = new System.Collections.Generic.List<Statement>();
         }
     }
 
@@ -2104,6 +2319,8 @@ namespace EfDatabaseAutomation.Automation.Base
         {
             FactDaysPatent = 0;
             NalogDays = 0;
+            NalogFact = 0.00;
+            Delta = 0.00;
             DateCreate = System.DateTime.Now;
         }
     }
@@ -2131,6 +2348,7 @@ namespace EfDatabaseAutomation.Automation.Base
 
         public SvedObject()
         {
+            AreaObject = 0.00;
             DateCreate = System.DateTime.Now;
         }
     }
@@ -2161,6 +2379,7 @@ namespace EfDatabaseAutomation.Automation.Base
 
         public SvedTr()
         {
+            Weight = 0.00;
             DateCreate = System.DateTime.Now;
         }
     }
@@ -2245,6 +2464,7 @@ namespace EfDatabaseAutomation.Automation.Base
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class TaxJournal121AutoWebPage
     {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
         public int Id { get; set; } // Id (Primary key)
         public int? RegNumDeclaration { get; set; } // RegNumDeclaration
         public string Period { get; set; } // Period (length: 128)
@@ -2369,6 +2589,7 @@ namespace EfDatabaseAutomation.Automation.Base
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class TaxJournalAutoWebPage
     {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
         public int Id { get; set; } // Id (Primary key)
         public int? IdDelo { get; set; } // IdDelo
         public string LoginUser { get; set; } // LoginUser (length: 1024)
@@ -2822,6 +3043,7 @@ namespace EfDatabaseAutomation.Automation.Base
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class UlFaceAll
     {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
         public int IdUl { get; set; } // IdUl (Primary key)
         public string StatusFull { get; set; } // StatusFull (length: 7)
         public long IdNum { get; set; } // IdNum (Primary key)
@@ -2840,6 +3062,7 @@ namespace EfDatabaseAutomation.Automation.Base
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class UlFaceAllSale
     {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
         public int IdUl { get; set; } // IdUl (Primary key)
         public string StatusFull { get; set; } // StatusFull (length: 7)
         public long IdNum { get; set; } // IdNum (Primary key)
@@ -2858,6 +3081,7 @@ namespace EfDatabaseAutomation.Automation.Base
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class UlFaceSalesBookBank
     {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
         public int IdUl { get; set; } // IdUl (Primary key)
         public string StatusFull { get; set; } // StatusFull (length: 7)
         public long IdNum { get; set; } // IdNum (Primary key)
@@ -2897,6 +3121,27 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // AddUlFaceWeb
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class AddUlFaceWebConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AddUlFaceWeb>
+    {
+        public AddUlFaceWebConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AddUlFaceWebConfiguration(string schema)
+        {
+            ToTable("AddUlFaceWeb", schema);
+            HasKey(x => new { x.LogicsButton, x.IdUl });
+
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.InnUl).HasColumnName(@"InnUl").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.FullStatus).HasColumnName(@"FullStatus").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(124);
+        }
+    }
+
     // AllJournal129
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class AllJournal129Configuration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AllJournal129>
@@ -2909,8 +3154,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public AllJournal129Configuration(string schema)
         {
             ToTable("AllJournal129", schema);
-            HasKey(x => x.Id);
+            HasKey(x => new { x.LogicsButton, x.Id });
 
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.StateColor).HasColumnName(@"StateColor").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
             Property(x => x.StateTaxPayerColor).HasColumnName(@"State_TaxPayerColor").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
@@ -2922,6 +3168,44 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.Fid).HasColumnName(@"Fid").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
             Property(x => x.LoginUser).HasColumnName(@"LoginUser").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.MessageInfo).HasColumnName(@"MessageInfo").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+        }
+    }
+
+    // AllJournalRegistrationFl
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class AllJournalRegistrationFlConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AllJournalRegistrationFl>
+    {
+        public AllJournalRegistrationFlConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AllJournalRegistrationFlConfiguration(string schema)
+        {
+            ToTable("AllJournalRegistrationFl", schema);
+            HasKey(x => new { x.LogicsButton, x.Inn, x.DateCreate });
+
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.MessageStatus).HasColumnName(@"MessageStatus").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.MessageError).HasColumnName(@"MessageError").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsOptional();
+            Property(x => x.Fid).HasColumnName(@"Fid").HasColumnType("bigint").IsOptional();
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.F).HasColumnName(@"F").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.I).HasColumnName(@"I").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.O).HasColumnName(@"O").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.DateOfBirth).HasColumnName(@"DateOfBirth").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.PlaceBirth).HasColumnName(@"PlaceBirth").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.CodeSd).HasColumnName(@"CodeSd").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(32);
+            Property(x => x.Document).HasColumnName(@"Document").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.SeriaDoc).HasColumnName(@"SeriaDoc").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(32);
+            Property(x => x.NumberDoc).HasColumnName(@"NumberDoc").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(32);
+            Property(x => x.DateCreateDoc).HasColumnName(@"DateCreateDoc").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.WhoDoc).HasColumnName(@"WhoDoc").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.CodePodr).HasColumnName(@"CodePodr").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.Citizenship).HasColumnName(@"Citizenship").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.Address).HasColumnName(@"Address").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
         }
     }
 
@@ -3416,8 +3700,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public DeliveryDocumentConfiguration(string schema)
         {
             ToTable("DeliveryDocument", schema);
-            HasKey(x => new { x.RegNumber, x.LoginUser, x.DateDocument, x.DateSend, x.DateDelivery, x.Number, x.Inn, x.NameDeclaration, x.God });
+            HasKey(x => new { x.LogicsButton, x.RegNumber, x.LoginUser, x.DateDocument, x.DateSend, x.DateDelivery, x.Number, x.Inn, x.NameDeclaration, x.God });
 
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.RegNumber).HasColumnName(@"RegNumber").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.LoginUser).HasColumnName(@"LoginUser").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.DateDocument).HasColumnName(@"DateDocument").HasColumnType("smalldatetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
@@ -3452,6 +3737,9 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.IdSender).HasColumnName(@"IdSender").HasColumnType("int").IsOptional();
             Property(x => x.NameDepartament).HasColumnName(@"NameDepartament").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
             Property(x => x.NameDepartamentActiveDerectory).HasColumnName(@"NameDepartamentActiveDerectory").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.StatusFace).HasColumnName(@"StatusFace").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(32);
+            Property(x => x.Office).HasColumnName(@"Office").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(32);
+            Property(x => x.Telephon).HasColumnName(@"Telephon").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(32);
             Property(x => x.DataCreate).HasColumnName(@"DataCreate").HasColumnType("smalldatetime").IsOptional();
 
             // Foreign keys
@@ -3755,8 +4043,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public FormulNdflConfiguration(string schema)
         {
             ToTable("FormulNdfl", schema);
-            HasKey(x => new { x.NameSmall, x.Inn, x.CodeNdfl });
+            HasKey(x => new { x.LogicsButton, x.NameSmall, x.Inn, x.CodeNdfl });
 
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.NameSmall).HasColumnName(@"NameSmall").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.Kpp).HasColumnName(@"Kpp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
@@ -4006,6 +4295,34 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // IsPatentParses
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class IsPatentParsConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<IsPatentPars>
+    {
+        public IsPatentParsConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public IsPatentParsConfiguration(string schema)
+        {
+            ToTable("IsPatentParses", schema);
+            HasKey(x => new { x.LogicsButton, x.IdNum, x.RegNumPatent, x.IsParseFullPatent, x.IsParseDocPatent, x.IsParsePlaceOfBusiness, x.IsParseSvedTr, x.IsParseSvedObject, x.IsParseParametrNalog, x.IsParseSvedFactPatent });
+
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.RegNumPatent).HasColumnName(@"RegNumPatent").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.IsParseFullPatent).HasColumnName(@"IsParseFullPatent").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.IsParseDocPatent).HasColumnName(@"IsParseDocPatent").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.IsParsePlaceOfBusiness).HasColumnName(@"IsParsePlaceOfBusiness").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.IsParseSvedTr).HasColumnName(@"IsParseSvedTr").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.IsParseSvedObject).HasColumnName(@"IsParseSvedObject").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.IsParseParametrNalog).HasColumnName(@"IsParseParametrNalog").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.IsParseSvedFactPatent).HasColumnName(@"IsParseSvedFactPatent").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
     // IsPatentParse
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class IsPatentParseConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<IsPatentParse>
@@ -4078,6 +4395,58 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // Krsb
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class KrsbConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Krsb>
+    {
+        public KrsbConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public KrsbConfiguration(string schema)
+        {
+            ToTable("Krsb", schema);
+            HasKey(x => x.IdKrsb);
+
+            Property(x => x.IdKrsb).HasColumnName(@"IdKrsb").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdNp).HasColumnName(@"IdNp").HasColumnType("int").IsOptional();
+            Property(x => x.Kbk).HasColumnName(@"Kbk").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.NameKrsb).HasColumnName(@"NameKrsb").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.Oktmo).HasColumnName(@"Oktmo").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.IdParameter).HasColumnName(@"IdParameter").HasColumnType("bigint").IsRequired();
+            Property(x => x.IsPriznak).HasColumnName(@"IsPriznak").HasColumnType("bit").IsRequired();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.KrsbNp).WithMany(b => b.Krsbs).HasForeignKey(c => c.IdNp).WillCascadeOnDelete(false); // FK_KrsbNp_Krsb
+        }
+    }
+
+    // KrsbNp
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class KrsbNpConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<KrsbNp>
+    {
+        public KrsbNpConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public KrsbNpConfiguration(string schema)
+        {
+            ToTable("KrsbNp", schema);
+            HasKey(x => x.IdNp);
+
+            Property(x => x.IdNp).HasColumnName(@"IdNp").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.Fid).HasColumnName(@"Fid").HasColumnType("bigint").IsRequired();
+            Property(x => x.Kpp).HasColumnName(@"Kpp").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.NameNp).HasColumnName(@"NameNp").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.IsPriznakFullClosed).HasColumnName(@"IsPriznakFullClosed").HasColumnType("bit").IsRequired();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
     // LogicsSelectAutomation
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class LogicsSelectAutomationConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<LogicsSelectAutomation>
@@ -4094,6 +4463,11 @@ namespace EfDatabaseAutomation.Automation.Base
 
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.SelectInfo).HasColumnName(@"SelectInfo").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.NameDll).HasColumnName(@"NameDll").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.FindNameSpace).HasColumnName(@"FindNameSpace").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.IsResultXml).HasColumnName(@"IsResultXml").HasColumnType("bit").IsOptional();
+            Property(x => x.NameReportList).HasColumnName(@"NameReportList").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.NameReportFile).HasColumnName(@"NameReportFile").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
             Property(x => x.SelectedParametr).HasColumnName(@"SelectedParametr").HasColumnType("nvarchar(max)").IsOptional();
             Property(x => x.SelectUser).HasColumnName(@"SelectUser").HasColumnType("nvarchar(max)").IsOptional();
             Property(x => x.DataCreate).HasColumnName(@"DataCreate").HasColumnType("smalldatetime").IsOptional();
@@ -4170,8 +4544,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public ModelTreeConfiguration(string schema)
         {
             ToTable("ModelTree", schema);
-            HasKey(x => new { x.IdUl, x.IdModel });
+            HasKey(x => new { x.LogicsButton, x.IdUl, x.IdModel });
 
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.IdModel).HasColumnName(@"IdModel").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.InnUl).HasColumnName(@"InnUl").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
@@ -4468,6 +4843,33 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // Statement
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class StatementConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Statement>
+    {
+        public StatementConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public StatementConfiguration(string schema)
+        {
+            ToTable("Statement", schema);
+            HasKey(x => x.IdStatement);
+
+            Property(x => x.IdStatement).HasColumnName(@"IdStatement").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdNp).HasColumnName(@"IdNp").HasColumnType("int").IsOptional();
+            Property(x => x.NumberStatement).HasColumnName(@"NumberStatement").HasColumnType("nvarchar").IsRequired().HasMaxLength(128);
+            Property(x => x.Kbk).HasColumnName(@"Kbk").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(20);
+            Property(x => x.Oktmo).HasColumnName(@"Oktmo").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.IsPriznak).HasColumnName(@"IsPriznak").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.StatementNp).WithMany(b => b.Statements).HasForeignKey(c => c.IdNp).WillCascadeOnDelete(false); // FK_StatementNp_Statement
+        }
+    }
+
     // StatementFull
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class StatementFullConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<StatementFull>
@@ -4493,6 +4895,28 @@ namespace EfDatabaseAutomation.Automation.Base
             // Foreign keys
             HasRequired(a => a.HeadingStatement).WithMany(b => b.StatementFulls).HasForeignKey(c => c.IdStatementHead).WillCascadeOnDelete(false); // FK_HeadingStatement_StatementFull
             HasRequired(a => a.UlFace).WithMany(b => b.StatementFulls).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_UlFace_StatementFull
+        }
+    }
+
+    // StatementNp
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class StatementNpConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<StatementNp>
+    {
+        public StatementNpConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public StatementNpConfiguration(string schema)
+        {
+            ToTable("StatementNp", schema);
+            HasKey(x => x.IdNp);
+
+            Property(x => x.IdNp).HasColumnName(@"IdNp").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.NameNp).HasColumnName(@"NameNp").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.IsPriznakFullClosed).HasColumnName(@"IsPriznakFullClosed").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
         }
     }
 
@@ -4771,8 +5195,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public TaxJournal121AutoWebPageConfiguration(string schema)
         {
             ToTable("TaxJournal121AutoWebPage", schema);
-            HasKey(x => new { x.Id, x.DateStartCheck, x.DateFinishCheck, x.DateStartDeclaration, x.DateFinishDeclaration });
+            HasKey(x => new { x.LogicsButton, x.Id, x.DateStartCheck, x.DateFinishCheck, x.DateStartDeclaration, x.DateFinishDeclaration });
 
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.RegNumDeclaration).HasColumnName(@"RegNumDeclaration").HasColumnType("int").IsOptional();
             Property(x => x.Period).HasColumnName(@"Period").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
@@ -4929,8 +5354,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public TaxJournalAutoWebPageConfiguration(string schema)
         {
             ToTable("TaxJournalAutoWebPage", schema);
-            HasKey(x => x.Id);
+            HasKey(x => new { x.LogicsButton, x.Id });
 
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.IdDelo).HasColumnName(@"IdDelo").HasColumnType("int").IsOptional();
             Property(x => x.LoginUser).HasColumnName(@"LoginUser").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
@@ -5251,8 +5677,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public UlFaceAllConfiguration(string schema)
         {
             ToTable("UlFaceAll", schema);
-            HasKey(x => new { x.IdUl, x.IdNum, x.Fid, x.Inn, x.NameFull, x.NameSmall });
+            HasKey(x => new { x.LogicsButton, x.IdUl, x.IdNum, x.Fid, x.Inn, x.NameFull, x.NameSmall });
 
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.StatusFull).HasColumnName(@"StatusFull").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(7);
             Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
@@ -5280,8 +5707,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public UlFaceAllSaleConfiguration(string schema)
         {
             ToTable("UlFaceAllSales", schema);
-            HasKey(x => new { x.IdUl, x.IdNum, x.Fid, x.Inn, x.NameFull, x.NameSmall });
+            HasKey(x => new { x.LogicsButton, x.IdUl, x.IdNum, x.Fid, x.Inn, x.NameFull, x.NameSmall });
 
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.StatusFull).HasColumnName(@"StatusFull").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(7);
             Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
@@ -5309,8 +5737,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public UlFaceSalesBookBankConfiguration(string schema)
         {
             ToTable("UlFaceSalesBookBank", schema);
-            HasKey(x => new { x.IdUl, x.IdNum, x.Fid, x.Inn, x.NameFull, x.NameSmall });
+            HasKey(x => new { x.LogicsButton, x.IdUl, x.IdNum, x.Fid, x.Inn, x.NameFull, x.NameSmall });
 
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.StatusFull).HasColumnName(@"StatusFull").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(7);
             Property(x => x.IdNum).HasColumnName(@"IdNum").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);

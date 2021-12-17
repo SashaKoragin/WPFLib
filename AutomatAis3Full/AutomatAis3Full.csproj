@@ -209,6 +209,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\RaschetBudg\Krsb\Krsb\Krsb.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\RaschetBudg\Migration\Migration\Migration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -254,6 +258,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Uregulirovanie\StartProcessFace\StartCash\ViewStartCash\ViewStartCash.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\StatementNp\ViewStatementNp\ViewStatementNp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -432,6 +440,10 @@
     <Compile Include="Form\Automat\PreCheck\ReportingMemo\ReportingMemo\ReportingMemo.xaml.cs">
       <DependentUpon>ReportingMemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\RaschetBudg\Krsb\DataContext\KrsbContext.cs" />
+    <Compile Include="Form\Automat\RaschetBudg\Krsb\Krsb\Krsb.xaml.cs">
+      <DependentUpon>Krsb.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\RaschetBudg\Migration\DataContext\MigrationContext.cs" />
     <Compile Include="Form\Automat\RaschetBudg\Migration\Migration\Migration.xaml.cs">
       <DependentUpon>Migration.xaml</DependentUpon>
@@ -479,6 +491,10 @@
     <Compile Include="Form\Automat\Uregulirovanie\StartProcessFace\StartCash\DataContextStartCash\DataContextStartCash.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\StartProcessFace\StartCash\ViewStartCash\ViewStartCash.xaml.cs">
       <DependentUpon>ViewStartCash.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\StatementNp\DataContextStatementNp\DataContextStatementNp.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\StatementNp\ViewStatementNp\ViewStatementNp.xaml.cs">
+      <DependentUpon>ViewStatementNp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090202\Ticket050809020206\DataContext\DataContextSignatureOfficeNote.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090202\Ticket050809020206\UserControl\SignatureOfficeNote.xaml.cs">

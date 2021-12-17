@@ -27,7 +27,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private TaxJournal121AutoWebPage[] taxJournal121AutoWebPageField;
         
-        private AddUlFace[] addUlFaceField;
+        private AddUlFaceWeb[] addUlFaceWebField;
         
         private ModelTree[] modelTreeField;
         
@@ -43,7 +43,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private DeliveryDocument[] deliveryDocumentField;
         
-        private IsPatentParse[] isPatentParseField;
+        private IsPatentParses[] isPatentParsesField;
         
         private AllPatent[] allPatentField;
         
@@ -74,13 +74,13 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("AddUlFace")]
-        public AddUlFace[] AddUlFace {
+        [System.Xml.Serialization.XmlElementAttribute("AddUlFaceWeb")]
+        public AddUlFaceWeb[] AddUlFaceWeb {
             get {
-                return this.addUlFaceField;
+                return this.addUlFaceWebField;
             }
             set {
-                this.addUlFaceField = value;
+                this.addUlFaceWebField = value;
             }
         }
         
@@ -162,13 +162,13 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("IsPatentParse")]
-        public IsPatentParse[] IsPatentParse {
+        [System.Xml.Serialization.XmlElementAttribute("IsPatentParses")]
+        public IsPatentParses[] IsPatentParses {
             get {
-                return this.isPatentParseField;
+                return this.isPatentParsesField;
             }
             set {
-                this.isPatentParseField = value;
+                this.isPatentParsesField = value;
             }
         }
         
@@ -785,7 +785,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
-    public partial class AddUlFace {
+    public partial class AddUlFaceWeb {
         
         private System.Nullable<int> idUlField;
         
@@ -795,7 +795,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private string fullStatusField;
         
-        public AddUlFace() {
+        public AddUlFaceWeb() {
             this.logicsButtonField = "Button";
         }
         
@@ -2129,7 +2129,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
-    public partial class IsPatentParse {
+    public partial class IsPatentParses {
         
         private string logicsButtonField;
         
@@ -2153,7 +2153,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private System.DateTime dateCreateField;
         
-        public IsPatentParse() {
+        public IsPatentParses() {
             this.logicsButtonField = "Button";
         }
         

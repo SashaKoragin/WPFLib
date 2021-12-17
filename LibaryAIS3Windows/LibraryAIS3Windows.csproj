@@ -85,10 +85,13 @@
     <Compile Include="ButtonFullFunction\Okp2Function\Okp2GlobalFunction.cs" />
     <Compile Include="ButtonFullFunction\Okp3Function\Okp3Patent.cs" />
     <Compile Include="ButtonFullFunction\Okp3Function\SelectModelPatern.cs" />
+    <Compile Include="ButtonFullFunction\OkpClosedComplex\OkpClosedComplex.cs" />
     <Compile Include="ButtonFullFunction\PreCheck\DataBaseElementAdd.cs" />
     <Compile Include="ButtonFullFunction\PreCheck\PreCheckFunction.cs" />
     <Compile Include="ButtonFullFunction\PublicGlobalFunction\PublicGlobalFunction.cs" />
+    <Compile Include="ButtonFullFunction\RaschBydjFunction\KrsbFunction.cs" />
     <Compile Include="ButtonFullFunction\RegistrationFunction\AcceptanceDocumentsFunction.cs" />
+    <Compile Include="ButtonFullFunction\UregulirovanieFunction\StatementF.cs" />
     <Compile Include="ButtonsClikcs\ButtonConstant.cs" />
     <Compile Include="ButtonsClikcs\ClikcCheker\Cheker.cs" />
     <Compile Include="ButtonsClikcs\KclicerButton.cs" />

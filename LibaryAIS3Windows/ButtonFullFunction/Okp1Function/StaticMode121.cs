@@ -197,6 +197,93 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
         }
 
         /// <summary>
+        /// Метод закрытия комплекса мероприятий КНП 1151020
+        /// </summary>10
+        /// <param name="libraryAutomation">Библиотека Автомата</param>
+        /// <param name="journal">Журнал</param>
+        public void CloseComplex1151020(LibraryAutomations libraryAutomation, TaxJournal121 journal)
+        {
+            //Данная функция закрыта так как используется не по назначению
+            if (journal.GlobalColor == "ff0000")
+            {
+                return;
+            }
+            if (journal.GlobalColor == "6400")
+            {
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.StartKnp);
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex121);
+                AutoItX.WinWait(Journal129AndJournal121.WinNameComplex);
+                AutoItX.WinActivate(Journal129AndJournal121.WinNameComplex);
+                LibraryAutomations libraryAutomationWin = new LibraryAutomations(Journal129AndJournal121.WinNameComplex);
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin, Journal129AndJournal121.WinOkCloseComplex);
+                AutoItX.Sleep(1000);
+                return;
+            }
+            var isError = false;
+            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.StartKnp);
+            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.WinErrorWin) != null)
+            {
+                libraryAutomation.InvokePattern(libraryAutomation.IsEnableElements(Journal129AndJournal121.WinErrorWin));
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.OpenKnp);
+            }
+            while (true)
+            {
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.CloseKnp);
+                AutoItX.Sleep(1000);
+                while (true)
+                {
+                    LibraryAutomations libraryAutomationSign = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomation.RootAutomationElements));
+                    if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewWindowEnable, null, true, 40, 0, false, ';') != null)
+                    {
+                        libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
+                        libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
+                        var memo = libraryAutomationSign.SelectAutomationColrction(libraryAutomationSign.FindElement);
+                        var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == "Нарушения не выявлены");
+                        libraryAutomationSign.ClickElement(elemClick);
+                        libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewOkEdit));
+                        AutoItX.Sleep(1000);
+                        if (AutoItX.WinExists(Journal129AndJournal121.NewWarningError) != 0)
+                        {
+                            AutoItX.WinActivate(Journal129AndJournal121.NewWarningError);
+                            AutoItX.Send(ButtonConstant.Enter);
+                            libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
+                            libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
+                            memo = libraryAutomationSign.SelectAutomationColrction(libraryAutomationSign.FindElement);
+                            elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == "Выявлены нарушения (но не учитываются в 2НК)");
+                            libraryAutomationSign.ClickElement(elemClick);
+                            libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewOkEdit));
+                            isError = true;
+                        }
+                        AutoItX.WinWait(Journal129AndJournal121.NewWarningOk);
+                        AutoItX.WinActivate(Journal129AndJournal121.NewWarningOk);
+                        libraryAutomationSign = new LibraryAutomations(Journal129AndJournal121.NewWarningOk);
+                        libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewWarningButtonOk));
+                        AutoItX.Sleep(1000);
+                        break;
+                    }
+                }
+                break;
+            }
+            if (isError)
+            {
+                WindowsAis3 win = new WindowsAis3();
+                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                AutoItX.Sleep(1000);
+            }
+            else
+            {
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex121);
+                AutoItX.WinWait(Journal129AndJournal121.WinNameComplex);
+                AutoItX.WinActivate(Journal129AndJournal121.WinNameComplex);
+                LibraryAutomations libraryAutomationWin = new LibraryAutomations(Journal129AndJournal121.WinNameComplex);
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin, Journal129AndJournal121.WinOkCloseComplex);
+                AutoItX.Sleep(1000);
+            }
+        }
+
+
+
+        /// <summary>
         /// Подстановка признака выявлены ли нарушения или нет
         /// </summary>
         /// <param name="libraryAutomation">Библиотека Автомата</param>

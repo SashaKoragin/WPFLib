@@ -46,7 +46,9 @@ using AutomatAis3Full.Form.Automat.Okp6.RegistryDeclaration.ViewRegistryDeclarat
 using AutomatAis3Full.Form.Automat.Uregulirovanie.StartProcessFace.StartCash.ViewStartCash;
 using AutomatAis3Full.Form.FormirovanieSpiskov.AutoGenerateListAutomation.ViewGenerator;
 using AutomatAis3Full.Form.Automat.Okp1.Declaration121Error.Declaration121Error;
+using AutomatAis3Full.Form.Automat.RaschetBudg.Krsb.Krsb;
 using AutomatAis3Full.Form.Automat.Registration.AcceptanceDocuments.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.StatementNp.ViewStatementNp;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
 {
@@ -128,7 +130,18 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                       NameControl = "Урегулирование задолженности",
                       CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                       {
-
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Проведение зачетов/возвратов",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Заявления НП о зачете/возврате (реестр)",
+                                      UserControl = new ViewStatementNp()
+                                  }
+                              }
+                          },
                           new FullWindowAutoIt()
                           {
                               NameControl = "Взыскание задолженности за счет ден. средств",
@@ -324,6 +337,7 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                               NameControl = "Общие задания",
                               CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                               {
+
                                   new FullWindowAutoIt()
                                   {
                                       NameControl = "Контрольная работа налоговые проверки",
@@ -350,6 +364,11 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                               NameControl = "Контрольная работа (налоговые проверки)",
                               CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                               {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все) (Акты Извещения Решения)",
+                                      UserControl = new FormDeclaration121ActIsh()
+                                  },
                                   new FullWindowAutoIt()
                                   {
                                       NameControl = "203. Применение патентной системы налогообложения",
@@ -428,7 +447,7 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                               {
                                   new FullWindowAutoIt()
                                   {
-                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)",
+                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)  (Акты Извещения Решения)",
                                       UserControl = new RegistryDeclarationView()
                                   }
                               }
@@ -447,6 +466,18 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                               {
                                   new FullWindowAutoIt()
                                   {
+                                      NameControl = "Ведение КРСБ",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Просмотр списка КРСБ налогоплательщика",
+                                              UserControl = new Krsb()
+                                          }
+                                      }
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
                                       NameControl = "Ведомость невыясненных поступлений",
                                       CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                                       {
@@ -457,6 +488,7 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                           }
                                       }
                                   }
+
                               }
                           },
                           new FullWindowAutoIt()

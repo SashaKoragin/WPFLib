@@ -22,7 +22,7 @@ namespace EfDatabaseAutomationTests
             var logica = new EfDatabaseAutomation.Automation.SelectParametrSheme.LogicsSelectAutomation();
             logica.SelectUser = "Select * From TaxJournalAutoWebPage";
             var select = new SelectAll();
-            var t = select.SelectSqlAll(logica);
+         //   var t = select.SqlModelAutomation<>(logica);
         }
         [TestMethod]
         public void ServerTestModel()

@@ -37,7 +37,7 @@ namespace LibraryCommandPublic.TestAutoit.Okp6.JournalDoc
         /// Налоговое администрирование\Контрольная работа (налоговые проверки)\122. Камеральная налоговая проверка НДФЛ\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
         /// </summary>
         /// <param name="statusButton">Кнопка проставки Даты вручения</param>
-        public void StartRegistryDeclaration(StatusButtonMethod statusButton)
+        public void StartRegistryDeclaration(StatusButtonMethod statusButton, string pathPdfTemp)
         {
             DispatcherHelper.Initialize();
             Task.Run(delegate
@@ -49,7 +49,7 @@ namespace LibraryCommandPublic.TestAutoit.Okp6.JournalDoc
                     LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                     if (ais3.WinexistsAis3() == 1)
                     {
-                        clickerButton.Click28(statusButton,null,null);
+                        clickerButton.Click28(statusButton, pathPdfTemp, null);
                         DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                     }
                     else

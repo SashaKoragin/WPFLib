@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.IO;
 using ClosedXML.Excel;
 
 namespace SqlLibaryIfns.ExcelReport.Report
@@ -24,7 +25,25 @@ namespace SqlLibaryIfns.ExcelReport.Report
         {
             var worksheet = XlWorkbook.Worksheets.Add(nameReport);
             worksheet.Cell("A1").InsertTable(table.Tables[0]).Worksheet.Columns().AdjustToContents();
-            XlWorkbook.SaveAs(pathSave + nameSaveFile + ".xlsx");
+            SaveAsFileXlsx(pathSave + nameSaveFile + ".xlsx");
+        }
+        /// <summary>
+        /// Добавление листа в отчет Excel
+        /// </summary>
+        /// <param name="nameReport">Наименование листа xlsx</param>
+        /// <param name="table">Таблица которая вставляется в отчет</param>
+        public void ReportAddListFile(string nameReport, DataSet table)
+        {
+            var worksheet = XlWorkbook.Worksheets.Add(nameReport);
+            worksheet.Cell("A1").InsertTable(table.Tables[0]).Worksheet.Columns().AdjustToContents();
+        }
+        /// <summary>
+        /// Сохранение файла Excel
+        /// </summary>
+        /// <param name="fullPathXlsx">Полный путь</param>
+        public void SaveAsFileXlsx(string fullPathXlsx)
+        {
+            XlWorkbook.SaveAs(fullPathXlsx);
         }
         /// <summary>
         /// Сохранение таблицы DataSet по всем листам
@@ -45,6 +64,27 @@ namespace SqlLibaryIfns.ExcelReport.Report
                 }
             }
             XlWorkbook.SaveAs(pathSaveFullName);
+        }
+
+        /// <summary>
+        /// Конвертация файла в массив данных
+        /// </summary>
+        /// <param name="path">Путь к файлу</param>
+        /// <returns></returns>
+        public Stream DownloadFile(string path)
+        {
+            return File.OpenRead(path);
+        }
+        /// <summary>
+        /// Конвертация файла в массив данных
+        /// </summary>
+        /// <param name="path">Путь к файлу</param>
+        /// <returns></returns>
+        public byte[] ReadFileByte(string path)
+        {
+            var file = File.ReadAllBytes(path);
+            File.Delete(path);
+            return file;
         }
 
         protected virtual void Dispose(bool disposing)

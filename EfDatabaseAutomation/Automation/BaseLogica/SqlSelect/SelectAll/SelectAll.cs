@@ -1,20 +1,15 @@
 ﻿using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.DirectoryServices.AccountManagement;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
-using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel;
-using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
 using EfDatabaseAutomation.Automation.Base;
-using ModelKbkOnKbk = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.ModelKbkOnKbk;
-using HelpKbkAuto = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.HelpKbkAuto;
-using FormulNdfl = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.FormulNdfl;
-using DeliveryDocument = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.DeliveryDocument;
-using AllPatent = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.AllPatent;
-using TaxJournal121Error = EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel.TaxJournal121Error;
+using LibaryXMLAuto.ReadOrWrite;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
 {
@@ -31,99 +26,29 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
         /// <summary>
         /// Выполнение запроса и конвертация его в JSON
         /// </summary>
-        /// <param name="sqlSelect">Выборка пользовательская</param>
+        /// <param name="sqlSelect">Выборка пользовательская из таблицы LogicsSelectAutomation</param>
         /// <returns></returns>
-        public string SelectSqlAll(SelectParametrSheme.LogicsSelectAutomation sqlSelect)
+        public string SqlModelAutomation<T>(SelectParametrSheme.LogicsSelectAutomation sqlSelect)
         {
             SerializeJson serializeJson = new SerializeJson();
-            var webPage = new AutoWebPage();
-            var dataBaseUlSelect = new DataBaseUlSelect();
             object result;
-            switch (sqlSelect.Id)
+            string resultModel;
+            Automation.Database.CommandTimeout = 120000;
+            if (sqlSelect.IsResultXml)
             {
-                case 2:
-                    result = Automation.Database.SqlQuery<XsdAuto.FullShemeModel.TaxJournalAutoWebPage>(sqlSelect.SelectUser).ToArray();
-                    webPage.TaxJournalAutoWebPage = (XsdAuto.FullShemeModel.TaxJournalAutoWebPage[])result;
-                    break;
-                case 3:
-                    result = Automation.Database.SqlQuery<XsdAuto.FullShemeModel.TaxJournal121AutoWebPage>(sqlSelect.SelectUser).ToArray();
-                    webPage.TaxJournal121AutoWebPage = (XsdAuto.FullShemeModel.TaxJournal121AutoWebPage[])result;
-                    break;
-                case 5:
-                    result = Automation.Database.SqlQuery<XsdAuto.FullShemeModel.AddUlFace>(sqlSelect.SelectUser).ToArray();
-                    webPage.AddUlFace = (XsdAuto.FullShemeModel.AddUlFace[])result;
-                    break;
-                case 8:
-                    result = Automation.Database.SqlQuery<XsdAuto.FullShemeModel.ModelTree>(sqlSelect.SelectUser).ToArray();
-                    webPage.ModelTree = (XsdAuto.FullShemeModel.ModelTree[])result;
-                    break;
-                case 13:
-                    result = Automation.Database.SqlQuery<XsdDTOSheme.UlFace>(sqlSelect.SelectUser).ToArray();
-                    dataBaseUlSelect.UlFace = (XsdDTOSheme.UlFace[])result;
-                    return serializeJson.JsonLibrary(dataBaseUlSelect);
-                case 14:
-                    result = Automation.Database.SqlQuery<ModelKbkOnKbk>(sqlSelect.SelectUser).ToArray();
-                    webPage.ModelKbkOnKbk = (ModelKbkOnKbk[])result;
-                    break;
-                case 15:
-                    result = Automation.Database.SqlQuery<HelpKbkAuto>(sqlSelect.SelectUser).ToArray();
-                    webPage.HelpKbkAuto = (HelpKbkAuto[])result;
-                    break;
-                case 16:
-                    result = Automation.Database.SqlQuery<XsdAuto.FullShemeModel.AllJournal129>(sqlSelect.SelectUser).ToArray();
-                    webPage.AllJournal129 = (XsdAuto.FullShemeModel.AllJournal129[])result;
-                    break;
-                case 17:
-                    break;
-                case 18:
-                    result = Automation.Database.SqlQuery<Documen2NDFLIdentification>(sqlSelect.SelectUser).ToArray();
-                    webPage.Documen2NDFLIdentification = (Documen2NDFLIdentification[])result;
-                    break;
-                case 19:
-                    result = Automation.Database.SqlQuery<Documen2NDFLIdentification>(sqlSelect.SelectUser).ToArray();
-                    webPage.Documen2NDFLIdentification = (Documen2NDFLIdentification[])result;
-                    break;
-                case 20:
-                    result = Automation.Database.SqlQuery<Documen2NDFLIdentification>(sqlSelect.SelectUser).ToArray();
-                    webPage.Documen2NDFLIdentification = (Documen2NDFLIdentification[])result;
-                    break;
-                case 22:
-                    result = Automation.Database.SqlQuery<FormulNdfl>(sqlSelect.SelectUser).ToArray();
-                    webPage.FormulNdfl = (FormulNdfl[])result;
-                    break;
-                case 23:
-                    result = Automation.Database.SqlQuery<XsdDTOSheme.UlFace>(sqlSelect.SelectUser).ToArray();
-                    dataBaseUlSelect.UlFace = (XsdDTOSheme.UlFace[])result;
-                    return serializeJson.JsonLibrary(dataBaseUlSelect);
-                case 24:
-                    result = Automation.Database.SqlQuery<DeliveryDocument>(sqlSelect.SelectUser).ToArray();
-                    webPage.DeliveryDocument = (DeliveryDocument[])result;
-                    break;
-                case 25:
-                    result = Automation.Database.SqlQuery<XsdDTOSheme.UlFace>(sqlSelect.SelectUser).ToArray();
-                    dataBaseUlSelect.UlFace = (XsdDTOSheme.UlFace[])result;
-                    return serializeJson.JsonLibrary(dataBaseUlSelect);
-                case 26:
-                    result = Automation.Database.SqlQuery<XsdAuto.FullShemeModel.IsPatentParse>(sqlSelect.SelectUser).ToArray();
-                    webPage.IsPatentParse = (XsdAuto.FullShemeModel.IsPatentParse[])result;
-                    break;
-                case 28:
-                    result = Automation.Database.SqlQuery<AllPatent>(sqlSelect.SelectUser).ToArray();
-                    webPage.AllPatent = (AllPatent[])result;
-                    break;
-                case 30:
-                    result = Automation.Database.SqlQuery<TaxJournal121Error>(sqlSelect.SelectUser).ToArray();
-                    webPage.TaxJournal121Error = (TaxJournal121Error[]) result;
-                    break;
-                case 31:
-                    result = Automation.Database.SqlQuery<AllJournalRegistrationFl>(sqlSelect.SelectUser).ToArray();
-                    webPage.AllJournalRegistrationFl = (AllJournalRegistrationFl[])result;
-                    break;
-                default:
-                    return "Данная команда не определена!!!";
+                var xml = new XmlReadOrWrite();
+                result = Automation.Database.SqlQuery<string>(sqlSelect.SelectUser).ToArray();
+                var resultXml = (T)xml.ReadXmlText(string.Join("", (string[])result), typeof(T));
+                resultModel = serializeJson.JsonLibrary(resultXml, "dd.MM.yyyy HH:mm");
             }
-            var json = serializeJson.JsonLibrary(webPage);
-            return json;
+            else
+            {
+                result = Automation.Database.SqlQuery<T>(sqlSelect.SelectUser).ToList();
+                dynamic expand = new ExpandoObject();
+                AddProperty(expand, typeof(T).Name, result);
+                resultModel = serializeJson.JsonLibrary(expand, "dd.MM.yyyy HH:mm");
+            }
+            return resultModel;
         }
 
         /// <summary>
@@ -217,7 +142,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
         /// </summary>
         /// <returns></returns>
         /// <param name="idUserDomain">Табельный номер пользователя</param>
-        public string SelectSenderJournal(string idUserDomain)
+        public DepartamentOtdel SelectSenderJournal(string idUserDomain)
         {
             string[] groups;
             using (PrincipalContext context = new PrincipalContext(ContextType.Domain, "regions.tax.nalog.ru"))
@@ -246,8 +171,24 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
             var senderUser = from departmentOdell in Automation.DepartamentOtdels
                 where groups.Any(gr => gr.Contains(departmentOdell.NameDepartamentActiveDerectory))
                 join sender in Automation.SenderTaxJournalOkp2 on departmentOdell.IdSender equals sender.Id
-                select sender.NameUser;
-            return senderUser.FirstOrDefault();
+                select sender;
+            return senderUser.SelectMany(h => h.DepartamentOtdels.Where(y => groups.Any(r => r.Contains(y.NameDepartamentActiveDerectory)))).FirstOrDefault();
+        }
+
+
+        /// <summary>
+        /// Добавление в ExpandoObject динамического названия типа
+        /// </summary>
+        /// <param name="expando">Динамический объект ExpandoObject</param>
+        /// <param name="propertyName">Наименование параметра </param>
+        /// <param name="propertyValue">Объект прикрепляемый к модели</param>
+        private void AddProperty(ExpandoObject expando, string propertyName, object propertyValue)
+        {
+            var expandoDict = expando as IDictionary<string, object>;
+            if (expandoDict.ContainsKey(propertyName))
+                expandoDict[propertyName] = propertyValue;
+            else
+                expandoDict.Add(propertyName, propertyValue);
         }
 
         /// <summary>

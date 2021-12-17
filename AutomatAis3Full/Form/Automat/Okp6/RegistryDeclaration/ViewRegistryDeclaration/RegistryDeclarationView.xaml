@@ -23,7 +23,7 @@
             <Label  FontSize="20"  HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"   Background="Beige"  Foreground="DarkCyan" >Автомат на ветку - 122. Камеральная налоговая проверка НДФЛ\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)</Label>
             <Label
                 HorizontalAlignment="Center"
-                Content="Автомат для закрытия комплекса КНП" />
+                Content="Автомат для выставления (Актов Извещений Решений)" />
             <ContentControl
                 Margin="5,5,5,5"
                 HorizontalAlignment="Left"

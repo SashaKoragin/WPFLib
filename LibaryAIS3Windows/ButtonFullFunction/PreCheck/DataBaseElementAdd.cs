@@ -124,7 +124,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                         case "Наименование объекта учета":
                             savedAccountingUlFace.NameObject = value;
                             break;
-                        case "Адрес объекта учета":
+                        case "Адрес объекта учета по КЛАДР":
                             savedAccountingUlFace.AddressObject = value;
                             break;
                         case "Код НО по месту учета":
@@ -194,7 +194,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                         case "Наименование объекта учета":
                             historyUiFace.NameObject = value;
                             break;
-                        case "Адрес объекта учета":
+                        case "Адрес объекта учета по КЛАДР":
                             historyUiFace.AddressObject = value;
                             break;
                         case "УН записи об учете ЮЛ в НО":

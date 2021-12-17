@@ -26,17 +26,31 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
     public class SelectFull
     {
         /// <summary>
+        /// Строка соединения с БД
+        /// </summary>
+        public string ConnectionString { get; set; }
+
+        /// <summary>
         /// Вытаскиваем внутреннею команду с сайта
         /// </summary>
         /// <param name="connectionString">Строка соединения</param>
+        /// <returns></returns>
+        public SelectFull(string connectionString)
+        {
+            ConnectionString = connectionString;
+        }
+
+        /// <summary>
+        /// Вытаскиваем внутреннею команду с сайта
+        /// </summary>
         /// <param name="setting">Параметры</param>
         /// <returns></returns>
-        private ServiceWcf Service(string connectionString, FullSetting setting)
+        private ServiceWcf Service(FullSetting setting)
         {
             var sqlConnect = new SqlConnectionType();
             return
                 (ServiceWcf)
-                sqlConnect.SelectFullParametrSqlReader(connectionString, ModelSqlFullService.ProcedureSelectParametr,
+                sqlConnect.SelectFullParametrSqlReader(ConnectionString, ModelSqlFullService.ProcedureSelectParametr,
                     typeof(ServiceWcf), ModelSqlFullService.ParamCommand(setting.Id.ToString()));
         }
 
@@ -44,55 +58,51 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
         /// <summary>
         /// Данный блок относится к слиянию лиц
         /// </summary>
-        /// <param name="connectionString">Строка соединения</param>
         /// <param name="select">Параметры выборки</param>
         /// <returns>Модель Face</returns>
-        public Face FaceError(string connectionString, string select)
+        public Face FaceError(string select)
         {
             var sqlConnect = new SqlConnectionType();
-            return (Face)sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, select, typeof(Face));
+            return (Face)sqlConnect.SelectFullParametrSqlReader<string, string>(ConnectionString, select, typeof(Face));
         }
 
         /// <summary>
         /// Данный блок относится к БДК
         /// </summary>
-        /// <param name="connectionString">Строка соединения</param>
         /// <param name="select">Команда Select</param>
         /// <returns>Возвращаем модель JSON в виде строки</returns>
-        public string BdkSqlSelect(string connectionString, string select)
+        public string BdkSqlSelect(string select)
         {
             var sqlConnect = new SqlConnectionType();
             SerializeJson serializeJson = new SerializeJson();
             return
                 serializeJson.JsonLibrary(
                     (AnalisBdkFull)
-                    sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, select,
+                    sqlConnect.SelectFullParametrSqlReader<string, string>(ConnectionString, select,
                         typeof(AnalisBdkFull)));
         }
 
         /// <summary>
         /// Вытягивание выборки на сайт для поставления в нее параметров данных
         /// </summary>
-        /// <param name="connectionString">Строка соединения</param>
         /// <param name="setting">Параметры настройки</param>
         /// <returns></returns>
-        public string ServiceCommand(string connectionString, FullSetting setting)
+        public string ServiceCommand( FullSetting setting)
         {
             var sqlConnect = new SqlConnectionType();
             SerializeJson serializeJson = new SerializeJson();
             return serializeJson.JsonLibrary(
                 (ServiceWcf)
-                sqlConnect.SelectFullParametrSqlReader(connectionString, ModelSqlFullService.ProcedureSelectParametr,
+                sqlConnect.SelectFullParametrSqlReader(ConnectionString, ModelSqlFullService.ProcedureSelectParametr,
                     typeof(ServiceWcf), ModelSqlFullService.ParamCommand(setting.ParamService.IdCommand.ToString())));
         }
 
         /// <summary>
         /// Выполнение команд с генерацией параметров на ФРОНТЕ
         /// </summary>
-        /// <param name="connectionString">Строка соединения</param>
         /// <param name="command">Команда</param>
         /// <returns></returns>
-        public string SqlSelect(string connectionString, AngularModel command)
+        public string SqlSelect(AngularModel command)
         {
             var sqlConnect = new SqlConnectionType();
             SerializeJson serializeJson = new SerializeJson();
@@ -102,37 +112,37 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                     return
                         serializeJson.JsonLibrary(
                             (SysNum)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, command.Command,
+                            sqlConnect.SelectFullParametrSqlReader<string, string>(ConnectionString, command.Command,
                                 typeof(SysNum)));
                 case 12:
                     return
                         serializeJson.JsonLibrary(
                             (Mail)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, command.Command,
+                            sqlConnect.SelectFullParametrSqlReader<string, string>(ConnectionString, command.Command,
                                 typeof(Mail)));
                 case 13:
                     return
                         serializeJson.JsonLibrary(
                             (ModelFull)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, command.Command,
+                            sqlConnect.SelectFullParametrSqlReader<string, string>(ConnectionString, command.Command,
                                 typeof(ModelFull)));
                 case 14:
                     return
                         serializeJson.JsonLibrary(
                             (Soprovod)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, command.Command,
+                            sqlConnect.SelectFullParametrSqlReader<string, string>(ConnectionString, command.Command,
                                 typeof(Soprovod)));
                 case 21:
                     return
                         serializeJson.JsonLibrary(
                             (No)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, command.Command,
+                            sqlConnect.SelectFullParametrSqlReader<string, string>(ConnectionString, command.Command,
                                 typeof(No)));
                 case 29:
                     return
                         serializeJson.JsonLibrary(
                             (ServerAndComputer)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString, command.Command,
+                            sqlConnect.SelectFullParametrSqlReader<string, string>(ConnectionString, command.Command,
                                 typeof(ServerAndComputer)));
                 default:
                     return "Данная команда не определена!!!";
@@ -142,10 +152,9 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
         /// <summary>
         /// Выполнение команды на сервере под номером
         /// </summary>
-        /// <param name="connectionString">Строка соединения</param>
         /// <param name="setting">Параметры</param>
         /// <returns></returns>
-        public string SqlSelect(string connectionString, FullSetting setting)
+        public string SqlSelect(FullSetting setting)
         {
             var sqlConnect = new SqlConnectionType();
             SerializeJson serializeJson = new SerializeJson();
@@ -156,8 +165,8 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                     var server =
                         ping.Ping(
                             (ServerAndComputer)
-                            sqlConnect.SelectFullParametrSqlReader<string, string>(connectionString,
-                                Service(connectionString, setting).ServiceWcfCommand.Command, typeof(ServerAndComputer)));
+                            sqlConnect.SelectFullParametrSqlReader<string, string>(ConnectionString,
+                                Service(setting).ServiceWcfCommand.Command, typeof(ServerAndComputer)));
                     return serializeJson.JsonLibrary(server);
                 default:
                     return "Данная команда не определена!!!";
@@ -167,11 +176,10 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
         /// <summary>
         /// Выгрузка модели телефонного справочника
         /// </summary>
-        /// <param name="connectionString">Строка соединения с БД</param>
         /// <param name="logic">Логика выборки</param>
         /// <param name="listparametr">Параметры</param>
         /// <returns>Возвращает объект для превращения его в схему</returns>
-        public object GenerateSchemeXsdSql<TKey, TValue>(string connectionString, LogicaSelect logic, Dictionary<TKey, TValue> listparametr = null)
+        public object GenerateSchemeXsdSql<TKey, TValue>( LogicaSelect logic, Dictionary<TKey, TValue> listparametr = null)
         {
             var sqlConnect = new SqlConnectionType();
             switch (logic.Id)
@@ -180,11 +188,11 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                     TelephoneHelp telephoneHelp = new TelephoneHelp
                     {
                         TelephonHeaders =
-                            ((TelephoneHelp)sqlConnect.SelectFullParametrSqlReader(connectionString, logic.SelectUser,
+                            ((TelephoneHelp)sqlConnect.SelectFullParametrSqlReader(ConnectionString, logic.SelectUser,
                                 typeof(TelephoneHelp), ModelSqlFullService.ParamCommand("1"))).TelephonHeaders,
                         TelephonBody =
                             ((TelephoneHelp)
-                                sqlConnect.SelectFullParametrSqlReader(connectionString, logic.SelectUser,
+                                sqlConnect.SelectFullParametrSqlReader(ConnectionString, logic.SelectUser,
                                 typeof(TelephoneHelp), ModelSqlFullService.ParamCommand("2"))).TelephonBody
                     };
                     return telephoneHelp;
@@ -192,7 +200,7 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                     Book book = new Book
                     {
                         BareCodeBook = new BareCodeBook(),
-                        Organization = ((Book)sqlConnect.SelectFullParametrSqlReader(connectionString, logic.SelectUser,typeof(Book),listparametr)).Organization
+                        Organization = ((Book)sqlConnect.SelectFullParametrSqlReader(ConnectionString, logic.SelectUser,typeof(Book),listparametr)).Organization
                     };
                     return book;
                 default:
@@ -202,20 +210,21 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
         /// <summary>
         /// Запрос на выгрузку данных в таблицу XLSX по заданной выборки View
         /// </summary>
-        /// <param name="connectionString">Строка соединения с сервером</param>
         /// <param name="sqlSelect">Sql запрос</param>
         /// <param name="nameFile">Наименование файла</param>
         /// <param name="nameReport">Наименование отчета</param>
         /// <param name="pathSaveReport">Путь сохранения отчета</param>
         /// <returns></returns>
-        public Stream GenerateStreamToSqlViewFile(string connectionString, string sqlSelect, string nameFile, string nameReport, string pathSaveReport)
+        public Stream GenerateStreamToSqlViewFile(string sqlSelect, string nameFile, string nameReport, string pathSaveReport)
         {
             var sqlConnect = new SqlConnectionType();
             var xlsx = new ReportExcel();
-            var tableTelephone = sqlConnect.ReportQbe(connectionString, sqlSelect);
+            var tableTelephone = sqlConnect.ReportQbe(ConnectionString, sqlSelect);
             xlsx.ReportSave(pathSaveReport, nameFile, nameReport, tableTelephone);
-            return DownloadFile(Path.Combine(pathSaveReport, $"{nameFile}.xlsx"));
+            return xlsx.DownloadFile(Path.Combine(pathSaveReport, $"{nameFile}.xlsx"));
         }
+
+
         /// <summary>
         /// Выгрузка сводной таблицы по покупкам из таблицы ReportXlsx
         /// </summary>
@@ -235,18 +244,10 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                 var xlsx = new ReportExcel();
                 xlsx.ReportSaveFullDataSet(fullPath, dataReport);
                 xlsx.Dispose();
-                return DownloadFile(fullPath);
+                return xlsx.DownloadFile(fullPath);
             }
             return null;
         }
-        /// <summary>
-        /// Конвертация файла в массив данных
-        /// </summary>
-        /// <param name="path">Путь к файлу</param>
-        /// <returns></returns>
-        private Stream DownloadFile(string path)
-        {
-            return File.OpenRead(path);
-        }
+
     }
 }

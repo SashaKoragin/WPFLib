@@ -1,7 +1,4 @@
-﻿
-using System;
-
-namespace SqlLibaryIfns.SqlSelect.ImnsKadrsSelect
+﻿namespace SqlLibaryIfns.SqlSelect.ImnsKadrsSelect
 {
    public class SelectImns
     {
@@ -34,15 +31,20 @@ namespace SqlLibaryIfns.SqlSelect.ImnsKadrsSelect
                                     Where DATE_OUT is null For Xml Auto";
 
         /// <summary>
-        /// Отбор пользователей для табелей
+        /// Отбор пользователей для табелей новая полная выборка обрабатывающая ошибку перевода сотрудника а также подтягивает график рабочего времени
         /// </summary>
-        public string UserReportCard = @"Select 
+        public string UserReportCard = @"Select Fio,Tab_num,New_post,Status_link, Date_in,Date_out,LINK as Link,Link_Gr,NAME as NameGr  From (
+                                          Select Fio,Tab_num,New_post,Status_link,max(Date_in) as Date_in,Date_out,LINK,Link_Users, TT.Link_Gr, TT.NAME From 
+                                         (Select 
                                              RTRIM(FM)+' '+RTRIM(IM)+' '+RTRIM(OT) as Fio,
-                                             RTRIM(TAB_NUM) as Tab_num,
+                                             RTRIM(UsersReportCard.TAB_NUM) as Tab_num,
+											 DSK.NAME,
                                              RTRIM(DICTIONARY_POST.NAME) as New_post,
                                              RTRIM(KSV.LINK) as Status_link,
-                                             Date_in,
-                                             Date_out
+                                            ISNULL(Model.Date_in,UsersReportCard.Date_in) as Date_in,
+                                             UsersReportCard.Date_out as Date_out,
+											 DICTIONARY_POST.LINK,
+											 UsersReportCard.LINK as Link_Users
                                          From dbo.EMPLOYERS_TBL as UsersReportCard
                                            JOIN(Select I2.LINK_EMPL as LINKS, STAFF_LINK, I2.LINK From ITEM_MOVE I1
                                            Join (Select LINK_EMPL as  LINK_EMPL, MAX(LINK) as LINK From ITEM_MOVE
@@ -58,19 +60,38 @@ namespace SqlLibaryIfns.SqlSelect.ImnsKadrsSelect
                                                  Where DATE<Getdate()
                                                  GROUP BY LINK_EMPL) State on State.LINK_EMPL = STATUS.LINK_EMPL and State.DATE = STATUS.DATE) as STATUS on STATUS.LINK_EMPL = UsersReportCard.LINK
                                             JOIN dbo.STATUS_TYPES AS KSV ON STATUS.STATUS = KSV.LINK
-                                        Where DSK.NAME = '{0}' and(DATE_OUT is NULL or DATE_OUT > '{1}')
-                                        ORDER BY DICTIONARY_POST.LINK
-                                        For Xml Auto";
+											FULL Join (
+											
+											       Select RTRIM(IM.FM)+' '+RTRIM(IM.IM)+' '+RTRIM(IM.OT) as Fio,
+											       RTRIM(IM.TAB_NUM) as Tab_num, RTRIM(NEW_SUBDIV) as New_subdiv, RTRIM(NEW_POST) as New_post, IM.STATUS,IM.DATE_BEGIN as Date_in,Date_END2 as Date_out,DICTIONARY_POST.LINK From dbo.ITEM_MOVE AS IM
+	                                               INNER JOIN dbo.ORDERS AS O ON IM.ORDER_LINK = O.LINK AND IM.NEW_FACE = 0
+	                                               INNER JOIN dbo.EMPLOYERS_TBL ON dbo.EMPLOYERS_TBL.TAB_NUM = IM.TAB_NUM
+											       JOIN DICTIONARY_POST ON IM.POST= DICTIONARY_POST.NAME 
+											       Where IM.SUBDIV<>IM.NEW_SUBDIV) as Model on Model.Tab_num = UsersReportCard.TAB_NUM and Model.New_subdiv = DSK.NAME
+											UNION ALL
+	                                        Select  RTRIM(IM.FM)+' '+RTRIM(IM.IM)+' '+RTRIM(IM.OT) as Fio,
+											 RTRIM(IM.TAB_NUM) as Tab_num, RTRIM(SUBDIV) as Old_post, RTRIM(POST), IM.STATUS, Date_in, DATEADD(day,-1,IM.DATE_BEGIN),DICTIONARY_POST.LINK,dbo.EMPLOYERS_TBL.LINK as Link_Users From dbo.ITEM_MOVE AS IM
+	                                        INNER JOIN dbo.ORDERS AS O ON IM.ORDER_LINK = O.LINK AND IM.NEW_FACE = 0
+	                                        INNER JOIN dbo.EMPLOYERS_TBL ON dbo.EMPLOYERS_TBL.TAB_NUM = IM.TAB_NUM
+											JOIN DICTIONARY_POST ON IM.POST= DICTIONARY_POST.NAME
+											Where IM.SUBDIV<>IM.NEW_SUBDIV
+											) as UsersReportCard
+									   JOIN (Select v.LINK_EMPL,v.DATE_BEGIN,v.LINK as Link_Gr,v.NAME  From 
+										   (Select  EMPLOYERS_GRAPHICS.LINK_EMPL,EMPLOYERS_GRAPHICS.DATE_BEGIN,GRAPH.LINK,GRAPH.NAME From EMPLOYERS_GRAPHICS
+                                                  JOIN GRAPH on GRAPH.LINK = EMPLOYERS_GRAPHICS.LINK_GRAPHIC
+                                                  Where EMPLOYERS_GRAPHICS.DATE_BEGIN <= DATEADD(month,1,'{0}') ) v
+                                                  left join (Select EMPLOYERS_GRAPHICS.LINK_EMPL,EMPLOYERS_GRAPHICS.DATE_BEGIN,GRAPH.LINK,GRAPH.NAME From EMPLOYERS_GRAPHICS
+                                                  JOIN GRAPH on GRAPH.LINK = EMPLOYERS_GRAPHICS.LINK_GRAPHIC
+                                                                      Where EMPLOYERS_GRAPHICS.DATE_BEGIN <=  DATEADD(month,1,'{1}')) v2 on v.LINK_EMPL = v2.link_empl
+                                                                      and v2.date_begin > v.DATE_BEGIN
+                                                                      where v2.link_empl is null
+                                                  ) as TT on TT.LINK_EMPL = UsersReportCard.Link_Users
+                                        Where UsersReportCard.NAME = '{2}' and (DATE_OUT is NULL or DATE_OUT > '{3}') 
 
-        ///// <summary>
-        ///// Диапазоны отпусков
-        ///// </summary>
-        //public string ItemVacation = @"Select DATE_BEGIN as Date_begin,
-        //                                      DATE_END as Date_end,
-        //                                      CODE as Code
-        //                                      From ITEM_VACATION as ItemVacation 
-        //                                      INNER JOIN DICTIONARY_VACATION as TypeVacation on TypeVacation.LINK = ItemVacation.TYPE_LINK
-        //                                      Where TAB_NUM = '{0}' and YEAR(DATE_BEGIN) = '{1}' For Xml Auto";
+                                        GROUP BY Fio,Tab_num,New_post,Status_link,Date_out,LINK,Link_Users,TT.Link_Gr, TT.NAME
+										)  as UsersReportCard
+										ORDER BY UsersReportCard.Link
+										For Xml Auto";
         /// <summary>
         /// Диапазоны отпусков
         /// </summary>

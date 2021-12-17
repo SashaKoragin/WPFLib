@@ -10,7 +10,6 @@ namespace AutomatAis3Full.Form.Automat.Okp2.TaxJournal.DataContext
    public class DataContextTaxJournal
     {
         public DownloadPrintDb DownloadPrintDb { get; set; }
-        public ICommand DownloadDb { get; }
         public ICommand PrintFile { get; }
         public DatePickerAdd DatePicker { get; } 
 
@@ -23,9 +22,9 @@ namespace AutomatAis3Full.Form.Automat.Okp2.TaxJournal.DataContext
             DownloadPrintDb = new DownloadPrintDb();
             StartButton = new StatusButtonMethod();
             StartButton.Button.Command = new DelegateCommand(() => { 
-                command.StartTaxJournal(StartButton,ConfigFile.FileJurnalOk, ConfigFile.PathTemp, DatePicker); 
+                command.StartTaxJournal(StartButton, ConfigFile.PathTemp, DatePicker); 
             }); 
-            DownloadDb = new DelegateCommand(() => { command.DownloadDbFile(ConfigFile.PathPdfWork, DownloadPrintDb); });
+          
             PrintFile = new DelegateCommand(() => { command.PrintFiles(DownloadPrintDb); });
         }
     }

@@ -49,6 +49,31 @@
 					<xs:documentation>Описание выборки</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
+			<xs:attribute name="NameDll" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Ниименование Dll</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="FindNameSpace" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Пространство имен</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IsResultXml" type="xs:boolean" use="required">
+				<xs:annotation>
+					<xs:documentation>True - на выходе (string) False - на выходе Array</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameReportList" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование листа в Excel</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameReportFile" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование отчета xlsx</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="SelectedParametr" type="xs:string">
 				<xs:annotation>
 					<xs:documentation>Выборка параметров (модель)</xs:documentation>
