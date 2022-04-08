@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.DirectoryServices;
-using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
@@ -19,10 +19,9 @@ namespace SqlLibaryIfns.PingIp
             try
             {
                 var ping = new Ping();
-                PingReply pingReply = null;
                 foreach (var servers in server.ServerIfns)
                 {
-                    pingReply = ping.Send(servers.ServerIp);
+                    var pingReply = ping.Send(servers.ServerIp);
                     if (pingReply != null) servers.Status = pingReply.Status.ToString();
                 }
                 return server;
@@ -35,50 +34,85 @@ namespace SqlLibaryIfns.PingIp
         }
 
         [DllImport("iphlpapi.dll", ExactSpelling = true)]
-        public static extern int SendARP(int DestIP, int SrcIP, [Out] byte[] pMacAddr, ref int PhyAddrLen);
+        public static extern int SendARP(int destIp, int srcIp, [Out] byte[] pMacAddress, ref int phyAddressLen);
         /// <summary>
-        /// Поик и отпускания в БД наименования рабочих станций
+        /// Поиcк и отпускания в БД наименования рабочих станций
         /// </summary>
-        /// <param name="pathdomain">путь к домену конечной точки</param>
-        /// <param name="workstation">Рабочии станции</param>
-        public void FindIpHost(string pathdomain,string workstation)
+        /// <param name="directoryEntryDomain">Директория</param>
+        /// <param name="pathDomain">путь к домену конечной точки</param>
+        /// <param name="workstation">Рабочие станции</param>
+        public void FindIpHost(string directoryEntryDomain, string pathDomain,string workstation)
         {
-            var directoryEntry = new DirectoryEntry("LDAP://regions.tax.nalog.ru") {Path = pathdomain};
+            var directoryEntry = new DirectoryEntry(directoryEntryDomain) {Path = pathDomain };
             DirectorySearcher searcher = new DirectorySearcher(directoryEntry) {Filter = workstation};
-            var allhost = searcher.FindAll();
+            var allHost = searcher.FindAll();
             AddObjectDb add = new AddObjectDb();
-            ComputerIpAdressSynhronization synhronization = new ComputerIpAdressSynhronization();
+            ComputerIpAdressSynhronization synchronization = new ComputerIpAdressSynhronization();
             add.ClearsHostSynhronization();
             add.IsProcessComplete(1,false);
             Regex ip = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
-            foreach (SearchResult find in allhost)
+            foreach (SearchResult find in allHost)
             {
-                var namecomputers = find.GetDirectoryEntry().Name.Replace("CN=", "");
+                var nameComputers = find.GetDirectoryEntry().Name.Replace("CN=", "");
                 try
                 {
-                    IPAddress[] adress = Dns.GetHostAddresses(namecomputers);
+                    IPAddress[] address = Dns.GetHostAddresses(nameComputers);
                     byte[] ab = new byte[6];
                     int len = ab.Length;
-                    int r = SendARP(BitConverter.ToInt32(adress[0].GetAddressBytes(), 0), 0, ab, ref len);
-                    string mac = BitConverter.ToString(ab, 0, 6);
-                    synhronization.IpAdress = adress[0].ToString();
-                    synhronization.NameHost = namecomputers;
-                    synhronization.MacAdress = mac;
-                    synhronization.StatusIp = null;
-                    synhronization.UserName = null;
-                    add.AddHostSynhronization(synhronization);
+                    SendARP(BitConverter.ToInt32(address[0].GetAddressBytes(), 0), 0, ab, ref len);
+                    string[] macAddressString = new string[(int) len];
+                    for (int i = 0; i < len; i++)
+                    {
+                        macAddressString[i] = ab[i].ToString("x2");
+                    }
+                    synchronization.IpAdress = address[0].ToString();
+                    synchronization.NameHost = nameComputers;
+                    synchronization.MacAdress = string.Join(":", macAddressString);
+                    synchronization.StatusIp = null;
+                    synchronization.UserName = null;
+                    add.AddHostSynhronization(synchronization);
                 }
                 catch (Exception exception)
                 {
-                    synhronization.IpAdress = null;
-                    synhronization.NameHost = namecomputers;
-                    synhronization.MacAdress = null;
-                    synhronization.StatusIp = exception.Message;
-                    synhronization.UserName = null;
-                    add.AddHostSynhronization(synhronization);
+                    synchronization.IpAdress = null;
+                    synchronization.NameHost = nameComputers;
+                    synchronization.MacAdress = null;
+                    synchronization.StatusIp = exception.Message;
+                    synchronization.UserName = null;
+                    add.AddHostSynhronization(synchronization);
                 }
             }
             add.IsProcessComplete(1, true);
+        }
+        /// <summary>
+        /// Ping серверов на доступность в сети
+        /// </summary>
+        /// <param name="listServetIpDataBase">Список серверов и Ip</param>
+        public void PingServerDataBase(ref List<AllIpServerSelect> listServetIpDataBase)
+        {
+            var ping = new Ping();
+            foreach (var allIpServerSelect in listServetIpDataBase)
+            {
+                var pingReply = ping.Send(allIpServerSelect.IpAdress);
+                if (pingReply != null)
+                {
+                    if (pingReply.Status == IPStatus.Success)
+                    {
+                        allIpServerSelect.InfoStatusReport = pingReply.Status.ToString();
+                        allIpServerSelect.ColorStatus = "FF92D050";
+                    }
+                    else
+                    {
+                        allIpServerSelect.InfoStatusReport = pingReply.Status.ToString();
+                        allIpServerSelect.ColorStatus = "FFFF0000";
+                    }
+                }
+                else
+                {
+                    allIpServerSelect.InfoStatusReport = "Статус не определен!!!";
+                    allIpServerSelect.ColorStatus = "FFFF0000";
+                }
+            }
         }
     }
 }

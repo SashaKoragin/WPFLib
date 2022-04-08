@@ -59,6 +59,7 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<DocPatent> DocPatents { get; set; } // DocPatent
         System.Data.Entity.DbSet<Documen2Ndfl> Documen2Ndfl { get; set; } // Documen2NDFL
         System.Data.Entity.DbSet<Documen2NdflIdentification> Documen2NdflIdentification { get; set; } // Documen2NDFLIdentification
+        System.Data.Entity.DbSet<EasJournal> EasJournals { get; set; } // EasJournal
         System.Data.Entity.DbSet<ErrorFlRegistration> ErrorFlRegistrations { get; set; } // ErrorFlRegistration
         System.Data.Entity.DbSet<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost
         System.Data.Entity.DbSet<Field> Fields { get; set; } // Fields
@@ -104,6 +105,7 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<SvedFactPatent> SvedFactPatents { get; set; } // SvedFactPatent
         System.Data.Entity.DbSet<SvedObject> SvedObjects { get; set; } // SvedObject
         System.Data.Entity.DbSet<SvedTr> SvedTrs { get; set; } // SvedTr
+        System.Data.Entity.DbSet<TaxEasJournal> TaxEasJournals { get; set; } // TaxEasJournal
         System.Data.Entity.DbSet<TaxJournal> TaxJournals { get; set; } // TaxJournal
         System.Data.Entity.DbSet<TaxJournal121> TaxJournal121 { get; set; } // TaxJournal121
         System.Data.Entity.DbSet<TaxJournal121AutoWebPage> TaxJournal121AutoWebPage { get; set; } // TaxJournal121AutoWebPage
@@ -170,6 +172,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<DocPatent> DocPatents { get; set; } // DocPatent
         public System.Data.Entity.DbSet<Documen2Ndfl> Documen2Ndfl { get; set; } // Documen2NDFL
         public System.Data.Entity.DbSet<Documen2NdflIdentification> Documen2NdflIdentification { get; set; } // Documen2NDFLIdentification
+        public System.Data.Entity.DbSet<EasJournal> EasJournals { get; set; } // EasJournal
         public System.Data.Entity.DbSet<ErrorFlRegistration> ErrorFlRegistrations { get; set; } // ErrorFlRegistration
         public System.Data.Entity.DbSet<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost
         public System.Data.Entity.DbSet<Field> Fields { get; set; } // Fields
@@ -215,6 +218,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<SvedFactPatent> SvedFactPatents { get; set; } // SvedFactPatent
         public System.Data.Entity.DbSet<SvedObject> SvedObjects { get; set; } // SvedObject
         public System.Data.Entity.DbSet<SvedTr> SvedTrs { get; set; } // SvedTr
+        public System.Data.Entity.DbSet<TaxEasJournal> TaxEasJournals { get; set; } // TaxEasJournal
         public System.Data.Entity.DbSet<TaxJournal> TaxJournals { get; set; } // TaxJournal
         public System.Data.Entity.DbSet<TaxJournal121> TaxJournal121 { get; set; } // TaxJournal121
         public System.Data.Entity.DbSet<TaxJournal121AutoWebPage> TaxJournal121AutoWebPage { get; set; } // TaxJournal121AutoWebPage
@@ -308,6 +312,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new DocPatentConfiguration());
             modelBuilder.Configurations.Add(new Documen2NdflConfiguration());
             modelBuilder.Configurations.Add(new Documen2NdflIdentificationConfiguration());
+            modelBuilder.Configurations.Add(new EasJournalConfiguration());
             modelBuilder.Configurations.Add(new ErrorFlRegistrationConfiguration());
             modelBuilder.Configurations.Add(new FaceModelTemplateGetPostConfiguration());
             modelBuilder.Configurations.Add(new FieldConfiguration());
@@ -353,6 +358,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new SvedFactPatentConfiguration());
             modelBuilder.Configurations.Add(new SvedObjectConfiguration());
             modelBuilder.Configurations.Add(new SvedTrConfiguration());
+            modelBuilder.Configurations.Add(new TaxEasJournalConfiguration());
             modelBuilder.Configurations.Add(new TaxJournalConfiguration());
             modelBuilder.Configurations.Add(new TaxJournal121Configuration());
             modelBuilder.Configurations.Add(new TaxJournal121AutoWebPageConfiguration());
@@ -401,6 +407,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new DocPatentConfiguration(schema));
             modelBuilder.Configurations.Add(new Documen2NdflConfiguration(schema));
             modelBuilder.Configurations.Add(new Documen2NdflIdentificationConfiguration(schema));
+            modelBuilder.Configurations.Add(new EasJournalConfiguration(schema));
             modelBuilder.Configurations.Add(new ErrorFlRegistrationConfiguration(schema));
             modelBuilder.Configurations.Add(new FaceModelTemplateGetPostConfiguration(schema));
             modelBuilder.Configurations.Add(new FieldConfiguration(schema));
@@ -446,6 +453,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new SvedFactPatentConfiguration(schema));
             modelBuilder.Configurations.Add(new SvedObjectConfiguration(schema));
             modelBuilder.Configurations.Add(new SvedTrConfiguration(schema));
+            modelBuilder.Configurations.Add(new TaxEasJournalConfiguration(schema));
             modelBuilder.Configurations.Add(new TaxJournalConfiguration(schema));
             modelBuilder.Configurations.Add(new TaxJournal121Configuration(schema));
             modelBuilder.Configurations.Add(new TaxJournal121AutoWebPageConfiguration(schema));
@@ -1214,6 +1222,34 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.DateTime? DateNameUserUtoch { get; set; } // DateNameUserUtoch
         public string StatusSved { get; set; } // StatusSved (length: 512)
         public string ErrorNameStatus { get; set; } // ErrorNameStatus (length: 1024)
+    }
+
+    // EasJournal
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class EasJournal
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public string Color { get; set; } // Color (length: 12)
+        public string Color1 { get; set; } // Color1 (length: 12)
+        public long RegNumber { get; set; } // RegNumber
+        public long? RegNumberZ { get; set; } // RegNumberZ
+        public string Knd { get; set; } // Knd (length: 64)
+        public string NameKnd { get; set; } // NameKnd (length: 1024)
+        public System.DateTime? DateDocument { get; set; } // DateDocument
+        public string Inn { get; set; } // Inn (length: 12)
+        public string Kpp { get; set; } // Kpp (length: 12)
+        public string NameNp { get; set; } // NameNp (length: 1024)
+        public string LoginUser { get; set; } // LoginUser (length: 1024)
+        public string NameFile { get; set; } // NameFile (length: 128)
+        public string Extensions { get; set; } // Extensions (length: 10)
+        public string Mime { get; set; } // Mime (length: 128)
+        public byte[] Document { get; set; } // Document (length: 2147483647)
+        public System.DateTime DataCreate { get; set; } // DataCreate
+
+        public EasJournal()
+        {
+            DataCreate = System.DateTime.Now;
+        }
     }
 
     // ErrorFlRegistration
@@ -2382,6 +2418,23 @@ namespace EfDatabaseAutomation.Automation.Base
             Weight = 0.00;
             DateCreate = System.DateTime.Now;
         }
+    }
+
+    // TaxEasJournal
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TaxEasJournal
+    {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
+        public int Id { get; set; } // Id (Primary key)
+        public string LoginUser { get; set; } // LoginUser (length: 1024)
+        public long RegNumber { get; set; } // RegNumber (Primary key)
+        public long? RegNumberZ { get; set; } // RegNumberZ
+        public string Knd { get; set; } // Knd (length: 64)
+        public string NameKnd { get; set; } // NameKnd (length: 1024)
+        public System.DateTime? DateDocument { get; set; } // DateDocument
+        public string Inn { get; set; } // Inn (length: 12)
+        public string Kpp { get; set; } // Kpp (length: 12)
+        public string NameNp { get; set; } // NameNp (length: 1024)
     }
 
     // TaxJournal
@@ -3871,6 +3924,40 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // EasJournal
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class EasJournalConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<EasJournal>
+    {
+        public EasJournalConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public EasJournalConfiguration(string schema)
+        {
+            ToTable("EasJournal", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.Color).HasColumnName(@"Color").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.Color1).HasColumnName(@"Color1").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.RegNumber).HasColumnName(@"RegNumber").HasColumnType("bigint").IsRequired();
+            Property(x => x.RegNumberZ).HasColumnName(@"RegNumberZ").HasColumnType("bigint").IsOptional();
+            Property(x => x.Knd).HasColumnName(@"Knd").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(64);
+            Property(x => x.NameKnd).HasColumnName(@"NameKnd").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateDocument).HasColumnName(@"DateDocument").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.Kpp).HasColumnName(@"Kpp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.NameNp).HasColumnName(@"NameNp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.LoginUser).HasColumnName(@"LoginUser").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.NameFile).HasColumnName(@"NameFile").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.Extensions).HasColumnName(@"Extensions").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.Mime).HasColumnName(@"Mime").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.Document).HasColumnName(@"Document").HasColumnType("image").IsOptional().HasMaxLength(2147483647);
+            Property(x => x.DataCreate).HasColumnName(@"DataCreate").HasColumnType("smalldatetime").IsRequired();
+        }
+    }
+
     // ErrorFlRegistration
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class ErrorFlRegistrationConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<ErrorFlRegistration>
@@ -5092,6 +5179,34 @@ namespace EfDatabaseAutomation.Automation.Base
 
             // Foreign keys
             HasRequired(a => a.Patent).WithMany(b => b.SvedTrs).HasForeignKey(c => c.IdPatent); // FK_SvedTr_Patent
+        }
+    }
+
+    // TaxEasJournal
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TaxEasJournalConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TaxEasJournal>
+    {
+        public TaxEasJournalConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public TaxEasJournalConfiguration(string schema)
+        {
+            ToTable("TaxEasJournal", schema);
+            HasKey(x => new { x.LogicsButton, x.Id, x.RegNumber });
+
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.LoginUser).HasColumnName(@"LoginUser").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.RegNumber).HasColumnName(@"RegNumber").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.RegNumberZ).HasColumnName(@"RegNumberZ").HasColumnType("bigint").IsOptional();
+            Property(x => x.Knd).HasColumnName(@"Knd").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(64);
+            Property(x => x.NameKnd).HasColumnName(@"NameKnd").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateDocument).HasColumnName(@"DateDocument").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.Kpp).HasColumnName(@"Kpp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.NameNp).HasColumnName(@"NameNp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
         }
     }
 

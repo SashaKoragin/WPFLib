@@ -51,6 +51,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private AllJournalRegistrationFl[] allJournalRegistrationFlField;
         
+        private TaxEasJournal[] taxEasJournalField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxJournalAutoWebPage")]
         public TaxJournalAutoWebPage[] TaxJournalAutoWebPage {
@@ -202,6 +204,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.allJournalRegistrationFlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("TaxEasJournal")]
+        public TaxEasJournal[] TaxEasJournal {
+            get {
+                return this.taxEasJournalField;
+            }
+            set {
+                this.taxEasJournalField = value;
             }
         }
     }
@@ -3139,6 +3152,159 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.messageErrorField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class TaxEasJournal {
+        
+        private string logicsButtonField;
+        
+        private System.Nullable<int> idField;
+        
+        private long regNumberField;
+        
+        private long regNumberZField;
+        
+        private System.DateTime dateDocumentField;
+        
+        private string kndField;
+        
+        private string nameKndField;
+        
+        private string innField;
+        
+        private string kppField;
+        
+        private string nameNpField;
+        
+        private string loginUserField;
+        
+        public TaxEasJournal() {
+            this.logicsButtonField = "Button";
+        }
+        
+        /// <remarks/>
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long RegNumber {
+            get {
+                return this.regNumberField;
+            }
+            set {
+                this.regNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long RegNumberZ {
+            get {
+                return this.regNumberZField;
+            }
+            set {
+                this.regNumberZField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateDocument {
+            get {
+                return this.dateDocumentField;
+            }
+            set {
+                this.dateDocumentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Knd {
+            get {
+                return this.kndField;
+            }
+            set {
+                this.kndField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameKnd {
+            get {
+                return this.nameKndField;
+            }
+            set {
+                this.nameKndField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Kpp {
+            get {
+                return this.kppField;
+            }
+            set {
+                this.kppField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameNp {
+            get {
+                return this.nameNpField;
+            }
+            set {
+                this.nameNpField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string LoginUser {
+            get {
+                return this.loginUserField;
+            }
+            set {
+                this.loginUserField = value;
             }
         }
     }

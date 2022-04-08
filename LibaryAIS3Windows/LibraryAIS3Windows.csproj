@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="AutomationsUI\LibaryAutomations\LibaryAutomations.cs" />
     <Compile Include="AutomationsUI\Otdels\It\ItElementName.cs" />
+    <Compile Include="AutomationsUI\Otdels\Okp1\ModelElementName.cs" />
     <Compile Include="AutomationsUI\Otdels\Okp2\IdentificationElementName.cs" />
     <Compile Include="AutomationsUI\Otdels\PublicJournal129And121\129JournalAnd121Journal.cs" />
     <Compile Include="AutomationsUI\Otdels\PreCheck\PreCheckElementName.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="AutomationsUI\Otdels\Uregulirovanie\UregulirovanieElementName.cs" />
     <Compile Include="AutomationsUI\PublicElement\PublicElementName.cs" />
     <Compile Include="ButtonFullFunction\ItFunctionAutomation\ItFunctionAutomation.cs" />
+    <Compile Include="ButtonFullFunction\Okp1Function\EasJournalAutomation.cs" />
     <Compile Include="ButtonFullFunction\Okp1Function\StaticMode121.cs" />
     <Compile Include="ButtonFullFunction\Okp2Function\Okp2ActReshIzvesehenie.cs" />
     <Compile Include="ButtonFullFunction\Okp2Function\Okp2GlobalFunction.cs" />

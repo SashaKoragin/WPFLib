@@ -681,6 +681,11 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ИНН")));
 
             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.StartJournal);
+            if (libraryAutomation.IsEnableElements(ModelBookShopping.ErrorWin, null, true, 5) != null)
+            {
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.ErrorWin);
+                return null;
+            }
             while (true)
             {
                 if (libraryAutomation.IsEnableElements(ModelBookShopping.DocumentContainer, null, true) != null)

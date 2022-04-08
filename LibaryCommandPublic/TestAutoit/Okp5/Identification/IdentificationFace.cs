@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GalaSoft.MvvmLight.Threading;
@@ -103,6 +100,38 @@ namespace LibraryCommandPublic.TestAutoit.Okp5.Identification
                     if (ais3.WinexistsAis3() == 1)
                     {
                         clickerButton.Click40(statusButton, pathPdfTemp);
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Windows.MessageBox.Show(e.ToString());
+                }
+            });
+        }
+
+        /// <summary>
+        /// Налоговое администрирование\Контрольная работа (налоговые проверки)\114. ЕАЭС-обмен\03. Реестр исходящих документов для обработки и отправки
+        /// </summary>
+        /// <param name="statusButton">Кнопка запустить задание</param>
+        /// <param name="pathPdfTemp">Путь к Temp</param>
+        public void StartSubscribe(StatusButtonMethod statusButton, string pathPdfTemp)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                try
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    var clickerButton = new KclicerButton();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        clickerButton.Click44(statusButton, pathPdfTemp);
                         DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                     }
                     else

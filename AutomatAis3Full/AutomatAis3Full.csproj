@@ -145,6 +145,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Okp1\EasJournal\EasJournal\FormEasJournal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Okp2\RegisterDeclarations\RegisterDeclarations\FormRegisterDeclarations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -301,6 +305,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\StatementDecisionApplication\UserControl\StatementDecisionApplication.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\FormirovanieSpiskov\AutoGenerateListAutomation\ViewGenerator\ViewGenerator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -375,6 +383,10 @@
     <Compile Include="Form\Automat\Okp1\Declaration121\DataContext\DataContextDeclaration121.cs" />
     <Compile Include="Form\Automat\Okp1\Declaration121\Declaration121\FormDeclaration121.xaml.cs">
       <DependentUpon>FormDeclaration121.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Okp1\EasJournal\DataContext\DataContextEasJournal.cs" />
+    <Compile Include="Form\Automat\Okp1\EasJournal\EasJournal\FormEasJournal.xaml.cs">
+      <DependentUpon>FormEasJournal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Okp2\RegisterDeclarations\DataContext\DataContextRegisterDeclarations.cs" />
     <Compile Include="Form\Automat\Okp2\RegisterDeclarations\RegisterDeclarations\FormRegisterDeclarations.xaml.cs">
@@ -531,6 +543,10 @@
     <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\SigningDecisionApplication\DataContext\DataContextSigningDecisionApplication.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\SigningDecisionApplication\UserControl\SigningDecisionApplication.xaml.cs">
       <DependentUpon>SigningDecisionApplication.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\StatementDecisionApplication\DataContext\DataContextStatementDecisionApplication.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\StatementDecisionApplication\UserControl\StatementDecisionApplication.xaml.cs">
+      <DependentUpon>StatementDecisionApplication.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\FormirovanieSpiskov\AutoGenerateListAutomation\DataContext\DataContextGenerator.cs" />
     <Compile Include="Form\FormirovanieSpiskov\AutoGenerateListAutomation\ViewGenerator\ViewGenerator.xaml.cs">

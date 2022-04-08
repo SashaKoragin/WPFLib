@@ -228,6 +228,31 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
             });
         }
+        /// <summary>
+        /// Функция утверждение решений
+        /// Общие задания\Урегулирование задолженности\05.09 Формирование решения об отказе по заявлению\Утверждение решений об отказе
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        public void StatementDecisionApplication(StatusButtonMethod statusButton)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                KclicerButton clickerButton = new KclicerButton();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                if (ais3.WinexistsAis3() == 1)
+                {
+                    clickerButton.Click44(statusButton);
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                }
+                else
+                {
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                }
+            });
+        }
+
 
         /// <summary>
         /// Запуск БП

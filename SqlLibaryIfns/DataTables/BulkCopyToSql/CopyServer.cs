@@ -15,14 +15,14 @@ namespace SqlLibaryIfns.DataTables.BulkCopyToSql
         public CopyServer(string conectionstring, DataTable table, string nameremovetable)
         {
                 using (var loader = new SqlBulkCopy(conectionstring,SqlBulkCopyOptions.Default))
-                  {
+                {
                     try
                     {
                         loader.DestinationTableName = nameremovetable;
                         loader.BulkCopyTimeout = 9999;
                         foreach (DataColumn namecolum in table.Columns)
                         {
-                          loader.ColumnMappings.Add(new SqlBulkCopyColumnMapping(namecolum.ColumnName,namecolum.ColumnName));
+                            loader.ColumnMappings.Add(new SqlBulkCopyColumnMapping(namecolum.ColumnName,namecolum.ColumnName));
                         }
                         loader.WriteToServer(table);
                     }

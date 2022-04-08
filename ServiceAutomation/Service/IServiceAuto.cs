@@ -72,6 +72,15 @@ namespace ServiceAutomation.Service
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadFileTax121", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<Stream> LoadFileTax121(int numberElement);
         /// <summary>
+        /// Выгрузка файла для ОКП 1 ЕАЭС-обмен
+        /// http://localhost:8050/ServiceAutomation/LoadFileEasJournal
+        /// </summary>
+        /// <param name="numberElement">Ун записи</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadFileEasJournal", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> LoadFileEasJournal(int numberElement);
+        /// <summary>
         /// Добавление ИНН для ввода
         /// http://localhost:8050/ServiceAutomation/AddInnToModel
         /// </summary>

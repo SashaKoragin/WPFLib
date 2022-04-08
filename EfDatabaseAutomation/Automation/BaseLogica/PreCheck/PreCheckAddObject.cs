@@ -78,6 +78,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                     }
                 }
             }
+            else
+            {
+                throw new InvalidOperationException($"Фатальная ошибка: Лицо c ИНН: {innUl} по шаблону 'Налоговое администрирование\\Централизованный учет налогоплательщиков\\01. ЕГРН - российские организации\\1.01. Идентификационные характеристики организации' не загруженно соответственно все предыдущие шаблоны не загруженны. Откатите шаблоны или уберите с загрузки данное лицо.");
+            }
             //Отсутствует лицо сохранение не возможно
         }
 
@@ -114,6 +118,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                     }
                 }
             }
+            else
+            {
+                throw new InvalidOperationException($"Фатальная ошибка: Лицо c ИНН: {innUl} по шаблону 'Налоговое администрирование\\Централизованный учет налогоплательщиков\\01. ЕГРН - российские организации\\1.01. Идентификационные характеристики организации' не загруженно соответственно все предыдущие шаблоны не загруженны. Откатите шаблоны или уберите с загрузки данное лицо.");
+            }
             //Отсутствует лицо сохранение не возможно
         }
         /// <summary>
@@ -146,6 +154,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                    Automation.BranchUlFaces.Add(branchFace);
                    Automation.SaveChanges();
                 }
+            }
+            else
+            {
+                throw new InvalidOperationException($"Фатальная ошибка: Лицо c ИНН: {innUl} по шаблону 'Налоговое администрирование\\Централизованный учет налогоплательщиков\\01. ЕГРН - российские организации\\1.01. Идентификационные характеристики организации' не загруженно соответственно все предыдущие шаблоны не загруженны. Откатите шаблоны или уберите с загрузки данное лицо.");
             }
             //Отсутствует лицо сохранение не возможно
         }
@@ -189,6 +201,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                         Automation.SaveChanges();
                     }
                 }
+            }
+            else
+            {
+                throw new InvalidOperationException($"Фатальная ошибка: Лицо c ИНН: {innUl} по шаблону 'Налоговое администрирование\\Централизованный учет налогоплательщиков\\01. ЕГРН - российские организации\\1.01. Идентификационные характеристики организации' не загруженно соответственно все предыдущие шаблоны не загруженны. Откатите шаблоны или уберите с загрузки данное лицо.");
             }
             //Отсутствует лицо сохранение не возможно
         }
@@ -270,6 +286,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                     }
                 }
             }
+            else
+            {
+                throw new InvalidOperationException($"Фатальная ошибка: Лицо c ИНН: {innUl} по шаблону 'Налоговое администрирование\\Централизованный учет налогоплательщиков\\01. ЕГРН - российские организации\\1.01. Идентификационные характеристики организации' не загруженно соответственно все предыдущие шаблоны не загруженны. Откатите шаблоны или уберите с загрузки данное лицо.");
+            }
             //Отсутствует лицо сохранение не возможно
         }
 
@@ -303,6 +323,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 xml.CreateXmlFile(xmlFile, cashFull, typeof(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc));
                 BulkInsertIntoDb(xsdFile, xmlFile);
             }
+            else
+            {
+                throw new InvalidOperationException($"Фатальная ошибка: Лицо c ИНН: {innUl} по шаблону 'Налоговое администрирование\\Централизованный учет налогоплательщиков\\01. ЕГРН - российские организации\\1.01. Идентификационные характеристики организации' не загруженно соответственно все предыдущие шаблоны не загруженны. Откатите шаблоны или уберите с загрузки данное лицо.");
+            }
             //Отсутствует лицо сохранение не возможно
         }
 
@@ -335,6 +359,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}CashData.xml";
                 xml.CreateXmlFile(xmlFile, ndfl, typeof(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc));
                 BulkInsertIntoDb(xsdFile, xmlFile);
+            }
+            else
+            {
+                throw new InvalidOperationException($"Фатальная ошибка: Лицо c ИНН: {innUl} по шаблону 'Налоговое администрирование\\Централизованный учет налогоплательщиков\\01. ЕГРН - российские организации\\1.01. Идентификационные характеристики организации' не загруженно соответственно все предыдущие шаблоны не загруженны. Откатите шаблоны или уберите с загрузки данное лицо.");
             }
             //Отсутствует лицо сохранение не возможно
         }
@@ -371,6 +399,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                         Automation.SaveChanges();
                     }
                 }
+            }
+            else
+            {
+                throw new InvalidOperationException($"Фатальная ошибка: Лицо c ИНН: {innUl} по шаблону 'Налоговое администрирование\\Централизованный учет налогоплательщиков\\01. ЕГРН - российские организации\\1.01. Идентификационные характеристики организации' не загруженно соответственно все предыдущие шаблоны не загруженны. Откатите шаблоны или уберите с загрузки данное лицо.");
             }
             //Отсутствует лицо сохранение не возможно
         }
@@ -435,6 +467,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                         Automation.SaveChanges();
                     }
                 }
+            }
+            else
+            {
+                throw new InvalidOperationException($"Фатальная ошибка: Лицо c ИНН: {innUl} по шаблону 'Налоговое администрирование\\Централизованный учет налогоплательщиков\\01. ЕГРН - российские организации\\1.01. Идентификационные характеристики организации' не загруженно соответственно все предыдущие шаблоны не загруженны. Откатите шаблоны или уберите с загрузки данное лицо.");
             }
             return books;
             //Отсутствует лицо сохранение не возможно
@@ -552,6 +588,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 xml.CreateXmlFile(xmlFile, counterpartyCashBankModelFace, typeof(ArrayBodyDoc));
                 BulkInsertIntoDb(xsdFile, xmlFile);
             }
+            else
+            {
+                throw new InvalidOperationException($"Фатальная ошибка: Лицо c ИНН: {innUl} по шаблону 'Налоговое администрирование\\Централизованный учет налогоплательщиков\\01. ЕГРН - российские организации\\1.01. Идентификационные характеристики организации' не загруженно соответственно все предыдущие шаблоны не загруженны. Откатите шаблоны или уберите с загрузки данное лицо.");
+            }
             //Отсутствует лицо сохранение не возможно
         }
 
@@ -600,6 +640,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                     }
                 }
                 //Обновление данных и внутренних полей не требуется
+            }
+            else
+            {
+                throw new InvalidOperationException($"Фатальная ошибка: Лицо c ИНН: {innUl} по шаблону 'Налоговое администрирование\\Централизованный учет налогоплательщиков\\01. ЕГРН - российские организации\\1.01. Идентификационные характеристики организации' не загруженно соответственно все предыдущие шаблоны не загруженны. Откатите шаблоны или уберите с загрузки данное лицо.");
             }
             //Отсутствует лицо сохранение не возможно
         }
@@ -681,6 +725,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 xml.CreateXmlFile(xmlFile, cashBankAllUlFace, typeof(ArrayBodyDoc));
                 BulkInsertIntoDb(xsdFile, xmlFile);
             }
+            else
+            {
+                throw new InvalidOperationException($"Фатальная ошибка: Лицо c ИНН: {innUl} по шаблону 'Налоговое администрирование\\Централизованный учет налогоплательщиков\\01. ЕГРН - российские организации\\1.01. Идентификационные характеристики организации' не загруженно соответственно все предыдущие шаблоны не загруженны. Откатите шаблоны или уберите с загрузки данное лицо.");
+            }
             //Отсутствует лицо сохранение не возможно
         }
         /// <summary>
@@ -731,6 +779,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}DeclarationData.xml";
                 xml.CreateXmlFile(xmlFile, statementFull, typeof(ArrayBodyDoc));
                 BulkInsertIntoDb(xsdFile, xmlFile);
+            }
+            else
+            {
+                throw new InvalidOperationException($"Фатальная ошибка: Лицо c ИНН: {innUl} по шаблону 'Налоговое администрирование\\Централизованный учет налогоплательщиков\\01. ЕГРН - российские организации\\1.01. Идентификационные характеристики организации' не загруженно соответственно все предыдущие шаблоны не загруженны. Откатите шаблоны или уберите с загрузки данное лицо.");
             }
             //Процедура вытягивания учредителей и Руководителей Цель Выписки и Карточки организации
             var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 9);

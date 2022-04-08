@@ -67,7 +67,7 @@
         /// <summary>
         /// Журнал пользовательских заданий по справки
         /// </summary>
-        public static string JurnalsTrebovanie = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorViewBase2\\AutomationId:NavigatorViewBase_Fill_Panel\\AutomationId:grpBig\\AutomationId:ctlNavigator\\AutomationId:splitContainer\\AutomationId:gridData";
+        public static string JurnalsTrebovanie = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorViewBase2\\AutomationId:NavigatorViewBase_Fill_Panel\\AutomationId:grpBig\\AutomationId:ctlNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row ";
         /// <summary>
         /// Вкладка информация о вручении
         /// </summary>
@@ -242,6 +242,10 @@
         /// </summary>
         public static string Sign = "Name:DockTop\\Name:Ribbon\\Name:Решение об отказе\\Name:Подписать";
         /// <summary>
+        /// Действие утвердить
+        /// </summary>
+        public static string Statement = "Name:DockTop\\Name:Ribbon\\Name:Решение об отказе\\Name:Утвердить";
+        /// <summary>
         /// Окно подписание
         /// </summary>
         public static string WinOk = "Name:Подписание\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnYes";
@@ -249,6 +253,10 @@
         /// 2 Окно подписание
         /// </summary>
         public static string WinOk1 = "Name:Подписание\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+        /// <summary>
+        /// Окно утвердить
+        /// </summary>
+        public static string WinStatement = "Name:Утверждение\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:Да";
         /// <summary>
         /// Окно выхода
         /// </summary>

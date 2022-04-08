@@ -49,6 +49,8 @@ using AutomatAis3Full.Form.Automat.Okp1.Declaration121Error.Declaration121Error;
 using AutomatAis3Full.Form.Automat.RaschetBudg.Krsb.Krsb;
 using AutomatAis3Full.Form.Automat.Registration.AcceptanceDocuments.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.StatementNp.ViewStatementNp;
+using AutomatAis3Full.Form.Automat.Okp1.EasJournal.EasJournal;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.StatementDecisionApplication.UserControl;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
 {
@@ -243,6 +245,11 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                {
                                    NameControl = "05.09 Формирование решения об отказе по заявлению (Подписание руководителем НО)",
                                    UserControl = new SigningDecisionApplication()
+                               },
+                               new FullWindowAutoIt()
+                               {
+                                   NameControl = "05.09 Формирование решения об отказе по заявлению (Утверждение)",
+                                   UserControl = new StatementDecisionApplication()
                                }
                               }
                           }
@@ -263,7 +270,8 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                   {
                                       NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)",
                                       UserControl = new  FormDeclaration121()
-                                  },                                  new FullWindowAutoIt()
+                                  },
+                                  new FullWindowAutoIt()
                                   {
                                       NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все) (Нарушения)",
                                       UserControl = new FormDeclaration121Error()
@@ -272,6 +280,18 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                   {
                                       NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все) (Акты Извещения Решения)",
                                       UserControl = new FormDeclaration121ActIsh()
+                                  }
+                              }
+                          },
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "114. ЕАЭС-обмен",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                       NameControl = "03. Реестр исходящих документов для обработки и отправки",
+                                       UserControl = new FormEasJournal()
                                   }
                               }
                           }

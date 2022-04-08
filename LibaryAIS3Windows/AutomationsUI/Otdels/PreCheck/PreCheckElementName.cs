@@ -234,6 +234,10 @@
         /// </summary>
         public static string StartJournal = "Name:DockTop\\Name:Ribbon\\Name:Окно оперативной работы\\Name:Функции\\Name:Декларация/Журнал";
         /// <summary>
+        /// За выбранный период декларация отсутствует
+        /// </summary>
+        public static string ErrorWin = "Name:Ошибка\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+        /// <summary>
         /// Раздел 8
         /// </summary>
         public static string Section8 = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:View\\AutomationId:DeclarationParts\\Name:Раздел 8";

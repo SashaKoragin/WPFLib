@@ -123,6 +123,16 @@ namespace ServiceAutomation.Service
             var selectAll = new SelectAll();
             return await Task.Factory.StartNew(() => selectAll.LoadFile121(numberElement));
         }
+        /// <summary>
+        /// Выгрузка файла для ОКП 1 ЕАЭС-обмен
+        /// </summary>
+        /// <param name="numberElement">Ун записи</param>
+        /// <returns></returns>
+        public async Task<Stream> LoadFileEasJournal(int numberElement)
+        {
+            var selectAll = new SelectAll();
+            return await Task.Factory.StartNew(() => selectAll.LoadFileEasJournal(numberElement));
+        }
 
         /// <summary>
         /// Метод добавление ИНН для ввода

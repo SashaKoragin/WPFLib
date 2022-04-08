@@ -321,6 +321,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
                     foreach (AutomationElement automationElementTemplates in listSegment)
                     {
                         automationElementTemplates.SetFocus();
+                        AutoIt.AutoItX.Sleep(750);
                         SendKeys.SendWait(ButtonConstant.Plus);
                         infoRuleTemplate.Template[0].Sigment[sigmentNumber - 1] = new Sigment()
                         {
@@ -337,6 +338,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
                         foreach (AutomationElement automationElementTemplatesRulesApp in listApp)
                         {
                             automationElementTemplatesRulesApp.SetFocus();
+                            AutoIt.AutoItX.Sleep(750);
                             SendKeys.SendWait(ButtonConstant.Plus);
                             infoRuleTemplate.Template[0].Sigment[sigmentNumber - 1].Applications[rulesAppNumber - 1] = new Applications()
                             {
@@ -373,12 +375,12 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
                                 rulesRulesAppRuleNumber++;
                             }
                             automationElementTemplatesRulesApp.SetFocus();
-                            AutoIt.AutoItX.Sleep(500);
+                            AutoIt.AutoItX.Sleep(750);
                             SendKeys.SendWait(ButtonConstant.Minus);
                             rulesAppNumber++;
                         }
                         automationElementTemplates.SetFocus();
-                        AutoIt.AutoItX.Sleep(500);
+                        AutoIt.AutoItX.Sleep(750);
                         SendKeys.SendWait(ButtonConstant.Minus);
                         sigmentNumber++;
                     }

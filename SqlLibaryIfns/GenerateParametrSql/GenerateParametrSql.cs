@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Globalization;
-using System.Net.NetworkInformation;
 using System.Reflection;
 
 namespace SqlLibaryIfns.GenerateParametrSql

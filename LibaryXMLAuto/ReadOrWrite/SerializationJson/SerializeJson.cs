@@ -74,15 +74,16 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
         /// Сериализация в json c игнорированием DateTime
         /// </summary>
         /// <param name="model">Объект модели класса</param>
+        /// <param name="dateFormatString">Формат даты и времени</param>
         /// <returns></returns>
-        public string JsonLibaryIgnoreDate(object model)
+        public string JsonLibaryIgnoreDate(object model, string dateFormatString = "dd-MM-yyyy")
         {
             return JsonConvert.SerializeObject(model, Formatting.None, new JsonSerializerSettings()
             {
                 NullValueHandling = NullValueHandling.Ignore,
                 ContractResolver = new IgnoreGuidsResolver(),
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                DateFormatString = "dd-MM-yyyy"
+                DateFormatString = dateFormatString
             });
         }
         /// <summary>

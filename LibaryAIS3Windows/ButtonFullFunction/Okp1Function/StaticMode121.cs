@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.Diagnostics.Eventing.Reader;
 using AutoIt;
 using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
 using LibraryAIS3Windows.AutomationsUI.Otdels.PublicJournal129And121;
@@ -406,6 +405,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
             return dataBaseAdd.DeclarationSumError(regNumDeclaration);
             //Расчет и возврат суммы
         }
+
+
         /// <summary>
         /// Полностью парсим декларацию
         /// </summary>

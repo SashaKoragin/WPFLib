@@ -128,6 +128,25 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
             }
             return null;
         }
+
+        /// <summary>
+        /// Выгрузка файла для ОКП 1 ЕАЭС-обмен
+        /// </summary>
+        /// <param name="numberElement">Ун записи</param>
+        /// <returns></returns>
+        public Stream LoadFileEasJournal(int numberElement)
+        {
+            try
+            {
+              return new MemoryStream(Automation.EasJournals.FirstOrDefault(x => x.Id == numberElement)?.Document ?? throw new InvalidOperationException("Жаль отсутствует файл ЕАЭС-обмен"));
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+            }
+            return null;
+        }
+
         /// <summary>
         /// Запрос проверки КБК по платежу
         /// </summary>

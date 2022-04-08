@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Text;
 using EfDatabase.Inventory.Base;
 using EfDatabaseXsdSupportNalog;
 using SqlLibaryIfns.ExcelReport.Report;

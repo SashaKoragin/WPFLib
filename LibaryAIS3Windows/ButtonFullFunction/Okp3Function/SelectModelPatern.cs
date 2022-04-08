@@ -88,6 +88,40 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
                 new Parameters() {NameParameters = "Номер заявления",FindNameMemo = "Name:Значение",FindSelectParameter = "Из перечня (без учета регистра)",IndexParameters = "7"},
             }
         };
+        /// <summary>
+        ///  Налоговое администрирование\Контрольная работа(налоговые проверки)\101. Мониторинг и обработка документов\Реестр документов НБО
+        /// </summary>
+        public DataArea DataAreaDeclaration = new DataArea()
+        {
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+            ListRowDataArea = "Name:List`1 row ",
+            Headers = "Name:Column Headers",
+            Update = "Name:DockTop\\Name:Ribbon\\Name:Реестр документов НБО\\Name:Документ\\Name:Обновить данные",
+            Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\Name:Фильтр",
+            Parameters = new Parameters[]
+            {
+                new Parameters() {NameParameters = "РегНомер",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "9"}
+            }
+        };
+        /// <summary>
+        /// Налоговое администрирование\Контрольная работа (налоговые проверки)\121. Камеральная налоговая проверка\04. Журнал документов, выписанных в ходе налоговой проверки
+        /// </summary>
+        public DataArea DataAreaAllDeclarationDocument = new DataArea()
+        {
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+            ListRowDataArea = "Name:List`1 row ",
+            Headers = "Name:Column Headers",
+            Update = "Name:DockTop\\Name:Ribbon\\Name:Журнал документов, выписанных в ходе налоговой проверки\\Name:Документ\\Name:Обновить данные",
+            Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\Name:Фильтр",
+            Parameters = new Parameters[]
+            {
+                new Parameters() {NameParameters = "ИНН",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "11"},
+                new Parameters() {NameParameters = "КНД декларации",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "27"}
+            }
+        };
+
 
         public DataArea[] DataAreaModel = new DataArea[] {
 

@@ -48,6 +48,15 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
             Automation.SaveChanges();
         }
         /// <summary>
+        /// Добавление файла в журнал
+        /// </summary>
+        /// <param name="easJournal"></param>
+        public void AddEasJournal(EasJournal easJournal)
+        {
+            Automation.EasJournals.Add(easJournal);
+            Automation.SaveChanges();
+        }
+        /// <summary>
         /// Сохранение журнала Ошибок
         /// </summary>
         /// <param name="journal">Журнал сохраняем</param>

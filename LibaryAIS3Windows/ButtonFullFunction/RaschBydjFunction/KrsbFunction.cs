@@ -26,7 +26,9 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RaschBydjFunction
         /// <param name="sumNp">Сумма плательщика для анализа</param>
         /// <param name="journal">Журнал БД</param>
         /// <param name="status">Статус карточки</param>
-        public string FindSum(LibraryAutomations libraryAutomation, decimal sumNp, TaxJournal121 journal, string status = "01")
+        /// <param name="kbk">Cписок КБК</param>
+        /// <param name="oktmo">ОКТМО</param>
+        public string FindSum(LibraryAutomations libraryAutomation, decimal sumNp, TaxJournal121 journal, string[] kbk, string status = "01", string oktmo = "")
         {
             decimal sumUpl = (decimal)0.00;
             int isClosed = 2;
@@ -49,15 +51,19 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RaschBydjFunction
                             //Если не находим продолжаем выставлять 1000
                             var allKrsb = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindFirstElement(KrsbAis3.ListKrsb)).Cast<AutomationElement>().Distinct()
                                .FirstOrDefault(elem => elem.Current.Name.Contains("List`1 row ") &&
+                               kbk.Contains(
                                libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
                                libraryAutomation.SelectAutomationColrction(elem).Cast<AutomationElement>()
-                               .First(doc => doc.Current.Name.Contains("КБК"))) == "18210301000010000110" &&
+                               .First(doc => doc.Current.Name.Contains("КБК")))) &&
                                libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
                                libraryAutomation.SelectAutomationColrction(elem).Cast<AutomationElement>()
                                .First(doc => doc.Current.Name.Contains("Закрыта"))) == "False" &&
                                libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
                                libraryAutomation.SelectAutomationColrction(elem).Cast<AutomationElement>()
-                               .First(doc => doc.Current.Name.Contains("Статус НП"))) == status);
+                               .First(doc => doc.Current.Name.Contains("Статус НП"))) == status &&
+                               libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                               libraryAutomation.SelectAutomationColrction(elem).Cast<AutomationElement>()
+                               .First(doc => doc.Current.Name.Contains("ОКТМО"))) == oktmo.Trim());
                             if (allKrsb != null)
                             {
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, KrsbAis3.Rrsb);
@@ -198,7 +204,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RaschBydjFunction
                                                       }
                                                      libraryAutomation.IsEnableElements(KrsbAis3.MemoClosed);
                                                      libraryAutomation.FindElement.SetFocus();
-                                                     AutoItX.ClipPut("Ликвидация предприятия");
+                                                     AutoItX.ClipPut("Смерть налогоплательщика");
                                                      AutoItX.Send(ButtonConstant.CtrlV);
                                                     if (libraryAutomation.IsEnableElements(KrsbAis3.WinError3, null, true, 5) != null) 
                                                     {

@@ -667,41 +667,44 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                             if (dataBaseAdd.BookExists(Convert.ToInt64(dataBaseAdd.ParseAndCreateRegNumberBook(libraryAutomation, automationElement, inn))) == false)
                             {
                                 var book = dataBaseAdd.AddBook(libraryAutomation, automationElement, inn);
-                                if (!book.IsBookSalesParse & (libraryAutomation.IsEnableElements(ModelBookShopping.Section8, null, false, 1) != null))
+                                if (book != null)
                                 {
-                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.Section8);
-                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, string.Format(model.TreeExport, 8, 8));
-                                    SendWinSave(libraryAutomation, pathDownLoads);
-                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.Save);
-                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.ExportXlsx);
-                                    PublicGlobalFunction.PublicGlobalFunction.ExcelSaveAndClose();
-                                    var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathDownLoads, $"{inn}*.xlsx");
-                                    dataBaseAdd.AddBookSales(ref book, file.NamePath, "Раздел_8(1)");
-                                    PublicGlobalFunction.PublicGlobalFunction.DeleteFile(file.NamePath);
+                                    if (!book.IsBookSalesParse & (libraryAutomation.IsEnableElements(ModelBookShopping.Section8, null, false, 1) != null))
+                                    {
+                                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.Section8);
+                                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, string.Format(model.TreeExport, 8, 8));
+                                        SendWinSave(libraryAutomation, pathDownLoads);
+                                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.Save);
+                                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.ExportXlsx);
+                                        PublicGlobalFunction.PublicGlobalFunction.ExcelSaveAndClose();
+                                        var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathDownLoads, $"{inn}*.xlsx");
+                                        dataBaseAdd.AddBookSales(ref book, file.NamePath, "Раздел_8(1)");
+                                        PublicGlobalFunction.PublicGlobalFunction.DeleteFile(file.NamePath);
+                                    }
+                                    else
+                                    {
+                                        dataBaseAdd.UpdeteBookSalesParse(ref book);
+                                    }
+                                    if (!book.IsBookPurchase & (libraryAutomation.IsEnableElements(ModelBookShopping.Section9, null, false, 1) != null))
+                                    {
+                                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.Section9);
+                                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, string.Format(model.TreeExport, 9, 9));
+                                        SendWinSave(libraryAutomation, pathDownLoads);
+                                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.Save);
+                                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.ExportXlsx);
+                                        PublicGlobalFunction.PublicGlobalFunction.ExcelSaveAndClose();
+                                        var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathDownLoads, $"{inn}*.xlsx");
+                                        dataBaseAdd.AddBookPurchase(ref book, file.NamePath, "Раздел_9(1)");
+                                        PublicGlobalFunction.PublicGlobalFunction.DeleteFile(file.NamePath);
+                                        //Делаем таблицу закидываем в бд IsBookPurchase ==true
+                                    }
+                                    else
+                                    {
+                                        dataBaseAdd.UpdeteBookPurchase(ref book);
+                                    }
+                                    WindowsAis3 win = new WindowsAis3();
+                                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
                                 }
-                                else
-                                {
-                                    dataBaseAdd.UpdeteBookSalesParse(ref book);
-                                }
-                                if (!book.IsBookPurchase & (libraryAutomation.IsEnableElements(ModelBookShopping.Section9, null, false, 1) != null))
-                                {
-                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.Section9);
-                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, string.Format(model.TreeExport, 9, 9));
-                                    SendWinSave(libraryAutomation, pathDownLoads);
-                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.Save);
-                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.ExportXlsx);
-                                    PublicGlobalFunction.PublicGlobalFunction.ExcelSaveAndClose();
-                                    var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathDownLoads, $"{inn}*.xlsx");
-                                    dataBaseAdd.AddBookPurchase(ref book, file.NamePath, "Раздел_9(1)");
-                                    PublicGlobalFunction.PublicGlobalFunction.DeleteFile(file.NamePath);
-                                    //Делаем таблицу закидываем в бд IsBookPurchase ==true
-                                }
-                                else
-                                {
-                                    dataBaseAdd.UpdeteBookPurchase(ref book);
-                                }
-                                WindowsAis3 win = new WindowsAis3();
-                                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
                             }
                             j++;
                            }
