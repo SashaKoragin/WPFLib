@@ -413,12 +413,16 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             DataBaseElementAdd dataBaseAdd = new DataBaseElementAdd();
             var post = new HttpGetAndPost();
             WindowsAis3 win;
+            var y1 = (yearReport - 1).ToString();
+            var y2 = (yearReport - 2).ToString();
+            var y3 = (yearReport - 3).ToString();
             libraryAutomation.FindFirstElement(tree, null, true);
             libraryAutomation.FindElement.SetFocus();
             libraryAutomation.ClickElements(tree, null, false, 25, 0, 0, 2);
             foreach (var inn in model.INN)
             {
                 model.TreeDataArea.DataAreaParameters.First(parameters => parameters.NameParameters == "ИНН").ParametersGrid = inn;
+                model.TreeDataArea.DataAreaParameters.First(parameters => parameters.NameParameters == "Отчетный год").ParametersGrid = y1+"/"+y2+"/"+y3;
                 if (statusButton.Iswork)
                 {
                     foreach (var dataAreaParameters in model.TreeDataArea.DataAreaParameters)
@@ -445,7 +449,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                         "Налоговая декларация по налогу на добавленную стоимость"
                     };
                     var controlYears = yearReport - 3;
-              
                     if (PublicGlobalFunction.PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, model.TreeGrid.FullPathGrid) != "Данные, удовлетворяющие заданным условиям не найдены.")
                     {
                         var allReport = libraryAutomation

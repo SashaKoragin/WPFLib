@@ -141,13 +141,24 @@
         /// <summary>
         /// Номер последнего приказа о переводе
         /// </summary>
-        public string LastOrder = @"Declare @nLINK_EMPL int
-                                    Set @nLINK_EMPL = (Select E.LINK FROM dbo.FACES_MAIN_TBL as FM 
-                                                       INNER JOIN dbo.EMPLOYERS_TBL AS E ON FM.LINK = E.FACE_LINK
-									                   Where TAB_NUM = '{0}')
-                                    SELECT LTRIM(RTRIM(NUMBER)) +' от '+CONVERT(varchar,DATE,104) as LastOrder FROM ORDERS_REESTR as Orders_Reestr 
-                                           JOIN (SELECT MAX(LINK) as LINK2 FROM ORDERS_REESTR WHERE link in (SELECT ORDER_LINK FROM dbo.GET_ORDERS_BY_EMPL(@nLINK_EMPL)) 
-                                           and NAME_LINK = 2) as MaxLink on MaxLink.LINK2 = ORDERS_REESTR.LINK
-                                           WHERE link in (SELECT ORDER_LINK FROM dbo.GET_ORDERS_BY_EMPL(@nLINK_EMPL))  For Xml Auto";
+        public string LastOrder = @"Declare @nLINK_EMPL int 
+                                    Set @nLINK_EMPL = (Select E.LINK FROM dbo.FACES_MAIN_TBL as FM  
+                                                       INNER JOIN dbo.EMPLOYERS_TBL AS E ON FM.LINK = E.FACE_LINK 
+                                                       Where TAB_NUM = '{0}')
+
+                                    if Exists(SELECT NUMBER FROM ORDERS_REESTR as Orders_Reestr 
+                                              JOIN (SELECT MAX(LINK) as LINK2 
+                                                    FROM ORDERS_REESTR WHERE link in (SELECT ORDER_LINK FROM dbo.GET_ORDERS_BY_EMPL(@nLINK_EMPL)) and NAME_LINK = 2) as MaxLink on MaxLink.LINK2 = ORDERS_REESTR.LINK           
+                                              WHERE link in (SELECT ORDER_LINK FROM dbo.GET_ORDERS_BY_EMPL(@nLINK_EMPL)))
+                                        begin
+                                            SELECT LTRIM(RTRIM(NUMBER)) +' от '+CONVERT(varchar,DATE,104) as LastOrder FROM ORDERS_REESTR as Orders_Reestr 
+	                                        JOIN (SELECT MAX(LINK) as LINK2 FROM ORDERS_REESTR WHERE link in (SELECT ORDER_LINK FROM dbo.GET_ORDERS_BY_EMPL(@nLINK_EMPL)) and NAME_LINK = 2) as MaxLink on MaxLink.LINK2 = ORDERS_REESTR.LINK           
+                                            WHERE link in (SELECT ORDER_LINK FROM dbo.GET_ORDERS_BY_EMPL(@nLINK_EMPL))  For Xml Auto
+                                        end
+                                    Else 
+                                        begin 
+	                                        SELECT Top 1 'ДАННЫЕ НА ПРИКАЗ О ПЕРЕВОДЕ ОТСУТСТВУЮТ' as LastOrder 
+	                                        FROM ORDERS_REESTR as Orders_Reestr  For Xml Auto
+                                        end";
     }
 }

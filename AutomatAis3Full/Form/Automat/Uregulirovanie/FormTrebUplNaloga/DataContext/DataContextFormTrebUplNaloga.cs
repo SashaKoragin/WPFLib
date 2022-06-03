@@ -17,7 +17,7 @@ namespace AutomatAis3Full.Form.Automat.Uregulirovanie.FormTrebUplNaloga.DataCont
         {
             StartButton = new StatusButtonMethod();
             var commandauto = new LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk.AutoMessageLk();
-            StartButton.Button.Command = new DelegateCommand(() => { commandauto.FormTrebUplNaloga(StartButton, ConfigFile.FileJurnalError, ConfigFile.FileJurnalOk); });
+            StartButton.Button.Command = new DelegateCommand(() => { commandauto.FormRequirementUplTax(StartButton); });
         }
     }
 }

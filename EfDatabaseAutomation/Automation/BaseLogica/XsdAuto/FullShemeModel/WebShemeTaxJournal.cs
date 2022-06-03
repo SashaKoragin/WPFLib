@@ -53,6 +53,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private TaxEasJournal[] taxEasJournalField;
         
+        private TaxDeclarationFl[] taxDeclarationFlField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxJournalAutoWebPage")]
         public TaxJournalAutoWebPage[] TaxJournalAutoWebPage {
@@ -217,6 +219,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
                 this.taxEasJournalField = value;
             }
         }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("TaxDeclarationFl")]
+        public TaxDeclarationFl[] TaxDeclarationFl {
+            get {
+                return this.taxDeclarationFlField;
+            }
+            set {
+                this.taxDeclarationFlField = value;
+            }
+        }
     }
     
     /// <remarks/>
@@ -355,6 +368,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LogicsButton {
             get {
                 return this.logicsButtonField;
@@ -572,6 +586,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LogicsButton {
             get {
                 return this.logicsButtonField;
@@ -1341,6 +1356,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LogicsButton {
             get {
                 return this.logicsButtonField;
@@ -1533,6 +1549,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LogicsButton {
             get {
                 return this.logicsButtonField;
@@ -1831,6 +1848,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LogicsButton {
             get {
                 return this.logicsButtonField;
@@ -2049,6 +2067,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LogicsButton {
             get {
                 return this.logicsButtonField;
@@ -2171,6 +2190,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LogicsButton {
             get {
                 return this.logicsButtonField;
@@ -2343,6 +2363,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LogicsButton {
             get {
                 return this.logicsButtonField;
@@ -2928,6 +2949,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LogicsButton {
             get {
                 return this.logicsButtonField;
@@ -3192,6 +3214,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         }
         
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
         public string LogicsButton {
             get {
                 return this.logicsButtonField;
@@ -3305,6 +3328,184 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.loginUserField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class TaxDeclarationFl {
+        
+        private string logicsButtonField;
+        
+        private System.Nullable<int> idField;
+        
+        private long regNumDeclField;
+        
+        private double psummField;
+        
+        private int numberKorField;
+        
+        private System.Nullable<int> godField;
+        
+        private bool signOfDevialionField;
+        
+        private double summSignOfDevialionField;
+        
+        private string kndField;
+        
+        private string nameDocumentField;
+        
+        private string periodField;
+        
+        private string nameNpField;
+        
+        private string innNpField;
+        
+        public TaxDeclarationFl() {
+            this.logicsButtonField = "Button";
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long RegNumDecl {
+            get {
+                return this.regNumDeclField;
+            }
+            set {
+                this.regNumDeclField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double Psumm {
+            get {
+                return this.psummField;
+            }
+            set {
+                this.psummField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int NumberKor {
+            get {
+                return this.numberKorField;
+            }
+            set {
+                this.numberKorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> God {
+            get {
+                return this.godField;
+            }
+            set {
+                this.godField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool SignOfDevialion {
+            get {
+                return this.signOfDevialionField;
+            }
+            set {
+                this.signOfDevialionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double SummSignOfDevialion {
+            get {
+                return this.summSignOfDevialionField;
+            }
+            set {
+                this.summSignOfDevialionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Knd {
+            get {
+                return this.kndField;
+            }
+            set {
+                this.kndField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameDocument {
+            get {
+                return this.nameDocumentField;
+            }
+            set {
+                this.nameDocumentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Period {
+            get {
+                return this.periodField;
+            }
+            set {
+                this.periodField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameNp {
+            get {
+                return this.nameNpField;
+            }
+            set {
+                this.nameNpField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string InnNp {
+            get {
+                return this.innNpField;
+            }
+            set {
+                this.innNpField = value;
             }
         }
     }

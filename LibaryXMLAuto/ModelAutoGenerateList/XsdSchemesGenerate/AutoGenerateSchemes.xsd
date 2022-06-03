@@ -12,6 +12,8 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element ref="TaxArrears" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="AddressModel" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="JudicialAct" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxArrears">
@@ -27,6 +29,55 @@
 			<xs:attribute name="Kpp" type="xs:string" use="optional">
 				<xs:annotation>
 					<xs:documentation>КПП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AddressModel">
+		<xs:annotation>
+			<xs:documentation>Модель с адресом</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Fid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ФИД</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Address" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Адресс</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IndexOld" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНДЕКС СТАРЫЙ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IndexNew" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНДЕКС НОВЫЙ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="JudicialAct">
+		<xs:annotation>
+			<xs:documentation>Судебный акт</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NumberAkt" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер заявления</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>

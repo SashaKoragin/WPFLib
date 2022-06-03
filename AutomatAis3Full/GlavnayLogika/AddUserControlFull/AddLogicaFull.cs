@@ -50,7 +50,14 @@ using AutomatAis3Full.Form.Automat.RaschetBudg.Krsb.Krsb;
 using AutomatAis3Full.Form.Automat.Registration.AcceptanceDocuments.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.StatementNp.ViewStatementNp;
 using AutomatAis3Full.Form.Automat.Okp1.EasJournal.EasJournal;
+using AutomatAis3Full.Form.Automat.Okp6.CheckDeclaration.ViewCheckDeclaration;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.ClearStatusStatementNp.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.ApplicationManualProcessing.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.DecisionsApproval.UserControl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.MessageApproval.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.StatementDecisionApplication.UserControl;
+using AutomatAis3Full.Form.Automat.Okp6.AddTerm.ViewAddTerm;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.StartProcessFace.JudicialAct.ViewJudicialAct;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
 {
@@ -141,6 +148,11 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                   {
                                       NameControl = "Заявления НП о зачете/возврате (реестр)",
                                       UserControl = new ViewStatementNp()
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Заявления НП о зачете/возврате (реестр) Очистить состояние обработки",
+                                      UserControl = new FormClearStatusStatementNp()
                                   }
                               }
                           },
@@ -153,6 +165,11 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                   {
                                       NameControl = "Запуск БП",
                                       UserControl = new ViewStartCash()
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Ввод данных судебного акта",
+                                      UserControl = new ViewJudicialAct()
                                   }
                               }
                           },
@@ -233,13 +250,63 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                },
                                new FullWindowAutoIt()
                                {
-                                   NameControl = "05.09 Сообщения о принятом решении о зачете (возврате) подлежащие выгрузке в ЛК",
-                                   UserControl = new MessageLk()
+                                   NameControl = "05.09 Уведомление о необходимости выгрузки документов в ЛК",
+                                   CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                   {
+                                       new FullWindowAutoIt()
+                                       {
+                                           NameControl = "05.09 Сообщения о принятом решении о зачете (возврате) подлежащие выгрузке в ЛК",
+                                           UserControl = new MessageLk()
+                                       },
+                                       new FullWindowAutoIt()
+                                       {
+                                           NameControl = "05.09 Сообщения о принятом решении об отказе  подлежащие выгрузке в ЛК",
+                                           UserControl = new RecouncementLk()
+                                       }
+                                   }
                                },
                                new FullWindowAutoIt()
                                {
-                                   NameControl = "05.09 Сообщения о принятом решении об отказе  подлежащие выгрузке в ЛК",
-                                   UserControl = new RecouncementLk()
+                                   NameControl = "05.09 Ручное формирование решений на зачет/возврат/возврат процентов",
+                                   CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                   {
+                                       new FullWindowAutoIt()
+                                       {
+                                           NameControl = "05.09 Заявления НП для ручной обработки",
+                                           UserControl = new ApplicationManualProcessing()
+                                       }
+                                   }
+                               },
+                               new FullWindowAutoIt()
+                               {
+                                   NameControl = "05.09.01(06.01) Формирование сообщения о факте излишней уплаты (излишнего взыскания)",
+                                   CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                   {
+                                       new FullWindowAutoIt()
+                                       {
+                                           NameControl = "05.09.01(06.01) Формирование сообщения об излишней уплате (взыскании)",
+                                           CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                           {
+                                               new FullWindowAutoIt()
+                                               {
+                                                   NameControl = "05.09.01(06.01) Формирование решений о зачете по инициативе НО",
+                                                   CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                                   {
+                                                       new FullWindowAutoIt()
+                                                       {
+                                                           NameControl = "Утверждение решений о зачете",
+                                                           UserControl = new DecisionsApproval()
+                                                       }
+                                                   }
+                                               },
+                                               new FullWindowAutoIt()
+                                               {
+                                                   NameControl = "Утверждение сообщений",
+                                                   UserControl = new MessageApproval()
+                                               }
+                                           }
+                                       }
+                                   }
                                },
                                new FullWindowAutoIt()
                                {
@@ -253,7 +320,6 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                }
                               }
                           }
-
                       }
                   },
                   new FullWindowAutoIt()
@@ -467,9 +533,19 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                               {
                                   new FullWindowAutoIt()
                                   {
-                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)  (Акты Извещения Решения)",
+                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)  (Акты, Извещения, Решения)",
                                       UserControl = new RegistryDeclarationView()
-                                  }
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)  (Проверка деклараций->Закрытие)",
+                                      UserControl = new CheckDeclarationView()
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)  (Проставление срока!)",
+                                      UserControl = new AddTermView()
+                                  },
                               }
                           }
                       }

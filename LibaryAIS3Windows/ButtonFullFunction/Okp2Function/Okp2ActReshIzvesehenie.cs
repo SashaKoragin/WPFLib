@@ -471,6 +471,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                             if (libraryAutomation.IsEnableElements(Journal129AndJournal121.NumKabinet, null, true) != null)
                             {
                                 libraryAutomation.FindFirstElement(Journal129AndJournal121.NumKabinet);
+                                
                                 libraryAutomation.SetValuePattern(senderSelect.Office);
                                 libraryAutomation.ClickElements(Journal129AndJournal121.AddButton);
                                 AutoItX.WinWait(Journal129AndJournal121.DateTime);

@@ -200,15 +200,15 @@
         /// <summary>
         /// Дата регистрации по месту жительства
         /// </summary>
-        public static string DateLife = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:Uchet22NewView\\AutomationId:ultraTabControl\\AutomationId:ultraTabPageControl2\\AutomationId:flowLayoutPanel2\\AutomationId:groupBox3\\AutomationId:pnlDateReg\\AutomationId:dtpAddressCurrentRegDate";
+        public static string DateLife = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:Rfl1View\\AutomationId:groupBox2\\AutomationId:dtpCurrentDocRegDate";
         /// <summary>
         /// Кнопка Адресс нажать
         /// </summary>
-        public static string Adress = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:Uchet22NewView\\AutomationId:ultraTabControl\\AutomationId:ultraTabPageControl2\\AutomationId:flowLayoutPanel2\\AutomationId:groupBox3\\AutomationId:addressTextViewCurrent\\AutomationId:flowLayoutPanel\\AutomationId:ugbAddress\\AutomationId:btnEditAddress";
+        public static string Adress = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:Rfl1View\\AutomationId:flowLayoutPanel1\\AutomationId:groupBox2\\AutomationId:asvAddressCurrent\\AutomationId:gbMain\\AutomationId:btnEditAddress";
         /// <summary>
         /// Принадлежность к полу
         /// </summary>
-        public static string FloorSex = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:Uchet22NewView\\AutomationId:ultraTabControl\\AutomationId:ultraTabPageControl1\\AutomationId:flowLayoutPanel1\\AutomationId:ultraGroupBox\\AutomationId:groupBox1\\AutomationId:osSex\\{0}";
+        public static string FloorSex = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:Rfl1View\\AutomationId:flowLayoutPanel1\\AutomationId:ultraGroupBox3\\AutomationId:osSex\\{0}";
         /// <summary>
         /// Пол мужской
         /// </summary>
@@ -220,7 +220,7 @@
         /// <summary>
         /// Место рождения
         /// </summary>
-        public static string PlaceBirth = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:Uchet22NewView\\AutomationId:ultraTabControl\\AutomationId:ultraTabPageControl1\\AutomationId:flowLayoutPanel1\\AutomationId:ultraGroupBox\\Name:Прошу поставить на учет\\AutomationId:txtAddressBirth\\LocalizedControlType:поле";
+        public static string PlaceBirth = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:Rfl1View\\AutomationId:flowLayoutPanel1\\AutomationId:ultraGroupBox3\\AutomationId:txtAddressBirth\\LocalizedControlType:поле";
         /// <summary>
         /// Страна Name
         /// </summary>

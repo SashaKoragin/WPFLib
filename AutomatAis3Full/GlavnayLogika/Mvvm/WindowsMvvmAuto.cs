@@ -20,7 +20,6 @@ namespace AutomatAis3Full.GlavnayLogika.Mvvm
 
         public WindowsMvvmAuto()
         {
-            
             PdfHelp help = new PdfHelp();
             var fullLogica = new AddUserControlFull.AddLogicaFull();
             FullWindow = fullLogica.FullWindowAdd();

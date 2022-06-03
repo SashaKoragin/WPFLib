@@ -38,6 +38,7 @@ using LibraryAIS3Windows.Window.Otdel.Reg.Fpd;
 using LibraryAIS3Windows.Window.Otdel.Reg.IdFace;
 using LibraryAIS3Windows.Window.Otdel.Uregulirovanie.UtverzdenieSz;
 using LibaryXMLAuto.ModelXmlAuto.MigrationReport;
+using LibaryXMLAuto.XsdModelAutoGenerate;
 using LibraryAIS3Windows.AutomationsUI.Otdels.Okp2;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 using ViewModelLib.ModelTestAutoit.PublicModel.DataPickerItRule;
@@ -49,19 +50,15 @@ using LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation;
 using ViewModelLib.ModelTestAutoit.PublicModel.RaschetBuh;
 using LibraryAIS3Windows.ButtonFullFunction.Okp1Function;
 using LibraryAIS3Windows.ButtonFullFunction.Okp3Function;
+using LibraryAIS3Windows.ButtonFullFunction.Okp6Function;
 using LibraryAIS3Windows.ButtonFullFunction.RaschBydjFunction;
-using ViewModelLib.ModelTestAutoit.PublicModel.QbeSelect;
 using LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction;
-using LibraryAIS3Windows.ButtonFullFunction.UregulirovanieFunction;
+using LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction;
 
 namespace LibraryAIS3Windows.ButtonsClikcs
 {
     public class KclicerButton
     {
-
-
-        private const string LogTreb =
-            @"Налоговое администрирование\Урегулирование задолженности\Требования об уплате\Журнал требований об уплате";
 
         /// <summary>
         /// Ветка идентификации банковских счетов
@@ -1598,57 +1595,8 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// <returns></returns>
         public void Click17(StatusButtonMethod statusButton)
         {
-            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
-            LibraryAutomations libraryAutomationCheck = new LibraryAutomations(WindowsAis3.AisNalog3);
-            AutomationElement elemental;
-            while ((elemental = libraryAutomation.IsEnableElements(SettlementDebts.JournalDocuments, null, true)) !=
-                   null)
-            {
-                if (statusButton.Iswork)
-                {
-                    libraryAutomation.IsEnableElements(SettlementDebts.SumT, elemental);
-                    libraryAutomation.FindElement.SetFocus();
-                    libraryAutomation.FindFirstElement(PublicElementName.StartBeforeQ);
-                    var climbablePoint = libraryAutomation.FindElement.GetClickablePoint();
-                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int) climbablePoint.X, (int) climbablePoint.Y);
-                    libraryAutomationCheck.IsEnableElements(SettlementDebts.JournalSum, null, true);
-                    var isChecked = false;
-                    while (true)
-                    {
-                        if (isChecked)
-                        {
-                            if (libraryAutomation.IsEnableElements(SluzZ.WinErrorNalog, null, false, 5) != null)
-                            {
-                                libraryAutomation.InvokePattern(libraryAutomation.FindElement);
-                                libraryAutomation.ClickElements(SettlementDebts.ButtonSettlement);
-                            }
-
-                            break;
-                        }
-
-                        if (libraryAutomation.IsEnableElements(SettlementDebts.ButtonSettlement) == null) continue;
-                        libraryAutomation.ClickElements(SettlementDebts.ButtonSettlement);
-                        isChecked = true;
-                    }
-
-                    while (true)
-                    {
-                        if (libraryAutomation.IsEnableElements(SluzZ.WinCloseNalog, null, false, 1) != null)
-                        {
-                            libraryAutomation.InvokePattern(libraryAutomation.FindElement);
-                            break;
-                        }
-
-                        if (libraryAutomation.IsEnableElements(SettlementDebts.ButtonSend, null, false, 1) == null)
-                            continue;
-                        libraryAutomation.ClickElements(SettlementDebts.ButtonSend);
-                    }
-                }
-                else
-                {
-                    break;
-                }
-            }
+            var statement = new UregulirovanieAllFunction();
+            statement.FormRequirementUplTax(statusButton);
         }
 
         /// <summary>
@@ -2010,56 +1958,8 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// <param name="pathJournalOk">Журнал отработанных</param>
         public void Click23(StatusButtonMethod statusButton, string pathJournalError, string pathJournalOk)
         {
-            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
-            LibraryAutomations libraryAutomationCheck = new LibraryAutomations(WindowsAis3.AisNalog3);
-            AutomationElement elemental;
-            while ((elemental = libraryAutomation.IsEnableElements(RecouncementLk.JurnalsRecouncement, null, true)) !=
-                   null)
-            {
-                if (statusButton.Iswork)
-                {
-                    var inn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                        libraryAutomation.IsEnableElements(RecouncementLk.RowInn, elemental));
-                    libraryAutomation.FindElement.SetFocus();
-                    libraryAutomation.FindFirstElement(PublicElementName.StartUser);
-                    var climbablePoint = libraryAutomation.FindElement.GetClickablePoint();
-                    AutoItX.MouseClick(ButtonConstant.MouseLeft, (int) climbablePoint.X, (int) climbablePoint.Y);
-                    var isChecked = "";
-                    while (true)
-                    {
-                        if (isChecked == "" || string.IsNullOrWhiteSpace(isChecked))
-                        {
-                            isChecked = libraryAutomationCheck.ParseElementLegacyIAccessiblePatternIdentifiers(
-                                libraryAutomationCheck.IsEnableElements(RecouncementLk.CheckDataLk2));
-                            if (isChecked != "") break;
-                        }
-
-                        if (libraryAutomation.IsEnableElements(RecouncementLk.CheckStatusLk2) == null) continue;
-                        libraryAutomation.ClickElements(RecouncementLk.CheckStatusLk2);
-                    }
-
-                    while (true)
-                    {
-                        if (libraryAutomation.IsEnableElements(RecouncementLk.WinOkEndUser, null, true, 1) != null)
-                        {
-                            libraryAutomation.InvokePattern(libraryAutomation.FindElement);
-                            break;
-                        }
-
-                        if (libraryAutomation.IsEnableElements(RecouncementLk.CheckExit, null, true) == null) continue;
-                        libraryAutomation.ClickElements(RecouncementLk.CheckExit);
-                    }
-
-                    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk,
-                        $"ИНН Налогоплательщика: {inn}; Дата вручения: {isChecked}",
-                        "Проставили признак отправки в ЛК успешно!");
-                }
-                else
-                {
-                    break;
-                }
-            }
-
+            var statement = new UregulirovanieAllFunction();
+            statement.RecouncementLk(statusButton, pathJournalError, pathJournalOk);
         }
 
         /// <summary>
@@ -2069,52 +1969,10 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// \05.08.09.02.03.06. Подпись руководителями Заявлений о взыскании за счет имущества ФЛ
         /// </summary>
         /// <param name="statusButton">Запуск остановка</param>
-        /// <param name="pathJournalError">Журнал ошибок</param>
-        /// <param name="pathJournalOk">Журнал отработанных</param>
-        public void Click24(StatusButtonMethod statusButton, string pathJournalError, string pathJournalOk)
+        public void Click24(StatusButtonMethod statusButton)
         {
-            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
-            while ((libraryAutomation.IsEnableElements(SignatureHeadProperty.JournalSignature, null, true, 30)) != null)
-            {
-                if (statusButton.Iswork)
-                {
-                    PublicGlobalFunction.WindowElementClick(libraryAutomation, PublicElementName.StartUser);
-                    PublicGlobalFunction.WindowElementClick(libraryAutomation, SignatureHeadProperty.ButtonSignatureAll);
-                    //var listMemo = libraryAutomation
-                    //               .SelectAutomationColrction(
-                    //                libraryAutomation.IsEnableElements(SignatureHeadProperty.JoirnalAllSignature))
-                    //               .Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("List"));
-                    //    foreach (var data in listMemo)
-                    //    {
-                    //        var valuesInn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                    //            libraryAutomation
-                    //                .SelectAutomationColrction(data).Cast<AutomationElement>()
-                    //                .First(elem => elem.Current.Name.Contains("ИНН")));
-                    //        var valuesAddress = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                    //            libraryAutomation
-                    //                .SelectAutomationColrction(data).Cast<AutomationElement>()
-                    //                .First(elem => elem.Current.Name.Contains("Адрес")));
-                    //        var valuesScore = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                    //            libraryAutomation
-                    //                .SelectAutomationColrction(data).Cast<AutomationElement>()
-                    //                .First(elem => elem.Current.Name.Contains("Всего")));
-                    //        var valuesFio = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                    //            libraryAutomation
-                    //                .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem =>
-                    //                    elem.Current.Name.Contains("ФИО налогоплательщика")));
-
-                    //        LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk,
-                    //            $"ИНН Налогоплательщика: {valuesInn}; ФИО НО: {valuesFio} Адрес: {valuesAddress}; Сумма: {valuesScore} ",
-                    //            "Подписали руководителем успешно успешно!");
-                    //    }
-                        PublicGlobalFunction.WindowElementClick(libraryAutomation, SignatureHeadProperty.EndSignature);
-                        PublicGlobalFunction.WindowElementClick(libraryAutomation, SignatureHeadProperty.WinExit);
-                }
-                else
-                {
-                    break;
-                }
-            }
+            var statement = new UregulirovanieAllFunction();
+            statement.SignatureHeadProperty(statusButton);
         }
 
         /// <summary>
@@ -2124,63 +1982,10 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// Автомат для утверждения служебной записки
         /// </summary>
         /// <param name="statusButton">Запуск остановка</param>
-        /// <param name="pathJournalError">Журнал ошибок</param>
-        /// <param name="pathJournalOk">Журнал отработанных</param>
-        public void Click25(StatusButtonMethod statusButton, string pathJournalError, string pathJournalOk)
+        public void Click25(StatusButtonMethod statusButton)
         {
-            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
-            LibraryAutomations libraryAutomationCheck = new LibraryAutomations(WindowsAis3.AisNalog3);
-            while ((libraryAutomation.IsEnableElements(TextStatementOfficeNote.JournalStatementOffice, null, true)) != null)
-            {
-                if (statusButton.Iswork)
-                {
-                    PublicGlobalFunction.WindowElementClick(libraryAutomation, PublicElementName.StartUser);
-                    while (true)
-                    {
-                        libraryAutomation.IsEnableElements(TextStatementOfficeNote.IsCheck);
-                        libraryAutomation.InvokePattern(libraryAutomation.FindElement);
-                        if (libraryAutomation.TogglePattern(libraryAutomation.FindElement) == "On")
-                        {
-                            break;
-                        }
-                    }
-                    PublicGlobalFunction.WindowElementClick(libraryAutomation, TextStatementOfficeNote.ButtonIsCheckAll);
-
-                        //var listMemo = libraryAutomation
-                        //    .SelectAutomationColrction(
-                        //        libraryAutomationCheck.IsEnableElements(TextStatementOfficeNote
-                        //            .JournalAllStatementOffice)).Cast<AutomationElement>()
-                        //    .Where(elem => elem.Current.Name.Contains("List"));
-                        //foreach (var data in listMemo)
-                        //{
-                        //    var valuesInn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                        //        libraryAutomation
-                        //            .SelectAutomationColrction(data).Cast<AutomationElement>()
-                        //            .First(elem => elem.Current.Name.Contains("ИНН")));
-                        //    var valuesAddress = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                        //        libraryAutomation
-                        //            .SelectAutomationColrction(data).Cast<AutomationElement>()
-                        //            .First(elem => elem.Current.Name.Contains("Адрес")));
-                        //    var valuesScore = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                        //        libraryAutomation
-                        //            .SelectAutomationColrction(data).Cast<AutomationElement>()
-                        //            .First(elem => elem.Current.Name.Contains("Всего")));
-                        //    var valuesFio = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                        //        libraryAutomation
-                        //            .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem =>
-                        //                elem.Current.Name.Contains("ФИО налогоплательщика")));
-                        //    LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk,
-                        //        $"ИНН Налогоплательщика: {valuesInn}; ФИО НО: {valuesFio} Адрес: {valuesAddress}; Сумма: {valuesScore} ",
-                        //        "Утверждение руководителем служебной записки прошло успешно!");
-                        //}
-                        PublicGlobalFunction.WindowElementClick(libraryAutomation, TextStatementOfficeNote.Exit);
-                        PublicGlobalFunction.WindowElementClick(libraryAutomation, TextStatementOfficeNote.WinExit);
-                }
-                else
-                {
-                    break;
-                }
-            }
+            var statement = new UregulirovanieAllFunction();
+            statement.AutoStatementOfficeNote(statusButton);
         }
 
         /// <summary>
@@ -2189,63 +1994,10 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// 05.08.09.02.02 Утверждение и подписание Служебных записок\05.08.09.02.02.06. Подписание Служебной записки
         /// </summary>
         /// <param name="statusButton">Запуск остановка</param>
-        /// <param name="pathJournalError">Журнал ошибок</param>
-        /// <param name="pathJournalOk">Журнал отработанных</param>
-        public void Click26(StatusButtonMethod statusButton, string pathJournalError, string pathJournalOk)
+        public void Click26(StatusButtonMethod statusButton)
         {
-            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
-            LibraryAutomations libraryAutomationCheck = new LibraryAutomations(WindowsAis3.AisNalog3);
-            while ((libraryAutomation.IsEnableElements(TextSignatureOfficeNote.JournalSignatureOffice, null, true)) !=
-                   null)
-            {
-                if (statusButton.Iswork)
-                {
-                    PublicGlobalFunction.WindowElementClick(libraryAutomation, PublicElementName.StartUser);
-                    while (true)
-                    {
-                        libraryAutomation.IsEnableElements(TextSignatureOfficeNote.IsCheck);
-                        libraryAutomation.InvokePattern(libraryAutomation.FindElement);
-                        if (libraryAutomation.TogglePattern(libraryAutomation.FindElement) == "On")
-                        {
-                            break;
-                        }
-                    }
-                    PublicGlobalFunction.WindowElementClick(libraryAutomation, TextStatementOfficeNote.ButtonIsCheckAll);
-                    //var listMemo = libraryAutomation
-                    //        .SelectAutomationColrction(
-                    //            libraryAutomationCheck.IsEnableElements(TextSignatureOfficeNote
-                    //                .JournalAllStatementOffice)).Cast<AutomationElement>()
-                    //        .Where(elem => elem.Current.Name.Contains("List"));
-                    //    foreach (var data in listMemo)
-                    //    {
-                    //        var valuesInn = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                    //            libraryAutomation
-                    //                .SelectAutomationColrction(data).Cast<AutomationElement>()
-                    //                .First(elem => elem.Current.Name.Contains("ИНН")));
-                    //        var valuesAddress = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                    //            libraryAutomation
-                    //                .SelectAutomationColrction(data).Cast<AutomationElement>()
-                    //                .First(elem => elem.Current.Name.Contains("Адрес")));
-                    //        var valuesScore = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                    //            libraryAutomation
-                    //                .SelectAutomationColrction(data).Cast<AutomationElement>()
-                    //                .First(elem => elem.Current.Name.Contains("Всего")));
-                    //        var valuesFio = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
-                    //            libraryAutomation
-                    //                .SelectAutomationColrction(data).Cast<AutomationElement>().First(elem =>
-                    //                    elem.Current.Name.Contains("ФИО налогоплательщика")));
-                    //        LibaryXMLAuto.ErrorJurnal.OkJurnal.JurnalOk(pathJournalOk,
-                    //            $"ИНН Налогоплательщика: {valuesInn}; ФИО НО: {valuesFio} Адрес: {valuesAddress}; Сумма: {valuesScore} ",
-                    //            "Подписание руководителем служебной записки прошло успешно!");
-                    //    }
-                        PublicGlobalFunction.WindowElementClick(libraryAutomation, TextStatementOfficeNote.Exit);
-                        PublicGlobalFunction.WindowElementClick(libraryAutomation, TextStatementOfficeNote.WinExit);
-                }
-                else
-                {
-                    break;
-                }
-            }
+            var statement = new UregulirovanieAllFunction();
+            statement.AutoSignatureOfficeNote(statusButton);
         }
 
         /// <summary>
@@ -2386,7 +2138,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                             true) != null)
                                     {
                                         libraryAutomation.FindFirstElement(Journal129AndJournal121.NumKabinet);
-                                        libraryAutomation.SetValuePattern("367-1");
+                                        libraryAutomation.SetValuePattern(senderSelect.Office);
                                         libraryAutomation.ClickElements(Journal129AndJournal121.AddButton);
                                         AutoItX.WinWait(Journal129AndJournal121.DateTime);
                                         AutoItX.WinActivate(Journal129AndJournal121.DateTime);
@@ -2414,15 +2166,12 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                 //Подписание
                                 while (true)
                                 {
-                                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceName, null,
-                                            true) != null)
+                                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceName, null, true) != null)
                                     {
                                         libraryAutomation.ClickElements(Journal129AndJournal121.FaceName, null, true);
                                         libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceNameSign), senderSelect.SenderTaxJournalOkp2.NameUser, 0);
-                                        PublicGlobalFunction.WindowElementClick(libraryAutomation,
-                                            Journal129AndJournal121.Save);
-                                        PublicGlobalFunction.WindowElementClick(libraryAutomation,
-                                            Journal129AndJournal121.SignAll);
+                                        PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Save);
+                                        PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.SignAll);
                                         break;
                                     }
                                 }
@@ -2430,6 +2179,13 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                 taxFace.IsLk3 = globalFunction.IsLk3;
                                 taxFace.IsMail = globalFunction.IsMail;
                                 taxFace.IsTks = globalFunction.IsTks;
+                                while (true)
+                                {
+                                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceName, null, true) != null)
+                                    {
+                                        break;
+                                    }
+                                }
                                 globalFunction.SendJournalClose();
                                 taxFace.MessageInfo = "Извещение успешно выставлено!!!";
                                 taxFace.TypeDocument = "Извещение";
@@ -2458,7 +2214,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                     PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.PublicInfo);
                                     while (true)
                                     {
-                                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.DateReshenia, null, true) != null)
+                                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.DateReshenia119, null, true) != null)
                                         {
                                             taxFace.DateIzveshenie = datePicker.DateResh;
                                             libraryAutomation.SetValuePattern(datePicker.DateResh.ToString("dd.MM.yy"));
@@ -2476,7 +2232,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                                 }
                                                 libraryAutomation.SetValuePattern(string.Format(Journal129AndJournal121.InfoAct, numberAct, dateAct)); // Решение об отказе
                                             }
-                                            PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ErrorGroup);
+                                            PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ErrorGroup5);
                                             PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ResheniaFaceSignOpen);
                                             if (statusButton.IsChekcs)
                                             {
@@ -2507,6 +2263,13 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                                     libraryAutomation.IsEnableElements(Journal129AndJournal121.WinSelect2);
                                                     libraryAutomation.SetValuePattern("12911012");
                                                     PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.WinSelectOk);
+
+                                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.AddNewCircumstance1295);
+                                                    libraryAutomation.IsEnableElements(Journal129AndJournal121.WinSelectCircumstance1);
+                                                    libraryAutomation.SetValuePattern("отсутствие обстоятельств");
+                                                    libraryAutomation.IsEnableElements(Journal129AndJournal121.WinSelectCircumstance2);
+                                                    libraryAutomation.SetValuePattern("22");
+                                                    PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.WinSelectCircumstanceOk);
                                                 }
                                             }
                                             else
@@ -2518,8 +2281,10 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                                 libraryAutomation.SetValuePattern("10");
                                                 PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.WinSelectCircumstanceOk);
                                             }
-                                            PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ErrorGroup);
-                                            libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(Journal129AndJournal121.ResheniaFaceSign), senderSelect.SenderTaxJournalOkp2.NameUser, 0);
+                                            PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ErrorGroup5);
+                                            PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.IPred);
+                                            libraryAutomation.IsEnableElements(Journal129AndJournal121.ResheniaFaceSendSign);
+                                            libraryAutomation.SetValuePattern(senderSelect.SenderTaxJournalOkp2.NameUser);
                                             PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Save);
                                             PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.SignAll);
                                             break;
@@ -2529,13 +2294,14 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                     taxFace.IsLk3 = globalFunction.IsLk3;
                                     taxFace.IsMail = globalFunction.IsMail;
                                     taxFace.IsTks = globalFunction.IsTks;
-                                    WindowsAis3 win = new WindowsAis3();
-                                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
-                                    AutoItX.Sleep(1000);
-                                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
-                                    AutoItX.Sleep(1000);
-                                    //        PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.OpenClosedComplex);
-                                    //        PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex);
+                                    while (true)
+                                    {
+                                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ErrorGroup5, null, true) != null)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    globalFunction.SendJournalClose();
                                     taxFace.MessageInfo = "Решение успешно выставлено!!!";
                                     taxFace.TypeDocument = "Решение";
                                     globalFunction.AddFile(ref taxFace, pathPdfTemp);
@@ -2543,7 +2309,6 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                     dbAutomation.AddTaxJournal(taxFace);
                                 }
                             }
-
                             break;
                         case "ff0000":
                             libraryAutomation.ClickElements(Journal129AndJournal121.OpenComplex, null, true);
@@ -2558,9 +2323,8 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                 {
                                     while (true)
                                     {
-                                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                            .SelectAutomationColrction(cashDelete)
-                                            .Cast<AutomationElement>().First(elems => elems.Current.Name.Contains("Ун документа НБО")));
+                                        libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.SelectAutomationColrction(cashDelete)
+                                                         .Cast<AutomationElement>().First(elems => elems.Current.Name.Contains("Ун документа НБО")));
                                         var elem = libraryAutomation.FindFirstElement("Name:Удалить", cashDelete);
                                         libraryAutomation.ClickElement(elem);
                                         if (libraryAutomation.IsEnableElements(Journal129AndJournal121.DeleteWin, null, true) != null)
@@ -2576,7 +2340,13 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                 libraryAutomation.IsEnableElements(Journal129AndJournal121.WinSelect2);
                                 libraryAutomation.SetValuePattern("12911012");
                                 PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.WinSelectOk);
-                                PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ErrorGroup);
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.AddNewCircumstance1293);
+                                libraryAutomation.IsEnableElements(Journal129AndJournal121.WinSelectCircumstance1);
+                                libraryAutomation.SetValuePattern("отсутствие обстоятельств");
+                                libraryAutomation.IsEnableElements(Journal129AndJournal121.WinSelectCircumstance2);
+                                libraryAutomation.SetValuePattern("22");
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.WinSelectCircumstanceOk);
+                                PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ErrorGroup3);
                                 PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Inoe);
                                 libraryAutomation.IsEnableElements(Journal129AndJournal121.InoeText);
                                 libraryAutomation.SetValuePattern(Journal129AndJournal121.TextInoeTemplate);
@@ -2836,21 +2606,8 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// <param name="statusButton">Статус кнопка</param>
         public void Click31(StatusButtonMethod statusButton)
         {
-            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
-            while ((libraryAutomation.IsEnableElements(TextSignatureOfficeNote.JournalSignatureOffice, null, true)) !=  null)
-            {
-                if (statusButton.Iswork)
-                {
-                    PublicGlobalFunction.WindowElementClick(libraryAutomation, PublicElementName.StartBeforeQ);
-                    PublicGlobalFunction.WindowElementClick(libraryAutomation, TextSignatureOfficeNote.Sign);
-                    PublicGlobalFunction.WindowElementClick(libraryAutomation, TextSignatureOfficeNote.WinOk);
-                    PublicGlobalFunction.WindowElementClick(libraryAutomation, TextSignatureOfficeNote.WinOk1);
-                }
-                else
-                {
-                    break;
-                }
-            }
+            var statement = new UregulirovanieAllFunction();
+            statement.SigningDecisionApplication(statusButton);
         }
 
         /// <summary>
@@ -3400,19 +3157,8 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// <param name="kpp">КПП</param>
         public void Click35(string inn, string kpp)
         {
-            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
-            if (libraryAutomation.IsEnableElement(ProcessStartSash.StartW))
-            {
-                libraryAutomation.IsEnableElements(ProcessStartSash.InnInput, null, true);
-                libraryAutomation.SetValuePattern(inn);
-                if (kpp != null)
-                {
-                    libraryAutomation.IsEnableElements(ProcessStartSash.KppInput, null, true);
-                    libraryAutomation.SetValuePattern(kpp);
-                }
-
-                PublicGlobalFunction.WindowElementClick(libraryAutomation, ProcessStartSash.StartW);
-            }
+            var statement = new UregulirovanieAllFunction();
+            statement.StartProcess(inn, kpp);
         }
 
         /// <summary>
@@ -3640,10 +3386,11 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// Налоговое администрирование\Учет документов\Прием документов учета НП\Прием документов учета НП (ФЛ)
         /// </summary>
         /// <param name="statusButton">Кнопка автомата</param>
-        public void Click41(StatusButtonMethod statusButton)
+        /// <param name="addressModel">Модель с адресом</param>
+        public void Click41(StatusButtonMethod statusButton, AddressModel addressModel = null)
         {
             var flCreateDocument = new AcceptanceDocumentsFunction();
-            flCreateDocument.AcceptanceDocuments(statusButton);
+            flCreateDocument.AcceptanceDocuments(addressModel);
         }
         /// <summary>
         /// Закрытия КРСБ по списку плательщиков
@@ -3661,7 +3408,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// <param name="statusButton">Кнопка автомата</param>
         public void Click43(StatusButtonMethod statusButton)
         {
-            var statement = new StatementF();
+            var statement = new UregulirovanieAllFunction();
             statement.StatementStart(statusButton);
         }
         /// <summary>
@@ -3681,21 +3428,73 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// <param name="statusButton">Статус кнопка</param>
         public void Click44(StatusButtonMethod statusButton)
         {
-            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
-            while ((libraryAutomation.IsEnableElements(TextSignatureOfficeNote.JournalSignatureOffice, null, true)) != null)
-            {
-                if (statusButton.Iswork)
-                {
-                        PublicGlobalFunction.WindowElementClick(libraryAutomation, PublicElementName.StartBeforeQ);
-                        PublicGlobalFunction.WindowElementClick(libraryAutomation, TextSignatureOfficeNote.Statement);
-                        PublicGlobalFunction.WindowElementClick(libraryAutomation, TextSignatureOfficeNote.WinStatement);
-                        PublicGlobalFunction.WindowElementClick(libraryAutomation, TextSignatureOfficeNote.WinOk1);
-                }
-                else
-                {
-                    break;
-                }
-            }
+            var statement = new UregulirovanieAllFunction();
+            statement.StatementDecisionApplication(statusButton);
+        }
+        /// <summary>
+        /// Автомат на ветку
+        /// Общие задания\Урегулирование задолженности\05.09 Ручное формирование решений на зачет/возврат/возврат процентов\05.09 Заявления НП для ручной обработки
+        /// </summary>
+        /// <param name="statusButton">Кнопка автомата</param>
+        public void Click45(StatusButtonMethod statusButton)
+        {
+            var statement = new UregulirovanieAllFunction();
+            statement.ApplicationManualProcessing(statusButton);
+        }
+        /// <summary>
+        /// Автомат на ветку
+        /// Общие задания\Урегулирование задолженности\05.09.01(06.01) Формирование сообщения о факте излишней уплаты (излишнего взыскания)\05.09.01(06.01) Формирование сообщения об излишней уплате (взыскании)\Утверждение сообщений
+        /// А так же на ветку 
+        /// Общие задания\Урегулирование задолженности\05.09.01(06.01) Формирование сообщения о факте излишней уплаты (излишнего взыскания)\05.09.01(06.01) Формирование сообщения об излишней уплате (взыскании)\05.09.01(06.01) Формирование решений о зачете по инициативе НО\Утверждение решений о зачете
+        /// </summary>
+        /// <param name="statusButton">Кнопка автомата</param>
+        public void Click46(StatusButtonMethod statusButton)
+        {
+            var statement = new UregulirovanieAllFunction();
+            statement.MessageApprovalAndDecisionsApproval(statusButton);
+        }
+        /// <summary>
+        /// Налоговое администрирование\Контрольная работа (налоговые проверки)\122. Камеральная налоговая проверка НДФЛ\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
+        /// Проверить завершить закрыть декларацию
+        /// </summary>
+        /// <param name="statusButton">Кнопка проставить Даты вручения</param>
+        /// <param name="pathTemp">Путь к папке с выгрузкой</param>
+        public void Click47(StatusButtonMethod statusButton, string pathTemp)
+        {
+            var function = new Okp6Function();
+            function.CheckDeclaration(statusButton, pathTemp);
+        }
+
+        /// <summary>
+        /// Заявление о зачете возврате Очистить состояние обработки
+        /// </summary>
+        /// <param name="statusButton">Кнопка автомата</param>
+        public void Click48(StatusButtonMethod statusButton)
+        {
+            var statement = new UregulirovanieAllFunction();
+            statement.ClearStatusStatementNp(statusButton);
+        }
+
+        /// <summary>
+        /// Налоговое администрирование\Контрольная работа (налоговые проверки)\122. Камеральная налоговая проверка НДФЛ\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
+        /// Проставить срок проверки декларации
+        /// </summary>
+        /// <param name="statusButton">Кнопка проставить Даты вручения</param>
+        public void Click49(StatusButtonMethod statusButton)
+        {
+            var function = new Okp6Function();
+            function.AddTerm(statusButton);
+        }
+        /// <summary>
+        /// Задача по запуску БП по списку
+        /// Налоговое администрирование\Урегулирование задолженности\Взыскание задолженности за счет имущества НП ФЛ\Ввод данных судебного акта
+        /// </summary>
+        /// <param name="statusButton">Кнопка</param>
+        /// <param name="pathList">Путь к списку ИНН</param>
+        public void Click50(StatusButtonMethod statusButton, string pathList)
+        {
+            var statement = new UregulirovanieAllFunction();
+            statement.StartProcessAct(statusButton, pathList);
         }
     }
 }

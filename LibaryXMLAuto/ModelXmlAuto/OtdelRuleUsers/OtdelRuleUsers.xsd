@@ -67,7 +67,7 @@
 			<xs:documentation>Пользователь</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:attribute name="Name" type="xs:string">
+			<xs:attribute name="NameUser" type="xs:string">
 				<xs:annotation>
 					<xs:documentation>Имя пользователя</xs:documentation>
 				</xs:annotation>

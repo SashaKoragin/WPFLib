@@ -74,5 +74,24 @@ namespace PublicLogicaFull.DocumentLogica.FlowDocumentExample.Examle
                                             "  <TaxArrears Inn=\"7751098112\" Kpp=\"775101001\"/>\n" +
                                             "  <TaxArrears Inn=\"110500384499\"/>\n" +
                                             "</AutoGenerateSchemes>";
+        /// <summary>
+        /// Модель адреса для изменения индекса
+        /// </summary>
+        public static string RegAddressXml = "<?xml version =\"1.0\"encoding=\"UTF-8\"?>\n" +
+                                             "<AutoGenerateSchemes xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"AutoGenerateSchemes.xsd\">\n" +
+                                             "  <AddressModel Fid=\"100069531676\" Inn=\"772578431375\" Address=\"108831, Российская Федерация, г Москва, г Щербинка, кв-л Южный, д. 2, кв. 42\" IndexOld=\"108852\" IndexNew=\"108831\"/>\n" +
+                                             "  <AddressModel Fid=\"100058968097\" Inn=\"771701149808\" Address=\"108831, Российская Федерация, г Москва, г Щербинка, кв-л Южный, д. 2, кв. 12\" IndexOld=\"108852\" IndexNew=\"108831\"/>\n" +
+                                             "  <AddressModel Fid=\"100152043770\" Inn=\"772583930186\" Address=\"108831, Российская Федерация, г Москва, г Щербинка, кв-л Южный, д. 2, кв. 42\" IndexOld=\"108852\" IndexNew=\"108831\"/>\n" +
+                                             "</AutoGenerateSchemes>";
+
+        /// <summary>
+        /// Модель акта судебных решений
+        /// </summary>
+        public static string JudicialAct = "<?xml version =\"1.0\"encoding=\"UTF-8\"?>\n" +
+                                           "<AutoGenerateSchemes xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"AutoGenerateSchemes.xsd\">\n" +
+                                           "  <JudicialAct Inn=\"772578431375\" NumberAkt=\"48\"/>\n" +
+                                           "  <JudicialAct Inn=\"771701149808\" NumberAkt=\"51\"/>\n" +
+                                           "  <JudicialAct Inn=\"772583930186\" NumberAkt=\"20\"/>\n" +
+                                           "</AutoGenerateSchemes>";
     }
 }

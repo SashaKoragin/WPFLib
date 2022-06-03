@@ -661,7 +661,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 XmlReadOrWrite xml = new XmlReadOrWrite();
                 var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
                 var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}DeclarationDataAll.xml";
-                xml.CreateXmlFile(xmlFile, declarationData, typeof(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc));
+                xml.CreateXmlFile(xmlFile, declarationData, typeof(ArrayBodyDoc));
                 Automation.DeclarationAlls.Add(declarationAll);
                 try
                 {
@@ -755,7 +755,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         /// </summary>
         /// <param name="statementFull">Body Statement</param>
         /// <param name="innUl">ИНН</param>
-        public void AddStatementFull(XsdShemeSqlLoad.XsdAllBodyData.ArrayBodyDoc statementFull, string innUl)
+        public void AddStatementFull(ArrayBodyDoc statementFull, string innUl)
         {
             //ИНН Есть ли лицо
             int idUl;
@@ -832,7 +832,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         /// </summary>
         /// <param name="face">Лицо ФЛ</param>
         /// <param name="patent">Патент</param>
-        public IsPatentParse AddFlFaceAndPatent(FlFaceMain face,ref Patent patent)
+        public IsPatentParse AddFlFaceAndPatent(FlFaceMain face, ref Patent patent)
         {
             var p = patent;
             if (!(from flFaceMain in Automation.FlFaceMains where flFaceMain.Inn == face.Inn select new { FlFaceMains = flFaceMain }).Any())
@@ -986,6 +986,57 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 BulkInsertIntoDb(xsdFile, xmlFile);
             }
         }
+        /// <summary>
+        /// Загрузка декларации ФЛ в БД
+        /// </summary>
+        /// <param name="declarationFl">Декларация ФЛ</param>
+        /// <param name="declarationData">Данные декларации ФЛ</param>
+        public void AddDeclarationFlModel(ref DeclarationFl declarationFl, ArrayBodyDoc declarationData)
+        {
+            var sum = declarationData.DeclarationDataFl.Where(model => model.CodeString == "П0388").Select(cash => Convert.ToDouble(cash.Error)).Sum();
+            var inn = declarationFl.InnNp;
+            var regNumDecl = declarationFl.RegNumDecl;
+            var flSelect = from flFaces in Automation.FlFaces
+                                           where flFaces.Inn == inn
+                                           select new { FlFaces = flFaces };
+            var fl = new FlFace()
+            {
+                IdFl = flSelect.FirstOrDefault() != null ? flSelect.FirstOrDefault().FlFaces.IdFl : 0,
+                Inn = declarationFl.InnNp,
+                NameFl = declarationFl.NameNp
+            };
+            using (var context = new Base.Automation())
+            {
+                if (!(flSelect).Any()) { context.FlFaces.Add(fl); } else { context.Entry(fl).State = EntityState.Modified; }
+                context.SaveChanges();
+            }
+            declarationFl.IdFl = fl.IdFl;
+            declarationFl.SummSignOfDevialion = sum;
+            declarationFl.SignOfDevialion = sum != 0;
+            if (!(from declarationFls in Automation.DeclarationFls
+                  where declarationFls.RegNumDecl == regNumDecl
+                  select new { DeclarationFls = declarationFls }).Any())
+            {
+                Automation.DeclarationFls.Add(declarationFl);
+                Automation.SaveChanges();
+            }
+            else
+            {
+                Automation.Entry(declarationFl).State = EntityState.Modified;
+                Automation.SaveChanges();
+            }
+            //Удаляем старые записи по выписке заполняем новыми
+            using (var contextDelete = new Base.Automation())
+            {
+                contextDelete.Database.CommandTimeout = 120000;
+                contextDelete.Database.ExecuteSqlCommand("Delete From DeclarationDataFl Where RegNumDecl = "+regNumDecl);
+            }
+            XmlReadOrWrite xml = new XmlReadOrWrite();
+            var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+            var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}DeclarationDataAll.xml";
+            xml.CreateXmlFile(xmlFile, declarationData, typeof(ArrayBodyDoc));
+            BulkInsertIntoDb(xsdFile, xmlFile);
+        }
 
         /// <summary>
         /// Загрузка 
@@ -1004,6 +1055,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             };
             bulkLoader.Execute(fullPathXsdScheme, fullPathXml);
         }
+
+
 
         /// <summary>
         /// Disposing

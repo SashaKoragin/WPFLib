@@ -19,7 +19,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
             Update = "Name:DockTop\\Name:Ribbon\\Name:Идентификационные характеристики физического лица\\Name:Навигатор\\Name:Обновить",
             Parameters = new Parameters[]
             {
-                new Parameters() { NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "8" }
+                new Parameters() { NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "14" }
             }
         };
         /// <summary>
@@ -52,7 +52,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
             Riborn = "Name:Данные из справочника ЕГРН\\AutomationId:toolStrip\\Name:Выбрать",
             Parameters = new Parameters[]
             {
-                new Parameters() { NameParameters = "ИНН",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "16" }
+                new Parameters() { NameParameters = "ИНН",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "19" }
             }
         };
 
@@ -72,7 +72,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
         };
 
         /// <summary>
-        /// Заявления онулирование
+        /// Заявления анулированние
         /// </summary>
         public DataArea DataAreaStatement = new DataArea()
         {
@@ -88,6 +88,25 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
                 new Parameters() {NameParameters = "Номер заявления",FindNameMemo = "Name:Значение",FindSelectParameter = "Из перечня (без учета регистра)",IndexParameters = "7"},
             }
         };
+
+        /// <summary>
+        /// Акты для отработки данных
+        /// </summary>
+        public DataArea DataAreaStatementAct = new DataArea()
+        {
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:GenericNavigatorViewBase\\AutomationId:NavigatorViewBase_Fill_Panel\\AutomationId:grpBig\\AutomationId:ctlNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:GenericNavigatorViewBase\\AutomationId:NavigatorViewBase_Fill_Panel\\AutomationId:grpBig\\AutomationId:ctlNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+            ListRowDataArea = "Name:List`1 row ",
+            Headers = "Name:Column Headers",
+            Update = "Name:DockTop\\Name:Ribbon\\Name:Журнал документов взыскания\\Name:Навигатор\\Name:Обновить",
+            Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:GenericNavigatorViewBase\\AutomationId:NavigatorViewBase_Fill_Panel\\AutomationId:grpBig\\AutomationId:ctlNavigator\\AutomationId:tsControlPanel\\Name:Фильтр",
+            Parameters = new Parameters[]
+            {
+                new Parameters() {NameParameters = "ИНН",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "2"},
+                new Parameters() {NameParameters = "Номер заявления",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно (без учета регистра)",IndexParameters = "18"},
+            }
+        };
+
         /// <summary>
         ///  Налоговое администрирование\Контрольная работа(налоговые проверки)\101. Мониторинг и обработка документов\Реестр документов НБО
         /// </summary>

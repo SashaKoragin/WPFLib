@@ -40,6 +40,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
 
         public AutomationElement FindElement { get; set; }
 
+        public LibraryAutomations NewPreviousSiblingWindows { get; set; }
         private Condition Conditions { get; set; }
         /// <summary>
         /// Подключение к процессу
@@ -66,6 +67,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
             ProcessId = RootAutomationElements.Current.ProcessId;
         }
 
+
         /// <summary>
         /// Подключение к процессу!
         /// </summary>
@@ -76,6 +78,19 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
             RootAutomationElements = AutomationElement.FromHandle(nameProcess);
             ProcessId = RootAutomationElements.Current.ProcessId;
         }
+        /// <summary>
+        /// Поиск окна при открытии вне потока Windows
+        /// </summary>
+        public void SelectGetPreviousSiblingWindows()
+        {
+            NewPreviousSiblingWindows = null;
+            while (NewPreviousSiblingWindows == null)
+            {
+                NewPreviousSiblingWindows = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(RootAutomationElements));
+            }
+        }
+
+
         /// <summary>
         /// Подстановка параметра в условие поля
         /// </summary>
@@ -135,8 +150,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                                  FindElement = FindElement.FindFirst(TreeScope.Children, Conditions);
                                  return FindElement;
                              }
-                         }
-                            
+                         }                            
                          FindElement = FindElement.FindFirst(TreeScope.Children, Conditions) ?? FindElement.FindFirst(TreeScope.Subtree, Conditions);
                      }
                      else

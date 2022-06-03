@@ -67,7 +67,7 @@
         /// <summary>
         /// Журнал пользовательских заданий по справки
         /// </summary>
-        public static string JurnalsTrebovanie = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorViewBase2\\AutomationId:NavigatorViewBase_Fill_Panel\\AutomationId:grpBig\\AutomationId:ctlNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row ";
+        public static string JurnalsTrebovanie = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:GenericNavigatorViewBase\\AutomationId:NavigatorViewBase_Fill_Panel\\AutomationId:grpBig\\AutomationId:ctlNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row ";
         /// <summary>
         /// Вкладка информация о вручении
         /// </summary>
@@ -261,6 +261,30 @@
         /// Окно выхода
         /// </summary>
         public static string WinExit = "Name:Завершение работы\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+        /// <summary>
+        /// Завершить задание
+        /// </summary>
+        public static string FinishStatement = "Name:DockTop\\Name:Ribbon\\Name:Список заявлений\\Name:Пользовательское задание\\Name:Завершить обработку заявления";
+        /// <summary>
+        /// Окно завершить Ок
+        /// </summary>
+        public static string WinFinishStatement = "Name:Завершить пользовательское задание по обработке заявления\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:Да";
+        /// <summary>
+        /// Отклонить все
+        /// </summary>
+        public static string RejectAll = "Name:DockTop\\Name:Ribbon\\Name:Утверждение сообщений\\Name:Список\\Name:Отклонить все";
+        /// <summary>
+        /// Сохранить и завершить работу
+        /// </summary>
+        public static string SaveAndClose = "Name:DockTop\\Name:Ribbon\\Name:Утверждение сообщений\\Name:Действия\\Name:Сохранить и завершить работу";
+        /// <summary>
+        /// Завершить работу
+        /// </summary>
+        public static string CloseWork = "Name:Завершить работу\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:Да";
+        /// <summary>
+        /// Ок окно
+        /// </summary>
+        public static string OkWin = "Name:Завершение работы\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:ОК";
     }
 
 
@@ -284,6 +308,47 @@
     /// </summary>
     public class StatementNp
     {
+        /// <summary>
+        /// Журнал на отработке
+        /// </summary>
+        public static string JournalReestr = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TransferClaimDocNavListView\\AutomationId:grpBig\\AutomationId:navControl\\AutomationId:ctlNavigator\\AutomationId:splitContainer\\AutomationId:gridData";
+        /// <summary>
+        /// Добавление даты поступления
+        /// </summary>
+        public static string DateAdd = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TransferClaimDocDetailView\\AutomationId:grpBig\\AutomationId:tab\\AutomationId:ultraTabPageControl1\\AutomationId:grpHeader\\AutomationId:headerControl\\AutomationId:grpBig\\AutomationId:grpDoc\\AutomationId:dtReceptionDate";
+
+        /// <summary>
+        /// Кнопка Обновить
+        /// </summary>
+        public static string Update = "Name:DockTop\\Name:Ribbon\\Name:Список заявлений\\Name:Действия\\Name:Обновить";
+        /// <summary>
+        /// Открыть
+        /// </summary>
+        public static string Open = "Name:DockTop\\Name:Ribbon\\Name:Список заявлений\\Name:Действия\\Name:Открыть";
+        /// <summary>
+        /// Редактировать
+        /// </summary>
+        public static string Edit = "Name:DockTop\\Name:Ribbon\\Name:Список заявлений\\Name:Действия\\Name:Редактировать";
+        /// <summary>
+        /// Сохранить
+        /// </summary>
+        public static string Save = "Name:DockTop\\Name:Ribbon\\Name:Заявление на зачет / возврат\\Name:Сохранить";
+        /// <summary>
+        /// Очистить состояние обработки
+        /// </summary>
+        public static string ClearStatus = "Name:DockTop\\Name:Ribbon\\Name:Заявление на зачет / возврат\\Name:Очистить состояние обработки";
+        /// <summary>
+        /// Кнопка Да
+        /// </summary>
+        public static string YesWin = "Name:Очистка состояния обработки\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnYes";
+        /// <summary>
+        /// Кнопка Ок
+        /// </summary>
+        public static string OkWin = "Name:Очистить состояние обработки\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:ОК";
+        /// <summary>
+        /// Окно Ок
+        /// </summary>
+        public static string OkSave = "Name:Сохранение\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
         /// <summary>
         /// Редактировать
         /// </summary>
@@ -324,5 +389,60 @@
         /// Утверждение Ок
         /// </summary>
         public static string WinOk2 = "Name:Утверждение\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:ОК";
+    }
+    /// <summary>
+    /// Акты 
+    /// </summary>
+    public class StatementAct
+    {
+        /// <summary>
+        /// Группа
+        /// </summary>
+        private static string Group = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:UT_AssetSttmClaimDetailView\\AutomationId:grpBig\\AutomationId:ctrlAssetSttmClaimHeaderControl\\AutomationId:grpBig\\AutomationId:tabSub\\AutomationId:ultraTabPageControl3\\AutomationId:grpDelivery\\AutomationId:ctrlAssetSttmCourtDcnControl\\AutomationId:grpBig\\";
+        /// <summary>
+        /// Галочка признак судебного приказа
+        /// </summary>
+        public static string IsCheked = $"{Group}Name:Судебный приказ\\AutomationId:grpBoxPanelCourtAct\\AutomationId:grpCourtAct\\AutomationId:chkCourtDecisionSign\\Name:Признак получения судебного приказа";
+        /// <summary>
+        /// ФИО судьи Отказано
+        /// </summary>
+        public static string SendActJ = $"{Group}AutomationId:ultraGroupBox5\\AutomationId:txtCourtDcnSignerFIO";
+        /// <summary>
+        /// Ввод дела б\н
+        /// </summary>
+        public static string SendDelo = $"{Group}Name:Судебный приказ\\AutomationId:grpBoxPanelCourtAct\\AutomationId:grpCourtAct\\AutomationId:txtCourtDecisionNum";
+        /// <summary>
+        /// Дата отправки заявления в суд
+        /// </summary>
+        public static string DateSend = $"{Group}AutomationId:ultraGroupBox5\\AutomationId:udtCourtSendDate";
+        /// <summary>
+        /// Дата получения налоговым органом:
+        /// </summary>
+        public static string DateSendNo = $"{Group}Name:Судебный приказ\\AutomationId:grpBoxPanelCourtAct\\AutomationId:grpCourtAct\\AutomationId:dtCourtDecisionReceiveDate";
+        /// <summary>
+        /// Дата судебного приказа:
+        /// </summary>
+        public static string DateSendNoPr = $"{Group}Name:Судебный приказ\\AutomationId:grpBoxPanelCourtAct\\AutomationId:grpCourtAct\\AutomationId:dtCourtDecisionDate";
+        /// <summary>
+        /// Дата вступления в силу:
+        /// </summary>
+        public static string DateStrenge = $"{Group}Name:Судебный приказ\\AutomationId:grpBoxPanelCourtAct\\AutomationId:grpCourtAct\\AutomationId:dtCourtActionDate";
+        /// <summary>
+        /// Определение суда в отношении исходного заявления НО
+        /// </summary>
+        public static string ComboboxModel = $"{Group}Name:Судебный приказ\\AutomationId:grpBoxPanelCourtAct\\AutomationId:grpCourtAct\\AutomationId:cmbCourtClaimJudgment";
+        /// <summary>
+        /// Ввод акта
+        /// </summary>
+        public static string SendAct = "Name:DockTop\\Name:Ribbon\\Name:Журнал документов взыскания\\Name:Задолженность\\Name:Ввести данные судебного акта";
+        /// <summary>
+        /// Сохранить и отправить на следующий шаг
+        /// </summary>
+        public static string Save = "Name:DockTop\\Name:Ribbon\\Name:Заявление о взыскании за счет имущества НП ФЛ\\Name:Ввод данных судебного акта\\Name:Сохранить и отдать на следующий шаг";
+        /// <summary>
+        /// Окно Ок
+        /// </summary>
+        public static string Ok = "Name:Отправить на исполнение следующего шага?\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnYes";
+    
     }
 }

@@ -22,6 +22,7 @@
 				<xs:element ref="SvedObject" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="ParametrNalog" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="SvedFactPatent" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="DeclarationDataFl" minOccurs="0" maxOccurs="unbounded" sql:relation="DeclarationDataFl"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -1506,6 +1507,66 @@
 					<xs:documentation>Дата записи</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DeclarationDataFl" sql:relation="DeclarationDataFl">
+		<xs:annotation>
+			<xs:documentation>Внутренности декларации Физического лица</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" type="xs:int" use="optional" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>УН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="RegNumDecl" use="required">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер декларации</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:long"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="CodeString" use="optional">
+				<xs:annotation>
+					<xs:documentation>Описание кода</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="NameParametr" use="optional">
+				<xs:annotation>
+					<xs:documentation>Наименование параметра</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="CodeParametr" use="optional">
+				<xs:annotation>
+					<xs:documentation>Код параметра</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="DataFace" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Данные представленные лицом</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DataInspector" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Данные инспектора</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Error">
+				<xs:annotation>
+					<xs:documentation>Разногласия</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:mapped="false"/>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

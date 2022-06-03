@@ -41,7 +41,14 @@
             </WrapPanel>
             <WrapPanel DockPanel.Dock="Top">
                 <Label Content="Поля для формирования списка:" FontSize="14"></Label>
-                <Label Content="{Binding Schemes.Schemes.DescriptionMemo}" FontSize="14"></Label>
+                <ComboBox
+                    MinWidth="100"
+                    Margin="5,5,5,5"
+                    Name="ModelDesk"
+                    ItemsSource="{Binding Schemes.Schemes.DescriptionMemo}"
+                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
+                    Validation.ErrorTemplate="{StaticResource ValidationFailederror}">
+                </ComboBox>
             </WrapPanel>
                 <FlowDocumentReader
                 HorizontalContentAlignment="Stretch"

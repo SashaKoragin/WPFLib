@@ -53,6 +53,8 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<DeclarationAll> DeclarationAlls { get; set; } // DeclarationAll
         System.Data.Entity.DbSet<DeclarationData> DeclarationDatas { get; set; } // DeclarationData
         System.Data.Entity.DbSet<DeclarationDataAll> DeclarationDataAlls { get; set; } // DeclarationDataAll
+        System.Data.Entity.DbSet<DeclarationDataFl> DeclarationDataFls { get; set; } // DeclarationDataFl
+        System.Data.Entity.DbSet<DeclarationFl> DeclarationFls { get; set; } // DeclarationFl
         System.Data.Entity.DbSet<DeclarationUl> DeclarationUls { get; set; } // DeclarationUl
         System.Data.Entity.DbSet<DeliveryDocument> DeliveryDocuments { get; set; } // DeliveryDocument
         System.Data.Entity.DbSet<DepartamentOtdel> DepartamentOtdels { get; set; } // DepartamentOtdel
@@ -166,6 +168,8 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<DeclarationAll> DeclarationAlls { get; set; } // DeclarationAll
         public System.Data.Entity.DbSet<DeclarationData> DeclarationDatas { get; set; } // DeclarationData
         public System.Data.Entity.DbSet<DeclarationDataAll> DeclarationDataAlls { get; set; } // DeclarationDataAll
+        public System.Data.Entity.DbSet<DeclarationDataFl> DeclarationDataFls { get; set; } // DeclarationDataFl
+        public System.Data.Entity.DbSet<DeclarationFl> DeclarationFls { get; set; } // DeclarationFl
         public System.Data.Entity.DbSet<DeclarationUl> DeclarationUls { get; set; } // DeclarationUl
         public System.Data.Entity.DbSet<DeliveryDocument> DeliveryDocuments { get; set; } // DeliveryDocument
         public System.Data.Entity.DbSet<DepartamentOtdel> DepartamentOtdels { get; set; } // DepartamentOtdel
@@ -306,6 +310,8 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new DeclarationAllConfiguration());
             modelBuilder.Configurations.Add(new DeclarationDataConfiguration());
             modelBuilder.Configurations.Add(new DeclarationDataAllConfiguration());
+            modelBuilder.Configurations.Add(new DeclarationDataFlConfiguration());
+            modelBuilder.Configurations.Add(new DeclarationFlConfiguration());
             modelBuilder.Configurations.Add(new DeclarationUlConfiguration());
             modelBuilder.Configurations.Add(new DeliveryDocumentConfiguration());
             modelBuilder.Configurations.Add(new DepartamentOtdelConfiguration());
@@ -401,6 +407,8 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new DeclarationAllConfiguration(schema));
             modelBuilder.Configurations.Add(new DeclarationDataConfiguration(schema));
             modelBuilder.Configurations.Add(new DeclarationDataAllConfiguration(schema));
+            modelBuilder.Configurations.Add(new DeclarationDataFlConfiguration(schema));
+            modelBuilder.Configurations.Add(new DeclarationFlConfiguration(schema));
             modelBuilder.Configurations.Add(new DeclarationUlConfiguration(schema));
             modelBuilder.Configurations.Add(new DeliveryDocumentConfiguration(schema));
             modelBuilder.Configurations.Add(new DepartamentOtdelConfiguration(schema));
@@ -650,10 +658,6 @@ namespace EfDatabaseAutomation.Automation.Base
         {
             IsBookSalesParse = false;
             IsBookPurchase = false;
-            SummBookPurchase = 0.00;
-            SummBookSales = 0.00;
-            SummNds = 0.00;
-            SummTotal = 0.00;
             WeightProduct = 0;
             DateCreate = System.DateTime.Now;
             BookPurchases = new System.Collections.Generic.List<BookPurchase>();
@@ -714,16 +718,6 @@ namespace EfDatabaseAutomation.Automation.Base
 
         public BookPurchase()
         {
-            Str150 = 0.00;
-            Str160 = 0.00;
-            Str170 = 0.00;
-            Str175 = 0.00;
-            Str180 = 0.00;
-            Str190 = 0.00;
-            Str200 = 0.00;
-            Str205 = 0.00;
-            Str210 = 0.00;
-            Str220 = 0.00;
             CountRnp = 0;
             DateCreate = System.DateTime.Now;
         }
@@ -740,7 +734,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public string C { get; set; } // C (length: 10)
         public int Str005 { get; set; } // Str005
         public string Str010 { get; set; } // Str010 (length: 128)
-        public string Str020 { get; set; } // Str020 (length: 128)
+        public string Str020 { get; set; } // Str020 (length: 1024)
         public System.DateTime? Str030 { get; set; } // Str030
         public string Str040 { get; set; } // Str040 (length: 128)
         public System.DateTime? Str050 { get; set; } // Str050
@@ -775,8 +769,6 @@ namespace EfDatabaseAutomation.Automation.Base
         public BookSale()
         {
             Str160 = 0;
-            Str170 = 0.00;
-            Str180 = 0.00;
             CountRnp = 0;
             DateCreate = System.DateTime.Now;
         }
@@ -918,10 +910,6 @@ namespace EfDatabaseAutomation.Automation.Base
 
         public CounterpartyCashBank()
         {
-            ExpenseSumOperationUsa = 0.00;
-            ExpenseSumOperationRu = 0.00;
-            ComingSumOperationUsa = 0.00;
-            ComingSumOperationRu = 0.00;
             DateCreate = System.DateTime.Now;
         }
     }
@@ -1032,6 +1020,77 @@ namespace EfDatabaseAutomation.Automation.Base
         public DeclarationDataAll()
         {
             DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // DeclarationDataFl
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class DeclarationDataFl
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public long RegNumDecl { get; set; } // RegNumDecl (Primary key)
+        public string CodeString { get; set; } // CodeString (length: 1024)
+        public string NameParametr { get; set; } // NameParametr (length: 1024)
+        public string CodeParametr { get; set; } // CodeParametr (length: 1024)
+        public string DataFace { get; set; } // DataFace (length: 1024)
+        public string DataInspector { get; set; } // DataInspector (length: 1024)
+        public string Error { get; set; } // Error (length: 1024)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent DeclarationFl pointed by [DeclarationDataFl].([RegNumDecl]) (FK_DeclarationDataFl_DeclarationFl)
+        /// </summary>
+        public virtual DeclarationFl DeclarationFl { get; set; } // FK_DeclarationDataFl_DeclarationFl
+
+        public DeclarationDataFl()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // DeclarationFl
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class DeclarationFl
+    {
+        public int Id { get; set; } // Id
+        public int? IdFl { get; set; } // IdFl
+        public string ColorType2 { get; set; } // ColorType2 (length: 10)
+        public long RegNumDecl { get; set; } // RegNumDecl (Primary key)
+        public double Psumm { get; set; } // Psumm
+        public string Knd { get; set; } // Knd (length: 12)
+        public string NameDocument { get; set; } // NameDocument (length: 1024)
+        public string Period { get; set; } // Period (length: 1024)
+        public int NumberKor { get; set; } // NumberKor
+        public int? God { get; set; } // God
+        public string NameNp { get; set; } // NameNp (length: 256)
+        public string InnNp { get; set; } // InnNp (length: 12)
+        public bool SignOfDevialion { get; set; } // SignOfDevialion
+        public double SummSignOfDevialion { get; set; } // SummSignOfDevialion
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child DeclarationDataFls where [DeclarationDataFl].[RegNumDecl] point to this entity (FK_DeclarationDataFl_DeclarationFl)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<DeclarationDataFl> DeclarationDataFls { get; set; } // DeclarationDataFl.FK_DeclarationDataFl_DeclarationFl
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent FlFace pointed by [DeclarationFl].([IdFl]) (FK_DeclarationFl_FlFace)
+        /// </summary>
+        public virtual FlFace FlFace { get; set; } // FK_DeclarationFl_FlFace
+
+        public DeclarationFl()
+        {
+            SignOfDevialion = false;
+            SummSignOfDevialion = 0;
+            DateCreate = System.DateTime.Now;
+            DeclarationDataFls = new System.Collections.Generic.List<DeclarationDataFl>();
         }
     }
 
@@ -1343,6 +1402,11 @@ namespace EfDatabaseAutomation.Automation.Base
         // Reverse navigation
 
         /// <summary>
+        /// Child DeclarationFls where [DeclarationFl].[IdFl] point to this entity (FK_DeclarationFl_FlFace)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<DeclarationFl> DeclarationFls { get; set; } // DeclarationFl.FK_DeclarationFl_FlFace
+        /// <summary>
         /// Child ImZmTrFls where [ImZmTrFl].[IdFl] point to this entity (FK_ImZmTrFl_FlFace)
         /// </summary>
         [JsonIgnore]
@@ -1356,6 +1420,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public FlFace()
         {
             DateCreate = System.DateTime.Now;
+            DeclarationFls = new System.Collections.Generic.List<DeclarationFl>();
             ImZmTrFls = new System.Collections.Generic.List<ImZmTrFl>();
             RukAndUcrhs = new System.Collections.Generic.List<RukAndUcrh>();
         }
@@ -1963,9 +2028,6 @@ namespace EfDatabaseAutomation.Automation.Base
 
         public ParametrNalog()
         {
-            NalogDateBase = 0.00;
-            NalogPsnYear = 0.00;
-            NalogPsnPeriod = 0.00;
             DateCreate = System.DateTime.Now;
         }
     }
@@ -2355,8 +2417,6 @@ namespace EfDatabaseAutomation.Automation.Base
         {
             FactDaysPatent = 0;
             NalogDays = 0;
-            NalogFact = 0.00;
-            Delta = 0.00;
             DateCreate = System.DateTime.Now;
         }
     }
@@ -2384,7 +2444,6 @@ namespace EfDatabaseAutomation.Automation.Base
 
         public SvedObject()
         {
-            AreaObject = 0.00;
             DateCreate = System.DateTime.Now;
         }
     }
@@ -2415,7 +2474,6 @@ namespace EfDatabaseAutomation.Automation.Base
 
         public SvedTr()
         {
-            Weight = 0.00;
             DateCreate = System.DateTime.Now;
         }
     }
@@ -3420,7 +3478,7 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.C).HasColumnName(@"C").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
             Property(x => x.Str005).HasColumnName(@"Str005").HasColumnType("int").IsRequired();
             Property(x => x.Str010).HasColumnName(@"Str010").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
-            Property(x => x.Str020).HasColumnName(@"Str020").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.Str020).HasColumnName(@"Str020").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.Str030).HasColumnName(@"Str030").HasColumnType("smalldatetime").IsOptional();
             Property(x => x.Str040).HasColumnName(@"Str040").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
             Property(x => x.Str050).HasColumnName(@"Str050").HasColumnType("smalldatetime").IsOptional();
@@ -3707,6 +3765,70 @@ namespace EfDatabaseAutomation.Automation.Base
 
             // Foreign keys
             HasRequired(a => a.DeclarationAll).WithMany(b => b.DeclarationDataAlls).HasForeignKey(c => c.RegNumDecl).WillCascadeOnDelete(false); // FK_DeclarationDataAll_DeclarationAll
+        }
+    }
+
+    // DeclarationDataFl
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class DeclarationDataFlConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<DeclarationDataFl>
+    {
+        public DeclarationDataFlConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public DeclarationDataFlConfiguration(string schema)
+        {
+            ToTable("DeclarationDataFl", schema);
+            HasKey(x => new { x.Id, x.RegNumDecl });
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.RegNumDecl).HasColumnName(@"RegNumDecl").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.CodeString).HasColumnName(@"CodeString").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.NameParametr).HasColumnName(@"NameParametr").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.CodeParametr).HasColumnName(@"CodeParametr").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DataFace).HasColumnName(@"DataFace").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DataInspector).HasColumnName(@"DataInspector").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.Error).HasColumnName(@"Error").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.DeclarationFl).WithMany(b => b.DeclarationDataFls).HasForeignKey(c => c.RegNumDecl).WillCascadeOnDelete(false); // FK_DeclarationDataFl_DeclarationFl
+        }
+    }
+
+    // DeclarationFl
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class DeclarationFlConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<DeclarationFl>
+    {
+        public DeclarationFlConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public DeclarationFlConfiguration(string schema)
+        {
+            ToTable("DeclarationFl", schema);
+            HasKey(x => x.RegNumDecl);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdFl).HasColumnName(@"IdFl").HasColumnType("int").IsOptional();
+            Property(x => x.ColorType2).HasColumnName(@"ColorType2").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
+            Property(x => x.RegNumDecl).HasColumnName(@"RegNumDecl").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Psumm).HasColumnName(@"Psumm").HasColumnType("float").IsRequired();
+            Property(x => x.Knd).HasColumnName(@"Knd").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.NameDocument).HasColumnName(@"NameDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.Period).HasColumnName(@"Period").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.NumberKor).HasColumnName(@"NumberKor").HasColumnType("int").IsRequired();
+            Property(x => x.God).HasColumnName(@"God").HasColumnType("int").IsOptional();
+            Property(x => x.NameNp).HasColumnName(@"NameNp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.InnNp).HasColumnName(@"InnNp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.SignOfDevialion).HasColumnName(@"SignOfDevialion").HasColumnType("bit").IsRequired();
+            Property(x => x.SummSignOfDevialion).HasColumnName(@"SummSignOfDevialion").HasColumnType("float").IsRequired();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.FlFace).WithMany(b => b.DeclarationFls).HasForeignKey(c => c.IdFl).WillCascadeOnDelete(false); // FK_DeclarationFl_FlFace
         }
     }
 

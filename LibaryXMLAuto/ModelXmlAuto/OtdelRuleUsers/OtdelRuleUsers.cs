@@ -198,7 +198,7 @@ namespace LibaryXMLAutoModelXmlAuto.OtdelRuleUsers {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class Users {
         
-        private string nameField;
+        private string nameUserField;
         
         private string namePositionField;
         
@@ -216,12 +216,12 @@ namespace LibaryXMLAutoModelXmlAuto.OtdelRuleUsers {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Name {
+        public string NameUser {
             get {
-                return this.nameField;
+                return this.nameUserField;
             }
             set {
-                this.nameField = value;
+                this.nameUserField = value;
             }
         }
         

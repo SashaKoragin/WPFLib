@@ -7,6 +7,7 @@ using AutoIt;
 using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb;
 using EfDatabaseAutomation.Automation.BaseLogica.PreCheck;
+using LibaryXMLAuto.XsdModelAutoGenerate;
 using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
 using LibraryAIS3Windows.AutomationsUI.Otdels.Registration;
 using LibraryAIS3Windows.AutomationsUI.PublicElement;
@@ -32,7 +33,10 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
         /// Ветка 1.02. Ввод документов ФЛ
         /// </summary>
         private string modelTreeSendDocument = "Налоговое администрирование\\Централизованный учет налогоплательщиков\\18. Действия к выполнению\\1.02. Ввод документов ФЛ";
-
+        /// <summary>
+        ///Выставление документа по форме 1185
+        /// </summary>
+        /// <param name="statusButton">Кнопка Автомата</param>
         public void AcceptanceDocuments(StatusButtonMethod statusButton)
         {
             LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
@@ -81,6 +85,28 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
         }
 
         /// <summary>
+        ///Выставление документа по форме 1512
+        /// </summary>
+        /// <param name="addressModel">Модель на отработке</param>
+        public void AcceptanceDocuments(AddressModel addressModel)
+        {
+            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
+            var parametersModel = new ModelDataArea();
+            if (!libraryAutomation.IsEnableExpandTree(modelTreeDataFl)) return;
+            if (!libraryAutomation.IsEnableExpandTree(modelTreeRegistrationDocument)) return;
+            if (!libraryAutomation.IsEnableExpandTree(modelTreeSendDocument)) return;
+            FlFaceMainRegistration flFaceModel = new FlFaceMainRegistration();
+            OpenTree(libraryAutomation, modelTreeDataFl);
+            SelectTreeParameterUpdate(libraryAutomation, parametersModel.DataAreaRegFl, addressModel.Inn);
+            flFaceModel = FlParseSave(libraryAutomation, parametersModel.DataAreaRegFl, flFaceModel);
+            OpenTree(libraryAutomation, modelTreeRegistrationDocument);
+            RegistrationDocument1512(libraryAutomation, parametersModel.DataAreaRegistrationFl, addressModel);
+            OpenTree(libraryAutomation, modelTreeSendDocument);
+            SelectTreeParameterUpdate(libraryAutomation, parametersModel.DataAreaSendFl, addressModel.Inn);
+            SendDocument1512(libraryAutomation, flFaceModel, addressModel);
+        }
+
+        /// <summary>
         /// Открыть заданную ветку
         /// </summary>
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
@@ -121,8 +147,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                 }
             }
             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, dataArea.Update);
-
-
         }
 
         /// <summary>
@@ -228,10 +252,73 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                 break;      
             }
             MouseCloseFormRsb(1);
-            SaveDocument(flFaceModel);
+           // SaveDocument(flFaceModel);
             return flFaceModel;
         }
-
+        /// <summary>
+        /// Регистрация документа 1512
+        /// </summary>
+        /// <param name="libraryAutomation">Библиотека автоматизации</param>
+        /// <param name="dataArea">Описание ветки для автоматизации</param>
+        /// <param name="addressModel">Модель на отработке</param>
+        private void RegistrationDocument1512(LibraryAutomations libraryAutomation, DataArea dataArea, AddressModel addressModel)
+        {
+            while (true)
+            {
+                if (libraryAutomation.IsEnableElements(AcceptanceDocumentsElementName.Forms, null, true) != null)
+                {
+                    libraryAutomation.SetValuePattern("1512");
+                    SendKeys.SendWait("{ENTER}");
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, AcceptanceDocumentsElementName.Vk1);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, AcceptanceDocumentsElementName.ButtonSelect);
+                    while (true)
+                    {
+                        if (libraryAutomation.IsEnableElements(AcceptanceDocumentsElementName.WinSelect, null, true) != null)
+                        {
+                            SelectTreeParameterUpdate(libraryAutomation, dataArea, addressModel.Inn);
+                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, dataArea.Riborn);
+                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, AcceptanceDocumentsElementName.Vk2);
+                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, AcceptanceDocumentsElementName.ButtonCopy);
+                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, AcceptanceDocumentsElementName.Vk3);
+                            if (libraryAutomation.IsEnableElements(AcceptanceDocumentsElementName.SelectForm, null, true) != null)
+                            {
+                                libraryAutomation.SelectItemCombobox(libraryAutomation.FindElement, "02 - На бумажном носителе (лично)", 500);
+                                if (libraryAutomation.IsEnableElements(AcceptanceDocumentsElementName.Number, null, true) != null)
+                                {
+                                    libraryAutomation.SetValuePattern("1");
+                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, AcceptanceDocumentsElementName.Send);
+                                    while (true)
+                                    {
+                                        if (libraryAutomation.IsEnableElements(AcceptanceDocumentsElementName.WinPrint, null, true) != null)
+                                        {
+                                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, AcceptanceDocumentsElementName.WinClosed);
+                                            break;
+                                        }
+                                    }
+                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, AcceptanceDocumentsElementName.Registration);
+                                    while (true)
+                                    {
+                                        if (libraryAutomation.IsEnableElements(AcceptanceDocumentsElementName.WinError, null, true, 5) != null)
+                                        {
+                                           PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, AcceptanceDocumentsElementName.RegistrationStart);
+                                        }
+                                        if (libraryAutomation.IsEnableElements(AcceptanceDocumentsElementName.WinKor, null, true, 5) != null)
+                                        {
+                                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, AcceptanceDocumentsElementName.Kor);
+                                            break;
+                                        }
+                                    }
+                                    MouseCloseFormRsb(1);
+                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, AcceptanceDocumentsElementName.ClosedForm);
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
 
 
         /// <summary>
@@ -240,7 +327,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
         /// <param name="dataArea">Описание ветки для автоматизации</param>
         /// <param name="flFaceModel">Модель в работе</param>
-        public FlFaceMainRegistration RegistrationDocument(LibraryAutomations libraryAutomation, DataArea dataArea, FlFaceMainRegistration flFaceModel)
+        private FlFaceMainRegistration RegistrationDocument(LibraryAutomations libraryAutomation, DataArea dataArea, FlFaceMainRegistration flFaceModel)
         {
             while (true)
             {
@@ -307,7 +394,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
         /// <param name="flFaceModel">Модель в работе</param>
         /// <returns></returns>
-        public void SendDocument(LibraryAutomations libraryAutomation, FlFaceMainRegistration flFaceModel)
+        private void SendDocument(LibraryAutomations libraryAutomation, FlFaceMainRegistration flFaceModel)
         {
             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, SendDocuments.StartSend);
             var sexName = SelectName(flFaceModel.I);
@@ -428,7 +515,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                         var strAdr = string.Join(" ", elem[1], elem[0]);
                         if (elem[0].Length > 3 || elem[0].Contains("-"))
                         {
-
                             if (elem[0].Contains("пр"))
                             {
                                 libraryAutomation.SelectItemCombobox(libraryAutomation.FindElement, strAdr, 50);
@@ -516,6 +602,181 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                 }
             }
             //Если отсутствует пол что делать?
+        }
+        /// <summary>
+        /// Отправка документа 1512
+        /// </summary>
+        /// <param name="libraryAutomation">Библиотека автоматизации</param>
+        /// <param name="addressModel">Модель в работе</param>
+        /// <returns></returns>
+        private void SendDocument1512(LibraryAutomations libraryAutomation, FlFaceMainRegistration flFaceModel, AddressModel addressModel)
+        {
+            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, SendDocuments.StartSend);
+            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, string.Format(SendDocuments.FloorSex, SendDocuments.SexM));
+            if (libraryAutomation.IsEnableElements(SendDocuments.PlaceBirth, null, true) != null)
+            {
+                libraryAutomation.SetValuePattern("-");
+            }
+            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, SendDocuments.Adress);
+            if (libraryAutomation.IsEnableElements(SendDocuments.AdrMainWin, null, true) != null)
+            {
+                var arrayAdress = flFaceModel.Address.Split(',');
+                if (!string.IsNullOrWhiteSpace(arrayAdress[0]))
+                {
+                    libraryAutomation.IsEnableElement(SendDocuments.Index);
+                    libraryAutomation.SetLegacyIAccessibleValuePattern(addressModel.IndexNew.Trim());
+                }
+                if (!string.IsNullOrWhiteSpace(arrayAdress[2]))
+                {
+                    libraryAutomation.IsEnableElement(SendDocuments.Region);
+                    libraryAutomation.SetLegacyIAccessibleValuePattern(arrayAdress[2].Trim());
+                }
+                if (!string.IsNullOrWhiteSpace(arrayAdress[3]))
+                {
+                    libraryAutomation.IsEnableElement(SendDocuments.Raion);
+                    libraryAutomation.SetLegacyIAccessibleValuePattern(arrayAdress[3].Trim());
+                }
+                if (!string.IsNullOrWhiteSpace(arrayAdress[4]))
+                {
+                    libraryAutomation.IsEnableElement(SendDocuments.City);
+                    var elem = arrayAdress[4].Trim().Split(new[] { ' ' }, 2);
+                    if (elem[0].Length > 2)
+                    {
+                        libraryAutomation.SetLegacyIAccessibleValuePattern(arrayAdress[4].Trim());
+                    }
+                    else
+                    {
+                        libraryAutomation.SetLegacyIAccessibleValuePattern(string.Join(" ", elem[1], elem[0]));
+                    }
+                }
+                if (!string.IsNullOrWhiteSpace(arrayAdress[5]))
+                {
+                    libraryAutomation.IsEnableElement(SendDocuments.Village);
+                    var elem = arrayAdress[5].Trim().Split(new[] { ' ' }, 2);
+                    if (elem[0].Length > 4)
+                    {
+                        libraryAutomation.SetLegacyIAccessibleValuePattern(arrayAdress[5].Trim());
+                    }
+                    else
+                    {
+                        libraryAutomation.SetLegacyIAccessibleValuePattern(string.Join(" ", elem[1], elem[0]));
+                    }
+
+                }
+                if (!string.IsNullOrWhiteSpace(arrayAdress[6]))
+                {
+                    var array = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+                    libraryAutomation.IsEnableElement(SendDocuments.Street);
+                    var elem = arrayAdress[6].Trim().Split(new[] { ' ' }, 2);
+                    var strAdr = string.Join(" ", elem[1], elem[0]);
+                    if (elem[0].Length > 3 || elem[0].Contains("-"))
+                    {
+                        if (elem[0].Contains("пр"))
+                        {
+                            libraryAutomation.SetLegacyIAccessibleValuePattern(strAdr);
+                        }
+                        if(elem[0].Contains("квартал"))
+                        {
+                            var moss = elem[1].Trim().Split(new[] { ' ' }, 2);
+                            strAdr = string.Join(" ", moss[0], "кв-л").Trim();
+                            libraryAutomation.SetLegacyIAccessibleValuePattern(strAdr);
+                        }
+                        if (elem[1].Contains("квартал"))
+                        {
+                            var moss = elem[1].Trim().Split(new[] { ' ' }, 2);
+                            strAdr = string.Join(" ", moss[1], "кв-л").Trim();
+                            libraryAutomation.SetLegacyIAccessibleValuePattern(strAdr);
+                        }
+                        else
+                        {
+                            foreach (var number in array)
+                            {
+                                if (elem[1].Contains(number.ToString()))
+                                {
+                                    var moss = elem[1].Trim().Split(new[] { ' ' }, 2);
+                                    if (moss[0].Contains(number.ToString()))
+                                    {
+                                        strAdr = string.Join(" ", moss[0], elem[0], moss[1]).Trim();
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        strAdr = string.Join(" ", moss[1], elem[0], moss[0]).Trim();
+                                        break;
+                                    }
+                                }
+                                strAdr = arrayAdress[6].Trim();
+                            }
+                            libraryAutomation.SetLegacyIAccessibleValuePattern(strAdr);
+                        }
+                    }
+                    else
+                    {
+                        if (elem[0].Contains("тер"))
+                        {
+                            if (elem[0].Contains("квартал"))
+                            {
+                                var moss = elem[1].Trim().Split(new[] { ' ' }, 2);
+                                strAdr = string.Join(" ", moss[0], "кв-л").Trim();
+                                libraryAutomation.SetLegacyIAccessibleValuePattern(strAdr);
+                            }
+                            if (elem[1].Contains("квартал"))
+                            {
+                                var moss = elem[1].Trim().Split(new[] { ' ' }, 2);
+                                strAdr = string.Join(" ", moss[1], "кв-л").Trim();
+                                libraryAutomation.SetLegacyIAccessibleValuePattern(strAdr);
+                            }
+                        }
+                        if (elem[1].Contains("ул"))
+                        {
+                            var mossStreet = elem[1].Trim().Split(new[] { ' ' }, 2);
+                            if (mossStreet.Count() == 2)
+                            {
+                                strAdr = string.Join(" ", mossStreet[1], elem[0], mossStreet[0]).Trim();
+                            }
+                        }
+                        libraryAutomation.SetLegacyIAccessibleValuePattern(strAdr);
+                    }
+                }
+                if (!string.IsNullOrWhiteSpace(arrayAdress[7]))
+                {
+                    libraryAutomation.IsEnableElement(SendDocuments.House);
+                    libraryAutomation.FindElement = libraryAutomation.GetChildren(libraryAutomation.FindElement)[0];
+                    libraryAutomation.SetLegacyIAccessibleValuePattern(arrayAdress[7].Trim());
+                }
+                if (!string.IsNullOrWhiteSpace(arrayAdress[8]))
+                {
+                    libraryAutomation.IsEnableElement(SendDocuments.Building);
+                    libraryAutomation.FindElement = libraryAutomation.GetChildren(libraryAutomation.FindElement)[0];
+                    libraryAutomation.SetLegacyIAccessibleValuePattern(arrayAdress[8].Trim());
+                }
+                if (!string.IsNullOrWhiteSpace(arrayAdress[9]))
+                {
+                    libraryAutomation.IsEnableElement(SendDocuments.Flat);
+                    libraryAutomation.FindElement = libraryAutomation.GetChildren(libraryAutomation.FindElement)[0];
+                    libraryAutomation.SetLegacyIAccessibleValuePattern(arrayAdress[9].Trim());
+                }
+                libraryAutomation.IsEnableElement(SendDocuments.CodeNo);
+                libraryAutomation.SetLegacyIAccessibleValuePattern("7751");
+
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, SendDocuments.ButtonCopy);
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, SendDocuments.ButtonIdentification);
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, SendDocuments.Ok);
+
+                libraryAutomation.IsEnableElement(SendDocuments.DateLife);
+                libraryAutomation.FindElement.SetFocus();
+                libraryAutomation.SetLegacyIAccessibleValuePattern(DateTime.Now.ToString("dd.MM.yy"));
+
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, SendDocuments.Save);
+                if (libraryAutomation.IsEnableElements(SendDocuments.Warning, null, true, 5) != null)
+                {
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, SendDocuments.Warning);
+
+                }
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, SendDocuments.Yes);
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, SendDocuments.OkWin);
+                MouseCloseFormRsb(1);
+            }
         }
 
         /// <summary>

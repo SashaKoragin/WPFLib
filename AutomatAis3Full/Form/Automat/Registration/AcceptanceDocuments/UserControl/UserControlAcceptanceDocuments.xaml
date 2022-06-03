@@ -26,5 +26,27 @@
             <Label FontSize="16" FontStyle="Normal"  Content="Команда приостановить Shift+S" />
             <Label FontSize="16" FontStyle="Normal"  Content="Команда возобновить Shift+A" />
         </StackPanel>
+        <WrapPanel Grid.Column="1">
+            <StackPanel>
+                <WrapPanel>
+                    <Button
+                        Margin="5,5,5,5"
+                        Command="{Binding Update}"
+                        Content="Обновить список!!!" />
+                </WrapPanel>
+                <WrapPanel>
+                    <Label Margin="5,5,5,5" Content="Файл: " />
+                    <Image
+                        Width="16"
+                        Height="16"
+                        Source="{Binding Xml.Icon, Converter={StaticResource ConverteImage}}" />
+                    <Label Margin="5,5,5,5" Content="{Binding Xml.Name}" />
+                </WrapPanel>
+                <WrapPanel Margin="5,5,5,5">
+                    <Label Content="Количество в списке: " />
+                    <Label Content="{Binding Xml.Count}" />
+                </WrapPanel>
+            </StackPanel>
+        </WrapPanel>
     </Grid>
 </UserControl>

@@ -49,7 +49,48 @@
         /// Открыть комплекс мероприятий
         /// </summary>
         public static string OpenComplex = "Name:DockTop\\Name:Ribbon\\Name:2. Журнал налоговых правонарушений\\Name:Открыть комплекс мероприятий";
+        /// <summary>
+        /// Просмотр декларации
+        /// </summary>
+        public static string ViewDeclaration = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Просмотр декларации";
+        /// <summary>
+        /// Экспорт декларации в Excel
+        /// </summary>
+        public static string ExportDeclaration = "Name:DockTop\\Name:Ribbon\\Name:Работа с налоговым документом\\Name:Документ\\Name:Экспорт в Excel";
+        /// <summary>
+        /// Ок экспорт
+        /// </summary>
+        public static string ExportFileOk = "Name:Экспорт документа\\Name:ОК";
+        /// <summary>
+        /// Открыть комплекс мероприятий для завершения проверки
+        /// </summary>
+        public static string OpenComplexM = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Открыть комплекс мероприятий";
+        /// <summary>
+        /// Обновить
+        /// </summary>
+        public static string UpdateComplex = "Name:DockTop\\Name:Ribbon\\Name:Управление\\Name:Обновить";
+        /// <summary>
+        /// окно проставки срока
+        /// </summary>
+        public static string WinOkC = "Name:Обновить данные из базы?\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:ОК";
+        /// <summary>
+        /// Редактировать показатели
+        /// </summary>
+        public static string EditDeclaration = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\Name:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Показатели проведения проверки\\Name:Редактирование показателей\\Name:Редактирование показателей\\Name:Редактирование показателей";
+        /// <summary>
+        /// Рассчитать
+        /// </summary>
+        public static string Calculate = "Name:DockTop\\Name:Ribbon\\Name:Работа с налоговым документом\\Name:Документ\\Name:Расcчитать";
+        /// <summary>
+        /// Подтвердить ввод документа
+        /// </summary>
+        public static string ConfirmInput = "Name:DockTop\\Name:Ribbon\\Name:Работа с налоговым документом\\Name:Документ\\Name:Подтвердить ввод документа";
+        /// <summary>
+        /// Завершить проверку
+        /// </summary>
+        public static string ClosedComplexDecl = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\Name:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Камеральная налоговая проверка\\Name:Завершить проверку\\Name:Завершить проверку\\Name:Завершить проверку";
 
+        public static string WinOkDecl = "ClassName:Button\\Name:Да";
 
         public static string PublicEditTask = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\Name:elementHost1\\";
         /// <summary>
@@ -83,10 +124,6 @@
         /// Отправить
         /// </summary>
         public static string SendAll = "Name:DockTop\\Name:Ribbon\\Name:Документ\\Name:Общие\\Name:Отправить";
-        /// <summary>
-        /// Ловим окно
-        /// </summary>
-        public static string ViewName = "Подписание документа";
         /// <summary>
         /// Окно дата время
         /// </summary>
@@ -158,16 +195,6 @@
         public static string ResheniaCancel = $"{PublicName129Click}Name:Рассмотрение материалов\\Name:Решение об отказе в привлечении лица к ответственности за налоговое правонарушение";
 
 
-
-        /// <summary>
-        /// Раскрыть решение о привлечении к ответственности
-        /// </summary>
-        public static string OpenClosedComplex = $"{PublicName129Click}Name:Налоговые правонарушения\\AutomationId:Expander\\ClassName:TextBlock";
-        /// <summary>
-        /// Закрыть комплекс мероприятий
-        /// </summary>
-        public static string ClosedComplex = $"{PublicName129Click}Name:Налоговые правонарушения\\Name:Закрыть комплекс НПН";
-
         /// <summary>
         /// Раскрыть Общая информация о документе
         /// </summary>
@@ -228,27 +255,27 @@
         /// <summary>
         /// Привлечь к ответственности, предусмотренной
         /// </summary>
-        public static string ErrorGroup = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Привлечь к ответственности, предусмотренной";
-
+        public static string ErrorGroup5 = $"{PublicPanel}AutomationId:gb_5\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Привлечь к ответственности, предусмотренной";
         /// <summary>
         /// Добавить обстоятельство
         /// </summary>
         public static string AddNewCircumstance129 = $"{PublicPanel}AutomationId:gb_5\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations\\Name:AddNew Area\\Name:Добавить обстоятельство";
-
         /// <summary>
         /// Добавить нарушение 1000
         /// </summary>
         public static string AddNewErrror1293 = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations\\Name:AddNew Area\\Name:Добавить нарушение";
-
+        /// <summary>
+        /// Добавить обязательство по группе 3
+        /// </summary>
+        public static string AddNewCircumstance1293 = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations\\Name:AddNew Area\\Name:Добавить обстоятельство";
         /// <summary>
         /// Добавить нарушение 1000
         /// </summary>
         public static string AddNewErrror129 = $"{PublicPanel}AutomationId:gb_5\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations\\Name:AddNew Area\\Name:Добавить нарушение";
-
         /// <summary>
-        /// Должностные лица решения подпись
+        /// Добавить обязательство по группе 5
         /// </summary>
-        public static string ResheniaFaceSignOpen8 = $"{PublicPanel}AutomationId:gb_8\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Должностные лица";
+        public static string AddNewCircumstance1295 = $"{PublicPanel}AutomationId:gb_5\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations\\Name:AddNew Area\\Name:Добавить обстоятельство";
         /// <summary>
         /// Должностные лица решения подпись
         /// </summary>
@@ -276,10 +303,6 @@
         /// Проставить номер кабита
         /// </summary>
         public static string NumKabinet = $"{PublicPanel}AutomationId:gb_2\\AutomationId:exp\\AutomationId:Host\\AutomationId:TimeAndPlaceInfoControl\\AutomationId:uteRoomNumber\\LocalizedControlType:поле";
-        /// <summary>
-        /// Дата решения
-        /// </summary>
-         public static string DateReshenia = $"{PublicPanel}AutomationId:gb_0\\AutomationId:exp\\AutomationId:Host\\AutomationId:MainAttributesControl\\AutomationId:dtpDate";
         /// <summary>
         /// Дата решения
         /// </summary>
@@ -397,12 +420,10 @@
         /// Подписал документ Выбор
         /// </summary>
         public static string FaceNameSign = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:Host\\AutomationId:ultraGroupBox1\\AutomationId:ultraCombo1";
-
         /// <summary>
-        /// Подписал документ решения Выбор 
+        /// Вставить подписанта в Решение
         /// </summary>
-        public static string ResheniaFaceSign = $"{PublicPanel}AutomationId:gb_11\\AutomationId:exp\\AutomationId:Host\\AutomationId:EndOfDocumentControl\\AutomationId:ultraGroupBox1\\AutomationId:ultraCombo1";
-
+        public static string ResheniaFaceSendSign = $"{PublicPanel}AutomationId:gb_11\\AutomationId:exp\\ClassName:EndOfDocumentControlWpf\\ClassName:GroupBox\\ClassName:ComboBox\\AutomationId:PART_EditableTextBox";
         /// <summary>
         /// Должностные лица по 14 группе Раскрыть элемент
         /// </summary>
@@ -496,10 +517,6 @@
         /// Режимы для Статистики
         /// </summary>
         public static string ModeStatic = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Режимы для Статистики";
-        /// <summary>
-        /// Нарушения для 1 НТК
-        /// </summary>
-        public static string ModeStatic1NTK = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Режимы для Статистики\\Name:Нарушения для 1 НТК";
         /// <summary>
         /// Расчитать
         /// </summary>

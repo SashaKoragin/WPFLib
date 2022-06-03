@@ -12,10 +12,9 @@
 // Этот исходный код был создан с помощью xsd, версия=4.7.2046.0.
 // 
 namespace LibaryXMLAuto.XsdModelAutoGenerate {
-    using AttributeHelperModelXml;
     using System.Xml.Serialization;
-    
-    
+    using AttributeHelperModelXml;
+
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
     [System.SerializableAttribute()]
@@ -26,6 +25,10 @@ namespace LibaryXMLAuto.XsdModelAutoGenerate {
         
         private TaxArrears[] taxArrearsField;
         
+        private AddressModel[] addressModelField;
+        
+        private JudicialAct[] judicialActField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxArrears")]
         public TaxArrears[] TaxArrears {
@@ -34,6 +37,28 @@ namespace LibaryXMLAuto.XsdModelAutoGenerate {
             }
             set {
                 this.taxArrearsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("AddressModel")]
+        public AddressModel[] AddressModel {
+            get {
+                return this.addressModelField;
+            }
+            set {
+                this.addressModelField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("JudicialAct")]
+        public JudicialAct[] JudicialAct {
+            get {
+                return this.judicialActField;
+            }
+            set {
+                this.judicialActField = value;
             }
         }
     }
@@ -72,6 +97,124 @@ namespace LibaryXMLAuto.XsdModelAutoGenerate {
             }
             set {
                 this.kppField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class AddressModel {
+        
+        private string fidField;
+        
+        private string innField;
+        
+        private string addressField;
+        
+        private string indexOldField;
+        
+        private string indexNewField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ФИД", "ФИД")]
+        public string Fid {
+            get {
+                return this.fidField;
+            }
+            set {
+                this.fidField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ИНН", "ИНН")]
+        public string Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("АДРЕС", "АДРЕС")]
+        public string Address {
+            get {
+                return this.addressField;
+            }
+            set {
+                this.addressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ИНДЕКС СТАРЫЙ", "ИНДЕКС СТАРЫЙ")]
+        public string IndexOld {
+            get {
+                return this.indexOldField;
+            }
+            set {
+                this.indexOldField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ИНДЕКС НОВЫЙ", "ИНДЕКС НОВЫЙ")]
+        public string IndexNew {
+            get {
+                return this.indexNewField;
+            }
+            set {
+                this.indexNewField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class JudicialAct {
+        
+        private string innField;
+        
+        private string numberAktField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ИНН", "ИНН")]
+        public string Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Номер заявления", "Номер заявления")]
+        public string NumberAkt {
+            get {
+                return this.numberAktField;
+            }
+            set {
+                this.numberAktField = value;
             }
         }
     }

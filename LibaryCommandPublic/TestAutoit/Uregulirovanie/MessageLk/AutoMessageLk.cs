@@ -26,7 +26,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
-                    clickerButton.Click24(statusButton, pathJournalError, pathJournalOk);
+                    clickerButton.Click24(statusButton);
                     DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
 
                 }
@@ -102,9 +102,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
         /// <summary>
         /// </summary>
         /// <param name="statusButton">Кнопка старт </param>
-        /// <param name="pathJournalError">Журнал ошибок</param>
-        /// <param name="pathJournalOk">Журнал хороших (обработанных)</param>
-        public void FormTrebUplNaloga(StatusButtonMethod statusButton, string pathJournalError, string pathJournalOk)
+        public void FormRequirementUplTax(StatusButtonMethod statusButton)
         {
             DispatcherHelper.Initialize();
             Task.Run(delegate
@@ -157,9 +155,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
         /// Функция утверждения служебной записки
         /// </summary>
         /// <param name="statusButton">Кнопка старт </param>
-        /// <param name="pathJournalError">Журнал ошибок</param>
-        /// <param name="pathJournalOk">Журнал хороших (обработанных)</param>
-        public void AutoStatementOfficeNote(StatusButtonMethod statusButton, string pathJournalError,string pathJournalOk)
+        public void AutoStatementOfficeNote(StatusButtonMethod statusButton)
         {
             DispatcherHelper.Initialize();
             Task.Run(delegate
@@ -169,7 +165,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
-                    clickerButton.Click25(statusButton, pathJournalError, pathJournalOk);
+                    clickerButton.Click25(statusButton);
                     DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                 }
                 else
@@ -183,9 +179,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
         /// Функция подписание служебной записки
         /// </summary>
         /// <param name="statusButton">Кнопка старт</param>
-        /// <param name="pathJournalError">Журнал ошибок</param>
-        /// <param name="pathJournalOk">Журнал хороших (обработанных)</param>
-        public void AutoSignatureOfficeNote(StatusButtonMethod statusButton, string pathJournalError, string pathJournalOk)
+        public void AutoSignatureOfficeNote(StatusButtonMethod statusButton)
         {
             DispatcherHelper.Initialize();
             Task.Run(delegate
@@ -195,7 +189,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
-                    clickerButton.Click26(statusButton, pathJournalError, pathJournalOk);
+                    clickerButton.Click26(statusButton);
                     DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                 }
                 else
@@ -293,6 +287,34 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
             }
         }
         /// <summary>
+        /// Запуск задание на ветку
+        /// Налоговое администрирование\Урегулирование задолженности\Взыскание задолженности за счет имущества НП ФЛ\Ввод данных судебного акта
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        /// <param name="pathList">Полный путь к списку с ИНН</param>
+        public void StartProcessAct(StatusButtonMethod statusButton, string pathList)
+        {
+            DispatcherHelper.Initialize();
+            if (File.Exists(pathList))
+            {
+                Task.Run(delegate
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        clickerButton.Click50(statusButton, pathList);
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    }
+                });
+            }
+        }
+        /// <summary>
         /// Заявление о зачете возврате
         /// </summary>
         /// <param name="statusButton">Кнопка автомата</param>
@@ -315,6 +337,79 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
             });
         }
+        /// <summary>
+        /// Очистка состояния обработки заявления
+        /// </summary>
+        /// <param name="statusButton"></param>
+        public void StartClearStatusStatementNp(StatusButtonMethod statusButton)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                KclicerButton clickerButton = new KclicerButton();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                if (ais3.WinexistsAis3() == 1)
+                {
+                    clickerButton.Click48(statusButton);
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                }
+                else
+                {
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                }
+            });
+        }
 
+        /// <summary>
+        /// Автомат на ветку
+        /// Общие задания\Урегулирование задолженности\05.09 Ручное формирование решений на зачет/возврат/возврат процентов\05.09 Заявления НП для ручной обработки
+        /// </summary>
+        /// <param name="statusButton">Кнопка автомата</param>
+        public void ApplicationManualProcessing(StatusButtonMethod statusButton)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                KclicerButton clickerButton = new KclicerButton();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                if (ais3.WinexistsAis3() == 1)
+                {
+                    clickerButton.Click45(statusButton);
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                }
+                else
+                {
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                }
+            });
+        }
+        /// <summary>
+        /// Автомат на ветку
+        /// Общие задания\Урегулирование задолженности\05.09.01(06.01) Формирование сообщения о факте излишней уплаты (излишнего взыскания)\05.09.01(06.01) Формирование сообщения об излишней уплате (взыскании)\Утверждение сообщений
+        /// А так же на ветку 
+        /// Общие задания\Урегулирование задолженности\05.09.01(06.01) Формирование сообщения о факте излишней уплаты (излишнего взыскания)\05.09.01(06.01) Формирование сообщения об излишней уплате (взыскании)\05.09.01(06.01) Формирование решений о зачете по инициативе НО\Утверждение решений о зачете
+        /// </summary>
+        /// <param name="statusButton">Кнопка автомата</param>
+        public void MessageApprovalAndDecisionsApproval(StatusButtonMethod statusButton)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                KclicerButton clickerButton = new KclicerButton();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                if (ais3.WinexistsAis3() == 1)
+                {
+                    clickerButton.Click46(statusButton);
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                }
+                else
+                {
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                }
+            });
+        }
     }
 }

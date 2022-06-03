@@ -31,6 +31,7 @@
 			<xs:element ref="TaxJournal121Error" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="AllJournalRegistrationFl" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="TaxEasJournal" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="TaxDeclarationFl" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxJournalAutoWebPage">
@@ -161,10 +162,15 @@
 			<xs:documentation>Идентификатор</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="LogicsButton" type="xs:string" default="Button" nillable="false">
+	<xs:element name="LogicsButton" default="Button" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Логика кнопок</xs:documentation>
 		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:whiteSpace value="collapse"/>
+			</xs:restriction>
+		</xs:simpleType>
 	</xs:element>
 	<xs:element name="TaxJournal121AutoWebPage">
 		<xs:annotation>
@@ -1258,6 +1264,73 @@
 	<xs:element name="RegNumberZ" type="xs:long">
 		<xs:annotation>
 			<xs:documentation>Регистрационный номер Заявления, присвоенный налоговым органом</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TaxDeclarationFl">
+		<xs:annotation>
+			<xs:documentation>Декларации ФЛ 3-НДФЛ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton" minOccurs="0"/>
+				<xs:element ref="Id"/>
+				<xs:element ref="RegNumDecl"/>
+				<xs:element ref="Psumm"/>
+				<xs:element ref="NumberKor"/>
+				<xs:element ref="God"/>
+				<xs:element ref="SignOfDevialion"/>
+				<xs:element ref="SummSignOfDevialion"/>
+			</xs:sequence>
+			<xs:attribute name="Knd" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КНД</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameDocument" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Period" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Период</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameNp" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Плательщик</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="InnNp" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН НП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RegNumDecl" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Регистрационный номер декларации</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Psumm" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>П-Сумма</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NumberKor" type="xs:int">
+		<xs:annotation>
+			<xs:documentation>Номер корректировки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SignOfDevialion" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Признак отработки</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SummSignOfDevialion" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>Сумма отклонения</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

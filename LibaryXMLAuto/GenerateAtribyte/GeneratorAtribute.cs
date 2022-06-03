@@ -74,6 +74,24 @@ namespace LibaryXMLAuto.GenerateAtribyte
         {
             return String.Format("/AutoGenerateSchemes/TaxArrears[@Inn =\"{0}\"]", inn);
         }
+        /// <summary>
+        /// Удаление атрибута по ИНН TaxArrears
+        /// </summary>
+        /// <param name="inn">ИНН</param>
+        /// <returns></returns>
+        public static string GenerateAtrAutoGenerateSchemesAct(string inn)
+        {
+            return String.Format("/AutoGenerateSchemes/JudicialAct[@Inn =\"{0}\"]", inn);
+        }
+        /// <summary>
+        /// Удаление атрибута по ФИДУ AddressModel
+        /// </summary>
+        /// <param name="fid">ИНН</param>
+        /// <returns></returns>
+        public static string GenerateAtrAutoGenerateSchemesDeleteFid(string fid)
+        {
+            return String.Format("/AutoGenerateSchemes/AddressModel[@Fid =\"{0}\"]", fid);
+        }
 
     }
 }

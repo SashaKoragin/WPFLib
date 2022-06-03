@@ -193,6 +193,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Okp6\AddTerm\ViewAddTerm\AddTermView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Okp6\CheckDeclaration\ViewCheckDeclaration\CheckDeclarationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Okp6\JournalDoc\ViewJournalDoc\JourrnalDocView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -257,7 +265,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Uregulirovanie\ClearStatusStatementNp\UserControl\FormClearStatusStatementNp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\UserControl\FormTrebUplNaloga.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\StartProcessFace\JudicialAct\ViewJudicialAct\ViewJudicialAct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,6 +294,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090203\Ticket050809020306\UserControl\SignatureHeadProperty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\ApplicationManualProcessing\UserControl\ApplicationManualProcessing.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\DecisionsApproval\UserControl\DecisionsApproval.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\MessageApproval\UserControl\MessageApproval.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -432,6 +460,14 @@
     <Compile Include="Form\Automat\Okp5\Identification\FaceIdentification\FaceIdentificationView.xaml.cs">
       <DependentUpon>FaceIdentificationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\Okp6\AddTerm\DataContextAddTerm\DataContextAddTerm.cs" />
+    <Compile Include="Form\Automat\Okp6\AddTerm\ViewAddTerm\AddTermView.xaml.cs">
+      <DependentUpon>AddTermView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Okp6\CheckDeclaration\DataContextCheckDeclaration\DataContextCheckDeclaration.cs" />
+    <Compile Include="Form\Automat\Okp6\CheckDeclaration\ViewCheckDeclaration\CheckDeclarationView.xaml.cs">
+      <DependentUpon>CheckDeclarationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\Okp6\JournalDoc\DataContextJournalDoc\DataContextJourrnalDoc.cs" />
     <Compile Include="Form\Automat\Okp6\JournalDoc\ViewJournalDoc\JourrnalDocView.xaml.cs">
       <DependentUpon>JourrnalDocView.xaml</DependentUpon>
@@ -496,9 +532,17 @@
     <Compile Include="Form\Automat\Registration\VisualBank\UserControl\VisualBank.xaml.cs">
       <DependentUpon>VisualBank.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\ClearStatusStatementNp\DataContext\DataContextClearStatusStatementNp.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\ClearStatusStatementNp\UserControl\FormClearStatusStatementNp.xaml.cs">
+      <DependentUpon>FormClearStatusStatementNp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\DataContext\DataContextFormTrebUplNaloga.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\UserControl\FormTrebUplNaloga.xaml.cs">
       <DependentUpon>FormTrebUplNaloga.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\StartProcessFace\JudicialAct\DataContextJudicialAct\DataContextJudicialAct.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\StartProcessFace\JudicialAct\ViewJudicialAct\ViewJudicialAct.xaml.cs">
+      <DependentUpon>ViewJudicialAct.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Uregulirovanie\StartProcessFace\StartCash\DataContextStartCash\DataContextStartCash.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\StartProcessFace\StartCash\ViewStartCash\ViewStartCash.xaml.cs">
@@ -519,6 +563,18 @@
     <Compile Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090203\Ticket050809020306\DataContext\DataContextSignatureHeadProperty.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\Ticket05080902\Ticket0508090203\Ticket050809020306\UserControl\SignatureHeadProperty.xaml.cs">
       <DependentUpon>SignatureHeadProperty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\ApplicationManualProcessing\DataContext\DataContextApplicationManualProcessing.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\ApplicationManualProcessing\UserControl\ApplicationManualProcessing.xaml.cs">
+      <DependentUpon>ApplicationManualProcessing.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\DecisionsApproval\DataContext\DataContextDecisionsApproval.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\DecisionsApproval\UserControl\DecisionsApproval.xaml.cs">
+      <DependentUpon>DecisionsApproval.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\MessageApproval\DataContext\DataContextMessageApproval.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\MessageApproval\UserControl\MessageApproval.xaml.cs">
+      <DependentUpon>MessageApproval.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\MessageLk\DataContext\DataContextMessageLk.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\Uvedomlenie0509\MessageLk\UserControl\MessageLk.xaml.cs">
