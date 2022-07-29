@@ -32,6 +32,7 @@
 			<xs:element ref="AllJournalRegistrationFl" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="TaxEasJournal" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="TaxDeclarationFl" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Declaration3Ndfl" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxJournalAutoWebPage">
@@ -1331,6 +1332,93 @@
 	<xs:element name="SummSignOfDevialion" type="xs:double">
 		<xs:annotation>
 			<xs:documentation>Сумма отклонения</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Declaration3Ndfl">
+		<xs:annotation>
+			<xs:documentation>Журнал деклараций 3НДФЛ Требования</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton" minOccurs="0"/>
+				<xs:element ref="Id"/>
+				<xs:element ref="RegNumDecl"/>
+				<xs:element ref="IdObject"/>
+				<xs:element ref="God"/>
+				<xs:element ref="SummR"/>
+				<xs:element ref="SummP"/>
+				<xs:element ref="SummV"/>
+				<xs:element ref="SummPV"/>
+				<xs:element ref="SummI"/>
+				<xs:element ref="IsTks"/>
+				<xs:element ref="IsMail"/>
+				<xs:element ref="IsLk3"/>
+			</xs:sequence>
+			<xs:attribute name="NameDocument" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameNp" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Плательщик</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="InnNp" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН НП</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TypeDocument" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Тип документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MessageInfo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="LoginUser" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Пользователь выставивший требование</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Extensions" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Расширение файла</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IdObject" type="xs:long">
+		<xs:annotation>
+			<xs:documentation>Ун Объекта учета</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SummR" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>Сумма реализованного имущества</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SummP" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>Сумма имущества, полученного в дар</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SummV" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>Налоговый вычет</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SummPV" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>Предполагаемый налог</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SummI" type="xs:double">
+		<xs:annotation>
+			<xs:documentation>Исчисленный налог</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

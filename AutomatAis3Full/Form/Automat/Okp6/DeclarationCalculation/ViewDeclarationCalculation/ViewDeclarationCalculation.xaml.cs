@@ -13,17 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AutomatAis3Full.Form.Automat.Okp6.CheckDeclaration.ViewCheckDeclaration
+namespace AutomatAis3Full.Form.Automat.Okp6.DeclarationCalculation.ViewDeclarationCalculation
 {
     /// <summary>
-    /// Логика взаимодействия для CheckDeclarationView.xaml
+    /// Логика взаимодействия для ViewDeclarationCalculation.xaml
     /// </summary>
-    public partial class CheckDeclarationView : UserControl
+    public partial class ViewDeclarationCalculation : UserControl
     {
-        public CheckDeclarationView()
+        public ViewDeclarationCalculation()
         {
             InitializeComponent();
-            DataContext = new DataContextCheckDeclaration.DataContextCheckDeclaration();
+            DataContext = new DataContextDeclarationCalculation.DataContextDeclarationCalculation();
         }
     }
 }

@@ -204,7 +204,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RaschBydjFunction
                                                       }
                                                      libraryAutomation.IsEnableElements(KrsbAis3.MemoClosed);
                                                      libraryAutomation.FindElement.SetFocus();
-                                                     AutoItX.ClipPut("Ошибочное создание КРСБ");
+                                                     AutoItX.ClipPut("Смерть налогоплательщика");
                                                      AutoItX.Send(ButtonConstant.CtrlV);
                                                     if (libraryAutomation.IsEnableElements(KrsbAis3.WinError3, null, true, 5) != null) 
                                                     {

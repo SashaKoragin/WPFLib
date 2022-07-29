@@ -135,6 +135,16 @@ namespace ServiceAutomation.Service
         }
 
         /// <summary>
+        /// Выгрузка файла для ОКП 1 ЕАЭС-обмен
+        /// </summary>
+        /// <param name="numberElement">Ун записи</param>
+        /// <returns></returns>
+        public async Task<Stream> LoadFile3NdflRequirements(int numberElement)
+        {
+            var selectAll = new SelectAll();
+            return await Task.Factory.StartNew(() => selectAll.LoadFile3NdflRequirements(numberElement));
+        }
+        /// <summary>
         /// Метод добавление ИНН для ввода
         /// </summary>
         /// <param name="templateModel">Шаблон для добавления</param>

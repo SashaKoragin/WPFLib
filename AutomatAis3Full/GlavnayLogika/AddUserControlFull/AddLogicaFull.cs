@@ -50,6 +50,7 @@ using AutomatAis3Full.Form.Automat.RaschetBudg.Krsb.Krsb;
 using AutomatAis3Full.Form.Automat.Registration.AcceptanceDocuments.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.StatementNp.ViewStatementNp;
 using AutomatAis3Full.Form.Automat.Okp1.EasJournal.EasJournal;
+using AutomatAis3Full.Form.Automat.Okp6.AddRequirements.ViewAddRequirements;
 using AutomatAis3Full.Form.Automat.Okp6.CheckDeclaration.ViewCheckDeclaration;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.ClearStatusStatementNp.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.ApplicationManualProcessing.UserControl;
@@ -57,7 +58,9 @@ using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.DecisionsAppro
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.MessageApproval.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.Uvedomlenie0509.StatementDecisionApplication.UserControl;
 using AutomatAis3Full.Form.Automat.Okp6.AddTerm.ViewAddTerm;
+using AutomatAis3Full.Form.Automat.Okp6.DeclarationComplex.ViewDeclarationComplex;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.StartProcessFace.JudicialAct.ViewJudicialAct;
+using AutomatAis3Full.Form.Automat.Okp6.DeclarationCalculation.ViewDeclarationCalculation;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
 {
@@ -546,6 +549,21 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                       NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)  (Проставление срока!)",
                                       UserControl = new AddTermView()
                                   },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)  (Закрытие комплекса мероприятий!)",
+                                      UserControl = new DeclarationComplexView()
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "04. Реестр расчетов по продаже и(или) дарению объектов недвижимости в подлежащих КНП в соответствии с п.1.2 ст. 88НК (Решения)",
+                                      UserControl = new ViewDeclarationCalculation()
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "04. Реестр расчетов по продаже и(или) дарению объектов недвижимости в подлежащих КНП в соответствии с п.1.2 ст. 88НК (Требования)",
+                                      UserControl = new AddRequirementsView()
+                                  }
                               }
                           }
                       }

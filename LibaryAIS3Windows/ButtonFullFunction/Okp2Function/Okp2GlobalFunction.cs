@@ -188,6 +188,163 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
             }
         }
         /// <summary>
+        /// Автоматизация глобального блока на утверждение требований
+        /// </summary>
+        /// <param name="libraryAutomation">Библиотека автоматизации</param>
+        /// <param name="isClose">Координата смещения x для отправки</param>
+        public void ApproveRequirements(LibraryAutomations libraryAutomation, bool isClose = false)
+        {
+            while (true)
+            {
+                LibraryAutomations libraryAutomationDialog = new LibraryAutomations(WindowsAis3.AisNalog3);
+                AutoItX.Sleep(2000);
+                LibraryAutomations libraryAutomationSign = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomationDialog.RootAutomationElements));
+                if (libraryAutomationSign.IsEnableElements(JournalSolutionCalculations.ViewPrint, null, true) != null)
+                {
+                    libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
+                    AutoItX.Sleep(10000);
+                    PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("AcroRd32", true);
+                    PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("FoxitPhantom", true);
+                    while (true)
+                    {
+                        var toggle = libraryAutomationSign.TogglePattern(libraryAutomationSign.IsEnableElements(JournalSolutionCalculations.ViewCheks));
+                        if (toggle == "Off" || toggle == null)
+                        {
+                            while (true)
+                            {
+                                if (libraryAutomationSign.IsEnableElements(JournalSolutionCalculations.ViewCheksText, null, true) != null)
+                                {
+                                    libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
+                                    break;
+                                }
+                            }
+                        }
+                        if (toggle == "On")
+                        {
+                            while (true)
+                            {
+                                if (libraryAutomationSign.IsEnableElements(JournalSolutionCalculations.UtvDoc, null, true) != null)
+                                {
+                                    libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
+                                    break;
+                                }
+                            }
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+            var isSend = false;
+            while (true)
+            {
+                if (isSend == false)
+                {
+                    PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("AcroRd32", true);
+                    PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("FoxitPhantom");
+                    AutoItX.WinActivate(WindowsAis3.AisNalog3);
+                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.SendAll, null, true) != null)
+                    {
+                        libraryAutomation.ClickElements(Journal129AndJournal121.SendAll);
+                        isSend = true;
+                    }
+                }
+                if (libraryAutomation.IsEnableElements(Journal129AndJournal121.SendDocument, null, true) != null)
+                {
+                    var auto = libraryAutomation.FindElement;
+                    libraryAutomation.IsEnableElements(Journal129AndJournal121.Tks, auto);
+                    var statusTks = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiersState(libraryAutomation.FindElement);
+                    libraryAutomation.IsEnableElements(Journal129AndJournal121.Mail, auto);
+                    var statusMail = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiersState(libraryAutomation.FindElement);
+                    libraryAutomation.IsEnableElements(Journal129AndJournal121.Lk3, auto);
+                    var statusLk3 = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiersState(libraryAutomation.FindElement);
+                    if (statusTks == 0)
+                    {
+                        IsTks = true;
+                    }
+                    if (statusMail == 0)
+                    {
+                        IsMail = true;
+                    }
+                    if (statusLk3 == 0)
+                    {
+                        IsLk3 = true;
+                    }
+                    while (true)
+                    {
+                        if (isClose)
+                        {
+                            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.Close, null, true) != null)
+                            {
+                                libraryAutomation.ClickElements(Journal129AndJournal121.Close);
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.SendMail, null, true) != null)
+                            {
+                                libraryAutomation.ClickElements(Journal129AndJournal121.SendMail);
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                }
+                try
+                {
+                    LibraryAutomations libraryAutomationWindows = new LibraryAutomations(Journal129AndJournal121.WindowSend);
+                    if (libraryAutomationWindows.RootAutomationElements != null)
+                    {
+                        var auto = libraryAutomationWindows.RootAutomationElements;
+                        libraryAutomationWindows.IsEnableElements(Journal129AndJournal121.Tks, auto);
+                        var statusTks = libraryAutomationWindows.ParseElementLegacyIAccessiblePatternIdentifiersState(libraryAutomationWindows.FindElement);
+                        libraryAutomationWindows.IsEnableElements(Journal129AndJournal121.Mail, auto);
+                        var statusMail = libraryAutomationWindows.ParseElementLegacyIAccessiblePatternIdentifiersState(libraryAutomationWindows.FindElement);
+                        libraryAutomationWindows.IsEnableElements(Journal129AndJournal121.Lk3, auto);
+                        var statusLk3 = libraryAutomationWindows.ParseElementLegacyIAccessiblePatternIdentifiersState(libraryAutomationWindows.FindElement);
+                        if (statusTks == 0)
+                        {
+                            IsTks = true;
+                        }
+                        if (statusMail == 0)
+                        {
+                            IsMail = true;
+                        }
+                        if (statusLk3 == 0)
+                        {
+                            IsLk3 = true;
+                        }
+                        while (true)
+                        {
+                            if (isClose)
+                            {
+                                if (libraryAutomationWindows.IsEnableElements(Journal129AndJournal121.CloseWin, null, true) != null)
+                                {
+                                    libraryAutomationWindows.ClickElements(Journal129AndJournal121.CloseWin);
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                if (libraryAutomationWindows.IsEnableElements(Journal129AndJournal121.SendMailWin, null, true) != null)
+                                {
+                                    libraryAutomationWindows.ClickElements(Journal129AndJournal121.SendMailWin);
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+                    }
+                }
+                catch
+                {
+                    // ignored
+                }
+            }
+        }
+
+        /// <summary>
         /// Завершение закрыть окна
         /// </summary>
         public void SendJournalClose()
@@ -236,6 +393,24 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                 stream.Read(byteFile, 0, byteFile.Length);
             }
             taxJournal121.Document = byteFile;
+        }
+        /// <summary>
+        /// Добавление файлов в журнал 3 НДФЛ
+        /// </summary>
+        /// <param name="journal3NdflFl">Журнал</param>
+        /// <param name="pathPdfTemp">Путь к файлу</param>
+        public void AddFileRequirements(ref Declaration3NdflFl journal3NdflFl, string pathPdfTemp)
+        {
+            var file = PublicGlobalFunction.PublicGlobalFunction.ReturnNameLastFileTemp(pathPdfTemp, "*.pdf");
+            journal3NdflFl.Mime = "application/pdf";
+            journal3NdflFl.Extensions = file.ExtensionsFile;
+            byte[] byteFile;
+            using (FileStream stream = new FileStream(file.NamePath, FileMode.Open))
+            {
+                byteFile = new byte[stream.Length];
+                stream.Read(byteFile, 0, byteFile.Length);
+            }
+            journal3NdflFl.Document = byteFile;
         }
     }
 }

@@ -55,6 +55,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private TaxDeclarationFl[] taxDeclarationFlField;
         
+        private Declaration3Ndfl[] declaration3NdflField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxJournalAutoWebPage")]
         public TaxJournalAutoWebPage[] TaxJournalAutoWebPage {
@@ -228,6 +230,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.taxDeclarationFlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Declaration3Ndfl")]
+        public Declaration3Ndfl[] Declaration3Ndfl {
+            get {
+                return this.declaration3NdflField;
+            }
+            set {
+                this.declaration3NdflField = value;
             }
         }
     }
@@ -3506,6 +3519,273 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.innNpField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class Declaration3Ndfl {
+        
+        private string logicsButtonField;
+        
+        private System.Nullable<int> idField;
+        
+        private long regNumDeclField;
+        
+        private long idObjectField;
+        
+        private System.Nullable<int> godField;
+        
+        private double summRField;
+        
+        private double summPField;
+        
+        private double summVField;
+        
+        private double summPVField;
+        
+        private double summIField;
+        
+        private System.Nullable<bool> isTksField;
+        
+        private System.Nullable<bool> isMailField;
+        
+        private System.Nullable<bool> isLk3Field;
+        
+        private string nameDocumentField;
+        
+        private string nameNpField;
+        
+        private string innNpField;
+        
+        private string typeDocumentField;
+        
+        private string messageInfoField;
+        
+        private string loginUserField;
+        
+        private string extensionsField;
+        
+        public Declaration3Ndfl() {
+            this.logicsButtonField = "Button";
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long RegNumDecl {
+            get {
+                return this.regNumDeclField;
+            }
+            set {
+                this.regNumDeclField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public long IdObject {
+            get {
+                return this.idObjectField;
+            }
+            set {
+                this.idObjectField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> God {
+            get {
+                return this.godField;
+            }
+            set {
+                this.godField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double SummR {
+            get {
+                return this.summRField;
+            }
+            set {
+                this.summRField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double SummP {
+            get {
+                return this.summPField;
+            }
+            set {
+                this.summPField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double SummV {
+            get {
+                return this.summVField;
+            }
+            set {
+                this.summVField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double SummPV {
+            get {
+                return this.summPVField;
+            }
+            set {
+                this.summPVField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public double SummI {
+            get {
+                return this.summIField;
+            }
+            set {
+                this.summIField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> IsTks {
+            get {
+                return this.isTksField;
+            }
+            set {
+                this.isTksField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> IsMail {
+            get {
+                return this.isMailField;
+            }
+            set {
+                this.isMailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> IsLk3 {
+            get {
+                return this.isLk3Field;
+            }
+            set {
+                this.isLk3Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameDocument {
+            get {
+                return this.nameDocumentField;
+            }
+            set {
+                this.nameDocumentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameNp {
+            get {
+                return this.nameNpField;
+            }
+            set {
+                this.nameNpField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string InnNp {
+            get {
+                return this.innNpField;
+            }
+            set {
+                this.innNpField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string TypeDocument {
+            get {
+                return this.typeDocumentField;
+            }
+            set {
+                this.typeDocumentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string MessageInfo {
+            get {
+                return this.messageInfoField;
+            }
+            set {
+                this.messageInfoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string LoginUser {
+            get {
+                return this.loginUserField;
+            }
+            set {
+                this.loginUserField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Extensions {
+            get {
+                return this.extensionsField;
+            }
+            set {
+                this.extensionsField = value;
             }
         }
     }

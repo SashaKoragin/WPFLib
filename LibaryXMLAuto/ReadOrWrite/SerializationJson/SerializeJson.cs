@@ -33,12 +33,13 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
         /// </summary>
         /// <param name="model">Объект модели класса</param>
         /// <param name="dateFormat">Формат даты</param>
+        /// <param name="isNullValueHandling">Сцепить null параметры</param>
         /// <returns>JSON string</returns>
-        public string JsonLibrary(object model, string dateFormat = "dd-MM-yyyy")
+        public string JsonLibrary(object model, string dateFormat = "dd-MM-yyyy", bool isNullValueHandling = true)
         {
           return  JsonConvert.SerializeObject(model,new JsonSerializerSettings()
           {
-              NullValueHandling = NullValueHandling.Ignore,
+              NullValueHandling = (isNullValueHandling) ? NullValueHandling.Ignore:NullValueHandling.Include,
               DateFormatString = dateFormat
           });
         }

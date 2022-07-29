@@ -407,6 +407,7 @@
         /// Выбор нарушения Ok
         /// </summary>
         public static string WinSelectOk = "LocalizedControlType:окно\\AutomationId:ultraGridRowEditTemplate1\\AutomationId:btnTemplateOk";
+
         /// <summary>
         /// Лист нарушений
         /// </summary>
@@ -1102,5 +1103,157 @@
         /// Сообщение не отрицательное сальдо
         /// </summary>
         public static string WinError4Ok = "Name:Внимание!\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+    }
+    public class JournalSolutionCalculations
+    {
+        /// <summary>
+        /// Полная ветка
+        /// </summary>
+        private static string TreeFullBlok = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\Name:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\";
+        /// <summary>
+        /// Путь до групп
+        /// </summary>
+        private static string GroupFull = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:BusinessEntityViewPartBaseAsync\\AutomationId:contentHost\\Name:contentHost\\ClassName:UCCont\\ClassName:ScrollViewer\\";
+        /// <summary>
+        /// Кнопка редактирование показателей
+        /// </summary>
+        public static string ButtonEdit = $"{TreeFullBlok}Name:Показатели проведения проверки\\Name:Редактирование показателей\\AutomationId:Header\\ClassName:Button\\Name:Редактирование показателей";
+        /// <summary>
+        /// Кнопка Требования о предоставлении декларации
+        /// </summary>
+        public static string TrebText = $"{TreeFullBlok}Name:Мероприятия налогового контроля\\Name:Требование о представлении пояснений\\Name:Требование о представлении пояснений";
+        /// <summary>
+        /// Кнопка Требования о предоставлении декларации
+        /// </summary>
+        public static string TrebTextButton = $"{TreeFullBlok}Name:Мероприятия налогового контроля\\Name:Требование о представлении пояснений\\Name:Требование о представлении пояснений\\ClassName:Button\\ClassName:TextBlock";
+
+        /// <summary>
+        /// Поле вставки Документа
+        /// </summary>
+        public static string RichTextBox = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\Name:Требование о представлении пояснений\\AutomationId:BusinessEntityViewPartBaseAsync\\AutomationId:contentHost\\Name:contentHost\\ClassName:UCCont\\ClassName:ScrollViewer\\AutomationId:gb_2\\ClassName:Expander\\ClassName:MsgReqExplType1Wpf\\Name:В соответствии с ст.88 Налогового кодекса РФ\\ClassName:RichTextBox";
+        /// <summary>
+        /// Кнопка редактирование показателей
+        /// </summary>
+        public static string ButtonResh = $"{TreeFullBlok}Name:Результаты рассмотрения материалов проверки\\Name:Решение о привлечении к ответственности\\Name:Решение о привлечении к ответственности\\FrameworkId:WPF\\Name:Решение о привлечении к ответственности";
+
+        /// <summary>
+        /// Общая информация
+        /// </summary>
+        public static string Group2 = $"{GroupFull}AutomationId:gb_2\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Общая информация о документе";
+        /// <summary>
+        /// Флажок
+        /// </summary>
+        public static string IsCheck = $"{GroupFull}AutomationId:gb_2\\AutomationId:exp\\ClassName:MsgReqExplType1Wpf\\Name:В соответствии с ст.88 Налогового кодекса РФ\\Name: п.1.2.";
+        /// <summary>
+        /// Флажок
+        /// </summary>
+        public static string IsCheckText = $"{GroupFull}AutomationId:gb_2\\AutomationId:exp\\ClassName:MsgReqExplType1Wpf\\Name:В соответствии с ст.88 Налогового кодекса РФ\\Name: п.1.2.\\Name: п.1.2.";
+        /// <summary>
+        /// Привлечь к ответственности
+        /// </summary>
+        public static string Group11 = $"{GroupFull}AutomationId:gb_11\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Привлечь к ответственности";
+        /// <summary>
+        /// Привлечь к ответственности
+        /// </summary>
+        public static string Group12 = $"{GroupFull}AutomationId:gb_12\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Налоговый орган";
+        /// <summary>
+        /// Добавить обстаятельство
+        /// </summary>
+        public static string AddObject = $"{GroupFull}AutomationId:gb_11\\AutomationId:exp\\ClassName:WindowsFormsHost\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations\\Name:AddNew Area\\Name:Добавить обстоятельство";
+        /// <summary>
+        /// Сохранить
+        /// </summary>
+        public static string Save = "Name:DockTop\\Name:Ribbon\\Name:Документ\\Name:Общие\\Name:Сохранить";
+        /// <summary>
+        /// Утвердить
+        /// </summary>
+        public static string Utver = "Name:DockTop\\Name:Ribbon\\Name:Документ\\Name:Общие\\Name:Утвердить";
+        /// <summary>
+        /// Ок сохранить
+        /// </summary>
+        public static string OkSave = "Name:Внимание!\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+        /// <summary>
+        /// Лист со статьями нарушений
+        /// </summary>
+        public static string ListGroup11 = $"{GroupFull}AutomationId:gb_11\\AutomationId:exp\\ClassName:WindowsFormsHost\\AutomationId:AppearNoControlKnp\\Name:ultraGrid2\\Name:Sanctions row ";
+        /// <summary>
+        /// Обновить данные
+        /// </summary>
+        public static string UpdateTree = "Name:DockTop\\Name:Ribbon\\Name:Реестр расчетов по продаже и(или) дарению объектов недвижимости в подлежащих КНП в соответствии с п.1.2 ст. 88НК\\Name:Документ\\Name:Обновить данные";
+
+        /// <summary>
+        /// Кнопка расщитать
+        /// </summary>
+        public static string Calculations = "Name:DockTop\\Name:Ribbon\\Name:Работа с налоговым документом\\Name:Документ\\Name:Расcчитать";
+        /// <summary>
+        /// Подтвердить ввод документа
+        /// </summary>
+        public static string Confirm = "Name:DockTop\\Name:Ribbon\\Name:Работа с налоговым документом\\Name:Документ\\Name:Подтвердить ввод документа";
+        /// <summary>
+        /// Ошибка
+        /// </summary>
+        public static string Error = "Name:Проверка документа\\Name:ОК";
+        /// <summary>
+        /// Обновить форму
+        /// </summary>
+        public static string UpdateForm = "Name:DockTop\\Name:Ribbon\\Name:Управление\\Name:Обновить";
+        /// <summary>
+        /// Окно Ок
+        /// </summary>
+        public static string WinOk = "Name:Обновить данные из базы?\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+        /// <summary>
+        /// Ок новое окно
+        /// </summary>
+        public static string OkWinButton = "ClassName:Button\\Name:ОК";
+
+        /// <summary>
+        /// Начать углублубленную налоговую проверку
+        /// </summary>
+        public static string StartKnp = "Name:DockTop\\Name:Ribbon\\Name:Реестр расчетов по продаже и(или) дарению объектов недвижимости в подлежащих КНП в соответствии с п.1.2 ст. 88НК\\Name:Начать углубленную КНП";
+        /// <summary>
+        /// Открыть комплекс мероприятий
+        /// </summary>
+        public static string OpenKnp = "Name:DockTop\\Name:Ribbon\\Name:Реестр расчетов по продаже и(или) дарению объектов недвижимости в подлежащих КНП в соответствии с п.1.2 ст. 88НК\\Name:Открыть комплекс мероприятий";
+        /// <summary>
+        /// Открыть комплекс мероприятий
+        /// </summary>
+        public static string OpenViewDecl = "Name:DockTop\\Name:Ribbon\\Name:Реестр расчетов по продаже и(или) дарению объектов недвижимости в подлежащих КНП в соответствии с п.1.2 ст. 88НК\\Name:Просмотр документа";
+        /// <summary>
+        /// Подписать
+        /// </summary>
+        public static string Sign = "Name:DockTop\\Name:Ribbon\\Name:Документ\\Name:Общие\\Name:Подписать";
+
+        public static string TemplateHead = "    В соответствии с пунктом 1.2. статьи 88 Кодекса сообщает, что в случае, если налоговая декларация по налогу на доходы физических лиц (далее – Декларация) в отношении доходов, полученных налогоплательщиком от продажи либо в результате получения в дар недвижимого имущества, не представлена в налоговый орган до 30 апреля года, следующего за истекшим налоговым периодом в соответствии с подпунктом 2 пункта 1 и пунктом 3 статьи 228, пунктом 1 статьи 229 Кодекса, камеральная налоговая проверка проводится на основе имеющихся у налоговых органов документов (информации) о таком налогоплательщике и об указанных доходах."+
+                                            "\n    При проведении вышеуказанной камеральной налоговой проверки, налоговый орган вправе требовать представить в течение пяти дней необходимые пояснения, а также документы подтверждающие расходную часть(договор на приобретение, платежные документы, акт приема передачи)."+
+                                            "\n    По сведениям, представленным в соответствии с пунктом 4 статьи 85 Кодекса органами Росреестра:\n";
+
+        public static string TemplateData = "\n  Общая сумма  дохода от продажи объектов (долей объектов)недвижимого имущества(руб.): {П0020}." +
+                                            "\n  Кадастровый номер отчужденного объекта недвижимого имущества: {П0148}." +
+                                            "\n  Адрес нахождения объекта недвижимого имущества: {П0031}." +
+                                            "\n  Дата регистрации права: {П0033}" +
+                                            "\n  Дата окончания регистрации права: {П0425}" +
+                                            "\n  Общая сумма  дохода, полученного в порядке дарения объектов (долей объектов) недвижимого имущества(руб.) : {П0010}." +
+                                            "\n  Сумма налога, подлежащая уплате в бюджет (руб.): {П0975}\n";
+
+        public static string TemplateStone = "\n    В случае, если у Вас имеются документы, подтверждающие наличие оснований для освобождения от уплаты налогов (например, свидетельство о праве на наследство на проданный объект, свидетельство о рождении или о браке, подтверждающее родственные отношения с дарителем в случае получения объекта в дар), просим безотлагательно предоставить эти документы.";
+
+
+        /// <summary>
+        /// Просмотреть форму утвержденного документа
+        /// </summary>
+        public static string ViewPrint = "Name:Утверждение документа\\ClassName:Button\\Name:Просмотреть печатную форму документа";
+        /// <summary>
+        /// Ознакомится 1
+        /// </summary>
+        public static string ViewCheks = "Name:Утверждение документа\\ClassName:CheckBox";
+        /// <summary>
+        /// Ознакомится 2
+        /// </summary>
+        public static string ViewCheksText = "Name:Утверждение документа\\ClassName:CheckBox\\ClassName:TextBlock";
+        /// <summary>
+        /// Подписать
+        /// </summary>
+        public static string UtvDoc = "ClassName:Button\\Name:Утвердить";
+
     }
 }

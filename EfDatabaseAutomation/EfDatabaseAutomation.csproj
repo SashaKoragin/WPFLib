@@ -78,6 +78,9 @@
     <Compile Include="Automation\BaseLogica\XsdAuto\FullShemeModel\WebShemeTaxJournal.cs">
       <DependentUpon>WebShemeTaxJournal.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Automation\BaseLogica\XsdAuto\ProcedureDeclaration\Declaration.cs">
+      <DependentUpon>Declaration.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Automation\BaseLogica\XsdAuto\TaxJournalAuto\TaxJournalAuto.cs">
       <DependentUpon>TaxJournalAuto.xsd</DependentUpon>
     </Compile>
@@ -130,6 +133,9 @@
     <None Include="Automation\BaseLogica\XsdAuto\FullShemeModel\WebShemeTaxJournal.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Automation\BaseLogica\XsdAuto\ProcedureDeclaration\Declaration.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Automation\BaseLogica\XsdAuto\TaxJournalAuto\TaxJournalAuto.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -178,6 +184,7 @@
       <ShemeTaxJournal Include="Automation\BaseLogica\XsdAuto\FullShemeModel\*.xsd" />
       <DTOXSDSheme Include="Automation\BaseLogica\SqlSelect\XsdDTOSheme\*.xsd" />
       <!--<XmlToSql Include="Automation\BaseLogica\XsdShemeSqlLoad\LoadDeclarationData\*.xsd" />-->
+      <Declaration Include="Automation\BaseLogica\XsdAuto\ProcedureDeclaration\*.xsd" />
     </ItemGroup>
     <Message Importance="high" Text="CreateDTOSheme" />
     <GetFrameworkSdkPath>
@@ -192,5 +199,6 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(ShemeTaxJournal.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.XsdAuto.FullShemeModel /outputdir:Automation\BaseLogica\XsdAuto\FullShemeModel\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(DTOXSDSheme.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.SqlSelect.XsdDTOSheme /outputdir:Automation\BaseLogica\SqlSelect\XsdDTOSheme\" />
     <!--<Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XmlToSql.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData /outputdir:Automation\BaseLogica\XsdShemeSqlLoad\LoadDeclarationData\" />-->
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(Declaration.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.XsdAuto.ProcedureDeclaration /outputdir:Automation\BaseLogica\XsdAuto\ProcedureDeclaration" />
   </Target>
 </Project>

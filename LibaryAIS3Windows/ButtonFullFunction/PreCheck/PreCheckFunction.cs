@@ -211,6 +211,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                                     libraryAutomation.FindTextComboboxIsToFocusAndClickElement(PreCheckElementNameIndividualCards.PeriodEnd, selectYear.ToString());
                                     if (libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.ErrorYear, null, true, 20) != null)
                                     {
+                                        AutoItX.Sleep(1000);
                                         libraryAutomation.ClickElements(PreCheckElementNameIndividualCards.ErrorYear, null, true);
                                         if (libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.ErrorData, null, true) != null)
                                         {
@@ -223,6 +224,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
 
                                     if (libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.ErrorYear, null, true, 20) != null)
                                     {
+                                        AutoItX.Sleep(1000);
                                         libraryAutomation.ClickElements(PreCheckElementNameIndividualCards.ErrorYear, null, true);
                                         if (libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.ErrorData, null, true) != null)
                                         {
@@ -333,17 +335,23 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                             libraryAutomation.IsEnableElementTrue(PreCheckElementNameBank.TaxpayersProgressBar3);
                             if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.CashElementFind, null, true) != null)
                             {
-                                 //Поле со списком
-                                 var listGrMemo = libraryAutomation
-                                     .SelectAutomationColrction(
-                                          libraryAutomation.IsEnableElements(
-                                          PreCheckElementNameBank.PathCashAllParameter.TrimEnd(new char[] { '\\' })
-                                      )).Cast<AutomationElement>()
-                                     .Where(elem => elem.Current.ClassName == "RadComboBox").ToList();
-                                 libraryAutomation.ClickElement(listGrMemo[1]);
-                                 var memo = libraryAutomation.SelectAutomationColrction(listGrMemo[1]);
-                                 var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == "Информация по операциям");
-                                 libraryAutomation.ClickElement(elemClick);
+                                 // Ищем и проверяем (Новая доработка 07.07.2022)
+                                 while (true)
+                                 {
+                                    var listGrMemo = libraryAutomation
+                                        .SelectAutomationColrction(
+                                            libraryAutomation.IsEnableElements(
+                                                PreCheckElementNameBank.PathCashAllParameter.TrimEnd(new char[] { '\\' })
+                                            )).Cast<AutomationElement>()
+                                        .Where(elem => elem.Current.ClassName == "RadComboBox").ToList();
+                                    if (listGrMemo.Count <= 0) continue;
+                                    libraryAutomation.ClickElement(listGrMemo[1]);
+                                    //Поле со списком
+                                    var memo = libraryAutomation.SelectAutomationColrction(listGrMemo[1]);
+                                    var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == "Информация по операциям");
+                                    libraryAutomation.ClickElement(elemClick);
+                                    break;
+                                 }
                                  //Сформировать
                                  if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.FormReport) != null)
                                  {
@@ -355,13 +363,18 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                                       libraryAutomation.IsEnableElementTrue(PreCheckElementNameBank.TaxpayersProgressBar4);
                                       if (libraryAutomation.IsEnableElements(PreCheckElementNameBank.CounterpartyRowFind, null, true) != null)
                                       {
-                                        //Экспорт и ждем завершения
-                                        var listGrButton = libraryAutomation.SelectAutomationColrction(
-                                               libraryAutomation.IsEnableElements(
-                                                 PreCheckElementNameBank.DownloadFileXlsxSaveCounterparty)).Cast<AutomationElement>()
-                                              .Where(elem => elem.Current.ClassName == "RadDropDownButton").ToList();
-                                        var buttonList = libraryAutomation.SelectAutomationColrction(listGrButton[2]);
-                                        libraryAutomation.ClickElement(buttonList[1]);
+                                        //Экспорт и ждем завершения (Новая доработка 07.07.2022)
+                                        while (true)
+                                        {
+                                              var listGrButton = libraryAutomation.SelectAutomationColrction(
+                                                      libraryAutomation.IsEnableElements(
+                                                          PreCheckElementNameBank.DownloadFileXlsxSaveCounterparty)).Cast<AutomationElement>()
+                                                  .Where(elem => elem.Current.ClassName == "RadDropDownButton").ToList();
+                                              if (listGrButton.Count <= 0) continue;
+                                              var buttonList = libraryAutomation.SelectAutomationColrction(listGrButton[2]);
+                                              libraryAutomation.ClickElement(buttonList[1]);
+                                              break;
+                                        }
                                         SendWinSave(libraryAutomation, pathDownLoads);
                                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ModelBookShopping.Save);
                                         libraryAutomation.IsEnableElementTrue(PreCheckElementNameBank.TaxpayersProgressBar4);

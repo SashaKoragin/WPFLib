@@ -247,5 +247,14 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/CheckStatusFl?isExecute={isExecute}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task CheckStatusFl(string inn, bool isExecute);
+        /// <summary>
+        /// Выгрузка файла для ОКП 6 Требования
+        /// http://localhost:8050/ServiceAutomation/LoadFile3NdflRequirements
+        /// </summary>
+        /// <param name="numberElement">Ун записи</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadFile3NdflRequirements", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> LoadFile3NdflRequirements(int numberElement);
     }
 }
