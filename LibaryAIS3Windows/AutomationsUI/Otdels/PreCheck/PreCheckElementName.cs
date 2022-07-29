@@ -51,11 +51,11 @@
         /// <summary>
         /// Старт период
         /// </summary>
-        public static string PeriodEnd = $"{PanelElement}AutomationId:comboYearEnd";
+        public static string PeriodEnd = $"{PanelElement}AutomationId:comboYearEnd\\LocalizedControlType:поле со списком";
         /// <summary>
         /// Период до какого
         /// </summary>
-        public static string PeriodBegin = $"{PanelElement}AutomationId:comboYearBegin";
+        public static string PeriodBegin = $"{PanelElement}AutomationId:comboYearBegin\\LocalizedControlType:поле со списком";
         /// <summary>
         /// Открыть ИКН
         /// </summary>

@@ -1,28 +1,26 @@
-﻿using AutomatAis3Full.Config;
+﻿
+
+using AutomatAis3Full.Config;
 using LibraryCommandPublic.TestAutoit.Okp6.JournalDoc;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
-namespace AutomatAis3Full.Form.Automat.Okp6.CheckDeclaration.DataContextCheckDeclaration
+namespace AutomatAis3Full.Form.Automat.Okp6.AddRequirements.DataContextAddRequirements
 {
-   public class DataContextCheckDeclaration
+
+    public class DataContextAddRequirements
     {
         /// <summary>
         /// Кнопка старт
         /// </summary>
         public StatusButtonMethod StartButton { get; }
-
-        /// <summary>
-        /// Дата контекст
-        /// </summary>
-        public DataContextCheckDeclaration()
+        public DataContextAddRequirements()
         {
             var docStart = new AutoJournalDoc();
             StartButton = new StatusButtonMethod
             {
-                Button = { Command = new DelegateCommand(() => { docStart.StartCheckDeclaration(StartButton, ConfigFile.PathTemp); }) }
+                Button = { Command = new DelegateCommand(() => { docStart.StartAddRequirements(StartButton, ConfigFile.PathTemp); }) }
             };
         }
-
     }
 }

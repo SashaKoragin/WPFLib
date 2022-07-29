@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Declaration" type="Declaration">
+		<xs:annotation>
+			<xs:documentation>Декларация 3НДФЛ</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="Declaration">
+		<xs:annotation>
+			<xs:documentation>Декларация 3НДФЛ</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="DeclarationMemo" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DeclarationMemo" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Поля декларации 3НДФЛ </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="П0020" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Общая сумма  дохода от продажи недвижимости</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="П0148" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Кадастровый номер </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="П0031" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Адрес нахождения объекта недвижимого имущества</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="П0033" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации права</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="П0425" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Дата окончания регистрации права</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="П0010" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Общая сумма  дохода</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="П0975" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Сумма налога</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="П0417" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Кадастровый номер  в случае если П0148 нет</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="П0419" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Адрес нахождения объекта недвижимого имущества если П0031 нет</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="П0421" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Дата регистрации права если П0033 нет</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="П0430" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Общая сумма  дохода если П0010 нет</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

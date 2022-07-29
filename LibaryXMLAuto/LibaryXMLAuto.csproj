@@ -72,6 +72,7 @@
     <Compile Include="Converts\ConvertXmlToXslx\ConvertXmltoXlsx.cs" />
     <Compile Include="Converts\ConvettToXml\XmlConvert.cs" />
     <Compile Include="ErrorJurnal\ReportMigration.cs" />
+    <Compile Include="Inventarization\ModelComparableUserAllSystem\ModelComparableUser.designer.cs" />
     <Compile Include="Inventarization\Model\ModelProcedure\SelectProcedure.cs">
       <DependentUpon>SelectProcedure.xsd</DependentUpon>
     </Compile>
@@ -182,6 +183,9 @@
     <Folder Include="ModelXmlSql\Model\Bdk\BdkNo\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Inventarization\ModelComparableUserAllSystem\ModelComparableUser.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Inventarization\Model\ModelProcedure\SelectProcedure.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -317,6 +321,7 @@
       <XsdXmlModelCard Include="ModelXmlSql\PreCheck\ModelCard\*.xsd" />
       <XsdModelAisNalog Include="ModelXmlSql\PreCheck\Ifns51.FromAis\*.xsd" />
       <!--<XsdModelAutoGenerate Include="ModelAutoGenerateList\XsdSchemesGenerate\*.xsd" />-->
+      <!--<XsdXmlSqlInventarComparable Include="Inventarization\ModelComparableUserAllSystem\*.xsd" />-->
     </ItemGroup>
     <Message Importance="high" Text="CreateXsd" />
     <GetFrameworkSdkPath>
@@ -352,5 +357,6 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlModelCard.FullPath)&quot; /classes /namespace:$(RootNamespace)ModelXmlSql.PreCheck.ModelCard /outputdir:ModelXmlSql\PreCheck\ModelCard\" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdModelAisNalog.FullPath)&quot; /classes  /f /namespace:$(RootNamespace)ModelXmlSql.PreCheck.Ifns51.FromAis /outputdir:ModelXmlSql\PreCheck\Ifns51.FromAis\" />
     <!--<Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdModelAutoGenerate.FullPath)&quot; /classes /namespace:$(RootNamespace).XsdModelAutoGenerate /outputdir:ModelAutoGenerateList\XsdSchemesGenerate\" />-->
+    <!--<Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdXmlSqlInventarComparable.FullPath)&quot; /classes /namespace:$(RootNamespace).Inventarization.ModelComparableUserAllSystem /outputdir:Inventarization\ModelComparableUserAllSystem\" />-->
   </Target>
 </Project>

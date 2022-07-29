@@ -825,14 +825,11 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddDeclarationDataAll(string fileName, DeclarationAll declarationAll)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var connectionString = string.Format($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={fileName}; Extended Properties=Excel 12.0;");
-            var adapter = new OleDbDataAdapter("Select * From [Лист 1$]", connectionString);
-            var ds = new DataSet();
-            adapter.Fill(ds, "DeclarationAll");
-            DataTable data = ds.Tables["DeclarationAll"];
-            var listDeclarationDataFace = new ArrayBodyDoc() { DeclarationDataAll = new EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DeclarationDataAll[data.Rows.Count] };
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslx(fileName, "Лист 1");
+            var listDeclarationDataFace = new ArrayBodyDoc() { DeclarationDataAll = new EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DeclarationDataAll[dataTable.Rows.Count] };
             var i = 0;
-            foreach (DataRow row in data.Rows)
+            foreach (DataRow row in dataTable.Rows)
             {
                 listDeclarationDataFace.DeclarationDataAll[i] = new EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DeclarationDataAll()
                 {
@@ -1196,6 +1193,43 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                 i++;
             }
             preCheck.AddDeclarationFlModel(ref declarationFl, listDeclarationDataFace);
+            preCheck.Dispose();
+        }
+        /// <summary>
+        /// Автоматический расчет 3 НДФЛ
+        /// </summary>
+        /// <param name="fileName">Имя файла</param>
+        /// <param name="declaration3NdflFl">Декларация ФЛ</param>
+        public void AddDeclaration3Ndfl(string fileName, ref Declaration3NdflFl declaration3NdflFl)
+        {
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var data = xlsxToDataTable.GetDateTableXslx(fileName, "Лист 1"); //Заменил
+            var listDeclarationDataFace = new ArrayBodyDoc() { DeclarationData3NdflFl =  new EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DeclarationData3NdflFl[data.Rows.Count] };
+            var i = 0;
+            foreach (DataRow row in data.Rows)
+            {
+                listDeclarationDataFace.DeclarationData3NdflFl[i] = new EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DeclarationData3NdflFl()
+                {
+                    RegNumDecl = declaration3NdflFl.RegNumDecl,
+                    CodeString = row.Field<string>("Код строки"),
+                    NameParametr = row.Field<string>("Наименование показателя"),
+                    CodeParametr = row.Field<string>("Код показателя"),
+                    DataFace = row.Field<string>("По данным плательщика"),
+                    DataInspector = row.Field<string>("По данным инспектора"),
+                    Error = row.Field<string>("Отклонение")
+                };
+                i++;
+            }
+            preCheck.AddDeclaration3NdflFlModel(ref declaration3NdflFl, listDeclarationDataFace);
+            preCheck.Dispose();
+        }
+
+        public void EndSaveDeclaration3Ndfl(ref Declaration3NdflFl declaration3NdflFl)
+        {
+
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            preCheck.SaveAndEdit3Ndfl(ref declaration3NdflFl, declaration3NdflFl.RegNumDecl);
             preCheck.Dispose();
         }
     }

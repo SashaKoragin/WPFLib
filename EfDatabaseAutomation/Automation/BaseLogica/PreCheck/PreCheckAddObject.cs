@@ -1039,6 +1039,66 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         }
 
         /// <summary>
+        /// Загрузка декларации ФЛ в БД
+        /// </summary>
+        /// <param name="declaration3NdflFl">Декларация Автоматическая 3 НДФЛ ФЛ</param>
+        /// <param name="declarationData">Данные декларации ФЛ</param>
+        public void AddDeclaration3NdflFlModel(ref Declaration3NdflFl declaration3NdflFl, ArrayBodyDoc declarationData)
+        {
+            var inn = declaration3NdflFl.InnNp;
+            var regNumDecl = declaration3NdflFl.RegNumDecl;
+            var flSelect = from flFaces in Automation.FlFaces
+                           where flFaces.Inn == inn
+                           select new { FlFaces = flFaces };
+            var fl = new FlFace()
+            {
+                IdFl = flSelect.FirstOrDefault() != null ? flSelect.FirstOrDefault().FlFaces.IdFl : 0,
+                Inn = declaration3NdflFl.InnNp,
+                NameFl = declaration3NdflFl.NameNp
+            };
+            using (var context = new Base.Automation())
+            {
+                if (!(flSelect).Any()) { context.FlFaces.Add(fl); } else { context.Entry(fl).State = EntityState.Modified; }
+                context.SaveChanges();
+            }
+            declaration3NdflFl.IdFl = fl.IdFl;
+            SaveAndEdit3Ndfl(ref declaration3NdflFl, regNumDecl);
+
+            //Удаляем старые записи по выписке заполняем новыми
+            using (var contextDelete = new Base.Automation())
+            {
+                contextDelete.Database.CommandTimeout = 120000;
+                contextDelete.Database.ExecuteSqlCommand("Delete From DeclarationData3NdflFl Where RegNumDecl = " + regNumDecl);
+            }
+            XmlReadOrWrite xml = new XmlReadOrWrite();
+            var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+            var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}DeclarationDataAll.xml";
+            xml.CreateXmlFile(xmlFile, declarationData, typeof(ArrayBodyDoc));
+            BulkInsertIntoDb(xsdFile, xmlFile);
+        }
+        /// <summary>
+        /// Сохранение 3 НДФЛ
+        /// </summary>
+        /// <param name="declaration3Ndfl">Декларация 3 НДФЛ</param>
+        /// <param name="regNumber">Регистрационный номер</param>
+        public void SaveAndEdit3Ndfl(ref Declaration3NdflFl declaration3Ndfl, long regNumber)
+        {
+            
+            if (!(from declaration3NdflFl in Automation.Declaration3NdflFl
+                where declaration3NdflFl.RegNumDecl == regNumber
+                  select new { Declaration3NdflFl = declaration3NdflFl }).Any())
+            {
+                Automation.Declaration3NdflFl.Add(declaration3Ndfl);
+                Automation.SaveChanges();
+            }
+            else
+            {
+                Automation.Entry(declaration3Ndfl).State = EntityState.Modified;
+                Automation.SaveChanges();
+            }
+        }
+
+        /// <summary>
         /// Загрузка 
         /// </summary>
         /// <param name="fullPathXsdScheme">Полный путь к схеме xsd для загрузки данных</param>

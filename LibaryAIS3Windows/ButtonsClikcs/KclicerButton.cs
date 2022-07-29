@@ -2387,6 +2387,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
 
         /// <summary>
         /// Налоговое администрирование\Контрольная работа (налоговые проверки)\121-122. Камеральная налоговая проверка\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
+        /// Акты Извещения Решения
         /// </summary>
         /// <param name="statusButton">Кнопка Старт</param>
         /// <param name="pathPdfTemp">Путь к Temp</param>
@@ -3496,5 +3497,85 @@ namespace LibraryAIS3Windows.ButtonsClikcs
             var statement = new UregulirovanieAllFunction();
             statement.StartProcessAct(statusButton, pathList);
         }
+        /// <summary>
+        /// Закрытие комплекса мероприятий для ОКП 6
+        /// </summary>
+        /// <param name="statusButton">Кнопка</param>
+        public void Click51(StatusButtonMethod statusButton)
+        {
+            //Комплекс мероприятий
+            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
+            var rowNumber = 1;
+            libraryAutomation.ClickElements(Journal129AndJournal121.UpdateData121);
+            PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, Journal129AndJournal121.GridTaxJournal121);
+            AutomationElement automationElement;
+            while ((automationElement = libraryAutomation.IsEnableElements(string.Concat(Journal129AndJournal121.AllTaxJournal121, rowNumber), null, true, 30)) != null)
+            {
+                if (statusButton.Iswork)
+                {
+                    automationElement.SetFocus();
+                    AutoItX.Sleep(1000);
+                    var status = libraryAutomation.SelectAutomationColrction(automationElement)
+                                                  .Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name == "")
+                                                  .ToList();
+
+                    var knd = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                                   .SelectAutomationColrction(automationElement)
+                                                   .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КНД")));
+
+                    var colorComplex = libraryAutomation.GetColorPixel(status[3]);
+
+                    if (knd == "1151020" || knd == "ДП3НДФЛ")
+                    {
+                        //Данная функция закрыта так как используется не по назначению принадлежит ОКП 6
+                        if (colorComplex == "8000")
+                        {
+                            return;
+                        }
+                        if (colorComplex == "8b0000")
+                        {
+                            PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.StartKnp);
+                            PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex121);
+                            AutoItX.WinWait(Journal129AndJournal121.WinNameComplex);
+                            AutoItX.WinActivate(Journal129AndJournal121.WinNameComplex);
+                            LibraryAutomations libraryAutomationWin = new LibraryAutomations(Journal129AndJournal121.WinNameComplex);
+                            PublicGlobalFunction.WindowElementClick(libraryAutomationWin, Journal129AndJournal121.WinOkCloseComplex);
+                            AutoItX.Sleep(1000);
+                        }
+                    }
+                }
+                else
+                {
+                    break;
+                }
+                automationElement.SetFocus();
+                rowNumber++;
+            }
+        }
+
+        /// <summary>
+        /// Налоговое администрирование\Контрольная работа (налоговые проверки)\122. Камеральная налоговая проверка НДФЛ\04. Реестр расчетов по продаже и(или) дарению объектов недвижимости в подлежащих КНП в соответствии с п.1.2 ст. 88НК
+        /// Выставление решений для категории ДП3НДФЛ для ОКП 6
+        /// </summary>
+        /// <param name="statusButton">Кнопка</param>
+        /// <param name="pathPdfTemp">Путь к Temp</param>
+        /// <param name="datePicker">Дата вызова плательщика</param>
+        public void Click52(StatusButtonMethod statusButton, string pathPdfTemp, DatePickerAdd datePicker)
+        {
+            Okp2ActAndSolutionAndNotification createActAndSolutionAndNotification = new Okp2ActAndSolutionAndNotification(pathPdfTemp);
+            createActAndSolutionAndNotification.CreateSolutionCalculationsFullFormMethod(statusButton, datePicker);
+        }
+        /// <summary>
+        /// Налоговое администрирование\Контрольная работа (налоговые проверки)\122. Камеральная налоговая проверка НДФЛ\04. Реестр расчетов по продаже и(или) дарению объектов недвижимости в подлежащих КНП в соответствии с п.1.2 ст. 88НК
+        /// Выставление требований для категории ДП3НДФЛ для ОКП 6
+        /// </summary>
+        /// <param name="statusButton"></param>
+        /// <param name="pathPdfTemp"></param>
+        public void Click53(StatusButtonMethod statusButton, string pathPdfTemp)
+        {
+            Okp2ActAndSolutionAndNotification createActAndSolutionAndNotification = new Okp2ActAndSolutionAndNotification(pathPdfTemp);
+            createActAndSolutionAndNotification.AddRequirementsDeclaration(statusButton);
+        }
+
     }
 }

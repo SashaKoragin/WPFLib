@@ -150,12 +150,15 @@ namespace LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.Edit);
                         while (true)
                         {
-                            if (libraryAutomation.IsEnableElements(StatementNp.DateAdd, null, true, 1) != null)
+                            if (libraryAutomation.IsEnableElements(StatementNp.Save, null, true, 1) != null)
                             {
-                                libraryAutomation.SetValuePattern(DateTime.Now.ToString("dd.MM.yy"));
-                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.Save);
-                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.OkSave);
-                                break;
+                                if (libraryAutomation.IsEnableElements(StatementNp.DateAdd, null, true, 1) != null)
+                                {
+                                    libraryAutomation.SetValuePattern(DateTime.Now.ToString("dd.MM.yy"));
+                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.Save);
+                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.OkSave);
+                                    break;
+                                }
                             }
                         }
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.ClearStatus);
@@ -163,6 +166,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.OkWin);
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.OkWin);
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.Back);
+                        PublicGlobalFunction.PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, StatementNp.JournalReestr);
                     }
                 }
                 else
@@ -170,6 +174,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction
                     break;
                 }
                 rowNumber++;
+                
             }
             MouseCloseFormRsb(1);
         }

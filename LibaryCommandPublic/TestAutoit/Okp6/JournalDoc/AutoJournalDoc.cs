@@ -36,7 +36,8 @@ namespace LibraryCommandPublic.TestAutoit.Okp6.JournalDoc
         /// <summary>
         /// Налоговое администрирование\Контрольная работа (налоговые проверки)\122. Камеральная налоговая проверка НДФЛ\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
         /// </summary>
-        /// <param name="statusButton">Кнопка проставить Даты вручения</param>
+        /// <param name="statusButton">Кнопка старт автомат</param>
+        /// <param name="pathPdfTemp">Путь к выгрузке файлов для анализа</param>
         public void StartRegistryDeclaration(StatusButtonMethod statusButton, string pathPdfTemp)
         {
             DispatcherHelper.Initialize();
@@ -64,6 +65,39 @@ namespace LibraryCommandPublic.TestAutoit.Okp6.JournalDoc
                 }
             });
         }
+        /// <summary>
+        /// Налоговое администрирование\Контрольная работа (налоговые проверки)\122. Камеральная налоговая проверка НДФЛ\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
+        /// Закрытие комплекса мероприятий
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт автомат</param>
+        public void StartDeclarationComplexClosed(StatusButtonMethod statusButton)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                try
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        clickerButton.Click51(statusButton);
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                    throw;
+                }
+            });
+        }
+
         /// <summary>
         /// Налоговое администрирование\Контрольная работа (налоговые проверки)\122. Камеральная налоговая проверка НДФЛ\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
         /// Проверить завершить закрыть декларацию
@@ -130,5 +164,72 @@ namespace LibraryCommandPublic.TestAutoit.Okp6.JournalDoc
             });
         }
 
+        /// <summary>
+        /// Выставление решения
+        /// Налоговое администрирование\Контрольная работа (налоговые проверки)\122. Камеральная налоговая проверка НДФЛ\04. Реестр расчетов по продаже и(или) дарению объектов недвижимости в подлежащих КНП в соответствии с п.1.2 ст. 88НК
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт автомат</param>
+        /// <param name="pathPdfTemp">Путь к выгрузке файлов для анализа</param>
+        public void StartDeclarationCalculation(StatusButtonMethod statusButton, string pathPdfTemp)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                try
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        clickerButton.Click52(statusButton, pathPdfTemp, null);
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                    throw;
+                }
+            });
+        }
+
+        /// <summary>
+        /// Выставление требований
+        /// Налоговое администрирование\Контрольная работа (налоговые проверки)\122. Камеральная налоговая проверка НДФЛ\04. Реестр расчетов по продаже и(или) дарению объектов недвижимости в подлежащих КНП в соответствии с п.1.2 ст. 88НК
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт автомат</param>
+        /// <param name="pathPdfTemp">Путь к выгрузке файлов для анализа</param>
+        public void StartAddRequirements(StatusButtonMethod statusButton, string pathPdfTemp)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                try
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        clickerButton.Click53(statusButton, pathPdfTemp);
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                    throw;
+                }
+            });
+        }
     }
 }

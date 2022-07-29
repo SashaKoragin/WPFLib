@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ModelComparableUser" type="ModelComparableUser">
+		<xs:annotation>
+			<xs:documentation>Модель сравнение пользователей со всеми системами</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ModelComparableUser">
+		<xs:annotation>
+			<xs:documentation>Модель сравнение пользователей со всеми системами</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="FullModelUserAllSystem" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="GroupActiveDirectory" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="WorkStationActiveDirectory" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="FullModelUserAllSystem" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Модель пользователей Лотус</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="SystemDataBase" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Системе пользователей из какой системы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Surname" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Фамилия</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Name" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Имя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Patronymic" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Отчество</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="FullName" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Полное имя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="PersonnelNumber" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Табельный номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Department" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Отдел</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="JobTitle" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Должность</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Ranks" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Чин</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Telephon" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Телефон</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameMail" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Наименование почты</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Room" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Комната</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="UserAccountControl" type="xs:int" use="optional">
+				<xs:annotation>
+					<xs:documentation>Контроль аккаунта</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="GroupName" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:documentation>Наименование группы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WorkStationActiveDirectory">
+		<xs:annotation>
+			<xs:documentation>Рабочии станции AD</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="NameWorkStation" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Наименование рабочей станции</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DnsName" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>DNS имя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Info" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Описание</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ControlledUser" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Управляется пользователем</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="WindowsName" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Наименование Windows</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="WindowsVersion" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Версия Windows</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Room" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Размещение</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GroupActiveDirectory">
+		<xs:annotation>
+			<xs:documentation>Группы AD</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="NameGroup" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Наименование группы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="InfoGroup" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Описание группы</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ControlledGroup" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Управляется группа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
