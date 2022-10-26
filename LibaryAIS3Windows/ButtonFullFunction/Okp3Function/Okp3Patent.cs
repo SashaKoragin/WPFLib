@@ -99,9 +99,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
                           OgrnIp = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                                 .SelectAutomationColrction(automationElement)
                                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ОГРНИП"))),
-                          Address = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                .SelectAutomationColrction(automationElement)
-                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Адрес места жительства"))),
+                          Address = "Отсутствует",
                           Fid = Convert.ToInt64(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                                 .SelectAutomationColrction(automationElement)
                                 .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("ФИД налогоплательщика"))))

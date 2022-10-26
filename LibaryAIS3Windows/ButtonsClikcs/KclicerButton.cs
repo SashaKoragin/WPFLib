@@ -2087,8 +2087,6 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                     .Where(automationElemenst => automationElemenst.Current.Name != "Column Headers")
                                     .First(elem => elem.Current.Name.Contains(""))) == "ffff00"
                             );
-
-
                             //Выбор отсутствует ли извещение
                             var isIzvestia = listDocMemo.FirstOrDefault(doc =>
                                 libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(
@@ -3576,6 +3574,28 @@ namespace LibraryAIS3Windows.ButtonsClikcs
             Okp2ActAndSolutionAndNotification createActAndSolutionAndNotification = new Okp2ActAndSolutionAndNotification(pathPdfTemp);
             createActAndSolutionAndNotification.AddRequirementsDeclaration(statusButton);
         }
+        /// <summary>
+        /// Тех корректировка даты
+        /// Автомат на ветку Налоговое администрирование\Урегулирование задолженности\Техническая корректировка\Техническая корректировка. Ввод заявок
+        /// </summary>
+        /// <param name="statusButton">Кнопка</param>
+        /// <param name="pathListStatement">Полный путь к списку с заявлениями о тех корректировки</param>
+        public void Click54(StatusButtonMethod statusButton, string pathListStatement)
+        {
+            var statement = new UregulirovanieAllFunction();
+            statement.StartTechAdjustmentStatement(statusButton, pathListStatement);
+        }
+        /// <summary>
+        /// Согласование заявок по технической корректировки
+        /// Автомат на ветку Налоговое администрирование\Урегулирование задолженности\Техническая корректировка\Техническая корректировка. Согласование заявок
+        /// </summary>
+        /// <param name="statusButton">Кнопка</param>
+        public void Click55(StatusButtonMethod statusButton)
+        {
+            var statement = new UregulirovanieAllFunction();
+            statement.StartTechKorrectAgreement(statusButton);
+        }
+
 
     }
 }

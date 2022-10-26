@@ -46,27 +46,27 @@ var ControlTemplate = /** @class */ (function () {
     }
     Object.defineProperty(ControlTemplate.prototype, "nameDoc", {
         get: function () { return this.formTemplate.get('nameDoc'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ControlTemplate.prototype, "manualDoc", {
         get: function () { return this.formTemplate.get('manualDoc'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ControlTemplate.prototype, "headers", {
         get: function () { return this.formTemplate.get('headers'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ControlTemplate.prototype, "body", {
         get: function () { return this.formTemplate.get('body'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ControlTemplate.prototype, "stone", {
         get: function () { return this.formTemplate.get('stone'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     //Выбор из таблицы Header

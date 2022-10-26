@@ -30,12 +30,12 @@ var LogicaAnaliz = /** @class */ (function () {
     }
     Object.defineProperty(LogicaAnaliz.prototype, "createDate", {
         get: function () { return this.dateCreate.get('dateCreate'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(LogicaAnaliz.prototype, "id", {
         get: function () { return this.idCreate.get('id'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     LogicaAnaliz.prototype.servermodel = function () {

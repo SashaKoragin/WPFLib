@@ -174,6 +174,7 @@ namespace ViewModelLib.ModelTestAutoit.AutoGenerateList.ModelGenerate
             SchemesFullDocument.Add(new GenerateSchemesAutoModel() {Document = AddDocument.DocumentSnuOneForm(ExampleXaml.TaxArrears), SchemesName = "Схема списка для запуска БП: Взыскание задолженности", NameSchemes = "TaxArrears", DescriptionMemo = new []{"ИНН","КПП"}, TypeObject = typeof(TaxArrears)});
             SchemesFullDocument.Add(new GenerateSchemesAutoModel() {Document = AddDocument.DocumentSnuOneForm(ExampleXaml.RegAddressXml), SchemesName = "Схема списка для запуска БП: Изменения индекса", NameSchemes = "AddressModel", DescriptionMemo = new[] { "ФИД", "ИНН", "АДРЕС", "ИНДЕКС СТАРЫЙ", "ИНДЕКС НОВЫЙ" }, TypeObject = typeof(AddressModel) });
             SchemesFullDocument.Add(new GenerateSchemesAutoModel() { Document = AddDocument.DocumentSnuOneForm(ExampleXaml.JudicialAct), SchemesName = "Схема списка для запуска БП: Судебные акты", NameSchemes = "JudicialAct", DescriptionMemo = new[] {"ИНН", "Номер заявления"}, TypeObject = typeof(JudicialAct) });
+            SchemesFullDocument.Add(new GenerateSchemesAutoModel() { Document = AddDocument.DocumentSnuOneForm(ExampleXaml.TechAdjustmentStatement), SchemesName = "Схема списка для запуска БП: Техническая корректировка заявления", NameSchemes = "FaceStatement", DescriptionMemo = new[] { "ИНН", "Номер заявления", "Дата регистрации заявления в УДиЭА" }, TypeObject = typeof(FaceStatement) });
         }
    }
 }

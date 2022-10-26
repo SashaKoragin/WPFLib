@@ -93,5 +93,14 @@ namespace PublicLogicaFull.DocumentLogica.FlowDocumentExample.Examle
                                            "  <JudicialAct Inn=\"771701149808\" NumberAkt=\"51\"/>\n" +
                                            "  <JudicialAct Inn=\"772583930186\" NumberAkt=\"20\"/>\n" +
                                            "</AutoGenerateSchemes>";
+        /// <summary>
+        /// Модель на проведения технической корректировки
+        /// </summary>
+        public static string TechAdjustmentStatement = "<?xml version =\"1.0\"encoding=\"UTF-8\"?>\n" +
+                                                       "<AutoGenerateSchemes xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"AutoGenerateSchemes.xsd\">\n" +
+                                                       "  <FaceStatement Inn=\"772578431375\" NumberStatement=\"48\" DateTimeStatement=\"2022-02-07T00:00:00\" />\n" +
+                                                       "  <FaceStatement Inn=\"771701149808\" NumberStatement=\"51\" DateTimeStatement=\"2022-02-07T00:00:00\"/>\n" +
+                                                       "  <FaceStatement Inn=\"772583930186\" NumberStatement=\"20\" DateTimeStatement=\"2022-01-16T00:00:00\"/>\n" +
+                                                       "</AutoGenerateSchemes>";
     }
 }

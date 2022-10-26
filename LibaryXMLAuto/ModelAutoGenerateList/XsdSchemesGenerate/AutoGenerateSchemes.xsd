@@ -14,6 +14,7 @@
 			<xs:element ref="TaxArrears" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="AddressModel" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="JudicialAct" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="FaceStatement" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxArrears">
@@ -78,6 +79,28 @@
 			<xs:attribute name="NumberAkt" type="xs:string">
 				<xs:annotation>
 					<xs:documentation>Номер заявления</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FaceStatement">
+		<xs:annotation>
+			<xs:documentation>Модель на проведения технической корректировки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NumberStatement" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер заявления</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateTimeStatement" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата время заявления</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>

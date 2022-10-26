@@ -104,6 +104,16 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
         /// <returns></returns>
         public object JsonDeserializeObjectClass<T>(string result)
         {
+            List<string> errors = new List<string>();
+            JsonConvert.DeserializeObject<T>(result, new JsonSerializerSettings
+            {
+                Error = delegate(object sender, ErrorEventArgs arg)
+                {
+                    errors.Add(arg.ErrorContext.Error.Message);
+                    arg.ErrorContext.Handled = true;
+                },
+                NullValueHandling = NullValueHandling.Include
+            });
             return JsonConvert.DeserializeObject<T>(result);
         }
     }

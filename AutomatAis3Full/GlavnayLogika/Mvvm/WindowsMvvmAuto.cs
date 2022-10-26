@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Controls;
 using System.Windows.Input;
 using AutomatAis3Full.Config;
 using Prism.Commands;
@@ -7,7 +8,7 @@ using ViewModelLib.ModelTestAutoit.PublicModel.PdfHelp;
 
 namespace AutomatAis3Full.GlavnayLogika.Mvvm
 {
-   public class WindowsMvvmAuto
+   public class WindowsMvvmAuto 
     {
         public ICommand OpenForms { get; }
 

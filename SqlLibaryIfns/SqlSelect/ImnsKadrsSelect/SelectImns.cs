@@ -1,8 +1,8 @@
 ﻿namespace SqlLibaryIfns.SqlSelect.ImnsKadrsSelect
 {
    public class SelectImns
-    {
-        /// <summary>
+   {
+       /// <summary>
         /// Выборка всех актуальных пользователей
         /// </summary>
         public string ActualUsers = @"Select RTRIM(TAB_NUM) as TAB_NUM,

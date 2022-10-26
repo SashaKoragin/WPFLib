@@ -50,9 +50,9 @@
         /// </summary>
         public static string OpenComplex = "Name:DockTop\\Name:Ribbon\\Name:2. Журнал налоговых правонарушений\\Name:Открыть комплекс мероприятий";
         /// <summary>
-        /// Просмотр декларации
+        /// Просмотр
         /// </summary>
-        public static string ViewDeclaration = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Просмотр декларации";
+        public static string ViewDeclaration = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Просмотр";
         /// <summary>
         /// Экспорт декларации в Excel
         /// </summary>
@@ -64,7 +64,7 @@
         /// <summary>
         /// Открыть комплекс мероприятий для завершения проверки
         /// </summary>
-        public static string OpenComplexM = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Открыть комплекс мероприятий";
+        public static string OpenComplexM = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Открыть КМ";
         /// <summary>
         /// Обновить
         /// </summary>
@@ -513,7 +513,7 @@
         /// <summary>
         /// Открыть комплекс мероприятий
         /// </summary>
-        public static string OpenKnp = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Открыть комплекс мероприятий";
+        public static string OpenKnp = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Открыть КМ";
         /// <summary>
         /// Режимы для Статистики
         /// </summary>
@@ -867,6 +867,11 @@
         /// </summary>
         public static string ClosedComplex121 = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Камеральная налоговая проверка\\Name:Закрыть комплекс КНП\\Name:Закрыть комплекс КНП\\Name:Закрыть комплекс КНП";
         /// <summary>
+        /// Ошибка при закрытии комплекса мероприятий
+        /// </summary>
+        public static string ErrorWinOk = "Name:Ошибка\\ClassName:Button\\Name:ОК";
+        
+        /// <summary>
         /// Признак учета в налоговой декларации результатов проверок по предыдущей декларации
         /// </summary>
         public static string PriznakDecl = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:Pane\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Камеральная налоговая проверка\\Name:Признак учета в налоговой декларации результатов проверок по предыдущей декларации\\Name:Признак учета в налоговой декларации результатов проверок по предыдущей декларации\\Name:Признак учета в налоговой декларации результатов проверок по предыдущей декларации";
@@ -1111,6 +1116,10 @@
         /// </summary>
         private static string TreeFullBlok = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\Name:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\";
         /// <summary>
+        /// Полная ветка
+        /// </summary>
+        private static string TreeFullBlok2 = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\Name:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf1\\ClassName:DfProcessActiveItemsView3\\AutomationId:treeView1\\";
+        /// <summary>
         /// Путь до групп
         /// </summary>
         private static string GroupFull = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:BusinessEntityViewPartBaseAsync\\AutomationId:contentHost\\Name:contentHost\\ClassName:UCCont\\ClassName:ScrollViewer\\";
@@ -1135,7 +1144,19 @@
         /// Кнопка редактирование показателей
         /// </summary>
         public static string ButtonResh = $"{TreeFullBlok}Name:Результаты рассмотрения материалов проверки\\Name:Решение о привлечении к ответственности\\Name:Решение о привлечении к ответственности\\FrameworkId:WPF\\Name:Решение о привлечении к ответственности";
-
+        /// <summary>
+        /// Выйти без сохранения
+        /// </summary>
+        public static string WinNo = "Name:Сохранить изменения. Требование о представлении пояснений\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnNo";
+        /// <summary>
+        /// Кнопка редактировать удалить
+        /// </summary>
+        public static string EditDelete = $"{TreeFullBlok2}Name:Мероприятия налогового контроля\\Name:Требование о представлении пояснений\\ClassName:TreeViewItem\\ClassName:DfCEXamlViewMulti\\AutomationId:btnDefaultCommand\\AutomationId:button2\\ClassName:TextBlock";
+        /// <summary>
+        /// Удалить Требование
+        /// </summary>
+        public static string Delete = "ClassName:Popup\\AutomationId:contextMenuCommands\\Name:Удалить";
+        
         /// <summary>
         /// Общая информация
         /// </summary>

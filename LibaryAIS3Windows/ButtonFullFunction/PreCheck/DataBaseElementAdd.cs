@@ -758,7 +758,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         {
             var preCheck = new PreCheckAddObject();
             XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
-            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName, 1, 3);
+            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName, 1, 14);
             dataTable.Columns.Remove(dataTable.Columns[0]);
             DataNamesMapper<BookSales> mapper = new DataNamesMapper<BookSales>();
             var bookSales = new ArrayBodyDoc() { BookSales = mapper.Map(dataTable).ToArray() };
@@ -775,7 +775,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         {
             var preCheck = new PreCheckAddObject();
             XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
-            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName, 1, 3);
+            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName, 1, 14);
             dataTable.Columns.Remove(dataTable.Columns[0]);
             DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.BookPurchase> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.BookPurchase>();
             var bookPurchase = new ArrayBodyDoc() { BookPurchase = mapper.Map(dataTable).ToArray() };

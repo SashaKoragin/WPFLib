@@ -47,32 +47,32 @@ var ReportKam5 = /** @class */ (function () {
     }
     Object.defineProperty(ReportKam5.prototype, "qvartal", {
         get: function () { return this.formtemplateReport.get('qvartal'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ReportKam5.prototype, "god", {
         get: function () { return this.formtemplateReport.get('god'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ReportKam5.prototype, "reportvid", {
         get: function () { return this.formtemplateReport.get('reportvid'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ReportKam5.prototype, "p1", {
         get: function () { return this.formtemplateReport.get('p1'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ReportKam5.prototype, "date", {
         get: function () { return this.formtemplateReport.get('date'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(ReportKam5.prototype, "errdetal", {
         get: function () { return this.formtemplateReport.get('errdetal'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     ReportKam5.prototype.ngOnInit = function () {

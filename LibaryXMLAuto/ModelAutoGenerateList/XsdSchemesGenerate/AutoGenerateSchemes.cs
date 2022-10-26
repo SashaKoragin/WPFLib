@@ -11,6 +11,9 @@
 // 
 // Этот исходный код был создан с помощью xsd, версия=4.7.2046.0.
 // 
+
+using System;
+
 namespace LibaryXMLAuto.XsdModelAutoGenerate {
     using System.Xml.Serialization;
     using AttributeHelperModelXml;
@@ -28,7 +31,9 @@ namespace LibaryXMLAuto.XsdModelAutoGenerate {
         private AddressModel[] addressModelField;
         
         private JudicialAct[] judicialActField;
-        
+
+        private FaceStatement[] faceStatementField;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxArrears")]
         public TaxArrears[] TaxArrears {
@@ -59,6 +64,20 @@ namespace LibaryXMLAuto.XsdModelAutoGenerate {
             }
             set {
                 this.judicialActField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("FaceStatement")]
+        public FaceStatement[] FaceStatement
+        {
+            get
+            {
+                return this.faceStatementField;
+            }
+            set
+            {
+                this.faceStatementField = value;
             }
         }
     }
@@ -217,5 +236,63 @@ namespace LibaryXMLAuto.XsdModelAutoGenerate {
                 this.numberAktField = value;
             }
         }
+    }
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    public partial class FaceStatement
+    {
+        private string innField;
+
+        private string numberStatementField;
+
+        private DateTime dateTimetatementField;
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ИНН", "ИНН")]
+        public string Inn
+        {
+            get
+            {
+                return this.innField;
+            }
+            set
+            {
+                this.innField = value;
+            }
+        }
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Номер заявления", "Номер заявления")]
+        public string NumberStatement
+        {
+            get
+            {
+                return this.numberStatementField;
+            }
+            set
+            {
+                this.numberStatementField = value;
+            }
+        }
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Дата регистрации заявления в УДиЭА", "Дата регистрации заявления в УДиЭА")]
+        public DateTime DateTimeStatement
+        {
+            get
+            {
+                return this.dateTimetatementField;
+            }
+            set
+            {
+                this.dateTimetatementField = value;
+            }
+        }
+
     }
 }

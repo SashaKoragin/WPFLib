@@ -61,6 +61,8 @@ using AutomatAis3Full.Form.Automat.Okp6.AddTerm.ViewAddTerm;
 using AutomatAis3Full.Form.Automat.Okp6.DeclarationComplex.ViewDeclarationComplex;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.StartProcessFace.JudicialAct.ViewJudicialAct;
 using AutomatAis3Full.Form.Automat.Okp6.DeclarationCalculation.ViewDeclarationCalculation;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.TechKorrect.ViewTechAdjustmentStatement;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.TechKorrectAgreement.ViewTechKorrectAgreement;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
 {
@@ -156,6 +158,16 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                   {
                                       NameControl = "Заявления НП о зачете/возврате (реестр) Очистить состояние обработки",
                                       UserControl = new FormClearStatusStatementNp()
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Техническая корректировка. Ввод заявок",
+                                      UserControl = new ViewTechAdjustmentStatement()
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Техническая корректировка. Согласование заявок",
+                                      UserControl = new ViewTechKorrectAgreement()
                                   }
                               }
                           },
@@ -746,7 +758,8 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                           },
                           new FullWindowAutoIt()
                           {
-                              NameControl = "Банковские и лицевые счета",                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              NameControl = "Банковские и лицевые счета",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                               {
                                   new FullWindowAutoIt()
                                   {

@@ -35,7 +35,7 @@ var DialogDela = /** @class */ (function () {
     }
     Object.defineProperty(DialogDela.prototype, "delaPriem", {
         get: function () { return this.delaCreate.get('delaPriem'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     //Создание дел приема КРСБ

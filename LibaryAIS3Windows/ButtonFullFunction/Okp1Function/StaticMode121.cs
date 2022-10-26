@@ -97,6 +97,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
             if (sum != null)
             {
                 IsStartIsOpenKm(libraryAutomation, taxJournal);
+                IsExistsErrorWinInfo(libraryAutomation);
                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.EditP);
                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Avg);
                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.SendAvg);
@@ -130,6 +131,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                         if (taxJournal.Color5 != "ff")
                         {
                             IsStartIsOpenKm(libraryAutomation, taxJournal);
+                            IsExistsErrorWinInfo(libraryAutomation);
                             if (taxJournal.KorrectNumber != 0)
                             {
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation,
@@ -149,28 +151,23 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                                     Journal129AndJournal121.PriznakOk);
                                 //Написать алгоритм для таких
                             }
-
                             if (taxJournal.DateCloseValidation == null && taxJournal.Color5 == "ffffff")
                             {
                                 //Открыть или начать Проверку
                                 DialogKnp(libraryAutomation, "Нарушения не выявлены");
-                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation,
-                                    Journal129AndJournal121.ClosedComplex121);
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex121);
                                 AutoItX.WinWait(Journal129AndJournal121.WinNameComplex);
                                 AutoItX.WinActivate(Journal129AndJournal121.WinNameComplex);
                                 libraryAutomationWin = new LibraryAutomations(Journal129AndJournal121.WinNameComplex);
-                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin,
-                                    Journal129AndJournal121.WinOkCloseComplex);
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin,  Journal129AndJournal121.WinOkCloseComplex);
                                 AutoItX.Sleep(1000);
                                 taxJournal.MessageInfoR1 = "Нарушения не выявлены";
                             }
                             else if (taxJournal.DateCloseValidation == null && taxJournal.Color5 != "ffffff")
                             {
-
                                 DialogKnp(libraryAutomation, "Выявлены нарушения");
                                 win = new WindowsAis3();
-                                AutoItX.MouseClick(ButtonConstant.MouseLeft,
-                                    win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                                AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
                                 AutoItX.Sleep(1000);
                                 taxJournal.MessageInfoR1 = "Выявлены нарушения";
                             }
@@ -301,10 +298,10 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                         if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewWindowEnable, null, true, 40, 0, false, ';') != null)
                         {
                             libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
-                            libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement, 0, 10);
+                            libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement, 85);
                             var memo = libraryAutomationSign.SelectAutomationColrction(libraryAutomationSign.FindElement);
                             var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == textErrorAndNotError);
-                            libraryAutomationSign.ClickElement(elemClick);
+                            libraryAutomation.SelectionComboBoxSelectionItemPattern(elemClick);
                             libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
                             if (libraryAutomationSign.SelectionComboBoxPatternIsSelect(libraryAutomationSign.FindElement) != "")
                             {
@@ -313,6 +310,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                         }
                     }
                     libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewOkEdit));
+                    //Здесь ок и ошибка на дочернем окне libraryAutomationSign у ОКП 1
                     AutoItX.Sleep(1000);
                     AutoItX.WinWait(Journal129AndJournal121.NewWarningOk);
                     AutoItX.WinActivate(Journal129AndJournal121.NewWarningOk);
@@ -320,6 +318,24 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                     libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewWarningButtonOk));
                     AutoItX.Sleep(1000);
                     break;
+                }
+                break;
+            }
+        }
+        /// <summary>
+        /// Странная ошибка
+        /// </summary>
+        /// <param name="libraryAutomation"></param>
+        private void IsExistsErrorWinInfo(LibraryAutomations libraryAutomation)
+        {
+            while (true)
+            {
+                LibraryAutomations libraryError = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomation.RootAutomationElements));
+                AutoItX.Sleep(1000);
+                if (libraryError.RootAutomationElements != null)
+                {
+                    SendKeys.SendWait("{ENTER}");
+                    AutoItX.Sleep(500);
                 }
                 break;
             }
