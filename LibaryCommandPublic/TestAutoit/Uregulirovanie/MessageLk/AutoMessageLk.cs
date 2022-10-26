@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Threading;
@@ -337,6 +338,64 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
             });
         }
+        /// <summary>
+        /// Автомат на ветку Налоговое администрирование\Урегулирование задолженности\Техническая корректировка\Техническая корректировка. Ввод заявок
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        /// <param name="pathListStatement">Полный путь к списку с заявлениями о тех корректировки</param>
+        public void TechAdjustmentStatement(StatusButtonMethod statusButton, string pathListStatement)
+        {
+            DispatcherHelper.Initialize();
+            if (File.Exists(pathListStatement))
+            {
+                Task.Run(delegate
+                {
+                    try
+                    {
+                        DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                        KclicerButton clickerButton = new KclicerButton();
+                        LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                        if (ais3.WinexistsAis3() == 1)
+                        {
+                            clickerButton.Click54(statusButton, pathListStatement);
+                            DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                        }
+                        else
+                        {
+                            MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                });
+            }
+        }
+        /// <summary>
+        /// Автомат на ветку Налоговое администрирование\Урегулирование задолженности\Техническая корректировка\Техническая корректировка. Согласование заявок
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        public void TechAdjustmentAgreement(StatusButtonMethod statusButton)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate
+            {
+                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                KclicerButton clickerButton = new KclicerButton();
+                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                if (ais3.WinexistsAis3() == 1)
+                {
+                    clickerButton.Click55(statusButton);
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                }
+                else
+                {
+                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                }
+            });
+        }
+
         /// <summary>
         /// Очистка состояния обработки заявления
         /// </summary>

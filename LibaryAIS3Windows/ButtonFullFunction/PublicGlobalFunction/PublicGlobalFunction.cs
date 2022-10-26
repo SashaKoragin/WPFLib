@@ -76,6 +76,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
             while (true)
             {
                 System.Diagnostics.Process[] processes = System.Diagnostics.Process.GetProcessesByName(name);
+                
                 foreach (var process in processes)
                 {
                     process?.CloseMainWindow();

@@ -6,7 +6,8 @@
     xmlns:datacontext="clr-namespace:AutomatAis3Full.Form.Automat.Analitic.Zadanie.ZacetVozvrat.Signature"
     xmlns:local="clr-namespace:AutomatAis3Full.Form.Automat.Analitic.Zadanie.ZacetVozvrat.Signature"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DataContext="{d:DesignInstance {x:Type datacontext:DataConte}}"
+    xmlns:dataContext="clr-namespace:AutomatAis3Full.Form.Automat.Analitic.Zadanie.ZacetVozvrat.DataContext"
+    d:DataContext="{d:DesignInstance {x:Type dataContext:DataContextSig}}"
     d:DesignHeight="300"
     d:DesignWidth="300"
     mc:Ignorable="d">

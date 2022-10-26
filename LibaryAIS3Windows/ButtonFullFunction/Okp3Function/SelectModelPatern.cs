@@ -67,7 +67,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
             Riborn = "Name:DockTop\\Name:Ribbon\\Name:Документы объекта ПСН\\Name:Документ\\Name:Обновить данные",
             Parameters = new Parameters[]
             {
-                new Parameters() {NameParameters = "РегНомер патента",FindNameMemo = "Name:Значение",FindSelectParameter = "Из перечня",IndexParameters = "25"}
+                new Parameters() {NameParameters = "РегНомер патента",FindNameMemo = "Name:Значение",FindSelectParameter = "Из перечня",IndexParameters = "24"}
             }
         };
 
@@ -191,6 +191,21 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
                 Riborn = "Name:DockTop\\Name:Ribbon\\Name:Журнал учета и формирования документов, связанных с применением ПСН\\Name:Действия\\Name:Сведения по фактическому действию патента",
                 Update = "Name:DockTop\\Name:Ribbon\\Name:Сведения по фактическому действию патента\\Name:Документ\\Name:Обновить данные",
                 Headers = "Сведения по фактическому действию патента"
+            }
+        };
+
+        public DataArea DataAreaTechAdjustmentStatement = new DataArea()
+        {
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TechCorrClaimNavView\\AutomationId:_ControlAndStatisticsView_Fill_Panel\\AutomationId:grpBig\\Name:Редактирование даты заявления по зачетам (возвратам)\\AutomationId:ctlNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TechCorrClaimNavView\\AutomationId:_ControlAndStatisticsView_Fill_Panel\\AutomationId:grpBig\\Name:Редактирование даты заявления по зачетам (возвратам)\\AutomationId:ctlNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+            ListRowDataArea = "Name:List`1 row ",
+            Headers = "Name:Column Headers",
+            Update = "Name:DockTop\\Name:Ribbon\\Name:Создание заявки на техническую корректировку\\Name:Навигатор\\Name:Обновить",
+            Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TechCorrClaimNavView\\AutomationId:_ControlAndStatisticsView_Fill_Panel\\AutomationId:grpBig\\Name:Редактирование даты заявления по зачетам (возвратам)\\AutomationId:ctlNavigator\\AutomationId:tsControlPanel\\Name:Фильтр",
+            Parameters = new Parameters[]
+            {
+                new Parameters() {NameParameters = "Номер заявления", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "2"},
+                new Parameters() {NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "7"},
             }
         };
     }

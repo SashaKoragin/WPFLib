@@ -36,15 +36,15 @@ namespace SqlLibaryIfns.PingIp
         [DllImport("iphlpapi.dll", ExactSpelling = true)]
         public static extern int SendARP(int destIp, int srcIp, [Out] byte[] pMacAddress, ref int phyAddressLen);
         /// <summary>
-        /// Поиcк и отпускания в БД наименования рабочих станций
+        /// Поиск и отпускания в БД наименования рабочих станций
         /// </summary>
-        /// <param name="directoryEntryDomain">Директория</param>
-        /// <param name="pathDomain">путь к домену конечной точки</param>
-        /// <param name="workstation">Рабочие станции</param>
-        public void FindIpHost(string directoryEntryDomain, string pathDomain,string workstation)
+        /// <param name="domain">Центральный домен НО</param>
+        /// <param name="domainIfnsWorkStation">Путь к рабочим станции НО</param>
+        /// <param name="domainIfnsWorkStationFilter">Фильтр имен рабочих станций</param>
+        public void FindIpHost(string domain, string domainIfnsWorkStation, string domainIfnsWorkStationFilter)
         {
-            var directoryEntry = new DirectoryEntry(directoryEntryDomain) {Path = pathDomain };
-            DirectorySearcher searcher = new DirectorySearcher(directoryEntry) {Filter = workstation};
+            var directoryEntry = new DirectoryEntry(domainIfnsWorkStation) {Path = domain };
+            DirectorySearcher searcher = new DirectorySearcher(directoryEntry) {Filter = domainIfnsWorkStationFilter };
             var allHost = searcher.FindAll();
             AddObjectDb add = new AddObjectDb();
             ComputerIpAdressSynhronization synchronization = new ComputerIpAdressSynhronization();

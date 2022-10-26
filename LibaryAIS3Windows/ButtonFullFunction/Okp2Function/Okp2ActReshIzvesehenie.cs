@@ -414,37 +414,63 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                               }
                               if (toggle == "On")
                               {
-                                   while (true)
-                                   {
-                                        if (libraryAutomation.IsEnableElements(JournalSolutionCalculations.RichTextBox) != null)
+                                    AutoItX.Sleep(2000);
+                                    if (libraryAutomation.IsEnableElements(JournalSolutionCalculations.RichTextBox, null, false, 40, 1) != null)
+                                    {
+                                        var declarationMemo = senderSelect.SelectMemoDeclaration(declaration3NdflFl.RegNumDecl);
+                                        stringTemplate.Append(JournalSolutionCalculations.TemplateHead);
+                                        foreach (var memo in declarationMemo.DeclarationMemo)
                                         {
-                                             var declarationMemo = senderSelect.SelectMemoDeclaration(declaration3NdflFl.RegNumDecl);
-                                             stringTemplate.Append(JournalSolutionCalculations.TemplateHead);
-                                             foreach (var memo in declarationMemo.DeclarationMemo)
-                                             {
-                                                  stringTemplate.Append(JournalSolutionCalculations.TemplateData.Replace("{П0020}", memo.П0020)
-                                                      .Replace("{П0148}", memo.П0148 ?? memo.П0417)
-                                                      .Replace("{П0031}", memo.П0031 ?? memo.П0419)
-                                                      .Replace("{П0033}", memo.П0033!=null?Convert.ToDateTime(memo.П0033).ToString("dd.MM.yyyy"):
-                                                                                        memo.П0421!=null? Convert.ToDateTime(memo.П0421).ToString("dd.MM.yyyy"):null)
-                                                      .Replace("{П0425}", memo.П0425!=null?Convert.ToDateTime(memo.П0425).ToString("dd.MM.yyyy"):null)
-                                                      .Replace("{П0010}", memo.П0010 ?? memo.П0430)
-                                                      .Replace("{П0975}", memo.П0975));
-                                             }
-                                             stringTemplate.Append(JournalSolutionCalculations.TemplateStone);
-                                             AutoItX.ClipPut(stringTemplate.ToString());
-                                             libraryAutomation.FindElement.SetFocus();
-                                             SendKeys.SendWait("^v");
-                                             break;
+                                            stringTemplate.Append(JournalSolutionCalculations.TemplateData.Replace("{П0020}", memo.П0020)
+                                                .Replace("{П0148}", memo.П0148 ?? memo.П0417)
+                                                .Replace("{П0031}", memo.П0031 ?? memo.П0419)
+                                                .Replace("{П0033}", memo.П0033!=null?Convert.ToDateTime(memo.П0033).ToString("dd.MM.yyyy"):
+                                                    memo.П0421!=null? Convert.ToDateTime(memo.П0421).ToString("dd.MM.yyyy"):null)
+                                                .Replace("{П0425}", memo.П0425!=null?Convert.ToDateTime(memo.П0425).ToString("dd.MM.yyyy"):null)
+                                                .Replace("{П0010}", memo.П0010 ?? memo.П0430)
+                                                .Replace("{П0975}", memo.П0975));
                                         }
-                                   }
-                                   break;
+                                        stringTemplate.Append(JournalSolutionCalculations.TemplateStone);
+                                        AutoItX.ClipPut(stringTemplate.ToString());
+                                        libraryAutomation.FindElement.SetFocus();
+                                        AutoItX.Send(ButtonConstant.CtrlV);
+                                        break;
+                                    }
+                                    MouseCloseFormRsb(1);
+                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, JournalSolutionCalculations.WinNo);
+                                    while (true)
+                                    {
+                                        if (libraryAutomation.IsEnableElements(JournalSolutionCalculations.EditDelete, null, true) != null)
+                                        {
+                                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, JournalSolutionCalculations.EditDelete);
+                                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, JournalSolutionCalculations.Delete);
+                                        }
+                                        else { break; }
+                                    }
+                                    while (true)
+                                    {
+                                        if (libraryAutomation.IsEnableElements(JournalSolutionCalculations.TrebText, null, true, 1) != null)
+                                        {
+                                            AutoItX.Sleep(1000);
+                                            AutoItX.MouseWheel(ButtonConstant.WheelDown, 20);
+                                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, JournalSolutionCalculations.TrebTextButton);
+                                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, JournalSolutionCalculations.Group2);
+                                            break;
+                                        }
+                                    }
                               }
                          }
                          PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, JournalSolutionCalculations.Save);
                          PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, JournalSolutionCalculations.Utver);
                          ApproveSaveDoc(libraryAutomation, declaration3NdflFl, "Требование успешно выставлено!!!", "Требование");
                          dataBaseAdd.EndSaveDeclaration3Ndfl(ref declaration3NdflFl);
+                         while (true)
+                         {
+                            if (libraryAutomation.IsEnableElements(JournalSolutionCalculations.Group2, null, true) != null)
+                            {
+                                break;
+                            }
+                         }
                          MouseCloseFormRsb(2);  //Закрытие формы 2 раза
                     }
                 }

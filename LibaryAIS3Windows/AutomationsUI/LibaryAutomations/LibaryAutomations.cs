@@ -113,6 +113,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="auto">Поиск по циклу по формуле если нет в корневом элементе то ищем потомка</param>
         /// <param name="isSubtree">Искать в Subtree последний элемент</param>
         /// <param name="isChildren">Искать в Children последний элемент</param>
+        /// <param name="separator">Разделитель имени</param>
         /// <returns></returns>
         public AutomationElement FindFirstElement(string nameAutomationId, AutomationElement auto = null,bool isSubtree=false, bool isChildren = false, char separator = ':')
         {
@@ -120,50 +121,58 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
             FindElement = auto;
             var i = 1;
             foreach (var str in recursion)
-            {
-             try
-             {
-                 Conditions = AddCondition(str, separator);
-                 if (auto == null)
-                 {
-                     FindElement = RootAutomationElements.FindFirst(TreeScope.Children, Conditions);
-                     auto = FindElement;
-                 }
-                 else
-                 {
-                     if(FindElement != null)
-                     {
-                         if (isSubtree)
-                         {
-                             if (recursion.Length == i)
-                             {
-                                 FindElement.SetFocus();
-                                 FindElement = FindElement.FindFirst(TreeScope.Subtree, Conditions);
-                                 return FindElement;
-                             }
-                         }
-                         if (isChildren)
-                         {
-                             if (recursion.Length == i)
-                             {
-                                 FindElement.SetFocus();
-                                 FindElement = FindElement.FindFirst(TreeScope.Children, Conditions);
-                                 return FindElement;
-                             }
-                         }                            
-                         FindElement = FindElement.FindFirst(TreeScope.Children, Conditions) ?? FindElement.FindFirst(TreeScope.Subtree, Conditions);
-                     }
-                     else
-                     {
-                         return null;
-                     }
-                 }
-                 i++;
-             }
-             catch
-             {
-                 return null;
-             }
+            { 
+                try
+                {
+                    Conditions = AddCondition(str, separator);
+                    if (auto == null)
+                    {
+                        FindElement = RootAutomationElements.FindFirst(TreeScope.Children, Conditions);
+                        auto = FindElement;
+                    }
+                    else
+                    {
+                        if(FindElement != null)
+                        {
+                            if (isSubtree)
+                            {
+                                if (recursion.Length == i)
+                                {
+                                    try { FindElement.SetFocus(); } //Исправление от 01.08.2022
+                                    catch
+                                    {
+                                        // ignored
+                                    }
+                                    FindElement = FindElement.FindFirst(TreeScope.Subtree, Conditions);
+                                    return FindElement;
+                                }
+                            }
+                            if (isChildren)
+                            {
+                                if (recursion.Length == i)
+                                {
+                                    try { FindElement.SetFocus(); } //Исправление от 01.08.2022
+                                    catch
+                                    {
+                                        // ignored
+                                    }
+                                    FindElement = FindElement.FindFirst(TreeScope.Children, Conditions);
+                                    return FindElement;
+                                }
+                            }                            
+                            FindElement = FindElement.FindFirst(TreeScope.Children, Conditions) ?? FindElement.FindFirst(TreeScope.Subtree, Conditions);
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                    i++;
+                }
+                catch
+                {
+                    return null;
+                }
             }
             return FindElement;
         }
@@ -259,11 +268,23 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         {
             var pattern = element.GetCurrentPattern(SelectionPatternIdentifiers.Pattern);
             var select = (SelectionPattern)pattern;
+            
             if (select.Current.GetSelection().Count() > 0)
             {
                 return select.Current.GetSelection()[0].Current.Name;
             }
             return "";
+        }
+
+        /// <summary>
+        /// Проверка элемента на выбор
+        /// </summary>
+        /// <param name="element">Элемент проверка на выбор</param>
+        public void SelectionComboBoxSelectionItemPattern(AutomationElement element)
+        {
+            var t = element.GetCurrentPattern(SelectionItemPattern.Pattern);
+            var valueAuto = (SelectionItemPattern)t;
+            valueAuto.Select();
         }
 
         /// <summary>

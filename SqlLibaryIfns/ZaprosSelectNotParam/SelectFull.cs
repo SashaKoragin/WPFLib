@@ -208,22 +208,26 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
             }
         }
         /// <summary>
-        /// Запрос на выгрузку данных в таблицу XLSX по заданной выборки View
+        /// Возможно замена функции GenerateStreamToSqlViewFile но нужно думать
         /// </summary>
-        /// <param name="sqlSelect">Sql запрос</param>
-        /// <param name="nameFile">Наименование файла</param>
-        /// <param name="nameReport">Наименование отчета</param>
-        /// <param name="pathSaveReport">Путь сохранения отчета</param>
+        /// <param name="selectLogic">Логика выборки</param>
+        /// <param name="pathSaveReport">Путь сохранения</param>
         /// <returns></returns>
-        public Stream GenerateStreamToSqlViewFile(string sqlSelect, string nameFile, string nameReport, string pathSaveReport)
+        public Stream GenerateStreamToSqlViewFile(LogicaSelect selectLogic, string pathSaveReport)
         {
             var sqlConnect = new SqlConnectionType();
             var xlsx = new ReportExcel();
-            var tableTelephone = sqlConnect.ReportQbe(ConnectionString, sqlSelect);
-            xlsx.ReportSave(pathSaveReport, nameFile, nameReport, tableTelephone);
-            return xlsx.DownloadFile(Path.Combine(pathSaveReport, $"{nameFile}.xlsx"));
+            var i = 0;
+            var columnsName = selectLogic.NameReportList.Split(';');
+            var reportDataSet = sqlConnect.ReportQbe(ConnectionString, selectLogic.SelectUser);
+            foreach (DataTable dataTable in reportDataSet.Tables)
+            {
+                dataTable.TableName = columnsName[i];
+                i++;
+            }
+            xlsx.ReportSaveFullReport(pathSaveReport,selectLogic.NameReportFile,reportDataSet);
+            return xlsx.DownloadFile(Path.Combine(pathSaveReport, $"{selectLogic.NameReportFile}.xlsx"));
         }
-
 
         /// <summary>
         /// Выгрузка сводной таблицы по покупкам из таблицы ReportXlsx

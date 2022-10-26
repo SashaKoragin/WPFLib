@@ -21,6 +21,9 @@
 			<xs:documentation>Модель пользователей Лотус</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="MemberOfGroup" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
 			<xs:attribute name="SystemDataBase" type="xs:string" use="required">
 				<xs:annotation>
 					<xs:documentation>Системе пользователей из какой системы</xs:documentation>
@@ -66,29 +69,42 @@
 					<xs:documentation>Чин</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="Telephon" type="xs:string" use="optional">
+			<xs:attribute name="PhoneNumber" type="xs:string" use="required">
 				<xs:annotation>
 					<xs:documentation>Телефон</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="NameMail" type="xs:string" use="optional">
+			<xs:attribute name="TypePhone" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Типы телефонов</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameMail" type="xs:string" use="required">
 				<xs:annotation>
 					<xs:documentation>Наименование почты</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="Room" type="xs:string" use="optional">
+			<xs:attribute name="Room" type="xs:string" use="required">
 				<xs:annotation>
 					<xs:documentation>Комната</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="UserAccountControl" type="xs:int" use="optional">
+			<xs:attribute name="UserAccountControl" type="xs:int" use="required">
 				<xs:annotation>
 					<xs:documentation>Контроль аккаунта</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
-			<xs:attribute name="GroupName" type="xs:string" use="optional">
+			<xs:attribute name="GroupName" use="required">
 				<xs:annotation>
 					<xs:documentation>Наименование группы</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="DistingUishedName" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Атрибут для поиска компьютеров кем управляется</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
@@ -153,6 +169,18 @@
 			<xs:attribute name="ControlledGroup" type="xs:string" use="required">
 				<xs:annotation>
 					<xs:documentation>Управляется группа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MemberOfGroup" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Группы в которых находятся пользователи</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="NameGroup" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Наименование группы</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>

@@ -50,6 +50,7 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<CashUlFace> CashUlFaces { get; set; } // CashUlFace
         System.Data.Entity.DbSet<CounterpartyCashBank> CounterpartyCashBanks { get; set; } // CounterpartyCashBank
         System.Data.Entity.DbSet<DataAreaParameter> DataAreaParameters { get; set; } // DataAreaParameters
+        System.Data.Entity.DbSet<Declaration3Ndfl> Declaration3Ndfl { get; set; } // Declaration3Ndfl
         System.Data.Entity.DbSet<Declaration3NdflFl> Declaration3NdflFl { get; set; } // Declaration3NdflFl
         System.Data.Entity.DbSet<DeclarationAll> DeclarationAlls { get; set; } // DeclarationAll
         System.Data.Entity.DbSet<DeclarationData> DeclarationDatas { get; set; } // DeclarationData
@@ -168,6 +169,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<CashUlFace> CashUlFaces { get; set; } // CashUlFace
         public System.Data.Entity.DbSet<CounterpartyCashBank> CounterpartyCashBanks { get; set; } // CounterpartyCashBank
         public System.Data.Entity.DbSet<DataAreaParameter> DataAreaParameters { get; set; } // DataAreaParameters
+        public System.Data.Entity.DbSet<Declaration3Ndfl> Declaration3Ndfl { get; set; } // Declaration3Ndfl
         public System.Data.Entity.DbSet<Declaration3NdflFl> Declaration3NdflFl { get; set; } // Declaration3NdflFl
         public System.Data.Entity.DbSet<DeclarationAll> DeclarationAlls { get; set; } // DeclarationAll
         public System.Data.Entity.DbSet<DeclarationData> DeclarationDatas { get; set; } // DeclarationData
@@ -313,6 +315,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new CashUlFaceConfiguration());
             modelBuilder.Configurations.Add(new CounterpartyCashBankConfiguration());
             modelBuilder.Configurations.Add(new DataAreaParameterConfiguration());
+            modelBuilder.Configurations.Add(new Declaration3NdflConfiguration());
             modelBuilder.Configurations.Add(new Declaration3NdflFlConfiguration());
             modelBuilder.Configurations.Add(new DeclarationAllConfiguration());
             modelBuilder.Configurations.Add(new DeclarationDataConfiguration());
@@ -413,6 +416,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new CashUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new CounterpartyCashBankConfiguration(schema));
             modelBuilder.Configurations.Add(new DataAreaParameterConfiguration(schema));
+            modelBuilder.Configurations.Add(new Declaration3NdflConfiguration(schema));
             modelBuilder.Configurations.Add(new Declaration3NdflFlConfiguration(schema));
             modelBuilder.Configurations.Add(new DeclarationAllConfiguration(schema));
             modelBuilder.Configurations.Add(new DeclarationDataConfiguration(schema));
@@ -969,6 +973,32 @@ namespace EfDatabaseAutomation.Automation.Base
         {
             DataCreate = System.DateTime.Now;
         }
+    }
+
+    // Declaration3Ndfl
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class Declaration3Ndfl
+    {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
+        public int Id { get; set; } // Id (Primary key)
+        public long RegNumDecl { get; set; } // RegNumDecl (Primary key)
+        public string NameDocument { get; set; } // NameDocument (length: 1024)
+        public long IdObject { get; set; } // IdObject (Primary key)
+        public string NameNp { get; set; } // NameNp (length: 256)
+        public string InnNp { get; set; } // InnNp (length: 12)
+        public int? God { get; set; } // God
+        public double? SummR { get; set; } // SummR
+        public double? SummP { get; set; } // SummP
+        public double? SummV { get; set; } // SummV
+        public double? SummPv { get; set; } // SummPV
+        public double? SummI { get; set; } // SummI
+        public bool? IsTks { get; set; } // IsTks
+        public bool? IsMail { get; set; } // IsMail
+        public bool? IsLk3 { get; set; } // IsLk3
+        public string TypeDocument { get; set; } // TypeDocument (length: 128)
+        public string MessageInfo { get; set; } // MessageInfo (length: 512)
+        public string LoginUser { get; set; } // LoginUser (length: 1024)
+        public string Extensions { get; set; } // Extensions (length: 10)
     }
 
     // Declaration3NdflFl
@@ -3833,6 +3863,43 @@ namespace EfDatabaseAutomation.Automation.Base
 
             // Foreign keys
             HasOptional(a => a.TreeDataArea).WithMany(b => b.DataAreaParameters).HasForeignKey(c => c.IdDataArea).WillCascadeOnDelete(false); // FK_TreeDataArea_DataAreaParameters
+        }
+    }
+
+    // Declaration3Ndfl
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class Declaration3NdflConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Declaration3Ndfl>
+    {
+        public Declaration3NdflConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public Declaration3NdflConfiguration(string schema)
+        {
+            ToTable("Declaration3Ndfl", schema);
+            HasKey(x => new { x.LogicsButton, x.Id, x.RegNumDecl, x.IdObject });
+
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.RegNumDecl).HasColumnName(@"RegNumDecl").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.NameDocument).HasColumnName(@"NameDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.IdObject).HasColumnName(@"IdObject").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.NameNp).HasColumnName(@"NameNp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.InnNp).HasColumnName(@"InnNp").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.God).HasColumnName(@"God").HasColumnType("int").IsOptional();
+            Property(x => x.SummR).HasColumnName(@"SummR").HasColumnType("float").IsOptional();
+            Property(x => x.SummP).HasColumnName(@"SummP").HasColumnType("float").IsOptional();
+            Property(x => x.SummV).HasColumnName(@"SummV").HasColumnType("float").IsOptional();
+            Property(x => x.SummPv).HasColumnName(@"SummPV").HasColumnType("float").IsOptional();
+            Property(x => x.SummI).HasColumnName(@"SummI").HasColumnType("float").IsOptional();
+            Property(x => x.IsTks).HasColumnName(@"IsTks").HasColumnType("bit").IsOptional();
+            Property(x => x.IsMail).HasColumnName(@"IsMail").HasColumnType("bit").IsOptional();
+            Property(x => x.IsLk3).HasColumnName(@"IsLk3").HasColumnType("bit").IsOptional();
+            Property(x => x.TypeDocument).HasColumnName(@"TypeDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.MessageInfo).HasColumnName(@"MessageInfo").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.LoginUser).HasColumnName(@"LoginUser").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.Extensions).HasColumnName(@"Extensions").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(10);
         }
     }
 
