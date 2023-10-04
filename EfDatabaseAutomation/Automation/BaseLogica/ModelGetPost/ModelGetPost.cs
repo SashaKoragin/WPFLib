@@ -136,6 +136,39 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost
                 Loggers.Log4NetLogger.Error(ex);
             }
         }
+        /// <summary>
+        /// Добавление ИНН в БД для отработки сообщений
+        /// </summary>
+        /// <param name="templateInnPattern">Шаблон ИНН</param>
+        /// <param name="userIdGuid">GUID Пользователя</param>
+        /// <returns></returns>
+        public void AddRegistryReference(TemplateInnPattern templateInnPattern, string userIdGuid)
+        {
+            try
+            {
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 36);
+                if (logicModel != null)
+                {
+                    EventSqlEf.EventSqlEf eventMessage = new EventSqlEf.EventSqlEf() { UserNameGuid = userIdGuid };
+                    var con = (SqlConnection)Automation.Database.Connection;
+                    con.FireInfoMessageEventOnUserErrors = true;
+                    Automation.Database.CommandTimeout = 120000;
+                    con.InfoMessage += eventMessage.Con_InfoMessageSignalR;
+                    Automation.Database.ExecuteSqlCommand(logicModel.SelectUser,
+                        new SqlParameter
+                        {
+                            ParameterName = logicModel.SelectedParametr.Split(',')[0],
+                            Value = CreteParameterTableSql(templateInnPattern.Inn, "Inn", typeof(string)),
+                            TypeName = "dbo.ListInn",
+                            SqlDbType = SqlDbType.Structured
+                        });
+                }
+            }
+            catch (Exception ex)
+            {
+                Loggers.Log4NetLogger.Error(ex);
+            }
+        }
 
         /// <summary>
         /// Выгрузка всех шаблонов в БД

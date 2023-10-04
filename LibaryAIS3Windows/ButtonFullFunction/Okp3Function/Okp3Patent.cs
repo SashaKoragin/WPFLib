@@ -13,8 +13,6 @@ using LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction;
 using LibraryAIS3Windows.ButtonsClikcs;
 using LibraryAIS3Windows.Window;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
-using ViewModelLib.ModelTestAutoit.PublicModel.DataPickerItRule;
-using ViewModelLib.ModelTestAutoit.PublicModel.QbeSelect;
 
 namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
 {
@@ -23,7 +21,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
         /// <summary>
         /// Ветка мои роли
         /// </summary>
-        private string modelTreePatent =  "Налоговое администрирование\\Контрольная работа (налоговые проверки)\\203. Применение патентной системы налогообложения\\03. Журнал учета и формирования документов, связанных с применением ПСН";
+        private string _modelTreePatent =  "Налоговое администрирование\\Контрольная работа (налоговые проверки)\\203. Применение патентной системы налогообложения\\03. Журнал учета и формирования документов, связанных с применением ПСН";
 
         /// <summary>
         /// Сбор информации по СПН
@@ -34,9 +32,9 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
         {
             LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
             var parametersModel = new ModelDataArea();
-            if (!libraryAutomation.IsEnableExpandTree(modelTreePatent)) return;
+            if (!libraryAutomation.IsEnableExpandTree(_modelTreePatent)) return;
             DataBaseElementAdd dataBaseAdd = new DataBaseElementAdd();
-            var sw = modelTreePatent.Split('\\').Last();
+            var sw = _modelTreePatent.Split('\\').Last();
             var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
             libraryAutomation.FindFirstElement(fullTree, null, true);
             libraryAutomation.FindElement.SetFocus();

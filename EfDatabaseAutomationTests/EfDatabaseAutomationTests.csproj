@@ -62,6 +62,10 @@
     <Compile Include="TestDataBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\My\EfDatabase\EfDatabase.csproj">
+      <Project>{578CF45E-310B-4E2E-9C94-5A9F16B736AE}</Project>
+      <Name>EfDatabase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\My\LibaryDocumentGenerator\LibaryDocumentGenerator.csproj">
       <Project>{939B256E-591B-40CC-8097-5D34456404CD}</Project>
       <Name>LibaryDocumentGenerator</Name>

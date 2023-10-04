@@ -853,6 +853,11 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                 var selectPatent = (from Patent in Automation.Patents where Patent.RegNumInfo == p.RegNumInfo && Patent.RegNumPatent == p.RegNumPatent select new { Patents = Patent }).FirstOrDefault();
                 patent.IdFl = selectFace.FlFaceMains.IdFl;
                 patent.IdPatent = selectPatent.Patents.IdPatent;
+                using (var contextUpdate = new Base.Automation())
+                {
+                    contextUpdate.Entry<Patent>(patent).State = EntityState.Modified;
+                    contextUpdate.SaveChanges();
+                }
             }
             return Automation.IsPatentParses.First(x => x.RegNumPatent == p.RegNumPatent);
         }
@@ -1094,6 +1099,61 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             else
             {
                 Automation.Entry(declaration3Ndfl).State = EntityState.Modified;
+                Automation.SaveChanges();
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="flFace">Налогоплательщик</param>
+        /// <param name="factOfOwner">Факт владения</param>
+        /// <param name="documentOwnerFace">Документы факта владения</param>
+        public void SaveFactOwnerAllDocument(FlFace flFace, FactOfOwnershipImZmTrFl factOfOwner, ArrayBodyDoc documentOwnerFace)
+        {
+            var flSelect = from flFaces in Automation.FlFaces
+                           where flFaces.Inn == flFace.Inn
+                           select new { FlFaces = flFaces };
+            flFace.IdFl = flSelect.FirstOrDefault() != null ? flSelect.FirstOrDefault().FlFaces.IdFl : 0;
+            using (var context = new Base.Automation())
+            {
+                if (!flSelect.Any()) { context.FlFaces.Add(flFace); } else { context.Entry(flFace).State = EntityState.Modified; }
+                context.SaveChanges();
+            }
+            factOfOwner.IdFl = flFace.IdFl;
+            SaveFactOwner(ref factOfOwner, factOfOwner.FidObject);
+            if (documentOwnerFace != null)
+            {
+                //Удаляем старые записи по выписке заполняем новыми
+                using (var contextDelete = new Base.Automation())
+                {
+                    contextDelete.Database.CommandTimeout = 120000;
+                    contextDelete.Database.ExecuteSqlCommand("Delete From DocumentOwnershipImZmTrFl Where FidObject = " + factOfOwner.FidObject);
+                }
+                XmlReadOrWrite xml = new XmlReadOrWrite();
+                var xsdFile = $"{ConfigurationManager.AppSettings["PathXsdScheme"]}XsdAllBodyData.xsd";
+                var xmlFile = $"{ConfigurationManager.AppSettings["PathDownloadTempXml"]}DeclarationDataAll.xml";
+                xml.CreateXmlFile(xmlFile, documentOwnerFace, typeof(ArrayBodyDoc));
+                BulkInsertIntoDb(xsdFile, xmlFile);
+            }
+
+        }
+        /// <summary>
+        /// Поиск и обновление данных о факте владения
+        /// </summary>
+        /// <param name="factOfOwner">Факт владения</param>
+        /// <param name="fidFidObject">Фид факта владения</param>
+        private void SaveFactOwner(ref FactOfOwnershipImZmTrFl factOfOwner, long fidFidObject)
+        {
+            if (!(from factOfOwnershipImZmTrFls in Automation.FactOfOwnershipImZmTrFls
+                  where factOfOwnershipImZmTrFls.FidObject == fidFidObject
+                  select new { FactOfOwnershipImZmTrFls = factOfOwnershipImZmTrFls }).Any())
+            {
+                Automation.FactOfOwnershipImZmTrFls.Add(factOfOwner);
+                Automation.SaveChanges();
+            }
+            else
+            {
+                Automation.Entry(factOfOwner).State = EntityState.Modified;
                 Automation.SaveChanges();
             }
         }

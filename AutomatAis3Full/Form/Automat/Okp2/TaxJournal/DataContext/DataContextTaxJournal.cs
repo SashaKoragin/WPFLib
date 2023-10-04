@@ -21,10 +21,7 @@ namespace AutomatAis3Full.Form.Automat.Okp2.TaxJournal.DataContext
             var command = new LibraryCommandPublic.TestAutoit.Okp2.TaxJournal();
             DownloadPrintDb = new DownloadPrintDb();
             StartButton = new StatusButtonMethod();
-            StartButton.Button.Command = new DelegateCommand(() => { 
-                command.StartTaxJournal(StartButton, ConfigFile.PathTemp, DatePicker); 
-            }); 
-          
+            StartButton.Button.Command = new DelegateCommand(() => { command.StartTaxJournal(StartButton, ConfigFile.PathTemp, DatePicker); });
             PrintFile = new DelegateCommand(() => { command.PrintFiles(DownloadPrintDb); });
         }
     }

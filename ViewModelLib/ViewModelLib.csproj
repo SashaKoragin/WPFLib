@@ -121,6 +121,7 @@
     <Compile Include="ModelTestAutoit\ModelFormirovanie\CheckBoxModel\CheckBoxModel.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\DonloadPrintDb\DonloadPrintDb.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\ListViewModelXml\ListViewModelXmlFileGenerateProperty.cs" />
+    <Compile Include="ModelTestAutoit\ModelFormirovanie\ListYearReport\ListYearReport.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\PdfModelPrint\PdfModelPrint.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\ShemeXsd\ShemeProperty.cs" />
     <Compile Include="ModelTestAutoit\ModelFormirovanie\StackPanelModel\ShemeSnuOneForm\ModelSnuOneFormNameListProperty.cs" />

@@ -93,7 +93,16 @@ namespace LibraryAIS3Windows.XlsxToDataTable
                                             }
                                             else
                                             {
-                                                dr[Convert.ToInt32(j)] = result.ToString();
+                                                isValid = DateTime.TryParseExact(isDate, "dd.MM.yyyy H:mm:ss", new CultureInfo("en-US"), DateTimeStyles.AssumeLocal, out dateTime);
+                                                if (isValid)
+                                                {
+                                                    dr[Convert.ToInt32(j)] = dateTime;
+                                                }
+                                                else
+                                                {
+                                                    dr[Convert.ToInt32(j)] = result.ToString();
+                                                }
+
                                             }
                                         }
                                     }

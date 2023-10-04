@@ -116,5 +116,26 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
             });
             return JsonConvert.DeserializeObject<T>(result);
         }
+        /// <summary>
+        /// Десериализация Json Класс
+        /// </summary>
+        /// <param name="result">JSON</param>
+        /// <returns></returns>
+        public T JsonDeserializeObjectClassModel<T>(string result)
+        {
+            List<string> errors = new List<string>();
+           return JsonConvert.DeserializeObject<T>(result, new JsonSerializerSettings()
+            {
+                Error = delegate (object sender, ErrorEventArgs arg)
+                {
+                    errors.Add(arg.ErrorContext.Error.Message);
+                    arg.ErrorContext.Handled = true;
+                },
+                NullValueHandling = NullValueHandling.Ignore,
+                DateFormatString = "dd.MM.yyyy HH:mm"
+            });
+          //  return JsonConvert.DeserializeObject<T>(result);
+        }
+
     }
 }

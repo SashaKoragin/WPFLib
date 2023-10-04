@@ -43,7 +43,19 @@ namespace SqlLibaryIfns.ExcelReport.Report
                 }
                 else
                 {
-                    XlWorkbook.Worksheets.Add(tableReportTable.TableName).Cell("A1").InsertTable(tableReportTable).Worksheet.Columns().AdjustToContents();
+                    try
+                    {
+                        XlWorkbook.Worksheets.Add(tableReportTable.TableName).Cell("A1").InsertTable(tableReportTable).Worksheet.Columns().AdjustToContents();
+                    }
+                    catch(Exception ex)
+                    {
+                        if (XlWorkbook.Worksheets.Count > 0)
+                        {
+                            XlWorkbook.Worksheets.Delete(tableReportTable.TableName);
+                        }
+                        XlWorkbook.Worksheets.Add("Ошибка выгрузки").Cell("A1").Value = "Файл слишком большой превышает возможности Excel!!!";
+                        XlWorkbook.Worksheets.Worksheet("Ошибка выгрузки").Cell("A2").Value = ex.Message;
+                    }
                 }
             }
             SaveAsFileXlsx(pathSave + nameSaveFile + ".xlsx");

@@ -20,6 +20,7 @@ using ServiceWcf = LibaryXMLAutoModelServiceWcfCommand.TestIfnsService.ServiceWc
 using LogicaSelect = EfDatabaseParametrsModel.LogicaSelect;
 using Mail = LibaryXMLAutoModelXmlSql.Model.ModelMail.Mail;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll;
+using EfDatabaseAutomation.Automation.SelectParametrSheme;
 
 namespace SqlLibaryIfns.ZaprosSelectNotParam
 {
@@ -208,13 +209,14 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
             }
         }
         /// <summary>
-        /// Возможно замена функции GenerateStreamToSqlViewFile но нужно думать
+        /// Функция вытягивания отчета из Инвентаризации по модели  LogicaSelect
         /// </summary>
         /// <param name="selectLogic">Логика выборки</param>
         /// <param name="pathSaveReport">Путь сохранения</param>
         /// <returns></returns>
         public Stream GenerateStreamToSqlViewFile(LogicaSelect selectLogic, string pathSaveReport)
         {
+           
             var sqlConnect = new SqlConnectionType();
             var xlsx = new ReportExcel();
             var i = 0;
@@ -226,7 +228,35 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                 i++;
             }
             xlsx.ReportSaveFullReport(pathSaveReport,selectLogic.NameReportFile,reportDataSet);
+            xlsx.Dispose();
             return xlsx.DownloadFile(Path.Combine(pathSaveReport, $"{selectLogic.NameReportFile}.xlsx"));
+        }
+
+        /// <summary>
+        /// Функция вытягивания отчета из Автоматизации по модели  LogicsSelectAutomation
+        /// </summary>
+        /// <param name="sqlSelect">Логика выборки</param>
+        /// <param name="pathSaveReport">Путь сохранения</param>
+        /// <returns></returns>
+        public Stream GenerateStreamToSqlViewFileAutomation(LogicsSelectAutomation sqlSelect, string pathSaveReport)
+        {
+
+            var sqlConnect = new SqlConnectionType();
+            var xlsx = new ReportExcel();
+            var i = 0;
+            string[] columnsName;
+            string nameReportFile;
+            columnsName = string.IsNullOrWhiteSpace(sqlSelect.NameReportList) ? new []{ "Отчет" } : sqlSelect.NameReportList.Split(';');
+            nameReportFile = string.IsNullOrWhiteSpace(sqlSelect.NameReportFile) ? "Выгрузка"  : sqlSelect.NameReportFile;
+            var reportDataSet = sqlConnect.ReportQbe(ConnectionString, sqlSelect.SelectUser);
+            foreach (DataTable dataTable in reportDataSet.Tables)
+            {
+                dataTable.TableName = columnsName[i];
+                i++;
+            }
+            xlsx.ReportSaveFullReport(pathSaveReport, nameReportFile, reportDataSet);
+            xlsx.Dispose();
+            return xlsx.DownloadFile(Path.Combine(pathSaveReport, $"{nameReportFile}.xlsx"));
         }
 
         /// <summary>

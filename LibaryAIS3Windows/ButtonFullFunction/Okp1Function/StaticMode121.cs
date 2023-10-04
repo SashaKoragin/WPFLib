@@ -25,7 +25,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
         /// <summary>
         /// Data Area НБО
         /// </summary>
-        private static string TreeDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridConditions\\Name:List`1 row ";
+        private static string TreeDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridConditions\\Name:List`1 row ";
         /// <summary>
         /// Обновить документы
         /// </summary>
@@ -33,7 +33,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
         /// <summary>
         /// Полный путь к Grid
         /// </summary>
-        private static string FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData";
+        private static string FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData";
 
         private static string TreeExport = "Name:DockTop\\Name:Ribbon\\Name:Работа с налоговым документом\\Name:Документ\\Name:Экспорт в Excel";
         /// <summary>
@@ -44,7 +44,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
         public void StaticMode1Nk1151001And1151006(LibraryAutomations libraryAutomation, AutomationElement[] listDocError)
         {
             LibraryAutomations libraryAutomationDoc = new LibraryAutomations(WindowsAis3.AisNalog3);
-            var numHelp = new[] {"3","6","9"};
+            var numHelp = new[] { "3", "6", "9" };
             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ModeStatic);
             AutoItX.Send(ButtonConstant.Tab);
             AutoItX.Send(ButtonConstant.Enter);
@@ -58,10 +58,10 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                                      libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(
                                        libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>()
                                            .First(elem => elem.Current.Name.Contains("Выбрать"))) == "True");
-                    var isNum = listModeDocument.FirstOrDefault(doc =>  numHelp.Any(num =>num.Equals(
-                                                              libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(
-                                                              libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>()
-                                                              .First(elem => elem.Current.Name.Contains("Ун записи"))))));
+                    var isNum = listModeDocument.FirstOrDefault(doc => numHelp.Any(num => num.Equals(
+                                                             libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(
+                                                             libraryAutomationDoc.SelectAutomationColrction(doc).Cast<AutomationElement>()
+                                                             .First(elem => elem.Current.Name.Contains("Ун записи"))))));
                     var idObject = libraryAutomationDoc.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindFirstElement("Name:Ун записи", isNum, true));
                     if (isCheck == null)
                     {
@@ -110,6 +110,14 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                 }
                 var win = new WindowsAis3();
                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                while (true)
+                {
+                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.YesClosed, null, true) != null)
+                    {
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.YesClosed);
+                        break;
+                    }
+                }
                 if (sum == (decimal)0.00)
                 {
                     libraryAutomation.ClickElements(Journal129AndJournal121.UpdateData121);
@@ -127,7 +135,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                                libraryAutomation.IsEnableElements(
                                    string.Concat(Journal129AndJournal121.AllTaxJournal121, rowNumber), null, true, 30)) != null)
                     {
-                        ParseDeclaration(libraryAutomation, automationElement,ref taxJournal);
+                        ParseDeclaration(libraryAutomation, automationElement, ref taxJournal);
                         if (taxJournal.Color5 != "ff")
                         {
                             IsStartIsOpenKm(libraryAutomation, taxJournal);
@@ -139,16 +147,14 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                                 AutoItX.WinWait(Journal129AndJournal121.WinPriznakDecl);
                                 AutoItX.WinActivate(Journal129AndJournal121.WinPriznakDecl);
                                 libraryAutomationWin = new LibraryAutomations(Journal129AndJournal121.WinPriznakDecl);
-                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin,
-                                    Journal129AndJournal121.PriznComboBox);
-                                var memo = libraryAutomationWin.SelectAutomationColrction(
-                                    libraryAutomationWin.FindFirstElement(Journal129AndJournal121.PanelComboBox));
-                                var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x =>
-                                    x.Current.Name ==
-                                    "учтены результаты КНП (с учетом решений ВНО и судов)  по предыдущей декларации");
-                                libraryAutomationWin.ClickElement(elemClick);
-                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin,
-                                    Journal129AndJournal121.PriznakOk);
+                                if (libraryAutomationWin.IsEnableElements(Journal129AndJournal121.PriznComboBox, null) != null)
+                                {
+                                    libraryAutomationWin.ClickElement(libraryAutomationWin.FindElement, 280);
+                                    var memo = libraryAutomationWin.SelectAutomationColrction(libraryAutomationWin.FindElement);
+                                    var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == "учтены результаты КНП (с учетом решений ВНО и судов)  по предыдущей декларации");
+                                    libraryAutomationWin.SelectionComboBoxSelectionItemPattern(elemClick);
+                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin, Journal129AndJournal121.PriznakOk);
+                                }
                                 //Написать алгоритм для таких
                             }
                             if (taxJournal.DateCloseValidation == null && taxJournal.Color5 == "ffffff")
@@ -159,7 +165,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                                 AutoItX.WinWait(Journal129AndJournal121.WinNameComplex);
                                 AutoItX.WinActivate(Journal129AndJournal121.WinNameComplex);
                                 libraryAutomationWin = new LibraryAutomations(Journal129AndJournal121.WinNameComplex);
-                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin,  Journal129AndJournal121.WinOkCloseComplex);
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin, Journal129AndJournal121.WinOkCloseComplex);
                                 AutoItX.Sleep(1000);
                                 taxJournal.MessageInfoR1 = "Нарушения не выявлены";
                             }
@@ -169,6 +175,14 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                                 win = new WindowsAis3();
                                 AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
                                 AutoItX.Sleep(1000);
+                                while (true)
+                                {
+                                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.YesClosed, null, true) != null)
+                                    {
+                                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.YesClosed);
+                                        break;
+                                    }
+                                }
                                 taxJournal.MessageInfoR1 = "Выявлены нарушения";
                             }
                         }
@@ -191,6 +205,71 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                 MessageBox.Show("Нет доступа к ветке " + Tree);
             }
         }
+
+        /// <summary>
+        /// Функция проверки декларации на нарушения и проставления нарушения
+        /// </summary>
+        /// <param name="libraryAutomation">Библиотека автоматизации</param>
+        /// <param name="taxJournal">Журнал для проверок деклараций на наличие нарушений</param>
+        public void IsErrorDeclaration1151100(LibraryAutomations libraryAutomation, TaxJournal121Error taxJournal)
+        {
+            if (taxJournal.Color5 == "ff" || taxJournal.Color5 == "ffffff")
+            {
+                IsStartIsOpenKm(libraryAutomation, taxJournal);
+                IsExistsErrorWinInfo(libraryAutomation);
+                LibraryAutomations libraryAutomationWin;
+                if (taxJournal.KorrectNumber != 0)
+                {
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.PriznakDecl);
+                    AutoItX.WinWait(Journal129AndJournal121.WinPriznakDecl);
+                    AutoItX.WinActivate(Journal129AndJournal121.WinPriznakDecl);
+                    libraryAutomationWin = new LibraryAutomations(Journal129AndJournal121.WinPriznakDecl);
+                    if (libraryAutomationWin.IsEnableElements(Journal129AndJournal121.PriznComboBox, null) != null)
+                    {
+                        libraryAutomationWin.ClickElement(libraryAutomationWin.FindElement, 275);
+                        var memo = libraryAutomationWin.SelectAutomationColrction(libraryAutomationWin.FindElement);
+                        var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == "не учтены результаты проверок по предыдущей декларации");
+                        libraryAutomationWin.SelectionComboBoxSelectionItemPattern(elemClick);
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin, Journal129AndJournal121.PriznakOk);
+                    }
+                    //Написать алгоритм для таких
+                }
+                if (taxJournal.DateCloseValidation == null && taxJournal.Color5 == "ffffff")
+                {
+                    //Открыть или начать Проверку
+                    DialogKnp(libraryAutomation, "Нарушения не выявлены");
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex121);
+                    AutoItX.WinWait(Journal129AndJournal121.WinNameComplex);
+                    AutoItX.WinActivate(Journal129AndJournal121.WinNameComplex);
+                    libraryAutomationWin = new LibraryAutomations(Journal129AndJournal121.WinNameComplex);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin, Journal129AndJournal121.WinOkCloseComplex);
+                    AutoItX.Sleep(1000);
+                    taxJournal.MessageInfoR1 = "Нарушения не выявлены";
+                }
+                else if (taxJournal.DateCloseValidation == null && taxJournal.Color5 != "ffffff")
+                {
+                    DialogKnp(libraryAutomation, "Выявлены нарушения");
+                    var win = new WindowsAis3();
+                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                    AutoItX.Sleep(1000);
+                    while (true)
+                    {
+                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.YesClosed, null, true) != null)
+                        {
+                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.YesClosed);
+                            break;
+                        }
+                    }
+                    taxJournal.MessageInfoR1 = "Выявлены нарушения";
+                }
+            }
+            else
+            {
+                taxJournal.MessageError = "Статус документа не позволяет проставить выявление нарушения!";
+            }
+            SaveDocument(taxJournal);
+        }
+
 
         /// <summary>
         /// Метод закрытия комплекса мероприятий КНП 1151020

@@ -57,7 +57,7 @@
             IsLeftDrawerOpen="{Binding FullWindow.IsCheck}">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel>
-                    <ScrollViewer PreviewMouseWheel="UIElement_OnMouseWheel" VerticalScrollBarVisibility="Auto" CanContentScroll="False" DockPanel.Dock="Right">
+                    <ScrollViewer PreviewMouseWheel="UIElement_OnMouseWheel" VerticalScrollBarVisibility="Auto"  CanContentScroll="False" DockPanel.Dock="Right" Height="Auto">
                             <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DockPanel.Dock="Left">
                                 <ToggleButton
                                 Margin="16"
@@ -81,7 +81,7 @@
                                 </TreeView.ItemTemplate>
                             </TreeView>
                         </StackPanel>
-                        </ScrollViewer>
+                    </ScrollViewer>
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
         </materialDesign:DrawerHost>

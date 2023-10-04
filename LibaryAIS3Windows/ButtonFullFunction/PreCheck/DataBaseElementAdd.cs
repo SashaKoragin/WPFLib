@@ -11,6 +11,7 @@ using System.Data.OleDb;
 using System.Data;
 using System.Windows.Forms;
 using System.Globalization;
+using System.IO;
 using AisPoco.Ifns51.FromAis;
 using AttributeHelperModelXml;
 using LibraryAIS3Windows.AutomationsUI.Otdels.PreCheck;
@@ -1231,6 +1232,35 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             PreCheckAddObject preCheck = new PreCheckAddObject();
             preCheck.SaveAndEdit3Ndfl(ref declaration3NdflFl, declaration3NdflFl.RegNumDecl);
             preCheck.Dispose();
+        }
+
+
+        /// <summary>
+        /// Загрузка сведений о документах купли продажи
+        /// </summary>
+        /// <param name="flFace">Налогоплательщик</param>
+        /// <param name="factOfOwner">Факт владения объектом</param>
+        /// <param name="pathFileXlsx">Путь к файлу с данными об объекте</param>
+        /// <param name="sheetName">Наименование листа</param>
+        public void AddSaveFactOwner(FlFace flFace, FactOfOwnershipImZmTrFl factOfOwner, string pathFileXlsx, string sheetName)
+        {
+            PreCheckAddObject preCheckLoad = new PreCheckAddObject();
+            if (pathFileXlsx != null)
+            {
+                if (!File.Exists(pathFileXlsx))
+                {
+                    throw new InvalidOperationException($"Отсутствует файл по пути {pathFileXlsx}");
+                }
+                XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+                var dataTable = xlsxToDataTable.GetDateTableXslx(pathFileXlsx, sheetName);
+                DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.
+                DocumentOwnershipImZmTrFl> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DocumentOwnershipImZmTrFl>();
+                var listDoc = new ArrayBodyDoc() { DocumentOwnershipImZmTrFl = mapper.Map(dataTable).ToArray() };
+                listDoc.DocumentOwnershipImZmTrFl.ToList().ForEach(doc => doc.FidObject = factOfOwner.FidObject);
+                preCheckLoad.SaveFactOwnerAllDocument(flFace, factOfOwner, listDoc);
+            }
+            preCheckLoad.SaveFactOwnerAllDocument(flFace, factOfOwner, null);
+            preCheckLoad.Dispose();
         }
     }
 }

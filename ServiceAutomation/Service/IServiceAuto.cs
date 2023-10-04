@@ -7,6 +7,7 @@ using AisPoco.Ifns51.FromAis;
 using AisPoco.Ifns51.ToAis;
 using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace;
+using EfDatabaseAutomation.Automation.BaseLogica.UploadFile;
 using EfDatabaseAutomation.Automation.SelectParametrSheme;
 using ServiceAutomation.LoginAD.XsdShemeLogin;
 using LogicsSelectAutomation = EfDatabaseAutomation.Automation.SelectParametrSheme.LogicsSelectAutomation;
@@ -256,5 +257,54 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadFile3NdflRequirements", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<Stream> LoadFile3NdflRequirements(int numberElement);
+
+        /// <summary>
+        /// Добавление регистрационных номеров патента для отработки
+        /// http://localhost:8050/ServiceAutomation/AddInnFaceRegistryReference
+        /// </summary>
+        /// <param name="templateInnPattern">Шаблон для добавления</param>
+        /// <param name="userIdGuid">GUID Пользователя</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddInnFaceRegistryReference?userIdGuid={userIdGuid}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task AddInnFaceRegistryReference(TemplateInnPattern templateInnPattern, string userIdGuid);
+        /// <summary>
+        /// Удаление записи из реестра документов
+        /// http://localhost:8050/ServiceAutomation/DeleteRegistryReference
+        /// </summary>
+        /// <param name="inn">Ун записи</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/DeleteRegistryReference", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> DeleteRegistryReference(string inn);
+
+
+        /// <summary>
+        /// Прием файла Excel допрос свидетелей с сайта 
+        /// http://localhost:8050/ServiceAutomation/AddFileModel
+        /// </summary>
+        /// <param name="uploadFileModel">Модель с файлами Excel</param>
+        /// <param name="userIdGuid">GUID Пользователя</param>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddFileModel?userIdGuid={userIdGuid}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> AddFileModel(UploadFile uploadFileModel, string userIdGuid);
+        /// <summary>
+        /// Все сотрудники организации
+        /// http://localhost:8050/ServiceAutomation/AllUsersOrg
+        /// </summary>
+        /// <param name="inn">ИНН организации</param>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AllUsersOrg?inn={inn}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> AllUsersOrg(string inn);
+
+        /// <summary>
+        /// Все вопросы сотруднику 
+        /// http://localhost:8050/ServiceAutomation/SelectQuestions?idUsers=2
+        /// </summary>
+        /// <param name="idUsers">Ун пользователя</param>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectQuestions?idUsers={idUsers}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+
+        Task<string> SelectQuestions(int idUsers);
     }
 }

@@ -11,7 +11,7 @@ using ViewModelLib.ModelTestAutoit.PublicModel.ModelDatePickerAdd;
 
 namespace AutomatAis3Full.Form.Automat.Okp5.ActIzvesheniaReshenia121.DataContext
 {
-   public class ActIzvesheniaResheniaDataContext
+    public class ActIzvesheniaResheniaDataContext
     {
 
         public StatusButtonMethod StartButton { get; }

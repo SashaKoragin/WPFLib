@@ -121,9 +121,9 @@
       <Component Id="ExcelNumberFormat.dll" Guid="424D8915-F288-435F-8C79-03209757F722">
         <File Id="ExcelNumberFormat.dll" Name="ExcelNumberFormat.dll" Source="$(var.ServiceAutomation_TargetDir)ExcelNumberFormat.dll" />
       </Component>
-      <Component Id="FastMember.dll" Guid="DD7C24D0-4998-4316-870B-29343062C3E7">
+      <!--<Component Id="FastMember.dll" Guid="DD7C24D0-4998-4316-870B-29343062C3E7">
         <File Id="FastMember.dll" Name="FastMember.dll" Source="$(var.ServiceAutomation_TargetDir)FastMember.dll" />
-      </Component>
+      </Component>-->
       <Component Id="LibaryDocumentGenerator.dll" Guid="B5EF8D4D-A1E6-4B1A-A50C-0FD0CFED32B3">
         <File Id="LibaryDocumentGenerator.dll" Name="LibaryDocumentGenerator.dll" Source="$(var.ServiceAutomation_TargetDir)LibaryDocumentGenerator.dll" />
       </Component>
@@ -162,6 +162,12 @@
       </Component>
       <Component Id="AttributeHelperModelXml.dll" Guid="E68B6C58-9CEE-4222-968E-29BBA64C3DEB">
         <File Id="AttributeHelperModelXml.dll" Name="AttributeHelperModelXml.dll" Source="$(var.ServiceAutomation_TargetDir)AttributeHelperModelXml.dll" />
+      </Component>
+      <Component Id="Net.SourceForge.Koogra.dll" Guid="E7AA48F2-AF40-4300-BF44-2413B4FEB667">
+        <File Id="Net.SourceForge.Koogra.dll" Name="Net.SourceForge.Koogra.dll" Source="$(var.ServiceAutomation_TargetDir)Net.SourceForge.Koogra.dll" />
+      </Component>
+      <Component Id="Ionic.Utils.Zip.dll" Guid="EF85D8F2-43D0-455C-8332-E118F0FBE923">
+        <File Id="Ionic.Utils.Zip.dll" Name="Ionic.Utils.Zip.dll" Source="$(var.ServiceAutomation_TargetDir)Ionic.Utils.Zip.dll" />
       </Component>
 		</ComponentGroup>
 	</Fragment>
