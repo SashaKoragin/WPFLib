@@ -20,15 +20,15 @@
         /// <summary>
         /// Журнал для отработки
         /// </summary>
-        public static string AllTaxJournal = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:OtherMaterials1014\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row ";
+        public static string AllTaxJournal = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:OtherMaterials1014\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row ";
         /// <summary>
         ///  Grid 121 Журнал
         /// </summary>
-        public static string GridTaxJournal121 = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData";
+        public static string GridTaxJournal121 = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData";
         /// <summary>
         /// 121 Журнал
         /// </summary>
-        public static string AllTaxJournal121 = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row ";
+        public static string AllTaxJournal121 = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row ";
         /// <summary>
         /// Постановка комментарий
         /// </summary>
@@ -110,7 +110,7 @@
         /// <summary>
         /// Журнал Сформированных документов
         /// </summary>
-        public static string DocAllJournal = $"{PublicName}AutomationId:OtherMaterials1014\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:detailsTab\\AutomationId:NavigatorDetailsControl\\AutomationId:navigator\\AutomationId:splitContainer\\AutomationId:gridData";
+        public static string DocAllJournal = $"{PublicName}AutomationId:OtherMaterials1014\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:TabControl\\AutomationId:NavigatorDetailsControl\\AutomationId:navigator\\AutomationId:splitContainer\\AutomationId:gridData";
 
         /// <summary>
         /// Сохранить
@@ -131,11 +131,13 @@
         /// <summary>
         ///Дата и время +50
         /// </summary>
-        public static string WindowDateTime = "AutomationId:TaxpayerDateTimeFormPeriod\\AutomationId:tabControl1\\AutomationId:tabPage2\\AutomationId:dtDateCall\\Name:Text area";
+        public static string WindowDateTime = "Name:Дата и время вызова\\AutomationId:TabControl\\AutomationId:TabItem2\\ClassName:DatePicker\\ClassName:TextBox";
         /// <summary>
-        /// Часы 10
+        /// Часы 10 и Минуты
         /// </summary>
-        public static string WindowHours = "AutomationId:TaxpayerDateTimeFormPeriod\\AutomationId:tabControl1\\AutomationId:tabPage2\\AutomationId:nbHour\\Name:Text area";
+        public static string WindowHoursAndMinutes = "Name:Дата и время вызова\\AutomationId:TabControl\\AutomationId:TabItem2\\ClassName:GroupBox";
+
+        public static string WindowHours = "AutomationId:TaxpayerDateTimeFormPeriod\\AutomationId:tabControl1\\AutomationId:tabPage2\\AutomationId:nbMinute\\Name:Text area";
         /// <summary>
         /// Минуты
         /// </summary>
@@ -143,7 +145,7 @@
         /// <summary>
         /// Ок кнопка нажатия даты и
         /// </summary>
-        public static string WindowsOk = "AutomationId:TaxpayerDateTimeFormPeriod\\AutomationId:btnOk";
+        public static string WindowsOk = "ClassName:Button";
 
         /// <summary>
         /// Просмотреть форму
@@ -173,7 +175,7 @@
         /// <summary>
         /// Извещение о времени и месте рассмотрения Акта
         /// </summary>
-        public static string ButtonSved = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\Name:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf2\\AutomationId:AvailableItemsView\\AutomationId:treeView\\Name:Материалы для рассмотрения\\Name:Извещение о времени и месте рассмотрения Акта\\Name:Извещение о времени и месте рассмотрения Акта\\Name:Извещение о времени и месте рассмотрения Акта";
+        public static string ButtonSved = $"{PublicName}AutomationId:gb_2\\AutomationId:exp\\AutomationId:HeaderSite";
 
 
         /// <summary>
@@ -187,12 +189,12 @@
         /// <summary>
         /// Решение о привлечении лица к ответственности за налоговое правонарушение
         /// </summary>
-        public static string Reshenia = $"{PublicName129Click}Name:Рассмотрение материалов\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение"; //    AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Рассмотрение материалов\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение";
+        public static string Reshenia = $"{PublicName129Click}Name:Рассмотрение материалов\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение"; //    AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\AutomationId:elementHost1\\ClassName:ProcessViewWpf1\\AutomationId:availableItemsView\\AutomationId:treeView\\Name:Рассмотрение материалов\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение\\Name:Решение о привлечении лица к ответственности за налоговое правонарушение";
 
         /// <summary>
         /// Раскрыть Решение об отказе в привлечении лица к ответственности за налоговое правонарушение
         /// </summary>
-        public static string ResheniaCancel = $"{PublicName129Click}Name:Рассмотрение материалов\\Name:Решение об отказе в привлечении лица к ответственности за налоговое правонарушение";
+        public static string ResheniaCancel = $"{PublicName129Click}Name:Рассмотрение материалов\\Name:Решение об отказе в привлечении лица к ответственности за налоговое правонарушение\\Name:Решение об отказе в привлечении лица к ответственности за налоговое правонарушение\\Name:Решение об отказе в привлечении лица к ответственности за налоговое правонарушение";
 
 
         /// <summary>
@@ -222,7 +224,7 @@
         /// <summary>
         /// Иные предложения
         /// </summary>
-        public static string InoeText = $"{PublicPanel}AutomationId:gb_4\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\AutomationId:txbUstanovleno";
+        public static string InoeText = $"{PublicPanel}AutomationId:gb_4\\AutomationId:exp\\AutomationId:DocumentClobLoadHidWpf\\AutomationId:RichTextBox";
 
         public static string TextInoeTemplate = "   Дополнительно сообщаем, что абзацем четвертым пункта 3 статьи 88 Налогового кодекса РФ установлено, что налогоплательщики, на которых Кодексом возложена обязанность представлять налоговую декларацию по налогу на добавленную стоимость в электронной форме, при проведении камеральной налоговой проверки такой налоговой декларации представляют пояснения, предусмотренные указанным пунктом, в электронной форме по телекоммуникационным каналам связи через оператора электронного документооборота по формату, утвержденному ФНС России (Приказ от 16.12.2016 N ММВ-7-15/682@ \"Об утверждении формата представления пояснений к налоговой декларации по налогу на добавленную стоимость в электронной форме\")." +
                                                    "\nВ случае получения Требования от налогового органа в электронной форме по телекоммуникационным каналам связи через оператора электронного документооборота организации необходимо в отношении записей, указанных в Требовании, проверить правильность заполнения налоговой декларации, сверить запись, отраженную в налоговой декларации, со счетом-фактурой, обратить внимание на корректность заполнения реквизитов записей, по которым установлены расхождения: даты, номера, суммовые показатели, правильность расчета суммы НДС в зависимости от налоговой ставки и стоимости покупок(продаж). Если счет-фактура принимался к вычету по частям(несколько раз), необходимо также проверить общую сумму НДС, принятую к вычету по всем записям такого счета-фактуры, в том числе с учетом предыдущих налоговых периодов(Письмо ФНС России от 6 ноября 2015 г.N ЕД-4-15/19395)." +
@@ -252,6 +254,11 @@
         /// Привлечь к ответственности, предусмотренной
         /// </summary>
         public static string ErrorGroup3 = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Привлечь к ответственности, предусмотренной";
+
+        /// <summary>
+        /// Добавить обстоятельства
+        /// </summary>
+        public static string ButtonGroup3Add2Add = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\ClassName:AppearNoControlWpf\\ClassName:ScrollViewer\\HelpText:Добавить обстоятельство";
         /// <summary>
         /// Привлечь к ответственности, предусмотренной
         /// </summary>
@@ -260,10 +267,6 @@
         /// Добавить обстоятельство
         /// </summary>
         public static string AddNewCircumstance129 = $"{PublicPanel}AutomationId:gb_5\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations\\Name:AddNew Area\\Name:Добавить обстоятельство";
-        /// <summary>
-        /// Добавить нарушение 1000
-        /// </summary>
-        public static string AddNewErrror1293 = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations\\Name:AddNew Area\\Name:Добавить нарушение";
         /// <summary>
         /// Добавить обязательство по группе 3
         /// </summary>
@@ -284,7 +287,7 @@
         /// <summary>
         /// Лист нарушений
         /// </summary>
-        public static string ListCashFaceGr3 = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations";
+        public static string ListCashFaceGr3 = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\ClassName:AppearNoControlWpf\\ClassName:ScrollViewer";
         /// <summary>
         /// Лист нарушений
         /// </summary>
@@ -302,7 +305,7 @@
         /// <summary>
         /// Проставить номер кабита
         /// </summary>
-        public static string NumKabinet = $"{PublicPanel}AutomationId:gb_2\\AutomationId:exp\\AutomationId:Host\\AutomationId:TimeAndPlaceInfoControl\\AutomationId:uteRoomNumber\\LocalizedControlType:поле";
+        public static string NumKabinet = $"{PublicPanel}AutomationId:gb_2\\AutomationId:exp\\ClassName:TimeAndPlaceInfoControlWpf";
         /// <summary>
         /// Дата решения
         /// </summary>
@@ -310,7 +313,7 @@
         /// <summary>
         /// Добавить дату и время вызова
         /// </summary>
-        public static string AddButton = $"{PublicPanel}AutomationId:gb_2\\AutomationId:exp\\AutomationId:Host\\AutomationId:TimeAndPlaceInfoControl\\AutomationId:ultraGroupBox2\\AutomationId:btnAddDateTimeCall";
+        public static string AddButton = $"{PublicPanel}AutomationId:gb_2\\AutomationId:exp\\ClassName:TimeAndPlaceInfoControlWpf\\Name:Дата и время вызова\\AutomationId:TimeAndPlaceControlWpf\\ClassName:Button";
         /// <summary>
         /// Должностные лица Раскрыть элемент
         /// </summary>
@@ -370,7 +373,38 @@
         /// <summary>
         /// Лист нарушений
         /// </summary>
-        public static string ListCashFace = $"{PublicPanel}AutomationId:gb_11\\AutomationId:exp\\AutomationId:Host\\AutomationId:AppearNoControlKnp\\AutomationId:glVaiolations";
+        public static string ListCashFace = $"{PublicPanel}AutomationId:gb_11\\AutomationId:exp\\ClassName:AppearNoControlWpf\\ClassName:ScrollViewer";
+        /// <summary>
+        /// Добавить нерушение
+        /// </summary>
+        public static string ButtonGroup11Add2Add = $"{PublicPanel}AutomationId:gb_11\\AutomationId:exp\\ClassName:AppearNoControlWpf\\ClassName:ScrollViewer\\HelpText:Добавить нарушение";
+        /// <summary>
+        /// Добавить обстаятельство
+        /// </summary>
+        public static string ButtonGroup11AddObst = $"{PublicPanel}AutomationId:gb_11\\AutomationId:exp\\ClassName:AppearNoControlWpf\\ClassName:ScrollViewer\\HelpText:Добавить обстоятельство";
+
+        /// <summary>
+        /// Выберите обстаятельтво 1
+        /// </summary>
+        public static string WinSelect1Obs = "Name:Выберите обстоятельство\\AutomationId:TypeTextBox";
+        /// <summary>
+        /// Выберите обстаятельтво 2
+        /// </summary>
+        public static string WinSelect2Obs = "Name:Выберите обстоятельство\\AutomationId:VidTextBox";
+        /// <summary>
+        /// Выберите нарушение 1
+        /// </summary>
+        public static string WinSelect1Error = "Name:Выберите нарушение\\AutomationId:TaxSanctTextBox";
+        /// <summary>
+        /// Выберите нарушение 2
+        /// </summary>
+        public static string WinSelect2Error = "Name:Выберите нарушение\\AutomationId:TaxSancChargeTextBox";
+
+        /// <summary>
+        /// Выберите нарушение Popup 
+        /// </summary>
+        public static string WinSelectErrorPopup = "ClassName:Popup\\ClassName:ListView";
+
         /// <summary>
         /// Добавить нарушение 1000
         /// </summary>
@@ -393,16 +427,24 @@
         /// <summary>
         /// Выбор обстоятельства Ок
         /// </summary>
-        public static string WinSelectCircumstanceOk = "LocalizedControlType:окно\\AutomationId:ultraGridRowEditTemplate2\\AutomationId:btnTemplateOk1";
+        public static string WinSelectCircumstanceOk = "ClassName:Button\\Name:ОК";
         /// <summary>
         /// Выбор нарушения 1
         /// </summary>
-        public static string WinSelect1 = "LocalizedControlType:окно\\AutomationId:ultraGridRowEditTemplate1\\AutomationId:ucSanctionChoise\\LocalizedControlType:поле со списком";
+        public static string WinSelect1 = "Name:Выберите обстоятельство\\AutomationId:TypeTextBox"; //"Name:Выберите обстоятельство\\AutomationId:TypeTextBox\\AutomationId:PART_ContentHost";
+        /// <summary>
+        /// Выбор 1 Клик
+        /// </summary>
+        public static string WinSelect1Select = "ClassName:Popup\\ClassName:ListView";
 
         /// <summary>
         /// Выбор нарушения 2
         /// </summary>
-        public static string WinSelect2 = "LocalizedControlType:окно\\AutomationId:ultraGridRowEditTemplate1\\AutomationId:ucIncDocCharge\\LocalizedControlType:поле со списком";
+        public static string WinSelect2 = "Name:Выберите обстоятельство\\AutomationId:VidTextBox";
+        /// <summary>
+        /// Выбор 2 Клик
+        /// </summary>
+        public static string WinSelect2Select = "ClassName:Popup\\ClassName:ScrollViewer\\ClassName:ListView";
         /// <summary>
         /// Выбор нарушения Ok
         /// </summary>
@@ -420,7 +462,7 @@
         /// <summary>
         /// Подписал документ Выбор
         /// </summary>
-        public static string FaceNameSign = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\AutomationId:Host\\AutomationId:ultraGroupBox1\\AutomationId:ultraCombo1";
+        public static string FaceNameSign = $"{PublicPanel}AutomationId:gb_3\\AutomationId:exp\\ClassName:EndOfDocumentControlWpf\\ClassName:GroupBox\\ClassName:ComboBox\\LocalizedControlType:поле";
         /// <summary>
         /// Вставить подписанта в Решение
         /// </summary>
@@ -439,7 +481,7 @@
         /// Окно отпарвка документов
         /// </summary>
         public static string WindowSend = "Отправка документов";
-        /// <summary
+        /// <summary>
         /// Окно отправки документа
         /// </summary>
         public static string SendDocument = "Name:Отправка документов";
@@ -486,17 +528,17 @@
         /// <summary>
         /// Детализация панелей
         /// </summary>
-        public static string DetalTabs = "AutomationId:detailsTab";
+        public static string DetalTabs = "AutomationId:TabControl";
         /// <summary>
         /// Нарушениея
         /// </summary>
-        public static string Error = "AutomationId:detailsTab\\Name:Нарушения";
+        public static string Error = "AutomationId:TabControl\\Name:Нарушения";
 
-        public static string JournalIsh = "AutomationId:detailsTab\\AutomationId:navigator\\AutomationId:splitContainer\\AutomationId:gridData";
+        public static string JournalIsh = "AutomationId:TabControl\\AutomationId:navigator\\AutomationId:splitContainer\\AutomationId:gridData";
         /// <summary>
         /// Журнал уплаты ОКТМО
         /// </summary>
-        public static string JournaOktmo = "AutomationId:detailsTab\\AutomationId:NavigatorDetailsControl\\AutomationId:navigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row 1";
+        public static string JournaOktmo = "AutomationId:TabControl\\AutomationId:NavigatorDetailsControl\\AutomationId:navigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row 1";
         /// <summary>
         /// Обновить данные перед автоматом
         /// </summary>
@@ -527,6 +569,10 @@
         /// Подтвердить расчет
         /// </summary>
         public static string SendAvg = "Name:DockTop\\Name:Ribbon\\Name:Работа с налоговым документом\\Name:Документ\\Name:Подтвердить ввод документа";
+        /// <summary>
+        /// Окно закрыть форму
+        /// </summary>
+        public static string YesClosed = "Name:Внимание\\Name:Да";
         /// <summary>
         /// Завершить проверку
         /// </summary>
@@ -613,6 +659,19 @@
         /// Загрузить шаблон!
         /// </summary>
         public static string DonloadButton = $"{PublicPanel}AutomationId:gb_6\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\AutomationId:ubDownload";
+        /// <summary>
+        /// Вставка текста из 119 ст
+        /// </summary>
+        public static string SendText = $"{PublicPanel}AutomationId:gb_6\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\AutomationId:ubtPreFormed";
+        /// <summary>
+        /// Добавить кнопка
+        /// </summary>
+        public static string AddText = "Name:Сформированно предварительно\\AutomationId:PreFormedControl\\AutomationId:elementHost\\Name:elementHost\\ClassName:PreFormedControl\\Name:Добавить";
+
+        /// <summary>
+        /// Текст
+        /// </summary>
+        public static string TextMemo = "Name:Сформированно предварительно\\AutomationId:PreFormedControl\\AutomationId:elementHost\\Name:elementHost\\ClassName:PreFormedControl\\AutomationId:reason";
         /// <summary>
         /// Шаблон текста для проверки
         /// {0} Период 
@@ -826,7 +885,14 @@
         /// </summary>
         public static string TemplateAddText = @"     По результатам камеральной налоговой проверки в рамках ст.88 Налогового кодекса РФ выявлено, что налогоплательщик не исполнил свою обязанность по представлению в налоговый орган расчета по страховым взносам {0} {1} года и тем самым совершил виновное противоправное деяние, за которое п.1  ст.119 НК РФ предусмотрена налоговая ответственность." +
                                                 "     В соответствии с п.п.4, п.5 ст.101 НК РФ обстоятельства, исключающие вину лица в совершении налогового правонарушения или обстоятельства, смягчающие или отягчающие ответственность за совершение налогового правонарушения, не установлены.";
-
+        /// <summary>
+        /// Ок строка
+        /// </summary>
+        public static string OkStringOktmo = "ClassName:Button\\Name:ОК";
+        /// <summary>
+        /// Ошибка Warning
+        /// </summary>
+        public static string WarningMessage = "Name:Внимание!\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:ОК";
         /// <summary>
         /// Сохранить Акт налоговой проверки!
         /// </summary>
@@ -883,11 +949,11 @@
         /// <summary>
         /// Combobox
         /// </summary>
-        public static string PriznComboBox = "AutomationId:ultraComboEditor1\\LocalizedControlType:поле со списком\\Name:Open";
+        public static string PriznComboBox = "Name:Признак учета в налоговой декларации результатов проверок по предыдущей декларации\\ClassName:ComboBox"; //"AutomationId:ultraComboEditor1\\LocalizedControlType:поле со списком\\Name:Open";
         /// <summary>
         /// Кнопка Ok
         /// </summary>
-        public static string PriznakOk = "Name:Ок";
+        public static string PriznakOk = "ClassName:Button\\ClassName:TextBlock";
         /// <summary>
         /// Окно Признак учета в налоговой декларации результатов проверок по предыдущей декларации
         /// </summary>
@@ -903,7 +969,11 @@
         /// <summary>
         /// Не сохранять Акт налоговой проверки
         /// </summary>
-        public static string WinCloseErrorAct = "Name:Сохранить изменения.Акт Налоговой Проверки\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnNo";
+        public static string WinCloseErrorAct = "Name:Сохранить изменения. Акт Налоговой Проверки\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnNo";
+        /// <summary>
+        /// Внимание Да
+        /// </summary>
+        public static string Warning = "Name:Внимание\\Name:Да";
         /// <summary>
         /// Не сохранять изменения в случае ошибки
         /// </summary>
@@ -1109,6 +1179,114 @@
         /// </summary>
         public static string WinError4Ok = "Name:Внимание!\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
     }
+
+    public class IncomeJournalKrsb
+    {
+        /// <summary>
+        /// Публичный путь
+        /// </summary>
+        public static string PublicPath = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:RegisterPetitionView\\AutomationId:RegisterPetitionView_Fill_Panel\\AutomationId:grpMain\\AutomationId:splitRegister\\AutomationId:ctlPetitionEnter\\AutomationId:grpMain\\";
+        /// <summary>
+        /// Параметры поиска налогового органа
+        /// </summary>
+        public static string CodeNo = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NTR_JournalSection2View\\AutomationId:windowDockingArea2\\AutomationId:dockableWindow1\\AutomationId:ctlNavCondition\\AutomationId:grpMain\\AutomationId:taddTaxOrgan\\LocalizedControlType:поле";
+
+        /// <summary>
+        /// Номер заявления
+        /// </summary>
+        public static string MemoNum = $"{PublicPath}AutomationId:grpDoc\\AutomationId:grpIncoming\\AutomationId:txtIncNum";
+        /// <summary>
+        /// Дата заявления
+        /// </summary>
+        public static string Data = $"{PublicPath}AutomationId:grpDoc\\Name:Входящий документ (заявление)\\AutomationId:dteIncNumDate";
+        /// <summary>
+        /// Поле ИНН
+        /// </summary>
+        public static string InnMemo = $"{PublicPath}Name:Реквизиты для уточнения\\AutomationId:panelCorrections\\AutomationId:ctlPetitionEnterCorrection\\AutomationId:grpMain\\AutomationId:txtDecision_INN_Payer";
+        /// <summary>
+        /// Статус
+        /// </summary>
+        public static string Status = $"{PublicPath}AutomationId:taddDecisionFormerPersonStatus\\LocalizedControlType:поле";
+        /// <summary>
+        /// КБК
+        /// </summary>
+        public static string Kbk = $"{PublicPath}AutomationId:ltbKBK\\AutomationId:utbLike\\AutomationId:umeUniversal";
+        /// <summary>
+        /// ИНН
+        /// </summary>
+        public static string Inn = $"{PublicPath}AutomationId:txtDecision_INN_Recipient";
+
+        /// <summary>
+        /// КПП
+        /// </summary>
+        public static string Kpp = $"{PublicPath}AutomationId:txtDecision_KPP_Recipient";
+        /// <summary>
+        /// ОКТМО
+        /// </summary>
+        public static string Oktmo = $"{PublicPath}AutomationId:ltbOKATO\\AutomationId:utbLike\\AutomationId:umeUniversal";
+
+        /// <summary>
+        /// Проставление даты
+        /// </summary>
+        public static string DateResh = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DecisionPetitionView\\AutomationId:DecisionPetitionView_Fill_Panel\\AutomationId:grpMain\\AutomationId:splitDecision\\AutomationId:ctlPetitionEnter\\AutomationId:grpMain\\AutomationId:grpDoc\\AutomationId:grpOut\\AutomationId:dteOutNumDate";
+        /// <summary>
+        /// Grid модель
+        /// </summary>
+        public static string GridSelect = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:DecisionPetitionView\\AutomationId:DecisionPetitionView_Fill_Panel\\AutomationId:grpMain\\AutomationId:splitDecision\\AutomationId:grpPaymentDocs\\AutomationId:ctlPetitionPaymentDocs\\AutomationId:grpMain\\AutomationId:ugPaymentDocs";
+        /// <summary>
+        /// Передать на утверждение
+        /// </summary>
+        public static string Send = "Name:DockTop\\Name:Ribbon\\Name:Заявление на уточнение\\Name:Заявление\\Name:Передать на утверждение";
+        /// <summary>
+        /// Да передать на утверждения
+        /// </summary>
+        public static string SendYes = "Name:Обработка заявления на уточнение платёжного документа\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:Да";
+        /// <summary>
+        /// Закончить
+        /// </summary>
+        public static string Exit = "Name:DockTop\\Name:Ribbon\\Name:Заявление на уточнение\\Name:Задание\\Name:Закончить";
+        /// <summary>
+        /// Выбрать счет получателя
+        /// </summary>
+        public static string ButtonSelectCash = $"{PublicPath}AutomationId:grpBsPay\\AutomationId:tabtnBsRcp";
+        /// <summary>
+        /// Выбор счета
+        /// </summary>
+        public static string SelectCash = "Name:Реквизиты счета\\AutomationId:ugbBackground\\AutomationId:ultraPanel1\\AutomationId:_thesGrid";
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string Select = "Name:Реквизиты счета\\AutomationId:ugbBackground\\AutomationId:ultraPanel1\\AutomationId:ultraPanelCommand\\AutomationId:_btnOk";
+        /// <summary>
+        /// Начать уточнение
+        /// </summary>
+        public static string StartUt = "Name:DockTop\\Name:Ribbon\\Name:Раздел II. Журнал\\Name:Журнал\\Name:Выбрать на уточнение";
+        /// <summary>
+        /// Принять и перейти к решению
+        /// </summary>
+        public static string ButtonResh = "Name:DockTop\\Name:Ribbon\\Name:Регистрация заявления\\Name:Заявление\\Name:Принять и перейти к решению о проведении уточнения";
+        /// <summary>
+        /// Регистрация заявления на уточнение платёжного документа
+        /// </summary>
+        public static string ButtonYesResh = "Name:Регистрация заявления на уточнение платёжного документа\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnYes";
+        /// <summary>
+        /// Да
+        /// </summary>
+        public static string YesUt = "Name:Уточнение платежа\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnYes";
+        /// <summary>
+        /// Ошибка на уточнение платежа
+        /// </summary>
+        public static string ErrorUt = "Name:Уточнение платежа\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
+        /// <summary>
+        /// Индикатор выполнения
+        /// </summary>
+        public static string StatusBar = "Name:ultraStatusBar1\\LocalizedControlType:индикатор выполнения";
+        /// <summary>
+        /// Ошибка запроса
+        /// </summary>
+        public static string Error = "Name:Ошибка загрузки данных\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:ОК";
+    }
+
     public class JournalSolutionCalculations
     {
         /// <summary>
@@ -1161,6 +1339,10 @@
         /// Общая информация
         /// </summary>
         public static string Group2 = $"{GroupFull}AutomationId:gb_2\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Общая информация о документе";
+        /// <summary>
+        ///Выход
+        /// </summary>
+        public static string YesExit = "Name:Внимание\\Name:Да";
         /// <summary>
         /// Флажок
         /// </summary>

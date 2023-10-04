@@ -268,7 +268,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
                             else
                             {
                                 elem.SetFocus();
-                                AutoIt.AutoItX.Sleep(1000);
+                                PublicGlobalFunction.PublicGlobalFunction.IsWaitLoadtatuBar(libraryAutomation, ItElementName.StatusBar);
                                 if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.SelectAutomationColrction(elem).Cast<AutomationElement>()
                                                            .First(element => element.Current.Name.Contains("Шаблон"))) == nameAttributes)
                                 {
@@ -290,7 +290,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
                 {
                     var infoRuleTemplate = new InfoUserTemlateAndRule()  { Template = new Template[1] } ;
                     automationElementRow.SetFocus();
-                    AutoIt.AutoItX.Sleep(1000);
+                    PublicGlobalFunction.PublicGlobalFunction.IsWaitLoadtatuBar(libraryAutomation, ItElementName.StatusBar);
                     infoRuleTemplate.Template[0] = new Template()
                     {
                         NameTemplate = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
@@ -424,7 +424,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
                                  }
                                  else{
                                      element.SetFocus();
-                                     AutoIt.AutoItX.Sleep(2000);
+                                     PublicGlobalFunction.PublicGlobalFunction.IsWaitLoadtatuBar(libraryAutomation, ItElementName.StatusBar);
                                      if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.SelectAutomationColrction(element)
                                             .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Пользователь"))) == nameAttributes)
                                      {
@@ -446,7 +446,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
                 {
                     var infoRuleTemplate = new InfoUserTemlateAndRule() { Users = new Users[1] };
                     automationElementRow.SetFocus();
-                    AutoIt.AutoItX.Sleep(1000);
+                    PublicGlobalFunction.PublicGlobalFunction.IsWaitLoadtatuBar(libraryAutomation, ItElementName.StatusBar);
                     infoRuleTemplate.Users[0] = new Users()
                     {
                         Name = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(

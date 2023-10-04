@@ -314,4 +314,35 @@
         /// </summary>
         public static string OkWin = "Name:Информация\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:ОК";
     }
+
+    public class IdentificationDocument
+    {
+        /// <summary>
+        /// Найденное лицо
+        /// </summary>
+        public static string GridIsError = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:ManualIdentificationFLView\\AutomationId:tableLayoutPanel\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData";
+
+        /// <summary>
+        /// Запустить задание
+        /// </summary>
+        public static string StartEvent = "Name:DockTop\\Name:Ribbon\\Name:Ручная идентификация физического лица\\Name:Работа с интерактивными заданиями\\Name:Запустить задание";
+
+        /// <summary>
+        /// Выбрать ФЛ из найденых
+        /// </summary>
+        public static string SelectFl = "Name:DockTop\\Name:Ribbon\\Name:Ручная идентификация физического лица при неоднозначной идентификации в ПОН ИЛ\\Name:Выбрать ФЛ из найденных";
+
+        /// <summary>
+        /// Вопос
+        /// </summary>
+        public static string QwesionYes = "Name:Вопрос\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:ОК";
+        /// <summary>
+        /// Информация
+        /// </summary>
+        public static string Ok = "Name:Информация\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:ОК";
+        /// <summary>
+        /// Закрыть
+        /// </summary>
+        public static string Closed = "Name:DockTop\\Name:Ribbon\\Name:Ручная идентификация физического лица при неоднозначной идентификации в ПОН ИЛ\\Name:Закрыть";
+    }
  }

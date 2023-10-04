@@ -1,18 +1,150 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
 {
     public class ModelDataArea
     {
 
+
+
+        /// <summary>
+        /// Модель Grid Налоговое администрирование\Контрольная работа\Допрос свидетелей\1. Инициализация процедуры допроса свидетеля
+        /// </summary>
+        public DataArea[] DataAreaInterrogationOfWitnesses = new DataArea[]
+        {
+
+            new DataArea()
+            {
+                FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:navigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+                FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:navigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+                ListRowDataGrid = "\\Name:select0 row ",
+                ListRowDataArea = "Name:List`1 row ",
+                Riborn = "Name:DockTop\\Name:Ribbon\\Name:Навигатор\\Name:Процедура допроса свидетеля\\Name:Открыть процедуру",
+                Update = "Name:DockTop\\Name:Ribbon\\Name:Навигатор\\Name:Основное\\Name:Обновить",
+                Parameters = new Parameters[]
+                {
+                    new Parameters() { NameParameters = "УН процедуры", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "4" },
+                    new Parameters() { NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "12" },
+
+                }
+            },
+            new DataArea()
+            {
+                FullPathDataArea = "AutomationId:FindFaceAll\\AutomationId:ultraPanelFormFill\\AutomationId:ultraPanelForNavigator\\AutomationId:ultraTabFace\\AutomationId:ultraTabPageControl1\\AutomationId:navigatorControlYL\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+                FullPathGrid = "AutomationId:FindFaceAll\\AutomationId:ultraPanelFormFill\\AutomationId:ultraPanelForNavigator\\AutomationId:ultraTabFace\\AutomationId:ultraTabPageControl1\\AutomationId:navigatorControlYL\\AutomationId:splitContainer\\AutomationId:gridData",
+                ListRowDataGrid = "\\Name:select0 row ",
+                ListRowDataArea = "Name:List`1 row ",
+                Riborn = "Name:Выбор Налогоплательщика\\Name:DockTop\\Name:Ribbon\\Name:Налогоплательщик\\Name:Действия с навигатором\\Name:Выбрать",
+                Update = "Name:Выбор Налогоплательщика\\Name:DockTop\\Name:Ribbon\\Name:Налогоплательщик\\Name:Действия с навигатором\\Name:Обновить",
+                Parameters = new Parameters[]
+                {
+                    new Parameters() { NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "3" }
+                }
+            },
+            new DataArea()
+            {
+                FullPathDataArea = "Name:_layoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorControlView\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+                FullPathGrid = "Name:_layoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorControlView\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:gridData",
+                ListRowDataGrid = "\\Name:select0 row ",
+                ListRowDataArea = "Name:List`1 row ",
+                Riborn = "Name:DockTop\\Name:Ribbon\\Name:Выбрать лицо\\LocalizedControlType:панель инструментов\\Name:Выбрать лицо",
+                Update = "Name:DockTop\\Name:Ribbon\\Name:Выбрать лицо\\Name:Обновить",
+                Parameters = new Parameters[]
+                {
+                    new Parameters() { NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "3" },
+
+                }
+            },
+            new DataArea()
+            {
+                FullPathDataArea = "AutomationId:FindFaceNew\\AutomationId:ultraPanelFormFill\\AutomationId:ultraPanelForNavigator\\AutomationId:ultraTabFace\\AutomationId:ultraTabPageControl1\\AutomationId:navigatorControlYL\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+                FullPathGrid = "AutomationId:FindFaceNew\\AutomationId:ultraPanelFormFill\\AutomationId:ultraPanelForNavigator\\AutomationId:ultraTabFace\\AutomationId:ultraTabPageControl1\\AutomationId:navigatorControlYL\\AutomationId:splitContainer\\AutomationId:gridData",
+                ListRowDataGrid = "\\Name:select0 row ",
+                ListRowDataArea = "Name:List`1 row ",
+                Riborn = "Name:Выбор Налогоплательщика\\Name:DockTop\\Name:Ribbon\\Name:Налогоплательщик\\Name:Действия с навигатором\\Name:Выбрать",
+                Update = "Name:Выбор Налогоплательщика\\Name:DockTop\\Name:Ribbon\\Name:Налогоплательщик\\Name:Действия с навигатором\\Name:Обновить",
+                Parameters = new Parameters[]
+                {
+                    new Parameters() { NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "3" }
+                }
+            },
+            new DataArea()
+            {
+                FullPathDataArea = "AutomationId:FindFaceNew\\AutomationId:ultraPanelFormFill\\AutomationId:ultraPanelForNavigator\\AutomationId:ultraTabFace\\AutomationId:ultraTabPageControl2\\AutomationId:navigatorControlFL\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+                FullPathGrid = "AutomationId:FindFaceNew\\AutomationId:ultraPanelFormFill\\AutomationId:ultraPanelForNavigator\\AutomationId:ultraTabFace\\AutomationId:ultraTabPageControl2\\AutomationId:navigatorControlFL\\AutomationId:splitContainer\\AutomationId:gridData",
+                ListRowDataGrid = "\\Name:select0 row ",
+                ListRowDataArea = "Name:List`1 row ",
+                Riborn = "Name:Выбор Налогоплательщика\\Name:DockTop\\Name:Ribbon\\Name:Налогоплательщик\\Name:Действия с навигатором\\Name:Выбрать",
+                Update = "Name:Выбор Налогоплательщика\\Name:DockTop\\Name:Ribbon\\Name:Налогоплательщик\\Name:Действия с навигатором\\Name:Обновить",
+                Parameters = new Parameters[]
+                {
+                    new Parameters() { NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "3" }
+                }
+            },
+            new DataArea()
+            {
+                FullPathDataArea = "AutomationId:FindInspector\\AutomationId:ultraPanelFormFill\\AutomationId:ultraPanelForNavigator\\AutomationId:navigatorControl1\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+                FullPathGrid = "AutomationId:FindInspector\\AutomationId:ultraPanelFormFill\\AutomationId:ultraPanelForNavigator\\AutomationId:navigatorControl1\\AutomationId:splitContainer\\AutomationId:gridData",
+                ListRowDataGrid = "\\Name:select0 row ",
+                ListRowDataArea = "Name:List`1 row ",
+                Riborn = "Name:Выбор Должностного лица\\Name:DockTop\\Name:Ribbon\\Name:Должностное лицо\\Name:Действия с навигатором\\Name:Выбрать",
+                Update = "Name:Выбор Должностного лица\\Name:DockTop\\Name:Ribbon\\Name:Должностное лицо\\Name:Действия с навигатором\\Name:Обновить",
+                Parameters = new Parameters[]
+                {
+                    new Parameters() { NameParameters = "УН инспектора", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "1", ParametersGrid = "17019218" }
+                }
+            }
+
+        };
+
+        public DataArea DataAreaFaceRegistryReferenceSend = new DataArea()
+        {
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:RegistrationJournalView\\AutomationId:navigatorControl1\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:RegistrationJournalView\\AutomationId:navigatorControl1\\AutomationId:splitContainer\\AutomationId:gridData",
+            ListRowDataGrid = "\\Name:select0 row ",
+            ListRowDataArea = "Name:List`1 row ",
+            Headers = "Name:Column Headers",
+            Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:RegistrationJournalView\\AutomationId:navigatorControl1\\AutomationId:tsControlPanel\\Name:Фильтр",
+            Update = "Name:DockTop\\Name:Ribbon\\Name:Журнал\\Name:Общие\\Name:Обновить",
+            Parameters = new Parameters[]
+            {
+                new Parameters() { NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "12" }
+            }
+        };
+
+        public DataArea DataAreaFaceRegistryReference = new DataArea()
+        {
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:InitiativeTaxOrganBelongingNavView\\AutomationId:InitiativeTaxOrganBelongingNavView_Fill_Panel\\AutomationId:taxpayerSearchingControl1\\AutomationId:grpSearchTaxpayer\\AutomationId:pnlSearchNtaxpayer\\AutomationId:tabTaxpayer\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:InitiativeTaxOrganBelongingNavView\\AutomationId:InitiativeTaxOrganBelongingNavView_Fill_Panel\\AutomationId:taxpayerSearchingControl1\\AutomationId:grpSearchTaxpayer\\AutomationId:pnlSearchNtaxpayer\\AutomationId:tabTaxpayer\\AutomationId:splitContainer\\AutomationId:gridData",
+            ListRowDataGrid = "\\Name:select0 row ",
+            ListRowDataArea = "Name:List`1 row ",
+            Headers = "Name:Column Headers",
+            Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:InitiativeTaxOrganBelongingNavView\\AutomationId:InitiativeTaxOrganBelongingNavView_Fill_Panel\\AutomationId:taxpayerSearchingControl1\\AutomationId:grpSearchTaxpayer\\AutomationId:pnlSearchNtaxpayer\\AutomationId:tabTaxpayer\\AutomationId:splitContainer\\AutomationId:tsControlPanel\\Name:Фильтр",
+            Update = "Name:DockTop\\Name:Ribbon\\Name:Выбор налогоплательщика \\Name:Налогоплательщик\\Name:Поиск",
+            Parameters = new Parameters[]
+            {
+                new Parameters() { NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "1" }
+            }
+        };
+        public DataArea DataAreaIdentificationFl = new DataArea()
+        {
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorView\\AutomationId:splitContainer\\AutomationId:navigatorControl\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorView\\AutomationId:splitContainer\\AutomationId:navigatorControl\\AutomationId:splitContainer\\AutomationId:gridData",
+            ListRowDataGrid = "select0 row 1",
+            ListRowDataArea = "Name:List`1 row ",
+            Headers = "Name:Column Headers",
+            Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorView\\AutomationId:splitContainer\\AutomationId:navigatorControl\\AutomationId:tsControlPanel\\Name:Фильтр",
+            Update = "Name:DockTop\\Name:Ribbon\\Name:Ручная идентификация физического лица\\Name:Навигатор\\Name:Обновить",
+            Parameters = new Parameters[]
+            {
+                new Parameters() { NameParameters = "УН входящего документа", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "3" }
+            }
+        };
+
+
         public DataArea DataAreaRegFl = new DataArea()
         {
-            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorMdiView\\AutomationId:splitContainer\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
-            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorMdiView\\AutomationId:splitContainer\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorMdiView\\AutomationId:splitContainer\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorMdiView\\AutomationId:splitContainer\\AutomationId:navigatorMDI\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
             ListRowDataArea = "Name:List`1 row ",
             ListRowDataGrid = "\\Name:select0 row ",
             Headers = "Name:Column Headers",
@@ -59,8 +191,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
 
         public DataArea DataArea = new DataArea()
         {
-            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
-            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
             ListRowDataArea = "Name:List`1 row ",
             Headers = "Name:Column Headers",
             Update = "Name:DockTop\\Name:Ribbon\\Name:Журнал учета и формирования документов, связанных с применением ПСН\\Name:Документ\\Name:Обновить данные",
@@ -112,12 +244,12 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
         /// </summary>
         public DataArea DataAreaDeclaration = new DataArea()
         {
-            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
-            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
             ListRowDataArea = "Name:List`1 row ",
             Headers = "Name:Column Headers",
             Update = "Name:DockTop\\Name:Ribbon\\Name:Реестр документов НБО\\Name:Документ\\Name:Обновить данные",
-            Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\Name:Фильтр",
+            Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:tsControlPanel\\Name:Фильтр",
             Parameters = new Parameters[]
             {
                 new Parameters() {NameParameters = "РегНомер",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "9"}
@@ -128,12 +260,12 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
         /// </summary>
         public DataArea DataAreaAllDeclarationDocument = new DataArea()
         {
-            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
-            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
             ListRowDataArea = "Name:List`1 row ",
             Headers = "Name:Column Headers",
             Update = "Name:DockTop\\Name:Ribbon\\Name:Журнал документов, выписанных в ходе налоговой проверки\\Name:Документ\\Name:Обновить данные",
-            Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\Name:Фильтр",
+            Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:tsControlPanel\\Name:Фильтр",
             Parameters = new Parameters[]
             {
                 new Parameters() {NameParameters = "ИНН",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "11"},
@@ -146,48 +278,48 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
 
             new DataArea()
             {
-                FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
-                Export =  "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка",
+                FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+                Export =  "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка",
                 Riborn = "Name:DockTop\\Name:Ribbon\\Name:Журнал учета и формирования документов, связанных с применением ПСН\\Name:Действия\\Name:Документы объекта ПСН",
                 Update = "Name:DockTop\\Name:Ribbon\\Name:Документы объекта ПСН\\Name:Документ\\Name:Обновить данные",
                 Headers = "Документы объекта ПСН"
             },
             new DataArea()
             {
-                FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
-                Export =  "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка",
+                FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+                Export =  "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка",
                 Riborn = "Name:DockTop\\Name:Ribbon\\Name:Журнал учета и формирования документов, связанных с применением ПСН\\Name:Действия\\Name:Сведения об обособленных объектах",
                 Update = "Name:DockTop\\Name:Ribbon\\Name:Сведения об обособленных объектах\\Name:Документ\\Name:Обновить данные",
                 Headers = "Сведения об обособленных объектах"
             },
             new DataArea()
             {
-                FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
-                Export =  "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка",
+                FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+                Export =  "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка",
                 Riborn = "Name:DockTop\\Name:Ribbon\\Name:Журнал учета и формирования документов, связанных с применением ПСН\\Name:Действия\\Name:Сведения о месте осуществления деятельности",
                 Update = "Name:DockTop\\Name:Ribbon\\Name:Сведения о месте осуществления деятельности\\Name:Документ\\Name:Обновить данные",
                 Headers = "Сведения о месте осуществления деятельности"
             },
             new DataArea()
             {
-                FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
-                Export =  "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка",
+                FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+                Export =  "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка",
                 Riborn = "Name:DockTop\\Name:Ribbon\\Name:Журнал учета и формирования документов, связанных с применением ПСН\\Name:Действия\\Name:Параметры расчета налога",
                 Update = "Name:DockTop\\Name:Ribbon\\Name:Параметры расчета налога\\Name:Документ\\Name:Обновить данные",
                 Headers = "Параметры расчета налога"
             },
             new DataArea()
             {
-                FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
-                Export =  "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка",
+                FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+                Export =  "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка",
                 Riborn = "Name:DockTop\\Name:Ribbon\\Name:Журнал учета и формирования документов, связанных с применением ПСН\\Name:Действия\\Name:Сведения о транспортных средствах",
                 Update = "Name:DockTop\\Name:Ribbon\\Name:Сведения о транспортных средствах\\Name:Документ\\Name:Обновить данные",
                 Headers = "Сведения о транспортных средствах"
             },
             new DataArea()
             {
-                FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
-                Export =  "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:masterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка",
+                FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+                Export =  "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка",
                 Riborn = "Name:DockTop\\Name:Ribbon\\Name:Журнал учета и формирования документов, связанных с применением ПСН\\Name:Действия\\Name:Сведения по фактическому действию патента",
                 Update = "Name:DockTop\\Name:Ribbon\\Name:Сведения по фактическому действию патента\\Name:Документ\\Name:Обновить данные",
                 Headers = "Сведения по фактическому действию патента"
@@ -206,6 +338,56 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
             {
                 new Parameters() {NameParameters = "Номер заявления", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "2"},
                 new Parameters() {NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "7"},
+            }
+        };
+
+        public DataArea DataAreaIncomeJournal = new DataArea()
+        {
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NTR_JournalSection2View\\AutomationId:windowDockingArea2\\AutomationId:dockableWindow1\\AutomationId:ctlNavCondition\\AutomationId:grpMain\\AutomationId:Conditions\\",
+            ListRowDataArea = "Name:List`1 row ",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NTR_JournalSection2View\\AutomationId:NTR_JournalSection2View_Fill_Panel\\AutomationId:ultraGroupBox1\\AutomationId:grdNTR_JournalSection2View",
+            Update = "Name:DockTop\\Name:Ribbon\\Name:Журнал\\Name:Обновить",
+            Filters = null,
+            Parameters = new Parameters[]
+            {
+                new Parameters() {NameParameters = "КБК УФК", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "1"},
+                new Parameters() {NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "9"},
+            }
+        };
+        /// <summary>
+        /// Ветка выборка Налоговое администрирование\Собственность\01. Картотека собственности ФБД\07. КС – ЗУ – Факты владения на земельные участки – ФЛ
+        /// </summary>
+        public DataArea DataAreaFactOwnerZm = new DataArea()
+        {
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:OperationWithNavigatorSimpleView\\AutomationId:navigatorControl\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:OperationWithNavigatorSimpleView\\AutomationId:navigatorControl\\AutomationId:splitContainer\\AutomationId:gridData",
+            ListRowDataArea = "Name:List`1 row ",
+            Headers = "Name:Column Headers",
+            ListRowDataGrid = "\\Name:DynamicSelect row ",
+            Update = "Name:DockTop\\Name:Ribbon\\Name:Собственность\\Name:Основное\\Name:Обновить",
+            Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:OperationWithNavigatorSimpleView\\AutomationId:navigatorControl\\AutomationId:tsControlPanel\\Name:Фильтр",
+            Export = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:LandView_2\\AutomationId:splitContainer1\\AutomationId:ultraTabControl1\\AutomationId:ultraTabPageControl5\\Name:Сведения о зарегистрированных правах от органов Росреестра\\Name:Сведения о правоустанавливающих документах \\AutomationId:navigatorControl4\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка",
+            Parameters = new Parameters[]
+            {
+                new Parameters() {NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "16"},
+            }
+        };
+        /// <summary>
+        /// Ветка выборка Налоговое администрирование\Собственность\01. Картотека собственности ФБД\23. КС – ОН – Факты владения на объекты недвижимости – ФЛ
+        /// </summary>
+        public DataArea DataAreaFactOwnerIm = new DataArea()
+        {
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:OperationWithNavigatorSimpleView\\AutomationId:navigatorControl\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:OperationWithNavigatorSimpleView\\AutomationId:navigatorControl\\AutomationId:splitContainer\\AutomationId:gridData",
+            ListRowDataArea = "Name:List`1 row ",
+            Headers = "Name:Column Headers",
+            ListRowDataGrid = "\\Name:DynamicSelect row ",
+            Update = "Name:DockTop\\Name:Ribbon\\Name:Собственность\\Name:Основное\\Name:Обновить",
+            Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:OperationWithNavigatorSimpleView\\AutomationId:navigatorControl\\AutomationId:tsControlPanel\\Name:Фильтр",
+            Export = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:BuildingView_2\\AutomationId:splitContainer1\\AutomationId:ultraTabControl1\\AutomationId:ultraTabPageControl5\\Name:Сведения о зарегистрированных правах от органов Росреестра\\Name:Сведения о правоустанавливающих документах \\AutomationId:navigatorControl4\\AutomationId:tsControlPanel\\LocalizedControlType:кнопка",
+            Parameters = new Parameters[]
+            {
+                new Parameters() {NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "17"},
             }
         };
     }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ModelInterrogationOfWitnesses" type="ModelInterrogationOfWitnesses">
+		<xs:annotation>
+			<xs:documentation>Модель допроса свидетелей</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ModelInterrogationOfWitnesses">
+		<xs:annotation>
+			<xs:documentation>Модель допроса свидетелей</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="Organization" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Counterpart" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Organization">
+		<xs:annotation>
+			<xs:documentation>Организация</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="InnOrg" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Инн организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="InnUser" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН сотрудника</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Counterpart">
+		<xs:annotation>
+			<xs:documentation>Контрагенты</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="InnOrg" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН организации</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameCeo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Имя генерального директора</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="InnCounterparty" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН контрагента</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameCounterparty" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование контрагента</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

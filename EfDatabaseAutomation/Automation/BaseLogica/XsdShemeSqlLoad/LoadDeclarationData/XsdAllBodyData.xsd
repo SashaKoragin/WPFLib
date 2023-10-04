@@ -24,6 +24,7 @@
 				<xs:element ref="SvedFactPatent" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="DeclarationDataFl" minOccurs="0" maxOccurs="unbounded" sql:relation="DeclarationDataFl"/>
 				<xs:element ref="DeclarationData3NdflFl" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="DocumentOwnershipImZmTrFl" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -1629,5 +1630,84 @@
 			</xs:attribute>
 			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:mapped="false"/>
 		</xs:complexType>
+	</xs:element>
+	<xs:element name="DocumentOwnershipImZmTrFl">
+		<xs:annotation>
+			<xs:documentation>Документ о купли/продажи</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DateDocument"/>
+				<xs:element ref="CashDeal"/>
+			</xs:sequence>
+			<xs:attribute name="Id" type="xs:int" use="optional" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>Уникальный номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="FidObject" use="required">
+				<xs:annotation>
+					<xs:documentation>Фид объекта недвижимости</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:long"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="NumberDocument" use="optional">
+				<xs:annotation>
+					<xs:documentation>Номер документа</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="CodeDocument" use="optional">
+				<xs:annotation>
+					<xs:documentation>Код документа</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="NameDocument" use="optional">
+				<xs:annotation>
+					<xs:documentation>Наименование документа</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Name" use="optional">
+				<xs:annotation>
+					<xs:documentation>Наименование</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="CashText" use="optional">
+				<xs:annotation>
+					<xs:documentation>Стоимость текст</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="DateCreate" type="xs:dateTime" use="optional" sql:mapped="false">
+				<xs:annotation>
+					<xs:documentation>Дата записи</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DateDocument" type="xs:dateTime" nillable="true" sql:datatype="smalldatetime">
+		<xs:annotation>
+			<xs:documentation>Дата документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CashDeal" type="xs:double" nillable="true" sql:datatype="float">
+		<xs:annotation>
+			<xs:documentation>Стоимость сделки</xs:documentation>
+		</xs:annotation>
 	</xs:element>
 </xs:schema>

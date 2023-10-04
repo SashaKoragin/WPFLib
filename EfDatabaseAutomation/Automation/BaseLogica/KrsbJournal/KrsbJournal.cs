@@ -73,8 +73,6 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.KrsbJournal
             }
         }
 
-
-
         /// <summary>
         /// Disposing
         /// </summary>

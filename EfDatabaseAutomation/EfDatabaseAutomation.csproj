@@ -41,8 +41,14 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Ionic.Utils.Zip, Version=1.3.0.0, Culture=neutral, PublicKeyToken=c551e179877da246, processorArchitecture=MSIL">
+      <HintPath>..\packages\Koogra.3.1.5.1\lib\net35\Ionic.Utils.Zip.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core">
       <HintPath>C:\Nuget\Microsoft.AspNet.SignalR.Core.2.4.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Net.SourceForge.Koogra, Version=3.1.5.0, Culture=neutral, PublicKeyToken=5acac79db1633ace, processorArchitecture=MSIL">
+      <HintPath>..\packages\Koogra.3.1.5.1\lib\net35\Net.SourceForge.Koogra.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>C:\Nuget\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -62,10 +68,18 @@
   <ItemGroup>
     <Compile Include="Automation\BaseLogica\AddObjectDb\AddObjectDb.cs" />
     <Compile Include="Automation\BaseLogica\EventSqlEf\EventSqlEf.cs" />
+    <Compile Include="Automation\BaseLogica\FaceRegistryReference\SelectAndAddFaceRegistryReference.cs" />
     <Compile Include="Automation\BaseLogica\IdentificationFace\IdentificationAddorEditFace.cs" />
     <Compile Include="Automation\BaseLogica\KrsbJournal\KrsbJournal.cs" />
     <Compile Include="Automation\BaseLogica\ModelGetPost\ModelGetPost.cs" />
     <Compile Include="Automation\BaseLogica\PreCheck\PreCheckAddObject.cs" />
+    <Compile Include="Automation\BaseLogica\ReturnModelError\ModelErrorInterrogationOfWitnesses.cs" />
+    <Compile Include="Automation\BaseLogica\SaveAndLoadInterrogationOfWitnesses\KoograXlsxToDataTable\KoograXlsxToDataTable.cs" />
+    <Compile Include="Automation\BaseLogica\SaveAndLoadInterrogationOfWitnesses\ModelInterrogationOfWitnesses\ModelInterrogationOfWitnesses.cs">
+      <DependentUpon>ModelInterrogationOfWitnesses.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Automation\BaseLogica\SaveAndLoadInterrogationOfWitnesses\SaveAndLoadInterrogationOfWitnesses.cs" />
+    <Compile Include="Automation\BaseLogica\SaveAndLoadInterrogationOfWitnesses\SelectAndUpdateInterrogationOfWitnesses.cs" />
     <Compile Include="Automation\BaseLogica\SelectObjectDbAndAddObjectDb\AddAllObjectDb.cs" />
     <Compile Include="Automation\BaseLogica\SelectObjectDbAndAddObjectDb\SelectAllObjectDb.cs" />
     <Compile Include="Automation\BaseLogica\SqlSelect\PreCheckLog\SqlPreCheckLog.cs" />
@@ -75,6 +89,9 @@
       <DependentUpon>DataBaseUl.xsd</DependentUpon>
     </Compile>
     <Compile Include="Automation\BaseLogica\StatementJournal\StatementJournal.cs" />
+    <Compile Include="Automation\BaseLogica\UploadFile\UploadFileModel.cs">
+      <DependentUpon>UploadFileModel.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Automation\BaseLogica\XsdAuto\FullShemeModel\WebShemeTaxJournal.cs">
       <DependentUpon>WebShemeTaxJournal.xsd</DependentUpon>
     </Compile>
@@ -127,7 +144,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Automation\BaseLogica\SaveAndLoadInterrogationOfWitnesses\ModelInterrogationOfWitnesses\ModelInterrogationOfWitnesses.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Automation\BaseLogica\SqlSelect\XsdDTOSheme\DataBaseUl.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Automation\BaseLogica\UploadFile\UploadFileModel.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Automation\BaseLogica\XsdAuto\FullShemeModel\WebShemeTaxJournal.xsd">
@@ -181,10 +204,12 @@
     <ItemGroup>
       <TaxJournalAuto Include="Automation\BaseLogica\XsdAuto\TaxJournalAuto\*.xsd" />
       <FullParametrAuto Include="Automation\SelectParametrSheme\*.xsd" />
+      <XsdReportFile Include="Automation\BaseLogica\UploadFile\*.xsd" />
       <ShemeTaxJournal Include="Automation\BaseLogica\XsdAuto\FullShemeModel\*.xsd" />
       <DTOXSDSheme Include="Automation\BaseLogica\SqlSelect\XsdDTOSheme\*.xsd" />
       <!--<XmlToSql Include="Automation\BaseLogica\XsdShemeSqlLoad\LoadDeclarationData\*.xsd" />-->
       <Declaration Include="Automation\BaseLogica\XsdAuto\ProcedureDeclaration\*.xsd" />
+      <!--<ModelInterrogationOfWitnesses Include="Automation\BaseLogica\SaveAndLoadInterrogationOfWitnesses\ModelInterrogationOfWitnesses\*.xsd" />-->
     </ItemGroup>
     <Message Importance="high" Text="CreateDTOSheme" />
     <GetFrameworkSdkPath>
@@ -200,5 +225,7 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(DTOXSDSheme.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.SqlSelect.XsdDTOSheme /outputdir:Automation\BaseLogica\SqlSelect\XsdDTOSheme\" />
     <!--<Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XmlToSql.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData /outputdir:Automation\BaseLogica\XsdShemeSqlLoad\LoadDeclarationData\" />-->
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(Declaration.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.XsdAuto.ProcedureDeclaration /outputdir:Automation\BaseLogica\XsdAuto\ProcedureDeclaration" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(XsdReportFile.FullPath)&quot; /c /f /namespace:$(RootNamespace).Automation.BaseLogica.UploadFile /outputdir:Automation\BaseLogica\UploadFile\" />
+    <!--<Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(ModelInterrogationOfWitnesses.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.SaveAndLoadInterrogationOfWitnesses.ModelInterrogationOfWitnesses /outputdir:Automation\BaseLogica\SaveAndLoadInterrogationOfWitnesses\ModelInterrogationOfWitnesses\" />-->
   </Target>
 </Project>

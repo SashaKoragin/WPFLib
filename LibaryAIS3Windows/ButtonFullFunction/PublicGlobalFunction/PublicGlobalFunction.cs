@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows.Automation;
 using System.Windows.Forms;
 using AutoIt;
 using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
-using LibraryAIS3Windows.ButtonsClikcs;
 
 namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
 {
     public class PublicGlobalFunction
     {
+
+        /// <summary>
+        /// Индикатор выполнения
+        /// </summary>
+        public static string StatusBar = "Name:ultraStatusBar1\\LocalizedControlType:индикатор выполнения";
         /// <summary>
         /// Поиск последнего файла в папке
         /// </summary>
@@ -207,28 +210,44 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
                 {
                     if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement) == "Данные, удовлетворяющие заданным условиям не найдены.")
                     {
-                        isExit = false;
                         return "Данные, удовлетворяющие заданным условиям не найдены.";
                     }
                     if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement) == "")
                     {
-                        isExit = false;
                         return "";
                     }
                     if(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement) == "Произошла ошибка при загрузке данных.")
                     {
-                        isExit = false;
                         return "Произошла ошибка при загрузке данных.";
                     }
 
                     if (libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement) == "При загрузке данных произошла ошибка.")
                     {
-                        isExit = false;
                         return "При загрузке данных произошла ошибка.";
+                    }
+                    if(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement) == "Данные не загружены. Нажмите кнопку 'Обновить' для загрузки данных")
+                    {
+                        return "Данные не загружены. Нажмите кнопку 'Обновить' для загрузки данных";
                     }
                 }
             }
             return null;
+        }
+        /// <summary>
+        /// Ожидание загрузки данных
+        /// </summary>
+        public static void IsWaitLoadtatuBar(LibraryAutomations libraryAutomation, string searсhPatternElementGrid)
+        {
+            var isExit = true;
+            while (isExit)
+            {
+
+                AutoItX.Sleep(1000);
+                if (libraryAutomation.IsEnableElements(searсhPatternElementGrid, null, false, 1, 0, true) == null)
+                {
+                    isExit = false;
+                }
+            }
         }
         private static IntPtr FindIntPtr(string nameClass)
         {

@@ -1,4 +1,5 @@
-﻿using AutoIt;
+﻿using System;
+using AutoIt;
 using System.Windows.Automation;
 using EfDatabaseAutomation.Automation.Base;
 using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
@@ -6,6 +7,7 @@ using LibraryAIS3Windows.AutomationsUI.Otdels.PublicJournal129And121;
 using LibraryAIS3Windows.ButtonsClikcs;
 using LibraryAIS3Windows.Window;
 using System.IO;
+using System.Linq;
 
 namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
 {
@@ -23,6 +25,106 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
         /// Лк3
         /// </summary>
         public bool IsLk3 { get; set; }
+
+        /// <summary>
+        /// Функция добавления обстоятельства в АКТ
+        /// Новое 12.07.2023
+        /// </summary>
+        /// <param name="libraryAutomation">Библиотека автоматизации</param>
+        public void AddCircumstance(LibraryAutomations libraryAutomation)
+        {
+            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ListCashFaceGr3, null, true) != null)
+            {
+                AutomationElement cashAdd;
+                while ((cashAdd = libraryAutomation.IsEnableElements(Journal129AndJournal121.ListCashFaceGr3, null, false, 10)) != null)
+                {
+                    var elem = libraryAutomation.SelectAutomationColrction(cashAdd).Cast<AutomationElement>().Where(elems => elems.Current.ClassName == "Button").ToArray();
+                        libraryAutomation.ClickElement(elem[2]);
+                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ButtonGroup3Add2Add, null,true) == null) continue;
+                        libraryAutomation.ClickElement(libraryAutomation.IsEnableElements(Journal129AndJournal121.ButtonGroup3Add2Add));
+                        break;
+                }
+                LibraryAutomations libraryAutomationDialog = new LibraryAutomations(WindowsAis3.AisNalog3);
+                AutoItX.Sleep(2000);
+                LibraryAutomations libraryAutomationAddObject = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomationDialog.RootAutomationElements));
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationAddObject, Journal129AndJournal121.WinSelect1);
+                AutomationElement listView;
+
+                while ((listView = libraryAutomationAddObject.IsEnableElements(Journal129AndJournal121.WinSelect1Select, null,false, 10)) != null)
+                {
+                    while (true)
+                    {
+                        var elem = libraryAutomationAddObject.SelectAutomationColrction(listView).Cast<AutomationElement>().Where(elems => elems.Current.Name == "Rnivc.Cam.Nsi.Business.TaxKindCircumstanceEntity").ToArray();
+                        libraryAutomationAddObject.SelectionComboBoxPattern(elem[4]);
+                        break;
+                    }
+                    break;
+                }
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationAddObject, Journal129AndJournal121.WinSelect2);
+                while ((listView = libraryAutomationAddObject.IsEnableElements(Journal129AndJournal121.WinSelect2Select, null, false, 10)) != null)
+                {
+                    while (true)
+                    {
+                        var elem = libraryAutomationAddObject.SelectAutomationColrction(listView).Cast<AutomationElement>().Where(elems => elems.Current.Name == "Rnivc.Cam.Nsi.Business.TaxCircumstanceEntity").ToArray();
+                        libraryAutomationAddObject.SelectionComboBoxPattern(elem[0]);
+                        break;
+                    }
+                    break;
+                }
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationAddObject, Journal129AndJournal121.WinSelectCircumstanceOk);
+            }
+        }
+        /// <summary>
+        /// Добавление даты и места вызова плательщика
+        /// Новое 12.07.2023
+        /// </summary>
+        /// <param name="libraryAutomation"></param>
+        /// <param name="office">Номер кабинета</param>
+        /// <param name="date">Дата вызова плательщика</param>
+        /// <param name="hours">Час вызова</param>
+        /// <param name="minute">Минуты вызова</param>
+        public void AddDataAndTimeInvoke(LibraryAutomations libraryAutomation, string office, DateTime date, string hours, string minute)
+        {
+            while (true)
+            {
+                if (libraryAutomation.IsEnableElements(Journal129AndJournal121.NumKabinet, null, true) != null)
+                {
+                    AutomationElement setValue;
+                    while ((setValue = libraryAutomation.IsEnableElements(Journal129AndJournal121.NumKabinet, null, false, 10)) != null)
+                    {
+                        var elem = libraryAutomation.SelectAutomationColrction(setValue).Cast<AutomationElement>().Where(elems => elems.Current.LocalizedControlType == "поле").ToArray();
+                        libraryAutomation.FindElement = elem[1];
+                        libraryAutomation.SetValuePattern(office);
+                        break;
+                    }
+                    libraryAutomation.ClickElements(Journal129AndJournal121.AddButton);
+                    LibraryAutomations libraryAutomationDiaolog = new LibraryAutomations(WindowsAis3.AisNalog3);
+                    AutoItX.Sleep(2000);
+                    var libraryAutomationAddObject = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomationDiaolog.RootAutomationElements));
+                    while (true)
+                    {
+                        if (libraryAutomationAddObject.IsEnableElements(Journal129AndJournal121.WindowDateTime, null, true) != null)
+                        {
+                            libraryAutomationAddObject.SetValuePattern(date.ToString("dd.MM.yy"));
+                            while ((setValue = libraryAutomationAddObject.IsEnableElements(Journal129AndJournal121.WindowHoursAndMinutes, null, false, 10)) != null)
+                            {
+                                var elem = libraryAutomationAddObject.SelectAutomationColrction(setValue).Cast<AutomationElement>().Where(elems => elems.Current.LocalizedControlType == "поле").ToArray();
+                                libraryAutomationAddObject.FindElement = elem[0];
+                                libraryAutomationAddObject.SetValuePattern(hours);
+                                libraryAutomationAddObject.FindElement = elem[1];
+                                libraryAutomationAddObject.SetValuePattern(minute);
+                                break;
+                            }
+                            libraryAutomationAddObject.FindFirstElement(Journal129AndJournal121.WindowsOk);
+                            libraryAutomationAddObject.InvokePattern(libraryAutomationAddObject.FindElement);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+
         /// <summary>
         /// Автоматизация глобального блока надо добавить сохранение
         /// </summary>

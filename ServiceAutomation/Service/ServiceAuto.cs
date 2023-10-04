@@ -13,9 +13,12 @@ using EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace;
 using EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectDb;
 using LibaryDocumentGenerator.Documents.Template;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
-using SqlLibaryIfns.ZaprosSelectNotParam;
 using EfDatabaseAutomation.Automation.Base;
+using EfDatabaseAutomation.Automation.BaseLogica.FaceRegistryReference;
+using EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfWitnesses;
+using EfDatabaseAutomation.Automation.BaseLogica.UploadFile;
 using LibaryDocumentGenerator.Documents.TemplateExcel;
+using SqlLibaryIfns.ZaprosSelectNotParam;
 
 namespace ServiceAutomation.Service
 {
@@ -58,7 +61,7 @@ namespace ServiceAutomation.Service
         public async Task<Stream> GenerateFileXlsxSqlView(LogicsSelectAutomation sqlSelect)
         {
             var selectFull = new SelectFull(_parameterConfig.ConnectionString);
-            return await Task.Factory.StartNew(() => selectFull.GenerateStreamToSqlViewFile( sqlSelect.SelectUser, "REPORTSQLSERVER", sqlSelect.SelectInfo, _parameterConfig.PathSaveTemplate));
+            return await Task.Factory.StartNew(() => selectFull.GenerateStreamToSqlViewFileAutomation( sqlSelect, _parameterConfig.PathSaveTemplate));
         }
 
         /// <summary>
@@ -465,5 +468,80 @@ namespace ServiceAutomation.Service
                 identification.Dispose();
             });
         }
+        /// <summary>
+        /// Добавление ИНН в БД для отработки сообщений
+        /// </summary>
+        /// <param name="templateInnPattern">Шаблон ИНН</param>
+        /// <param name="userIdGuid">GUID Пользователя</param>
+        /// <returns></returns>
+        public async Task AddInnFaceRegistryReference(TemplateInnPattern templateInnPattern, string userIdGuid)
+        {
+            await Task.Factory.StartNew(() =>
+            {
+                var model = new ModelGetPost();
+                model.AddRegistryReference(templateInnPattern, userIdGuid);
+                model.Dispose();
+            });
+        }
+        /// <summary>
+        /// Удаление записи по ИНН
+        /// </summary>
+        /// <param name="inn">ИНН</param>
+        /// <returns></returns>
+        public async Task<string> DeleteRegistryReference(string inn)
+        {
+          return await Task.Factory.StartNew(() =>
+            {
+                var faceRegistryReference = new SelectAndAddFaceRegistryReference();
+                var message = faceRegistryReference.Delete(inn);
+                faceRegistryReference.Dispose();
+                return message;
+            });
+        }
+        /// <summary>
+        /// Загрузка файла в БД 
+        /// </summary>
+        /// <param name="uploadFileModel">Модель файла Excel</param>
+        /// <returns></returns>
+        public async Task<string> AddFileModel(UploadFile uploadFileModel, string userIdGuid)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                SaveAndLoadInterrogationOfWitnesses saveAndLoadInterrogationOfWitnesses = new SaveAndLoadInterrogationOfWitnesses(_parameterConfig.PathSaveTemplate);
+                saveAndLoadInterrogationOfWitnesses.LoadAndSaveModel(uploadFileModel, userIdGuid);
+                return "Файл успешно загружен!!!";
+            });
+        }
+        /// <summary>
+        /// Все сотрудники организации
+        /// </summary>
+        /// <param name="inn"></param>
+        /// <returns></returns>
+        public async Task<string> AllUsersOrg(string inn)
+        {
+            SelectAllObjectDb select = new SelectAllObjectDb();
+            return await Task.Factory.StartNew(() =>
+            {
+                var allUsersOrg = select.AllUsersOrg(inn);
+                select.Dispose();
+                return allUsersOrg;
+            });
+        }
+        /// <summary>
+        /// Запрос всех вопросов заданных сотруднику
+        /// </summary>
+        /// <param name="idUsers">Ун сотрудника</param>
+        /// <returns></returns>
+        public async Task<string> SelectQuestions(int idUsers)
+        {
+            SelectAllObjectDb select = new SelectAllObjectDb();
+            return await Task.Factory.StartNew(() =>
+            {
+                var allQuestions = select.AllQuestions(idUsers);
+                select.Dispose();
+                return allQuestions;
+            });
+        }
+
     }
 }

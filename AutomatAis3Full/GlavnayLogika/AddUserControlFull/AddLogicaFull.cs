@@ -3,6 +3,7 @@ using AutomatAis3Full.Form.Automat.Analitic.Zadanie.ZacetVozvrat.Signature;
 using AutomatAis3Full.Form.Automat.It.Rule.UserControl;
 using AutomatAis3Full.Form.Automat.It.RuleInfoFull.UserControl;
 using AutomatAis3Full.Form.Automat.It.UserTemplateAndRule.UserControl;
+using AutomatAis3Full.Form.Automat.Kao.InterrogationOfWitnesses.InterrogationOfWitnessesView;
 using AutomatAis3Full.Form.Automat.Okp2.RegisterDeclarations.RegisterDeclarations;
 using AutomatAis3Full.Form.Automat.Okp2.TaxJournal.TaxJournal;
 using AutomatAis3Full.Form.Automat.Okp3.UsnSend.UsnSend;
@@ -61,8 +62,14 @@ using AutomatAis3Full.Form.Automat.Okp6.AddTerm.ViewAddTerm;
 using AutomatAis3Full.Form.Automat.Okp6.DeclarationComplex.ViewDeclarationComplex;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.StartProcessFace.JudicialAct.ViewJudicialAct;
 using AutomatAis3Full.Form.Automat.Okp6.DeclarationCalculation.ViewDeclarationCalculation;
+using AutomatAis3Full.Form.Automat.Okp6.DocumentOwnerFact.OwnerFactIm.ViewOwnerFactIm;
+using AutomatAis3Full.Form.Automat.Okp6.DocumentOwnerFact.OwnerFactZm.ViewOwnerFactZm;
+using AutomatAis3Full.Form.Automat.Orn.Ion.FaceRegistryReference.ViewFaceRegistryReference;
+using AutomatAis3Full.Form.Automat.Orn.IonSend.FaceRegistryReferenceSend.ViewFaceRegistryReferenceSend;
+using AutomatAis3Full.Form.Automat.RaschetBudg.IncomeJournal.FormIncomeJournal;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.TechKorrect.ViewTechAdjustmentStatement;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.TechKorrectAgreement.ViewTechKorrectAgreement;
+using AutomatAis3Full.Form.Automat.Registration.IdentificationFace.IdentificationFl.ViewIdentificationFl;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
 {
@@ -493,13 +500,26 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                       {
                           new FullWindowAutoIt()
                           {
-                              NameControl = "106. Реестр расчетов по страховым взносам",
+                              NameControl = "106. Реестр расчетов по страховым взносам и персонифицированным сведениям",
                               CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                               {
                                   new FullWindowAutoIt()
                                   {
-                                      NameControl = "Реестр расчетов по страховым взносам, сведения о КНП (все)",
+                                      NameControl = "Реестр расчетов по страховым взносам, сведения о КНП (все) (Акты, Извещение, Решения)",
                                       UserControl = new ActIzvesheniaResheniaView()
+                                  }
+                              }
+                          },
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "121. Камеральная налоговая проверка",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "03. Реестр налоговых деклараций (расчетов), сведения о КНП (все) (Нарушения)",
+                                      UserControl = new FormDeclaration121Error()
                                   }
                               }
                           },
@@ -529,6 +549,30 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                       NameControl = "ОКП6",
                       CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                       {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Собственность",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "01. Картотека собственности ФБД",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "07. КС – ЗУ – Факты владения на земельные участки – ФЛ",
+                                              UserControl = new ViewOwnerFactZm()
+                                          },
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "23. КС – ОН – Факты владения на объекты недвижимости – ФЛ",
+                                              UserControl = new ViewOwnerFactIm()
+                                          }
+                                      }
+                                  }
+                              }
+                          },
                           new FullWindowAutoIt()
                           {
                               NameControl = "121. Камеральная налоговая проверка",
@@ -582,6 +626,32 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                   },
                   new FullWindowAutoIt()
                   {
+                      NameControl = "Контрольно-аналитический отдел",
+                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                      {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Контрольная работа",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Допрос свидетелей",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Инициализация процедуры допроса свидетеля",
+                                              UserControl = new InterrogationOfWitnessesView()
+                                          }
+                                      }
+                                  }
+                              }
+                          }
+                      }
+                  },
+                  new FullWindowAutoIt()
+                  {
                       NameControl = "Расчеты с бюджетом",
                       CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                       {
@@ -613,8 +683,19 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                               UserControl = new VedRaz1()
                                           }
                                       }
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Журнал неналоговых доходов",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Раздел II. Доходы, начисления по которым отсутствуют в базе данных налоговых органов",
+                                              UserControl = new ViewIncomeJournal()
+                                          }
+                                      }
                                   }
-
                               }
                           },
                           new FullWindowAutoIt()
@@ -687,6 +768,30 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                        }
                                    }
                                }   
+                              }
+                          },
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "ИОН",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                   new FullWindowAutoIt()
+                                   {
+                                      NameControl = "Информационное обслуживание",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Формирование справки о наличии сальдо по инициативе НО",
+                                              UserControl = new ViewFaceRegistryReference()
+                                          },
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Журнал учета запросов НО",
+                                              UserControl = new ViewFaceRegistryReferenceSend()
+                                          }
+                                      }
+                                   }
                               }
                           }
                       }
@@ -844,6 +949,18 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                               NameControl = "Централизованный учет налогоплательщиков",
                               CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                               {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "18. Действия к выполнению",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "2.09. Ручная идентификация физического лица",
+                                              UserControl = new IdentificationFlView()
+        }
+                                      }
+                                  },
                                   new FullWindowAutoIt()
                                   {
                                       NameControl = "15.02.02. Служебные. Технические исправления",

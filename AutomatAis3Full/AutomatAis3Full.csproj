@@ -128,6 +128,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Kao\InterrogationOfWitnesses\InterrogationOfWitnessesView\InterrogationOfWitnessesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Okp1\Declaration121ActIsh\Declaration121ActIsh\FormDeclaration121ActIsh.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,6 +212,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Okp6\DocumentOwnerFact\OwnerFactIm\ViewOwnerFactIm\ViewOwnerFactIm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Okp6\DocumentOwnerFact\OwnerFactZm\ViewOwnerFactZm\ViewOwnerFactZm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Okp6\JournalDoc\ViewJournalDoc\JourrnalDocView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -220,11 +232,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Orn\IonSend\FaceRegistryReferenceSend\ViewFaceRegistryReferenceSend\ViewFaceRegistryReferenceSend.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Orn\Ion\FaceRegistryReference\ViewFaceRegistryReference\ViewFaceRegistryReference.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\PreCheck\Journal129\Journal129\Journal129.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\PreCheck\ReportingMemo\ReportingMemo\ReportingMemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\RaschetBudg\IncomeJournal\FormIncomeJournal\ViewIncomeJournal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -245,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Registration\ActualStatus\UserControlStatus\ActualStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Registration\IdentificationFace\IdentificationFl\ViewIdentificationFl\IdentificationFlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -415,6 +443,10 @@
     <Compile Include="Form\Automat\It\UserTemplateAndRule\UserControl\FormUserTemplateAndRule.xaml.cs">
       <DependentUpon>FormUserTemplateAndRule.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\Kao\InterrogationOfWitnesses\InterrogationOfWitnessesDataContext\InterrogationOfWitnessesDataContext.cs" />
+    <Compile Include="Form\Automat\Kao\InterrogationOfWitnesses\InterrogationOfWitnessesView\InterrogationOfWitnessesView.xaml.cs">
+      <DependentUpon>InterrogationOfWitnessesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\Okp1\Declaration121ActIsh\DataContext\DataContextDeclaration121ActIsh.cs" />
     <Compile Include="Form\Automat\Okp1\Declaration121ActIsh\Declaration121ActIsh\FormDeclaration121ActIsh.xaml.cs">
       <DependentUpon>FormDeclaration121ActIsh.xaml</DependentUpon>
@@ -495,6 +527,14 @@
     <Compile Include="Form\Automat\Okp6\DeclarationComplex\ViewDeclarationComplex\DeclarationComplexView.xaml.cs">
       <DependentUpon>DeclarationComplexView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\Okp6\DocumentOwnerFact\OwnerFactIm\DataContextOwnerFactIm\DataContextOwnerFactIm.cs" />
+    <Compile Include="Form\Automat\Okp6\DocumentOwnerFact\OwnerFactIm\ViewOwnerFactIm\ViewOwnerFactIm.xaml.cs">
+      <DependentUpon>ViewOwnerFactIm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Okp6\DocumentOwnerFact\OwnerFactZm\DataContextOwnerFactZm\DataContextOwnerFactZm.cs" />
+    <Compile Include="Form\Automat\Okp6\DocumentOwnerFact\OwnerFactZm\ViewOwnerFactZm\ViewOwnerFactZm.xaml.cs">
+      <DependentUpon>ViewOwnerFactZm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\Okp6\JournalDoc\DataContextJournalDoc\DataContextJourrnalDoc.cs" />
     <Compile Include="Form\Automat\Okp6\JournalDoc\ViewJournalDoc\JourrnalDocView.xaml.cs">
       <DependentUpon>JourrnalDocView.xaml</DependentUpon>
@@ -507,6 +547,14 @@
       <DependentUpon>ConfirmationNbo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Orn\ConfirmationNbo\DataContext\DataContextConfirmationNbo.cs" />
+    <Compile Include="Form\Automat\Orn\IonSend\FaceRegistryReferenceSend\DataContextFaceRegistryReferenceSend\DataContextFaceRegistryReferenceSend.cs" />
+    <Compile Include="Form\Automat\Orn\IonSend\FaceRegistryReferenceSend\ViewFaceRegistryReferenceSend\ViewFaceRegistryReferenceSend.xaml.cs">
+      <DependentUpon>ViewFaceRegistryReferenceSend.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Orn\Ion\FaceRegistryReference\DataContextFaceRegistryReference\DataContextFaceRegistryReference.cs" />
+    <Compile Include="Form\Automat\Orn\Ion\FaceRegistryReference\ViewFaceRegistryReference\ViewFaceRegistryReference.xaml.cs">
+      <DependentUpon>ViewFaceRegistryReference.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\PreCheck\Journal129\DataContext\Journal129Context.cs" />
     <Compile Include="Form\Automat\PreCheck\Journal129\Journal129\Journal129.xaml.cs">
       <DependentUpon>Journal129.xaml</DependentUpon>
@@ -514,6 +562,10 @@
     <Compile Include="Form\Automat\PreCheck\ReportingMemo\DataContext\ReportingMemoContext.cs" />
     <Compile Include="Form\Automat\PreCheck\ReportingMemo\ReportingMemo\ReportingMemo.xaml.cs">
       <DependentUpon>ReportingMemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\RaschetBudg\IncomeJournal\DataContextIncomeJournal\DataContextIncomeJournal.cs" />
+    <Compile Include="Form\Automat\RaschetBudg\IncomeJournal\FormIncomeJournal\ViewIncomeJournal.xaml.cs">
+      <DependentUpon>ViewIncomeJournal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\RaschetBudg\Krsb\DataContext\KrsbContext.cs" />
     <Compile Include="Form\Automat\RaschetBudg\Krsb\Krsb\Krsb.xaml.cs">
@@ -534,6 +586,10 @@
     <Compile Include="Form\Automat\Registration\ActualStatus\DataContext\DataContextActual.cs" />
     <Compile Include="Form\Automat\Registration\ActualStatus\UserControlStatus\ActualStatus.xaml.cs">
       <DependentUpon>ActualStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Registration\IdentificationFace\IdentificationFl\DataContextIdentificationFl\DataContextIdentificationFl.cs" />
+    <Compile Include="Form\Automat\Registration\IdentificationFace\IdentificationFl\ViewIdentificationFl\IdentificationFlView.xaml.cs">
+      <DependentUpon>IdentificationFlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Registration\Journal\ReceivedDocument\DataContext\DataContextReceivedDocuments.cs" />
     <Compile Include="Form\Automat\Registration\Journal\ReceivedDocument\ReceivedDocuments\ReceivedDocuments.xaml.cs">

@@ -25,7 +25,7 @@ namespace AutomatAis3Full.GlavnayLogika.Mvvm
             var fullLogica = new AddUserControlFull.AddLogicaFull();
             FullWindow = fullLogica.FullWindowAdd();
             OpenForms = new DelegateCommand<object>(parameter => { FullWindow.IsCheked(parameter); });
-            OpenPdfHelp = new DelegateCommand((() => {help.OpenReport(ConfigFile.Help); }));
+            OpenPdfHelp = new DelegateCommand(() => {help.OpenReport(ConfigFile.Help); });
             User = $"Добро пожаловать {Environment.UserName}";
             Web = ConfigFile.WebSite;
         }

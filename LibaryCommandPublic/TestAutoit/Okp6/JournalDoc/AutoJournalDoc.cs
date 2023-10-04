@@ -3,11 +3,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight.Threading;
 using LibraryAIS3Windows.ButtonsClikcs;
+using ViewModelLib.ModelTestAutoit.ModelFormirovanie.ListYearReport;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
 namespace LibraryCommandPublic.TestAutoit.Okp6.JournalDoc
 {
-   public class AutoJournalDoc
+    public class AutoJournalDoc
     {
         /// <summary>
         /// Налоговое администрирование\Контрольная работа (налоговые проверки)\121. Камеральная налоговая проверка\04. Журнал документов, выписанных в ходе налоговой проверки
@@ -23,8 +24,8 @@ namespace LibraryCommandPublic.TestAutoit.Okp6.JournalDoc
                 LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
-                        clickerButton.Click34(statusButton);
-                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    clickerButton.Click34(statusButton);
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                 }
                 else
                 {
@@ -65,6 +66,7 @@ namespace LibraryCommandPublic.TestAutoit.Okp6.JournalDoc
                 }
             });
         }
+
         /// <summary>
         /// Налоговое администрирование\Контрольная работа (налоговые проверки)\122. Камеральная налоговая проверка НДФЛ\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
         /// Закрытие комплекса мероприятий
@@ -131,6 +133,7 @@ namespace LibraryCommandPublic.TestAutoit.Okp6.JournalDoc
                 }
             });
         }
+
         /// <summary>
         /// Налоговое администрирование\Контрольная работа (налоговые проверки)\122. Камеральная налоговая проверка НДФЛ\03. Реестр налоговых деклараций (расчетов), сведения о КНП (все)
         /// Проставить срок проверки декларации
@@ -230,6 +233,85 @@ namespace LibraryCommandPublic.TestAutoit.Okp6.JournalDoc
                     throw;
                 }
             });
+        }
+
+        /// <summary>
+        /// Автомат на поиск фактов владения и документов к ним Налоговое администрирование\Собственность\01. Картотека собственности ФБД\07. КС – ЗУ – Факты владения на земельные участки – ФЛ
+        /// Поиск сведений о земле
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        /// <param name="listYearReport">Отчетный год</param>
+        /// <param name="pathListStatement">Полный путь к списку с ИНН</param>
+        /// <param name="pathTemp">Путь к папке Temp</param>
+        public void FindOwnerFactFlZm(StatusButtonMethod statusButton, ListYearReport listYearReport,
+            string pathListStatement, string pathTemp)
+        {
+            DispatcherHelper.Initialize();
+            if (listYearReport.IsValidation())
+            {
+                Task.Run(delegate
+                {
+                    try
+                    {
+                        DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                        KclicerButton clickerButton = new KclicerButton();
+                        LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                        if (ais3.WinexistsAis3() == 1)
+                        {
+                            clickerButton.Click58(statusButton, pathListStatement, pathTemp, listYearReport.YearReport);
+                            DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                        }
+                        else
+                        {
+                            MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.ToString());
+                        throw;
+                    }
+                });
+            }
+        }
+
+        /// <summary>
+        /// Автомат на поиск фактов владения и документов к ним Налоговое администрирование\\Собственность\\01. Картотека собственности ФБД\\23. КС – ОН – Факты владения на объекты недвижимости – ФЛ
+        /// Поиск сведений о имуществе
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        /// <param name="listYearReport">Отчетный год</param>
+        /// <param name="pathListStatement">Полный путь к списку с ИНН</param>
+        /// <param name="pathTemp">Путь к папке Temp</param>
+        public void FindOwnerFactFlIm(StatusButtonMethod statusButton, ListYearReport listYearReport, string pathListStatement, string pathTemp)
+        {
+            DispatcherHelper.Initialize();
+            if (listYearReport.IsValidation())
+            {
+                Task.Run(delegate
+                {
+                    try
+                    {
+                        DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                        KclicerButton clickerButton = new KclicerButton();
+                        LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                        if (ais3.WinexistsAis3() == 1)
+                        {
+                            clickerButton.Click59(statusButton, pathListStatement, pathTemp, listYearReport.YearReport);
+                            DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                        }
+                        else
+                        {
+                            MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.ToString());
+                        throw;
+                    }
+                });
+            }
         }
     }
 }

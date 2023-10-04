@@ -93,6 +93,15 @@ namespace LibaryXMLAuto.GenerateAtribyte
             return String.Format("/AutoGenerateSchemes/FaceStatement[@Inn =\"{0}\"]", inn);
         }
         /// <summary>
+        /// Шаблон удаления платежа
+        /// </summary>
+        /// <param name="number">Номер платежа</param>
+        /// <returns></returns>
+        public static string GenerateAtrAutoGenerateSchemesIncomeJournal(int number)
+        {
+            return String.Format("/AutoGenerateSchemes/IncomeJournal[@Number =\"{0}\"]", number);
+        }
+        /// <summary>
         /// Удаление атрибута по ФИДУ AddressModel
         /// </summary>
         /// <param name="fid">ИНН</param>
@@ -101,6 +110,24 @@ namespace LibaryXMLAuto.GenerateAtribyte
         {
             return String.Format("/AutoGenerateSchemes/AddressModel[@Fid =\"{0}\"]", fid);
         }
-
+        /// <summary>
+        /// Удаление Id из журнала
+        /// </summary>
+        /// <param name="id">Ун входящего документа</param>
+        /// <returns></returns>
+        public static string GenerateAtrAutoGenerateSchemesDeleteIdDoc(string id)
+        {
+            return String.Format("/AutoGenerateSchemes/IdentytiFace[@Id =\"{0}\"]", id);
+        }
+        /// <summary>
+        /// Поиск и удаление ИНН из списка
+        /// </summary>
+        /// <param name="inn">ИНН</param>
+        /// <returns></returns>
+        public static string GenerateAtrAutoGenerateSchemesDeleteIdDocInn(string inn)
+        {
+            return String.Format("/AutoGenerateSchemes/InnFace[@Inn =\"{0}\"]", inn);
+        }
     }
+
 }

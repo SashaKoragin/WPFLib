@@ -39,6 +39,7 @@ namespace EfDatabaseAutomation.Automation.Base
     {
         System.Data.Entity.DbSet<AddUlFace> AddUlFaces { get; set; } // AddUlFace
         System.Data.Entity.DbSet<AddUlFaceWeb> AddUlFaceWebs { get; set; } // AddUlFaceWeb
+        System.Data.Entity.DbSet<AllFaceRegistryReference> AllFaceRegistryReferences { get; set; } // AllFaceRegistryReference
         System.Data.Entity.DbSet<AllJournal129> AllJournal129 { get; set; } // AllJournal129
         System.Data.Entity.DbSet<AllJournalRegistrationFl> AllJournalRegistrationFls { get; set; } // AllJournalRegistrationFl
         System.Data.Entity.DbSet<AllPatent> AllPatents { get; set; } // AllPatent
@@ -61,18 +62,23 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<DeclarationUl> DeclarationUls { get; set; } // DeclarationUl
         System.Data.Entity.DbSet<DeliveryDocument> DeliveryDocuments { get; set; } // DeliveryDocument
         System.Data.Entity.DbSet<DepartamentOtdel> DepartamentOtdels { get; set; } // DepartamentOtdel
+        System.Data.Entity.DbSet<Derector> Derectors { get; set; } // Derector
         System.Data.Entity.DbSet<DocPatent> DocPatents { get; set; } // DocPatent
         System.Data.Entity.DbSet<Documen2Ndfl> Documen2Ndfl { get; set; } // Documen2NDFL
         System.Data.Entity.DbSet<Documen2NdflIdentification> Documen2NdflIdentification { get; set; } // Documen2NDFLIdentification
+        System.Data.Entity.DbSet<DocumentOwnershipImZmTrFl> DocumentOwnershipImZmTrFls { get; set; } // DocumentOwnershipImZmTrFl
         System.Data.Entity.DbSet<EasJournal> EasJournals { get; set; } // EasJournal
         System.Data.Entity.DbSet<ErrorFlRegistration> ErrorFlRegistrations { get; set; } // ErrorFlRegistration
         System.Data.Entity.DbSet<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost
+        System.Data.Entity.DbSet<FaceRegistryReference> FaceRegistryReferences { get; set; } // FaceRegistryReference
+        System.Data.Entity.DbSet<FactOfOwnershipImZmTrFl> FactOfOwnershipImZmTrFls { get; set; } // FactOfOwnershipImZmTrFl
         System.Data.Entity.DbSet<Field> Fields { get; set; } // Fields
         System.Data.Entity.DbSet<FlFace> FlFaces { get; set; } // FlFace
         System.Data.Entity.DbSet<FlFaceMain> FlFaceMains { get; set; } // FlFaceMain
         System.Data.Entity.DbSet<FlFaceMainRegistration> FlFaceMainRegistrations { get; set; } // FlFaceMainRegistration
         System.Data.Entity.DbSet<FormulNdfl> FormulNdfls { get; set; } // FormulNdfl
         System.Data.Entity.DbSet<GroupKbk> GroupKbks { get; set; } // GroupKbk
+        System.Data.Entity.DbSet<GroupQuestion> GroupQuestions { get; set; } // GroupQuestions
         System.Data.Entity.DbSet<HeadingStatement> HeadingStatements { get; set; } // HeadingStatement
         System.Data.Entity.DbSet<HelpKbkAuto> HelpKbkAutoes { get; set; } // HelpKbkAuto
         System.Data.Entity.DbSet<HistoriUlFace> HistoriUlFaces { get; set; } // HistoriUlFace
@@ -85,10 +91,14 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<IsPatentParse> IsPatentParses { get; set; } // IsPatentParse
         System.Data.Entity.DbSet<KbkPayment> KbkPayments { get; set; } // KbkPayment
         System.Data.Entity.DbSet<KbkPlat> KbkPlats { get; set; } // KbkPlat
+        System.Data.Entity.DbSet<KontrAgent> KontrAgents { get; set; } // KontrAgent
         System.Data.Entity.DbSet<Krsb> Krsbs { get; set; } // Krsb
         System.Data.Entity.DbSet<KrsbNp> KrsbNps { get; set; } // KrsbNp
         System.Data.Entity.DbSet<LogicsSelectAutomation> LogicsSelectAutomations { get; set; } // LogicsSelectAutomation
         System.Data.Entity.DbSet<LogPreCheck> LogPreChecks { get; set; } // LogPreCheck
+        System.Data.Entity.DbSet<MainOrg> MainOrgs { get; set; } // MainOrg
+        System.Data.Entity.DbSet<MainOrgAndKontrAgent> MainOrgAndKontrAgents { get; set; } // MainOrgAndKontrAgent
+        System.Data.Entity.DbSet<MainOrgAndQuestion> MainOrgAndQuestions { get; set; } // MainOrgAndQuestions
         System.Data.Entity.DbSet<ModelKbkOnKbk> ModelKbkOnKbks { get; set; } // ModelKbkOnKbk
         System.Data.Entity.DbSet<ModelTree> ModelTrees { get; set; } // ModelTree
         System.Data.Entity.DbSet<NdflFl> NdflFls { get; set; } // NdflFl
@@ -96,7 +106,9 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<ParametrNalog> ParametrNalogs { get; set; } // ParametrNalog
         System.Data.Entity.DbSet<Patent> Patents { get; set; } // Patent
         System.Data.Entity.DbSet<PlaceOfBusiness> PlaceOfBusinesses { get; set; } // PlaceOfBusiness
+        System.Data.Entity.DbSet<QuestionsAndUser> QuestionsAndUsers { get; set; } // QuestionsAndUsers
         System.Data.Entity.DbSet<RbHoliday> RbHolidays { get; set; } // Rb_Holidays
+        System.Data.Entity.DbSet<RealEstateZmIm> RealEstateZmIms { get; set; } // RealEstateZmIm
         System.Data.Entity.DbSet<ReportXlsx> ReportXlsxes { get; set; } // ReportXlsx
         System.Data.Entity.DbSet<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh
         System.Data.Entity.DbSet<SenderTaxJournalOkp2> SenderTaxJournalOkp2 { get; set; } // SenderTaxJournalOkp2
@@ -122,6 +134,7 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<TaxJournalDelivery> TaxJournalDeliveries { get; set; } // TaxJournalDelivery
         System.Data.Entity.DbSet<Template> Templates { get; set; } // Template
         System.Data.Entity.DbSet<TemplateAndTree> TemplateAndTrees { get; set; } // TemplateAndTree
+        System.Data.Entity.DbSet<TemplateQuestion> TemplateQuestions { get; set; } // TemplateQuestions
         System.Data.Entity.DbSet<Tree> Trees { get; set; } // Tree
         System.Data.Entity.DbSet<TreeDataArea> TreeDataAreas { get; set; } // TreeDataArea
         System.Data.Entity.DbSet<TreeExport> TreeExports { get; set; } // TreeExport
@@ -134,6 +147,7 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<UlFaceAll> UlFaceAlls { get; set; } // UlFaceAll
         System.Data.Entity.DbSet<UlFaceAllSale> UlFaceAllSales { get; set; } // UlFaceAllSales
         System.Data.Entity.DbSet<UlFaceSalesBookBank> UlFaceSalesBookBanks { get; set; } // UlFaceSalesBookBank
+        System.Data.Entity.DbSet<UserOrg> UserOrgs { get; set; } // UserOrg
 
         int SaveChanges();
         System.Threading.Tasks.Task<int> SaveChangesAsync();
@@ -158,6 +172,7 @@ namespace EfDatabaseAutomation.Automation.Base
     {
         public System.Data.Entity.DbSet<AddUlFace> AddUlFaces { get; set; } // AddUlFace
         public System.Data.Entity.DbSet<AddUlFaceWeb> AddUlFaceWebs { get; set; } // AddUlFaceWeb
+        public System.Data.Entity.DbSet<AllFaceRegistryReference> AllFaceRegistryReferences { get; set; } // AllFaceRegistryReference
         public System.Data.Entity.DbSet<AllJournal129> AllJournal129 { get; set; } // AllJournal129
         public System.Data.Entity.DbSet<AllJournalRegistrationFl> AllJournalRegistrationFls { get; set; } // AllJournalRegistrationFl
         public System.Data.Entity.DbSet<AllPatent> AllPatents { get; set; } // AllPatent
@@ -180,18 +195,23 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<DeclarationUl> DeclarationUls { get; set; } // DeclarationUl
         public System.Data.Entity.DbSet<DeliveryDocument> DeliveryDocuments { get; set; } // DeliveryDocument
         public System.Data.Entity.DbSet<DepartamentOtdel> DepartamentOtdels { get; set; } // DepartamentOtdel
+        public System.Data.Entity.DbSet<Derector> Derectors { get; set; } // Derector
         public System.Data.Entity.DbSet<DocPatent> DocPatents { get; set; } // DocPatent
         public System.Data.Entity.DbSet<Documen2Ndfl> Documen2Ndfl { get; set; } // Documen2NDFL
         public System.Data.Entity.DbSet<Documen2NdflIdentification> Documen2NdflIdentification { get; set; } // Documen2NDFLIdentification
+        public System.Data.Entity.DbSet<DocumentOwnershipImZmTrFl> DocumentOwnershipImZmTrFls { get; set; } // DocumentOwnershipImZmTrFl
         public System.Data.Entity.DbSet<EasJournal> EasJournals { get; set; } // EasJournal
         public System.Data.Entity.DbSet<ErrorFlRegistration> ErrorFlRegistrations { get; set; } // ErrorFlRegistration
         public System.Data.Entity.DbSet<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost
+        public System.Data.Entity.DbSet<FaceRegistryReference> FaceRegistryReferences { get; set; } // FaceRegistryReference
+        public System.Data.Entity.DbSet<FactOfOwnershipImZmTrFl> FactOfOwnershipImZmTrFls { get; set; } // FactOfOwnershipImZmTrFl
         public System.Data.Entity.DbSet<Field> Fields { get; set; } // Fields
         public System.Data.Entity.DbSet<FlFace> FlFaces { get; set; } // FlFace
         public System.Data.Entity.DbSet<FlFaceMain> FlFaceMains { get; set; } // FlFaceMain
         public System.Data.Entity.DbSet<FlFaceMainRegistration> FlFaceMainRegistrations { get; set; } // FlFaceMainRegistration
         public System.Data.Entity.DbSet<FormulNdfl> FormulNdfls { get; set; } // FormulNdfl
         public System.Data.Entity.DbSet<GroupKbk> GroupKbks { get; set; } // GroupKbk
+        public System.Data.Entity.DbSet<GroupQuestion> GroupQuestions { get; set; } // GroupQuestions
         public System.Data.Entity.DbSet<HeadingStatement> HeadingStatements { get; set; } // HeadingStatement
         public System.Data.Entity.DbSet<HelpKbkAuto> HelpKbkAutoes { get; set; } // HelpKbkAuto
         public System.Data.Entity.DbSet<HistoriUlFace> HistoriUlFaces { get; set; } // HistoriUlFace
@@ -204,10 +224,14 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<IsPatentParse> IsPatentParses { get; set; } // IsPatentParse
         public System.Data.Entity.DbSet<KbkPayment> KbkPayments { get; set; } // KbkPayment
         public System.Data.Entity.DbSet<KbkPlat> KbkPlats { get; set; } // KbkPlat
+        public System.Data.Entity.DbSet<KontrAgent> KontrAgents { get; set; } // KontrAgent
         public System.Data.Entity.DbSet<Krsb> Krsbs { get; set; } // Krsb
         public System.Data.Entity.DbSet<KrsbNp> KrsbNps { get; set; } // KrsbNp
         public System.Data.Entity.DbSet<LogicsSelectAutomation> LogicsSelectAutomations { get; set; } // LogicsSelectAutomation
         public System.Data.Entity.DbSet<LogPreCheck> LogPreChecks { get; set; } // LogPreCheck
+        public System.Data.Entity.DbSet<MainOrg> MainOrgs { get; set; } // MainOrg
+        public System.Data.Entity.DbSet<MainOrgAndKontrAgent> MainOrgAndKontrAgents { get; set; } // MainOrgAndKontrAgent
+        public System.Data.Entity.DbSet<MainOrgAndQuestion> MainOrgAndQuestions { get; set; } // MainOrgAndQuestions
         public System.Data.Entity.DbSet<ModelKbkOnKbk> ModelKbkOnKbks { get; set; } // ModelKbkOnKbk
         public System.Data.Entity.DbSet<ModelTree> ModelTrees { get; set; } // ModelTree
         public System.Data.Entity.DbSet<NdflFl> NdflFls { get; set; } // NdflFl
@@ -215,7 +239,9 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<ParametrNalog> ParametrNalogs { get; set; } // ParametrNalog
         public System.Data.Entity.DbSet<Patent> Patents { get; set; } // Patent
         public System.Data.Entity.DbSet<PlaceOfBusiness> PlaceOfBusinesses { get; set; } // PlaceOfBusiness
+        public System.Data.Entity.DbSet<QuestionsAndUser> QuestionsAndUsers { get; set; } // QuestionsAndUsers
         public System.Data.Entity.DbSet<RbHoliday> RbHolidays { get; set; } // Rb_Holidays
+        public System.Data.Entity.DbSet<RealEstateZmIm> RealEstateZmIms { get; set; } // RealEstateZmIm
         public System.Data.Entity.DbSet<ReportXlsx> ReportXlsxes { get; set; } // ReportXlsx
         public System.Data.Entity.DbSet<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh
         public System.Data.Entity.DbSet<SenderTaxJournalOkp2> SenderTaxJournalOkp2 { get; set; } // SenderTaxJournalOkp2
@@ -241,6 +267,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<TaxJournalDelivery> TaxJournalDeliveries { get; set; } // TaxJournalDelivery
         public System.Data.Entity.DbSet<Template> Templates { get; set; } // Template
         public System.Data.Entity.DbSet<TemplateAndTree> TemplateAndTrees { get; set; } // TemplateAndTree
+        public System.Data.Entity.DbSet<TemplateQuestion> TemplateQuestions { get; set; } // TemplateQuestions
         public System.Data.Entity.DbSet<Tree> Trees { get; set; } // Tree
         public System.Data.Entity.DbSet<TreeDataArea> TreeDataAreas { get; set; } // TreeDataArea
         public System.Data.Entity.DbSet<TreeExport> TreeExports { get; set; } // TreeExport
@@ -253,6 +280,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<UlFaceAll> UlFaceAlls { get; set; } // UlFaceAll
         public System.Data.Entity.DbSet<UlFaceAllSale> UlFaceAllSales { get; set; } // UlFaceAllSales
         public System.Data.Entity.DbSet<UlFaceSalesBookBank> UlFaceSalesBookBanks { get; set; } // UlFaceSalesBookBank
+        public System.Data.Entity.DbSet<UserOrg> UserOrgs { get; set; } // UserOrg
 
         static Automation()
         {
@@ -304,6 +332,7 @@ namespace EfDatabaseAutomation.Automation.Base
 
             modelBuilder.Configurations.Add(new AddUlFaceConfiguration());
             modelBuilder.Configurations.Add(new AddUlFaceWebConfiguration());
+            modelBuilder.Configurations.Add(new AllFaceRegistryReferenceConfiguration());
             modelBuilder.Configurations.Add(new AllJournal129Configuration());
             modelBuilder.Configurations.Add(new AllJournalRegistrationFlConfiguration());
             modelBuilder.Configurations.Add(new AllPatentConfiguration());
@@ -326,18 +355,23 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new DeclarationUlConfiguration());
             modelBuilder.Configurations.Add(new DeliveryDocumentConfiguration());
             modelBuilder.Configurations.Add(new DepartamentOtdelConfiguration());
+            modelBuilder.Configurations.Add(new DerectorConfiguration());
             modelBuilder.Configurations.Add(new DocPatentConfiguration());
             modelBuilder.Configurations.Add(new Documen2NdflConfiguration());
             modelBuilder.Configurations.Add(new Documen2NdflIdentificationConfiguration());
+            modelBuilder.Configurations.Add(new DocumentOwnershipImZmTrFlConfiguration());
             modelBuilder.Configurations.Add(new EasJournalConfiguration());
             modelBuilder.Configurations.Add(new ErrorFlRegistrationConfiguration());
             modelBuilder.Configurations.Add(new FaceModelTemplateGetPostConfiguration());
+            modelBuilder.Configurations.Add(new FaceRegistryReferenceConfiguration());
+            modelBuilder.Configurations.Add(new FactOfOwnershipImZmTrFlConfiguration());
             modelBuilder.Configurations.Add(new FieldConfiguration());
             modelBuilder.Configurations.Add(new FlFaceConfiguration());
             modelBuilder.Configurations.Add(new FlFaceMainConfiguration());
             modelBuilder.Configurations.Add(new FlFaceMainRegistrationConfiguration());
             modelBuilder.Configurations.Add(new FormulNdflConfiguration());
             modelBuilder.Configurations.Add(new GroupKbkConfiguration());
+            modelBuilder.Configurations.Add(new GroupQuestionConfiguration());
             modelBuilder.Configurations.Add(new HeadingStatementConfiguration());
             modelBuilder.Configurations.Add(new HelpKbkAutoConfiguration());
             modelBuilder.Configurations.Add(new HistoriUlFaceConfiguration());
@@ -350,10 +384,14 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new IsPatentParseConfiguration());
             modelBuilder.Configurations.Add(new KbkPaymentConfiguration());
             modelBuilder.Configurations.Add(new KbkPlatConfiguration());
+            modelBuilder.Configurations.Add(new KontrAgentConfiguration());
             modelBuilder.Configurations.Add(new KrsbConfiguration());
             modelBuilder.Configurations.Add(new KrsbNpConfiguration());
             modelBuilder.Configurations.Add(new LogicsSelectAutomationConfiguration());
             modelBuilder.Configurations.Add(new LogPreCheckConfiguration());
+            modelBuilder.Configurations.Add(new MainOrgConfiguration());
+            modelBuilder.Configurations.Add(new MainOrgAndKontrAgentConfiguration());
+            modelBuilder.Configurations.Add(new MainOrgAndQuestionConfiguration());
             modelBuilder.Configurations.Add(new ModelKbkOnKbkConfiguration());
             modelBuilder.Configurations.Add(new ModelTreeConfiguration());
             modelBuilder.Configurations.Add(new NdflFlConfiguration());
@@ -361,7 +399,9 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new ParametrNalogConfiguration());
             modelBuilder.Configurations.Add(new PatentConfiguration());
             modelBuilder.Configurations.Add(new PlaceOfBusinessConfiguration());
+            modelBuilder.Configurations.Add(new QuestionsAndUserConfiguration());
             modelBuilder.Configurations.Add(new RbHolidayConfiguration());
+            modelBuilder.Configurations.Add(new RealEstateZmImConfiguration());
             modelBuilder.Configurations.Add(new ReportXlsxConfiguration());
             modelBuilder.Configurations.Add(new RukAndUcrhConfiguration());
             modelBuilder.Configurations.Add(new SenderTaxJournalOkp2Configuration());
@@ -387,6 +427,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new TaxJournalDeliveryConfiguration());
             modelBuilder.Configurations.Add(new TemplateConfiguration());
             modelBuilder.Configurations.Add(new TemplateAndTreeConfiguration());
+            modelBuilder.Configurations.Add(new TemplateQuestionConfiguration());
             modelBuilder.Configurations.Add(new TreeConfiguration());
             modelBuilder.Configurations.Add(new TreeDataAreaConfiguration());
             modelBuilder.Configurations.Add(new TreeExportConfiguration());
@@ -399,12 +440,14 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new UlFaceAllConfiguration());
             modelBuilder.Configurations.Add(new UlFaceAllSaleConfiguration());
             modelBuilder.Configurations.Add(new UlFaceSalesBookBankConfiguration());
+            modelBuilder.Configurations.Add(new UserOrgConfiguration());
         }
 
         public static System.Data.Entity.DbModelBuilder CreateModel(System.Data.Entity.DbModelBuilder modelBuilder, string schema)
         {
             modelBuilder.Configurations.Add(new AddUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new AddUlFaceWebConfiguration(schema));
+            modelBuilder.Configurations.Add(new AllFaceRegistryReferenceConfiguration(schema));
             modelBuilder.Configurations.Add(new AllJournal129Configuration(schema));
             modelBuilder.Configurations.Add(new AllJournalRegistrationFlConfiguration(schema));
             modelBuilder.Configurations.Add(new AllPatentConfiguration(schema));
@@ -427,18 +470,23 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new DeclarationUlConfiguration(schema));
             modelBuilder.Configurations.Add(new DeliveryDocumentConfiguration(schema));
             modelBuilder.Configurations.Add(new DepartamentOtdelConfiguration(schema));
+            modelBuilder.Configurations.Add(new DerectorConfiguration(schema));
             modelBuilder.Configurations.Add(new DocPatentConfiguration(schema));
             modelBuilder.Configurations.Add(new Documen2NdflConfiguration(schema));
             modelBuilder.Configurations.Add(new Documen2NdflIdentificationConfiguration(schema));
+            modelBuilder.Configurations.Add(new DocumentOwnershipImZmTrFlConfiguration(schema));
             modelBuilder.Configurations.Add(new EasJournalConfiguration(schema));
             modelBuilder.Configurations.Add(new ErrorFlRegistrationConfiguration(schema));
             modelBuilder.Configurations.Add(new FaceModelTemplateGetPostConfiguration(schema));
+            modelBuilder.Configurations.Add(new FaceRegistryReferenceConfiguration(schema));
+            modelBuilder.Configurations.Add(new FactOfOwnershipImZmTrFlConfiguration(schema));
             modelBuilder.Configurations.Add(new FieldConfiguration(schema));
             modelBuilder.Configurations.Add(new FlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new FlFaceMainConfiguration(schema));
             modelBuilder.Configurations.Add(new FlFaceMainRegistrationConfiguration(schema));
             modelBuilder.Configurations.Add(new FormulNdflConfiguration(schema));
             modelBuilder.Configurations.Add(new GroupKbkConfiguration(schema));
+            modelBuilder.Configurations.Add(new GroupQuestionConfiguration(schema));
             modelBuilder.Configurations.Add(new HeadingStatementConfiguration(schema));
             modelBuilder.Configurations.Add(new HelpKbkAutoConfiguration(schema));
             modelBuilder.Configurations.Add(new HistoriUlFaceConfiguration(schema));
@@ -451,10 +499,14 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new IsPatentParseConfiguration(schema));
             modelBuilder.Configurations.Add(new KbkPaymentConfiguration(schema));
             modelBuilder.Configurations.Add(new KbkPlatConfiguration(schema));
+            modelBuilder.Configurations.Add(new KontrAgentConfiguration(schema));
             modelBuilder.Configurations.Add(new KrsbConfiguration(schema));
             modelBuilder.Configurations.Add(new KrsbNpConfiguration(schema));
             modelBuilder.Configurations.Add(new LogicsSelectAutomationConfiguration(schema));
             modelBuilder.Configurations.Add(new LogPreCheckConfiguration(schema));
+            modelBuilder.Configurations.Add(new MainOrgConfiguration(schema));
+            modelBuilder.Configurations.Add(new MainOrgAndKontrAgentConfiguration(schema));
+            modelBuilder.Configurations.Add(new MainOrgAndQuestionConfiguration(schema));
             modelBuilder.Configurations.Add(new ModelKbkOnKbkConfiguration(schema));
             modelBuilder.Configurations.Add(new ModelTreeConfiguration(schema));
             modelBuilder.Configurations.Add(new NdflFlConfiguration(schema));
@@ -462,7 +514,9 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new ParametrNalogConfiguration(schema));
             modelBuilder.Configurations.Add(new PatentConfiguration(schema));
             modelBuilder.Configurations.Add(new PlaceOfBusinessConfiguration(schema));
+            modelBuilder.Configurations.Add(new QuestionsAndUserConfiguration(schema));
             modelBuilder.Configurations.Add(new RbHolidayConfiguration(schema));
+            modelBuilder.Configurations.Add(new RealEstateZmImConfiguration(schema));
             modelBuilder.Configurations.Add(new ReportXlsxConfiguration(schema));
             modelBuilder.Configurations.Add(new RukAndUcrhConfiguration(schema));
             modelBuilder.Configurations.Add(new SenderTaxJournalOkp2Configuration(schema));
@@ -488,6 +542,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new TaxJournalDeliveryConfiguration(schema));
             modelBuilder.Configurations.Add(new TemplateConfiguration(schema));
             modelBuilder.Configurations.Add(new TemplateAndTreeConfiguration(schema));
+            modelBuilder.Configurations.Add(new TemplateQuestionConfiguration(schema));
             modelBuilder.Configurations.Add(new TreeConfiguration(schema));
             modelBuilder.Configurations.Add(new TreeDataAreaConfiguration(schema));
             modelBuilder.Configurations.Add(new TreeExportConfiguration(schema));
@@ -500,6 +555,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new UlFaceAllConfiguration(schema));
             modelBuilder.Configurations.Add(new UlFaceAllSaleConfiguration(schema));
             modelBuilder.Configurations.Add(new UlFaceSalesBookBankConfiguration(schema));
+            modelBuilder.Configurations.Add(new UserOrgConfiguration(schema));
             return modelBuilder;
         }
     }
@@ -551,6 +607,33 @@ namespace EfDatabaseAutomation.Automation.Base
         public int IdUl { get; set; } // IdUl (Primary key)
         public string InnUl { get; set; } // InnUl (length: 12)
         public string FullStatus { get; set; } // FullStatus (length: 124)
+    }
+
+    // AllFaceRegistryReference
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class AllFaceRegistryReference
+    {
+        public int IdFace { get; set; } // IdFace (Primary key)
+        public bool TypeFaceBool { get; set; } // TypeFaceBool
+        public string TypeFace { get; set; } // TypeFace (length: 8)
+        public string NameFace { get; set; } // NameFace (length: 256)
+        public string InnFace { get; set; } // InnFace (length: 12)
+        public int? CodeNo { get; set; } // CodeNo
+        public string TypeObjectModel { get; set; } // TypeObjectModel (length: 256)
+        public bool IsState1 { get; set; } // IsState1
+        public System.DateTime? DateState1 { get; set; } // DateState1
+        public bool IsState2 { get; set; } // IsState2
+        public System.DateTime? DateState2 { get; set; } // DateState2
+        public string IsErrorMessage { get; set; } // IsErrorMessage (length: 1024)
+        public System.DateTime? DateModification { get; set; } // DateModification
+
+        public AllFaceRegistryReference()
+        {
+            TypeFaceBool = false;
+            IsState1 = false;
+            IsState2 = false;
+            DateModification = System.DateTime.Now;
+        }
     }
 
     // AllJournal129
@@ -1329,6 +1412,29 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // Derector
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class Derector
+    {
+        public int IdDerector { get; set; } // IdDerector (Primary key)
+        public string NameDerector { get; set; } // NameDerector (length: 128)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child MainOrgs where [MainOrg].[IdDerector] point to this entity (FK_Derector_MainOrg)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<MainOrg> MainOrgs { get; set; } // MainOrg.FK_Derector_MainOrg
+
+        public Derector()
+        {
+            DateCreate = System.DateTime.Now;
+            MainOrgs = new System.Collections.Generic.List<MainOrg>();
+        }
+    }
+
     // DocPatent
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class DocPatent
@@ -1434,6 +1540,34 @@ namespace EfDatabaseAutomation.Automation.Base
         public string ErrorNameStatus { get; set; } // ErrorNameStatus (length: 1024)
     }
 
+    // DocumentOwnershipImZmTrFl
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class DocumentOwnershipImZmTrFl
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public long FidObject { get; set; } // FidObject (Primary key)
+        public string NumberDocument { get; set; } // NumberDocument (length: 512)
+        public System.DateTime? DateDocument { get; set; } // DateDocument
+        public string CodeDocument { get; set; } // CodeDocument (length: 512)
+        public string NameDocument { get; set; } // NameDocument (length: 512)
+        public string Name { get; set; } // Name (length: 512)
+        public double? CashDeal { get; set; } // CashDeal
+        public string CashText { get; set; } // CashText (length: 512)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent FactOfOwnershipImZmTrFl pointed by [DocumentOwnershipImZmTrFl].([FidObject]) (FK_DocumentOwnershipImZmTrFl_FactOfOwnershipImZmTrFl)
+        /// </summary>
+        public virtual FactOfOwnershipImZmTrFl FactOfOwnershipImZmTrFl { get; set; } // FK_DocumentOwnershipImZmTrFl_FactOfOwnershipImZmTrFl
+
+        public DocumentOwnershipImZmTrFl()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
     // EasJournal
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class EasJournal
@@ -1519,6 +1653,70 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // FaceRegistryReference
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class FaceRegistryReference
+    {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
+        public int IdFace { get; set; } // IdFace (Primary key)
+        public bool TypeFaceBool { get; set; } // TypeFaceBool (Primary key)
+        public string TypeFace { get; set; } // TypeFace (Primary key) (length: 8)
+        public string NameFace { get; set; } // NameFace (length: 256)
+        public string InnFace { get; set; } // InnFace (Primary key) (length: 12)
+        public int? CodeNo { get; set; } // CodeNo
+        public string TypeObjectModel { get; set; } // TypeObjectModel (length: 256)
+        public bool IsState1 { get; set; } // IsState1 (Primary key)
+        public System.DateTime? DateState1 { get; set; } // DateState1
+        public bool IsState2 { get; set; } // IsState2 (Primary key)
+        public System.DateTime? DateState2 { get; set; } // DateState2
+        public string IsErrorMessage { get; set; } // IsErrorMessage (length: 1024)
+        public System.DateTime? DateModification { get; set; } // DateModification
+    }
+
+    // FactOfOwnershipImZmTrFl
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class FactOfOwnershipImZmTrFl
+    {
+        public int Id { get; set; } // Id
+        public int IdFl { get; set; } // IdFl
+        public int IdObject { get; set; } // IdObject
+        public long FidObject { get; set; } // FidObject (Primary key)
+        public long FidFl { get; set; } // FidFl
+        public long FidFactOwnership { get; set; } // FidFactOwnership
+        public int? CodeIfns { get; set; } // CodeIfns
+        public string CadastralNumber { get; set; } // CadastralNumber (length: 256)
+        public System.DateTime? DateStartRight { get; set; } // DateStartRight
+        public System.DateTime? DateStartFinish { get; set; } // DateStartFinish
+        public double? ActualCadastralCash { get; set; } // ActualCadastralCash
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child DocumentOwnershipImZmTrFls where [DocumentOwnershipImZmTrFl].[FidObject] point to this entity (FK_DocumentOwnershipImZmTrFl_FactOfOwnershipImZmTrFl)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<DocumentOwnershipImZmTrFl> DocumentOwnershipImZmTrFls { get; set; } // DocumentOwnershipImZmTrFl.FK_DocumentOwnershipImZmTrFl_FactOfOwnershipImZmTrFl
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent FlFace pointed by [FactOfOwnershipImZmTrFl].([IdFl]) (FK_FactOfOwnershipImZmTrFl_FlFace)
+        /// </summary>
+        public virtual FlFace FlFace { get; set; } // FK_FactOfOwnershipImZmTrFl_FlFace
+
+        /// <summary>
+        /// Parent TypeObject pointed by [FactOfOwnershipImZmTrFl].([IdObject]) (FK_TypeObject_FactOfOwnershipImZmTrFl)
+        /// </summary>
+        public virtual TypeObject TypeObject { get; set; } // FK_TypeObject_FactOfOwnershipImZmTrFl
+
+        public FactOfOwnershipImZmTrFl()
+        {
+            DateCreate = System.DateTime.Now;
+            DocumentOwnershipImZmTrFls = new System.Collections.Generic.List<DocumentOwnershipImZmTrFl>();
+        }
+    }
+
     // Fields
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class Field
@@ -1563,6 +1761,11 @@ namespace EfDatabaseAutomation.Automation.Base
         [JsonIgnore]
         public virtual System.Collections.Generic.ICollection<DeclarationFl> DeclarationFls { get; set; } // DeclarationFl.FK_DeclarationFl_FlFace
         /// <summary>
+        /// Child FactOfOwnershipImZmTrFls where [FactOfOwnershipImZmTrFl].[IdFl] point to this entity (FK_FactOfOwnershipImZmTrFl_FlFace)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<FactOfOwnershipImZmTrFl> FactOfOwnershipImZmTrFls { get; set; } // FactOfOwnershipImZmTrFl.FK_FactOfOwnershipImZmTrFl_FlFace
+        /// <summary>
         /// Child ImZmTrFls where [ImZmTrFl].[IdFl] point to this entity (FK_ImZmTrFl_FlFace)
         /// </summary>
         [JsonIgnore]
@@ -1578,6 +1781,7 @@ namespace EfDatabaseAutomation.Automation.Base
             DateCreate = System.DateTime.Now;
             Declaration3NdflFl = new System.Collections.Generic.List<Declaration3NdflFl>();
             DeclarationFls = new System.Collections.Generic.List<DeclarationFl>();
+            FactOfOwnershipImZmTrFls = new System.Collections.Generic.List<FactOfOwnershipImZmTrFl>();
             ImZmTrFls = new System.Collections.Generic.List<ImZmTrFl>();
             RukAndUcrhs = new System.Collections.Generic.List<RukAndUcrh>();
         }
@@ -1694,6 +1898,29 @@ namespace EfDatabaseAutomation.Automation.Base
         {
             DateCreate = System.DateTime.Now;
             KbkPayments = new System.Collections.Generic.List<KbkPayment>();
+        }
+    }
+
+    // GroupQuestions
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class GroupQuestion
+    {
+        public int IdGroupQuestions { get; set; } // IdGroupQuestions (Primary key)
+        public string NameGroup { get; set; } // NameGroup (length: 512)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child TemplateQuestions where [TemplateQuestions].[IdGroupQuestions] point to this entity (FK_GroupQuestions_TemplateQuestions)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<TemplateQuestion> TemplateQuestions { get; set; } // TemplateQuestions.FK_GroupQuestions_TemplateQuestions
+
+        public GroupQuestion()
+        {
+            DateCreate = System.DateTime.Now;
+            TemplateQuestions = new System.Collections.Generic.List<TemplateQuestion>();
         }
     }
 
@@ -1968,6 +2195,30 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // KontrAgent
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class KontrAgent
+    {
+        public int IdKontrAgent { get; set; } // IdKontrAgent (Primary key)
+        public string InnKontrAgent { get; set; } // InnKontrAgent (length: 12)
+        public string NameKontrAgent { get; set; } // NameKontrAgent (length: 1024)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child MainOrgAndKontrAgents where [MainOrgAndKontrAgent].[IdKontrAgent] point to this entity (FK_KontrAgent_MainOrgAndKontrAgent)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<MainOrgAndKontrAgent> MainOrgAndKontrAgents { get; set; } // MainOrgAndKontrAgent.FK_KontrAgent_MainOrgAndKontrAgent
+
+        public KontrAgent()
+        {
+            DateCreate = System.DateTime.Now;
+            MainOrgAndKontrAgents = new System.Collections.Generic.List<MainOrgAndKontrAgent>();
+        }
+    }
+
     // Krsb
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class Krsb
@@ -2052,6 +2303,87 @@ namespace EfDatabaseAutomation.Automation.Base
         {
             Datacreate = System.DateTime.Now;
         }
+    }
+
+    // MainOrg
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class MainOrg
+    {
+        public int IdOrg { get; set; } // IdOrg (Primary key)
+        public int IdDerector { get; set; } // IdDerector
+        public string Inn { get; set; } // Inn (length: 12)
+        public string NameOrg { get; set; } // NameOrg (length: 512)
+        public string NoIn { get; set; } // NoIn (length: 1024)
+        public string NoOut { get; set; } // NoOut (length: 1024)
+        public bool IsReady { get; set; } // IsReady
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child MainOrgAndKontrAgents where [MainOrgAndKontrAgent].[IdOrg] point to this entity (FK_MainOrgAndKontrAgent_MainOrg)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<MainOrgAndKontrAgent> MainOrgAndKontrAgents { get; set; } // MainOrgAndKontrAgent.FK_MainOrgAndKontrAgent_MainOrg
+        /// <summary>
+        /// Child UserOrgs where [UserOrg].[IdOrg] point to this entity (FK_MainOrg_UserOrg)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<UserOrg> UserOrgs { get; set; } // UserOrg.FK_MainOrg_UserOrg
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent Derector pointed by [MainOrg].([IdDerector]) (FK_Derector_MainOrg)
+        /// </summary>
+        public virtual Derector Derector { get; set; } // FK_Derector_MainOrg
+
+        public MainOrg()
+        {
+            IsReady = false;
+            DateCreate = System.DateTime.Now;
+            MainOrgAndKontrAgents = new System.Collections.Generic.List<MainOrgAndKontrAgent>();
+            UserOrgs = new System.Collections.Generic.List<UserOrg>();
+        }
+    }
+
+    // MainOrgAndKontrAgent
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class MainOrgAndKontrAgent
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int IdOrg { get; set; } // IdOrg
+        public int IdKontrAgent { get; set; } // IdKontrAgent
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent KontrAgent pointed by [MainOrgAndKontrAgent].([IdKontrAgent]) (FK_KontrAgent_MainOrgAndKontrAgent)
+        /// </summary>
+        public virtual KontrAgent KontrAgent { get; set; } // FK_KontrAgent_MainOrgAndKontrAgent
+
+        /// <summary>
+        /// Parent MainOrg pointed by [MainOrgAndKontrAgent].([IdOrg]) (FK_MainOrgAndKontrAgent_MainOrg)
+        /// </summary>
+        public virtual MainOrg MainOrg { get; set; } // FK_MainOrgAndKontrAgent_MainOrg
+
+        public MainOrgAndKontrAgent()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // MainOrgAndQuestions
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class MainOrgAndQuestion
+    {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
+        public string Inn { get; set; } // Inn (Primary key) (length: 12)
+        public string NameOrg { get; set; } // NameOrg (length: 512)
+        public string NoIn { get; set; } // NoIn (length: 1024)
+        public string NoOut { get; set; } // NoOut (length: 1024)
+        public bool IsReady { get; set; } // IsReady (Primary key)
     }
 
     // ModelKbkOnKbk
@@ -2296,6 +2628,34 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // QuestionsAndUsers
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class QuestionsAndUser
+    {
+        public int IdQuestions { get; set; } // IdQuestions (Primary key)
+        public int IdUser { get; set; } // IdUser
+        public int IdTemplateQuestions { get; set; } // IdTemplateQuestions
+        public string ModelQuestions { get; set; } // ModelQuestions
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent TemplateQuestion pointed by [QuestionsAndUsers].([IdTemplateQuestions]) (FK_TemplateQuestions_QuestionsAndUsers)
+        /// </summary>
+        public virtual TemplateQuestion TemplateQuestion { get; set; } // FK_TemplateQuestions_QuestionsAndUsers
+
+        /// <summary>
+        /// Parent UserOrg pointed by [QuestionsAndUsers].([IdUser]) (FK_UserOrg_QuestionsAndUsers)
+        /// </summary>
+        public virtual UserOrg UserOrg { get; set; } // FK_UserOrg_QuestionsAndUsers
+
+        public QuestionsAndUser()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
     // Rb_Holidays
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class RbHoliday
@@ -2303,6 +2663,30 @@ namespace EfDatabaseAutomation.Automation.Base
         public int Id { get; set; } // Id (Primary key)
         public System.DateTime DateTimeHoliday { get; set; } // DateTime_Holiday (Primary key)
         public bool IsHoliday { get; set; } // IS_HOLIDAY (Primary key)
+    }
+
+    // RealEstateZmIm
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class RealEstateZmIm
+    {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
+        public string Inn { get; set; } // Inn (Primary key) (length: 12)
+        public string NameFl { get; set; } // NameFl (Primary key) (length: 1024)
+        public string TypeObject { get; set; } // TypeObject (length: 1024)
+        public long FidObject { get; set; } // FidObject (Primary key)
+        public long FidFactOwnership { get; set; } // FidFactOwnership (Primary key)
+        public int? CodeIfns { get; set; } // CodeIfns
+        public string CadastralNumber { get; set; } // CadastralNumber (length: 256)
+        public System.DateTime? DateStartRight { get; set; } // DateStartRight
+        public System.DateTime? DateStartFinish { get; set; } // DateStartFinish
+        public double? ActualCadastralCash { get; set; } // ActualCadastralCash
+        public string NumberDocument { get; set; } // NumberDocument (length: 512)
+        public System.DateTime? DateDocument { get; set; } // DateDocument
+        public string CodeDocument { get; set; } // CodeDocument (length: 512)
+        public string NameDocument { get; set; } // NameDocument (length: 512)
+        public string Name { get; set; } // Name (length: 512)
+        public double? CashDeal { get; set; } // CashDeal
+        public string CashText { get; set; } // CashText (length: 512)
     }
 
     // ReportXlsx
@@ -2986,6 +3370,37 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // TemplateQuestions
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TemplateQuestion
+    {
+        public int IdTemplateQuestions { get; set; } // IdTemplateQuestions (Primary key)
+        public int IdGroupQuestions { get; set; } // IdGroupQuestions
+        public string InfoQuestions { get; set; } // InfoQuestions (length: 512)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child QuestionsAndUsers where [QuestionsAndUsers].[IdTemplateQuestions] point to this entity (FK_TemplateQuestions_QuestionsAndUsers)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<QuestionsAndUser> QuestionsAndUsers { get; set; } // QuestionsAndUsers.FK_TemplateQuestions_QuestionsAndUsers
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent GroupQuestion pointed by [TemplateQuestions].([IdGroupQuestions]) (FK_GroupQuestions_TemplateQuestions)
+        /// </summary>
+        public virtual GroupQuestion GroupQuestion { get; set; } // FK_GroupQuestions_TemplateQuestions
+
+        public TemplateQuestion()
+        {
+            DateCreate = System.DateTime.Now;
+            QuestionsAndUsers = new System.Collections.Generic.List<QuestionsAndUser>();
+        }
+    }
+
     // Tree
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class Tree
@@ -3180,6 +3595,11 @@ namespace EfDatabaseAutomation.Automation.Base
         // Reverse navigation
 
         /// <summary>
+        /// Child FactOfOwnershipImZmTrFls where [FactOfOwnershipImZmTrFl].[IdObject] point to this entity (FK_TypeObject_FactOfOwnershipImZmTrFl)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<FactOfOwnershipImZmTrFl> FactOfOwnershipImZmTrFls { get; set; } // FactOfOwnershipImZmTrFl.FK_TypeObject_FactOfOwnershipImZmTrFl
+        /// <summary>
         /// Child ImZmTrFls where [ImZmTrFl].[IdObject] point to this entity (FK_TypeObject_ImZmTrFl)
         /// </summary>
         [JsonIgnore]
@@ -3193,6 +3613,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public TypeObject()
         {
             DateCreate = System.DateTime.Now;
+            FactOfOwnershipImZmTrFls = new System.Collections.Generic.List<FactOfOwnershipImZmTrFl>();
             ImZmTrFls = new System.Collections.Generic.List<ImZmTrFl>();
             ImZmTrUls = new System.Collections.Generic.List<ImZmTrUl>();
         }
@@ -3390,6 +3811,54 @@ namespace EfDatabaseAutomation.Automation.Base
         public string Address { get; set; } // Address (length: 1024)
     }
 
+    // UserOrg
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class UserOrg
+    {
+        public int IdUser { get; set; } // IdUser (Primary key)
+        public int IdOrg { get; set; } // IdOrg
+        public string InnUser { get; set; } // InnUser (length: 12)
+        public int? IdProcedure { get; set; } // IdProcedure
+        public string Family { get; set; } // Family (length: 512)
+        public string Name { get; set; } // Name (length: 512)
+        public string Surname { get; set; } // Surname (length: 512)
+        public System.DateTime? DateOfBirth { get; set; } // DateOfBirth
+        public string VidDoc { get; set; } // VidDoc (length: 512)
+        public string Seria { get; set; } // Seria (length: 512)
+        public string Number { get; set; } // Number (length: 512)
+        public System.DateTime? DateIn { get; set; } // DateIn
+        public string Code { get; set; } // Code (length: 512)
+        public string WhoIn { get; set; } // WhoIn (length: 512)
+        public string Location { get; set; } // Location (length: 1024)
+        public bool IsError { get; set; } // IsError
+        public bool IsGood { get; set; } // IsGood
+        public string MessageInfo { get; set; } // MessageInfo (length: 512)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child QuestionsAndUsers where [QuestionsAndUsers].[IdUser] point to this entity (FK_UserOrg_QuestionsAndUsers)
+        /// </summary>
+        [JsonIgnore]
+        public virtual System.Collections.Generic.ICollection<QuestionsAndUser> QuestionsAndUsers { get; set; } // QuestionsAndUsers.FK_UserOrg_QuestionsAndUsers
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent MainOrg pointed by [UserOrg].([IdOrg]) (FK_MainOrg_UserOrg)
+        /// </summary>
+        public virtual MainOrg MainOrg { get; set; } // FK_MainOrg_UserOrg
+
+        public UserOrg()
+        {
+            IsError = false;
+            IsGood = false;
+            DateCreate = System.DateTime.Now;
+            QuestionsAndUsers = new System.Collections.Generic.List<QuestionsAndUser>();
+        }
+    }
+
     #endregion
 
     #region POCO Configuration
@@ -3433,6 +3902,36 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.InnUl).HasColumnName(@"InnUl").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
             Property(x => x.FullStatus).HasColumnName(@"FullStatus").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(124);
+        }
+    }
+
+    // AllFaceRegistryReference
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class AllFaceRegistryReferenceConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AllFaceRegistryReference>
+    {
+        public AllFaceRegistryReferenceConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AllFaceRegistryReferenceConfiguration(string schema)
+        {
+            ToTable("AllFaceRegistryReference", schema);
+            HasKey(x => x.IdFace);
+
+            Property(x => x.IdFace).HasColumnName(@"IdFace").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.TypeFaceBool).HasColumnName(@"TypeFaceBool").HasColumnType("bit").IsRequired();
+            Property(x => x.TypeFace).HasColumnName(@"TypeFace").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(8);
+            Property(x => x.NameFace).HasColumnName(@"NameFace").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.InnFace).HasColumnName(@"InnFace").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.CodeNo).HasColumnName(@"CodeNo").HasColumnType("int").IsOptional();
+            Property(x => x.TypeObjectModel).HasColumnName(@"TypeObjectModel").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.IsState1).HasColumnName(@"IsState1").HasColumnType("bit").IsRequired();
+            Property(x => x.DateState1).HasColumnName(@"DateState1").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.IsState2).HasColumnName(@"IsState2").HasColumnType("bit").IsRequired();
+            Property(x => x.DateState2).HasColumnName(@"DateState2").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.IsErrorMessage).HasColumnName(@"IsErrorMessage").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateModification).HasColumnName(@"DateModification").HasColumnType("smalldatetime").IsOptional();
         }
     }
 
@@ -4221,6 +4720,26 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // Derector
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class DerectorConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Derector>
+    {
+        public DerectorConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public DerectorConfiguration(string schema)
+        {
+            ToTable("Derector", schema);
+            HasKey(x => x.IdDerector);
+
+            Property(x => x.IdDerector).HasColumnName(@"IdDerector").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.NameDerector).HasColumnName(@"NameDerector").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
     // DocPatent
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class DocPatentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<DocPatent>
@@ -4345,6 +4864,36 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // DocumentOwnershipImZmTrFl
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class DocumentOwnershipImZmTrFlConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<DocumentOwnershipImZmTrFl>
+    {
+        public DocumentOwnershipImZmTrFlConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public DocumentOwnershipImZmTrFlConfiguration(string schema)
+        {
+            ToTable("DocumentOwnershipImZmTrFl", schema);
+            HasKey(x => new { x.Id, x.FidObject });
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.FidObject).HasColumnName(@"FidObject").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.NumberDocument).HasColumnName(@"NumberDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.DateDocument).HasColumnName(@"DateDocument").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.CodeDocument).HasColumnName(@"CodeDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.NameDocument).HasColumnName(@"NameDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.CashDeal).HasColumnName(@"CashDeal").HasColumnType("float").IsOptional();
+            Property(x => x.CashText).HasColumnName(@"CashText").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.FactOfOwnershipImZmTrFl).WithMany(b => b.DocumentOwnershipImZmTrFls).HasForeignKey(c => c.FidObject).WillCascadeOnDelete(false); // FK_DocumentOwnershipImZmTrFl_FactOfOwnershipImZmTrFl
+        }
+    }
+
     // EasJournal
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class EasJournalConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<EasJournal>
@@ -4424,6 +4973,70 @@ namespace EfDatabaseAutomation.Automation.Base
             HasRequired(a => a.AddUlFace).WithMany(b => b.FaceModelTemplateGetPosts).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_AddUlFace_FaceModelTemplateGetPost
             HasRequired(a => a.Template).WithMany(b => b.FaceModelTemplateGetPosts).HasForeignKey(c => c.IdTemplate).WillCascadeOnDelete(false); // FK_Template_FaceModelTemplateGetPost
             HasRequired(a => a.Tree).WithMany(b => b.FaceModelTemplateGetPosts).HasForeignKey(c => c.IdTree).WillCascadeOnDelete(false); // FK_Tree_FaceModelTemplateGetPost
+        }
+    }
+
+    // FaceRegistryReference
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class FaceRegistryReferenceConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<FaceRegistryReference>
+    {
+        public FaceRegistryReferenceConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public FaceRegistryReferenceConfiguration(string schema)
+        {
+            ToTable("FaceRegistryReference", schema);
+            HasKey(x => new { x.LogicsButton, x.IdFace, x.TypeFaceBool, x.TypeFace, x.InnFace, x.IsState1, x.IsState2 });
+
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.IdFace).HasColumnName(@"IdFace").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.TypeFaceBool).HasColumnName(@"TypeFaceBool").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.TypeFace).HasColumnName(@"TypeFace").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(8).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.NameFace).HasColumnName(@"NameFace").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.InnFace).HasColumnName(@"InnFace").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.CodeNo).HasColumnName(@"CodeNo").HasColumnType("int").IsOptional();
+            Property(x => x.TypeObjectModel).HasColumnName(@"TypeObjectModel").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.IsState1).HasColumnName(@"IsState1").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DateState1).HasColumnName(@"DateState1").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.IsState2).HasColumnName(@"IsState2").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DateState2).HasColumnName(@"DateState2").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.IsErrorMessage).HasColumnName(@"IsErrorMessage").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateModification).HasColumnName(@"DateModification").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // FactOfOwnershipImZmTrFl
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class FactOfOwnershipImZmTrFlConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<FactOfOwnershipImZmTrFl>
+    {
+        public FactOfOwnershipImZmTrFlConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public FactOfOwnershipImZmTrFlConfiguration(string schema)
+        {
+            ToTable("FactOfOwnershipImZmTrFl", schema);
+            HasKey(x => x.FidObject);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdFl).HasColumnName(@"IdFl").HasColumnType("int").IsRequired();
+            Property(x => x.IdObject).HasColumnName(@"IdObject").HasColumnType("int").IsRequired();
+            Property(x => x.FidObject).HasColumnName(@"FidObject").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.FidFl).HasColumnName(@"FidFl").HasColumnType("bigint").IsRequired();
+            Property(x => x.FidFactOwnership).HasColumnName(@"FidFactOwnership").HasColumnType("bigint").IsRequired();
+            Property(x => x.CodeIfns).HasColumnName(@"CodeIfns").HasColumnType("int").IsOptional();
+            Property(x => x.CadastralNumber).HasColumnName(@"CadastralNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.DateStartRight).HasColumnName(@"DateStartRight").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateStartFinish).HasColumnName(@"DateStartFinish").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.ActualCadastralCash).HasColumnName(@"ActualCadastralCash").HasColumnType("float").IsOptional();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.FlFace).WithMany(b => b.FactOfOwnershipImZmTrFls).HasForeignKey(c => c.IdFl).WillCascadeOnDelete(false); // FK_FactOfOwnershipImZmTrFl_FlFace
+            HasRequired(a => a.TypeObject).WithMany(b => b.FactOfOwnershipImZmTrFls).HasForeignKey(c => c.IdObject).WillCascadeOnDelete(false); // FK_TypeObject_FactOfOwnershipImZmTrFl
         }
     }
 
@@ -4585,6 +5198,26 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.NameGroupPl).HasColumnName(@"NameGroupPl").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.DescriptionGroup).HasColumnName(@"DescriptionGroup").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.GroupColor).HasColumnName(@"GroupColor").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(15);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // GroupQuestions
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class GroupQuestionConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<GroupQuestion>
+    {
+        public GroupQuestionConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public GroupQuestionConfiguration(string schema)
+        {
+            ToTable("GroupQuestions", schema);
+            HasKey(x => x.IdGroupQuestions);
+
+            Property(x => x.IdGroupQuestions).HasColumnName(@"IdGroupQuestions").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.NameGroup).HasColumnName(@"NameGroup").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
             Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
         }
     }
@@ -4903,6 +5536,27 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // KontrAgent
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class KontrAgentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<KontrAgent>
+    {
+        public KontrAgentConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public KontrAgentConfiguration(string schema)
+        {
+            ToTable("KontrAgent", schema);
+            HasKey(x => x.IdKontrAgent);
+
+            Property(x => x.IdKontrAgent).HasColumnName(@"IdKontrAgent").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.InnKontrAgent).HasColumnName(@"InnKontrAgent").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.NameKontrAgent).HasColumnName(@"NameKontrAgent").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
     // Krsb
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class KrsbConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Krsb>
@@ -5002,6 +5656,82 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.StatusMethod).HasColumnName(@"StatusMethod").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(32);
             Property(x => x.ErrorLog).HasColumnName(@"ErrorLog").HasColumnType("varchar(max)").IsOptional().IsUnicode(false);
             Property(x => x.Datacreate).HasColumnName(@"Datacreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // MainOrg
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class MainOrgConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<MainOrg>
+    {
+        public MainOrgConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public MainOrgConfiguration(string schema)
+        {
+            ToTable("MainOrg", schema);
+            HasKey(x => x.IdOrg);
+
+            Property(x => x.IdOrg).HasColumnName(@"IdOrg").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdDerector).HasColumnName(@"IdDerector").HasColumnType("int").IsRequired();
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.NameOrg).HasColumnName(@"NameOrg").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.NoIn).HasColumnName(@"NoIn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.NoOut).HasColumnName(@"NoOut").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.IsReady).HasColumnName(@"IsReady").HasColumnType("bit").IsRequired();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.Derector).WithMany(b => b.MainOrgs).HasForeignKey(c => c.IdDerector).WillCascadeOnDelete(false); // FK_Derector_MainOrg
+        }
+    }
+
+    // MainOrgAndKontrAgent
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class MainOrgAndKontrAgentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<MainOrgAndKontrAgent>
+    {
+        public MainOrgAndKontrAgentConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public MainOrgAndKontrAgentConfiguration(string schema)
+        {
+            ToTable("MainOrgAndKontrAgent", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdOrg).HasColumnName(@"IdOrg").HasColumnType("int").IsRequired();
+            Property(x => x.IdKontrAgent).HasColumnName(@"IdKontrAgent").HasColumnType("int").IsRequired();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.KontrAgent).WithMany(b => b.MainOrgAndKontrAgents).HasForeignKey(c => c.IdKontrAgent).WillCascadeOnDelete(false); // FK_KontrAgent_MainOrgAndKontrAgent
+            HasRequired(a => a.MainOrg).WithMany(b => b.MainOrgAndKontrAgents).HasForeignKey(c => c.IdOrg).WillCascadeOnDelete(false); // FK_MainOrgAndKontrAgent_MainOrg
+        }
+    }
+
+    // MainOrgAndQuestions
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class MainOrgAndQuestionConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<MainOrgAndQuestion>
+    {
+        public MainOrgAndQuestionConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public MainOrgAndQuestionConfiguration(string schema)
+        {
+            ToTable("MainOrgAndQuestions", schema);
+            HasKey(x => new { x.LogicsButton, x.Inn, x.IsReady });
+
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.NameOrg).HasColumnName(@"NameOrg").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.NoIn).HasColumnName(@"NoIn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.NoOut).HasColumnName(@"NoOut").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.IsReady).HasColumnName(@"IsReady").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
         }
     }
 
@@ -5236,6 +5966,32 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // QuestionsAndUsers
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class QuestionsAndUserConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<QuestionsAndUser>
+    {
+        public QuestionsAndUserConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public QuestionsAndUserConfiguration(string schema)
+        {
+            ToTable("QuestionsAndUsers", schema);
+            HasKey(x => x.IdQuestions);
+
+            Property(x => x.IdQuestions).HasColumnName(@"IdQuestions").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdUser).HasColumnName(@"IdUser").HasColumnType("int").IsRequired();
+            Property(x => x.IdTemplateQuestions).HasColumnName(@"IdTemplateQuestions").HasColumnType("int").IsRequired();
+            Property(x => x.ModelQuestions).HasColumnName(@"ModelQuestions").HasColumnType("varchar(max)").IsOptional().IsUnicode(false);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.TemplateQuestion).WithMany(b => b.QuestionsAndUsers).HasForeignKey(c => c.IdTemplateQuestions).WillCascadeOnDelete(false); // FK_TemplateQuestions_QuestionsAndUsers
+            HasRequired(a => a.UserOrg).WithMany(b => b.QuestionsAndUsers).HasForeignKey(c => c.IdUser).WillCascadeOnDelete(false); // FK_UserOrg_QuestionsAndUsers
+        }
+    }
+
     // Rb_Holidays
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class RbHolidayConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RbHoliday>
@@ -5253,6 +6009,41 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.DateTimeHoliday).HasColumnName(@"DateTime_Holiday").HasColumnType("smalldatetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.IsHoliday).HasColumnName(@"IS_HOLIDAY").HasColumnType("bit").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+        }
+    }
+
+    // RealEstateZmIm
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class RealEstateZmImConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RealEstateZmIm>
+    {
+        public RealEstateZmImConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public RealEstateZmImConfiguration(string schema)
+        {
+            ToTable("RealEstateZmIm", schema);
+            HasKey(x => new { x.LogicsButton, x.Inn, x.NameFl, x.FidObject, x.FidFactOwnership });
+
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.NameFl).HasColumnName(@"NameFl").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.TypeObject).HasColumnName(@"TypeObject").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.FidObject).HasColumnName(@"FidObject").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.FidFactOwnership).HasColumnName(@"FidFactOwnership").HasColumnType("bigint").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.CodeIfns).HasColumnName(@"CodeIfns").HasColumnType("int").IsOptional();
+            Property(x => x.CadastralNumber).HasColumnName(@"CadastralNumber").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.DateStartRight).HasColumnName(@"DateStartRight").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.DateStartFinish).HasColumnName(@"DateStartFinish").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.ActualCadastralCash).HasColumnName(@"ActualCadastralCash").HasColumnType("float").IsOptional();
+            Property(x => x.NumberDocument).HasColumnName(@"NumberDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.DateDocument).HasColumnName(@"DateDocument").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.CodeDocument).HasColumnName(@"CodeDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.NameDocument).HasColumnName(@"NameDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.CashDeal).HasColumnName(@"CashDeal").HasColumnType("float").IsOptional();
+            Property(x => x.CashText).HasColumnName(@"CashText").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
         }
     }
 
@@ -6020,6 +6811,30 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // TemplateQuestions
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TemplateQuestionConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TemplateQuestion>
+    {
+        public TemplateQuestionConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public TemplateQuestionConfiguration(string schema)
+        {
+            ToTable("TemplateQuestions", schema);
+            HasKey(x => x.IdTemplateQuestions);
+
+            Property(x => x.IdTemplateQuestions).HasColumnName(@"IdTemplateQuestions").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdGroupQuestions).HasColumnName(@"IdGroupQuestions").HasColumnType("int").IsRequired();
+            Property(x => x.InfoQuestions).HasColumnName(@"InfoQuestions").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.GroupQuestion).WithMany(b => b.TemplateQuestions).HasForeignKey(c => c.IdGroupQuestions).WillCascadeOnDelete(false); // FK_GroupQuestions_TemplateQuestions
+        }
+    }
+
     // Tree
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class TreeConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<Tree>
@@ -6318,6 +7133,45 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.StatusUl).HasColumnName(@"StatusUl").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.NameSmall).HasColumnName(@"NameSmall").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
             Property(x => x.Address).HasColumnName(@"Address").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+        }
+    }
+
+    // UserOrg
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class UserOrgConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<UserOrg>
+    {
+        public UserOrgConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public UserOrgConfiguration(string schema)
+        {
+            ToTable("UserOrg", schema);
+            HasKey(x => x.IdUser);
+
+            Property(x => x.IdUser).HasColumnName(@"IdUser").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdOrg).HasColumnName(@"IdOrg").HasColumnType("int").IsRequired();
+            Property(x => x.InnUser).HasColumnName(@"InnUser").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.IdProcedure).HasColumnName(@"IdProcedure").HasColumnType("int").IsOptional();
+            Property(x => x.Family).HasColumnName(@"Family").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Name).HasColumnName(@"Name").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Surname).HasColumnName(@"Surname").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.DateOfBirth).HasColumnName(@"DateOfBirth").HasColumnType("datetime").IsOptional();
+            Property(x => x.VidDoc).HasColumnName(@"VidDoc").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Seria).HasColumnName(@"Seria").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Number).HasColumnName(@"Number").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.DateIn).HasColumnName(@"DateIn").HasColumnType("datetime").IsOptional();
+            Property(x => x.Code).HasColumnName(@"Code").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.WhoIn).HasColumnName(@"WhoIn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Location).HasColumnName(@"Location").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.IsError).HasColumnName(@"IsError").HasColumnType("bit").IsRequired();
+            Property(x => x.IsGood).HasColumnName(@"IsGood").HasColumnType("bit").IsRequired();
+            Property(x => x.MessageInfo).HasColumnName(@"MessageInfo").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.MainOrg).WithMany(b => b.UserOrgs).HasForeignKey(c => c.IdOrg).WillCascadeOnDelete(false); // FK_MainOrg_UserOrg
         }
     }
 

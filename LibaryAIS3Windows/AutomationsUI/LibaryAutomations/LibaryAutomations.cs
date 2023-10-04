@@ -760,16 +760,35 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="nameComboBox">Наименование списка</param>
         public void FindTextComboboxIsToFocusAndClickElement(string nameAutomationIdComboBox, string nameListItem, string nameComboBox = "LocalizedControlType:панель", char separator = ':', bool isChildren = false, bool isSubtree = true)
         {
-                IsEnableElements(nameAutomationIdComboBox, null, isSubtree, 40,0, isChildren, separator);
-                var memo = SelectAutomationColrction(FindElement);
-                memo[0].SetFocus();
-                ClickElement(memo[0]);
-                IsEnableElements(nameComboBox);
-                var elemList = SelectAutomationColrction(FindElement);
-                var selectElement = SelectAutomationColrction(elemList[0]);
+            var isUp = true;
+            var i = 1;
+            IsEnableElements(nameAutomationIdComboBox, null, isSubtree, 40,0, isChildren, separator);
+            var memo = SelectAutomationColrction(FindElement);
+            memo[0].SetFocus();
+            ClickElement(memo[0]);
+            IsEnableElements(nameComboBox);
+            var elemList = SelectAutomationColrction(FindElement);
+            var selectElement = SelectAutomationColrction(elemList[0]);
+            while (true){
                 var elemClick = selectElement.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == nameListItem);
-                elemClick.SetFocus();
-                ClickElement(elemClick);
+                if (elemClick != null)
+                {
+                    elemClick.SetFocus();
+                    ClickElement(elemClick);
+                    break;
+                }
+                if (isUp)
+                {
+                    SendKeys.SendWait(string.Format(ButtonConstant.UpCountClick, i));
+                    isUp = false;
+                }
+                else
+                {
+                    SendKeys.SendWait(string.Format(ButtonConstant.UpCountClick, i));
+                    isUp = true;
+                }
+                i++;
+            }
         }
 
 
@@ -801,6 +820,11 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                   new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Pane),
                   new PropertyCondition(AutomationElement.AutomationIdProperty, parameter[1])
                   );
+            }
+            if(parameter[0] == "HelpText")
+            {
+                return new AndCondition(new PropertyCondition(AutomationElement.ProcessIdProperty, ProcessId),
+                    new PropertyCondition(AutomationElement.HelpTextProperty, parameter[1]));
             }
             if (parameter[0] == "ClassName")
             {

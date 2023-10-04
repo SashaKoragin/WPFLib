@@ -34,6 +34,12 @@ namespace LibaryXMLAuto.XsdModelAutoGenerate {
 
         private FaceStatement[] faceStatementField;
 
+        private IncomeJournal[] incomeJournalField;
+
+        private IdentytiFace[] identytiFaceField;
+
+        private InnFace[] innFaceField;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxArrears")]
         public TaxArrears[] TaxArrears {
@@ -68,6 +74,20 @@ namespace LibaryXMLAuto.XsdModelAutoGenerate {
         }
 
         /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("IncomeJournal")]
+        public IncomeJournal[] IncomeJournal
+        {
+            get
+            {
+                return this.incomeJournalField;
+            }
+            set
+            {
+                this.incomeJournalField = value;
+            }
+        }
+
+        /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("FaceStatement")]
         public FaceStatement[] FaceStatement
         {
@@ -78,6 +98,30 @@ namespace LibaryXMLAuto.XsdModelAutoGenerate {
             set
             {
                 this.faceStatementField = value;
+            }
+        }
+        [System.Xml.Serialization.XmlElementAttribute("IdentytiFace")]
+        public IdentytiFace[] IdentytiFace
+        {
+            get
+            {
+                return this.identytiFaceField;
+            }
+            set
+            {
+                this.identytiFaceField = value;
+            }
+        }
+        [System.Xml.Serialization.XmlElementAttribute("InnFace")]
+        public InnFace[] InnFace
+        {
+            get
+            {
+                return this.innFaceField;
+            }
+            set
+            {
+                this.innFaceField = value;
             }
         }
     }
@@ -293,6 +337,197 @@ namespace LibaryXMLAuto.XsdModelAutoGenerate {
                 this.dateTimetatementField = value;
             }
         }
+    }
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    public partial class IncomeJournal
+    {
+        private int numberField;
 
+        private string innField;
+
+        private DateTime dateTimePaymentField;
+
+        private string summField;
+
+        private string ifnsField;
+
+        private string innMoField;
+
+        private string kppMoField;
+
+        private string oktmoField;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Номер", "Номер")]
+        public int Number
+        {
+            get
+            {
+                return this.numberField;
+            }
+            set
+            {
+                this.numberField = value;
+            }
+        }
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ИНН", "ИНН")]
+        public string Inn
+        {
+            get
+            {
+                return this.innField;
+            }
+            set
+            {
+                this.innField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Дата оплаты", "Дата оплаты")]
+        public DateTime DateTimePayment
+        {
+            get
+            {
+                return this.dateTimePaymentField;
+            }
+            set
+            {
+                this.dateTimePaymentField = value;
+            }
+        }
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Сумма НДФЛ", "Сумма НДФЛ")]
+        public string Summ
+        {
+            get
+            {
+                return this.summField;
+            }
+            set
+            {
+                this.summField = value;
+            }
+        }
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Наименование ИФНС Московской области", "Наименование ИФНС Московской области")]
+        public string Ifns
+        {
+            get
+            {
+                return this.ifnsField;
+            }
+            set
+            {
+                this.ifnsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ИНН ИФНС МО", "ИНН ИФНС МО")]
+        public string InnMo
+        {
+            get
+            {
+                return this.innMoField;
+            }
+            set
+            {
+                this.innMoField = value;
+            }
+        }
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("КПП ИФНС МО", "КПП ИФНС МО")]
+        public string KppMo
+        {
+            get
+            {
+                return this.kppMoField;
+            }
+            set
+            {
+                this.kppMoField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ОКТМО ИФНС МО", "ОКТМО ИФНС МО")]
+        public string Oktmo
+        {
+            get
+            {
+                return this.oktmoField;
+            }
+            set
+            {
+                this.oktmoField = value;
+            }
+        }
+    }
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    public partial class IdentytiFace
+    {
+         private Int64 idField;
+
+         /// <remarks/>
+         [System.Xml.Serialization.XmlAttributeAttribute()]
+         [DataNames("УН входящего документа", "УН входящего документа")]
+         public Int64 Id
+         {
+             get
+             {
+                 return this.idField;
+             }
+             set
+             {
+                 this.idField = value;
+             }
+         }
+    }
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    public partial class InnFace
+    {
+        private string innField;
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("ИНН", "ИНН")]
+        public string Inn
+        {
+            get
+            {
+                return this.innField;
+            }
+            set
+            {
+                this.innField = value;
+            }
+        }
     }
 }
