@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutomatAis3Full.Config;
+﻿using AutomatAis3Full.Config;
 using LibraryCommandPublic.TestAutoit.Okp6.JournalDoc;
 using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 
-namespace AutomatAis3Full.Form.Automat.Okp6.CheckDeclaration.DataContexCheckDeclaration
+namespace AutomatAis3Full.Form.Automat.Okp6.CheckDeclaration.DataContextCheckDeclaration
 {
    public class DataContextCheckDeclaration
     {

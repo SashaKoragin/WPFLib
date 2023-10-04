@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Prism.Commands;
+﻿using Prism.Commands;
 using LibraryCommandPublic.TestAutoit.Okp6.JournalDoc;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 

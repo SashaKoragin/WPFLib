@@ -86,52 +86,52 @@ var HeadersAdd = /** @class */ (function () {
     }
     Object.defineProperty(HeadersAdd.prototype, "textHeade1", {
         get: function () { return this.formTemplateHeaders.get('textHeade1'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(HeadersAdd.prototype, "textHeade2", {
         get: function () { return this.formTemplateHeaders.get('textHeade2'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(HeadersAdd.prototype, "textHeade3", {
         get: function () { return this.formTemplateHeaders.get('textHeade3'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(HeadersAdd.prototype, "textHeade4", {
         get: function () { return this.formTemplateHeaders.get('textHeade4'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(HeadersAdd.prototype, "textHeade5", {
         get: function () { return this.formTemplateHeaders.get('textHeade5'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(HeadersAdd.prototype, "textHeade6", {
         get: function () { return this.formTemplateHeaders.get('textHeade6'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(HeadersAdd.prototype, "textHeade7", {
         get: function () { return this.formTemplateHeaders.get('textHeade7'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(HeadersAdd.prototype, "textHeade8", {
         get: function () { return this.formTemplateHeaders.get('textHeade8'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(HeadersAdd.prototype, "textHeade9", {
         get: function () { return this.formTemplateHeaders.get('textHeade9'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(HeadersAdd.prototype, "textHeade10", {
         get: function () { return this.formTemplateHeaders.get('textHeade10'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     //Команда отправки и добавления на сервер БД Heade
@@ -171,27 +171,27 @@ var BodyAdd = /** @class */ (function () {
     }
     Object.defineProperty(BodyAdd.prototype, "textBodyGl1", {
         get: function () { return this.formTemplateBody.get('textBodyGl1'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(BodyAdd.prototype, "textBodyGl2", {
         get: function () { return this.formTemplateBody.get('textBodyGl2'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(BodyAdd.prototype, "textBodyGl3", {
         get: function () { return this.formTemplateBody.get('textBodyGl3'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(BodyAdd.prototype, "textBodyGl4", {
         get: function () { return this.formTemplateBody.get('textBodyGl4'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(BodyAdd.prototype, "textBodyGl5", {
         get: function () { return this.formTemplateBody.get('textBodyGl5'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     //Команда отправки и добавления на сервер БД Body
@@ -233,37 +233,37 @@ var StoneAdd = /** @class */ (function () {
     }
     Object.defineProperty(StoneAdd.prototype, "textStone1", {
         get: function () { return this.formTemplateStone.get('textStone1'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(StoneAdd.prototype, "textStone2", {
         get: function () { return this.formTemplateStone.get('textStone2'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(StoneAdd.prototype, "textStone3", {
         get: function () { return this.formTemplateStone.get('textStone3'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(StoneAdd.prototype, "textStone4", {
         get: function () { return this.formTemplateStone.get('textStone4'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(StoneAdd.prototype, "textStone5", {
         get: function () { return this.formTemplateStone.get('textStone5'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(StoneAdd.prototype, "textStone6", {
         get: function () { return this.formTemplateStone.get('textStone6'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(StoneAdd.prototype, "textStone7", {
         get: function () { return this.formTemplateStone.get('textStone7'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     //Команда отправки и добавления на сервер БД Stone

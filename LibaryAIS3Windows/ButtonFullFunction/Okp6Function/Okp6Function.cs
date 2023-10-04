@@ -79,7 +79,13 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp6Function
 
                     if(journalDeclarationFl.ColorType2 == "add8e6")
                     {
-                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ViewDeclaration);
+                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ViewDeclaration, null, true, 1) != null)
+                        {
+                            libraryAutomation.ClickElement(libraryAutomation.FindElement);
+                            var memo = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement);
+                            var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == "Просмотр документа");
+                            libraryAutomation.InvokePattern(elemClick);
+                        }
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ExportDeclaration);
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ExportFileOk);
                         AutoItX.ProcessWait("EXCEL.EXE", 60000);
@@ -97,35 +103,39 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp6Function
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.EditDeclaration);
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Calculate);
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ConfirmInput);
-                                AutoItX.Sleep(1000);
+                                AutoItX.Sleep(4000);
                                 while (true)
                                 {
-                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplexDecl);
-                                    while (true)
+                                    if(libraryAutomation.IsEnableElements(Journal129AndJournal121.ClosedComplexDecl, null, true, 1) != null)
                                     {
-                                        AutoItX.Sleep(1000);
-                                        libraryAutomation.SelectGetPreviousSiblingWindows();
-                                        if (libraryAutomation.NewPreviousSiblingWindows.IsEnableElements(Journal129AndJournal121.NewWindowEnable, null, true, 1, 0, false, ';') != null)
+                                        AutoItX.MouseWheel(ButtonConstant.Wheel, 10);
+                                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplexDecl);
+                                        while (true)
                                         {
-                                            libraryAutomation.NewPreviousSiblingWindows.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
-                                            libraryAutomation.NewPreviousSiblingWindows.ClickElement(libraryAutomation.NewPreviousSiblingWindows.FindElement,-5);
-                                            var memo = libraryAutomation.NewPreviousSiblingWindows.SelectAutomationColrction(libraryAutomation.NewPreviousSiblingWindows.FindElement);
-                                            var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == "Нарушения не выявлены");
-                                            libraryAutomation.NewPreviousSiblingWindows.ClickElement(elemClick);
-                                            libraryAutomation.NewPreviousSiblingWindows.InvokePattern(libraryAutomation.NewPreviousSiblingWindows.IsEnableElements(Journal129AndJournal121.NewOkEdit));
-                                            AutoItX.WinWait(Journal129AndJournal121.NewWarningOk);
-                                            AutoItX.WinActivate(Journal129AndJournal121.NewWarningOk);
-                                            libraryAutomation.NewPreviousSiblingWindows = new LibraryAutomations(Journal129AndJournal121.NewWarningOk);
-                                            libraryAutomation.NewPreviousSiblingWindows.InvokePattern(libraryAutomation.NewPreviousSiblingWindows.IsEnableElements(Journal129AndJournal121.NewWarningButtonOk));
-                                            AutoItX.Sleep(2000);
-                                            break;
+                                            AutoItX.Sleep(1000);
+                                            libraryAutomation.SelectGetPreviousSiblingWindows();
+                                            if (libraryAutomation.NewPreviousSiblingWindows.IsEnableElements(Journal129AndJournal121.NewWindowEnable, null, true, 1, 0, false, ';') != null)
+                                            {
+                                                libraryAutomation.NewPreviousSiblingWindows.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
+                                                libraryAutomation.NewPreviousSiblingWindows.ClickElement(libraryAutomation.NewPreviousSiblingWindows.FindElement, 85);
+                                                var memo = libraryAutomation.NewPreviousSiblingWindows.SelectAutomationColrction(libraryAutomation.NewPreviousSiblingWindows.FindElement);
+                                                var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == "Нарушения не выявлены");
+                                                libraryAutomation.NewPreviousSiblingWindows.ClickElement(elemClick);
+                                                libraryAutomation.NewPreviousSiblingWindows.InvokePattern(libraryAutomation.NewPreviousSiblingWindows.IsEnableElements(Journal129AndJournal121.NewOkEdit));
+                                                AutoItX.WinWait(Journal129AndJournal121.NewWarningOk);
+                                                AutoItX.WinActivate(Journal129AndJournal121.NewWarningOk);
+                                                libraryAutomation.NewPreviousSiblingWindows = new LibraryAutomations(Journal129AndJournal121.NewWarningOk);
+                                                libraryAutomation.NewPreviousSiblingWindows.InvokePattern(libraryAutomation.NewPreviousSiblingWindows.IsEnableElements(Journal129AndJournal121.NewWarningButtonOk));
+                                                AutoItX.Sleep(2000);
+                                                break;
+                                            }
+                                            if (libraryAutomation.NewPreviousSiblingWindows.IsEnableElements(Journal129AndJournal121.WinOkDecl, null, true, 1) != null)
+                                            {
+                                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation.NewPreviousSiblingWindows, Journal129AndJournal121.WinOkDecl);
+                                            }
                                         }
-                                        if (libraryAutomation.NewPreviousSiblingWindows.IsEnableElements(Journal129AndJournal121.WinOkDecl, null, true, 1) != null)
-                                        {
-                                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation.NewPreviousSiblingWindows, Journal129AndJournal121.WinOkDecl);
-                                        }
+                                        break;
                                     }
-                                    break;
                                 }
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex121);
                             }

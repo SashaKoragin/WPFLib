@@ -33,12 +33,13 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
         /// </summary>
         /// <param name="model">Объект модели класса</param>
         /// <param name="dateFormat">Формат даты</param>
+        /// <param name="isNullValueHandling">Сцепить null параметры</param>
         /// <returns>JSON string</returns>
-        public string JsonLibrary(object model, string dateFormat = "dd-MM-yyyy")
+        public string JsonLibrary(object model, string dateFormat = "dd-MM-yyyy", bool isNullValueHandling = true)
         {
           return  JsonConvert.SerializeObject(model,new JsonSerializerSettings()
           {
-              NullValueHandling = NullValueHandling.Ignore,
+              NullValueHandling = (isNullValueHandling) ? NullValueHandling.Ignore:NullValueHandling.Include,
               DateFormatString = dateFormat
           });
         }
@@ -103,7 +104,38 @@ namespace LibaryXMLAuto.ReadOrWrite.SerializationJson
         /// <returns></returns>
         public object JsonDeserializeObjectClass<T>(string result)
         {
+            List<string> errors = new List<string>();
+            JsonConvert.DeserializeObject<T>(result, new JsonSerializerSettings
+            {
+                Error = delegate(object sender, ErrorEventArgs arg)
+                {
+                    errors.Add(arg.ErrorContext.Error.Message);
+                    arg.ErrorContext.Handled = true;
+                },
+                NullValueHandling = NullValueHandling.Include
+            });
             return JsonConvert.DeserializeObject<T>(result);
         }
+        /// <summary>
+        /// Десериализация Json Класс
+        /// </summary>
+        /// <param name="result">JSON</param>
+        /// <returns></returns>
+        public T JsonDeserializeObjectClassModel<T>(string result)
+        {
+            List<string> errors = new List<string>();
+           return JsonConvert.DeserializeObject<T>(result, new JsonSerializerSettings()
+            {
+                Error = delegate (object sender, ErrorEventArgs arg)
+                {
+                    errors.Add(arg.ErrorContext.Error.Message);
+                    arg.ErrorContext.Handled = true;
+                },
+                NullValueHandling = NullValueHandling.Ignore,
+                DateFormatString = "dd.MM.yyyy HH:mm"
+            });
+          //  return JsonConvert.DeserializeObject<T>(result);
+        }
+
     }
 }

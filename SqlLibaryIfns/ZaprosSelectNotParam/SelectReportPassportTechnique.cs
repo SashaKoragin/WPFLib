@@ -2,7 +2,9 @@
 using System.IO;
 using System.Linq;
 using EfDatabase.Inventory.Base;
+using EfDatabase.Inventory.BaseLogic.Select;
 using EfDatabaseXsdSupportNalog;
+using LibaryDocumentGenerator.Documents.TemplateExcel;
 using SqlLibaryIfns.ExcelReport.Report;
 using SqlLibaryIfns.SqlZapros.SqlConnections;
 
@@ -65,7 +67,38 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
                     templateStep3.ParameterStep3 = CreateReportEpo(pathSaveReport, analysis);
                     templateStep3.NameGuidParametr = string.Format(templateStep3.NameGuidParametr, analysis.NameFileXlsx, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
                 }
+                if (templateStep3.TemplateParametrType.Equals("CardAksiok"))
+                {
+                    templateStep3.ParameterStep3 = CreateCardAksiok(modelSupport.AksiokAddAndEdit, pathSaveReport);
+                    templateStep3.NameGuidParametr = string.Format(templateStep3.NameGuidParametr, "Карточка АКСИОК.xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                }
+                if (templateStep3.TemplateParametrType.Equals("ExpertiseFile") &&  modelSupport?.AksiokAddAndEdit?.ParametersRequestAksiok?.FileExpertise?.File != null)
+                {
+                    templateStep3.ParameterStep3 = modelSupport.AksiokAddAndEdit.ParametersRequestAksiok.FileExpertise.File;
+                    templateStep3.NameGuidParametr = string.Format(templateStep3.NameGuidParametr, modelSupport.AksiokAddAndEdit.ParametersRequestAksiok.FileExpertise.NameFile, modelSupport.AksiokAddAndEdit.ParametersRequestAksiok.FileExpertise.TypeFile);
+                }
+                if (templateStep3.TemplateParametrType.Equals("OffFile") && modelSupport?.AksiokAddAndEdit?.ParametersRequestAksiok?.FileAkt?.File != null)
+                {
+                    templateStep3.ParameterStep3 = modelSupport.AksiokAddAndEdit.ParametersRequestAksiok.FileAkt.File;
+                    templateStep3.NameGuidParametr = string.Format(templateStep3.NameGuidParametr, modelSupport.AksiokAddAndEdit.ParametersRequestAksiok.FileAkt.NameFile, modelSupport.AksiokAddAndEdit.ParametersRequestAksiok.FileAkt.TypeFile);
+                }
             }
+        }
+        /// <summary>
+        /// Создание карточки АКСИОК для редактирования
+        /// </summary>
+        /// <param name="aksiokAddAndEdit">Модель АКСИОК</param>
+        /// <param name="pathSaveReport">Путь сохранения</param>
+        /// <returns></returns>
+        private byte[] CreateCardAksiok(AksiokAddAndEdit aksiokAddAndEdit, string pathSaveReport)
+        {
+            SelectSql selectSql = new SelectSql();
+            ReportComparableAksiokAndInventoryResult reportCard = new ReportComparableAksiokAndInventoryResult();
+            var model = selectSql.SelectCardAksiokAndInventory(aksiokAddAndEdit);
+            reportCard.CreateDocument(pathSaveReport, model);
+            var file = System.IO.File.ReadAllBytes(reportCard.FullPathDocumentWord);
+            System.IO.File.Delete(reportCard.FullPathDocumentWord);
+            return file;
         }
 
         /// <summary>

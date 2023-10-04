@@ -1,5 +1,7 @@
 ﻿
+using System.Linq;
 using System.Reflection;
+using EfDatabase.Inventory.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll;
 using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
@@ -52,6 +54,5 @@ namespace EfDatabaseAutomationTests
             DataBaseElementAdd dataBaseAdd = new DataBaseElementAdd();
             dataBaseAdd.AddDocPatent(new EfDatabaseAutomation.Automation.Base.Patent() { IdPatent = 1}, "C:\\Users\\7751-00-491\\Desktop\\tmp3C43.xlsx", "1");
         }
-
     }
 }

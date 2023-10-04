@@ -156,6 +156,10 @@
     <Compile Include="Service\ServiceAuto.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\My\EfDatabase\EfDatabase.csproj">
+      <Project>{578CF45E-310B-4E2E-9C94-5A9F16B736AE}</Project>
+      <Name>EfDatabase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\My\LibaryDocumentGenerator\LibaryDocumentGenerator.csproj">
       <Project>{939b256e-591b-40cc-8097-5d34456404cd}</Project>
       <Name>LibaryDocumentGenerator</Name>

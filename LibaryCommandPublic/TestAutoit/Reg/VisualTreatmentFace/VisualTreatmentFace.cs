@@ -87,5 +87,39 @@ namespace LibraryCommandPublic.TestAutoit.Reg.VisualTreatmentFace
                 MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status5);
             }
         }
+        /// <summary>
+        /// Автомат на ветку Налоговое администрирование\Централизованный учет налогоплательщиков\18. Действия к выполнению\2.09. Ручная идентификация физического лица
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        /// <param name="pathListStatement">Полный путь к списку с уникальными номерами</param>
+        public void IdentificationFl(StatusButtonMethod statusButton, string pathListStatement)
+        {
+            DispatcherHelper.Initialize();
+            if (File.Exists(pathListStatement))
+            {
+                Task.Run(delegate
+                {
+                    try
+                    {
+                        DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                        KclicerButton clickerButton = new KclicerButton();
+                        WindowsAis3 ais3 = new WindowsAis3();
+                        if (ais3.WinexistsAis3() == 1)
+                        {
+                            clickerButton.Click57(statusButton, pathListStatement);
+                            DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                        }
+                        else
+                        {
+                            MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                });
+            }
+        }
     }
 }

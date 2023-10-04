@@ -130,7 +130,10 @@
         /// Автоматическая информация
         /// </summary>
         public static string AutoInfo = "Name:DockTop\\Name:Ribbon\\Name:Ввод данных заявки\\Name:Общие действия\\Name:Авт. информация";
-
+        /// <summary>
+        /// Индикатор выполнения
+        /// </summary>
+        public static string StatusBar = "Name:ultraStatusBar1\\LocalizedControlType:индикатор выполнения";
         /// <summary>
         /// Grid Ролей шаблонов
         /// </summary>

@@ -9,6 +9,7 @@ using System.Dynamic;
 using System.IO;
 using System.Linq;
 using EfDatabaseAutomation.Automation.Base;
+using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.ProcedureDeclaration;
 using LibaryXMLAuto.ReadOrWrite;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
@@ -146,6 +147,23 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
             }
             return null;
         }
+        /// <summary>
+        /// Выгрузка требования на просмотр документа
+        /// </summary>
+        /// <param name="numberElement">Ун записи</param>
+        /// <returns></returns>
+        public Stream LoadFile3NdflRequirements(int numberElement)
+        {
+            try
+            {
+                return new MemoryStream(Automation.Declaration3NdflFl.FirstOrDefault(x => x.Id == numberElement)?.Document ?? throw new InvalidOperationException("Жаль отсутствует файл Требования"));
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+            }
+            return null;
+        }
 
         /// <summary>
         /// Запрос проверки КБК по платежу
@@ -193,8 +211,33 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
                 select sender;
             return senderUser.SelectMany(h => h.DepartamentOtdels.Where(y => groups.Any(r => r.Contains(y.NameDepartamentActiveDerectory)))).FirstOrDefault();
         }
-
-
+        /// <summary>
+        /// Проверка на наличие документа если нет то требование не выставлялось
+        /// </summary>
+        /// <param name="regNumberDecl"></param>
+        /// <returns></returns>
+        public bool IsExistsRequirements(long regNumberDecl)
+        {
+            var result = Automation.Declaration3NdflFl.Where(x => x.RegNumDecl == regNumberDecl).Select(x => x.Document).FirstOrDefault();
+            if (result != null)
+            {
+                return result.Any();
+            }
+            return false;
+        }
+        /// <summary>
+        /// Выборка полей декларации для шаблона
+        /// </summary>
+        /// <param name="regNumberDecl">Регистрационный номер декларации</param>
+        /// <returns></returns>
+        public Declaration SelectMemoDeclaration(long regNumberDecl)
+        {
+            var xml = new XmlReadOrWrite();
+            var selectParameters = Automation.LogicsSelectAutomations.Where(x=>x.Id == 33).FirstOrDefault();
+            var result =  Automation.Database.SqlQuery<string>(selectParameters.SelectUser,
+                new SqlParameter(selectParameters.SelectedParametr.Split(',')[0], regNumberDecl)).ToArray();
+            return (Declaration)xml.ReadXmlText(string.Join("", (string[])result), typeof(Declaration));
+        }
         /// <summary>
         /// Добавление в ExpandoObject динамического названия типа
         /// </summary>

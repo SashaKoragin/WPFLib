@@ -93,5 +93,39 @@ namespace PublicLogicaFull.DocumentLogica.FlowDocumentExample.Examle
                                            "  <JudicialAct Inn=\"771701149808\" NumberAkt=\"51\"/>\n" +
                                            "  <JudicialAct Inn=\"772583930186\" NumberAkt=\"20\"/>\n" +
                                            "</AutoGenerateSchemes>";
+        /// <summary>
+        /// Модель на проведения технической корректировки
+        /// </summary>
+        public static string TechAdjustmentStatement = "<?xml version =\"1.0\"encoding=\"UTF-8\"?>\n" +
+                                                       "<AutoGenerateSchemes xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"AutoGenerateSchemes.xsd\">\n" +
+                                                       "  <FaceStatement Inn=\"772578431375\" NumberStatement=\"48\" DateTimeStatement=\"2022-02-07T00:00:00\" />\n" +
+                                                       "  <FaceStatement Inn=\"771701149808\" NumberStatement=\"51\" DateTimeStatement=\"2022-02-07T00:00:00\"/>\n" +
+                                                       "  <FaceStatement Inn=\"772583930186\" NumberStatement=\"20\" DateTimeStatement=\"2022-01-16T00:00:00\"/>\n" +
+                                                       "</AutoGenerateSchemes>";
+        /// <summary>
+        /// Модель на проведения уточнения платежа
+        /// </summary>
+        public static string IncomeJournal = "<?xml version =\"1.0\"encoding=\"UTF-8\"?>\n" +
+                                             "<AutoGenerateSchemes xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"AutoGenerateSchemes.xsd\">\n" +
+                                             "  <IncomeJournal Number=\"1\" Inn=\"502499333103\" DateTimePayment=\"2022-10-01T00:00:00\" Summ=\"5900\" Ifns=\"Инспекция ФНС России по г. Красногорск\" InnMo=\"5024002119\" KppMo=\"502401001\" Oktmo=\"46744000\"  />\n" +
+                                             "  <IncomeJournal Number=\"2\" Inn=\"504040838086\" DateTimePayment=\"2022-12-17T00:00:00\" Summ=\"16023\" Ifns=\"Межрайонная ИФНС России № 1 по Московской области (г. Раменское + г. Бронницы + г. Жуковский)\" InnMo=\"5040004804\" KppMo=\"502401001\" Oktmo=\"46768000\"/>\n" +
+                                             "  <IncomeJournal Number=\"3\" Inn=\"771555920829\" DateTimePayment=\"2022-12-17T00:00:00\" Summ=\"5341\" Ifns=\"Инспекция ФНС России по г. Красногорск\" InnMo=\"5024002119\" KppMo=\"502401001\" Oktmo=\"46744000\"/>\n" +
+                                             "</AutoGenerateSchemes>";
+        /// <summary>
+        /// Однозначная идентификация
+        /// </summary>
+        public static string IdentytiFace = "<?xml version =\"1.0\"encoding=\"UTF-8\"?>\n" +
+                                             "<AutoGenerateSchemes xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"AutoGenerateSchemes.xsd\">\n" +
+                                             "  <IdentytiFace Id=\"1000976525738\" />\n" +
+                                             "  <IdentytiFace Id=\"1000976525869\" />\n" +
+                                             "  <IdentytiFace Id=\"1000976527727\" />\n" +
+                                             "</AutoGenerateSchemes>";
+
+        public static string InnFace = "<?xml version =\"1.0\"encoding=\"UTF-8\"?>\n" +
+                                       "<AutoGenerateSchemes xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"AutoGenerateSchemes.xsd\">\n" +
+                                       "  <InnFace Inn=\"230205491185\" />\n" +
+                                       "  <InnFace Inn=\"550727971530\" />\n" +
+                                       "  <InnFace Inn=\"507404107700\" />\n" +
+                                       "</AutoGenerateSchemes>";
     }
 }

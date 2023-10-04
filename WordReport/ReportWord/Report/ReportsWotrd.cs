@@ -25,9 +25,9 @@ namespace WordReport.ReportWord.Report
                 oWord.Quit();
           
             }
-            catch (Exception e)
+            catch
             {
-
+                // ignored
             }
         }
 

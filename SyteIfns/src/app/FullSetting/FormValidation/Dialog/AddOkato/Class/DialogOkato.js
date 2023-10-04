@@ -26,7 +26,7 @@ var DialogOkato = /** @class */ (function () {
     }
     Object.defineProperty(DialogOkato.prototype, "okato", {
         get: function () { return this.delaOkato.get('okato'); },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     DialogOkato.prototype.addokato = function () {

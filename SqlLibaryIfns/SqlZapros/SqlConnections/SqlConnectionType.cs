@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
-using FastMember;
 using LibaryXMLAuto.ModelXmlSql.ConvertModel.DesirializationSql;
 using SqlLibaryIfns.SqlZapros.SobytieSql;
 

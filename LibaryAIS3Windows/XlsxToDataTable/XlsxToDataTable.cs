@@ -77,7 +77,34 @@ namespace LibraryAIS3Windows.XlsxToDataTable
                                     }
                                     else
                                     {
-                                        dr[Convert.ToInt32(j)] = result.ToString();
+                                        var isDate = cell.GetFormattedValue();
+                                        DateTime dateTime;
+                                        bool isValid = DateTime.TryParseExact(isDate, "MM-dd-yy", new CultureInfo("en-US"), DateTimeStyles.AssumeLocal, out dateTime);
+                                        if (isValid)
+                                        {
+                                            dr[Convert.ToInt32(j)] = dateTime;
+                                        }
+                                        else
+                                        {
+                                            isValid = DateTime.TryParseExact(isDate, "MMddyyyy", new CultureInfo("en-US"), DateTimeStyles.AssumeLocal, out dateTime);
+                                            if (isValid)
+                                            {
+                                                dr[Convert.ToInt32(j)] = dateTime;
+                                            }
+                                            else
+                                            {
+                                                isValid = DateTime.TryParseExact(isDate, "dd.MM.yyyy H:mm:ss", new CultureInfo("en-US"), DateTimeStyles.AssumeLocal, out dateTime);
+                                                if (isValid)
+                                                {
+                                                    dr[Convert.ToInt32(j)] = dateTime;
+                                                }
+                                                else
+                                                {
+                                                    dr[Convert.ToInt32(j)] = result.ToString();
+                                                }
+
+                                            }
+                                        }
                                     }
                                 }
                             }

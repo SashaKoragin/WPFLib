@@ -14,6 +14,10 @@
 			<xs:element ref="TaxArrears" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="AddressModel" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="JudicialAct" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="FaceStatement" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="IncomeJournal" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="IdentytiFace" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="InnFace" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxArrears">
@@ -80,6 +84,95 @@
 					<xs:documentation>Номер заявления</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FaceStatement">
+		<xs:annotation>
+			<xs:documentation>Модель на проведения технической корректировки</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NumberStatement" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер заявления</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateTimeStatement" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата время заявления</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IncomeJournal">
+		<xs:annotation>
+			<xs:documentation>Журнал начислений для уточнения</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Number" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DateTimePayment" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>Дата оплаты</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Summ" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сумма НДФЛ</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Ifns" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИФНС</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="InnMo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН ИФНС МО</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="KppMo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КПП ИФНС МО</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Oktmo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ОКТМО ИФНС МО</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IdentytiFace">
+		<xs:annotation>
+			<xs:documentation>Однозначная идентификация лиц ФЛ</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Id" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>УН входящего документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InnFace">
+		<xs:annotation>
+			<xs:documentation>Инн поиск договоров купли продажи</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Inn" type="xs:string" use="required"/>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

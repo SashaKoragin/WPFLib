@@ -23,7 +23,7 @@ namespace AutomatAis3Full.Form.Automat.Okp6.CheckDeclaration.ViewCheckDeclaratio
         public CheckDeclarationView()
         {
             InitializeComponent();
-            DataContext = new DataContexCheckDeclaration.DataContextCheckDeclaration();
+            DataContext = new DataContextCheckDeclaration.DataContextCheckDeclaration();
         }
     }
 }

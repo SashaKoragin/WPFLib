@@ -33,8 +33,7 @@ namespace AttributeHelperModelXml
             {
                 prop.SetValue(entity, value.ToString().Trim(), null);
             }
-            else if (prop.PropertyType == typeof(bool) || prop.PropertyType == typeof(
-            bool?))
+            else if (prop.PropertyType == typeof(bool) || prop.PropertyType == typeof(bool?))
             {
                 if (value == null)
                 {

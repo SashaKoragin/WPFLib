@@ -7,7 +7,6 @@ namespace ServiceAutomation.LoginAD.Login
 {
     public class LoginIdentificationUser
     {
-
         public Identification AuthUserService(Identification identification)
         {
             try
@@ -16,13 +15,11 @@ namespace ServiceAutomation.LoginAD.Login
                 {
                     using (PrincipalContext context = new PrincipalContext(ContextType.Domain, null, identification.Login, identification.Password))
                     {
-                        
                         if (context.ValidateCredentials(identification.Login, identification.Password))
                         {
                             using (var users = new UserPrincipal(context))
                             {
                                 users.SamAccountName = identification.Login;
-
                                 using (var searcher = new PrincipalSearcher(users))
                                 {
                                     var user = searcher.FindOne() as UserPrincipal;
@@ -43,7 +40,6 @@ namespace ServiceAutomation.LoginAD.Login
                                     }
                                 }
                             }
-
                             identification.ErrorMessage = "Пользователь не найден!!!";
                             identification.IsError = true;
                             return identification;

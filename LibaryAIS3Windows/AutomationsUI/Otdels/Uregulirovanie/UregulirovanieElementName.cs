@@ -378,6 +378,15 @@
         /// </summary>
         public static string WinOk = "Name:Решение об отказе\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:Да";
         /// <summary>
+        /// Коментарий к решению об отказе
+        /// </summary>
+        public static string MemoComentClick = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TransferClaimRefusalPreparatoryDocDetailView\\AutomationId:grpBig\\AutomationId:tab\\AutomationId:tabPage1\\AutomationId:grpRefusal\\Name:Данные решения об отказе\\AutomationId:txtRefusalComment";
+
+        /// <summary>
+        /// Коментарий к решению об отказе
+        /// </summary>
+        public static string MemoComent = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TransferClaimRefusalPreparatoryDocDetailView\\AutomationId:grpBig\\AutomationId:tab\\AutomationId:tabPage1\\AutomationId:grpRefusal\\Name:Данные решения об отказе\\AutomationId:txtRefusalComment\\LocalizedControlType:поле";
+        /// <summary>
         /// Ок
         /// </summary>
         public static string WinOkResh = "Name:Формирование решения об отказе\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:Да";
@@ -444,5 +453,73 @@
         /// </summary>
         public static string Ok = "Name:Отправить на исполнение следующего шага?\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnYes";
     
+    }
+
+    public class TechAdjustmentStatement
+    {
+        /// <summary>
+        /// Согласование заявок на техническую корректировку
+        /// </summary>
+        public static string GridAgreement = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorViewBase2\\AutomationId:NavigatorViewBase_Fill_Panel\\AutomationId:grpBig\\AutomationId:ctlNavigator\\AutomationId:splitContainer\\AutomationId:gridData";
+        /// <summary>
+        /// Лист с заявками
+        /// </summary>
+        public static string JournalDocumentsAgreement = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:NavigatorViewBase2\\AutomationId:NavigatorViewBase_Fill_Panel\\AutomationId:grpBig\\AutomationId:ctlNavigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row 1";
+        /// <summary>
+        /// Таблица с утверждением
+        /// </summary>
+        public static string GridDetal = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TechCorrClaimApprovingDetailView\\AutomationId:DeathDcnDetailView_Fill_Panel\\AutomationId:ultraGroupBox2\\AutomationId:splitContainer1\\Name:Исходные документы на техническую корректировку\\AutomationId:gridDetailData";
+        /// <summary>
+        /// Редактирование даты заявления по зачетам(возвратам) открыть ветку
+        /// </summary>
+        public static string PathTreeEdit = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TechCorrClaimNavView\\AutomationId:_ControlAndStatisticsView_Fill_Panel\\AutomationId:grpBig\\AutomationId:groupBox1\\AutomationId:treeSelectMode\\Name:Редактирование даты заявления по зачетам (возвратам)";
+        /// <summary>
+        /// Отправить на следующий шаг
+        /// </summary>
+        public static string SendStep = "Name:DockTop\\Name:Ribbon\\Name:Создание заявки на техническую корректировку\\Name:Действия\\Name:Отправить на следующий шаг";
+        /// <summary>
+        /// Строка для подсчета колличество заявлений
+        /// </summary>
+        public static string GridStatement = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TechCorrClaimDetailView\\AutomationId:DeathDcnDetailView_Fill_Panel\\AutomationId:ultraGroupBox3\\AutomationId:ultraGroupBox4\\AutomationId:splitContainer1\\Name:Документы, включенные в заявку на техническую корректировку\\AutomationId:gridDetailData";
+        /// <summary>
+        /// Ввод откорректированной даты заявления
+        /// </summary>
+        public static string NewDate = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TechCorrClaimDetailView\\AutomationId:DeathDcnDetailView_Fill_Panel\\AutomationId:ultraGroupBox3\\AutomationId:ultraGroupBox4\\AutomationId:splitContainer1\\Name:Изменяемые реквизиты выбранного документа\\AutomationId:grdTechCorrListChanges\\Name:List`1 row 1\\Name:Новое значение";
+        /// <summary>
+        /// Обоснование заявки кликаем
+        /// </summary>
+        public static string PatternStatementClick = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TechCorrClaimDetailView\\AutomationId:DeathDcnDetailView_Fill_Panel\\AutomationId:ultraGroupBox3\\Name:Реквизиты заявки на техническую корректировку\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:techCorrClaimControl1\\AutomationId:grpBig\\AutomationId:txtClaimDescription";
+        /// <summary>
+        /// Обоснование заявки
+        /// </summary>
+        public static string PatternStatement = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:TechCorrClaimDetailView\\AutomationId:DeathDcnDetailView_Fill_Panel\\AutomationId:ultraGroupBox3\\Name:Реквизиты заявки на техническую корректировку\\AutomationId:ultraExpandableGroupBoxPanel1\\AutomationId:techCorrClaimControl1\\AutomationId:grpBig\\AutomationId:txtClaimDescription\\LocalizedControlType:поле";
+        /// <summary>
+        /// Создать заявку
+        /// </summary>
+        public static string CreateState = "Name:DockTop\\Name:Ribbon\\Name:Техническая корректировка\\Name:Действия\\Name:Создать заявку на техническую корректировку";
+        /// <summary>
+        /// Отправить на исполнение следующего шага
+        /// </summary>
+        public static string CreateStateYes = "Name:Отправить на исполнение следующего шага?\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:Да";
+        /// <summary>
+        /// Обновить заявку на согласование
+        /// </summary>
+        public static string UpdateAgreement = "Name:DockTop\\Name:Ribbon\\Name:Согласование заявки на техническую корректировку\\Name:Навигатор\\Name:Обновить";
+        /// <summary>
+        /// Открыть заявку на согласование
+        /// </summary>
+        public static string OpenMemoAgreement = "Name:DockTop\\Name:Ribbon\\Name:Согласование заявки на техническую корректировку\\Name:Действия\\Name:Открыть заявку для согласования";
+        /// <summary>
+        /// Сохранить заявку
+        /// </summary>
+        public static string SaveAgreement = "Name:DockTop\\Name:Ribbon\\Name:Техническая корректировка\\Name:Действия\\Name:Сохранить и завершить согласование";
+        /// <summary>
+        /// Отправить данные на следующий шаг
+        /// </summary>
+        public static string YesWin = "Name:Отправить на исполнение следующего шага?\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:Да";
+        /// <summary>
+        /// Вернутся
+        /// </summary>
+        public static string Back = "Name:DockTop\\Name:Ribbon\\Name:Техническая корректировка\\Name:Вернуться";
     }
 }

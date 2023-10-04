@@ -24,6 +24,14 @@ namespace LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction
         /// </summary>
         public string TreeActAdd = "Налоговое администрирование\\Урегулирование задолженности\\Взыскание задолженности за счет имущества НП ФЛ\\Ввод данных судебного акта";
         /// <summary>
+        /// Путь к ветке Техническая корректировка. Ввод заявок
+        /// </summary>
+        public string TechStatement = "Налоговое администрирование\\Урегулирование задолженности\\Техническая корректировка\\Техническая корректировка. Ввод заявок";
+        /// <summary>
+        /// Путь к ветке Техническая корректировка. Согласование заявок
+        /// </summary>
+        public string TechAgreement = "Налоговое администрирование\\Урегулирование задолженности\\Техническая корректировка\\Техническая корректировка. Согласование заявок";
+        /// <summary>
         /// Заявления о зачете возврате
         /// </summary>
         /// <param name="statusButton">Кнопка автомата</param>
@@ -93,6 +101,14 @@ namespace LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction
                             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.EditStatement);
                             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.Create);
                             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.WinOk);
+                            if (libraryAutomation.IsEnableElements(StatementNp.MemoComentClick, null, true, 30) != null)
+                            {
+                                libraryAutomation.ClickElements(StatementNp.MemoComentClick);
+                                if (libraryAutomation.IsEnableElements(StatementNp.MemoComent, null, true, 30) != null)
+                                {
+                                    libraryAutomation.SetValuePattern("Нет переплаты");
+                                }
+                            }
                             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.CreateResh);
                             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.WinOkResh);
                             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.Send);
@@ -150,12 +166,15 @@ namespace LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.Edit);
                         while (true)
                         {
-                            if (libraryAutomation.IsEnableElements(StatementNp.DateAdd, null, true, 1) != null)
+                            if (libraryAutomation.IsEnableElements(StatementNp.Save, null, true, 1) != null)
                             {
-                                libraryAutomation.SetValuePattern(DateTime.Now.ToString("dd.MM.yy"));
-                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.Save);
-                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.OkSave);
-                                break;
+                                if (libraryAutomation.IsEnableElements(StatementNp.DateAdd, null, true, 1) != null)
+                                {
+                                    libraryAutomation.SetValuePattern(dataStatementNp.ToString("dd.MM.yy"));
+                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.Save);
+                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.OkSave);
+                                    break;
+                                }
                             }
                         }
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.ClearStatus);
@@ -163,6 +182,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.OkWin);
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.OkWin);
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, StatementNp.Back);
+                        PublicGlobalFunction.PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, StatementNp.JournalReestr);
                     }
                 }
                 else
@@ -170,6 +190,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction
                     break;
                 }
                 rowNumber++;
+                
             }
             MouseCloseFormRsb(1);
         }
@@ -549,7 +570,164 @@ namespace LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction
             }
             MouseCloseFormRsb(1);
         }
-
+        /// <summary>
+        /// Тех корректировка даты
+        /// Автомат на ветку Налоговое администрирование\Урегулирование задолженности\Техническая корректировка\Техническая корректировка. Ввод заявок
+        /// </summary>
+        /// <param name="statusButton">Кнопка</param>
+        /// <param name="pathListStatement">Полный путь к списку с заявлениями о тех корректировки</param>
+        public void StartTechAdjustmentStatement(StatusButtonMethod statusButton, string pathListStatement)
+        {
+            LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite read = new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
+            object obj = read.ReadXml(pathListStatement, typeof(AutoGenerateSchemes));
+            AutoGenerateSchemes modelList = (AutoGenerateSchemes)obj;
+            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
+            var sw = TechStatement.Split('\\').Last();
+            var parametersModel = new ModelDataArea();
+            var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
+            libraryAutomation.IsEnableExpandTree(TechStatement);
+            libraryAutomation.FindFirstElement(fullTree, null, true);
+            libraryAutomation.FindElement.SetFocus();
+            libraryAutomation.ClickElements(fullTree, null, false, 25, 0, 0, 2);
+            if (libraryAutomation.IsEnableElement(TechAdjustmentStatement.PathTreeEdit))
+            {
+                libraryAutomation.SelectionComboBoxSelectionItemPattern(libraryAutomation.FindElement);
+            }
+            if (modelList.FaceStatement != null)
+            {
+                foreach (var modelStatement in modelList.FaceStatement)
+                {
+                    if (modelStatement.DateTimeStatement.Equals(DateTime.MinValue))
+                    {
+                        throw new Exception($"Дата {modelStatement.DateTimeStatement} не соответствует формату: Редактируйте списки");
+                    }
+                    if (statusButton.Iswork)
+                    {
+                        parametersModel.DataAreaTechAdjustmentStatement.Parameters.First(parameters => parameters.NameParameters == "ИНН").ParametersGrid = modelStatement.Inn;
+                        parametersModel.DataAreaTechAdjustmentStatement.Parameters.First(parameters => parameters.NameParameters == "Номер заявления").ParametersGrid = modelStatement.NumberStatement;
+                        foreach (var dataAreaParameters in parametersModel.DataAreaTechAdjustmentStatement.Parameters)
+                        {
+                            while (true)
+                            {
+                                if (libraryAutomation.FindFirstElement(string.Concat(parametersModel.DataAreaTechAdjustmentStatement.FullPathDataArea, parametersModel.DataAreaTechAdjustmentStatement.ListRowDataArea, dataAreaParameters.IndexParameters), null, true) != null)
+                                {
+                                    libraryAutomation.FindFirstElement(dataAreaParameters.FindNameMemo, libraryAutomation.FindElement, true);
+                                    libraryAutomation.FindElement.SetFocus();
+                                    SendKeys.SendWait("{ENTER}");
+                                    AutoItX.Sleep(1000);
+                                    SendKeys.SendWait(dataAreaParameters.ParametersGrid);
+                                    SendKeys.SendWait("{ENTER}");
+                                    while (true)
+                                    {
+                                        libraryAutomation.FindFirstElement("Name:Условие", libraryAutomation.FindFirstElement(string.Concat(
+                                                    parametersModel.DataAreaTechAdjustmentStatement.FullPathDataArea,
+                                                    parametersModel.DataAreaTechAdjustmentStatement.ListRowDataArea,
+                                                    dataAreaParameters.IndexParameters), null, true), true);
+                                        libraryAutomation.ClickElement(libraryAutomation.FindElement);
+                                        if (libraryAutomation.FindFirstElement("Name:DropDown") != null)
+                                        {
+                                            var memo = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement);
+                                            var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == dataAreaParameters.FindSelectParameter);
+                                            libraryAutomation.ClickElement(elemClick);
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, parametersModel.DataAreaTechAdjustmentStatement.Update);
+                        PublicGlobalFunction.PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, parametersModel.DataAreaTechAdjustmentStatement.FullPathGrid);
+                        var listMemo = libraryAutomation.SelectAutomationColrction(libraryAutomation.IsEnableElements(parametersModel.DataAreaTechAdjustmentStatement.FullPathGrid)).Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("select0 row ")).Distinct();
+                        foreach (var row in listMemo)
+                        {
+                            var dateStart = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                                   .SelectAutomationColrction(row)
+                                                   .Cast<AutomationElement>()
+                                                   .First(elem => elem.Current.Name.Contains("Дата заявления"))));
+                            var dateFinish = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
+                                                    .SelectAutomationColrction(row)
+                                                    .Cast<AutomationElement>()
+                                                    .First(elem => elem.Current.Name.Contains("Дата получения заявления НО"))));
+                            if (dateStart == dateFinish)
+                            {
+                                continue;
+                            }
+                            var clickElement = libraryAutomation.SelectAutomationColrction(row).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Номер заявления"));
+                            libraryAutomation.ClickElement(clickElement, -60);
+                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, TechAdjustmentStatement.SendStep);
+                            var listStatement = libraryAutomation.SelectAutomationColrction(libraryAutomation.IsEnableElements(TechAdjustmentStatement.GridStatement)).Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("List`1 row ")).Distinct();
+                            if (listStatement.Count() >= 2)
+                            {
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, TechAdjustmentStatement.Back);
+                            }
+                            else
+                            {
+                                if (libraryAutomation.IsEnableElement(TechAdjustmentStatement.NewDate))
+                                {
+                                    libraryAutomation.SetValuePattern(modelStatement.DateTimeStatement.ToString("dd.MM.yyyy"));
+                                    libraryAutomation.ClickElement(libraryAutomation.IsEnableElements(TechAdjustmentStatement.PatternStatementClick));
+                                    var element = libraryAutomation.SelectAutomationColrction(libraryAutomation.IsEnableElements(TechAdjustmentStatement.PatternStatementClick));
+                                    var pattern = element[0].GetCurrentPattern(LegacyIAccessiblePatternIdentifiers.Pattern);
+                                    var valueAuto = (LegacyIAccessiblePattern)pattern;
+                                    valueAuto.SetValue("Приведение в соответствие даты поступления в НО");
+                                    SendKeys.SendWait(" ");
+                                }
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, TechAdjustmentStatement.CreateState);
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, TechAdjustmentStatement.CreateStateYes);
+                            }
+                            var clickElementExit = libraryAutomation.SelectAutomationColrction(row).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Номер заявления"));
+                            libraryAutomation.ClickElement(clickElementExit, -60);
+                        }
+                        read.DeleteAtributXml(pathListStatement, LibaryXMLAuto.GenerateAtribyte.GeneratorAtribute.GenerateAtrAutoGenerateSchemesFaceStatement(modelStatement.Inn));
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, parametersModel.DataAreaTechAdjustmentStatement.Filters);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            MouseCloseFormRsb(1);
+        }
+        /// <summary>
+        /// Тех корректировка согласование
+        /// Автомат на ветку Налоговое администрирование\Урегулирование задолженности\Техническая корректировка\Техническая корректировка. Согласование заявок
+        /// </summary>
+        /// <param name="statusButton">Кнопка</param>
+        public void StartTechKorrectAgreement(StatusButtonMethod statusButton)
+        {
+            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
+            var sw = TechAgreement.Split('\\').Last();
+            var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
+            libraryAutomation.IsEnableExpandTree(TechAgreement);
+            libraryAutomation.FindFirstElement(fullTree, null, true);
+            libraryAutomation.FindElement.SetFocus();
+            libraryAutomation.ClickElements(fullTree, null, false, 25, 0, 0, 2);
+            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, TechAdjustmentStatement.UpdateAgreement);
+            PublicGlobalFunction.PublicGlobalFunction.GridNotDataIsWaitUpdate(libraryAutomation, TechAdjustmentStatement.GridAgreement);
+            while (libraryAutomation.IsEnableElements(TechAdjustmentStatement.JournalDocumentsAgreement, null, true) != null)
+            {
+                if (statusButton.Iswork)
+                {
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, TechAdjustmentStatement.OpenMemoAgreement);
+                    AutoItX.Sleep(1000);
+                    var listMemo = libraryAutomation.SelectAutomationColrction(libraryAutomation.IsEnableElements(TechAdjustmentStatement.GridDetal)).Cast<AutomationElement>().Where(elem => elem.Current.Name.Contains("List`1 row ")).Distinct();
+                    foreach (var row in listMemo)
+                    {
+                        var elemCheck = libraryAutomation.SelectAutomationColrction(row).Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Утвердить"));
+                        libraryAutomation.ClickElement(elemCheck);
+                    }
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, TechAdjustmentStatement.SaveAgreement);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, TechAdjustmentStatement.YesWin);
+                }
+                else
+                {
+                     break;
+                }
+            }
+            MouseCloseFormRsb(1);
+        }
         /// <summary>
         /// Автомат на ветку
         /// Общие задания\Урегулирование задолженности\05.09 Ручное формирование решений на зачет/возврат/возврат процентов\05.09 Заявления НП для ручной обработки

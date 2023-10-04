@@ -11,6 +11,7 @@ using System.Data.OleDb;
 using System.Data;
 using System.Windows.Forms;
 using System.Globalization;
+using System.IO;
 using AisPoco.Ifns51.FromAis;
 using AttributeHelperModelXml;
 using LibraryAIS3Windows.AutomationsUI.Otdels.PreCheck;
@@ -758,7 +759,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         {
             var preCheck = new PreCheckAddObject();
             XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
-            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName, 1, 3);
+            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName, 1, 14);
             dataTable.Columns.Remove(dataTable.Columns[0]);
             DataNamesMapper<BookSales> mapper = new DataNamesMapper<BookSales>();
             var bookSales = new ArrayBodyDoc() { BookSales = mapper.Map(dataTable).ToArray() };
@@ -775,7 +776,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         {
             var preCheck = new PreCheckAddObject();
             XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
-            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName, 1, 3);
+            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName, 1, 14);
             dataTable.Columns.Remove(dataTable.Columns[0]);
             DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.BookPurchase> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.BookPurchase>();
             var bookPurchase = new ArrayBodyDoc() { BookPurchase = mapper.Map(dataTable).ToArray() };
@@ -825,14 +826,11 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddDeclarationDataAll(string fileName, DeclarationAll declarationAll)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
-            var connectionString = string.Format($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={fileName}; Extended Properties=Excel 12.0;");
-            var adapter = new OleDbDataAdapter("Select * From [Лист 1$]", connectionString);
-            var ds = new DataSet();
-            adapter.Fill(ds, "DeclarationAll");
-            DataTable data = ds.Tables["DeclarationAll"];
-            var listDeclarationDataFace = new ArrayBodyDoc() { DeclarationDataAll = new EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DeclarationDataAll[data.Rows.Count] };
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslx(fileName, "Лист 1");
+            var listDeclarationDataFace = new ArrayBodyDoc() { DeclarationDataAll = new EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DeclarationDataAll[dataTable.Rows.Count] };
             var i = 0;
-            foreach (DataRow row in data.Rows)
+            foreach (DataRow row in dataTable.Rows)
             {
                 listDeclarationDataFace.DeclarationDataAll[i] = new EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DeclarationDataAll()
                 {
@@ -1197,6 +1195,72 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             }
             preCheck.AddDeclarationFlModel(ref declarationFl, listDeclarationDataFace);
             preCheck.Dispose();
+        }
+        /// <summary>
+        /// Автоматический расчет 3 НДФЛ
+        /// </summary>
+        /// <param name="fileName">Имя файла</param>
+        /// <param name="declaration3NdflFl">Декларация ФЛ</param>
+        public void AddDeclaration3Ndfl(string fileName, ref Declaration3NdflFl declaration3NdflFl)
+        {
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var data = xlsxToDataTable.GetDateTableXslx(fileName, "Лист 1"); //Заменил
+            var listDeclarationDataFace = new ArrayBodyDoc() { DeclarationData3NdflFl =  new EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DeclarationData3NdflFl[data.Rows.Count] };
+            var i = 0;
+            foreach (DataRow row in data.Rows)
+            {
+                listDeclarationDataFace.DeclarationData3NdflFl[i] = new EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DeclarationData3NdflFl()
+                {
+                    RegNumDecl = declaration3NdflFl.RegNumDecl,
+                    CodeString = row.Field<string>("Код строки"),
+                    NameParametr = row.Field<string>("Наименование показателя"),
+                    CodeParametr = row.Field<string>("Код показателя"),
+                    DataFace = row.Field<string>("По данным плательщика"),
+                    DataInspector = row.Field<string>("По данным инспектора"),
+                    Error = row.Field<string>("Отклонение")
+                };
+                i++;
+            }
+            preCheck.AddDeclaration3NdflFlModel(ref declaration3NdflFl, listDeclarationDataFace);
+            preCheck.Dispose();
+        }
+
+        public void EndSaveDeclaration3Ndfl(ref Declaration3NdflFl declaration3NdflFl)
+        {
+
+            PreCheckAddObject preCheck = new PreCheckAddObject();
+            preCheck.SaveAndEdit3Ndfl(ref declaration3NdflFl, declaration3NdflFl.RegNumDecl);
+            preCheck.Dispose();
+        }
+
+
+        /// <summary>
+        /// Загрузка сведений о документах купли продажи
+        /// </summary>
+        /// <param name="flFace">Налогоплательщик</param>
+        /// <param name="factOfOwner">Факт владения объектом</param>
+        /// <param name="pathFileXlsx">Путь к файлу с данными об объекте</param>
+        /// <param name="sheetName">Наименование листа</param>
+        public void AddSaveFactOwner(FlFace flFace, FactOfOwnershipImZmTrFl factOfOwner, string pathFileXlsx, string sheetName)
+        {
+            PreCheckAddObject preCheckLoad = new PreCheckAddObject();
+            if (pathFileXlsx != null)
+            {
+                if (!File.Exists(pathFileXlsx))
+                {
+                    throw new InvalidOperationException($"Отсутствует файл по пути {pathFileXlsx}");
+                }
+                XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+                var dataTable = xlsxToDataTable.GetDateTableXslx(pathFileXlsx, sheetName);
+                DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.
+                DocumentOwnershipImZmTrFl> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DocumentOwnershipImZmTrFl>();
+                var listDoc = new ArrayBodyDoc() { DocumentOwnershipImZmTrFl = mapper.Map(dataTable).ToArray() };
+                listDoc.DocumentOwnershipImZmTrFl.ToList().ForEach(doc => doc.FidObject = factOfOwner.FidObject);
+                preCheckLoad.SaveFactOwnerAllDocument(flFace, factOfOwner, listDoc);
+            }
+            preCheckLoad.SaveFactOwnerAllDocument(flFace, factOfOwner, null);
+            preCheckLoad.Dispose();
         }
     }
 }

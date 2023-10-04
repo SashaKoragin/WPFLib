@@ -59,12 +59,19 @@ namespace LibaryXMLAuto.ReadOrWrite
         /// <returns></returns>
         public string ClassToXml(object classType, Type objType)
         {
+            string xmlString;
             using (var stringWriter = new System.IO.StringWriter())
             {
                 var serializer = new XmlSerializer(objType);
+                
                 serializer.Serialize(stringWriter, classType);
-                return stringWriter.ToString();
+                xmlString = stringWriter.ToString();
+                stringWriter.GetStringBuilder().Clear();
+                stringWriter.Flush();
+                stringWriter.Close();
+                stringWriter.Dispose();
             }
+            return xmlString;
         }
         /// <summary>
         /// Создание xml файла
@@ -78,15 +85,16 @@ namespace LibaryXMLAuto.ReadOrWrite
             FileStream file = File.Create(pathToFullNameSave);
             writer.Serialize(file, classType);
             file.Close();
+            file.Dispose();
         }
 
 
-            /// <summary>
-            /// Удаление Атрибута Образец поиска /players/player[@name="значение"]
-            /// </summary>
-            /// <param name="pathxml"></param>
-            /// <param name="atribut"></param>
-            public void DeleteAtributXml(string pathxml, string atribut)
+        /// <summary>
+        /// Удаление Атрибута Образец поиска /players/player[@name="значение"]
+        /// </summary>
+        /// <param name="pathxml"></param>
+        /// <param name="atribut"></param>
+        public void DeleteAtributXml(string pathxml, string atribut)
         {
                 var doc = LogicaXml.LogicaXml.Document(pathxml);
                 XmlNode node = doc.SelectSingleNode(atribut);
@@ -157,10 +165,10 @@ namespace LibaryXMLAuto.ReadOrWrite
         /// <param name="userRules">Модель парсинга</param>
         public void AddRuleUsers(string path, UserRules userRules)
         {
-             var doc = LogicaXml.LogicaXml.Document(path);
+            var doc = LogicaXml.LogicaXml.Document(path);
             XmlElement xRoot = doc.DocumentElement;
             XmlElement userrules = doc.CreateElement("User");
-                foreach (var user in userRules.User)
+            foreach (var user in userRules.User)
             {
                 userrules.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Number",user.Number));
                 userrules.Attributes.Append(CreateElement.CreteElement.AtributeAddString(doc, "Dates", user.Dates));
@@ -319,5 +327,6 @@ namespace LibaryXMLAuto.ReadOrWrite
             }
             doc.Save(path);
         }
+
     }
 }

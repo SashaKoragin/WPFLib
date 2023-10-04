@@ -28,6 +28,73 @@ namespace SqlLibaryIfns.ExcelReport.Report
             SaveAsFileXlsx(pathSave + nameSaveFile + ".xlsx");
         }
         /// <summary>
+        /// Сохранение отчета
+        /// </summary>
+        /// <param name="pathSave">Путь сохранения</param>
+        /// <param name="nameSaveFile">Наименование файла</param>
+        /// <param name="tableReport">Данные для сохранения</param>
+        public void ReportSaveFullReport(string pathSave, string nameSaveFile, DataSet tableReport)
+        {
+            foreach (DataTable tableReportTable in tableReport.Tables)
+            {
+                if(tableReportTable.TableName.Contains("Pivot"))
+                {
+                    CreatePivotTables(tableReportTable);
+                }
+                else
+                {
+                    try
+                    {
+                        XlWorkbook.Worksheets.Add(tableReportTable.TableName).Cell("A1").InsertTable(tableReportTable).Worksheet.Columns().AdjustToContents();
+                    }
+                    catch(Exception ex)
+                    {
+                        if (XlWorkbook.Worksheets.Count > 0)
+                        {
+                            XlWorkbook.Worksheets.Delete(tableReportTable.TableName);
+                        }
+                        XlWorkbook.Worksheets.Add("Ошибка выгрузки").Cell("A1").Value = "Файл слишком большой превышает возможности Excel!!!";
+                        XlWorkbook.Worksheets.Worksheet("Ошибка выгрузки").Cell("A2").Value = ex.Message;
+                    }
+                }
+            }
+            SaveAsFileXlsx(pathSave + nameSaveFile + ".xlsx");
+        }
+        /// <summary>
+        /// Создание умной таблицы для анализа данных только с  признаком Pivot
+        /// </summary>
+        /// <param name="dataTable">Таблица для создания умной таблицы</param>
+        private void CreatePivotTables(DataTable dataTable)
+        {
+            var sumSheet = XlWorkbook.Worksheets.Add(dataTable.TableName);
+            var sumTable = sumSheet.Cell(1, 1).InsertTable(dataTable, dataTable.TableName, true);
+            sumTable.Worksheet.Columns().AdjustToContents();
+            var header = sumTable.Range(1, 1, dataTable.Rows.Count, dataTable.Columns.Count);
+            var range = sumTable.DataRange;
+            var dataRange = sumSheet.Range(header.FirstCell(), range.LastCell());
+            var pivotSheet = XlWorkbook.Worksheets.Add($"Свод {dataTable.TableName}");
+            var pivotTable = pivotSheet.PivotTables.Add(dataTable.TableName, pivotSheet.Cell(1, 1), dataRange);
+            pivotTable.ItemsToRetainPerField = XLItemsToRetain.Automatic;
+            pivotTable.FilteredItemsInSubtotals = true;
+            pivotTable.AutofitColumns = true;
+            pivotTable.ShowPropertiesInTooltips = true;
+            pivotTable.ShowColumnStripes = true;
+            pivotTable.RepeatRowLabels = true;
+            pivotTable.ShowGrandTotalsColumns = true;
+            pivotTable.ShowGrandTotalsRows = true;
+            pivotTable.ShowEmptyItemsOnRows = true;
+            pivotTable.ShowEmptyItemsOnColumns = true;
+            pivotTable.ShowExpandCollapseButtons = true;
+            pivotTable.ShowValuesRow = true;
+            pivotTable.Layout = XLPivotLayout.Tabular;
+            pivotTable.Subtotals = XLPivotSubtotals.AtTop;
+            foreach (DataColumn dataColumn in dataTable.Columns)
+            {
+                pivotTable.RowLabels.Add(dataColumn.ColumnName).SubtotalsAtTop = true;
+            }
+        }
+
+        /// <summary>
         /// Добавление листа в отчет Excel
         /// </summary>
         /// <param name="nameReport">Наименование листа xlsx</param>
