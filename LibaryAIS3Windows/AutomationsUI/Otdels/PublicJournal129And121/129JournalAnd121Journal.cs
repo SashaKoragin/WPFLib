@@ -106,7 +106,10 @@
         /// </summary>
         public static string EditTask3 = $"{PublicEditTask}ClassName:ProcessViewWpf2\\AutomationId:_this\\ClassName:TreeView\\Name:Материалы для рассмотрения\\Name:АКТ об обнаружении фактов, свидетельствующих о предусмотренных Налоговым кодексом Российской Федерации налоговых правонарушениях\\ClassName:TreeViewItem\\AutomationId:propControl\\AutomationId:HeaderSite\\Name:";
 
-
+        /// <summary>
+        /// Панель с элементами в журнале
+        /// </summary>
+        public static string SelectDocPanel = $"{PublicName}AutomationId:OtherMaterials1014\\AutomationId:OtherMaterials1014\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer";
         /// <summary>
         /// Журнал Сформированных документов
         /// </summary>
@@ -172,6 +175,11 @@
         /// Извещение о времени и месте рассмотрения Акта
         /// </summary>
         public static string Izveshenie = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\Name:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf2\\AutomationId:AvailableItemsView\\AutomationId:treeView\\Name:Материалы для рассмотрения\\Name:Материалы для рассмотрения\\Name:Материалы для рассмотрения\\Name:Материалы для рассмотрения";
+
+        /// <summary>
+        /// Извещение о времени и месте рассмотрения Акта
+        /// </summary>
+        public static string IzveshenieAkt = $"{PublicName}AutomationId:DfMainWorkspaceBase\\AutomationId:WorkspaceMain\\AutomationId:viewContainer\\AutomationId:DfProcessView1\\Name:elementHost1\\Name:elementHost1\\ClassName:ProcessViewWpf2\\AutomationId:AvailableItemsView\\AutomationId:treeView\\Name:Материалы для рассмотрения\\Name:Извещение о времени и месте рассмотрения Акта\\Name:Извещение о времени и месте рассмотрения Акта\\Name:Извещение о времени и месте рассмотрения Акта";
         /// <summary>
         /// Извещение о времени и месте рассмотрения Акта
         /// </summary>
@@ -205,7 +213,7 @@
         /// <summary>
         /// Проставить номер кабита
         /// </summary>
-        public static string DateButtonAll = $"{PublicPanel}AutomationId:gb_0\\AutomationId:exp\\AutomationId:Host\\AutomationId:dtpDate";
+        public static string DateButtonAll = $"{PublicPanel}AutomationId:gb_0\\ClassName:Expander\\ClassName:MainAttributesControlWpf\\ClassName:DatePicker";
 
 
 
@@ -217,6 +225,10 @@
         /// Общая информация о документе
         /// </summary>
         public static string PublicInfo = $"{PublicPanel}AutomationId:gb_0\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Общая информация о документе";
+        /// <summary>
+        /// Свернуть все элементы
+        /// </summary>
+        public static string CollapseAll = $"{PublicPanel}ClassName:Button";
         /// <summary>
         /// Иные предложения
         /// </summary>
@@ -250,6 +262,20 @@
         /// Добавить текст
         /// </summary>
         public static string InstallAdd = $"{PublicPanel}AutomationId:gb_4\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\Name:RichEdit Control";
+
+
+        /// <summary>
+        /// Привлечь к ответственности, предусмотренной
+        /// </summary>
+        public static string ErrorGroup0 = $"{PublicPanel}AutomationId:gb_0\\AutomationId:exp\\AutomationId:HeaderSite\\Name:Общая информация о документе";
+        /// <summary>
+        /// Поиск номера акта
+        /// </summary>
+        public static string ErrorGroup0Number = $"{PublicPanel}AutomationId:gb_0\\AutomationId:exp\\ClassName:MainAttributesControlWpf";
+        /// <summary>
+        /// Поиск номера акта
+        /// </summary>
+        public static string ErrorGroup0DataAct = $"{PublicPanel}AutomationId:gb_0\\AutomationId:exp\\ClassName:MainAttributesControlWpf\\ClassName:DatePicker\\AutomationId:PART_TextBox";
         /// <summary>
         /// Привлечь к ответственности, предусмотренной
         /// </summary>
@@ -362,6 +388,10 @@
         /// Привлечь к ответственности
         /// </summary>
         public static string ErrorFaceGr11 = $"{PublicPanel}AutomationId:gb_11\\AutomationId:exp\\AutomationId:HeaderSite";
+        /// <summary>
+        /// Привлечь к ответственности
+        /// </summary>
+        public static string ErrorFaceGr11Summ = $"{PublicPanel}AutomationId:gb_11\\AutomationId:exp\\ClassName:AppearNoControlWpf\\ClassName:TextBox";
         /// <summary>
         /// Вышестоящий налоговый орган
         /// </summary>
@@ -538,6 +568,10 @@
         /// <summary>
         /// Журнал уплаты ОКТМО
         /// </summary>
+        public static string JournaOktmoCaption = "AutomationId:TabControl\\AutomationId:NavigatorDetailsControl\\AutomationId:navigator\\AutomationId:splitContainer\\AutomationId:gridData";
+        /// <summary>
+        /// Журнал уплаты ОКТМО 1 строка
+        /// </summary>
         public static string JournaOktmo = "AutomationId:TabControl\\AutomationId:NavigatorDetailsControl\\AutomationId:navigator\\AutomationId:splitContainer\\AutomationId:gridData\\Name:select0 row 1";
         /// <summary>
         /// Обновить данные перед автоматом
@@ -556,6 +590,10 @@
         /// Открыть комплекс мероприятий
         /// </summary>
         public static string OpenKnp = "Name:DockTop\\Name:Ribbon\\Name:Реестр налоговых деклараций (расчетов), сведения о КНП (все)\\Name:Открыть КМ";
+        /// <summary>
+        /// Окно режим не пременим
+        /// </summary>
+        public static string WinErrorStatus = "Name:Режим не применим к данному комплексу!\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
         /// <summary>
         /// Режимы для Статистики
         /// </summary>
@@ -663,6 +701,14 @@
         /// Вставка текста из 119 ст
         /// </summary>
         public static string SendText = $"{PublicPanel}AutomationId:gb_6\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\AutomationId:ubtPreFormed";
+        /// <summary>
+        /// Вставка обстаятельства
+        /// </summary>
+        public static string AddObs = $"{PublicPanel}AutomationId:gb_6\\AutomationId:exp\\AutomationId:Host\\AutomationId:Ustanovleno\\AutomationId:ubtCirc";
+        /// <summary>
+        /// Ошибка при вставке 119 ст
+        /// </summary>
+        public static string Error119 = "Name:Недоступно\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:ОК";
         /// <summary>
         /// Добавить кнопка
         /// </summary>
@@ -793,12 +839,12 @@
                                                 "\n Согласно пункту 1 статьи 346.23 Кодекса, налогоплательщики по итогам налогового периода представляют налоговую декларацию по налогу, уплачиваемому в связи с применением упрощенной системы налогообложения в налоговый орган по месту нахождения организации или месту жительства индивидуального предпринимателя в срок: " +
                                                 "\n   1) организации - не позднее 31 марта года, следующего за истекшим налоговым периодом(за исключением случаев, предусмотренных пунктами 2 и 3 настоящей статьи); " +
                                                 "\n   2) индивидуальные предприниматели - не позднее 30 апреля года, следующего за истекшим налоговым периодом(за исключением случаев, предусмотренных пунктами 2 и 3 настоящей статьи). " +
-                                                "\n В соответствии с пунктом 2 статьи 346.23 Кодекса, налогоплательщики представляет налоговую декларацию по налогу, уплачиваемому в связи с применением упрощенной системы налогообложения не позднее 25-го числа месяца, следующего за месяцем, в котором согласно уведомлению, представленному им в налоговый орган в соответствии с пунктом 8 статьи 346.13 Кодекса, прекращена предпринимательская деятельность, в отношении которой этим налогоплательщиком применялась упрощенная система налогообложения. " +
-                                                "\n На основании пункта 3 статьи 346.23 Кодекса, налогоплательщики представляют налоговую декларацию по налогу, уплачиваемому в связи с применением упрощенной системы налогообложения(далее - Декларация) не позднее 25-го числа месяца, следующего за кварталом, в котором на основании пункта 4 статьи 346.13 Кодекса он утратил право применять упрощенную систему налогообложения. " +
-                                                "\n Срок представления Декларации за год {0} – {1}. Индивидуальный предприниматель {2} ИНН: {3} (далее - Налогоплательщик) {4} представило(ил) {5} Декларацию за год {6}. " +
-                                                "\n Сумма налога к уплате по Декларации за год {7} составляет {8} рублей.Указанная сумма налога подлежит уплате в бюджет в срок, предусмотренным статьей 346.21 Кодекса. " +
+                                                "\n В соответствии с пунктом 2 статьи 346.23 Кодекса, налогоплательщики представляет налоговую декларацию по налогу, уплачиваемому в связи с применением упрощенной системы налогообложения не позднее {0} числа месяца, следующего за месяцем, в котором согласно уведомлению, представленному им в налоговый орган в соответствии с пунктом 8 статьи 346.13 Кодекса, прекращена предпринимательская деятельность, в отношении которой этим налогоплательщиком применялась упрощенная система налогообложения. " +
+                                                "\n На основании пункта 3 статьи 346.23 Кодекса, налогоплательщики представляют налоговую декларацию по налогу, уплачиваемому в связи с применением упрощенной системы налогообложения(далее - Декларация) не позднее {1} числа месяца, следующего за кварталом, в котором на основании пункта 4 статьи 346.13 Кодекса он утратил право применять упрощенную систему налогообложения. " +
+                                                "\n Срок представления Декларации за год {2} – {3}. Индивидуальный предприниматель {4} ИНН: {5} (далее - Налогоплательщик) {6} представило(ил) {7} Декларацию за год {8}. " +
+                                                "\n Сумма налога к уплате по Декларации за год {9} составляет {10} рублей.Указанная сумма налога подлежит уплате в бюджет в срок, предусмотренным статьей 346.21 Кодекса. " +
                                                 "\n В соответствии с пунктом 1 статьи 119 Кодекса непредставление в установленный законодательством о налогах и сборах срок налоговой декларации в налоговый орган по месту учета влечет взыскание штрафа в размере 5 процентов не уплаченной в установленный законодательством о налогах и сборах срок суммы налога, подлежащей уплате(доплате) на основании этой декларации, за каждый полный или неполный месяц со дня, установленного для ее представления, но не более 30 процентов указанной суммы и не менее 1000 рублей. " +
-                                                "\n Налогоплательщик нарушил срок представления Декларации за год {9}, то есть совершил налоговое правонарушение, предусмотренное пунктом 1 статьи 119 Кодекса.  Таким образом, сумма штрафа составляет {10} руб.  ({11} руб. * 5% * {12} мес.). ";
+                                                "\n Налогоплательщик нарушил срок представления Декларации за год {11}, то есть совершил налоговое правонарушение, предусмотренное пунктом 1 статьи 119 Кодекса.";  //  Таким образом, сумма штрафа составляет {10} руб.  ({11} руб. * 5% * {12} мес.). 
 
         /// <summary>
         /// Шаблон 1152017 Акт
@@ -861,6 +907,10 @@
                                                 "\n     Обстоятельства, отягчающие ответственность в соответствии с положением п. 2 ст. 112 Налогового кодекса РФ не установлены. " +
                                                 "\n     Обстоятельства, смягчающие ответственность в соответствии с положением п.1 ст. 112 Налогового кодекса РФ не установлены. ";
 
+        /// <summary>
+        /// Шаблон под номера извещений для ОКП 5 
+        /// </summary>
+        public static string TemplateAkt = "Акт налоговой проверки №  {0} от {1}";
         /// <summary>
         /// Шаблон под номера извещений для ОКП 5 
         /// </summary>

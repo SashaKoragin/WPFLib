@@ -63,6 +63,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private MainOrgAndQuestions[] mainOrgAndQuestionsField;
         
+        private ViewRegisterDocumentsPrinting viewRegisterDocumentsPrintingField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxJournalAutoWebPage")]
         public TaxJournalAutoWebPage[] TaxJournalAutoWebPage {
@@ -280,6 +282,16 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.mainOrgAndQuestionsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ViewRegisterDocumentsPrinting ViewRegisterDocumentsPrinting {
+            get {
+                return this.viewRegisterDocumentsPrintingField;
+            }
+            set {
+                this.viewRegisterDocumentsPrintingField = value;
             }
         }
     }
@@ -4360,6 +4372,188 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.noOutField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class ViewRegisterDocumentsPrinting {
+        
+        private string logicsButtonField;
+        
+        private System.DateTime dateCreateField;
+        
+        private System.Nullable<int> idDocumentField;
+        
+        private System.Nullable<System.DateTime> dateDocumentField;
+        
+        private System.Nullable<int> countPageField;
+        
+        private System.Nullable<int> numberDocumentField;
+        
+        private string machineNameField;
+        
+        private string tabelNumberUserField;
+        
+        private string nameFaceField;
+        
+        private string innField;
+        
+        private string addressField;
+        
+        private string formKndField;
+        
+        private string regNumberDocumetGuidField;
+        
+        public ViewRegisterDocumentsPrinting() {
+            this.logicsButtonField = "Button";
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateCreate {
+            get {
+                return this.dateCreateField;
+            }
+            set {
+                this.dateCreateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> IdDocument {
+            get {
+                return this.idDocumentField;
+            }
+            set {
+                this.idDocumentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> DateDocument {
+            get {
+                return this.dateDocumentField;
+            }
+            set {
+                this.dateDocumentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> CountPage {
+            get {
+                return this.countPageField;
+            }
+            set {
+                this.countPageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> NumberDocument {
+            get {
+                return this.numberDocumentField;
+            }
+            set {
+                this.numberDocumentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string MachineName {
+            get {
+                return this.machineNameField;
+            }
+            set {
+                this.machineNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string TabelNumberUser {
+            get {
+                return this.tabelNumberUserField;
+            }
+            set {
+                this.tabelNumberUserField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameFace {
+            get {
+                return this.nameFaceField;
+            }
+            set {
+                this.nameFaceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Address {
+            get {
+                return this.addressField;
+            }
+            set {
+                this.addressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string FormKnd {
+            get {
+                return this.formKndField;
+            }
+            set {
+                this.formKndField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string RegNumberDocumetGuid {
+            get {
+                return this.regNumberDocumetGuidField;
+            }
+            set {
+                this.regNumberDocumetGuidField = value;
             }
         }
     }

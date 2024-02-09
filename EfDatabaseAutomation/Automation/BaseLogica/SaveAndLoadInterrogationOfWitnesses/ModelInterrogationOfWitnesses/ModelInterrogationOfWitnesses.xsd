@@ -30,6 +30,11 @@
 					<xs:documentation>ИНН сотрудника</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
+			<xs:attribute name="TypeOrg" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сфера деятельности</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="Counterpart">

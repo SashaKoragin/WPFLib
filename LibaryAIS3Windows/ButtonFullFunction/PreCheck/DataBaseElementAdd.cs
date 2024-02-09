@@ -318,7 +318,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                         case "Дата фактического снятия с учета в данном НО":
                             imZmTrUl.DateFactFinish = ConvertDateTimeXlsxToUser(value);
                             break;
-                        case "Адрес места нахождения объекта собственности":
+                        case "Адрес места нахождения объекта собственности по КЛАДР":
                             imZmTrUl.AddresObject = value;
                             break;
                     }
@@ -913,7 +913,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                         case "Дата фактического снятия с учета в данном НО":
                             imZmTrFl.DateFactFinish = ConvertDateTimeXlsxToUser(value);
                             break;
-                        case "Адрес места нахождения объекта собственности":
+                        case "Адрес места нахождения объекта собственности по КЛАДР":
                             imZmTrFl.AddresObject = value;
                             break;
                     }

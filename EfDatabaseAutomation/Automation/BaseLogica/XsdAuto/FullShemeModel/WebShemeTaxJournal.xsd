@@ -36,6 +36,7 @@
 			<xs:element ref="RealEstateZmIm" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="FaceRegistryReference" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="MainOrgAndQuestions" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="ViewRegisterDocumentsPrinting"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxJournalAutoWebPage">
@@ -1640,6 +1641,71 @@
 	<xs:element name="IsReady" type="xs:boolean" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Признак окончания процесса</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ViewRegisterDocumentsPrinting">
+		<xs:annotation>
+			<xs:documentation>Реестр документов для печати</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton" minOccurs="0"/>
+				<xs:element ref="DateCreate"/>
+				<xs:element ref="IdDocument"/>
+				<xs:element ref="DateDocument"/>
+				<xs:element ref="CountPage"/>
+				<xs:element ref="NumberDocument"/>
+			</xs:sequence>
+			<xs:attribute name="MachineName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование компьютера</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TabelNumberUser" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Табельный номер пользователя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameFace" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование плательщика</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Address" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Адресс плательщика</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="FormKnd" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>КНД</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="RegNumberDocumetGuid" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>GUID документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IdDocument" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Ун документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="NumberDocument" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Номер документа</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CountPage" type="xs:int" nillable="true">
+		<xs:annotation>
+			<xs:documentation>Колличество страниц</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

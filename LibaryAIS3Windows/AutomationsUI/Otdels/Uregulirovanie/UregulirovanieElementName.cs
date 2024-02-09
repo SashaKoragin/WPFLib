@@ -522,4 +522,44 @@
         /// </summary>
         public static string Back = "Name:DockTop\\Name:Ribbon\\Name:Техническая корректировка\\Name:Вернуться";
     }
+
+    public class UregulirovaniePrintDocumentButton
+    {
+        /// <summary>
+        /// Открыть контекстное меню
+        /// </summary>
+        public static string OpenContextMenu = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:CDocToSendNavigatorStepView\\AutomationId:cbTempalte";
+        /// <summary>
+        /// Печать документа кнопка печать
+        /// </summary>
+        public static string Print = "Name:Печать\\AutomationId:panMain\\AutomationId:CPreviewUserControl\\AutomationId:panButtons\\AutomationId:panPrint\\Name:Печать";
+        /// <summary>
+        /// Количество страниц 
+        /// </summary>
+        public static string CoutPage = "Name:Печать\\AutomationId:CCustomForm\\AutomationId:panMain\\AutomationId:CPrinterSettingUserControl\\AutomationId:panMain\\AutomationId:gbDocInfo\\AutomationId:labItemCountValue";
+        /// <summary>
+        /// Список принтеров 
+        /// </summary>
+        public static string FocusListPrinter = "Name:Печать\\AutomationId:CCustomForm\\AutomationId:panMain\\AutomationId:CPrinterSettingUserControl\\AutomationId:panMain\\AutomationId:cbPrinter";
+        /// <summary>
+        /// Двусторонняя печать
+        /// </summary>
+        public static string IsTwoPrint = "Name:Печать\\AutomationId:CCustomForm\\AutomationId:panMain\\AutomationId:CPrinterSettingUserControl\\AutomationId:panMain\\Name:Принтер поддерживает двустороннюю печать?\\Name:Принтер поддерживает двустороннюю печать?";
+        /// <summary>
+        /// Односторонняя печать
+        /// </summary>
+        public static string IsTwoPrintOne = "Name:Печать\\AutomationId:CCustomForm\\AutomationId:panMain\\AutomationId:CPrinterSettingUserControl\\AutomationId:panMain\\Name:Информация о документе\\AutomationId:osDuplex\\Name:Односторонняя";
+        /// <summary>
+        /// Двусторонняя печать
+        /// </summary>
+        public static string IsTwoPrintTwo = "Name:Печать\\AutomationId:CCustomForm\\AutomationId:panMain\\AutomationId:CPrinterSettingUserControl\\AutomationId:panMain\\Name:Информация о документе\\AutomationId:osDuplex\\Name:Двусторонняя";
+        /// <summary>
+        /// Печать все
+        /// </summary>
+        public static string PrintAll = "Name:Печать\\AutomationId:CCustomForm\\AutomationId:panMain\\AutomationId:CPrinterSettingUserControl\\AutomationId:panMain\\Name:Печать";
+        /// <summary>
+        /// Закрыть
+        /// </summary>
+        public static string Closed = "AutomationId:CCustomForm\\AutomationId:panMain\\AutomationId:CPreviewUserControl\\AutomationId:panButtons\\AutomationId:panClose\\Name:Закрыть";
+    }
 }

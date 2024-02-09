@@ -23,7 +23,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Content="{Binding StartButton.Button}" />
-            <!--<WrapPanel>
+           <!--<WrapPanel>
                 <Label FontSize="16" FontStyle="Normal"  Content="Количество дней на извещение:"/>
                 <TextBox FontSize="16" FontStyle="Normal" PreviewTextInput="NumberValidationTextBox" Text="{Binding DatePicker.CountDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="2" ></TextBox>
                 <Label FontSize="16" FontStyle="Normal"  Content="Дата вызова плательщика:"/>

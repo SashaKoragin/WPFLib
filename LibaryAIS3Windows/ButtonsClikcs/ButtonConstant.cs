@@ -22,11 +22,12 @@ namespace LibraryAIS3Windows.ButtonsClikcs
        internal const string CtrlA = "^a";
        internal const string CtrlC = "^c";
        internal const string Wheel = "up";
-        internal const string WheelDown = "down";
-        internal const string Down4 = "{Down 4}";
+       internal const string WheelDown = "down";
+       internal const string Down4 = "{Down 4}";
        internal const string Down9 = "{Down 9}";
        internal const string Down6 = "{Down 6}";
        internal const string Down11 = "{Down 11}";
+       internal const string Space = "{Space}";
 
        internal const string Down16 = "{Down 16}";
        internal const string Down15 = "{Down 15}";

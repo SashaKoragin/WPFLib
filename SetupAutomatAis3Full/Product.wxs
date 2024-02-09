@@ -351,7 +351,12 @@
       <Component Id="AttributeHelperModelXml.dll" Guid="4C990695-88E6-4A20-8FE1-EC350E94975F">
         <File Id="AttributeHelperModelXml.dll" Name="AttributeHelperModelXml.dll" Source="$(var.AutomatAis3Full_TargetDir)AttributeHelperModelXml.dll" />
       </Component>
-
+      <Component Id="Loggers.dll" Guid="30603B8B-7C7F-40BF-A20C-3BD73FB2FD0F">
+        <File Id="Loggers.dll" Name="Loggers.dll" Source="$(var.AutomatAis3Full_TargetDir)Loggers.dll" />
+      </Component>
+      <Component Id="NLog.dll" Guid="DC88F718-6240-4D9E-8BC7-99B8359B6488">
+        <File Id="NLog.dll" Name="NLog.dll" Source="$(var.AutomatAis3Full_TargetDir)NLog.dll" />
+      </Component>
     </ComponentGroup>
     <Component Id="XsdAllBodyData.xsd" Guid="143E7EF5-8794-445B-B41A-0EEF062C006D" Directory="XsdShemeLoad">
       <File Id="XsdAllBodyData.xsd" Name="XsdAllBodyData.xsd" Source="$(var.AutomatAis3Full_TargetDir)XsdShemeLoad\XsdAllBodyData.xsd" />

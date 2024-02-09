@@ -213,8 +213,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
         /// <param name="taxJournal">Журнал для проверок деклараций на наличие нарушений</param>
         public void IsErrorDeclaration1151100(LibraryAutomations libraryAutomation, TaxJournal121Error taxJournal)
         {
-            if (taxJournal.Color5 == "ff" || taxJournal.Color5 == "ffffff")
-            {
+            //if (taxJournal.Color5 == "ff" || taxJournal.Color5 == "ffffff")
+            //{
                 IsStartIsOpenKm(libraryAutomation, taxJournal);
                 IsExistsErrorWinInfo(libraryAutomation);
                 LibraryAutomations libraryAutomationWin;
@@ -234,8 +234,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                     }
                     //Написать алгоритм для таких
                 }
-                if (taxJournal.DateCloseValidation == null && taxJournal.Color5 == "ffffff")
-                {
+                //if (taxJournal.DateCloseValidation == null && taxJournal.Color5 == "ffffff")
+                //{
                     //Открыть или начать Проверку
                     DialogKnp(libraryAutomation, "Нарушения не выявлены");
                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex121);
@@ -245,28 +245,28 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin, Journal129AndJournal121.WinOkCloseComplex);
                     AutoItX.Sleep(1000);
                     taxJournal.MessageInfoR1 = "Нарушения не выявлены";
-                }
-                else if (taxJournal.DateCloseValidation == null && taxJournal.Color5 != "ffffff")
-                {
-                    DialogKnp(libraryAutomation, "Выявлены нарушения");
-                    var win = new WindowsAis3();
-                    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
-                    AutoItX.Sleep(1000);
-                    while (true)
-                    {
-                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.YesClosed, null, true) != null)
-                        {
-                            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.YesClosed);
-                            break;
-                        }
-                    }
-                    taxJournal.MessageInfoR1 = "Выявлены нарушения";
-                }
-            }
-            else
-            {
-                taxJournal.MessageError = "Статус документа не позволяет проставить выявление нарушения!";
-            }
+                //}
+                //else if (taxJournal.DateCloseValidation == null && taxJournal.Color5 != "ffffff")
+                //{
+                //    DialogKnp(libraryAutomation, "Выявлены нарушения");
+                //    var win = new WindowsAis3();
+                //    AutoItX.MouseClick(ButtonConstant.MouseLeft, win.WindowsAis.X + win.WindowsAis.Width - 20, win.WindowsAis.Y + 160);
+                //    AutoItX.Sleep(1000);
+                //    while (true)
+                //    {
+                //        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.YesClosed, null, true) != null)
+                //        {
+                //            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.YesClosed);
+                //            break;
+                //        }
+                //    }
+                //    taxJournal.MessageInfoR1 = "Выявлены нарушения";
+                //}
+            //}
+            //else
+            //{
+            //    taxJournal.MessageError = "Статус документа не позволяет проставить выявление нарушения!";
+            //}
             SaveDocument(taxJournal);
         }
 

@@ -55,6 +55,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
 
         public LibraryAutomations(string nameWindowsAis3)
         {
+            
             RootAutomationElements = AutomationElement.FromHandle(AutoItX.WinGetHandle(nameWindowsAis3));
             ProcessId = RootAutomationElements.Current.ProcessId;
         }
@@ -223,6 +224,17 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         }
 
         /// <summary>
+        /// Поиск элемента листа
+        /// </summary>
+        /// <param name="elementComboBox">Элемент ComboBox</param>
+        /// <returns></returns>
+        public AutomationElement SelectAutomationListComboBox(AutomationElement elementComboBox)
+        {
+            return elementComboBox.FindFirst(TreeScope.Children, new PropertyCondition(AutomationElement.ClassNameProperty, "ComboLBox"));
+        }
+
+
+        /// <summary>
         /// Поставить фокус на элемент
         /// </summary>
         public void InvokePattern(AutomationElement element)
@@ -233,7 +245,41 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                 var pattern = element.GetCurrentPattern(InvokePatternIdentifiers.Pattern);
                 var valueAuto = (InvokePattern)pattern;
                 valueAuto.Invoke();
+            
                
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+        /// <summary>
+        /// Этот метод касается только кнопок с InvokePattern
+        /// </summary>
+        /// <param name="nameAutomationId">Уникальный путь к кнопке</param>
+        public void GarantInvokePattern(string nameAutomationId)
+        {
+            while (true)
+            {
+                if (IsEnableElements(nameAutomationId) != null)
+                {
+                    InvokePattern(FindElement);
+                    break;
+                }
+            }
+        }
+        /// <summary>
+        /// Раскрыть элемент 
+        /// </summary>
+        /// <param name="element">Элемент</param>
+        public void ExpandElement(AutomationElement element)
+        {
+            try
+            {
+                element.SetFocus();
+                var pattern = element.GetCurrentPattern(ExpandCollapsePattern.Pattern);
+                var valueAuto = (ExpandCollapsePattern)pattern;
+                valueAuto.Expand();
             }
             catch
             {
@@ -282,8 +328,8 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         /// <param name="element">Элемент проверка на выбор</param>
         public void SelectionComboBoxSelectionItemPattern(AutomationElement element)
         {
-            var t = element.GetCurrentPattern(SelectionItemPattern.Pattern);
-            var valueAuto = (SelectionItemPattern)t;
+            var elementSelect = element.GetCurrentPattern(SelectionItemPattern.Pattern);
+            var valueAuto = (SelectionItemPattern)elementSelect;
             valueAuto.Select();
         }
 
@@ -388,7 +434,26 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
             }
             return true;
         }
-
+        /// <summary>
+        /// Поиск элемента в дереве с пользовательскими заданиями
+        /// </summary>
+        /// <param name="fullTreeAis3UserTask"></param>
+        /// <returns></returns>
+        public bool IsEnableExpandTreeTaskUsers(string fullTreeAis3UserTask)
+        {
+            var arrayTree = fullTreeAis3UserTask.Split('\\');
+            foreach (var tree in arrayTree)
+            {
+                IsEnableElements(PublicElementName.FullTreeTaskUser);
+                var arrayElem = SelectAutomationColrction(FindElement);
+                var findNameElement = arrayElem.Cast<AutomationElement>()
+                            .First(elem => elem.Current.Name.Contains(tree));
+                var fullTree = string.Concat(PublicElementName.FullTreeTaskUser,"\\", $"Name:{findNameElement.Current.Name}");
+                ClickElements(fullTree, null, false, 25, 0, 0, 2);
+            }
+            return true;
+            
+        }
 
         /// <summary>
         /// Toggle Pattern
@@ -402,11 +467,35 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                 if (element.TryGetCurrentPattern(TogglePatternIdentifiers.Pattern, out var patternObj))
                 {
                     var valuePattern = (TogglePattern)patternObj;
+                   
                     return valuePattern.Current.ToggleState.ToString();
                 }
             }
             return null;
         }
+
+        /// <summary>
+        /// Toggle Pattern
+        /// </summary>
+        /// <param name="element">Элемент</param>
+        /// <param name="statusExec">Статус который должен быть</param>
+        public void TogglePatternInputAndStatus(AutomationElement element, ToggleState statusExec = ToggleState.On)
+        {
+            if (element != null)
+            {
+                element.SetFocus();
+                if (element.TryGetCurrentPattern(TogglePatternIdentifiers.Pattern, out var patternObj))
+                {
+                    
+                    var valuePattern = (TogglePattern)patternObj;
+                    if(valuePattern.Current.ToggleState != statusExec)
+                    {
+                        valuePattern.Toggle();
+                    }
+                }
+            }
+        }
+
 
         /// <summary>
         /// Проставить значение в найденный элемент
@@ -581,10 +670,25 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
             }
             return null;
         }
-
+        /// <summary>
+        /// Передача состояния элементу управления
+        /// </summary>
+        /// <param name="element">Наименование элемента</param>
+        /// <param name="flagsElement">Флаг состояние</param>
+        public void SelectStateLegacyIAccessiblePatternIdentifiersState(AutomationElement element, int flagsElement)
+        {
+            if (element != null)
+            {
+                if (element.TryGetCurrentPattern(LegacyIAccessiblePatternIdentifiers.Pattern, out var patternObj))
+                {
+                    var valuePattern = (LegacyIAccessiblePattern)patternObj;
+                    valuePattern.Select(flagsElement);
+                }
+            }
+        }
 
         /// <summary>
-        /// Получить значение элемента из патерна LegacyIAccessiblePatternIdentifiers
+        /// Получить значение элемента из паттерна LegacyIAccessiblePatternIdentifiers
         /// </summary>
         public string ParseValuePattern(AutomationElement element)
         {

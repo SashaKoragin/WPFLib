@@ -37,8 +37,11 @@ namespace EfDatabaseAutomation.Automation.Base
 
     public interface IAutomation : System.IDisposable
     {
+        System.Data.Entity.DbSet<AddDocumentToContainer> AddDocumentToContainers { get; set; } // AddDocumentToContainer
         System.Data.Entity.DbSet<AddUlFace> AddUlFaces { get; set; } // AddUlFace
         System.Data.Entity.DbSet<AddUlFaceWeb> AddUlFaceWebs { get; set; } // AddUlFaceWeb
+        System.Data.Entity.DbSet<AisDocument> AisDocuments { get; set; } // AisDocument
+        System.Data.Entity.DbSet<AisGrnDocument> AisGrnDocuments { get; set; } // AisGrnDocument
         System.Data.Entity.DbSet<AllFaceRegistryReference> AllFaceRegistryReferences { get; set; } // AllFaceRegistryReference
         System.Data.Entity.DbSet<AllJournal129> AllJournal129 { get; set; } // AllJournal129
         System.Data.Entity.DbSet<AllJournalRegistrationFl> AllJournalRegistrationFls { get; set; } // AllJournalRegistrationFl
@@ -63,12 +66,16 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<DeliveryDocument> DeliveryDocuments { get; set; } // DeliveryDocument
         System.Data.Entity.DbSet<DepartamentOtdel> DepartamentOtdels { get; set; } // DepartamentOtdel
         System.Data.Entity.DbSet<Derector> Derectors { get; set; } // Derector
+        System.Data.Entity.DbSet<DirectoryDocument> DirectoryDocuments { get; set; } // DirectoryDocument
         System.Data.Entity.DbSet<DocPatent> DocPatents { get; set; } // DocPatent
         System.Data.Entity.DbSet<Documen2Ndfl> Documen2Ndfl { get; set; } // Documen2NDFL
         System.Data.Entity.DbSet<Documen2NdflIdentification> Documen2NdflIdentification { get; set; } // Documen2NDFLIdentification
+        System.Data.Entity.DbSet<DocumentContainer> DocumentContainers { get; set; } // DocumentContainer
+        System.Data.Entity.DbSet<DocumentInventory> DocumentInventories { get; set; } // DocumentInventory
         System.Data.Entity.DbSet<DocumentOwnershipImZmTrFl> DocumentOwnershipImZmTrFls { get; set; } // DocumentOwnershipImZmTrFl
         System.Data.Entity.DbSet<EasJournal> EasJournals { get; set; } // EasJournal
         System.Data.Entity.DbSet<ErrorFlRegistration> ErrorFlRegistrations { get; set; } // ErrorFlRegistration
+        System.Data.Entity.DbSet<EventProcessError> EventProcessErrors { get; set; } // EventProcessError
         System.Data.Entity.DbSet<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost
         System.Data.Entity.DbSet<FaceRegistryReference> FaceRegistryReferences { get; set; } // FaceRegistryReference
         System.Data.Entity.DbSet<FactOfOwnershipImZmTrFl> FactOfOwnershipImZmTrFls { get; set; } // FactOfOwnershipImZmTrFl
@@ -77,6 +84,8 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<FlFaceMain> FlFaceMains { get; set; } // FlFaceMain
         System.Data.Entity.DbSet<FlFaceMainRegistration> FlFaceMainRegistrations { get; set; } // FlFaceMainRegistration
         System.Data.Entity.DbSet<FormulNdfl> FormulNdfls { get; set; } // FormulNdfl
+        System.Data.Entity.DbSet<GrnInventory> GrnInventories { get; set; } // GrnInventory
+        System.Data.Entity.DbSet<GrnInventoryAndEventProcessError> GrnInventoryAndEventProcessErrors { get; set; } // GrnInventoryAndEventProcessError
         System.Data.Entity.DbSet<GroupKbk> GroupKbks { get; set; } // GroupKbk
         System.Data.Entity.DbSet<GroupQuestion> GroupQuestions { get; set; } // GroupQuestions
         System.Data.Entity.DbSet<HeadingStatement> HeadingStatements { get; set; } // HeadingStatement
@@ -86,6 +95,7 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<ImZmTrFl> ImZmTrFls { get; set; } // ImZmTrFl
         System.Data.Entity.DbSet<ImZmTrUl> ImZmTrUls { get; set; } // ImZmTrUl
         System.Data.Entity.DbSet<IndividualCardsUlFace> IndividualCardsUlFaces { get; set; } // IndividualCardsUlFace
+        System.Data.Entity.DbSet<InfoDocument> InfoDocuments { get; set; } // InfoDocument
         System.Data.Entity.DbSet<InfoViewAutomation> InfoViewAutomations { get; set; } // InfoViewAutomation
         System.Data.Entity.DbSet<IsPatentPars> IsPatentPars { get; set; } // IsPatentParses
         System.Data.Entity.DbSet<IsPatentParse> IsPatentParses { get; set; } // IsPatentParse
@@ -102,6 +112,7 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<ModelKbkOnKbk> ModelKbkOnKbks { get; set; } // ModelKbkOnKbk
         System.Data.Entity.DbSet<ModelTree> ModelTrees { get; set; } // ModelTree
         System.Data.Entity.DbSet<NdflFl> NdflFls { get; set; } // NdflFl
+        System.Data.Entity.DbSet<OrganizationOgrnInventory> OrganizationOgrnInventories { get; set; } // OrganizationOgrnInventory
         System.Data.Entity.DbSet<ParameterProcedureWeb> ParameterProcedureWebs { get; set; } // ParameterProcedureWeb
         System.Data.Entity.DbSet<ParametrNalog> ParametrNalogs { get; set; } // ParametrNalog
         System.Data.Entity.DbSet<Patent> Patents { get; set; } // Patent
@@ -109,6 +120,7 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<QuestionsAndUser> QuestionsAndUsers { get; set; } // QuestionsAndUsers
         System.Data.Entity.DbSet<RbHoliday> RbHolidays { get; set; } // Rb_Holidays
         System.Data.Entity.DbSet<RealEstateZmIm> RealEstateZmIms { get; set; } // RealEstateZmIm
+        System.Data.Entity.DbSet<RegisterDocumentsPrinting> RegisterDocumentsPrintings { get; set; } // RegisterDocumentsPrinting
         System.Data.Entity.DbSet<ReportXlsx> ReportXlsxes { get; set; } // ReportXlsx
         System.Data.Entity.DbSet<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh
         System.Data.Entity.DbSet<SenderTaxJournalOkp2> SenderTaxJournalOkp2 { get; set; } // SenderTaxJournalOkp2
@@ -116,12 +128,16 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<Statement> Statements { get; set; } // Statement
         System.Data.Entity.DbSet<StatementFull> StatementFulls { get; set; } // StatementFull
         System.Data.Entity.DbSet<StatementNp> StatementNps { get; set; } // StatementNp
+        System.Data.Entity.DbSet<StatusDocument> StatusDocuments { get; set; } // StatusDocument
+        System.Data.Entity.DbSet<StatusEvent> StatusEvents { get; set; } // StatusEvent
         System.Data.Entity.DbSet<StatusFlRegistration> StatusFlRegistrations { get; set; } // StatusFlRegistration
+        System.Data.Entity.DbSet<StatusOgrn> StatusOgrns { get; set; } // StatusOgrn
         System.Data.Entity.DbSet<StrngthUlFace> StrngthUlFaces { get; set; } // StrngthUlFace
         System.Data.Entity.DbSet<SvedAccoutingUlFace> SvedAccoutingUlFaces { get; set; } // SvedAccoutingUlFace
         System.Data.Entity.DbSet<SvedFactPatent> SvedFactPatents { get; set; } // SvedFactPatent
         System.Data.Entity.DbSet<SvedObject> SvedObjects { get; set; } // SvedObject
         System.Data.Entity.DbSet<SvedTr> SvedTrs { get; set; } // SvedTr
+        System.Data.Entity.DbSet<SynchronizationUserAndAi> SynchronizationUserAndAis { get; set; } // SynchronizationUserAndAis
         System.Data.Entity.DbSet<TaxDeclarationFl> TaxDeclarationFls { get; set; } // TaxDeclarationFl
         System.Data.Entity.DbSet<TaxEasJournal> TaxEasJournals { get; set; } // TaxEasJournal
         System.Data.Entity.DbSet<TaxJournal> TaxJournals { get; set; } // TaxJournal
@@ -142,12 +158,14 @@ namespace EfDatabaseAutomation.Automation.Base
         System.Data.Entity.DbSet<TreeGrid> TreeGrids { get; set; } // TreeGrid
         System.Data.Entity.DbSet<TreeUpdate> TreeUpdates { get; set; } // TreeUpdate
         System.Data.Entity.DbSet<TypeObject> TypeObjects { get; set; } // TypeObject
+        System.Data.Entity.DbSet<TypeOrgAndQuestion> TypeOrgAndQuestions { get; set; } // TypeOrgAndQuestions
         System.Data.Entity.DbSet<TypeTree> TypeTrees { get; set; } // TypeTree
         System.Data.Entity.DbSet<UlFace> UlFaces { get; set; } // UlFace
         System.Data.Entity.DbSet<UlFaceAll> UlFaceAlls { get; set; } // UlFaceAll
         System.Data.Entity.DbSet<UlFaceAllSale> UlFaceAllSales { get; set; } // UlFaceAllSales
         System.Data.Entity.DbSet<UlFaceSalesBookBank> UlFaceSalesBookBanks { get; set; } // UlFaceSalesBookBank
         System.Data.Entity.DbSet<UserOrg> UserOrgs { get; set; } // UserOrg
+        System.Data.Entity.DbSet<ViewRegisterDocumentsPrinting> ViewRegisterDocumentsPrintings { get; set; } // ViewRegisterDocumentsPrinting
 
         int SaveChanges();
         System.Threading.Tasks.Task<int> SaveChangesAsync();
@@ -170,8 +188,11 @@ namespace EfDatabaseAutomation.Automation.Base
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class Automation : System.Data.Entity.DbContext, IAutomation
     {
+        public System.Data.Entity.DbSet<AddDocumentToContainer> AddDocumentToContainers { get; set; } // AddDocumentToContainer
         public System.Data.Entity.DbSet<AddUlFace> AddUlFaces { get; set; } // AddUlFace
         public System.Data.Entity.DbSet<AddUlFaceWeb> AddUlFaceWebs { get; set; } // AddUlFaceWeb
+        public System.Data.Entity.DbSet<AisDocument> AisDocuments { get; set; } // AisDocument
+        public System.Data.Entity.DbSet<AisGrnDocument> AisGrnDocuments { get; set; } // AisGrnDocument
         public System.Data.Entity.DbSet<AllFaceRegistryReference> AllFaceRegistryReferences { get; set; } // AllFaceRegistryReference
         public System.Data.Entity.DbSet<AllJournal129> AllJournal129 { get; set; } // AllJournal129
         public System.Data.Entity.DbSet<AllJournalRegistrationFl> AllJournalRegistrationFls { get; set; } // AllJournalRegistrationFl
@@ -196,12 +217,16 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<DeliveryDocument> DeliveryDocuments { get; set; } // DeliveryDocument
         public System.Data.Entity.DbSet<DepartamentOtdel> DepartamentOtdels { get; set; } // DepartamentOtdel
         public System.Data.Entity.DbSet<Derector> Derectors { get; set; } // Derector
+        public System.Data.Entity.DbSet<DirectoryDocument> DirectoryDocuments { get; set; } // DirectoryDocument
         public System.Data.Entity.DbSet<DocPatent> DocPatents { get; set; } // DocPatent
         public System.Data.Entity.DbSet<Documen2Ndfl> Documen2Ndfl { get; set; } // Documen2NDFL
         public System.Data.Entity.DbSet<Documen2NdflIdentification> Documen2NdflIdentification { get; set; } // Documen2NDFLIdentification
+        public System.Data.Entity.DbSet<DocumentContainer> DocumentContainers { get; set; } // DocumentContainer
+        public System.Data.Entity.DbSet<DocumentInventory> DocumentInventories { get; set; } // DocumentInventory
         public System.Data.Entity.DbSet<DocumentOwnershipImZmTrFl> DocumentOwnershipImZmTrFls { get; set; } // DocumentOwnershipImZmTrFl
         public System.Data.Entity.DbSet<EasJournal> EasJournals { get; set; } // EasJournal
         public System.Data.Entity.DbSet<ErrorFlRegistration> ErrorFlRegistrations { get; set; } // ErrorFlRegistration
+        public System.Data.Entity.DbSet<EventProcessError> EventProcessErrors { get; set; } // EventProcessError
         public System.Data.Entity.DbSet<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost
         public System.Data.Entity.DbSet<FaceRegistryReference> FaceRegistryReferences { get; set; } // FaceRegistryReference
         public System.Data.Entity.DbSet<FactOfOwnershipImZmTrFl> FactOfOwnershipImZmTrFls { get; set; } // FactOfOwnershipImZmTrFl
@@ -210,6 +235,8 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<FlFaceMain> FlFaceMains { get; set; } // FlFaceMain
         public System.Data.Entity.DbSet<FlFaceMainRegistration> FlFaceMainRegistrations { get; set; } // FlFaceMainRegistration
         public System.Data.Entity.DbSet<FormulNdfl> FormulNdfls { get; set; } // FormulNdfl
+        public System.Data.Entity.DbSet<GrnInventory> GrnInventories { get; set; } // GrnInventory
+        public System.Data.Entity.DbSet<GrnInventoryAndEventProcessError> GrnInventoryAndEventProcessErrors { get; set; } // GrnInventoryAndEventProcessError
         public System.Data.Entity.DbSet<GroupKbk> GroupKbks { get; set; } // GroupKbk
         public System.Data.Entity.DbSet<GroupQuestion> GroupQuestions { get; set; } // GroupQuestions
         public System.Data.Entity.DbSet<HeadingStatement> HeadingStatements { get; set; } // HeadingStatement
@@ -219,6 +246,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<ImZmTrFl> ImZmTrFls { get; set; } // ImZmTrFl
         public System.Data.Entity.DbSet<ImZmTrUl> ImZmTrUls { get; set; } // ImZmTrUl
         public System.Data.Entity.DbSet<IndividualCardsUlFace> IndividualCardsUlFaces { get; set; } // IndividualCardsUlFace
+        public System.Data.Entity.DbSet<InfoDocument> InfoDocuments { get; set; } // InfoDocument
         public System.Data.Entity.DbSet<InfoViewAutomation> InfoViewAutomations { get; set; } // InfoViewAutomation
         public System.Data.Entity.DbSet<IsPatentPars> IsPatentPars { get; set; } // IsPatentParses
         public System.Data.Entity.DbSet<IsPatentParse> IsPatentParses { get; set; } // IsPatentParse
@@ -235,6 +263,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<ModelKbkOnKbk> ModelKbkOnKbks { get; set; } // ModelKbkOnKbk
         public System.Data.Entity.DbSet<ModelTree> ModelTrees { get; set; } // ModelTree
         public System.Data.Entity.DbSet<NdflFl> NdflFls { get; set; } // NdflFl
+        public System.Data.Entity.DbSet<OrganizationOgrnInventory> OrganizationOgrnInventories { get; set; } // OrganizationOgrnInventory
         public System.Data.Entity.DbSet<ParameterProcedureWeb> ParameterProcedureWebs { get; set; } // ParameterProcedureWeb
         public System.Data.Entity.DbSet<ParametrNalog> ParametrNalogs { get; set; } // ParametrNalog
         public System.Data.Entity.DbSet<Patent> Patents { get; set; } // Patent
@@ -242,6 +271,7 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<QuestionsAndUser> QuestionsAndUsers { get; set; } // QuestionsAndUsers
         public System.Data.Entity.DbSet<RbHoliday> RbHolidays { get; set; } // Rb_Holidays
         public System.Data.Entity.DbSet<RealEstateZmIm> RealEstateZmIms { get; set; } // RealEstateZmIm
+        public System.Data.Entity.DbSet<RegisterDocumentsPrinting> RegisterDocumentsPrintings { get; set; } // RegisterDocumentsPrinting
         public System.Data.Entity.DbSet<ReportXlsx> ReportXlsxes { get; set; } // ReportXlsx
         public System.Data.Entity.DbSet<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh
         public System.Data.Entity.DbSet<SenderTaxJournalOkp2> SenderTaxJournalOkp2 { get; set; } // SenderTaxJournalOkp2
@@ -249,12 +279,16 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<Statement> Statements { get; set; } // Statement
         public System.Data.Entity.DbSet<StatementFull> StatementFulls { get; set; } // StatementFull
         public System.Data.Entity.DbSet<StatementNp> StatementNps { get; set; } // StatementNp
+        public System.Data.Entity.DbSet<StatusDocument> StatusDocuments { get; set; } // StatusDocument
+        public System.Data.Entity.DbSet<StatusEvent> StatusEvents { get; set; } // StatusEvent
         public System.Data.Entity.DbSet<StatusFlRegistration> StatusFlRegistrations { get; set; } // StatusFlRegistration
+        public System.Data.Entity.DbSet<StatusOgrn> StatusOgrns { get; set; } // StatusOgrn
         public System.Data.Entity.DbSet<StrngthUlFace> StrngthUlFaces { get; set; } // StrngthUlFace
         public System.Data.Entity.DbSet<SvedAccoutingUlFace> SvedAccoutingUlFaces { get; set; } // SvedAccoutingUlFace
         public System.Data.Entity.DbSet<SvedFactPatent> SvedFactPatents { get; set; } // SvedFactPatent
         public System.Data.Entity.DbSet<SvedObject> SvedObjects { get; set; } // SvedObject
         public System.Data.Entity.DbSet<SvedTr> SvedTrs { get; set; } // SvedTr
+        public System.Data.Entity.DbSet<SynchronizationUserAndAi> SynchronizationUserAndAis { get; set; } // SynchronizationUserAndAis
         public System.Data.Entity.DbSet<TaxDeclarationFl> TaxDeclarationFls { get; set; } // TaxDeclarationFl
         public System.Data.Entity.DbSet<TaxEasJournal> TaxEasJournals { get; set; } // TaxEasJournal
         public System.Data.Entity.DbSet<TaxJournal> TaxJournals { get; set; } // TaxJournal
@@ -275,12 +309,14 @@ namespace EfDatabaseAutomation.Automation.Base
         public System.Data.Entity.DbSet<TreeGrid> TreeGrids { get; set; } // TreeGrid
         public System.Data.Entity.DbSet<TreeUpdate> TreeUpdates { get; set; } // TreeUpdate
         public System.Data.Entity.DbSet<TypeObject> TypeObjects { get; set; } // TypeObject
+        public System.Data.Entity.DbSet<TypeOrgAndQuestion> TypeOrgAndQuestions { get; set; } // TypeOrgAndQuestions
         public System.Data.Entity.DbSet<TypeTree> TypeTrees { get; set; } // TypeTree
         public System.Data.Entity.DbSet<UlFace> UlFaces { get; set; } // UlFace
         public System.Data.Entity.DbSet<UlFaceAll> UlFaceAlls { get; set; } // UlFaceAll
         public System.Data.Entity.DbSet<UlFaceAllSale> UlFaceAllSales { get; set; } // UlFaceAllSales
         public System.Data.Entity.DbSet<UlFaceSalesBookBank> UlFaceSalesBookBanks { get; set; } // UlFaceSalesBookBank
         public System.Data.Entity.DbSet<UserOrg> UserOrgs { get; set; } // UserOrg
+        public System.Data.Entity.DbSet<ViewRegisterDocumentsPrinting> ViewRegisterDocumentsPrintings { get; set; } // ViewRegisterDocumentsPrinting
 
         static Automation()
         {
@@ -330,8 +366,11 @@ namespace EfDatabaseAutomation.Automation.Base
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Configurations.Add(new AddDocumentToContainerConfiguration());
             modelBuilder.Configurations.Add(new AddUlFaceConfiguration());
             modelBuilder.Configurations.Add(new AddUlFaceWebConfiguration());
+            modelBuilder.Configurations.Add(new AisDocumentConfiguration());
+            modelBuilder.Configurations.Add(new AisGrnDocumentConfiguration());
             modelBuilder.Configurations.Add(new AllFaceRegistryReferenceConfiguration());
             modelBuilder.Configurations.Add(new AllJournal129Configuration());
             modelBuilder.Configurations.Add(new AllJournalRegistrationFlConfiguration());
@@ -356,12 +395,16 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new DeliveryDocumentConfiguration());
             modelBuilder.Configurations.Add(new DepartamentOtdelConfiguration());
             modelBuilder.Configurations.Add(new DerectorConfiguration());
+            modelBuilder.Configurations.Add(new DirectoryDocumentConfiguration());
             modelBuilder.Configurations.Add(new DocPatentConfiguration());
             modelBuilder.Configurations.Add(new Documen2NdflConfiguration());
             modelBuilder.Configurations.Add(new Documen2NdflIdentificationConfiguration());
+            modelBuilder.Configurations.Add(new DocumentContainerConfiguration());
+            modelBuilder.Configurations.Add(new DocumentInventoryConfiguration());
             modelBuilder.Configurations.Add(new DocumentOwnershipImZmTrFlConfiguration());
             modelBuilder.Configurations.Add(new EasJournalConfiguration());
             modelBuilder.Configurations.Add(new ErrorFlRegistrationConfiguration());
+            modelBuilder.Configurations.Add(new EventProcessErrorConfiguration());
             modelBuilder.Configurations.Add(new FaceModelTemplateGetPostConfiguration());
             modelBuilder.Configurations.Add(new FaceRegistryReferenceConfiguration());
             modelBuilder.Configurations.Add(new FactOfOwnershipImZmTrFlConfiguration());
@@ -370,6 +413,8 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new FlFaceMainConfiguration());
             modelBuilder.Configurations.Add(new FlFaceMainRegistrationConfiguration());
             modelBuilder.Configurations.Add(new FormulNdflConfiguration());
+            modelBuilder.Configurations.Add(new GrnInventoryConfiguration());
+            modelBuilder.Configurations.Add(new GrnInventoryAndEventProcessErrorConfiguration());
             modelBuilder.Configurations.Add(new GroupKbkConfiguration());
             modelBuilder.Configurations.Add(new GroupQuestionConfiguration());
             modelBuilder.Configurations.Add(new HeadingStatementConfiguration());
@@ -379,6 +424,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new ImZmTrFlConfiguration());
             modelBuilder.Configurations.Add(new ImZmTrUlConfiguration());
             modelBuilder.Configurations.Add(new IndividualCardsUlFaceConfiguration());
+            modelBuilder.Configurations.Add(new InfoDocumentConfiguration());
             modelBuilder.Configurations.Add(new InfoViewAutomationConfiguration());
             modelBuilder.Configurations.Add(new IsPatentParsConfiguration());
             modelBuilder.Configurations.Add(new IsPatentParseConfiguration());
@@ -395,6 +441,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new ModelKbkOnKbkConfiguration());
             modelBuilder.Configurations.Add(new ModelTreeConfiguration());
             modelBuilder.Configurations.Add(new NdflFlConfiguration());
+            modelBuilder.Configurations.Add(new OrganizationOgrnInventoryConfiguration());
             modelBuilder.Configurations.Add(new ParameterProcedureWebConfiguration());
             modelBuilder.Configurations.Add(new ParametrNalogConfiguration());
             modelBuilder.Configurations.Add(new PatentConfiguration());
@@ -402,6 +449,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new QuestionsAndUserConfiguration());
             modelBuilder.Configurations.Add(new RbHolidayConfiguration());
             modelBuilder.Configurations.Add(new RealEstateZmImConfiguration());
+            modelBuilder.Configurations.Add(new RegisterDocumentsPrintingConfiguration());
             modelBuilder.Configurations.Add(new ReportXlsxConfiguration());
             modelBuilder.Configurations.Add(new RukAndUcrhConfiguration());
             modelBuilder.Configurations.Add(new SenderTaxJournalOkp2Configuration());
@@ -409,12 +457,16 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new StatementConfiguration());
             modelBuilder.Configurations.Add(new StatementFullConfiguration());
             modelBuilder.Configurations.Add(new StatementNpConfiguration());
+            modelBuilder.Configurations.Add(new StatusDocumentConfiguration());
+            modelBuilder.Configurations.Add(new StatusEventConfiguration());
             modelBuilder.Configurations.Add(new StatusFlRegistrationConfiguration());
+            modelBuilder.Configurations.Add(new StatusOgrnConfiguration());
             modelBuilder.Configurations.Add(new StrngthUlFaceConfiguration());
             modelBuilder.Configurations.Add(new SvedAccoutingUlFaceConfiguration());
             modelBuilder.Configurations.Add(new SvedFactPatentConfiguration());
             modelBuilder.Configurations.Add(new SvedObjectConfiguration());
             modelBuilder.Configurations.Add(new SvedTrConfiguration());
+            modelBuilder.Configurations.Add(new SynchronizationUserAndAiConfiguration());
             modelBuilder.Configurations.Add(new TaxDeclarationFlConfiguration());
             modelBuilder.Configurations.Add(new TaxEasJournalConfiguration());
             modelBuilder.Configurations.Add(new TaxJournalConfiguration());
@@ -435,18 +487,23 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new TreeGridConfiguration());
             modelBuilder.Configurations.Add(new TreeUpdateConfiguration());
             modelBuilder.Configurations.Add(new TypeObjectConfiguration());
+            modelBuilder.Configurations.Add(new TypeOrgAndQuestionConfiguration());
             modelBuilder.Configurations.Add(new TypeTreeConfiguration());
             modelBuilder.Configurations.Add(new UlFaceConfiguration());
             modelBuilder.Configurations.Add(new UlFaceAllConfiguration());
             modelBuilder.Configurations.Add(new UlFaceAllSaleConfiguration());
             modelBuilder.Configurations.Add(new UlFaceSalesBookBankConfiguration());
             modelBuilder.Configurations.Add(new UserOrgConfiguration());
+            modelBuilder.Configurations.Add(new ViewRegisterDocumentsPrintingConfiguration());
         }
 
         public static System.Data.Entity.DbModelBuilder CreateModel(System.Data.Entity.DbModelBuilder modelBuilder, string schema)
         {
+            modelBuilder.Configurations.Add(new AddDocumentToContainerConfiguration(schema));
             modelBuilder.Configurations.Add(new AddUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new AddUlFaceWebConfiguration(schema));
+            modelBuilder.Configurations.Add(new AisDocumentConfiguration(schema));
+            modelBuilder.Configurations.Add(new AisGrnDocumentConfiguration(schema));
             modelBuilder.Configurations.Add(new AllFaceRegistryReferenceConfiguration(schema));
             modelBuilder.Configurations.Add(new AllJournal129Configuration(schema));
             modelBuilder.Configurations.Add(new AllJournalRegistrationFlConfiguration(schema));
@@ -471,12 +528,16 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new DeliveryDocumentConfiguration(schema));
             modelBuilder.Configurations.Add(new DepartamentOtdelConfiguration(schema));
             modelBuilder.Configurations.Add(new DerectorConfiguration(schema));
+            modelBuilder.Configurations.Add(new DirectoryDocumentConfiguration(schema));
             modelBuilder.Configurations.Add(new DocPatentConfiguration(schema));
             modelBuilder.Configurations.Add(new Documen2NdflConfiguration(schema));
             modelBuilder.Configurations.Add(new Documen2NdflIdentificationConfiguration(schema));
+            modelBuilder.Configurations.Add(new DocumentContainerConfiguration(schema));
+            modelBuilder.Configurations.Add(new DocumentInventoryConfiguration(schema));
             modelBuilder.Configurations.Add(new DocumentOwnershipImZmTrFlConfiguration(schema));
             modelBuilder.Configurations.Add(new EasJournalConfiguration(schema));
             modelBuilder.Configurations.Add(new ErrorFlRegistrationConfiguration(schema));
+            modelBuilder.Configurations.Add(new EventProcessErrorConfiguration(schema));
             modelBuilder.Configurations.Add(new FaceModelTemplateGetPostConfiguration(schema));
             modelBuilder.Configurations.Add(new FaceRegistryReferenceConfiguration(schema));
             modelBuilder.Configurations.Add(new FactOfOwnershipImZmTrFlConfiguration(schema));
@@ -485,6 +546,8 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new FlFaceMainConfiguration(schema));
             modelBuilder.Configurations.Add(new FlFaceMainRegistrationConfiguration(schema));
             modelBuilder.Configurations.Add(new FormulNdflConfiguration(schema));
+            modelBuilder.Configurations.Add(new GrnInventoryConfiguration(schema));
+            modelBuilder.Configurations.Add(new GrnInventoryAndEventProcessErrorConfiguration(schema));
             modelBuilder.Configurations.Add(new GroupKbkConfiguration(schema));
             modelBuilder.Configurations.Add(new GroupQuestionConfiguration(schema));
             modelBuilder.Configurations.Add(new HeadingStatementConfiguration(schema));
@@ -494,6 +557,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new ImZmTrFlConfiguration(schema));
             modelBuilder.Configurations.Add(new ImZmTrUlConfiguration(schema));
             modelBuilder.Configurations.Add(new IndividualCardsUlFaceConfiguration(schema));
+            modelBuilder.Configurations.Add(new InfoDocumentConfiguration(schema));
             modelBuilder.Configurations.Add(new InfoViewAutomationConfiguration(schema));
             modelBuilder.Configurations.Add(new IsPatentParsConfiguration(schema));
             modelBuilder.Configurations.Add(new IsPatentParseConfiguration(schema));
@@ -510,6 +574,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new ModelKbkOnKbkConfiguration(schema));
             modelBuilder.Configurations.Add(new ModelTreeConfiguration(schema));
             modelBuilder.Configurations.Add(new NdflFlConfiguration(schema));
+            modelBuilder.Configurations.Add(new OrganizationOgrnInventoryConfiguration(schema));
             modelBuilder.Configurations.Add(new ParameterProcedureWebConfiguration(schema));
             modelBuilder.Configurations.Add(new ParametrNalogConfiguration(schema));
             modelBuilder.Configurations.Add(new PatentConfiguration(schema));
@@ -517,6 +582,7 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new QuestionsAndUserConfiguration(schema));
             modelBuilder.Configurations.Add(new RbHolidayConfiguration(schema));
             modelBuilder.Configurations.Add(new RealEstateZmImConfiguration(schema));
+            modelBuilder.Configurations.Add(new RegisterDocumentsPrintingConfiguration(schema));
             modelBuilder.Configurations.Add(new ReportXlsxConfiguration(schema));
             modelBuilder.Configurations.Add(new RukAndUcrhConfiguration(schema));
             modelBuilder.Configurations.Add(new SenderTaxJournalOkp2Configuration(schema));
@@ -524,12 +590,16 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new StatementConfiguration(schema));
             modelBuilder.Configurations.Add(new StatementFullConfiguration(schema));
             modelBuilder.Configurations.Add(new StatementNpConfiguration(schema));
+            modelBuilder.Configurations.Add(new StatusDocumentConfiguration(schema));
+            modelBuilder.Configurations.Add(new StatusEventConfiguration(schema));
             modelBuilder.Configurations.Add(new StatusFlRegistrationConfiguration(schema));
+            modelBuilder.Configurations.Add(new StatusOgrnConfiguration(schema));
             modelBuilder.Configurations.Add(new StrngthUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new SvedAccoutingUlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new SvedFactPatentConfiguration(schema));
             modelBuilder.Configurations.Add(new SvedObjectConfiguration(schema));
             modelBuilder.Configurations.Add(new SvedTrConfiguration(schema));
+            modelBuilder.Configurations.Add(new SynchronizationUserAndAiConfiguration(schema));
             modelBuilder.Configurations.Add(new TaxDeclarationFlConfiguration(schema));
             modelBuilder.Configurations.Add(new TaxEasJournalConfiguration(schema));
             modelBuilder.Configurations.Add(new TaxJournalConfiguration(schema));
@@ -550,12 +620,14 @@ namespace EfDatabaseAutomation.Automation.Base
             modelBuilder.Configurations.Add(new TreeGridConfiguration(schema));
             modelBuilder.Configurations.Add(new TreeUpdateConfiguration(schema));
             modelBuilder.Configurations.Add(new TypeObjectConfiguration(schema));
+            modelBuilder.Configurations.Add(new TypeOrgAndQuestionConfiguration(schema));
             modelBuilder.Configurations.Add(new TypeTreeConfiguration(schema));
             modelBuilder.Configurations.Add(new UlFaceConfiguration(schema));
             modelBuilder.Configurations.Add(new UlFaceAllConfiguration(schema));
             modelBuilder.Configurations.Add(new UlFaceAllSaleConfiguration(schema));
             modelBuilder.Configurations.Add(new UlFaceSalesBookBankConfiguration(schema));
             modelBuilder.Configurations.Add(new UserOrgConfiguration(schema));
+            modelBuilder.Configurations.Add(new ViewRegisterDocumentsPrintingConfiguration(schema));
             return modelBuilder;
         }
     }
@@ -575,6 +647,34 @@ namespace EfDatabaseAutomation.Automation.Base
 
     #region POCO classes
 
+    // AddDocumentToContainer
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class AddDocumentToContainer
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int IdContainer { get; set; } // IdContainer
+        public int IdDocument { get; set; } // IdDocument
+        public int CounterModel { get; set; } // CounterModel
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent DocumentContainer pointed by [AddDocumentToContainer].([IdContainer]) (FK_AddDocumentToContainer_DocumentContainer)
+        /// </summary>
+        public DocumentContainer DocumentContainer { get; set; } // FK_AddDocumentToContainer_DocumentContainer
+
+        /// <summary>
+        /// Parent DocumentInventory pointed by [AddDocumentToContainer].([IdDocument]) (FK_AddDocumentToContainer_DocumentInventory)
+        /// </summary>
+        public DocumentInventory DocumentInventory { get; set; } // FK_AddDocumentToContainer_DocumentInventory
+
+        public AddDocumentToContainer()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
     // AddUlFace
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class AddUlFace
@@ -589,8 +689,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child FaceModelTemplateGetPosts where [FaceModelTemplateGetPost].[IdUl] point to this entity (FK_AddUlFace_FaceModelTemplateGetPost)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost.FK_AddUlFace_FaceModelTemplateGetPost
+        public System.Collections.Generic.ICollection<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost.FK_AddUlFace_FaceModelTemplateGetPost
 
         public AddUlFace()
         {
@@ -607,6 +706,75 @@ namespace EfDatabaseAutomation.Automation.Base
         public int IdUl { get; set; } // IdUl (Primary key)
         public string InnUl { get; set; } // InnUl (length: 12)
         public string FullStatus { get; set; } // FullStatus (length: 124)
+    }
+
+    // AisDocument
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class AisDocument
+    {
+        public int IdAisDocument { get; set; } // IdAisDocument (Primary key)
+        public int IdGrnAis3 { get; set; } // IdGrnAis3
+        public int IdDocumentDirectory { get; set; } // IdDocumentDirectory
+        public string SmallNameDocument { get; set; } // SmallNameDocument (length: 256)
+        public string NumberDocument { get; set; } // NumberDocument (length: 256)
+        public string DateDocument { get; set; } // DateDocument (length: 32)
+        public int? CountPage { get; set; } // CountPage
+        public string GuidDocument { get; set; } // GuidDocument (length: 128)
+        public bool? IsFinndRegDelo { get; set; } // IsFinndRegDelo
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child SynchronizationUserAndAis where [SynchronizationUserAndAis].[IdAisDocument] point to this entity (FK_SynchronizationUserAndAis_AisDocument)
+        /// </summary>
+        public System.Collections.Generic.ICollection<SynchronizationUserAndAi> SynchronizationUserAndAis { get; set; } // SynchronizationUserAndAis.FK_SynchronizationUserAndAis_AisDocument
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent AisGrnDocument pointed by [AisDocument].([IdGrnAis3]) (FK_AisDocument_AisGrnDocument)
+        /// </summary>
+        public AisGrnDocument AisGrnDocument { get; set; } // FK_AisDocument_AisGrnDocument
+
+        /// <summary>
+        /// Parent DirectoryDocument pointed by [AisDocument].([IdDocumentDirectory]) (FK_AisDocument_DirectoryDocument)
+        /// </summary>
+        public DirectoryDocument DirectoryDocument { get; set; } // FK_AisDocument_DirectoryDocument
+
+        public AisDocument()
+        {
+            IsFinndRegDelo = false;
+            DateCreate = System.DateTime.Now;
+            SynchronizationUserAndAis = new System.Collections.Generic.List<SynchronizationUserAndAi>();
+        }
+    }
+
+    // AisGrnDocument
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class AisGrnDocument
+    {
+        public int IdGrnAis3 { get; set; } // IdGrnAis3 (Primary key)
+        public string FullNameGrnAis3 { get; set; } // FullNameGrnAis3 (length: 1024)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child AisDocuments where [AisDocument].[IdGrnAis3] point to this entity (FK_AisDocument_AisGrnDocument)
+        /// </summary>
+        public System.Collections.Generic.ICollection<AisDocument> AisDocuments { get; set; } // AisDocument.FK_AisDocument_AisGrnDocument
+        /// <summary>
+        /// Child GrnInventories where [GrnInventory].[IdGrnAis3] point to this entity (FK_GrnInventory_AisGrnDocument)
+        /// </summary>
+        public System.Collections.Generic.ICollection<GrnInventory> GrnInventories { get; set; } // GrnInventory.FK_GrnInventory_AisGrnDocument
+
+        public AisGrnDocument()
+        {
+            DateCreate = System.DateTime.Now;
+            AisDocuments = new System.Collections.Generic.List<AisDocument>();
+            GrnInventories = new System.Collections.Generic.List<GrnInventory>();
+        }
     }
 
     // AllFaceRegistryReference
@@ -738,20 +906,18 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child BookPurchases where [BookPurchase].[IdBook] point to this entity (FK_BookPurchase_Book)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<BookPurchase> BookPurchases { get; set; } // BookPurchase.FK_BookPurchase_Book
+        public System.Collections.Generic.ICollection<BookPurchase> BookPurchases { get; set; } // BookPurchase.FK_BookPurchase_Book
         /// <summary>
         /// Child BookSales where [BookSales].[IdBook] point to this entity (FK_BookSales_Book)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<BookSale> BookSales { get; set; } // BookSales.FK_BookSales_Book
+        public System.Collections.Generic.ICollection<BookSale> BookSales { get; set; } // BookSales.FK_BookSales_Book
 
         // Foreign keys
 
         /// <summary>
         /// Parent UlFace pointed by [Book].([IdUl]) (FK_Book_UlFace)
         /// </summary>
-        public virtual UlFace UlFace { get; set; } // FK_Book_UlFace
+        public UlFace UlFace { get; set; } // FK_Book_UlFace
 
         public Book()
         {
@@ -817,7 +983,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Book pointed by [BookPurchase].([IdBook]) (FK_BookPurchase_Book)
         /// </summary>
-        public virtual Book Book { get; set; } // FK_BookPurchase_Book
+        public Book Book { get; set; } // FK_BookPurchase_Book
 
         public BookPurchase()
         {
@@ -877,7 +1043,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Book pointed by [BookSales].([IdBook]) (FK_BookSales_Book)
         /// </summary>
-        public virtual Book Book { get; set; } // FK_BookSales_Book
+        public Book Book { get; set; } // FK_BookSales_Book
 
         public BookSale()
         {
@@ -914,7 +1080,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent UlFace pointed by [BranchUlFace].([IdUl]) (FK_UlFace_BranchUlFace)
         /// </summary>
-        public virtual UlFace UlFace { get; set; } // FK_UlFace_BranchUlFace
+        public UlFace UlFace { get; set; } // FK_UlFace_BranchUlFace
 
         public BranchUlFace()
         {
@@ -949,7 +1115,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent UlFace pointed by [CashBankAllUlFace].([IdUl]) (FK_UlFace_CashBankAllUlFace)
         /// </summary>
-        public virtual UlFace UlFace { get; set; } // FK_UlFace_CashBankAllUlFace
+        public UlFace UlFace { get; set; } // FK_UlFace_CashBankAllUlFace
 
         public CashBankAllUlFace()
         {
@@ -976,7 +1142,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent UlFace pointed by [CashUlFace].([IdUl]) (FK_UlFace_CashUlFace)
         /// </summary>
-        public virtual UlFace UlFace { get; set; } // FK_UlFace_CashUlFace
+        public UlFace UlFace { get; set; } // FK_UlFace_CashUlFace
 
         public CashUlFace()
         {
@@ -1021,7 +1187,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent UlFace pointed by [CounterpartyCashBank].([IdUl]) (FK_CounterpartyCashBank_UlFace)
         /// </summary>
-        public virtual UlFace UlFace { get; set; } // FK_CounterpartyCashBank_UlFace
+        public UlFace UlFace { get; set; } // FK_CounterpartyCashBank_UlFace
 
         public CounterpartyCashBank()
         {
@@ -1050,7 +1216,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent TreeDataArea pointed by [DataAreaParameters].([IdDataArea]) (FK_TreeDataArea_DataAreaParameters)
         /// </summary>
-        public virtual TreeDataArea TreeDataArea { get; set; } // FK_TreeDataArea_DataAreaParameters
+        public TreeDataArea TreeDataArea { get; set; } // FK_TreeDataArea_DataAreaParameters
 
         public DataAreaParameter()
         {
@@ -1124,15 +1290,14 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child DeclarationData3NdflFl where [DeclarationData3NdflFl].[RegNumDecl] point to this entity (FK_DeclarationData3NdflFl_Declaration3NdflFl)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<DeclarationData3NdflFl> DeclarationData3NdflFl { get; set; } // DeclarationData3NdflFl.FK_DeclarationData3NdflFl_Declaration3NdflFl
+        public System.Collections.Generic.ICollection<DeclarationData3NdflFl> DeclarationData3NdflFl { get; set; } // DeclarationData3NdflFl.FK_DeclarationData3NdflFl_Declaration3NdflFl
 
         // Foreign keys
 
         /// <summary>
         /// Parent FlFace pointed by [Declaration3NdflFl].([IdFl]) (FK_Declaration3NdflFl_FlFace)
         /// </summary>
-        public virtual FlFace FlFace { get; set; } // FK_Declaration3NdflFl_FlFace
+        public FlFace FlFace { get; set; } // FK_Declaration3NdflFl_FlFace
 
         public Declaration3NdflFl()
         {
@@ -1166,8 +1331,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child DeclarationDataAlls where [DeclarationDataAll].[RegNumDecl] point to this entity (FK_DeclarationDataAll_DeclarationAll)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<DeclarationDataAll> DeclarationDataAlls { get; set; } // DeclarationDataAll.FK_DeclarationDataAll_DeclarationAll
+        public System.Collections.Generic.ICollection<DeclarationDataAll> DeclarationDataAlls { get; set; } // DeclarationDataAll.FK_DeclarationDataAll_DeclarationAll
 
         public DeclarationAll()
         {
@@ -1195,7 +1359,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent DeclarationUl pointed by [DeclarationData].([RegNumDecl]) (FK_DeclarationData_DeclarationUl)
         /// </summary>
-        public virtual DeclarationUl DeclarationUl { get; set; } // FK_DeclarationData_DeclarationUl
+        public DeclarationUl DeclarationUl { get; set; } // FK_DeclarationData_DeclarationUl
 
         public DeclarationData()
         {
@@ -1222,7 +1386,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Declaration3NdflFl pointed by [DeclarationData3NdflFl].([RegNumDecl]) (FK_DeclarationData3NdflFl_Declaration3NdflFl)
         /// </summary>
-        public virtual Declaration3NdflFl Declaration3NdflFl { get; set; } // FK_DeclarationData3NdflFl_Declaration3NdflFl
+        public Declaration3NdflFl Declaration3NdflFl { get; set; } // FK_DeclarationData3NdflFl_Declaration3NdflFl
 
         public DeclarationData3NdflFl()
         {
@@ -1249,7 +1413,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent DeclarationAll pointed by [DeclarationDataAll].([RegNumDecl]) (FK_DeclarationDataAll_DeclarationAll)
         /// </summary>
-        public virtual DeclarationAll DeclarationAll { get; set; } // FK_DeclarationDataAll_DeclarationAll
+        public DeclarationAll DeclarationAll { get; set; } // FK_DeclarationDataAll_DeclarationAll
 
         public DeclarationDataAll()
         {
@@ -1276,7 +1440,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent DeclarationFl pointed by [DeclarationDataFl].([RegNumDecl]) (FK_DeclarationDataFl_DeclarationFl)
         /// </summary>
-        public virtual DeclarationFl DeclarationFl { get; set; } // FK_DeclarationDataFl_DeclarationFl
+        public DeclarationFl DeclarationFl { get; set; } // FK_DeclarationDataFl_DeclarationFl
 
         public DeclarationDataFl()
         {
@@ -1309,15 +1473,14 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child DeclarationDataFls where [DeclarationDataFl].[RegNumDecl] point to this entity (FK_DeclarationDataFl_DeclarationFl)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<DeclarationDataFl> DeclarationDataFls { get; set; } // DeclarationDataFl.FK_DeclarationDataFl_DeclarationFl
+        public System.Collections.Generic.ICollection<DeclarationDataFl> DeclarationDataFls { get; set; } // DeclarationDataFl.FK_DeclarationDataFl_DeclarationFl
 
         // Foreign keys
 
         /// <summary>
         /// Parent FlFace pointed by [DeclarationFl].([IdFl]) (FK_DeclarationFl_FlFace)
         /// </summary>
-        public virtual FlFace FlFace { get; set; } // FK_DeclarationFl_FlFace
+        public FlFace FlFace { get; set; } // FK_DeclarationFl_FlFace
 
         public DeclarationFl()
         {
@@ -1349,15 +1512,14 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child DeclarationDatas where [DeclarationData].[RegNumDecl] point to this entity (FK_DeclarationData_DeclarationUl)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<DeclarationData> DeclarationDatas { get; set; } // DeclarationData.FK_DeclarationData_DeclarationUl
+        public System.Collections.Generic.ICollection<DeclarationData> DeclarationDatas { get; set; } // DeclarationData.FK_DeclarationData_DeclarationUl
 
         // Foreign keys
 
         /// <summary>
         /// Parent UlFace pointed by [DeclarationUl].([IdUl]) (FK_DeclarationUl_UlFace)
         /// </summary>
-        public virtual UlFace UlFace { get; set; } // FK_DeclarationUl_UlFace
+        public UlFace UlFace { get; set; } // FK_DeclarationUl_UlFace
 
         public DeclarationUl()
         {
@@ -1404,7 +1566,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent SenderTaxJournalOkp2 pointed by [DepartamentOtdel].([IdSender]) (FK_SenderTaxJournalOkp2_DepartamentOtdel)
         /// </summary>
-        public virtual SenderTaxJournalOkp2 SenderTaxJournalOkp2 { get; set; } // FK_SenderTaxJournalOkp2_DepartamentOtdel
+        public SenderTaxJournalOkp2 SenderTaxJournalOkp2 { get; set; } // FK_SenderTaxJournalOkp2_DepartamentOtdel
 
         public DepartamentOtdel()
         {
@@ -1425,13 +1587,39 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child MainOrgs where [MainOrg].[IdDerector] point to this entity (FK_Derector_MainOrg)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<MainOrg> MainOrgs { get; set; } // MainOrg.FK_Derector_MainOrg
+        public System.Collections.Generic.ICollection<MainOrg> MainOrgs { get; set; } // MainOrg.FK_Derector_MainOrg
 
         public Derector()
         {
             DateCreate = System.DateTime.Now;
             MainOrgs = new System.Collections.Generic.List<MainOrg>();
+        }
+    }
+
+    // DirectoryDocument
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class DirectoryDocument
+    {
+        public int IdDocumentDirectory { get; set; } // IdDocumentDirectory (Primary key)
+        public string NameDocumentDataBase { get; set; } // NameDocumentDataBase (length: 1024)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child AisDocuments where [AisDocument].[IdDocumentDirectory] point to this entity (FK_AisDocument_DirectoryDocument)
+        /// </summary>
+        public System.Collections.Generic.ICollection<AisDocument> AisDocuments { get; set; } // AisDocument.FK_AisDocument_DirectoryDocument
+        /// <summary>
+        /// Child DocumentInventories where [DocumentInventory].[IdDocumentDirectory] point to this entity (FK_DocumentInventory_DirectoryDocument)
+        /// </summary>
+        public System.Collections.Generic.ICollection<DocumentInventory> DocumentInventories { get; set; } // DocumentInventory.FK_DocumentInventory_DirectoryDocument
+
+        public DirectoryDocument()
+        {
+            DateCreate = System.DateTime.Now;
+            AisDocuments = new System.Collections.Generic.List<AisDocument>();
+            DocumentInventories = new System.Collections.Generic.List<DocumentInventory>();
         }
     }
 
@@ -1464,7 +1652,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Patent pointed by [DocPatent].([IdPatent]) (FK_DocPatent_Patent)
         /// </summary>
-        public virtual Patent Patent { get; set; } // FK_DocPatent_Patent
+        public Patent Patent { get; set; } // FK_DocPatent_Patent
 
         public DocPatent()
         {
@@ -1540,6 +1728,92 @@ namespace EfDatabaseAutomation.Automation.Base
         public string ErrorNameStatus { get; set; } // ErrorNameStatus (length: 1024)
     }
 
+    // DocumentContainer
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class DocumentContainer
+    {
+        public int IdContainer { get; set; } // IdContainer (Primary key)
+        public string BarcodeContainer { get; set; } // BarcodeContainer (length: 256)
+        public int CountCurrent { get; set; } // CountCurrent
+        public int CountDocumentMin { get; set; } // CountDocumentMin
+        public int CountDocumentMax { get; set; } // CountDocumentMax
+        public bool IsFinishContainer { get; set; } // IsFinishContainer
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child AddDocumentToContainers where [AddDocumentToContainer].[IdContainer] point to this entity (FK_AddDocumentToContainer_DocumentContainer)
+        /// </summary>
+        public System.Collections.Generic.ICollection<AddDocumentToContainer> AddDocumentToContainers { get; set; } // AddDocumentToContainer.FK_AddDocumentToContainer_DocumentContainer
+
+        public DocumentContainer()
+        {
+            CountCurrent = 0;
+            CountDocumentMin = 500;
+            CountDocumentMax = 510;
+            IsFinishContainer = false;
+            DateCreate = System.DateTime.Now;
+            AddDocumentToContainers = new System.Collections.Generic.List<AddDocumentToContainer>();
+        }
+    }
+
+    // DocumentInventory
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class DocumentInventory
+    {
+        public int IdDocument { get; set; } // IdDocument (Primary key)
+        public int IdDocGrn { get; set; } // IdDocGrn
+        public int IdDocumentDirectory { get; set; } // IdDocumentDirectory
+        public int? IdInfo { get; set; } // IdInfo
+        public int CountPage { get; set; } // CountPage
+        public string GuidDocument { get; set; } // GuidDocument (length: 1024)
+        public bool StateDocument { get; set; } // StateDocument
+        public int IdStatusDocument { get; set; } // IdStatusDocument
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child AddDocumentToContainers where [AddDocumentToContainer].[IdDocument] point to this entity (FK_AddDocumentToContainer_DocumentInventory)
+        /// </summary>
+        public System.Collections.Generic.ICollection<AddDocumentToContainer> AddDocumentToContainers { get; set; } // AddDocumentToContainer.FK_AddDocumentToContainer_DocumentInventory
+        /// <summary>
+        /// Child SynchronizationUserAndAis where [SynchronizationUserAndAis].[IdDocument] point to this entity (FK_SynchronizationUserAndAis_DocumentInventory)
+        /// </summary>
+        public System.Collections.Generic.ICollection<SynchronizationUserAndAi> SynchronizationUserAndAis { get; set; } // SynchronizationUserAndAis.FK_SynchronizationUserAndAis_DocumentInventory
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent DirectoryDocument pointed by [DocumentInventory].([IdDocumentDirectory]) (FK_DocumentInventory_DirectoryDocument)
+        /// </summary>
+        public DirectoryDocument DirectoryDocument { get; set; } // FK_DocumentInventory_DirectoryDocument
+
+        /// <summary>
+        /// Parent GrnInventory pointed by [DocumentInventory].([IdDocGrn]) (FK_DocumentInventory_GrnInventory)
+        /// </summary>
+        public GrnInventory GrnInventory { get; set; } // FK_DocumentInventory_GrnInventory
+
+        /// <summary>
+        /// Parent InfoDocument pointed by [DocumentInventory].([IdInfo]) (FK_DocumentInventory_InfoDocument)
+        /// </summary>
+        public InfoDocument InfoDocument { get; set; } // FK_DocumentInventory_InfoDocument
+
+        /// <summary>
+        /// Parent StatusDocument pointed by [DocumentInventory].([IdStatusDocument]) (FK_DocumentInventory_StatusDocument)
+        /// </summary>
+        public StatusDocument StatusDocument { get; set; } // FK_DocumentInventory_StatusDocument
+
+        public DocumentInventory()
+        {
+            StateDocument = false;
+            DateCreate = System.DateTime.Now;
+            AddDocumentToContainers = new System.Collections.Generic.List<AddDocumentToContainer>();
+            SynchronizationUserAndAis = new System.Collections.Generic.List<SynchronizationUserAndAi>();
+        }
+    }
+
     // DocumentOwnershipImZmTrFl
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class DocumentOwnershipImZmTrFl
@@ -1560,7 +1834,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent FactOfOwnershipImZmTrFl pointed by [DocumentOwnershipImZmTrFl].([FidObject]) (FK_DocumentOwnershipImZmTrFl_FactOfOwnershipImZmTrFl)
         /// </summary>
-        public virtual FactOfOwnershipImZmTrFl FactOfOwnershipImZmTrFl { get; set; } // FK_DocumentOwnershipImZmTrFl_FactOfOwnershipImZmTrFl
+        public FactOfOwnershipImZmTrFl FactOfOwnershipImZmTrFl { get; set; } // FK_DocumentOwnershipImZmTrFl_FactOfOwnershipImZmTrFl
 
         public DocumentOwnershipImZmTrFl()
         {
@@ -1609,13 +1883,42 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child FlFaceMainRegistrations where [FlFaceMainRegistration].[IdError] point to this entity (FK_FlFaceMainRegistration_ErrorFlRegistration)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<FlFaceMainRegistration> FlFaceMainRegistrations { get; set; } // FlFaceMainRegistration.FK_FlFaceMainRegistration_ErrorFlRegistration
+        public System.Collections.Generic.ICollection<FlFaceMainRegistration> FlFaceMainRegistrations { get; set; } // FlFaceMainRegistration.FK_FlFaceMainRegistration_ErrorFlRegistration
 
         public ErrorFlRegistration()
         {
             DateCreate = System.DateTime.Now;
             FlFaceMainRegistrations = new System.Collections.Generic.List<FlFaceMainRegistration>();
+        }
+    }
+
+    // EventProcessError
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class EventProcessError
+    {
+        public int IdProcess { get; set; } // IdProcess (Primary key)
+        public string FullKeyProcess { get; set; } // FullKeyProcess
+        public int IdStatusEvent { get; set; } // IdStatusEvent
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child GrnInventoryAndEventProcessErrors where [GrnInventoryAndEventProcessError].[IdProcess] point to this entity (FK_GrnInventoryAndEventProcessError_EventProcessError)
+        /// </summary>
+        public System.Collections.Generic.ICollection<GrnInventoryAndEventProcessError> GrnInventoryAndEventProcessErrors { get; set; } // GrnInventoryAndEventProcessError.FK_GrnInventoryAndEventProcessError_EventProcessError
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent StatusEvent pointed by [EventProcessError].([IdStatusEvent]) (FK_EventProcessError_StatusEvent)
+        /// </summary>
+        public StatusEvent StatusEvent { get; set; } // FK_EventProcessError_StatusEvent
+
+        public EventProcessError()
+        {
+            DateCreate = System.DateTime.Now;
+            GrnInventoryAndEventProcessErrors = new System.Collections.Generic.List<GrnInventoryAndEventProcessError>();
         }
     }
 
@@ -1635,17 +1938,17 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent AddUlFace pointed by [FaceModelTemplateGetPost].([IdUl]) (FK_AddUlFace_FaceModelTemplateGetPost)
         /// </summary>
-        public virtual AddUlFace AddUlFace { get; set; } // FK_AddUlFace_FaceModelTemplateGetPost
+        public AddUlFace AddUlFace { get; set; } // FK_AddUlFace_FaceModelTemplateGetPost
 
         /// <summary>
         /// Parent Template pointed by [FaceModelTemplateGetPost].([IdTemplate]) (FK_Template_FaceModelTemplateGetPost)
         /// </summary>
-        public virtual Template Template { get; set; } // FK_Template_FaceModelTemplateGetPost
+        public Template Template { get; set; } // FK_Template_FaceModelTemplateGetPost
 
         /// <summary>
         /// Parent Tree pointed by [FaceModelTemplateGetPost].([IdTree]) (FK_Tree_FaceModelTemplateGetPost)
         /// </summary>
-        public virtual Tree Tree { get; set; } // FK_Tree_FaceModelTemplateGetPost
+        public Tree Tree { get; set; } // FK_Tree_FaceModelTemplateGetPost
 
         public FaceModelTemplateGetPost()
         {
@@ -1695,20 +1998,19 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child DocumentOwnershipImZmTrFls where [DocumentOwnershipImZmTrFl].[FidObject] point to this entity (FK_DocumentOwnershipImZmTrFl_FactOfOwnershipImZmTrFl)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<DocumentOwnershipImZmTrFl> DocumentOwnershipImZmTrFls { get; set; } // DocumentOwnershipImZmTrFl.FK_DocumentOwnershipImZmTrFl_FactOfOwnershipImZmTrFl
+        public System.Collections.Generic.ICollection<DocumentOwnershipImZmTrFl> DocumentOwnershipImZmTrFls { get; set; } // DocumentOwnershipImZmTrFl.FK_DocumentOwnershipImZmTrFl_FactOfOwnershipImZmTrFl
 
         // Foreign keys
 
         /// <summary>
         /// Parent FlFace pointed by [FactOfOwnershipImZmTrFl].([IdFl]) (FK_FactOfOwnershipImZmTrFl_FlFace)
         /// </summary>
-        public virtual FlFace FlFace { get; set; } // FK_FactOfOwnershipImZmTrFl_FlFace
+        public FlFace FlFace { get; set; } // FK_FactOfOwnershipImZmTrFl_FlFace
 
         /// <summary>
         /// Parent TypeObject pointed by [FactOfOwnershipImZmTrFl].([IdObject]) (FK_TypeObject_FactOfOwnershipImZmTrFl)
         /// </summary>
-        public virtual TypeObject TypeObject { get; set; } // FK_TypeObject_FactOfOwnershipImZmTrFl
+        public TypeObject TypeObject { get; set; } // FK_TypeObject_FactOfOwnershipImZmTrFl
 
         public FactOfOwnershipImZmTrFl()
         {
@@ -1731,7 +2033,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Tree pointed by [Fields].([IdTree]) (FK_Tree_Fields)
         /// </summary>
-        public virtual Tree Tree { get; set; } // FK_Tree_Fields
+        public Tree Tree { get; set; } // FK_Tree_Fields
 
         public Field()
         {
@@ -1753,28 +2055,23 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child Declaration3NdflFl where [Declaration3NdflFl].[IdFl] point to this entity (FK_Declaration3NdflFl_FlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<Declaration3NdflFl> Declaration3NdflFl { get; set; } // Declaration3NdflFl.FK_Declaration3NdflFl_FlFace
+        public System.Collections.Generic.ICollection<Declaration3NdflFl> Declaration3NdflFl { get; set; } // Declaration3NdflFl.FK_Declaration3NdflFl_FlFace
         /// <summary>
         /// Child DeclarationFls where [DeclarationFl].[IdFl] point to this entity (FK_DeclarationFl_FlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<DeclarationFl> DeclarationFls { get; set; } // DeclarationFl.FK_DeclarationFl_FlFace
+        public System.Collections.Generic.ICollection<DeclarationFl> DeclarationFls { get; set; } // DeclarationFl.FK_DeclarationFl_FlFace
         /// <summary>
         /// Child FactOfOwnershipImZmTrFls where [FactOfOwnershipImZmTrFl].[IdFl] point to this entity (FK_FactOfOwnershipImZmTrFl_FlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<FactOfOwnershipImZmTrFl> FactOfOwnershipImZmTrFls { get; set; } // FactOfOwnershipImZmTrFl.FK_FactOfOwnershipImZmTrFl_FlFace
+        public System.Collections.Generic.ICollection<FactOfOwnershipImZmTrFl> FactOfOwnershipImZmTrFls { get; set; } // FactOfOwnershipImZmTrFl.FK_FactOfOwnershipImZmTrFl_FlFace
         /// <summary>
         /// Child ImZmTrFls where [ImZmTrFl].[IdFl] point to this entity (FK_ImZmTrFl_FlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<ImZmTrFl> ImZmTrFls { get; set; } // ImZmTrFl.FK_ImZmTrFl_FlFace
+        public System.Collections.Generic.ICollection<ImZmTrFl> ImZmTrFls { get; set; } // ImZmTrFl.FK_ImZmTrFl_FlFace
         /// <summary>
         /// Child RukAndUcrhs where [RukAndUcrh].[IdFl] point to this entity (FK_RukAndUcrh_FlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh.FK_RukAndUcrh_FlFace
+        public System.Collections.Generic.ICollection<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh.FK_RukAndUcrh_FlFace
 
         public FlFace()
         {
@@ -1805,8 +2102,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child Patents where [Patent].[IdFl] point to this entity (FK_Patent_FlFaceMain)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<Patent> Patents { get; set; } // Patent.FK_Patent_FlFaceMain
+        public System.Collections.Generic.ICollection<Patent> Patents { get; set; } // Patent.FK_Patent_FlFaceMain
 
         public FlFaceMain()
         {
@@ -1846,12 +2142,12 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent ErrorFlRegistration pointed by [FlFaceMainRegistration].([IdError]) (FK_FlFaceMainRegistration_ErrorFlRegistration)
         /// </summary>
-        public virtual ErrorFlRegistration ErrorFlRegistration { get; set; } // FK_FlFaceMainRegistration_ErrorFlRegistration
+        public ErrorFlRegistration ErrorFlRegistration { get; set; } // FK_FlFaceMainRegistration_ErrorFlRegistration
 
         /// <summary>
         /// Parent StatusFlRegistration pointed by [FlFaceMainRegistration].([IdStatus]) (FK_FlFaceMainRegistration_StatusFlRegistration)
         /// </summary>
-        public virtual StatusFlRegistration StatusFlRegistration { get; set; } // FK_FlFaceMainRegistration_StatusFlRegistration
+        public StatusFlRegistration StatusFlRegistration { get; set; } // FK_FlFaceMainRegistration_StatusFlRegistration
 
         public FlFaceMainRegistration()
         {
@@ -1876,6 +2172,86 @@ namespace EfDatabaseAutomation.Automation.Base
         public decimal? AvgMoney { get; set; } // AvgMoney
     }
 
+    // GrnInventory
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class GrnInventory
+    {
+        public int IdDocGrn { get; set; } // IdDocGrn (Primary key)
+        public int? IdGrnAis3 { get; set; } // IdGrnAis3
+        public int IdOgrn { get; set; } // IdOgrn
+        public long NumberOgrnGrn { get; set; } // NumberOgrnGrn
+        public string NameDocument { get; set; } // NameDocument (length: 1024)
+        public bool IsStartProcess { get; set; } // IsStartProcess
+        public bool IsFindGrnDataBase { get; set; } // IsFindGrnDataBase
+        public bool StatusFinish { get; set; } // StatusFinish
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child DocumentInventories where [DocumentInventory].[IdDocGrn] point to this entity (FK_DocumentInventory_GrnInventory)
+        /// </summary>
+        public System.Collections.Generic.ICollection<DocumentInventory> DocumentInventories { get; set; } // DocumentInventory.FK_DocumentInventory_GrnInventory
+        /// <summary>
+        /// Child GrnInventoryAndEventProcessErrors where [GrnInventoryAndEventProcessError].[IdDocGrn] point to this entity (FK_GrnInventoryAndEventProcessError_GrnInventory)
+        /// </summary>
+        public System.Collections.Generic.ICollection<GrnInventoryAndEventProcessError> GrnInventoryAndEventProcessErrors { get; set; } // GrnInventoryAndEventProcessError.FK_GrnInventoryAndEventProcessError_GrnInventory
+        /// <summary>
+        /// Child SynchronizationUserAndAis where [SynchronizationUserAndAis].[IdDocGrn] point to this entity (FK_SynchronizationUserAndAis_GrnInventory)
+        /// </summary>
+        public System.Collections.Generic.ICollection<SynchronizationUserAndAi> SynchronizationUserAndAis { get; set; } // SynchronizationUserAndAis.FK_SynchronizationUserAndAis_GrnInventory
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent AisGrnDocument pointed by [GrnInventory].([IdGrnAis3]) (FK_GrnInventory_AisGrnDocument)
+        /// </summary>
+        public AisGrnDocument AisGrnDocument { get; set; } // FK_GrnInventory_AisGrnDocument
+
+        /// <summary>
+        /// Parent OrganizationOgrnInventory pointed by [GrnInventory].([IdOgrn]) (FK_GrnInventory_OrganizationOgrnInventory)
+        /// </summary>
+        public OrganizationOgrnInventory OrganizationOgrnInventory { get; set; } // FK_GrnInventory_OrganizationOgrnInventory
+
+        public GrnInventory()
+        {
+            IsStartProcess = false;
+            IsFindGrnDataBase = false;
+            StatusFinish = false;
+            DateCreate = System.DateTime.Now;
+            DocumentInventories = new System.Collections.Generic.List<DocumentInventory>();
+            GrnInventoryAndEventProcessErrors = new System.Collections.Generic.List<GrnInventoryAndEventProcessError>();
+            SynchronizationUserAndAis = new System.Collections.Generic.List<SynchronizationUserAndAi>();
+        }
+    }
+
+    // GrnInventoryAndEventProcessError
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class GrnInventoryAndEventProcessError
+    {
+        public int Id { get; set; } // Id (Primary key)
+        public int IdDocGrn { get; set; } // IdDocGrn
+        public int IdProcess { get; set; } // IdProcess
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent EventProcessError pointed by [GrnInventoryAndEventProcessError].([IdProcess]) (FK_GrnInventoryAndEventProcessError_EventProcessError)
+        /// </summary>
+        public EventProcessError EventProcessError { get; set; } // FK_GrnInventoryAndEventProcessError_EventProcessError
+
+        /// <summary>
+        /// Parent GrnInventory pointed by [GrnInventoryAndEventProcessError].([IdDocGrn]) (FK_GrnInventoryAndEventProcessError_GrnInventory)
+        /// </summary>
+        public GrnInventory GrnInventory { get; set; } // FK_GrnInventoryAndEventProcessError_GrnInventory
+
+        public GrnInventoryAndEventProcessError()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
     // GroupKbk
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class GroupKbk
@@ -1891,8 +2267,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child KbkPayments where [KbkPayment].[IdQbe] point to this entity (FK_GroupKbk_KbkPayment)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<KbkPayment> KbkPayments { get; set; } // KbkPayment.FK_GroupKbk_KbkPayment
+        public System.Collections.Generic.ICollection<KbkPayment> KbkPayments { get; set; } // KbkPayment.FK_GroupKbk_KbkPayment
 
         public GroupKbk()
         {
@@ -1914,8 +2289,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child TemplateQuestions where [TemplateQuestions].[IdGroupQuestions] point to this entity (FK_GroupQuestions_TemplateQuestions)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<TemplateQuestion> TemplateQuestions { get; set; } // TemplateQuestions.FK_GroupQuestions_TemplateQuestions
+        public System.Collections.Generic.ICollection<TemplateQuestion> TemplateQuestions { get; set; } // TemplateQuestions.FK_GroupQuestions_TemplateQuestions
 
         public GroupQuestion()
         {
@@ -1937,8 +2311,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child StatementFulls where [StatementFull].[IdStatementHead] point to this entity (FK_HeadingStatement_StatementFull)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<StatementFull> StatementFulls { get; set; } // StatementFull.FK_HeadingStatement_StatementFull
+        public System.Collections.Generic.ICollection<StatementFull> StatementFulls { get; set; } // StatementFull.FK_HeadingStatement_StatementFull
 
         public HeadingStatement()
         {
@@ -1980,7 +2353,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent UlFace pointed by [HistoriUlFace].([IdUl]) (FK_HistoriUlFace_UlFace)
         /// </summary>
-        public virtual UlFace UlFace { get; set; } // FK_HistoriUlFace_UlFace
+        public UlFace UlFace { get; set; } // FK_HistoriUlFace_UlFace
 
         public HistoriUlFace()
         {
@@ -2022,12 +2395,12 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent FlFace pointed by [ImZmTrFl].([IdFl]) (FK_ImZmTrFl_FlFace)
         /// </summary>
-        public virtual FlFace FlFace { get; set; } // FK_ImZmTrFl_FlFace
+        public FlFace FlFace { get; set; } // FK_ImZmTrFl_FlFace
 
         /// <summary>
         /// Parent TypeObject pointed by [ImZmTrFl].([IdObject]) (FK_TypeObject_ImZmTrFl)
         /// </summary>
-        public virtual TypeObject TypeObject { get; set; } // FK_TypeObject_ImZmTrFl
+        public TypeObject TypeObject { get; set; } // FK_TypeObject_ImZmTrFl
 
         public ImZmTrFl()
         {
@@ -2060,12 +2433,12 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent TypeObject pointed by [ImZmTrUl].([IdObject]) (FK_TypeObject_ImZmTrUl)
         /// </summary>
-        public virtual TypeObject TypeObject { get; set; } // FK_TypeObject_ImZmTrUl
+        public TypeObject TypeObject { get; set; } // FK_TypeObject_ImZmTrUl
 
         /// <summary>
         /// Parent UlFace pointed by [ImZmTrUl].([IdUl]) (FK_UlFace_ImZmTrUl)
         /// </summary>
-        public virtual UlFace UlFace { get; set; } // FK_UlFace_ImZmTrUl
+        public UlFace UlFace { get; set; } // FK_UlFace_ImZmTrUl
 
         public ImZmTrUl()
         {
@@ -2087,11 +2460,33 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent UlFace pointed by [IndividualCardsUlFace].([IdUl]) (FK_IndividualCardsUlFace_UlFace)
         /// </summary>
-        public virtual UlFace UlFace { get; set; } // FK_IndividualCardsUlFace_UlFace
+        public UlFace UlFace { get; set; } // FK_IndividualCardsUlFace_UlFace
 
         public IndividualCardsUlFace()
         {
             DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // InfoDocument
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class InfoDocument
+    {
+        public int IdInfo { get; set; } // IdInfo (Primary key)
+        public string NameDocumentInfo { get; set; } // NameDocumentInfo (length: 128)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child DocumentInventories where [DocumentInventory].[IdInfo] point to this entity (FK_DocumentInventory_InfoDocument)
+        /// </summary>
+        public System.Collections.Generic.ICollection<DocumentInventory> DocumentInventories { get; set; } // DocumentInventory.FK_DocumentInventory_InfoDocument
+
+        public InfoDocument()
+        {
+            DateCreate = System.DateTime.Now;
+            DocumentInventories = new System.Collections.Generic.List<DocumentInventory>();
         }
     }
 
@@ -2172,7 +2567,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent GroupKbk pointed by [KbkPayment].([IdQbe]) (FK_GroupKbk_KbkPayment)
         /// </summary>
-        public virtual GroupKbk GroupKbk { get; set; } // FK_GroupKbk_KbkPayment
+        public GroupKbk GroupKbk { get; set; } // FK_GroupKbk_KbkPayment
 
         public KbkPayment()
         {
@@ -2209,8 +2604,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child MainOrgAndKontrAgents where [MainOrgAndKontrAgent].[IdKontrAgent] point to this entity (FK_KontrAgent_MainOrgAndKontrAgent)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<MainOrgAndKontrAgent> MainOrgAndKontrAgents { get; set; } // MainOrgAndKontrAgent.FK_KontrAgent_MainOrgAndKontrAgent
+        public System.Collections.Generic.ICollection<MainOrgAndKontrAgent> MainOrgAndKontrAgents { get; set; } // MainOrgAndKontrAgent.FK_KontrAgent_MainOrgAndKontrAgent
 
         public KontrAgent()
         {
@@ -2237,7 +2631,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent KrsbNp pointed by [Krsb].([IdNp]) (FK_KrsbNp_Krsb)
         /// </summary>
-        public virtual KrsbNp KrsbNp { get; set; } // FK_KrsbNp_Krsb
+        public KrsbNp KrsbNp { get; set; } // FK_KrsbNp_Krsb
 
         public Krsb()
         {
@@ -2262,8 +2656,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child Krsbs where [Krsb].[IdNp] point to this entity (FK_KrsbNp_Krsb)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<Krsb> Krsbs { get; set; } // Krsb.FK_KrsbNp_Krsb
+        public System.Collections.Generic.ICollection<Krsb> Krsbs { get; set; } // Krsb.FK_KrsbNp_Krsb
 
         public KrsbNp()
         {
@@ -2311,6 +2704,7 @@ namespace EfDatabaseAutomation.Automation.Base
     {
         public int IdOrg { get; set; } // IdOrg (Primary key)
         public int IdDerector { get; set; } // IdDerector
+        public int IdType { get; set; } // IdType
         public string Inn { get; set; } // Inn (length: 12)
         public string NameOrg { get; set; } // NameOrg (length: 512)
         public string NoIn { get; set; } // NoIn (length: 1024)
@@ -2323,20 +2717,23 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child MainOrgAndKontrAgents where [MainOrgAndKontrAgent].[IdOrg] point to this entity (FK_MainOrgAndKontrAgent_MainOrg)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<MainOrgAndKontrAgent> MainOrgAndKontrAgents { get; set; } // MainOrgAndKontrAgent.FK_MainOrgAndKontrAgent_MainOrg
+        public System.Collections.Generic.ICollection<MainOrgAndKontrAgent> MainOrgAndKontrAgents { get; set; } // MainOrgAndKontrAgent.FK_MainOrgAndKontrAgent_MainOrg
         /// <summary>
         /// Child UserOrgs where [UserOrg].[IdOrg] point to this entity (FK_MainOrg_UserOrg)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<UserOrg> UserOrgs { get; set; } // UserOrg.FK_MainOrg_UserOrg
+        public System.Collections.Generic.ICollection<UserOrg> UserOrgs { get; set; } // UserOrg.FK_MainOrg_UserOrg
 
         // Foreign keys
 
         /// <summary>
         /// Parent Derector pointed by [MainOrg].([IdDerector]) (FK_Derector_MainOrg)
         /// </summary>
-        public virtual Derector Derector { get; set; } // FK_Derector_MainOrg
+        public Derector Derector { get; set; } // FK_Derector_MainOrg
+
+        /// <summary>
+        /// Parent TypeOrgAndQuestion pointed by [MainOrg].([IdType]) (FK_TypeOrgAndQuestions_MainOrg)
+        /// </summary>
+        public TypeOrgAndQuestion TypeOrgAndQuestion { get; set; } // FK_TypeOrgAndQuestions_MainOrg
 
         public MainOrg()
         {
@@ -2361,12 +2758,12 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent KontrAgent pointed by [MainOrgAndKontrAgent].([IdKontrAgent]) (FK_KontrAgent_MainOrgAndKontrAgent)
         /// </summary>
-        public virtual KontrAgent KontrAgent { get; set; } // FK_KontrAgent_MainOrgAndKontrAgent
+        public KontrAgent KontrAgent { get; set; } // FK_KontrAgent_MainOrgAndKontrAgent
 
         /// <summary>
         /// Parent MainOrg pointed by [MainOrgAndKontrAgent].([IdOrg]) (FK_MainOrgAndKontrAgent_MainOrg)
         /// </summary>
-        public virtual MainOrg MainOrg { get; set; } // FK_MainOrgAndKontrAgent_MainOrg
+        public MainOrg MainOrg { get; set; } // FK_MainOrgAndKontrAgent_MainOrg
 
         public MainOrgAndKontrAgent()
         {
@@ -2454,11 +2851,41 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent UlFace pointed by [NdflFl].([IdUl]) (FK_UlFace_NdflFl)
         /// </summary>
-        public virtual UlFace UlFace { get; set; } // FK_UlFace_NdflFl
+        public UlFace UlFace { get; set; } // FK_UlFace_NdflFl
 
         public NdflFl()
         {
             DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // OrganizationOgrnInventory
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class OrganizationOgrnInventory
+    {
+        public int IdOgrn { get; set; } // IdOgrn (Primary key)
+        public long NumberOgrn { get; set; } // NumberOgrn
+        public int IdStatus { get; set; } // IdStatus
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child GrnInventories where [GrnInventory].[IdOgrn] point to this entity (FK_GrnInventory_OrganizationOgrnInventory)
+        /// </summary>
+        public System.Collections.Generic.ICollection<GrnInventory> GrnInventories { get; set; } // GrnInventory.FK_GrnInventory_OrganizationOgrnInventory
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent StatusOgrn pointed by [OrganizationOgrnInventory].([IdStatus]) (FK_OrganizationOgrnInventory_StatusOgrn)
+        /// </summary>
+        public StatusOgrn StatusOgrn { get; set; } // FK_OrganizationOgrnInventory_StatusOgrn
+
+        public OrganizationOgrnInventory()
+        {
+            DateCreate = System.DateTime.Now;
+            GrnInventories = new System.Collections.Generic.List<GrnInventory>();
         }
     }
 
@@ -2513,7 +2940,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Patent pointed by [ParametrNalog].([IdPatent]) (FK_ParametrNalog_Patent)
         /// </summary>
-        public virtual Patent Patent { get; set; } // FK_ParametrNalog_Patent
+        public Patent Patent { get; set; } // FK_ParametrNalog_Patent
 
         public ParametrNalog()
         {
@@ -2557,40 +2984,34 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child DocPatents where [DocPatent].[IdPatent] point to this entity (FK_DocPatent_Patent)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<DocPatent> DocPatents { get; set; } // DocPatent.FK_DocPatent_Patent
+        public System.Collections.Generic.ICollection<DocPatent> DocPatents { get; set; } // DocPatent.FK_DocPatent_Patent
         /// <summary>
         /// Child ParametrNalogs where [ParametrNalog].[IdPatent] point to this entity (FK_ParametrNalog_Patent)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<ParametrNalog> ParametrNalogs { get; set; } // ParametrNalog.FK_ParametrNalog_Patent
+        public System.Collections.Generic.ICollection<ParametrNalog> ParametrNalogs { get; set; } // ParametrNalog.FK_ParametrNalog_Patent
         /// <summary>
         /// Child PlaceOfBusinesses where [PlaceOfBusiness].[IdPatent] point to this entity (FK_PlaceOfBusiness_Patent)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<PlaceOfBusiness> PlaceOfBusinesses { get; set; } // PlaceOfBusiness.FK_PlaceOfBusiness_Patent
+        public System.Collections.Generic.ICollection<PlaceOfBusiness> PlaceOfBusinesses { get; set; } // PlaceOfBusiness.FK_PlaceOfBusiness_Patent
         /// <summary>
         /// Child SvedFactPatents where [SvedFactPatent].[IdPatent] point to this entity (FK_SvedFactPatent_Patent)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<SvedFactPatent> SvedFactPatents { get; set; } // SvedFactPatent.FK_SvedFactPatent_Patent
+        public System.Collections.Generic.ICollection<SvedFactPatent> SvedFactPatents { get; set; } // SvedFactPatent.FK_SvedFactPatent_Patent
         /// <summary>
         /// Child SvedObjects where [SvedObject].[IdPatent] point to this entity (FK_SvedObject_Patent)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<SvedObject> SvedObjects { get; set; } // SvedObject.FK_SvedObject_Patent
+        public System.Collections.Generic.ICollection<SvedObject> SvedObjects { get; set; } // SvedObject.FK_SvedObject_Patent
         /// <summary>
         /// Child SvedTrs where [SvedTr].[IdPatent] point to this entity (FK_SvedTr_Patent)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<SvedTr> SvedTrs { get; set; } // SvedTr.FK_SvedTr_Patent
+        public System.Collections.Generic.ICollection<SvedTr> SvedTrs { get; set; } // SvedTr.FK_SvedTr_Patent
 
         // Foreign keys
 
         /// <summary>
         /// Parent FlFaceMain pointed by [Patent].([IdFl]) (FK_Patent_FlFaceMain)
         /// </summary>
-        public virtual FlFaceMain FlFaceMain { get; set; } // FK_Patent_FlFaceMain
+        public FlFaceMain FlFaceMain { get; set; } // FK_Patent_FlFaceMain
 
         public Patent()
         {
@@ -2620,7 +3041,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Patent pointed by [PlaceOfBusiness].([IdPatent]) (FK_PlaceOfBusiness_Patent)
         /// </summary>
-        public virtual Patent Patent { get; set; } // FK_PlaceOfBusiness_Patent
+        public Patent Patent { get; set; } // FK_PlaceOfBusiness_Patent
 
         public PlaceOfBusiness()
         {
@@ -2643,12 +3064,12 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent TemplateQuestion pointed by [QuestionsAndUsers].([IdTemplateQuestions]) (FK_TemplateQuestions_QuestionsAndUsers)
         /// </summary>
-        public virtual TemplateQuestion TemplateQuestion { get; set; } // FK_TemplateQuestions_QuestionsAndUsers
+        public TemplateQuestion TemplateQuestion { get; set; } // FK_TemplateQuestions_QuestionsAndUsers
 
         /// <summary>
         /// Parent UserOrg pointed by [QuestionsAndUsers].([IdUser]) (FK_UserOrg_QuestionsAndUsers)
         /// </summary>
-        public virtual UserOrg UserOrg { get; set; } // FK_UserOrg_QuestionsAndUsers
+        public UserOrg UserOrg { get; set; } // FK_UserOrg_QuestionsAndUsers
 
         public QuestionsAndUser()
         {
@@ -2689,6 +3110,29 @@ namespace EfDatabaseAutomation.Automation.Base
         public string CashText { get; set; } // CashText (length: 512)
     }
 
+    // RegisterDocumentsPrinting
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class RegisterDocumentsPrinting
+    {
+        public int IdDocument { get; set; } // IdDocument (Primary key)
+        public string MachineName { get; set; } // MachineName (length: 128)
+        public string TabelNumberUser { get; set; } // TabelNumberUser (length: 64)
+        public string NameFace { get; set; } // NameFace (length: 512)
+        public string Inn { get; set; } // Inn (length: 12)
+        public string Address { get; set; } // Address (length: 1024)
+        public System.DateTime? DateDocument { get; set; } // DateDocument
+        public int? NumberDocument { get; set; } // NumberDocument
+        public string FormKnd { get; set; } // FormKnd (length: 512)
+        public string RegNumberDocumetGuid { get; set; } // RegNumberDocumetGuid (length: 64)
+        public int CountPage { get; set; } // CountPage
+        public System.DateTime DateCreate { get; set; } // DateCreate
+
+        public RegisterDocumentsPrinting()
+        {
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
     // ReportXlsx
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class ReportXlsx
@@ -2726,12 +3170,12 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent FlFace pointed by [RukAndUcrh].([IdFl]) (FK_RukAndUcrh_FlFace)
         /// </summary>
-        public virtual FlFace FlFace { get; set; } // FK_RukAndUcrh_FlFace
+        public FlFace FlFace { get; set; } // FK_RukAndUcrh_FlFace
 
         /// <summary>
         /// Parent UlFace pointed by [RukAndUcrh].([IdUl]) (FK_RukAndUcrh_UlFace)
         /// </summary>
-        public virtual UlFace UlFace { get; set; } // FK_RukAndUcrh_UlFace
+        public UlFace UlFace { get; set; } // FK_RukAndUcrh_UlFace
 
         public RukAndUcrh()
         {
@@ -2752,8 +3196,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child DepartamentOtdels where [DepartamentOtdel].[IdSender] point to this entity (FK_SenderTaxJournalOkp2_DepartamentOtdel)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<DepartamentOtdel> DepartamentOtdels { get; set; } // DepartamentOtdel.FK_SenderTaxJournalOkp2_DepartamentOtdel
+        public System.Collections.Generic.ICollection<DepartamentOtdel> DepartamentOtdels { get; set; } // DepartamentOtdel.FK_SenderTaxJournalOkp2_DepartamentOtdel
 
         public SenderTaxJournalOkp2()
         {
@@ -2789,7 +3232,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent StatementNp pointed by [Statement].([IdNp]) (FK_StatementNp_Statement)
         /// </summary>
-        public virtual StatementNp StatementNp { get; set; } // FK_StatementNp_Statement
+        public StatementNp StatementNp { get; set; } // FK_StatementNp_Statement
 
         public Statement()
         {
@@ -2814,12 +3257,12 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent HeadingStatement pointed by [StatementFull].([IdStatementHead]) (FK_HeadingStatement_StatementFull)
         /// </summary>
-        public virtual HeadingStatement HeadingStatement { get; set; } // FK_HeadingStatement_StatementFull
+        public HeadingStatement HeadingStatement { get; set; } // FK_HeadingStatement_StatementFull
 
         /// <summary>
         /// Parent UlFace pointed by [StatementFull].([IdUl]) (FK_UlFace_StatementFull)
         /// </summary>
-        public virtual UlFace UlFace { get; set; } // FK_UlFace_StatementFull
+        public UlFace UlFace { get; set; } // FK_UlFace_StatementFull
 
         public StatementFull()
         {
@@ -2842,13 +3285,56 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child Statements where [Statement].[IdNp] point to this entity (FK_StatementNp_Statement)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<Statement> Statements { get; set; } // Statement.FK_StatementNp_Statement
+        public System.Collections.Generic.ICollection<Statement> Statements { get; set; } // Statement.FK_StatementNp_Statement
 
         public StatementNp()
         {
             DateCreate = System.DateTime.Now;
             Statements = new System.Collections.Generic.List<Statement>();
+        }
+    }
+
+    // StatusDocument
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class StatusDocument
+    {
+        public int IdStatusDocument { get; set; } // IdStatusDocument (Primary key)
+        public string NameMessage { get; set; } // NameMessage (length: 1024)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child DocumentInventories where [DocumentInventory].[IdStatusDocument] point to this entity (FK_DocumentInventory_StatusDocument)
+        /// </summary>
+        public System.Collections.Generic.ICollection<DocumentInventory> DocumentInventories { get; set; } // DocumentInventory.FK_DocumentInventory_StatusDocument
+
+        public StatusDocument()
+        {
+            DateCreate = System.DateTime.Now;
+            DocumentInventories = new System.Collections.Generic.List<DocumentInventory>();
+        }
+    }
+
+    // StatusEvent
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class StatusEvent
+    {
+        public int IdStatusEvent { get; set; } // IdStatusEvent (Primary key)
+        public string NameStatusEvent { get; set; } // NameStatusEvent (length: 128)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child EventProcessErrors where [EventProcessError].[IdStatusEvent] point to this entity (FK_EventProcessError_StatusEvent)
+        /// </summary>
+        public System.Collections.Generic.ICollection<EventProcessError> EventProcessErrors { get; set; } // EventProcessError.FK_EventProcessError_StatusEvent
+
+        public StatusEvent()
+        {
+            DateCreate = System.DateTime.Now;
+            EventProcessErrors = new System.Collections.Generic.List<EventProcessError>();
         }
     }
 
@@ -2865,13 +3351,34 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child FlFaceMainRegistrations where [FlFaceMainRegistration].[IdStatus] point to this entity (FK_FlFaceMainRegistration_StatusFlRegistration)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<FlFaceMainRegistration> FlFaceMainRegistrations { get; set; } // FlFaceMainRegistration.FK_FlFaceMainRegistration_StatusFlRegistration
+        public System.Collections.Generic.ICollection<FlFaceMainRegistration> FlFaceMainRegistrations { get; set; } // FlFaceMainRegistration.FK_FlFaceMainRegistration_StatusFlRegistration
 
         public StatusFlRegistration()
         {
             DateCreate = System.DateTime.Now;
             FlFaceMainRegistrations = new System.Collections.Generic.List<FlFaceMainRegistration>();
+        }
+    }
+
+    // StatusOgrn
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class StatusOgrn
+    {
+        public int IdStatus { get; set; } // IdStatus (Primary key)
+        public string NameStatus { get; set; } // NameStatus (length: 1024)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child OrganizationOgrnInventories where [OrganizationOgrnInventory].[IdStatus] point to this entity (FK_OrganizationOgrnInventory_StatusOgrn)
+        /// </summary>
+        public System.Collections.Generic.ICollection<OrganizationOgrnInventory> OrganizationOgrnInventories { get; set; } // OrganizationOgrnInventory.FK_OrganizationOgrnInventory_StatusOgrn
+
+        public StatusOgrn()
+        {
+            DateCreate = System.DateTime.Now;
+            OrganizationOgrnInventories = new System.Collections.Generic.List<OrganizationOgrnInventory>();
         }
     }
 
@@ -2891,7 +3398,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent UlFace pointed by [StrngthUlFace].([IdUl]) (FK_UlFace_StrngthUlFace)
         /// </summary>
-        public virtual UlFace UlFace { get; set; } // FK_UlFace_StrngthUlFace
+        public UlFace UlFace { get; set; } // FK_UlFace_StrngthUlFace
 
         public StrngthUlFace()
         {
@@ -2926,7 +3433,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent UlFace pointed by [SvedAccoutingUlFace].([IdUl]) (FK_UlFace_SvedAccoutingUlFace)
         /// </summary>
-        public virtual UlFace UlFace { get; set; } // FK_UlFace_SvedAccoutingUlFace
+        public UlFace UlFace { get; set; } // FK_UlFace_SvedAccoutingUlFace
 
         public SvedAccoutingUlFace()
         {
@@ -2955,7 +3462,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Patent pointed by [SvedFactPatent].([IdPatent]) (FK_SvedFactPatent_Patent)
         /// </summary>
-        public virtual Patent Patent { get; set; } // FK_SvedFactPatent_Patent
+        public Patent Patent { get; set; } // FK_SvedFactPatent_Patent
 
         public SvedFactPatent()
         {
@@ -2986,7 +3493,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Patent pointed by [SvedObject].([IdPatent]) (FK_SvedObject_Patent)
         /// </summary>
-        public virtual Patent Patent { get; set; } // FK_SvedObject_Patent
+        public Patent Patent { get; set; } // FK_SvedObject_Patent
 
         public SvedObject()
         {
@@ -3017,11 +3524,48 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Patent pointed by [SvedTr].([IdPatent]) (FK_SvedTr_Patent)
         /// </summary>
-        public virtual Patent Patent { get; set; } // FK_SvedTr_Patent
+        public Patent Patent { get; set; } // FK_SvedTr_Patent
 
         public SvedTr()
         {
             Weight = 0.00;
+            DateCreate = System.DateTime.Now;
+        }
+    }
+
+    // SynchronizationUserAndAis
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class SynchronizationUserAndAi
+    {
+        public int IdSync { get; set; } // IdSync (Primary key)
+        public int IdDocGrn { get; set; } // IdDocGrn
+        public int? IdDocument { get; set; } // IdDocument
+        public int? IdAisDocument { get; set; } // IdAisDocument
+        public bool? IsAddDocument { get; set; } // IsAddDocument
+        public bool? IsEmptyDocument { get; set; } // IsEmptyDocument
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Foreign keys
+
+        /// <summary>
+        /// Parent AisDocument pointed by [SynchronizationUserAndAis].([IdAisDocument]) (FK_SynchronizationUserAndAis_AisDocument)
+        /// </summary>
+        public AisDocument AisDocument { get; set; } // FK_SynchronizationUserAndAis_AisDocument
+
+        /// <summary>
+        /// Parent DocumentInventory pointed by [SynchronizationUserAndAis].([IdDocument]) (FK_SynchronizationUserAndAis_DocumentInventory)
+        /// </summary>
+        public DocumentInventory DocumentInventory { get; set; } // FK_SynchronizationUserAndAis_DocumentInventory
+
+        /// <summary>
+        /// Parent GrnInventory pointed by [SynchronizationUserAndAis].([IdDocGrn]) (FK_SynchronizationUserAndAis_GrnInventory)
+        /// </summary>
+        public GrnInventory GrnInventory { get; set; } // FK_SynchronizationUserAndAis_GrnInventory
+
+        public SynchronizationUserAndAi()
+        {
+            IsAddDocument = false;
+            IsEmptyDocument = false;
             DateCreate = System.DateTime.Now;
         }
     }
@@ -3327,13 +3871,11 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child FaceModelTemplateGetPosts where [FaceModelTemplateGetPost].[IdTemplate] point to this entity (FK_Template_FaceModelTemplateGetPost)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost.FK_Template_FaceModelTemplateGetPost
+        public System.Collections.Generic.ICollection<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost.FK_Template_FaceModelTemplateGetPost
         /// <summary>
         /// Child TemplateAndTrees where [TemplateAndTree].[IdTemplate] point to this entity (FK_Template_TemplateAndTree)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<TemplateAndTree> TemplateAndTrees { get; set; } // TemplateAndTree.FK_Template_TemplateAndTree
+        public System.Collections.Generic.ICollection<TemplateAndTree> TemplateAndTrees { get; set; } // TemplateAndTree.FK_Template_TemplateAndTree
 
         public Template()
         {
@@ -3357,12 +3899,12 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Template pointed by [TemplateAndTree].([IdTemplate]) (FK_Template_TemplateAndTree)
         /// </summary>
-        public virtual Template Template { get; set; } // FK_Template_TemplateAndTree
+        public Template Template { get; set; } // FK_Template_TemplateAndTree
 
         /// <summary>
         /// Parent Tree pointed by [TemplateAndTree].([IdTree]) (FK_Tree_TemplateAndTree)
         /// </summary>
-        public virtual Tree Tree { get; set; } // FK_Tree_TemplateAndTree
+        public Tree Tree { get; set; } // FK_Tree_TemplateAndTree
 
         public TemplateAndTree()
         {
@@ -3376,6 +3918,7 @@ namespace EfDatabaseAutomation.Automation.Base
     {
         public int IdTemplateQuestions { get; set; } // IdTemplateQuestions (Primary key)
         public int IdGroupQuestions { get; set; } // IdGroupQuestions
+        public int IdType { get; set; } // IdType
         public string InfoQuestions { get; set; } // InfoQuestions (length: 512)
         public System.DateTime? DateCreate { get; set; } // DateCreate
 
@@ -3384,15 +3927,19 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child QuestionsAndUsers where [QuestionsAndUsers].[IdTemplateQuestions] point to this entity (FK_TemplateQuestions_QuestionsAndUsers)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<QuestionsAndUser> QuestionsAndUsers { get; set; } // QuestionsAndUsers.FK_TemplateQuestions_QuestionsAndUsers
+        public System.Collections.Generic.ICollection<QuestionsAndUser> QuestionsAndUsers { get; set; } // QuestionsAndUsers.FK_TemplateQuestions_QuestionsAndUsers
 
         // Foreign keys
 
         /// <summary>
         /// Parent GroupQuestion pointed by [TemplateQuestions].([IdGroupQuestions]) (FK_GroupQuestions_TemplateQuestions)
         /// </summary>
-        public virtual GroupQuestion GroupQuestion { get; set; } // FK_GroupQuestions_TemplateQuestions
+        public GroupQuestion GroupQuestion { get; set; } // FK_GroupQuestions_TemplateQuestions
+
+        /// <summary>
+        /// Parent TypeOrgAndQuestion pointed by [TemplateQuestions].([IdType]) (FK_TypeOrgAndQuestions_TemplateQuestions)
+        /// </summary>
+        public TypeOrgAndQuestion TypeOrgAndQuestion { get; set; } // FK_TypeOrgAndQuestions_TemplateQuestions
 
         public TemplateQuestion()
         {
@@ -3415,50 +3962,42 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child FaceModelTemplateGetPosts where [FaceModelTemplateGetPost].[IdTree] point to this entity (FK_Tree_FaceModelTemplateGetPost)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost.FK_Tree_FaceModelTemplateGetPost
+        public System.Collections.Generic.ICollection<FaceModelTemplateGetPost> FaceModelTemplateGetPosts { get; set; } // FaceModelTemplateGetPost.FK_Tree_FaceModelTemplateGetPost
         /// <summary>
         /// Child Fields where [Fields].[IdTree] point to this entity (FK_Tree_Fields)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<Field> Fields { get; set; } // Fields.FK_Tree_Fields
+        public System.Collections.Generic.ICollection<Field> Fields { get; set; } // Fields.FK_Tree_Fields
         /// <summary>
         /// Child TemplateAndTrees where [TemplateAndTree].[IdTree] point to this entity (FK_Tree_TemplateAndTree)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<TemplateAndTree> TemplateAndTrees { get; set; } // TemplateAndTree.FK_Tree_TemplateAndTree
+        public System.Collections.Generic.ICollection<TemplateAndTree> TemplateAndTrees { get; set; } // TemplateAndTree.FK_Tree_TemplateAndTree
         /// <summary>
         /// Parent (One-to-One) Tree pointed by [TreeDataArea].[IdTreeDataArea] (FK_Tree_TreeDataArea)
         /// </summary>
-        [JsonIgnore]
-        public virtual TreeDataArea TreeDataArea { get; set; } // TreeDataArea.FK_Tree_TreeDataArea
+        public TreeDataArea TreeDataArea { get; set; } // TreeDataArea.FK_Tree_TreeDataArea
         /// <summary>
         /// Parent (One-to-One) Tree pointed by [TreeExport].[IdTreeExport] (FK_Tree_TreeExport)
         /// </summary>
-        [JsonIgnore]
-        public virtual TreeExport TreeExport { get; set; } // TreeExport.FK_Tree_TreeExport
+        public TreeExport TreeExport { get; set; } // TreeExport.FK_Tree_TreeExport
         /// <summary>
         /// Parent (One-to-One) Tree pointed by [TreeFilter].[IdTreeFilter] (FK_Tree_TreeFilter)
         /// </summary>
-        [JsonIgnore]
-        public virtual TreeFilter TreeFilter { get; set; } // TreeFilter.FK_Tree_TreeFilter
+        public TreeFilter TreeFilter { get; set; } // TreeFilter.FK_Tree_TreeFilter
         /// <summary>
         /// Parent (One-to-One) Tree pointed by [TreeGrid].[IdTreeGrid] (FK_Tree_TreeGrid)
         /// </summary>
-        [JsonIgnore]
-        public virtual TreeGrid TreeGrid { get; set; } // TreeGrid.FK_Tree_TreeGrid
+        public TreeGrid TreeGrid { get; set; } // TreeGrid.FK_Tree_TreeGrid
         /// <summary>
         /// Parent (One-to-One) Tree pointed by [TreeUpdate].[IdTreeUpdate] (FK_Tree_TreeUpdate)
         /// </summary>
-        [JsonIgnore]
-        public virtual TreeUpdate TreeUpdate { get; set; } // TreeUpdate.FK_Tree_TreeUpdate
+        public TreeUpdate TreeUpdate { get; set; } // TreeUpdate.FK_Tree_TreeUpdate
 
         // Foreign keys
 
         /// <summary>
         /// Parent TypeTree pointed by [Tree].([IdTypeTree]) (FK_Tree_TypeTree)
         /// </summary>
-        public virtual TypeTree TypeTree { get; set; } // FK_Tree_TypeTree
+        public TypeTree TypeTree { get; set; } // FK_Tree_TypeTree
 
         public Tree()
         {
@@ -3482,15 +4021,14 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child DataAreaParameters where [DataAreaParameters].[IdDataArea] point to this entity (FK_TreeDataArea_DataAreaParameters)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<DataAreaParameter> DataAreaParameters { get; set; } // DataAreaParameters.FK_TreeDataArea_DataAreaParameters
+        public System.Collections.Generic.ICollection<DataAreaParameter> DataAreaParameters { get; set; } // DataAreaParameters.FK_TreeDataArea_DataAreaParameters
 
         // Foreign keys
 
         /// <summary>
         /// Parent Tree pointed by [TreeDataArea].([IdTreeDataArea]) (FK_Tree_TreeDataArea)
         /// </summary>
-        public virtual Tree Tree { get; set; } // FK_Tree_TreeDataArea
+        public Tree Tree { get; set; } // FK_Tree_TreeDataArea
 
         public TreeDataArea()
         {
@@ -3512,7 +4050,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Tree pointed by [TreeExport].([IdTreeExport]) (FK_Tree_TreeExport)
         /// </summary>
-        public virtual Tree Tree { get; set; } // FK_Tree_TreeExport
+        public Tree Tree { get; set; } // FK_Tree_TreeExport
 
         public TreeExport()
         {
@@ -3533,7 +4071,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Tree pointed by [TreeFilter].([IdTreeFilter]) (FK_Tree_TreeFilter)
         /// </summary>
-        public virtual Tree Tree { get; set; } // FK_Tree_TreeFilter
+        public Tree Tree { get; set; } // FK_Tree_TreeFilter
 
         public TreeFilter()
         {
@@ -3555,7 +4093,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Tree pointed by [TreeGrid].([IdTreeGrid]) (FK_Tree_TreeGrid)
         /// </summary>
-        public virtual Tree Tree { get; set; } // FK_Tree_TreeGrid
+        public Tree Tree { get; set; } // FK_Tree_TreeGrid
 
         public TreeGrid()
         {
@@ -3576,7 +4114,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Parent Tree pointed by [TreeUpdate].([IdTreeUpdate]) (FK_Tree_TreeUpdate)
         /// </summary>
-        public virtual Tree Tree { get; set; } // FK_Tree_TreeUpdate
+        public Tree Tree { get; set; } // FK_Tree_TreeUpdate
 
         public TreeUpdate()
         {
@@ -3597,18 +4135,15 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child FactOfOwnershipImZmTrFls where [FactOfOwnershipImZmTrFl].[IdObject] point to this entity (FK_TypeObject_FactOfOwnershipImZmTrFl)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<FactOfOwnershipImZmTrFl> FactOfOwnershipImZmTrFls { get; set; } // FactOfOwnershipImZmTrFl.FK_TypeObject_FactOfOwnershipImZmTrFl
+        public System.Collections.Generic.ICollection<FactOfOwnershipImZmTrFl> FactOfOwnershipImZmTrFls { get; set; } // FactOfOwnershipImZmTrFl.FK_TypeObject_FactOfOwnershipImZmTrFl
         /// <summary>
         /// Child ImZmTrFls where [ImZmTrFl].[IdObject] point to this entity (FK_TypeObject_ImZmTrFl)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<ImZmTrFl> ImZmTrFls { get; set; } // ImZmTrFl.FK_TypeObject_ImZmTrFl
+        public System.Collections.Generic.ICollection<ImZmTrFl> ImZmTrFls { get; set; } // ImZmTrFl.FK_TypeObject_ImZmTrFl
         /// <summary>
         /// Child ImZmTrUls where [ImZmTrUl].[IdObject] point to this entity (FK_TypeObject_ImZmTrUl)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<ImZmTrUl> ImZmTrUls { get; set; } // ImZmTrUl.FK_TypeObject_ImZmTrUl
+        public System.Collections.Generic.ICollection<ImZmTrUl> ImZmTrUls { get; set; } // ImZmTrUl.FK_TypeObject_ImZmTrUl
 
         public TypeObject()
         {
@@ -3616,6 +4151,33 @@ namespace EfDatabaseAutomation.Automation.Base
             FactOfOwnershipImZmTrFls = new System.Collections.Generic.List<FactOfOwnershipImZmTrFl>();
             ImZmTrFls = new System.Collections.Generic.List<ImZmTrFl>();
             ImZmTrUls = new System.Collections.Generic.List<ImZmTrUl>();
+        }
+    }
+
+    // TypeOrgAndQuestions
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TypeOrgAndQuestion
+    {
+        public int IdType { get; set; } // IdType (Primary key)
+        public string NameType { get; set; } // NameType (length: 256)
+        public System.DateTime? DateCreate { get; set; } // DateCreate
+
+        // Reverse navigation
+
+        /// <summary>
+        /// Child MainOrgs where [MainOrg].[IdType] point to this entity (FK_TypeOrgAndQuestions_MainOrg)
+        /// </summary>
+        public System.Collections.Generic.ICollection<MainOrg> MainOrgs { get; set; } // MainOrg.FK_TypeOrgAndQuestions_MainOrg
+        /// <summary>
+        /// Child TemplateQuestions where [TemplateQuestions].[IdType] point to this entity (FK_TypeOrgAndQuestions_TemplateQuestions)
+        /// </summary>
+        public System.Collections.Generic.ICollection<TemplateQuestion> TemplateQuestions { get; set; } // TemplateQuestions.FK_TypeOrgAndQuestions_TemplateQuestions
+
+        public TypeOrgAndQuestion()
+        {
+            DateCreate = System.DateTime.Now;
+            MainOrgs = new System.Collections.Generic.List<MainOrg>();
+            TemplateQuestions = new System.Collections.Generic.List<TemplateQuestion>();
         }
     }
 
@@ -3632,8 +4194,7 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child Trees where [Tree].[IdTypeTree] point to this entity (FK_Tree_TypeTree)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<Tree> Trees { get; set; } // Tree.FK_Tree_TypeTree
+        public System.Collections.Generic.ICollection<Tree> Trees { get; set; } // Tree.FK_Tree_TypeTree
 
         public TypeTree()
         {
@@ -3666,73 +4227,59 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child Books where [Book].[IdUl] point to this entity (FK_Book_UlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<Book> Books { get; set; } // Book.FK_Book_UlFace
+        public System.Collections.Generic.ICollection<Book> Books { get; set; } // Book.FK_Book_UlFace
         /// <summary>
         /// Child BranchUlFaces where [BranchUlFace].[IdUl] point to this entity (FK_UlFace_BranchUlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<BranchUlFace> BranchUlFaces { get; set; } // BranchUlFace.FK_UlFace_BranchUlFace
+        public System.Collections.Generic.ICollection<BranchUlFace> BranchUlFaces { get; set; } // BranchUlFace.FK_UlFace_BranchUlFace
         /// <summary>
         /// Child CashBankAllUlFaces where [CashBankAllUlFace].[IdUl] point to this entity (FK_UlFace_CashBankAllUlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<CashBankAllUlFace> CashBankAllUlFaces { get; set; } // CashBankAllUlFace.FK_UlFace_CashBankAllUlFace
+        public System.Collections.Generic.ICollection<CashBankAllUlFace> CashBankAllUlFaces { get; set; } // CashBankAllUlFace.FK_UlFace_CashBankAllUlFace
         /// <summary>
         /// Child CashUlFaces where [CashUlFace].[IdUl] point to this entity (FK_UlFace_CashUlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<CashUlFace> CashUlFaces { get; set; } // CashUlFace.FK_UlFace_CashUlFace
+        public System.Collections.Generic.ICollection<CashUlFace> CashUlFaces { get; set; } // CashUlFace.FK_UlFace_CashUlFace
         /// <summary>
         /// Child CounterpartyCashBanks where [CounterpartyCashBank].[IdUl] point to this entity (FK_CounterpartyCashBank_UlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<CounterpartyCashBank> CounterpartyCashBanks { get; set; } // CounterpartyCashBank.FK_CounterpartyCashBank_UlFace
+        public System.Collections.Generic.ICollection<CounterpartyCashBank> CounterpartyCashBanks { get; set; } // CounterpartyCashBank.FK_CounterpartyCashBank_UlFace
         /// <summary>
         /// Child DeclarationUls where [DeclarationUl].[IdUl] point to this entity (FK_DeclarationUl_UlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<DeclarationUl> DeclarationUls { get; set; } // DeclarationUl.FK_DeclarationUl_UlFace
+        public System.Collections.Generic.ICollection<DeclarationUl> DeclarationUls { get; set; } // DeclarationUl.FK_DeclarationUl_UlFace
         /// <summary>
         /// Child HistoriUlFaces where [HistoriUlFace].[IdUl] point to this entity (FK_HistoriUlFace_UlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<HistoriUlFace> HistoriUlFaces { get; set; } // HistoriUlFace.FK_HistoriUlFace_UlFace
+        public System.Collections.Generic.ICollection<HistoriUlFace> HistoriUlFaces { get; set; } // HistoriUlFace.FK_HistoriUlFace_UlFace
         /// <summary>
         /// Child ImZmTrUls where [ImZmTrUl].[IdUl] point to this entity (FK_UlFace_ImZmTrUl)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<ImZmTrUl> ImZmTrUls { get; set; } // ImZmTrUl.FK_UlFace_ImZmTrUl
+        public System.Collections.Generic.ICollection<ImZmTrUl> ImZmTrUls { get; set; } // ImZmTrUl.FK_UlFace_ImZmTrUl
         /// <summary>
         /// Child IndividualCardsUlFaces where [IndividualCardsUlFace].[IdUl] point to this entity (FK_IndividualCardsUlFace_UlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<IndividualCardsUlFace> IndividualCardsUlFaces { get; set; } // IndividualCardsUlFace.FK_IndividualCardsUlFace_UlFace
+        public System.Collections.Generic.ICollection<IndividualCardsUlFace> IndividualCardsUlFaces { get; set; } // IndividualCardsUlFace.FK_IndividualCardsUlFace_UlFace
         /// <summary>
         /// Child NdflFls where [NdflFl].[IdUl] point to this entity (FK_UlFace_NdflFl)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<NdflFl> NdflFls { get; set; } // NdflFl.FK_UlFace_NdflFl
+        public System.Collections.Generic.ICollection<NdflFl> NdflFls { get; set; } // NdflFl.FK_UlFace_NdflFl
         /// <summary>
         /// Child RukAndUcrhs where [RukAndUcrh].[IdUl] point to this entity (FK_RukAndUcrh_UlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh.FK_RukAndUcrh_UlFace
+        public System.Collections.Generic.ICollection<RukAndUcrh> RukAndUcrhs { get; set; } // RukAndUcrh.FK_RukAndUcrh_UlFace
         /// <summary>
         /// Child StatementFulls where [StatementFull].[IdUl] point to this entity (FK_UlFace_StatementFull)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<StatementFull> StatementFulls { get; set; } // StatementFull.FK_UlFace_StatementFull
+        public System.Collections.Generic.ICollection<StatementFull> StatementFulls { get; set; } // StatementFull.FK_UlFace_StatementFull
         /// <summary>
         /// Child StrngthUlFaces where [StrngthUlFace].[IdUl] point to this entity (FK_UlFace_StrngthUlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<StrngthUlFace> StrngthUlFaces { get; set; } // StrngthUlFace.FK_UlFace_StrngthUlFace
+        public System.Collections.Generic.ICollection<StrngthUlFace> StrngthUlFaces { get; set; } // StrngthUlFace.FK_UlFace_StrngthUlFace
         /// <summary>
         /// Child SvedAccoutingUlFaces where [SvedAccoutingUlFace].[IdUl] point to this entity (FK_UlFace_SvedAccoutingUlFace)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<SvedAccoutingUlFace> SvedAccoutingUlFaces { get; set; } // SvedAccoutingUlFace.FK_UlFace_SvedAccoutingUlFace
+        public System.Collections.Generic.ICollection<SvedAccoutingUlFace> SvedAccoutingUlFaces { get; set; } // SvedAccoutingUlFace.FK_UlFace_SvedAccoutingUlFace
 
         public UlFace()
         {
@@ -3840,15 +4387,14 @@ namespace EfDatabaseAutomation.Automation.Base
         /// <summary>
         /// Child QuestionsAndUsers where [QuestionsAndUsers].[IdUser] point to this entity (FK_UserOrg_QuestionsAndUsers)
         /// </summary>
-        [JsonIgnore]
-        public virtual System.Collections.Generic.ICollection<QuestionsAndUser> QuestionsAndUsers { get; set; } // QuestionsAndUsers.FK_UserOrg_QuestionsAndUsers
+        public System.Collections.Generic.ICollection<QuestionsAndUser> QuestionsAndUsers { get; set; } // QuestionsAndUsers.FK_UserOrg_QuestionsAndUsers
 
         // Foreign keys
 
         /// <summary>
         /// Parent MainOrg pointed by [UserOrg].([IdOrg]) (FK_MainOrg_UserOrg)
         /// </summary>
-        public virtual MainOrg MainOrg { get; set; } // FK_MainOrg_UserOrg
+        public MainOrg MainOrg { get; set; } // FK_MainOrg_UserOrg
 
         public UserOrg()
         {
@@ -3859,9 +4405,54 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // ViewRegisterDocumentsPrinting
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class ViewRegisterDocumentsPrinting
+    {
+        public string LogicsButton { get; set; } // LogicsButton (Primary key) (length: 6)
+        public int IdDocument { get; set; } // IdDocument (Primary key)
+        public string MachineName { get; set; } // MachineName (length: 128)
+        public string TabelNumberUser { get; set; } // TabelNumberUser (length: 64)
+        public string NameFace { get; set; } // NameFace (length: 512)
+        public string Inn { get; set; } // Inn (length: 12)
+        public string Address { get; set; } // Address (length: 1024)
+        public System.DateTime? DateDocument { get; set; } // DateDocument
+        public int? NumberDocument { get; set; } // NumberDocument
+        public string FormKnd { get; set; } // FormKnd (length: 512)
+        public string RegNumberDocumetGuid { get; set; } // RegNumberDocumetGuid (length: 64)
+        public int CountPage { get; set; } // CountPage (Primary key)
+        public System.DateTime DateCreate { get; set; } // DateCreate (Primary key)
+    }
+
     #endregion
 
     #region POCO Configuration
+
+    // AddDocumentToContainer
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class AddDocumentToContainerConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AddDocumentToContainer>
+    {
+        public AddDocumentToContainerConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AddDocumentToContainerConfiguration(string schema)
+        {
+            ToTable("AddDocumentToContainer", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdContainer).HasColumnName(@"IdContainer").HasColumnType("int").IsRequired();
+            Property(x => x.IdDocument).HasColumnName(@"IdDocument").HasColumnType("int").IsRequired();
+            Property(x => x.CounterModel).HasColumnName(@"CounterModel").HasColumnType("int").IsRequired();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.DocumentContainer).WithMany(b => b.AddDocumentToContainers).HasForeignKey(c => c.IdContainer).WillCascadeOnDelete(false); // FK_AddDocumentToContainer_DocumentContainer
+            HasRequired(a => a.DocumentInventory).WithMany(b => b.AddDocumentToContainers).HasForeignKey(c => c.IdDocument).WillCascadeOnDelete(false); // FK_AddDocumentToContainer_DocumentInventory
+        }
+    }
 
     // AddUlFace
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
@@ -3902,6 +4493,57 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.IdUl).HasColumnName(@"IdUl").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.InnUl).HasColumnName(@"InnUl").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
             Property(x => x.FullStatus).HasColumnName(@"FullStatus").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(124);
+        }
+    }
+
+    // AisDocument
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class AisDocumentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AisDocument>
+    {
+        public AisDocumentConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AisDocumentConfiguration(string schema)
+        {
+            ToTable("AisDocument", schema);
+            HasKey(x => x.IdAisDocument);
+
+            Property(x => x.IdAisDocument).HasColumnName(@"IdAisDocument").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdGrnAis3).HasColumnName(@"IdGrnAis3").HasColumnType("int").IsRequired();
+            Property(x => x.IdDocumentDirectory).HasColumnName(@"IdDocumentDirectory").HasColumnType("int").IsRequired();
+            Property(x => x.SmallNameDocument).HasColumnName(@"SmallNameDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.NumberDocument).HasColumnName(@"NumberDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.DateDocument).HasColumnName(@"DateDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(32);
+            Property(x => x.CountPage).HasColumnName(@"CountPage").HasColumnType("int").IsOptional();
+            Property(x => x.GuidDocument).HasColumnName(@"GuidDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.IsFinndRegDelo).HasColumnName(@"IsFinndRegDelo").HasColumnType("bit").IsOptional();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.AisGrnDocument).WithMany(b => b.AisDocuments).HasForeignKey(c => c.IdGrnAis3).WillCascadeOnDelete(false); // FK_AisDocument_AisGrnDocument
+            HasRequired(a => a.DirectoryDocument).WithMany(b => b.AisDocuments).HasForeignKey(c => c.IdDocumentDirectory).WillCascadeOnDelete(false); // FK_AisDocument_DirectoryDocument
+        }
+    }
+
+    // AisGrnDocument
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class AisGrnDocumentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<AisGrnDocument>
+    {
+        public AisGrnDocumentConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public AisGrnDocumentConfiguration(string schema)
+        {
+            ToTable("AisGrnDocument", schema);
+            HasKey(x => x.IdGrnAis3);
+
+            Property(x => x.IdGrnAis3).HasColumnName(@"IdGrnAis3").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.FullNameGrnAis3).HasColumnName(@"FullNameGrnAis3").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
         }
     }
 
@@ -4740,6 +5382,26 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // DirectoryDocument
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class DirectoryDocumentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<DirectoryDocument>
+    {
+        public DirectoryDocumentConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public DirectoryDocumentConfiguration(string schema)
+        {
+            ToTable("DirectoryDocument", schema);
+            HasKey(x => x.IdDocumentDirectory);
+
+            Property(x => x.IdDocumentDirectory).HasColumnName(@"IdDocumentDirectory").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.NameDocumentDataBase).HasColumnName(@"NameDocumentDataBase").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
     // DocPatent
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class DocPatentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<DocPatent>
@@ -4864,6 +5526,62 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // DocumentContainer
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class DocumentContainerConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<DocumentContainer>
+    {
+        public DocumentContainerConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public DocumentContainerConfiguration(string schema)
+        {
+            ToTable("DocumentContainer", schema);
+            HasKey(x => x.IdContainer);
+
+            Property(x => x.IdContainer).HasColumnName(@"IdContainer").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.BarcodeContainer).HasColumnName(@"BarcodeContainer").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(256);
+            Property(x => x.CountCurrent).HasColumnName(@"CountCurrent").HasColumnType("int").IsRequired();
+            Property(x => x.CountDocumentMin).HasColumnName(@"CountDocumentMin").HasColumnType("int").IsRequired();
+            Property(x => x.CountDocumentMax).HasColumnName(@"CountDocumentMax").HasColumnType("int").IsRequired();
+            Property(x => x.IsFinishContainer).HasColumnName(@"IsFinishContainer").HasColumnType("bit").IsRequired();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // DocumentInventory
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class DocumentInventoryConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<DocumentInventory>
+    {
+        public DocumentInventoryConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public DocumentInventoryConfiguration(string schema)
+        {
+            ToTable("DocumentInventory", schema);
+            HasKey(x => x.IdDocument);
+
+            Property(x => x.IdDocument).HasColumnName(@"IdDocument").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdDocGrn).HasColumnName(@"IdDocGrn").HasColumnType("int").IsRequired();
+            Property(x => x.IdDocumentDirectory).HasColumnName(@"IdDocumentDirectory").HasColumnType("int").IsRequired();
+            Property(x => x.IdInfo).HasColumnName(@"IdInfo").HasColumnType("int").IsOptional();
+            Property(x => x.CountPage).HasColumnName(@"CountPage").HasColumnType("int").IsRequired();
+            Property(x => x.GuidDocument).HasColumnName(@"GuidDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.StateDocument).HasColumnName(@"StateDocument").HasColumnType("bit").IsRequired();
+            Property(x => x.IdStatusDocument).HasColumnName(@"IdStatusDocument").HasColumnType("int").IsRequired();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.InfoDocument).WithMany(b => b.DocumentInventories).HasForeignKey(c => c.IdInfo).WillCascadeOnDelete(false); // FK_DocumentInventory_InfoDocument
+            HasRequired(a => a.DirectoryDocument).WithMany(b => b.DocumentInventories).HasForeignKey(c => c.IdDocumentDirectory).WillCascadeOnDelete(false); // FK_DocumentInventory_DirectoryDocument
+            HasRequired(a => a.GrnInventory).WithMany(b => b.DocumentInventories).HasForeignKey(c => c.IdDocGrn).WillCascadeOnDelete(false); // FK_DocumentInventory_GrnInventory
+            HasRequired(a => a.StatusDocument).WithMany(b => b.DocumentInventories).HasForeignKey(c => c.IdStatusDocument).WillCascadeOnDelete(false); // FK_DocumentInventory_StatusDocument
+        }
+    }
+
     // DocumentOwnershipImZmTrFl
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class DocumentOwnershipImZmTrFlConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<DocumentOwnershipImZmTrFl>
@@ -4945,6 +5663,30 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.IdError).HasColumnName(@"IdError").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.MessageError).HasColumnName(@"MessageError").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsRequired();
+        }
+    }
+
+    // EventProcessError
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class EventProcessErrorConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<EventProcessError>
+    {
+        public EventProcessErrorConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public EventProcessErrorConfiguration(string schema)
+        {
+            ToTable("EventProcessError", schema);
+            HasKey(x => x.IdProcess);
+
+            Property(x => x.IdProcess).HasColumnName(@"IdProcess").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.FullKeyProcess).HasColumnName(@"FullKeyProcess").HasColumnType("varchar(max)").IsRequired().IsUnicode(false);
+            Property(x => x.IdStatusEvent).HasColumnName(@"IdStatusEvent").HasColumnType("int").IsRequired();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.StatusEvent).WithMany(b => b.EventProcessErrors).HasForeignKey(c => c.IdStatusEvent).WillCascadeOnDelete(false); // FK_EventProcessError_StatusEvent
         }
     }
 
@@ -5180,6 +5922,61 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // GrnInventory
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class GrnInventoryConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<GrnInventory>
+    {
+        public GrnInventoryConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public GrnInventoryConfiguration(string schema)
+        {
+            ToTable("GrnInventory", schema);
+            HasKey(x => x.IdDocGrn);
+
+            Property(x => x.IdDocGrn).HasColumnName(@"IdDocGrn").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdGrnAis3).HasColumnName(@"IdGrnAis3").HasColumnType("int").IsOptional();
+            Property(x => x.IdOgrn).HasColumnName(@"IdOgrn").HasColumnType("int").IsRequired();
+            Property(x => x.NumberOgrnGrn).HasColumnName(@"NumberOgrnGrn").HasColumnType("bigint").IsRequired();
+            Property(x => x.NameDocument).HasColumnName(@"NameDocument").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.IsStartProcess).HasColumnName(@"IsStartProcess").HasColumnType("bit").IsRequired();
+            Property(x => x.IsFindGrnDataBase).HasColumnName(@"IsFindGrnDataBase").HasColumnType("bit").IsRequired();
+            Property(x => x.StatusFinish).HasColumnName(@"StatusFinish").HasColumnType("bit").IsRequired();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.AisGrnDocument).WithMany(b => b.GrnInventories).HasForeignKey(c => c.IdGrnAis3).WillCascadeOnDelete(false); // FK_GrnInventory_AisGrnDocument
+            HasRequired(a => a.OrganizationOgrnInventory).WithMany(b => b.GrnInventories).HasForeignKey(c => c.IdOgrn).WillCascadeOnDelete(false); // FK_GrnInventory_OrganizationOgrnInventory
+        }
+    }
+
+    // GrnInventoryAndEventProcessError
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class GrnInventoryAndEventProcessErrorConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<GrnInventoryAndEventProcessError>
+    {
+        public GrnInventoryAndEventProcessErrorConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public GrnInventoryAndEventProcessErrorConfiguration(string schema)
+        {
+            ToTable("GrnInventoryAndEventProcessError", schema);
+            HasKey(x => x.Id);
+
+            Property(x => x.Id).HasColumnName(@"Id").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdDocGrn).HasColumnName(@"IdDocGrn").HasColumnType("int").IsRequired();
+            Property(x => x.IdProcess).HasColumnName(@"IdProcess").HasColumnType("int").IsRequired();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.EventProcessError).WithMany(b => b.GrnInventoryAndEventProcessErrors).HasForeignKey(c => c.IdProcess).WillCascadeOnDelete(false); // FK_GrnInventoryAndEventProcessError_EventProcessError
+            HasRequired(a => a.GrnInventory).WithMany(b => b.GrnInventoryAndEventProcessErrors).HasForeignKey(c => c.IdDocGrn).WillCascadeOnDelete(false); // FK_GrnInventoryAndEventProcessError_GrnInventory
+        }
+    }
+
     // GroupKbk
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class GroupKbkConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<GroupKbk>
@@ -5409,6 +6206,26 @@ namespace EfDatabaseAutomation.Automation.Base
 
             // Foreign keys
             HasOptional(a => a.UlFace).WithMany(b => b.IndividualCardsUlFaces).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_IndividualCardsUlFace_UlFace
+        }
+    }
+
+    // InfoDocument
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class InfoDocumentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<InfoDocument>
+    {
+        public InfoDocumentConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public InfoDocumentConfiguration(string schema)
+        {
+            ToTable("InfoDocument", schema);
+            HasKey(x => x.IdInfo);
+
+            Property(x => x.IdInfo).HasColumnName(@"IdInfo").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.NameDocumentInfo).HasColumnName(@"NameDocumentInfo").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
         }
     }
 
@@ -5675,6 +6492,7 @@ namespace EfDatabaseAutomation.Automation.Base
 
             Property(x => x.IdOrg).HasColumnName(@"IdOrg").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.IdDerector).HasColumnName(@"IdDerector").HasColumnType("int").IsRequired();
+            Property(x => x.IdType).HasColumnName(@"IdType").HasColumnType("int").IsRequired();
             Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(12);
             Property(x => x.NameOrg).HasColumnName(@"NameOrg").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
             Property(x => x.NoIn).HasColumnName(@"NoIn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
@@ -5684,6 +6502,7 @@ namespace EfDatabaseAutomation.Automation.Base
 
             // Foreign keys
             HasRequired(a => a.Derector).WithMany(b => b.MainOrgs).HasForeignKey(c => c.IdDerector).WillCascadeOnDelete(false); // FK_Derector_MainOrg
+            HasRequired(a => a.TypeOrgAndQuestion).WithMany(b => b.MainOrgs).HasForeignKey(c => c.IdType).WillCascadeOnDelete(false); // FK_TypeOrgAndQuestions_MainOrg
         }
     }
 
@@ -5827,6 +6646,30 @@ namespace EfDatabaseAutomation.Automation.Base
 
             // Foreign keys
             HasRequired(a => a.UlFace).WithMany(b => b.NdflFls).HasForeignKey(c => c.IdUl).WillCascadeOnDelete(false); // FK_UlFace_NdflFl
+        }
+    }
+
+    // OrganizationOgrnInventory
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class OrganizationOgrnInventoryConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<OrganizationOgrnInventory>
+    {
+        public OrganizationOgrnInventoryConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public OrganizationOgrnInventoryConfiguration(string schema)
+        {
+            ToTable("OrganizationOgrnInventory", schema);
+            HasKey(x => x.IdOgrn);
+
+            Property(x => x.IdOgrn).HasColumnName(@"IdOgrn").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.NumberOgrn).HasColumnName(@"NumberOgrn").HasColumnType("bigint").IsRequired();
+            Property(x => x.IdStatus).HasColumnName(@"IdStatus").HasColumnType("int").IsRequired();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasRequired(a => a.StatusOgrn).WithMany(b => b.OrganizationOgrnInventories).HasForeignKey(c => c.IdStatus).WillCascadeOnDelete(false); // FK_OrganizationOgrnInventory_StatusOgrn
         }
     }
 
@@ -6047,6 +6890,35 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // RegisterDocumentsPrinting
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class RegisterDocumentsPrintingConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<RegisterDocumentsPrinting>
+    {
+        public RegisterDocumentsPrintingConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public RegisterDocumentsPrintingConfiguration(string schema)
+        {
+            ToTable("RegisterDocumentsPrinting", schema);
+            HasKey(x => x.IdDocument);
+
+            Property(x => x.IdDocument).HasColumnName(@"IdDocument").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.MachineName).HasColumnName(@"MachineName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.TabelNumberUser).HasColumnName(@"TabelNumberUser").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(64);
+            Property(x => x.NameFace).HasColumnName(@"NameFace").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.Address).HasColumnName(@"Address").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateDocument).HasColumnName(@"DateDocument").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.NumberDocument).HasColumnName(@"NumberDocument").HasColumnType("int").IsOptional();
+            Property(x => x.FormKnd).HasColumnName(@"FormKnd").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.RegNumberDocumetGuid).HasColumnName(@"RegNumberDocumetGuid").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(64);
+            Property(x => x.CountPage).HasColumnName(@"CountPage").HasColumnType("int").IsRequired();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsRequired();
+        }
+    }
+
     // ReportXlsx
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class ReportXlsxConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<ReportXlsx>
@@ -6219,6 +7091,46 @@ namespace EfDatabaseAutomation.Automation.Base
         }
     }
 
+    // StatusDocument
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class StatusDocumentConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<StatusDocument>
+    {
+        public StatusDocumentConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public StatusDocumentConfiguration(string schema)
+        {
+            ToTable("StatusDocument", schema);
+            HasKey(x => x.IdStatusDocument);
+
+            Property(x => x.IdStatusDocument).HasColumnName(@"IdStatusDocument").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.NameMessage).HasColumnName(@"NameMessage").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // StatusEvent
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class StatusEventConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<StatusEvent>
+    {
+        public StatusEventConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public StatusEventConfiguration(string schema)
+        {
+            ToTable("StatusEvent", schema);
+            HasKey(x => x.IdStatusEvent);
+
+            Property(x => x.IdStatusEvent).HasColumnName(@"IdStatusEvent").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.NameStatusEvent).HasColumnName(@"NameStatusEvent").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
     // StatusFlRegistration
     [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
     public class StatusFlRegistrationConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<StatusFlRegistration>
@@ -6236,6 +7148,26 @@ namespace EfDatabaseAutomation.Automation.Base
             Property(x => x.IdStatus).HasColumnName(@"IdStatus").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.MessageStatus).HasColumnName(@"MessageStatus").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024);
             Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsRequired();
+        }
+    }
+
+    // StatusOgrn
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class StatusOgrnConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<StatusOgrn>
+    {
+        public StatusOgrnConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public StatusOgrnConfiguration(string schema)
+        {
+            ToTable("StatusOgrn", schema);
+            HasKey(x => x.IdStatus);
+
+            Property(x => x.IdStatus).HasColumnName(@"IdStatus").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.NameStatus).HasColumnName(@"NameStatus").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
         }
     }
 
@@ -6391,6 +7323,35 @@ namespace EfDatabaseAutomation.Automation.Base
 
             // Foreign keys
             HasRequired(a => a.Patent).WithMany(b => b.SvedTrs).HasForeignKey(c => c.IdPatent); // FK_SvedTr_Patent
+        }
+    }
+
+    // SynchronizationUserAndAis
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class SynchronizationUserAndAiConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<SynchronizationUserAndAi>
+    {
+        public SynchronizationUserAndAiConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public SynchronizationUserAndAiConfiguration(string schema)
+        {
+            ToTable("SynchronizationUserAndAis", schema);
+            HasKey(x => x.IdSync);
+
+            Property(x => x.IdSync).HasColumnName(@"IdSync").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.IdDocGrn).HasColumnName(@"IdDocGrn").HasColumnType("int").IsRequired();
+            Property(x => x.IdDocument).HasColumnName(@"IdDocument").HasColumnType("int").IsOptional();
+            Property(x => x.IdAisDocument).HasColumnName(@"IdAisDocument").HasColumnType("int").IsOptional();
+            Property(x => x.IsAddDocument).HasColumnName(@"IsAddDocument").HasColumnType("bit").IsOptional();
+            Property(x => x.IsEmptyDocument).HasColumnName(@"IsEmptyDocument").HasColumnType("bit").IsOptional();
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+
+            // Foreign keys
+            HasOptional(a => a.AisDocument).WithMany(b => b.SynchronizationUserAndAis).HasForeignKey(c => c.IdAisDocument).WillCascadeOnDelete(false); // FK_SynchronizationUserAndAis_AisDocument
+            HasOptional(a => a.DocumentInventory).WithMany(b => b.SynchronizationUserAndAis).HasForeignKey(c => c.IdDocument).WillCascadeOnDelete(false); // FK_SynchronizationUserAndAis_DocumentInventory
+            HasRequired(a => a.GrnInventory).WithMany(b => b.SynchronizationUserAndAis).HasForeignKey(c => c.IdDocGrn).WillCascadeOnDelete(false); // FK_SynchronizationUserAndAis_GrnInventory
         }
     }
 
@@ -6827,11 +7788,13 @@ namespace EfDatabaseAutomation.Automation.Base
 
             Property(x => x.IdTemplateQuestions).HasColumnName(@"IdTemplateQuestions").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.IdGroupQuestions).HasColumnName(@"IdGroupQuestions").HasColumnType("int").IsRequired();
+            Property(x => x.IdType).HasColumnName(@"IdType").HasColumnType("int").IsRequired();
             Property(x => x.InfoQuestions).HasColumnName(@"InfoQuestions").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
             Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
 
             // Foreign keys
             HasRequired(a => a.GroupQuestion).WithMany(b => b.TemplateQuestions).HasForeignKey(c => c.IdGroupQuestions).WillCascadeOnDelete(false); // FK_GroupQuestions_TemplateQuestions
+            HasRequired(a => a.TypeOrgAndQuestion).WithMany(b => b.TemplateQuestions).HasForeignKey(c => c.IdType).WillCascadeOnDelete(false); // FK_TypeOrgAndQuestions_TemplateQuestions
         }
     }
 
@@ -6991,6 +7954,26 @@ namespace EfDatabaseAutomation.Automation.Base
 
             Property(x => x.IdObject).HasColumnName(@"IdObject").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
             Property(x => x.TypeObject_).HasColumnName(@"TypeObject").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
+        }
+    }
+
+    // TypeOrgAndQuestions
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class TypeOrgAndQuestionConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<TypeOrgAndQuestion>
+    {
+        public TypeOrgAndQuestionConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public TypeOrgAndQuestionConfiguration(string schema)
+        {
+            ToTable("TypeOrgAndQuestions", schema);
+            HasKey(x => x.IdType);
+
+            Property(x => x.IdType).HasColumnName(@"IdType").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.NameType).HasColumnName(@"NameType").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(256);
             Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
         }
     }
@@ -7172,6 +8155,36 @@ namespace EfDatabaseAutomation.Automation.Base
 
             // Foreign keys
             HasRequired(a => a.MainOrg).WithMany(b => b.UserOrgs).HasForeignKey(c => c.IdOrg).WillCascadeOnDelete(false); // FK_MainOrg_UserOrg
+        }
+    }
+
+    // ViewRegisterDocumentsPrinting
+    [System.CodeDom.Compiler.GeneratedCode("EF.Reverse.POCO.Generator", "2.37.1.0")]
+    public class ViewRegisterDocumentsPrintingConfiguration : System.Data.Entity.ModelConfiguration.EntityTypeConfiguration<ViewRegisterDocumentsPrinting>
+    {
+        public ViewRegisterDocumentsPrintingConfiguration()
+            : this("dbo")
+        {
+        }
+
+        public ViewRegisterDocumentsPrintingConfiguration(string schema)
+        {
+            ToTable("ViewRegisterDocumentsPrinting", schema);
+            HasKey(x => new { x.LogicsButton, x.IdDocument, x.CountPage, x.DateCreate });
+
+            Property(x => x.LogicsButton).HasColumnName(@"LogicsButton").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(6).HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.IdDocument).HasColumnName(@"IdDocument").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.MachineName).HasColumnName(@"MachineName").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(128);
+            Property(x => x.TabelNumberUser).HasColumnName(@"TabelNumberUser").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(64);
+            Property(x => x.NameFace).HasColumnName(@"NameFace").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.Inn).HasColumnName(@"Inn").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(12);
+            Property(x => x.Address).HasColumnName(@"Address").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(1024);
+            Property(x => x.DateDocument).HasColumnName(@"DateDocument").HasColumnType("smalldatetime").IsOptional();
+            Property(x => x.NumberDocument).HasColumnName(@"NumberDocument").HasColumnType("int").IsOptional();
+            Property(x => x.FormKnd).HasColumnName(@"FormKnd").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(512);
+            Property(x => x.RegNumberDocumetGuid).HasColumnName(@"RegNumberDocumetGuid").HasColumnType("varchar").IsOptional().IsUnicode(false).HasMaxLength(64);
+            Property(x => x.CountPage).HasColumnName(@"CountPage").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
+            Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None);
         }
     }
 

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ReportDocumentContainer" type="ReportDocumentContainer">
+		<xs:annotation>
+			<xs:documentation>Отчет по контейнеру с документами</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ReportDocumentContainer">
+		<xs:annotation>
+			<xs:documentation>Отчет по контейнеру с документами</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="ReportContainer"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ReportContainer">
+		<xs:annotation>
+			<xs:documentation>Контейнер</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ModelReport" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="IdContainer" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун контейнера</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="BarcodeContainer" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Штрих-код контейнера</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CountCurrent" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Колличество листов к контейнере</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CountDocumentMin" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Минимальное колличество листов в контейнере</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CountDocumentMax" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Максимальное колличество листов в контейнере</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CountDoc" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Колличество документов в контейнере</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IsFinishContainer" type="xs:boolean" use="required">
+				<xs:annotation>
+					<xs:documentation>Статус контейнера</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ModelReport">
+		<xs:annotation>
+			<xs:documentation>Данные отчета в контейнере</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DocumentInventory" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="IdContainer" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун контейнера</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NumberOgrnGrn" type="xs:long" use="required">
+				<xs:annotation>
+					<xs:documentation>ОГРН/ГРН в контейнере</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="SumPageIncluded" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Колличество листов добавленно в контейнер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="SumPageNotIncluded" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Колличество листов не добавленно в контейнер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="State" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Статус полноты добавления 1-Полный, 0-не полный</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DocumentInventory">
+		<xs:annotation>
+			<xs:documentation>Штрих коды документов добавленны в контейнер</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="GuidDocument" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Guid добавленных документов</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

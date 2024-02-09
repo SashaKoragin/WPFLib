@@ -5,7 +5,6 @@ using AutomatAis3Full.Form.Automat.It.RuleInfoFull.UserControl;
 using AutomatAis3Full.Form.Automat.It.UserTemplateAndRule.UserControl;
 using AutomatAis3Full.Form.Automat.Kao.InterrogationOfWitnesses.InterrogationOfWitnessesView;
 using AutomatAis3Full.Form.Automat.Okp2.RegisterDeclarations.RegisterDeclarations;
-using AutomatAis3Full.Form.Automat.Okp2.TaxJournal.TaxJournal;
 using AutomatAis3Full.Form.Automat.Okp3.UsnSend.UsnSend;
 using AutomatAis3Full.Form.Automat.Okp4.FormSnuAuto.SnuFormAuto;
 using AutomatAis3Full.Form.Automat.Okp4.MassSnuForm.MassSnuForm;
@@ -66,10 +65,14 @@ using AutomatAis3Full.Form.Automat.Okp6.DocumentOwnerFact.OwnerFactIm.ViewOwnerF
 using AutomatAis3Full.Form.Automat.Okp6.DocumentOwnerFact.OwnerFactZm.ViewOwnerFactZm;
 using AutomatAis3Full.Form.Automat.Orn.Ion.FaceRegistryReference.ViewFaceRegistryReference;
 using AutomatAis3Full.Form.Automat.Orn.IonSend.FaceRegistryReferenceSend.ViewFaceRegistryReferenceSend;
+using AutomatAis3Full.Form.Automat.PublicFunctionLogics.PublicTaxJournal.FormTaxJournal;
 using AutomatAis3Full.Form.Automat.RaschetBudg.IncomeJournal.FormIncomeJournal;
+using AutomatAis3Full.Form.Automat.Registration.DocumentScan.UserControlScan;
+using AutomatAis3Full.Form.Automat.Registration.DocumentScanAddContainer.UserControlScanAddContainer;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.TechKorrect.ViewTechAdjustmentStatement;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.TechKorrectAgreement.ViewTechKorrectAgreement;
 using AutomatAis3Full.Form.Automat.Registration.IdentificationFace.IdentificationFl.ViewIdentificationFl;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.PrintDocument.UserControlPrintDocument;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
 {
@@ -341,6 +344,32 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                    UserControl = new StatementDecisionApplication()
                                }
                               }
+                          },
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Направление документов налогоплательщику",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "2. Единичная печать и отправка в ОПС",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Печать и отправка",
+                                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                              {
+                                                  new FullWindowAutoIt()
+                                                  {
+                                                      NameControl = "2 - Документы к отправке",
+                                                      UserControl = new UserControlPrintDocument()
+                                                  }
+                                              }
+                                          }
+                                      }
+                                  }
+                              }
                           }
                       }
                   },
@@ -525,6 +554,18 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                           },
                           new FullWindowAutoIt()
                           {
+                              NameControl = "129. Налоговые правонарушения",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "2. Журнал налоговых правонарушений",
+                                      UserControl = new FormTaxJournal()
+                                  }
+                              }
+                          },
+                          new FullWindowAutoIt()
+                          {
                               NameControl = "Физические лица",
                               CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                               {
@@ -622,6 +663,25 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                   }
                               }
                           }
+                      }
+                  },
+                  new FullWindowAutoIt()
+                  {
+                      NameControl = "ОКП7",
+                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                      {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "129. Налоговые правонарушения",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "2. Журнал налоговых правонарушений",
+                                      UserControl = new FormTaxJournal()
+                                  }
+                              }
+                          },
                       }
                   },
                   new FullWindowAutoIt()
@@ -842,6 +902,45 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                       NameControl = "Регистрация",
                       CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                       {
+
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Централизованная система регистрации",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Электронный архив",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Запросить электронные образы документов дела из архива(преобразование)",
+                                              UserControl = new UserControlDocumentScan()
+                                          }
+                                      }
+                                  }
+                              }
+                          },
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Документооборот",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Передача документов",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Комплектование тары",
+                                              UserControl = new UserControlScanAddContainer()
+                                          }
+                                      }
+                                  }
+                              }
+                          },
                           new FullWindowAutoIt()
                           {
                               NameControl = "Учет документов",

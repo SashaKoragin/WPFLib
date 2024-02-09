@@ -8,17 +8,21 @@ using ServiceAutomation.LoginAD.XsdShemeLogin;
 using LogicsSelectAutomation = EfDatabaseAutomation.Automation.SelectParametrSheme.LogicsSelectAutomation;
 using EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost;
 using System.Collections.Generic;
+using System.Linq;
 using AisPoco.Ifns51.ToAis;
 using EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace;
 using EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectDb;
 using LibaryDocumentGenerator.Documents.Template;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using EfDatabaseAutomation.Automation.Base;
+using EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelReportContainer;
 using EfDatabaseAutomation.Automation.BaseLogica.FaceRegistryReference;
 using EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfWitnesses;
 using EfDatabaseAutomation.Automation.BaseLogica.UploadFile;
+using LibaryDocumentGenerator.Barcode;
 using LibaryDocumentGenerator.Documents.TemplateExcel;
 using SqlLibaryIfns.ZaprosSelectNotParam;
+using DocumentInventory = EfDatabaseAutomation.Automation.Base.DocumentInventory;
 
 namespace ServiceAutomation.Service
 {
@@ -408,6 +412,7 @@ namespace ServiceAutomation.Service
                 return model;
             });
         }
+
         /// <summary>
         /// Выгрузка сводной таблицы
         /// </summary>
@@ -528,6 +533,36 @@ namespace ServiceAutomation.Service
             });
         }
         /// <summary>
+        /// Проставить признак по организации не отрабатываем допросы свидетелей
+        /// </summary>
+        /// <param name="inn">ИНН организации</param>
+        /// <returns></returns>
+        public async Task<string> ClosedMainOrg(string inn)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                AddAllObjectDb add = new AddAllObjectDb();
+                var model = add.ClosedMainOrg(inn);
+                add.Dispose();
+                return model;
+            });
+        }
+        /// <summary>
+        /// Аннулировать плательщика для автомата
+        /// </summary>
+        /// <param name="userOrg">Плательщик</param>
+        /// <returns></returns>
+        public async Task<string> ClosedUserOrg(UserOrg userOrg)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                AddAllObjectDb add = new AddAllObjectDb();
+                var model = add.ClosedUserOrg(userOrg);
+                add.Dispose();
+                return model;
+            });
+        }
+        /// <summary>
         /// Запрос всех вопросов заданных сотруднику
         /// </summary>
         /// <param name="idUsers">Ун сотрудника</param>
@@ -542,6 +577,292 @@ namespace ServiceAutomation.Service
                 return allQuestions;
             });
         }
+        /// <summary>
+        /// Все документы описи реестра
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> SelectAllOgrnInventory()
+        {
+            SelectAllObjectDb select = new SelectAllObjectDb();
+            return await Task.Factory.StartNew(() =>
+            {
+                var allQuestions = select.AllOgrnInventory();
+                select.Dispose();
+                return allQuestions;
+            });
+        }
+        /// <summary>
+        /// Выгрузка всех документов справочник АИС 3
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> SelectAllDirectoryDocument()
+        {
+            SelectAllObjectDb select = new SelectAllObjectDb();
+            return await Task.Factory.StartNew(() =>
+            {
+                var allQuestions = select.AllDirectoryDocument();
+                select.Dispose();
+                return allQuestions;
+            });
+        }
+        /// <summary>
+        /// Запрос справочника пользовательской информации о документе
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> SelectAllInfoDocument()
+        {
+            SelectAllObjectDb select = new SelectAllObjectDb();
+            return await Task.Factory.StartNew(() =>
+            {
+                var allQuestions = select.AllInfoDocument();
+                select.Dispose();
+                return allQuestions;
+            });
+        }
 
+
+
+        /// <summary>
+        /// Добавление и редактирование дела ОГРН
+        /// </summary>
+        /// <param name="organizationOgrnInventory">Дело ОГРН</param>
+        /// <returns></returns>
+        public async Task<OrganizationOgrnInventory> AddAndEditOrganizationOgrnInventory(OrganizationOgrnInventory organizationOgrnInventory)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                AddAllObjectDb add = new AddAllObjectDb();
+                var model = add.AddAndEditOrganizationOgrnInventory(organizationOgrnInventory);
+                add.Dispose();
+                if (model == null) return null;
+                SerializeJson json = new SerializeJson();
+                SignalRLibraryAutomations.ConnectAutomations.HubAutomations.SubscribeOrganizationOgrnInventory(json.JsonLibaryIgnoreDate(model));
+                return model;
+            });
+        }
+        /// <summary>
+        /// Добавление или редактирование ГРН Документа
+        /// </summary>
+        /// <param name="grnInventory">ГРН Документа</param>
+        /// <returns></returns>
+        public async Task<GrnInventory> AddAndEditGrnInventory(GrnInventory grnInventory)
+        {
+            
+            return await Task.Factory.StartNew(() =>
+            {
+                AddAllObjectDb add = new AddAllObjectDb();
+                var model = add.AddAndEditGrnInventory(grnInventory);
+                add.Dispose();
+                if (model == null) return null;
+                SerializeJson json = new SerializeJson();
+                SignalRLibraryAutomations.ConnectAutomations.HubAutomations.SubscribeGrnInventory(json.JsonLibaryIgnoreDate(model));
+                return model;
+            });
+        }
+        /// <summary>
+        /// Добавление или Редактирование Документа под ГРН
+        /// </summary>
+        /// <param name="documentInventory">Дело ОГРН</param>
+        /// <returns></returns>
+        public async Task<DocumentInventory> AddAndEditDocumentInventory(DocumentInventory documentInventory)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                AddAllObjectDb add = new AddAllObjectDb();
+                var model = add.AddAndEditDocumentInventory(documentInventory);
+                add.Dispose();
+                if (model == null) return null;
+                SerializeJson json = new SerializeJson();
+                SignalRLibraryAutomations.ConnectAutomations.HubAutomations.SubscribeDocumentInventory(json.JsonLibaryIgnoreDate(model));
+                return model;
+            });
+        }
+        /// <summary>
+        /// Сохранение краткой информации о документе
+        /// </summary>
+        /// <param name="infoDocument">Краткая информация о документе</param>
+        /// <returns></returns>
+        public async Task<InfoDocument> AddAndEditAllInfoDocument(InfoDocument infoDocument)
+        {
+            
+            return await Task.Factory.StartNew(() =>
+            {
+                AddAllObjectDb add = new AddAllObjectDb();
+                var model = add.AddAndEditAllInfoDocument(infoDocument);
+                add.Dispose();
+                if (model == null) return null;
+                SerializeJson json = new SerializeJson();
+                SignalRLibraryAutomations.ConnectAutomations.HubAutomations.SubscribeInfoDocument(json.JsonLibaryIgnoreDate(model));
+                return model;
+            });
+
+        }
+        /// <summary>
+        /// Массовая генерация штрих-кодов 
+        /// </summary>
+        /// <param name="grnInventory">ГРН документ</param>
+        /// <returns></returns>
+        public async Task<Stream> PrintBarcode(GrnInventory grnInventory)
+        {
+            try
+            {
+                return await Task.Factory.StartNew(() =>
+                {
+                    SelectAllObjectDb select = new SelectAllObjectDb();
+                    var allQuestions = select.SelectAllBarcode(grnInventory);
+                    if (allQuestions != null)
+                    {
+                        var generateWord = new DocCodePdf417();
+                        var barcode = new GenerateBarcode();
+                        allQuestions.Select(docs => docs).ToList().ForEach(doc =>
+                            doc.FullPathPng =
+                                barcode.GeneratePdf417(_parameterConfig.PathSaveTemplate, doc.GuidDocument));
+                        generateWord.CreateDocument(_parameterConfig.PathSaveTemplate + "BarCode", allQuestions);
+                        allQuestions.Select(x => x.FullPathPng).ToList().ForEach(File.Delete);
+                        select.Dispose();
+                        return generateWord.FileArray();
+                    }
+                    return null;
+                });
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Запрос для выгрузки всех внесенных контейнеров для Тар
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> SelectAllDocumentContainer()
+        {
+            SelectAllObjectDb select = new SelectAllObjectDb();
+            return await Task.Factory.StartNew(() =>
+            {
+                var allQuestions = select.AllDocumentContainer();
+                select.Dispose();
+                return allQuestions;
+            });
+        }
+        /// <summary>
+        /// Добавление контейнера для формирования Тар
+        /// </summary>
+        /// <param name="documentContainer">Контейнер ФКУ</param>
+        /// <returns></returns>
+        public async Task<DocumentContainer> AddDocumentContainer(DocumentContainer documentContainer)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                AddAllObjectDb add = new AddAllObjectDb();
+                var model = add.AddDocumentContainer(documentContainer);
+                add.Dispose();
+                if (model == null) return null;
+                SerializeJson json = new SerializeJson();
+                SignalRLibraryAutomations.ConnectAutomations.HubAutomations.SubscribeDocumentContainer(json.JsonLibaryIgnoreDate(model));
+                return model;
+            });
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="grnInventory">ГРН документ</param>
+        /// <returns></returns>
+        public async Task<Stream> ReportSynchronization(GrnInventory grnInventory)
+        {
+            try
+            {
+                return await Task.Factory.StartNew(() =>
+                {
+                    var select = new SqlSelect();
+                    var logicSelect = select.SqlSelectModel(42);
+                    logicSelect.SelectUser = logicSelect.SelectUser.Replace("@IdDocGrn", grnInventory.IdDocGrn.ToString()); 
+                    var selectFull = new SelectFull(_parameterConfig.ConnectionString);
+                    return selectFull.GenerateStreamToSqlViewFileAutomation(logicSelect, _parameterConfig.PathSaveTemplate);
+                });
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+            }
+            return null;
+        }
+        /// <summary>
+        /// Отчет о статистики количества листов документов
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Stream> ReportStatisticsDocumentInventory()
+        {
+            try
+            {
+                return await Task.Factory.StartNew(() =>
+                {
+                    var select = new SqlSelect();
+                    var logicSelect = select.SqlSelectModel(44);
+                    var selectFull = new SelectFull(_parameterConfig.ConnectionString);
+                    return selectFull.GenerateStreamToSqlViewFileAutomation(logicSelect, _parameterConfig.PathSaveTemplate);
+                });
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+            }
+            return null;
+        }
+        /// <summary>
+        /// Отчет по контейнеру с документами 
+        /// </summary>
+        /// <param name="documentContainer">Контейнер по которому запрашивается отчет</param>
+        /// <returns></returns>
+        public async Task<Stream> ReportDocumentContainer(DocumentContainer documentContainer)
+        {
+            try
+            {
+                return await Task.Factory.StartNew(() =>
+                {
+                    var select = new SqlSelect();
+                    var generateExcelReport = new ReportDocumentContainerInventory();
+                    var modelContainer = select.SelectReportDocumentContainer<ReportDocumentContainer>(documentContainer);
+                    generateExcelReport.CreateDocument(_parameterConfig.PathSaveTemplate, modelContainer);
+                    select.Dispose();
+                    return generateExcelReport.FileArray();
+                });
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+            }
+            return null;
+        }
+        /// <summary>
+        /// Все процессы и их статусы
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> SelectAllEventError()
+        {
+            SelectAllObjectDb select = new SelectAllObjectDb();
+            return await Task.Factory.StartNew(() =>
+            {
+                var allProcessEvent = select.AllEventProcessError();
+                select.Dispose();
+                return allProcessEvent;
+            });
+        }
+        /// <summary>
+        /// Детализация ошибок по ГРН
+        /// </summary>
+        /// <param name="idProcess">Ун процесса для детализации</param>
+        /// <returns></returns>
+        public async Task<string> SelectDetailingEventError(int idProcess)
+        {
+            SelectAllObjectDb select = new SelectAllObjectDb();
+            return await Task.Factory.StartNew(() =>
+            {
+                var allDetailingProcessEvent = select.AllDetailingEventError(idProcess);
+                select.Dispose();
+                return allDetailingProcessEvent;
+            });
+        }
     }
 }

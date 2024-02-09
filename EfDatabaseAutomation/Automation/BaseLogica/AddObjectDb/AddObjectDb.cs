@@ -24,7 +24,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
         /// <returns></returns>
         public bool IsHolidays(DateTime dateTime)
         {
-            return Automation.RbHolidays.Any(x => x.DateTimeHoliday == dateTime && x.IsHoliday);
+            return Automation.RbHolidays.Any(x => x.DateTimeHoliday == dateTime.Date && x.IsHoliday);
         }
 
         /// <summary>
@@ -98,6 +98,15 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
                     }
                 }
             }
+        }
+        /// <summary>
+        /// Выборка Акта по 129 ветки
+        /// </summary>
+        /// <param name="idDelo"></param>
+        /// <returns></returns>
+        public TaxJournal SelectTaxJournal129(int? idDelo)
+        {
+            return Automation.TaxJournals.FirstOrDefault(x => x.IdDelo == idDelo && x.TypeDocument == "Акт");
         }
 
         /// <summary>

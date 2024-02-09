@@ -3,6 +3,7 @@ using Prism.Commands;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
 using ViewModelLib.ModelTestAutoit.PublicModel.ModelDatePickerAdd;
 
+
 namespace AutomatAis3Full.Form.Automat.Okp2.RegisterDeclarations.DataContext
 {
    public class DataContextRegisterDeclarations
@@ -11,11 +12,14 @@ namespace AutomatAis3Full.Form.Automat.Okp2.RegisterDeclarations.DataContext
         public StatusButtonMethod StartButton { get; }
 
         public DatePickerAdd DatePicker { get; }
+
+
         /// <summary>
         /// VM DataContext
         /// </summary>
         public DataContextRegisterDeclarations()
         {
+
             DatePicker = new DatePickerAdd();
             var command = new LibraryCommandPublic.TestAutoit.Okp2.RegisterDeclarations();
             StartButton = new StatusButtonMethod();

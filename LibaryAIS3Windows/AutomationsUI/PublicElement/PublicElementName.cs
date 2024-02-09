@@ -10,6 +10,11 @@
         /// Дерево элементов
         /// </summary>
         public static string FullTree = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskpaneWorkspace\\AutomationId:ScenarioView\\AutomationId:scenarioTree\\";
+
+        /// <summary>
+        /// Пользовательские задания
+        /// </summary>
+        public static string FullTreeTaskUser = $"AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskpaneWorkspace\\AutomationId:UserTaskListPanelView\\AutomationId:treeTasks";
         /// <summary>
         /// Кнопка обновить элемент на панеле Ribiorn
         /// </summary>
