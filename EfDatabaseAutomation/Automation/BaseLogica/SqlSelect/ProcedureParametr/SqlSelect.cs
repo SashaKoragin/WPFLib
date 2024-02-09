@@ -5,10 +5,15 @@ using System.Data.SqlClient;
 using System.Dynamic;
 using System.Linq;
 using System.Text;
-using EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme;
+using EfDatabaseAutomation.Automation.Base;
+using EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelReportContainer;
 using EfDatabaseAutomation.Automation.SelectParametrSheme;
 using LibaryXMLAuto.ReadOrWrite;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
+using HeadingStatement = EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.XsdDTOSheme.HeadingStatement;
+using InfoViewAutomation = EfDatabaseAutomation.Automation.SelectParametrSheme.InfoViewAutomation;
+using LogicsSelectAutomation = EfDatabaseAutomation.Automation.SelectParametrSheme.LogicsSelectAutomation;
+using ParameterProcedureWeb = EfDatabaseAutomation.Automation.SelectParametrSheme.ParameterProcedureWeb;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr
 {
@@ -135,15 +140,26 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr
                 return null;
             }
         }
-
-
-
+        /// <summary>
+        /// Выгрузка контейнера из БД
+        /// </summary>
+        /// <param name="documentContainer">Контейнер документов</param>
+        /// <returns></returns>
+        public T SelectReportDocumentContainer<T>(DocumentContainer documentContainer)
+        {
+            var xml = new XmlReadOrWrite();
+            var model = SqlSelectModel(45);
+            var resultSql = Automation.Database.SqlQuery<string>(model.SelectUser,
+                new SqlParameter(model.SelectedParametr, documentContainer.IdContainer)).ToArray();
+            var resultModel = (T)xml.ReadXmlText(string.Join("", resultSql), typeof(T));
+            return resultModel;
+        }
         /// <summary>
         /// Выборка модели для манипуляции
         /// </summary>
         /// <param name="id">Параметр индекса в таблицы</param>
         /// <returns></returns>
-        private LogicsSelectAutomation SqlSelectModel(int id)
+        public LogicsSelectAutomation SqlSelectModel(int id)
         {
             return Automation.Database.SqlQuery<LogicsSelectAutomation>(String.Format(ProcedureSelect, id)).ToList()[0];
         }

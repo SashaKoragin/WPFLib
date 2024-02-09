@@ -36,6 +36,7 @@ namespace LibaryXMLAuto.ReadOrWrite
         /// <returns></returns>
         public object ReadXmlText(string text, Type objType)
         {
+            if (string.IsNullOrWhiteSpace(text)) return null;
             using (var stream = new MemoryStream()) {
                 var writer = new StreamWriter(stream);
                 writer.Write(text);

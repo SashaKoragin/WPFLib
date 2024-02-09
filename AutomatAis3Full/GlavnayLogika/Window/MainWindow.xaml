@@ -104,7 +104,7 @@
                 <ToggleButton
                     x:Name="Menu"
                     IsChecked="{Binding FullWindow.IsCheck}"
-                    Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                    Style="{StaticResource MaterialDesignHamburgerToggleButton}" Background="White" />
                 <TextBlock
                     HorizontalAlignment="Center"
                     FontSize="22"

@@ -169,6 +169,9 @@
       <Component Id="Ionic.Utils.Zip.dll" Guid="EF85D8F2-43D0-455C-8332-E118F0FBE923">
         <File Id="Ionic.Utils.Zip.dll" Name="Ionic.Utils.Zip.dll" Source="$(var.ServiceAutomation_TargetDir)Ionic.Utils.Zip.dll" />
       </Component>
+      <Component Id="zxing.dlll" Guid="CBD35F94-550E-4ADF-8927-3A008670CA08">
+        <File Id="zxing.dll" Name="zxing.dll" Source="$(var.ServiceAutomation_TargetDir)zxing.dll" />
+      </Component>
 		</ComponentGroup>
 	</Fragment>
 </Wix>

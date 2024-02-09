@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ModelStartProcess" type="ModelStartProcess">
+		<xs:annotation>
+			<xs:documentation>Выборка отбора ГРН документов для цыфравизации</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ModelStartProcess">
+		<xs:annotation>
+			<xs:documentation>Выборка отбора ГРН документов для цыфравизации</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="TemplateOgrn" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="TemplateOgrn">
+		<xs:annotation>
+			<xs:documentation>Шаблон ОГРН</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="GrnInventory" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="IdOgrn" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун ОГРН документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NumberOgrn" type="xs:long" use="required">
+				<xs:annotation>
+					<xs:documentation>ОГРН документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdStatus" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун статуса документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GrnInventory">
+		<xs:annotation>
+			<xs:documentation>Шаблон ГРН</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DocumentInventory" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="IdDocGrn" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdGrnAis3" type="xs:int" use="optional" default="0">
+				<xs:annotation>
+					<xs:documentation>Ун документа АИС 3</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdOgrn" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун дела ОГРН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NumberOgrnGrn" type="xs:long" use="required">
+				<xs:annotation>
+					<xs:documentation>Номер ГРН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameDocument" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Краткое наименование документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IsStartProcess" type="xs:boolean" use="required">
+				<xs:annotation>
+					<xs:documentation>Статус процесса</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IsFindGrnDataBase" type="xs:boolean" use="required">
+				<xs:annotation>
+					<xs:documentation>Результат поиска в АИС 3  true/false</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="StatusFinish" type="xs:boolean" use="required">
+				<xs:annotation>
+					<xs:documentation>Статус обработки в АИС 3 true/false</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DocumentInventory">
+		<xs:annotation>
+			<xs:documentation>Шаблон документов для цифравизации</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="InfoDocument"/>
+				<xs:element ref="DirectoryDocument"/>
+				<xs:element ref="StatusDocument"/>
+			</xs:sequence>
+			<xs:attribute name="IdDocument" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdDocGrn" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун документа ГРН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdDocumentDirectory" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун документа из справочника</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdInfo" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун информациии о документе</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CountPage" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Колличество страниц в документе</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="GuidDocument" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Штрих-код документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="StateDocument" type="xs:boolean" use="required">
+				<xs:annotation>
+					<xs:documentation>Статус документа отработано,не отработано</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IdStatusDocument" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун статуса документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InfoDocument">
+		<xs:annotation>
+			<xs:documentation>Краткая информация одокументе</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IdInfo" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун краткого наименования документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameDocumentInfo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Краткое наименование документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DirectoryDocument">
+		<xs:annotation>
+			<xs:documentation>Информация из справочника АИС 3</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IdDocumentDirectory" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун документа из справочника АИС 3</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameDocumentDataBase" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Наименование документа из справочника АИС 3</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="StatusDocument">
+		<xs:annotation>
+			<xs:documentation>Статус документа</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IdStatusDocument" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун статуса документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameMessage" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Статус документа</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

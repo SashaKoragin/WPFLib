@@ -47,9 +47,9 @@
     <Reference Include="AutoItX3.Assembly, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a646454c8d475470, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoItX.Dotnet.3.3.14.5\lib\AutoItX3.Assembly.dll</HintPath>
     </Reference>
-    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Nuget\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.18.0\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -92,8 +92,18 @@
     <Reference Include="XPlat.ApplicationModel.DataTransfer, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\XPlat.ApplicationModel.DataTransfer.1.8.1\lib\netstandard2.0\XPlat.ApplicationModel.DataTransfer.dll</HintPath>
     </Reference>
+    <Reference Include="zxing">
+      <HintPath>C:\Nuget\ZXing.Net.0.16.4\lib\net45\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation">
+      <HintPath>C:\Nuget\ZXing.Net.0.16.4\lib\net45\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\My\LibaryDocumentGenerator\LibaryDocumentGenerator.csproj">
+      <Project>{939b256e-591b-40cc-8097-5d34456404cd}</Project>
+      <Name>LibaryDocumentGenerator</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AttributeHelperModelXml\AttributeHelperModelXml.csproj">
       <Project>{91fad00a-d052-4dd6-a9bb-544782a0d2c4}</Project>
       <Name>AttributeHelperModelXml</Name>

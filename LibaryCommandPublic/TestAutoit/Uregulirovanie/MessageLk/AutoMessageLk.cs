@@ -2,10 +2,13 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using AisPoco.Ifns51.ToAis;
 using GalaSoft.MvvmLight.Threading;
 using LibaryXMLAuto.XsdModelAutoGenerate;
 using LibraryAIS3Windows.ButtonsClikcs;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
+using ViewModelLib.ModelTestAutoit.PublicModel.ModelDatePickerAdd;
+using ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect;
 
 namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
 {
@@ -469,6 +472,42 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                     MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                 }
             });
+        }
+        /// <summary>
+        /// Печать документов для КНД
+        /// </summary>
+        /// <param name="statusButton">Кнопка запуска программы</param>
+        /// <param name="templateSender">Шаблон выбора документа</param>
+        /// <param name="datePicker">Календарь</param>
+        public void PrintDocumentModel(StatusButtonMethod statusButton, PublicModelCollectionSelect<TemplateModel> templateSender, DatePickerAdd datePicker)
+        {
+            DispatcherHelper.Initialize();
+            if (templateSender.IsValidation())
+            {
+                Task.Run(delegate
+                {
+                    try
+                    {
+                        DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                        KclicerButton clickerButton = new KclicerButton();
+                        LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                        if (ais3.WinexistsAis3() == 1)
+                        {
+                            clickerButton.Click63(statusButton, templateSender.SelectModel.NameTemplate, datePicker);
+                        }
+                        else
+                        {
+                            System.Windows.Forms.MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                        }
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    catch (Exception e)
+                    {
+                        System.Windows.Forms.MessageBox.Show(e.ToString());
+                        throw;
+                    }
+                });
+            }
         }
     }
 }

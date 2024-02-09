@@ -65,7 +65,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UIAComWrapper, Version=1.1.0.14, Culture=neutral, PublicKeyToken=78cbcf77433a85e5, processorArchitecture=MSIL">
+    <Reference Include="UIAComWrapper, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Nuget\UIAComWrapper.1.1.0.14\lib\net40\UIAComWrapper.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
@@ -94,6 +95,7 @@
     <Compile Include="ButtonFullFunction\Okp6Function\Okp6FindFactOwner.cs" />
     <Compile Include="ButtonFullFunction\Okp6Function\Okp6Function.cs" />
     <Compile Include="ButtonFullFunction\OkpClosedComplex\OkpClosedComplex.cs" />
+    <Compile Include="ButtonFullFunction\OkpTaxJournal129\OkpTaxJournal129Full.cs" />
     <Compile Include="ButtonFullFunction\OrnFunction\OrnRegistryReference.cs" />
     <Compile Include="ButtonFullFunction\PreCheck\DataBaseElementAdd.cs" />
     <Compile Include="ButtonFullFunction\PreCheck\PreCheckFunction.cs" />
@@ -101,7 +103,9 @@
     <Compile Include="ButtonFullFunction\RaschBydjFunction\KrsbFunction.cs" />
     <Compile Include="ButtonFullFunction\RegistrationFunction\AcceptanceDocumentsFunction.cs" />
     <Compile Include="ButtonFullFunction\RegistrationFunction\AllIdentification.cs" />
+    <Compile Include="ButtonFullFunction\RegistrationFunction\ScanDocument.cs" />
     <Compile Include="ButtonFullFunction\UregulirovanieAllFunction\UregulirovanieAllFunction.cs" />
+    <Compile Include="ButtonFullFunction\UregulirovanieAllFunction\UregulirovaniePrintDocument.cs" />
     <Compile Include="ButtonsClikcs\ButtonConstant.cs" />
     <Compile Include="ButtonsClikcs\ClikcCheker\Cheker.cs" />
     <Compile Include="ButtonsClikcs\KclicerButton.cs" />

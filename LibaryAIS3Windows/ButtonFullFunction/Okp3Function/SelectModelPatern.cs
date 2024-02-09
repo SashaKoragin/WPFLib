@@ -3,7 +3,24 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
 {
     public class ModelDataArea
     {
-
+        /// <summary>
+        /// Модель печати документов
+        /// Налоговое администрирование\Направление документов налогоплательщику\2. Единичная печать и отправка в ОПС\Печать и отправка\2 - Документы к отправке
+        /// </summary>
+        public DataArea PrintDocumentSend = new DataArea()
+        {
+            FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:CDocToSendNavigatorStepView\\AutomationId:ncMain\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+            FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:CDocToSendNavigatorStepView\\AutomationId:ncMain\\AutomationId:splitContainer\\AutomationId:gridData",
+            ListRowDataArea = "Name:List`1 row ",
+            ListRowDataGrid = "\\Name:select0 row ",
+            Update = "Name:DockTop\\Name:Ribbon\\Name:Просмотр\\Name:Общие\\Name:Обновить",
+            Riborn = "Name:DockTop\\Name:Ribbon\\Name:Просмотр\\Name:Документ\\Name:Просмотр",
+            Parameters = new Parameters[]
+            {
+                new Parameters() { NameParameters = "КНД", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно",IndexParameters = "1" },
+                new Parameters() { NameParameters = "Дата документа", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "6" }
+            }
+        };
 
 
         /// <summary>
@@ -90,7 +107,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
                 Update = "Name:Выбор Должностного лица\\Name:DockTop\\Name:Ribbon\\Name:Должностное лицо\\Name:Действия с навигатором\\Name:Обновить",
                 Parameters = new Parameters[]
                 {
-                    new Parameters() { NameParameters = "УН инспектора", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "1", ParametersGrid = "17019218" }
+                    new Parameters() { NameParameters = "УН инспектора", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "1" } //Подписант 02.11.2023 17019218-Юрковский!  17019220-Чукалкин!
                 }
             }
 
@@ -222,7 +239,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
         };
 
         /// <summary>
-        /// Акты для отработки данных
+        /// Акты для отработки данных Налоговое администрирование\Контрольная работа(налоговые проверки)\101. Мониторинг и обработка документов\Реестр документов НБО
         /// </summary>
         public DataArea DataAreaStatementAct = new DataArea()
         {
@@ -239,10 +256,26 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
             }
         };
 
+        ///// <summary>
+        /////  Налоговое администрирование\Контрольная работа(налоговые проверки)\101. Мониторинг и обработка документов\Реестр документов НБО
+        ///// </summary>
+        //public DataArea DataAreaDeclaration = new DataArea()
+        //{
+        //    FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+        //    FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
+        //    ListRowDataArea = "Name:List`1 row ",
+        //    Headers = "Name:Column Headers",
+        //    Update = "Name:DockTop\\Name:Ribbon\\Name:Реестр документов НБО\\Name:Документ\\Name:Обновить данные",
+        //    Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:tsControlPanel\\Name:Фильтр",
+        //    Parameters = new Parameters[]
+        //    {
+        //        new Parameters() {NameParameters = "РегНомер",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "9"}
+        //    }
+        //};
         /// <summary>
         ///  Налоговое администрирование\Контрольная работа(налоговые проверки)\101. Мониторинг и обработка документов\Реестр документов НБО
         /// </summary>
-        public DataArea DataAreaDeclaration = new DataArea()
+        public DataArea DataAreaDeclarationFace = new DataArea()
         {
             FullPathDataArea = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
             FullPathGrid = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:splitContainer\\AutomationId:gridData",
@@ -252,7 +285,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
             Filters = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:SvedPoNDSView\\AutomationId:NavigatorMDIControl\\AutomationId:splitContainer\\AutomationId:MasterNavigator\\AutomationId:tsControlPanel\\Name:Фильтр",
             Parameters = new Parameters[]
             {
-                new Parameters() {NameParameters = "РегНомер",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "9"}
+                new Parameters() {NameParameters = "Отчетный год",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "14"},
+                new Parameters() {NameParameters = "ИНН",FindNameMemo = "Name:Значение",FindSelectParameter = "Равно",IndexParameters = "18"}
             }
         };
         /// <summary>

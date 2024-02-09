@@ -152,10 +152,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Form\Automat\Okp2\TaxJournal\TaxJournal\FormTaxJournal.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Form\Automat\Okp2\UserTask\TaxApprove\TaxApprove\ViewTaxApprove.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -248,6 +244,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\PublicFunctionLogics\PublicTaxJournal\FormTaxJournal\FormTaxJournal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\RaschetBudg\IncomeJournal\FormIncomeJournal\ViewIncomeJournal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -269,6 +269,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Registration\ActualStatus\UserControlStatus\ActualStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Registration\DocumentScanAddContainer\UserControlScanAddContainer\UserControlScanAddContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Registration\DocumentScan\UserControlScan\UserControlDocumentScan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -305,6 +313,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\UserControl\FormTrebUplNaloga.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\PrintDocument\UserControlPrintDocument\UserControlPrintDocument.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -467,10 +479,6 @@
     <Compile Include="Form\Automat\Okp2\RegisterDeclarations\RegisterDeclarations\FormRegisterDeclarations.xaml.cs">
       <DependentUpon>FormRegisterDeclarations.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Form\Automat\Okp2\TaxJournal\DataContext\DataContextTaxJournal.cs" />
-    <Compile Include="Form\Automat\Okp2\TaxJournal\TaxJournal\FormTaxJournal.xaml.cs">
-      <DependentUpon>FormTaxJournal.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Form\Automat\Okp2\UserTask\TaxApprove\DataContext\DataContextTaxApprove.cs" />
     <Compile Include="Form\Automat\Okp2\UserTask\TaxApprove\TaxApprove\ViewTaxApprove.xaml.cs">
       <DependentUpon>ViewTaxApprove.xaml</DependentUpon>
@@ -563,6 +571,10 @@
     <Compile Include="Form\Automat\PreCheck\ReportingMemo\ReportingMemo\ReportingMemo.xaml.cs">
       <DependentUpon>ReportingMemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\PublicFunctionLogics\PublicTaxJournal\DataContextTaxJournal\DataContextTaxJournal.cs" />
+    <Compile Include="Form\Automat\PublicFunctionLogics\PublicTaxJournal\FormTaxJournal\FormTaxJournal.xaml.cs">
+      <DependentUpon>FormTaxJournal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\RaschetBudg\IncomeJournal\DataContextIncomeJournal\DataContextIncomeJournal.cs" />
     <Compile Include="Form\Automat\RaschetBudg\IncomeJournal\FormIncomeJournal\ViewIncomeJournal.xaml.cs">
       <DependentUpon>ViewIncomeJournal.xaml</DependentUpon>
@@ -586,6 +598,14 @@
     <Compile Include="Form\Automat\Registration\ActualStatus\DataContext\DataContextActual.cs" />
     <Compile Include="Form\Automat\Registration\ActualStatus\UserControlStatus\ActualStatus.xaml.cs">
       <DependentUpon>ActualStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Registration\DocumentScanAddContainer\DataContextScanAddContainer\DataContextScanAddContainer.cs" />
+    <Compile Include="Form\Automat\Registration\DocumentScanAddContainer\UserControlScanAddContainer\UserControlScanAddContainer.xaml.cs">
+      <DependentUpon>UserControlScanAddContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Registration\DocumentScan\DataContextScan\DataContextDocumentScan.cs" />
+    <Compile Include="Form\Automat\Registration\DocumentScan\UserControlScan\UserControlDocumentScan.xaml.cs">
+      <DependentUpon>UserControlDocumentScan.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Registration\IdentificationFace\IdentificationFl\DataContextIdentificationFl\DataContextIdentificationFl.cs" />
     <Compile Include="Form\Automat\Registration\IdentificationFace\IdentificationFl\ViewIdentificationFl\IdentificationFlView.xaml.cs">
@@ -622,6 +642,10 @@
     <Compile Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\DataContext\DataContextFormTrebUplNaloga.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\FormTrebUplNaloga\UserControl\FormTrebUplNaloga.xaml.cs">
       <DependentUpon>FormTrebUplNaloga.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\PrintDocument\DataContextPrintDocument\DataContextPrintDocument.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\PrintDocument\UserControlPrintDocument\UserControlPrintDocument.xaml.cs">
+      <DependentUpon>UserControlPrintDocument.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Uregulirovanie\StartProcessFace\JudicialAct\DataContextJudicialAct\DataContextJudicialAct.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\StartProcessFace\JudicialAct\ViewJudicialAct\ViewJudicialAct.xaml.cs">

@@ -345,4 +345,173 @@
         /// </summary>
         public static string Closed = "Name:DockTop\\Name:Ribbon\\Name:Ручная идентификация физического лица при неоднозначной идентификации в ПОН ИЛ\\Name:Закрыть";
     }
+    /// <summary>
+    /// Пути к инвентаризации документов
+    /// </summary>
+    public class InventoryName
+    {
+        /// <summary>
+        /// Общий путь к вводу ОГРН
+        /// </summary>
+        public static string MainViewOgrn = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\";
+        /// <summary>
+        /// Путь к кнопкам задачи
+        /// </summary>
+        public static string TaskView = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskpaneWorkspace\\";
+        /// <summary>
+        /// Путь к пользовательским функциям на форме
+        /// </summary>
+        public static string MainTaskUsers = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\";
+        /// <summary>
+        /// Публичная панель до элементов
+        /// </summary>
+        public static string PublicPanel = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:RetroScanView\\AutomationId:retroScan1\\";
+        /// <summary>
+        /// Кнопка задачи по подсистемам
+        /// </summary>
+        public static string TaskAll = $"{TaskView}Name:Задачи по подсистемам";
+        /// <summary>
+        /// Кнопка пользовательские задания
+        /// </summary>
+        public static string TaskUser = $"{TaskView}Name:Пользовательские задания";
+        /// <summary>
+        /// Поле ввода ОГРН
+        /// </summary>
+        public static string SendValueOgrn = $"{MainViewOgrn}AutomationId:AskElectronicImageView\\AutomationId:docViewer\\AutomationId:ogrnTextBox";
+        /// <summary>
+        /// Кнопка старт ОГРН
+        /// </summary>
+        public static string SendButonOgrn = $"{MainViewOgrn}AutomationId:AskElectronicImageView\\AutomationId:docViewer\\AutomationId:setTaskButton";
+        /// <summary>
+        /// Сообщение Ок
+        /// </summary>
+        public static string OgrnOk = "Name:Сообщение\\Name:ОК";
+
+
+
+        /// <summary>
+        /// Путь к таблицы с заданиями
+        /// </summary>
+        public static string TableTask = $"{MainTaskUsers}AutomationId:taskWindowWorkspaceView1\\AutomationId:UserOperationsView\\AutomationId:ultraPanel1\\AutomationId:splitContainer1\\AutomationId:mainGrid";
+        /// <summary>
+        /// Первая строка в таблицы
+        /// </summary>
+        public static string TableTaskRow1 = $"{MainTaskUsers}AutomationId:taskWindowWorkspaceView1\\AutomationId:UserOperationsView\\AutomationId:ultraPanel1\\AutomationId:splitContainer1\\AutomationId:mainGrid\\Name:user_operation row ";
+
+        /// <summary>
+        /// Первая строка в таблицы
+        /// </summary>
+        public static string TableTaskRow = $"{MainTaskUsers}AutomationId:taskWindowWorkspaceView1\\AutomationId:UserOperationsView\\AutomationId:ultraPanel1\\AutomationId:splitContainer1\\AutomationId:mainGrid";
+        /// <summary>
+        /// ComboBox Поле элемента
+        /// </summary>
+        public static string ComboBoxListGrnMemo = $"{MainTaskUsers}AutomationId:taskWindowWorkspaceView1\\AutomationId:RetroScanView\\AutomationId:retroScan1\\AutomationId:pCaption\\AutomationId:comboBox1\\LocalizedControlType:поле";
+
+        /// <summary>
+        /// Панель с документами
+        /// </summary>
+        public static string PanelListDocument = $"{PublicPanel}AutomationId:pCaption\\AutomationId:listBox";
+        
+        /// <summary>
+        /// Добавить лист
+        /// </summary>
+        public static string AddList = $"{PublicPanel}AutomationId:pCaption\\Name:Добавить лист";
+        /// <summary>
+        /// Сохранение документа
+        /// </summary>
+        public static string SaveDoc = "Name:DockTop\\Name:Ribbon\\Name:ретросканирование\\Name:ретросканирование\\Name:Завершить работу";
+        /// <summary>
+        /// Закрыть
+        /// </summary>
+        public static string Closed = "Name:DockTop\\Name:Ribbon\\Name:ретросканирование\\Name:ретросканирование\\Name:Закрыть";
+        /// <summary>
+        /// Ошибка добавления листа
+        /// </summary>
+        public static string ErrorAdd = "Name:Внимание\\Name:ОК";
+
+        /// <summary>
+        /// Галочка не найдено в регистрационном деле
+        /// </summary>
+        public static string CheckNotFound = $"{PublicPanel}AutomationId:Panel\\AutomationId:ultraCheckEditor1\\Name:Не найдено в Регистрационном деле";
+
+        /// <summary>
+        /// Кнопка печать этикетки
+        /// </summary>
+        public static string PrintCode = $"{PublicPanel}AutomationId:pCaption\\AutomationId:bPrintLBL";
+        
+        /// <summary>
+        /// Отмена печати
+        /// </summary>
+        public static string CklosedPrint = "Name:Сохранение результата печати\\Name:Отмена";
+        
+        /// <summary>
+        /// Ок отмена
+        /// </summary>
+        public static string OkClosed = "Name:ОК";
+
+        /// <summary>
+        /// GUID Панель
+        /// </summary>
+        public static string GuidPanel = $"{PublicPanel}AutomationId:Panel\\AutomationId:vxEditString1\\Name:GUID\\Name:GUID";
+
+        /// <summary>
+        /// Вид документа Панель
+        /// </summary>
+        public static string VidDocument = $"{PublicPanel}AutomationId:Panel\\AutomationId:eVidDok\\AutomationId:comboBox";
+
+        /// <summary>
+        /// Наименование документа Панель
+        /// </summary>
+        public static string NameDocument = $"{PublicPanel}AutomationId:Panel\\AutomationId:vxEditString2\\AutomationId:textBox";
+
+        /// <summary>
+        /// Номер документа
+        /// </summary>
+        public static string NumberDocument = $"{PublicPanel}AutomationId:Panel\\AutomationId:vxEditString4\\AutomationId:textBox";
+        
+        /// <summary>
+        /// Дата документа
+        /// </summary>
+        public static string DateDocument = $"{PublicPanel}AutomationId:Panel\\AutomationId:vxEditDate1\\AutomationId:textBox";
+        
+        /// <summary>
+        /// Количество листов в документе
+        /// </summary>
+        public static string CountPage = $"{PublicPanel}AutomationId:Panel\\AutomationId:vxEditString3\\AutomationId:textBox";
+        /// <summary>
+        /// Проставить колличество листов
+        /// </summary>
+        public static string CountPageAdd = $"{PublicPanel}AutomationId:Panel\\AutomationId:vxEditString3\\AutomationId:textBox\\Name:Количество листов";
+
+        /// <summary>
+        /// Кнопка обновить в случае если данных сразу нет
+        /// </summary>
+        public static string ButtonUpdate = $"{MainTaskUsers}AutomationId:taskpaneWorkspace\\AutomationId:UserTaskListPanelView\\AutomationId:toolbarContainer\\AutomationId:_ClientArea_Toolbars_Dock_Area_Top\\Name:Обновить";
+        /// <summary>
+        /// Кнопка свернуть все
+        /// </summary>
+        public static string ButtonShow = $"{MainTaskUsers}AutomationId:taskpaneWorkspace\\AutomationId:UserTaskListPanelView\\AutomationId:toolbarContainer\\AutomationId:_ClientArea_Toolbars_Dock_Area_Top\\Name:Свернуть все";
+
+        /// <summary>
+        /// Кнопка ввода тары
+        /// </summary>
+        public static string ContanerAdd = $"{MainViewOgrn}AutomationId:DocumentRegistrationView\\AutomationId:elementHost\\ClassName:Pane\\ClassName:DocumentBoxingControl\\ClassName:ScrollViewer\\AutomationId:ManualInputCommand";
+        /// <summary>
+        /// Вставка в поле текста в контейнер
+        /// </summary>
+        public static string AddTextContaner = $"{MainViewOgrn}AutomationId:DocumentRegistrationView\\AutomationId:elementHost\\ClassName:Pane\\ClassName:DocumentBoxingControl\\ClassName:ScrollViewer\\AutomationId:folderNumberEditor";
+        /// <summary>
+        /// Кнопка ввода Штрихкода
+        /// </summary>
+        public static string AddBarcode = $"{MainViewOgrn}AutomationId:DocumentRegistrationView\\AutomationId:elementHost\\ClassName:Pane\\ClassName:DocumentBoxingControl\\AutomationId:ManualInputCommand";
+        /// <summary>
+        /// Вставка в поле Штрихкода
+        /// </summary>
+        public static string AddTextBarcode = $"{MainViewOgrn}AutomationId:DocumentRegistrationView\\AutomationId:elementHost\\ClassName:Pane\\ClassName:DocumentBoxingControl\\AutomationId:PART_Text";
+
+        /// <summary>
+        /// Кнопка сохранить
+        /// </summary>
+        public static string Save = $"{MainViewOgrn}AutomationId:DocumentRegistrationView\\AutomationId:elementHost\\ClassName:Pane\\ClassName:DocumentBoxingControl\\Name:Сохранить";
+    }
  }

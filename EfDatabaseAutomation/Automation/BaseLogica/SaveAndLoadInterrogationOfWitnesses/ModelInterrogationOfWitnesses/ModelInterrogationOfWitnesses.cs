@@ -11,7 +11,6 @@
 // 
 // Этот исходный код был создан с помощью xsd, версия=4.7.2053.0.
 // 
-
 using AttributeHelperModelXml;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfWitnesses.ModelInterrogationOfWitnesses {
@@ -42,7 +41,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfW
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Counterparty")]
+        [System.Xml.Serialization.XmlElementAttribute("Counterpart")]
         public Counterpart[] Counterpart {
             get {
                 return this.counterpartField;
@@ -66,6 +65,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfW
         
         private string innUserField;
         
+        private string typeOrgField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         [DataNames(@"ИНН ОРГАНИЗАЦИИ", @"ИНН ОРГАНИЗАЦИИ")]
@@ -87,6 +88,18 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfW
             }
             set {
                 this.innUserField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"СФЕРА ДЕЯТЕЛЬНСТИ", @"СФЕРА ДЕЯТЕЛЬНСТИ")]
+        public string TypeOrg {
+            get {
+                return this.typeOrgField;
+            }
+            set {
+                this.typeOrgField = value;
             }
         }
     }

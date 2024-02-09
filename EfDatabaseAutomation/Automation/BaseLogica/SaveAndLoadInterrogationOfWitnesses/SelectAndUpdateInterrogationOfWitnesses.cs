@@ -25,16 +25,27 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfW
         /// <returns></returns>
         public MainOrg[] SelectAllMainOrgIsNotReady()
         {
-            return Automation.MainOrgs.Where(x => x.IsReady == false).ToArray();
+            return Automation.MainOrgs.Include(x=>x.UserOrgs).Where(x => x.IsReady == false).ToArray();
         }
         /// <summary>
         /// Вопросы на которые надо формировать шаблон
         /// </summary>
         /// <returns></returns>
-        public TemplateQuestion[] SelectTemplateQuestions()
+        ///<param name="typeQuestions">Тип вопросов для организации</param>
+        public TemplateQuestion[] SelectTemplateQuestions(int typeQuestions)
         {
-            return Automation.TemplateQuestions.ToArray();
+            return Automation.TemplateQuestions.Where(x=>x.IdType == typeQuestions).ToArray();
         }
+        /// <summary>
+        /// Функция Проверки все ли лица обработаны
+        /// </summary>
+        /// <returns></returns>
+        /// <param name="idOrg">Ун организации</param>
+        public bool IsEndListUserOrg(int idOrg)
+        {
+           return Automation.UserOrgs.Any(x => x.IdOrg == idOrg & !x.IsGood && !x.IsError);
+        }
+
         /// <summary>
         /// Сохранение организации
         /// </summary>

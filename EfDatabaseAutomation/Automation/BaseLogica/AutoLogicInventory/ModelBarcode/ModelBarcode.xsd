@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ModelBarcode" type="ModelBarcode">
+		<xs:annotation>
+			<xs:documentation>Модель для массовой генерации Штрихкодов</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ModelBarcode">
+		<xs:annotation>
+			<xs:documentation>Модель для массовой генерации Штрихкодов</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="Barcode" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Barcode">
+		<xs:annotation>
+			<xs:documentation>Описание к штрихкоду</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IdDocument" type="xs:int">
+				<xs:annotation>
+					<xs:documentation>Ун документа для порядка</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="GuidDocument" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>GUID для генерации штрихкода</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="FullPathPng" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Полный путь для картинки</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

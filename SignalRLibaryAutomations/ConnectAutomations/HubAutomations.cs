@@ -110,5 +110,55 @@ namespace SignalRLibraryAutomations.ConnectAutomations
             Loggers.Log4NetLogger.Info(new Exception("Модель Отдел и подписанты рассылка пошла!!!"));
             context.Clients.All.SubscribeDepartmentSenderDelete(department);
         }
+        /// <summary>
+        /// Подписка на редактирования дела
+        /// </summary>
+        /// <param name="organizationOgrnInventory">Дело ОГРН</param>
+        public static void SubscribeOrganizationOgrnInventory(string organizationOgrnInventory)
+        {
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<HubAutomations>();
+            Loggers.Log4NetLogger.Info(new Exception("Модель дело ОГРН рассылка пошла!!!"));
+            context.Clients.All.SubscribeOrganizationOgrnInventory(organizationOgrnInventory);
+        }
+        /// <summary>
+        /// Подписка на изменение ГРН
+        /// </summary>
+        /// <param name="grnInventory"></param>
+        public static void SubscribeGrnInventory(string grnInventory)
+        {
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<HubAutomations>();
+            Loggers.Log4NetLogger.Info(new Exception("Модель дело ГРН рассылка пошла!!!"));
+            context.Clients.All.SubscribeGrnInventory(grnInventory);
+        }
+        /// <summary>
+        /// Подписка на документ организации
+        /// </summary>
+        /// <param name="documentInventory"></param>
+        public static void SubscribeDocumentInventory(string documentInventory)
+        {
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<HubAutomations>();
+            Loggers.Log4NetLogger.Info(new Exception("Модель документы рассылка пошла!!!"));
+            context.Clients.All.SubscribeDocumentInventory(documentInventory);
+        }
+        /// <summary>
+        /// Подписка на обновление или редактирование данных
+        /// </summary>
+        /// <param name="infoDocument">Информация о документе</param>
+        public static void SubscribeInfoDocument(string infoDocument)
+        {
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<HubAutomations>();
+            Loggers.Log4NetLogger.Info(new Exception("Модель документы рассылка пошла!!!"));
+            context.Clients.All.SubscribeInfoDocument(infoDocument);
+        }
+        /// <summary>
+        /// Подписка на добавление Контейнера
+        /// </summary>
+        /// <param name="documentContainer">Документ контейнер</param>
+        public static void SubscribeDocumentContainer(string documentContainer)
+        {
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<HubAutomations>();
+            Loggers.Log4NetLogger.Info(new Exception("Модель документы рассылка пошла!!!"));
+            context.Clients.All.SubscribeDocumentContainer(documentContainer);
+        }
     }
 }

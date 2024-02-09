@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AisPoco.Ifns51.ToAis;
 using GalaSoft.MvvmLight.Threading;
 using LibraryAIS3Windows.ButtonsClikcs;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
+using ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect;
 
 namespace LibraryCommandPublic.TestAutoit.Kao
 {
@@ -19,32 +21,36 @@ namespace LibraryCommandPublic.TestAutoit.Kao
         /// Опрос свидетелей
         /// </summary>
         /// <param name="statusButton">Кнопка старт автомат</param>
-        public void StartInterrogationOfWitnesses(StatusButtonMethod statusButton)
+        ///<param name="templateSender">УН подписанта</param>
+        public void StartInterrogationOfWitnesses(StatusButtonMethod statusButton, PublicModelCollectionSelect<TemplateModel> templateSender)
         {
             DispatcherHelper.Initialize();
-            Task.Run(delegate
+            if (templateSender.IsValidation())
             {
-                try
+                Task.Run(delegate
                 {
-                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
-                    KclicerButton clickerButton = new KclicerButton();
-                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
-                    if (ais3.WinexistsAis3() == 1)
+                    try
                     {
-                        clickerButton.Click62(statusButton);
+                        DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                        KclicerButton clickerButton = new KclicerButton();
+                        LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                        if (ais3.WinexistsAis3() == 1)
+                        {
+                            clickerButton.Click62(statusButton, templateSender.SelectModel.IdTemplate);
+                        }
+                        else
+                        {
+                            MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                        }
                         DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                     }
-                    else
+                    catch (Exception e)
                     {
-                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                        MessageBox.Show(e.ToString());
+                        throw;
                     }
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.ToString());
-                    throw;
-                }
-            });
+                });
+            }
         }
     }
 }

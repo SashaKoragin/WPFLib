@@ -129,6 +129,7 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect
         {
             SelectModelCollection.Add((int)param);
         }
+
         /// <summary>
         /// Удаляем Модель
         /// </summary>

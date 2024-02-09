@@ -121,5 +121,67 @@ namespace LibraryCommandPublic.TestAutoit.Reg.VisualTreatmentFace
                 });
             }
         }
+        /// <summary>
+        /// Сканирование документов
+        /// Налоговое администрирование\Централизованная система регистрации\Электронный архив\Запросить электронные образы документов дела из архива(преобразование) 
+        ///
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        public void ScanDocuments(StatusButtonMethod statusButton)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate()
+            {
+                try
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    WindowsAis3 ais3 = new WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        clickerButton.Click64(statusButton);
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            });
+        }
+        /// <summary>
+        /// Автоматизация комплектования Тары
+        /// </summary>
+        /// <param name="statusButton">Кнопка Старт автомат</param>
+        public void ScanAddContainer(StatusButtonMethod statusButton)
+        {
+            DispatcherHelper.Initialize();
+            Task.Run(delegate ()
+            {
+                try
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    WindowsAis3 ais3 = new WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        clickerButton.Click65(statusButton);
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            });
+        }
     }
 }

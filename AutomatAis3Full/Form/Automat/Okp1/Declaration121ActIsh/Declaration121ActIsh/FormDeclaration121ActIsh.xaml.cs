@@ -1,4 +1,5 @@
 ﻿using AutomatAis3Full.Form.Automat.Okp1.Declaration121ActIsh.DataContext;
+using System.Text.RegularExpressions;
 using System.Windows.Controls;
 
 
@@ -14,5 +15,11 @@ namespace AutomatAis3Full.Form.Automat.Okp1.Declaration121ActIsh.Declaration121A
             InitializeComponent();
             DataContext = new DataContextDeclaration121ActIsh();
         }
+
+        //private void NumberValidationTextBox(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        //{
+        //    Regex regex = new Regex("[^0-9]+");
+        //    e.Handled = regex.IsMatch(e.Text);
+        //}
     }
 }

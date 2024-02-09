@@ -306,5 +306,139 @@ namespace ServiceAutomation.Service
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectQuestions?idUsers={idUsers}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
 
         Task<string> SelectQuestions(int idUsers);
+        /// <summary>
+        /// Все реестры для описи документов
+        /// http://77068-app065:8050/ServiceAutomation/SelectAllOgrnInventory
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectAllOgrnInventory", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> SelectAllOgrnInventory();
+
+        /// <summary>
+        /// Все документы из справочника АИС 3
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectAllDirectoryDocument", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> SelectAllDirectoryDocument();
+        /// <summary>
+        /// Запрос справочника пользовательской информации о документе
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectAllInfoDocument", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> SelectAllInfoDocument();
+        /// <summary>
+        /// Проставить признак завершение обработки организации
+        /// </summary>
+        /// <param name="inn">ИНН организации</param>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/ClosedMainOrg?inn={inn}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> ClosedMainOrg(string inn);
+        /// <summary>
+        /// Аннулировать плательщика для автомата
+        /// </summary>
+        /// <param name="userOrg">Плательщик</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/ClosedUserOrg", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> ClosedUserOrg(UserOrg userOrg);
+        /// <summary>
+        /// Добавление или редактирование дела ОГРН
+        /// </summary>
+        /// <param name="organizationOgrnInventory">Отдел и подписант</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddAndEditOrganizationOgrnInventory", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<OrganizationOgrnInventory> AddAndEditOrganizationOgrnInventory(OrganizationOgrnInventory organizationOgrnInventory);
+        /// <summary>
+        /// Добавление или редактирование ГРН Документа
+        /// </summary>
+        /// <param name="grnInventory">ГРН Документа</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddAndEditGrnInventory", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<GrnInventory> AddAndEditGrnInventory(GrnInventory grnInventory);
+
+        /// <summary>
+        /// Добавление или Редактирование Документа под ГРН
+        /// </summary>
+        /// <param name="documentInventory">Документ под ГРН</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddAndEditDocumentInventory", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<DocumentInventory> AddAndEditDocumentInventory(DocumentInventory documentInventory);
+        /// <summary>
+        /// Добавление или редактирование описание документа
+        /// </summary>
+        /// <param name="infoDocument">Информация о документе</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddAndEditAllInfoDocument", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<InfoDocument> AddAndEditAllInfoDocument(InfoDocument infoDocument);
+        /// <summary>
+        /// Функция выгрузки Штрих-кодов для цифравизации документов
+        /// </summary>
+        /// <param name="grnInventory">Дело ГРН/ОГРН</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/PrintBarcode", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> PrintBarcode(GrnInventory grnInventory);
+        /// <summary>
+        /// Запрос тар контейнеров для визуализации ФКУ
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectAllDocumentContainer", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> SelectAllDocumentContainer();
+        /// <summary>
+        /// Добавление в реестр тары контейнера
+        /// </summary>
+        /// <param name="documentContainer">Контейнер для тары</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddDocumentContainer", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<DocumentContainer> AddDocumentContainer(DocumentContainer documentContainer);
+        /// <summary>
+        /// Отчет о синхронизации документов
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/ReportSynchronization", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> ReportSynchronization(GrnInventory grnInventory);
+        /// <summary>
+        /// Отчет о статистики документов
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/ReportStatisticsDocumentInventory", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> ReportStatisticsDocumentInventory();
+        /// <summary>
+        /// Отчет по контейнеру с документами 
+        /// </summary>
+        /// <param name="documentContainer">Контейнер по которому запрашивается отчет</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/ReportDocumentContainer", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> ReportDocumentContainer(DocumentContainer documentContainer);
+        /// <summary>
+        /// Запрос данных по всем процессам и их статусам
+        /// http://77068-app065:8050/ServiceAutomation/SelectAllEventError
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectAllEventError", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> SelectAllEventError();
+
+        /// <summary>
+        /// Детализация ошибок
+        /// http://localhost:8050/ServiceAutomation/SelectDetailingEventError?idProcess=1
+        /// </summary>
+        /// <param name="idProcess">Ун процесса для детализации ГРН</param>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectDetailingEventError?idProcess={idProcess}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+
+        Task<string> SelectDetailingEventError(int idProcess);
     }
 }

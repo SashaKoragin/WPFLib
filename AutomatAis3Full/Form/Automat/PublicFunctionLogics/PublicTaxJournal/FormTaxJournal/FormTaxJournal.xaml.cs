@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace AutomatAis3Full.Form.Automat.Okp2.TaxJournal.TaxJournal
+namespace AutomatAis3Full.Form.Automat.PublicFunctionLogics.PublicTaxJournal.FormTaxJournal
 {
     /// <summary>
     /// Логика взаимодействия для FormTaxJournal.xaml
@@ -12,7 +12,7 @@ namespace AutomatAis3Full.Form.Automat.Okp2.TaxJournal.TaxJournal
         public FormTaxJournal()
         {
             InitializeComponent();
-            DataContext = new DataContext.DataContextTaxJournal();
+            DataContext = new DataContextTaxJournal.DataContextTaxJournal();
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
