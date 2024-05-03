@@ -12,7 +12,7 @@ using ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect;
 
 namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
 {
-  public class AutoMessageLk
+    public class AutoMessageLk
     {
         /// <summary>
         /// Автоматизация ветки подписание руководителем за счет имущества ветка 05.08.09.02.03.06. Подпись руководителями Заявлений о взыскании за счет имущества ФЛ
@@ -20,7 +20,8 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
         /// <param name="statusButton">Кнопка старт</param>
         /// <param name="pathJournalError">Журнал ошибок</param>
         /// <param name="pathJournalOk">Журнал хороших (обработанных)</param>
-        public void SignatureHeadProperty(StatusButtonMethod statusButton, string pathJournalError, string pathJournalOk)
+        public void SignatureHeadProperty(StatusButtonMethod statusButton, string pathJournalError,
+            string pathJournalOk)
         {
             DispatcherHelper.Initialize();
             Task.Run(delegate
@@ -58,7 +59,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                 if (ais3.WinexistsAis3() == 1)
                 {
-                    clickerButton.Click23(statusButton,pathjurnalerror, pathjurnalok);
+                    clickerButton.Click23(statusButton, pathjurnalerror, pathjurnalok);
                     DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
 
                 }
@@ -89,7 +90,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                     while (statusButton.Iswork)
                     {
                         var strexit = clickerButton.Click16(pathjurnalerror, pathjurnalok);
-                        
+
                         if (strexit.Equals(LibraryAIS3Windows.Status.StatusAis.Status6))
                         {
                             DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
@@ -103,6 +104,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
             });
         }
+
         /// <summary>
         /// </summary>
         /// <param name="statusButton">Кнопка старт </param>
@@ -128,6 +130,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
             });
         }
+
         /// <summary>
         /// Подстановка даты вручения в ветке 
         /// Налоговое администрирование\Урегулирование задолженности\Требования об уплате\Журнал требований об уплате
@@ -202,6 +205,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
             });
         }
+
         /// <summary>
         /// Функция подписания по ветки
         /// Общие задания\Урегулирование задолженности\05.09 Формирование решения об отказе по заявлению\Подписание руководителем НО
@@ -226,6 +230,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
             });
         }
+
         /// <summary>
         /// Функция утверждение решений
         /// Общие задания\Урегулирование задолженности\05.09 Формирование решения об отказе по заявлению\Утверждение решений об отказе
@@ -270,7 +275,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                     LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
                     LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite read = new LibaryXMLAuto.ReadOrWrite.XmlReadOrWrite();
                     object obj = read.ReadXml(pathList, typeof(AutoGenerateSchemes));
-                    AutoGenerateSchemes modelList = (AutoGenerateSchemes)obj;
+                    AutoGenerateSchemes modelList = (AutoGenerateSchemes) obj;
                     if (ais3.WinexistsAis3() == 1)
                     {
                         foreach (var modelListTaxArr in modelList.TaxArrears)
@@ -278,9 +283,12 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                             if (statusButton.Iswork)
                             {
                                 clickerButton.Click35(modelListTaxArr.Inn, modelListTaxArr.Kpp);
-                                read.DeleteAtributXml(pathList, LibaryXMLAuto.GenerateAtribyte.GeneratorAtribute.GenerateAtrAutoGenerateSchemes(modelListTaxArr.Inn));
+                                read.DeleteAtributXml(pathList,
+                                    LibaryXMLAuto.GenerateAtribyte.GeneratorAtribute.GenerateAtrAutoGenerateSchemes(
+                                        modelListTaxArr.Inn));
                             }
                         }
+
                         DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                     }
                     else
@@ -290,6 +298,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 });
             }
         }
+
         /// <summary>
         /// Запуск задание на ветку
         /// Налоговое администрирование\Урегулирование задолженности\Взыскание задолженности за счет имущества НП ФЛ\Ввод данных судебного акта
@@ -318,6 +327,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 });
             }
         }
+
         /// <summary>
         /// Заявление о зачете возврате
         /// </summary>
@@ -341,6 +351,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
             });
         }
+
         /// <summary>
         /// Автомат на ветку Налоговое администрирование\Урегулирование задолженности\Техническая корректировка\Техническая корректировка. Ввод заявок
         /// </summary>
@@ -368,13 +379,14 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                             MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                         }
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         MessageBox.Show(e.Message);
                     }
                 });
             }
         }
+
         /// <summary>
         /// Автомат на ветку Налоговое администрирование\Урегулирование задолженности\Техническая корректировка\Техническая корректировка. Согласование заявок
         /// </summary>
@@ -447,6 +459,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
             });
         }
+
         /// <summary>
         /// Автомат на ветку
         /// Общие задания\Урегулирование задолженности\05.09.01(06.01) Формирование сообщения о факте излишней уплаты (излишнего взыскания)\05.09.01(06.01) Формирование сообщения об излишней уплате (взыскании)\Утверждение сообщений
@@ -473,13 +486,15 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                 }
             });
         }
+
         /// <summary>
         /// Печать документов для КНД
         /// </summary>
         /// <param name="statusButton">Кнопка запуска программы</param>
         /// <param name="templateSender">Шаблон выбора документа</param>
         /// <param name="datePicker">Календарь</param>
-        public void PrintDocumentModel(StatusButtonMethod statusButton, PublicModelCollectionSelect<TemplateModel> templateSender, DatePickerAdd datePicker)
+        public void PrintDocumentModel(StatusButtonMethod statusButton,
+            PublicModelCollectionSelect<TemplateModel> templateSender, DatePickerAdd datePicker)
         {
             DispatcherHelper.Initialize();
             if (templateSender.IsValidation())
@@ -499,6 +514,7 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                         {
                             System.Windows.Forms.MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                         }
+
                         DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                     }
                     catch (Exception e)
@@ -508,6 +524,72 @@ namespace LibraryCommandPublic.TestAutoit.Uregulirovanie.MessageLk
                     }
                 });
             }
+        }
+
+        /// <summary>
+        /// Запуск БП
+        /// Налоговое администрирование\Урегулирование задолженности (ЕНС)\Взыскание задолженности за счет ДС и ЭДС\Запуск БП
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        /// <param name="pathList">Полный путь к списку с ИНН</param>
+        public void StartProcessCollection(StatusButtonMethod statusButton, string pathList)
+        {
+            DispatcherHelper.Initialize();
+            if (File.Exists(pathList))
+            {
+                Task.Run(delegate
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        if (statusButton.Iswork)
+                        {
+                            clickerButton.Click66(statusButton, pathList);
+                        }
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    }
+                });
+            }
+        }
+
+        /// <summary>
+        /// Запуск БП
+        /// Налоговое администрирование\Урегулирование задолженности (ЕНС)\Требования об уплате\Запуск БП
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        /// <param name="pathList">Полный путь к списку с ИНН</param>
+        public void StartProcessRequirement(StatusButtonMethod statusButton, string pathList)
+        {
+            DispatcherHelper.Initialize();
+            if (File.Exists(pathList))
+            {
+                Task.Run(delegate
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        if (statusButton.Iswork)
+                        {
+                            clickerButton.Click67(statusButton, pathList);
+                        }
+
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    }
+                });
+            }
+
         }
     }
 }

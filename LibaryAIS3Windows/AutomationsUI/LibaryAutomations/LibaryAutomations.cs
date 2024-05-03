@@ -42,20 +42,19 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
 
         public LibraryAutomations NewPreviousSiblingWindows { get; set; }
         private Condition Conditions { get; set; }
-        /// <summary>
-        /// Подключение к процессу
-        /// </summary>
-        /// <param name="nameWindowsAis3"></param>
-       
+
         public LibraryAutomations()
         {
             RootAutomationElements = AutomationElement.RootElement;
             ProcessId = RootAutomationElements.Current.ProcessId;
         }
-
+        /// <summary>
+        /// Подключение к процессу
+        /// </summary>
+        /// <param name="nameWindowsAis3"></param>
         public LibraryAutomations(string nameWindowsAis3)
         {
-            
+ 
             RootAutomationElements = AutomationElement.FromHandle(AutoItX.WinGetHandle(nameWindowsAis3));
             ProcessId = RootAutomationElements.Current.ProcessId;
         }
@@ -244,9 +243,7 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                 element.SetFocus();
                 var pattern = element.GetCurrentPattern(InvokePatternIdentifiers.Pattern);
                 var valueAuto = (InvokePattern)pattern;
-                valueAuto.Invoke();
-            
-               
+                valueAuto.Invoke(); 
             }
             catch
             {
@@ -385,10 +382,15 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
         {
             if (IsEnableElements(nameAutomationId,null,false,5)!=null)
             {
+                SelectionComboBoxSelectionItemPattern(FindElement);
                 var expand = DefaultActionPattern(FindElement);
                 if(expand == "Expand")
                 {
                     InvokePattern(FindElement);
+                }
+                if (string.IsNullOrWhiteSpace(expand))
+                {
+                    ClickElements(nameAutomationId, null, false, 25, 0, 0, 2);
                 }
                 return true;
             }
@@ -768,7 +770,25 @@ namespace LibraryAIS3Windows.AutomationsUI.LibaryAutomations
                         isEnable = FindElement.Current.IsEnabled;
                 }
             }
-            return isEnable;
+            return true;
+        }
+
+        /// <summary>
+        /// Опасная функция проверка и продолжение если элемент фокусируется
+        /// </summary>
+        /// <param name="nameAutomationId">Поиск элемента</param>
+        public bool IsFocusableElement(string nameAutomationId)
+        {
+            var isFocusable = false;
+            while (!isFocusable)
+            {
+                FindFirstElement(nameAutomationId, null, false, false);
+                if (FindElement != null)
+                {
+                    isFocusable = FindElement.Current.IsKeyboardFocusable;
+                }
+            }
+            return true;
         }
 
         /// <summary>

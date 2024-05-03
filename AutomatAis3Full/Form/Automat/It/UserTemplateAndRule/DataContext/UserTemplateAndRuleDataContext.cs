@@ -19,7 +19,7 @@ namespace AutomatAis3Full.Form.Automat.It.UserTemplateAndRule.DataContext
         {
             var command = new ItRuleParse();
             StartButton = new StatusButtonMethod();
-            StartButton.Button.Command = new DelegateCommand(() => { command.UserTemplateRule(StartButton, ConfigFile.InfoUserTemplateRule); });
+            StartButton.Button.Command = new DelegateCommand(() => { command.UserTemplateRule(StartButton, ConfigFile.InfoUserTemplateRule, ConfigFile.FullPathAis3); });
         }
     }
 }

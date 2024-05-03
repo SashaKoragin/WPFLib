@@ -127,5 +127,14 @@ namespace PublicLogicaFull.DocumentLogica.FlowDocumentExample.Examle
                                        "  <InnFace Inn=\"550727971530\" />\n" +
                                        "  <InnFace Inn=\"507404107700\" />\n" +
                                        "</AutoGenerateSchemes>";
+        /// <summary>
+        /// Объекты собственности
+        /// </summary>
+        public static string RealEstate = "<?xml version =\"1.0\"encoding=\"UTF-8\"?>\n" +
+                                          "<AutoGenerateSchemes xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"AutoGenerateSchemes.xsd\">\n" +
+                                          "  <RealEstate CadastralNumber=\"77:17:0140218:3277\" ObjectType=\"Помещение\" />\n" +
+                                          "  <RealEstate CadastralNumber=\"77:17:0120316:42649\" ObjectType=\"Помещение\" />\n" +
+                                          "  <RealEstate CadastralNumber=\"77:21:0140503:4804\" ObjectType=\"Помещение\" />\n" +
+                                          "</AutoGenerateSchemes>";
     }
 }

@@ -72,6 +72,11 @@
 					<xs:documentation>Ун контейнера</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
+			<xs:attribute name="UserLogin" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Логин пользователя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="NumberOgrnGrn" type="xs:long" use="required">
 				<xs:annotation>
 					<xs:documentation>ОГРН/ГРН в контейнере</xs:documentation>
@@ -85,6 +90,11 @@
 			<xs:attribute name="SumPageNotIncluded" type="xs:int" use="required">
 				<xs:annotation>
 					<xs:documentation>Колличество листов не добавленно в контейнер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CountDocument" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Колличество документов в пачке</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="State" type="xs:int" use="required">

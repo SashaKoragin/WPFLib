@@ -6,6 +6,15 @@
         /// Общий журнал заданий
         /// </summary>
         public static string PublicTaxViewTask = "Name:_layoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\AutomationId:UserOperationsView\\AutomationId:ultraPanel1\\AutomationId:splitContainer1\\AutomationId:mainGrid\\Name:user_operation row 1";
+
+        /// <summary>
+        /// Ветка налоговое администрирование
+        /// </summary>
+        public static string FullTreeIfns = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskpaneWorkspace\\AutomationId:ScenarioView\\AutomationId:scenarioTree\\Name:Налоговое администрирование";
+        /// <summary>
+        /// Открытие Ветки
+        /// </summary>
+        public static string OpenTree = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskpaneWorkspace\\AutomationId:ScenarioView\\AutomationId:toolbarContainer\\AutomationId:_ClientArea_Toolbars_Dock_Area_Top\\Name:Панель инструментов\\Name:Открыть";
         /// <summary>
         /// Дерево элементов
         /// </summary>
@@ -35,5 +44,9 @@
         /// Запуск очередного задания по требованиям
         /// </summary>
         public static string StartBeforeQ = "Name:DockTop\\Name:Ribbon\\Name:Пользовательские задания\\Name:Управление заданиями\\Name:Запустить очередное задание";
+        /// <summary>
+        /// Свернуть все
+        /// </summary>
+        public static string ShowAll = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskpaneWorkspace\\AutomationId:ScenarioView\\AutomationId:toolbarContainer\\AutomationId:_ClientArea_Toolbars_Dock_Area_Top\\Name:Панель инструментов\\Name:Свернуть все";
    }
 }

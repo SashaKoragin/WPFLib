@@ -50,7 +50,11 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelWeb
         
         private int idOgrnField;
         
+        private string userLoginField;
+        
         private long numberOgrnField;
+        
+        private bool isHiddenWebField;
         
         private int idStatusField;
         
@@ -78,12 +82,34 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelWeb
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string UserLogin {
+            get {
+                return this.userLoginField;
+            }
+            set {
+                this.userLoginField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
         public long NumberOgrn {
             get {
                 return this.numberOgrnField;
             }
             set {
                 this.numberOgrnField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public bool IsHiddenWeb {
+            get {
+                return this.isHiddenWebField;
+            }
+            set {
+                this.isHiddenWebField = value;
             }
         }
         

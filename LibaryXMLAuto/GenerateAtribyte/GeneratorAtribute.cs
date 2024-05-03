@@ -128,6 +128,16 @@ namespace LibaryXMLAuto.GenerateAtribyte
         {
             return String.Format("/AutoGenerateSchemes/InnFace[@Inn =\"{0}\"]", inn);
         }
+
+        /// <summary>
+        /// Поиск и удаление ИНН из списка
+        /// </summary>
+        /// <param name="inn">ИНН</param>
+        /// <returns></returns>
+        public static string GenerateAtrAutoGenerateSchemesDeleteRealEstate(string cadastralNumber)
+        {
+            return String.Format("/AutoGenerateSchemes/RealEstate[@CadastralNumber =\"{0}\"]", cadastralNumber);
+        }
     }
 
 }

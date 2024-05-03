@@ -18,6 +18,7 @@
 			<xs:element ref="IncomeJournal" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="IdentytiFace" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="InnFace" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="RealEstate" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxArrears">
@@ -173,6 +174,23 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:attribute name="Inn" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RealEstate">
+		<xs:annotation>
+			<xs:documentation>Объекты собственности</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="CadastralNumber" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Кадастровый номер</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ObjectType" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Тип объекта недвижимости</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

@@ -38,7 +38,7 @@ namespace LibraryAIS3Windows.Window
         /// <summary>
         /// Константа символизирует окно АИС 3 Title
         /// </summary>
-        internal static string AisNalog3 = "АИС Налог-3 ПРОМ ";
+        internal static string AisNalog3 = "АИС Налог-3 ПРОМ";
 
         /// <summary>
         /// Переменная для подготовки условия Пожалйста подождите
@@ -66,10 +66,10 @@ namespace LibraryAIS3Windows.Window
         /// Считать позицию создание заявки на формирование СНУ
         /// Так- же данная функция работае для пользовательских заданий
         /// </summary>
-        internal static string[] WinRequest = 
+        internal static string[] WinRequest =
          {
             "АИС Налог-3 ПРОМ ",
-            "", 
+            "",
             "[NAME:CreateRequestImplView]"
          };
         /// <summary>

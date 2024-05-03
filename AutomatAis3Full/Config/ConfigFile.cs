@@ -8,7 +8,11 @@ using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 namespace AutomatAis3Full.Config
 {
    internal class ConfigFile
-    {
+   {
+        /// <summary>
+        /// Полный путь к файлу АИС 3 для запуска
+        /// </summary>
+        public static string FullPathAis3 = ConfigurationManager.AppSettings["FullPathAis3"];
         /// <summary>
         /// Компьютер где расположен сервис
         /// </summary>
@@ -40,6 +44,7 @@ namespace AutomatAis3Full.Config
         public static string WebSite = ConfigurationManager.AppSettings["WebSite"];
         public static string ServiceGetOrPost = ConfigurationManager.AppSettings["ServiceGetOrPost"];
         public static string AllTemplate = ConfigurationManager.AppSettings["AllTemplate"];
+        public static string AllUserScan = ConfigurationManager.AppSettings["AllUserScan"];
         public static string PathDownloadsReplaceLogin =string.Format(ConfigurationManager.AppSettings["PathDownloads"], LoginUser);
         public static int Slepping = Convert.ToInt32(ConfigurationManager.AppSettings["Sleepeng"]);
         /// <summary>

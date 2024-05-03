@@ -81,16 +81,16 @@ namespace LibraryCommandPublic.TestAutoit.It.Rule
         /// </summary>
         /// <param name="statusButton">Кнопка статуса</param>
         /// <param name="pathJournalInfoUserTemplateRule">Путь к файлу сохранения с пользователями и шаблонами ролей</param>
-        public void UserTemplateRule(StatusButtonMethod statusButton, string pathJournalInfoUserTemplateRule)
+        /// <param name="fullPathAis3">Полный путь запуска АИС 3</param>
+        public void UserTemplateRule(StatusButtonMethod statusButton, string pathJournalInfoUserTemplateRule, string fullPathAis3)
         {
             DispatcherHelper.Initialize();
             Task.Run(delegate
             {
-                DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
-                KclicerButton clickerButton = new KclicerButton();
-                LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
-                if (ais3.WinexistsAis3() == 1)
+                try
                 {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
                     if (statusButton.IsChekcs)
                     {
                         if (File.Exists(pathJournalInfoUserTemplateRule))
@@ -98,12 +98,13 @@ namespace LibraryCommandPublic.TestAutoit.It.Rule
                             File.Delete(pathJournalInfoUserTemplateRule);
                         }
                     }
-                    clickerButton.Click38(statusButton, pathJournalInfoUserTemplateRule);
+                    clickerButton.Click38(statusButton, pathJournalInfoUserTemplateRule, fullPathAis3);
                     DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                 }
-                else
+                catch (Exception e)
                 {
-                    MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    MessageBox.Show(e.Message);
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
                 }
             });
         }

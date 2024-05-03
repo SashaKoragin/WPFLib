@@ -562,4 +562,41 @@
         /// </summary>
         public static string Closed = "AutomationId:CCustomForm\\AutomationId:panMain\\AutomationId:CPreviewUserControl\\AutomationId:panButtons\\AutomationId:panClose\\Name:Закрыть";
     }
+
+    public class UregulirovanieCollection
+    {
+        /// <summary>
+        /// Окно ветки
+        /// </summary>
+        private static string MainWin = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\";
+
+        /// <summary>
+        /// Кнопка Формирование РВ ДС по ст. 46
+        /// </summary>
+        public static string ButtonStart = $"{MainWin}AutomationId:StartBussinessProcessWdrwView\\AutomationId:TestControl_Fill_Panel\\AutomationId:grpBackgroundTab3\\Name:Формирование РВ ДС по ст. 46";
+        /// <summary>
+        /// Поле ввод ИНН
+        /// </summary>
+        public static string SendInn = $"{MainWin}AutomationId:StartBussinessProcessWdrwView\\AutomationId:TestControl_Fill_Panel\\AutomationId:grpBackgroundTab3\\Name:Параметры запуска\\Name:Общие\\AutomationId:txtInn";
+    }
+
+    public class UregulirovanieRequirement
+    {
+        /// <summary>
+        /// Окно ветки
+        /// </summary>
+        private static string MainWin = "AutomationId:LayoutWorkspace\\AutomationId:ShellLayoutView\\AutomationId:ShellLayoutView_Fill_Panel\\AutomationId:taskWindowWorkspaceView1\\";
+        /// <summary>
+        /// Кнопка Формировать ТУ
+        /// </summary>
+        public static string ButtonStart = $"{MainWin}AutomationId:StartBussinessProcessReqView\\AutomationId:TestControl_Fill_Panel\\AutomationId:grpBackgroundTab3\\Name:Формировать ТУ";
+        /// <summary>
+        /// Поле ввод ИНН
+        /// </summary>
+        public static string SendInn = $"{MainWin}AutomationId:StartBussinessProcessReqView\\AutomationId:TestControl_Fill_Panel\\AutomationId:grpBackgroundTab3\\AutomationId:ultraGroupBox3\\AutomationId:ultraGroupBox4\\AutomationId:txtInn";
+        /// <summary>
+        /// Информация Ок
+        /// </summary>
+        public static string WinInfo = "Name:Информация\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\Name:ОК";
+    }
 }

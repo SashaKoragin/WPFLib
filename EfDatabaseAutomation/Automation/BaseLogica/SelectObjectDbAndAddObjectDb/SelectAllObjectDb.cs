@@ -1,9 +1,11 @@
 ﻿using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using System;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelBarcode;
+using EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelFilter;
 using EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelWebSyteInventory;
 using LibaryXMLAuto.ReadOrWrite;
 using DirectoryDocument = EfDatabaseAutomation.Automation.Base.DirectoryDocument;
@@ -41,7 +43,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectD
         public string AllSenderDepartment()
         {
             SerializeJson json = new SerializeJson();
-            return json.JsonLibaryIgnoreDate(AutomationContext.DepartamentOtdels);
+            return json.JsonLibaryIgnoreDate(AutomationContext.DepartamentOtdels.Include(x=>x.SenderTaxJournalOkp2));
         }
         /// <summary>
         /// Все сотрудники организации
@@ -76,12 +78,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectD
         /// Выгрузка всех документов реестра 
         /// </summary>
         /// <returns></returns>
-        public string AllOgrnInventory()
+        /// <param name="virtualFilter">Виртуальный фильтр коллекции</param>
+        public string AllOgrnInventory(VirtualFilterToServer virtualFilter)
         {
             SerializeJson json = new SerializeJson();
             var xml = new XmlReadOrWrite();
             var selectParameters = AutomationContext.LogicsSelectAutomations.FirstOrDefault(x => x.Id == 43);
-            var result = AutomationContext.Database.SqlQuery<string>(selectParameters.SelectUser).ToArray();
+            var result = AutomationContext.Database.SqlQuery<string>(selectParameters.SelectUser,
+                new SqlParameter(selectParameters.SelectedParametr.Split(',')[0], virtualFilter.IdFilter),
+                new SqlParameter(selectParameters.SelectedParametr.Split(',')[1], virtualFilter.NameFilter),
+                new SqlParameter(selectParameters.SelectedParametr.Split(',')[2], virtualFilter.LoginUser),
+                new SqlParameter(selectParameters.SelectedParametr.Split(',')[3], virtualFilter.IsHiddenWeb)).ToArray();
             var modelWebSyte = (ModelWebSyte)xml.ReadXmlText(string.Join("", (string[])result), typeof(ModelWebSyte));
             return json.JsonLibaryIgnoreDate(modelWebSyte);
         }

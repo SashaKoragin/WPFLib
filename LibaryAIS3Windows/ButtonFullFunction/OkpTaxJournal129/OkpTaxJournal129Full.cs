@@ -69,6 +69,12 @@ namespace LibraryAIS3Windows.ButtonFullFunction.OkpTaxJournal129
                         libraryAutomation
                             .SelectAutomationColrction(automationElement)
                             .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КПП")));
+
+                    var state = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        libraryAutomation
+                            .SelectAutomationColrction(automationElement)
+                            .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Статья НК нарушения")));
+
                     taxFace.NameFace = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
                         libraryAutomation
                             .SelectAutomationColrction(automationElement)
@@ -293,11 +299,14 @@ namespace LibraryAIS3Windows.ButtonFullFunction.OkpTaxJournal129
                                 libraryAutomation.FindElement = libraryAutomation.SelectAutomationColrction(libraryAutomation.IsEnableElements(Journal129AndJournal121.ErrorGroup0Number, null, true))[3];
                                 var numberElement = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement);
                                 libraryAutomation.SetValuePattern(templateModel.NameTemplate.Replace("{numberDocument}", numberElement));
-                                if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ErrorGroup0DataAct, null, true) != null)
+                                if (state != "88")
                                 {
-                                    var dataElement = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement));
-                                    var date = dataElement.AddWorkdays(1);
-                                    libraryAutomation.SetValuePattern(date.ToString("dd.MM.yyyy"));
+                                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ErrorGroup0DataAct, null, true) != null)
+                                    {
+                                        var dataElement = Convert.ToDateTime(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.FindElement));
+                                        var date = dataElement.AddWorkdays(1);
+                                        libraryAutomation.SetValuePattern(date.ToString("dd.MM.yyyy"));
+                                    }
                                 }
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ErrorGroup0);
                             }

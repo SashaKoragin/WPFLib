@@ -13,7 +13,9 @@ using AutoIt;
 using LibraryAIS3Windows.ButtonsClikcs;
 using System.Windows.Automation;
 using System.Windows.Forms;
+using AisPoco.UserLoginScan;
 using EfDatabaseAutomation.BaseLogica.AutoLogicInventory;
+using ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect;
 using DocumentInventory = EfDatabaseAutomation.Automation.Base.DocumentInventory;
 using GrnInventory = EfDatabaseAutomation.Automation.Base.GrnInventory;
 
@@ -38,11 +40,13 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
         /// Метод автоматизации ретро-сканирования
         /// </summary>
         /// <param name="statusButton">Кнопка старт автомат</param>
-        public void StartScanDocument(StatusButtonMethod statusButton)
+        /// <param name="modelUser">Модель пользователей</param>
+        public void StartScanDocument(StatusButtonMethod statusButton, PublicModelCollectionSelect<UserLoginDatabaseModel> modelUser)
         {
             LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
             var inventoryLogicSelect = new InventoryLogic();
-            var modelDocument = inventoryLogicSelect.SelectStartProcessInventory();
+            var selectUser = modelUser.ModelCollection.Where(x => modelUser.SelectModelCollection.Contains(x.IdUser)).Select(user => user.UserLogin).ToArray();
+            var modelDocument = inventoryLogicSelect.SelectStartProcessInventory(selectUser);
             if (modelDocument?.TemplateOgrn != null) {
                 foreach (var organizationOgrnInventory in modelDocument.TemplateOgrn)
                 {
@@ -66,13 +70,13 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                             case 2:
                                 AnalysisProcess(libraryAutomation, organizationOgrnInventory);
                                 break;
-                            //Возвращаем статус 1
+                            //Возвращаем статус 2 Мне кажется код избыточный так как работаем по процессам и откатываем в процедуре
                             case 3:
-                                BreakStatus(organizationOgrnInventory);
+                                BreakStatus(organizationOgrnInventory, 2);
                                 break;
-                            //Возвращаем статус 1
+                            //Возвращаем статус 1 Мне кажется код избыточный так как работаем по процессам и откатываем в процедуре 
                             case 4:
-                                BreakStatus(organizationOgrnInventory);
+                                BreakStatus(organizationOgrnInventory, 1);
                                 break;
                         }
                     }
@@ -95,14 +99,11 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
             var inventoryLogicSelect = new InventoryLogic();
             var container = inventoryLogicSelect.SelectFirstDocumentContainer();
             var documentInventory = inventoryLogicSelect.SelectAllDocumentInventory();
-            if (container != null && documentInventory.Length > 0) //Условие должно быть что положить и куда положить одно без другого не может
+            if (container != null && documentInventory.Length > 0) //Условие должно быть что положить и куда положить одно без другого не может 
             {
                 var sw = TreeContainer.Split('\\').Last();
                 var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
                 libraryAutomation.IsEnableExpandTree(TreeContainer);
-                libraryAutomation.FindFirstElement(fullTree, null, true);
-                libraryAutomation.FindElement.SetFocus();
-                libraryAutomation.ClickElements(fullTree, null, false, 25, 0, 0, 2);
                 if (libraryAutomation.IsEnableElement(InventoryName.ContanerAdd))
                 {
                     libraryAutomation.InvokePattern(libraryAutomation.IsEnableElements(InventoryName.ContanerAdd));
@@ -121,10 +122,12 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                         if (countPageSum + inventory.CountPage <= container.CountDocumentMin || countPageSum + inventory.CountPage <= container.CountDocumentMax)
                         {
                             libraryAutomation.InvokePattern(libraryAutomation.IsEnableElements(InventoryName.AddBarcode));
-                            if (libraryAutomation.IsEnableElements(InventoryName.AddTextBarcode) != null)
+                            if (libraryAutomation.IsEnableElement(InventoryName.AddTextBarcode)) //Если AIS зависает то документ не ложится только следующий за ним проблемная тара 1770006700561 как образец есть вариант заменить эту строку "if (libraryAutomation.IsEnableElements(InventoryName.AddTextBarcode) != null)"  на  "if(libraryAutomation.IsEnableElement(InventoryName.AddTextBarcode))" бесконечное ожидание элемента
                             {
                                 libraryAutomation.SetValuePattern(inventory.GuidDocument);
+                                AutoItX.Sleep(1000);
                                 SendKeys.SendWait(ButtonConstant.Enter);
+                                AutoItX.Sleep(2000);
                                 inventory.IdStatusDocument = 4;
                                 countPageSum += inventory.CountPage;
                                 container.CountCurrent = countPageSum;
@@ -162,9 +165,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
             var sw = TreeScanDocumentsStartProcess.Split('\\').Last();
             var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
             libraryAutomation.IsEnableExpandTree(TreeScanDocumentsStartProcess);
-            libraryAutomation.FindFirstElement(fullTree, null, true);
-            libraryAutomation.FindElement.SetFocus();
-            libraryAutomation.ClickElements(fullTree, null, false, 25, 0, 0, 2);
             while (true)
             {
                 if (libraryAutomation.IsEnableElements(InventoryName.SendValueOgrn) != null)
@@ -191,7 +191,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
         {
             var countUpdate = 0;
             var isError = false;
-            var fullKey = organizationOgrnInventory.GrnInventory.Select(x => x.NumberOgrnGrn.ToString()).Aggregate((element, next) => element.ToString() + (string.IsNullOrWhiteSpace(element.ToString()) ? string.Empty : ", ") + next.ToString());
+            var fullKey = organizationOgrnInventory.GrnInventory.OrderBy(x => x.IdDocGrn).Select(x => x.NumberOgrnGrn.ToString()).Aggregate((element, next) => element.ToString() + (string.IsNullOrWhiteSpace(element.ToString()) ? string.Empty : ", ") + next.ToString()).Trim();
             AddAndUpdateEventErrorIsError(fullKey, 3, organizationOgrnInventory.GrnInventory);
             libraryAutomation.GarantInvokePattern(InventoryName.TaskUser); //Гарантированно открыть пользовательские задания
             libraryAutomation.GarantInvokePattern(InventoryName.ButtonShow); //Свернуть все для поиска нужной ветки
@@ -277,7 +277,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                                         newAisDocument.IsFinndRegDelo = true;
                                         var idDoc = AddAndUpdateAisDocument(newAisDocument);
                                         AddAndEditDocumentInventory(firstUserDocument);
-                                        AddAndUpdateSynchronization(grn.IdGrnAis3, firstUserDocument.IdDocument, idDoc);
+                                        AddAndUpdateSynchronization(grn.IdDocGrn, firstUserDocument.IdDocument, idDoc);
                                     }
                                     else //В противном случае не совпало ставим одну страницу и галочку "Не найдено в Регистрационном деле"
                                     {
@@ -290,7 +290,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                                         if (!IsVisualAisDocument(newAisDocument))
                                         {
                                             var idDoc = AddAndUpdateAisDocument(newAisDocument);
-                                            AddAndUpdateSynchronization(grn.IdGrnAis3, null, idDoc, false, true);
+                                            AddAndUpdateSynchronization(grn.IdDocGrn, null, idDoc, false, true);
                                         }
                                     }
                                 }
@@ -310,7 +310,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                                         if (documentUser.DirectoryDocument.NameDocumentDataBase != isErrorParse)
                                         {
                                             isError = true;
-                                            documentUser.GuidDocument = "Ошибка не правильно выбранно в справочнике АИС 3";
+                                            documentUser.GuidDocument = "Ошибка не правильно выбрано в справочнике АИС 3";
                                             documentUser.IdStatusDocument = 5;
                                             documentUser.StateDocument = false;
                                             grn.NameDocument = "Ошибка в Деле ГРН";
@@ -323,7 +323,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                                             documentUser.StateDocument = true;
                                         }
                                         AddAndEditDocumentInventory(documentUser);
-                                        AddAndUpdateSynchronization(grn.IdGrnAis3, documentUser.IdDocument, null, true);
+                                        AddAndUpdateSynchronization(grn.IdDocGrn, documentUser.IdDocument, null, true);
                                     }
                                 }
                                 //PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, InventoryName.SaveDoc);
@@ -377,8 +377,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                 libraryAutomation.SetLegacyIAccessibleValuePattern(documentInventory.DirectoryDocument.NameDocumentDataBase);
             }
             AddCountPage(libraryAutomation, documentInventory.CountPage);
-
-
         }
         /// <summary>
         /// Добавить вид документа
@@ -441,7 +439,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                 NumberDocument = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(InventoryName.NumberDocument)),
                 DateDocument = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(InventoryName.DateDocument)),
                 GuidDocument = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(InventoryName.GuidPanel))
-        };
+            };
             var countPage = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation.IsEnableElements(InventoryName.CountPage));
             aisDocument.CountPage = string.IsNullOrWhiteSpace(countPage) ? 1 : Convert.ToInt32(countPage);
             return aisDocument;
@@ -497,9 +495,10 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
         /// Возврат статуса на процесс не создан!!!!
         /// </summary>
         /// <param name="organizationOgrnInventory">ОГРН документ</param>
-        private void BreakStatus(TemplateOgrn organizationOgrnInventory)
+        /// <param name="idStatus">Ун статуса процесса</param>
+        private void BreakStatus(TemplateOgrn organizationOgrnInventory, int idStatus)
         {
-            organizationOgrnInventory.IdStatus = 1;
+            organizationOgrnInventory.IdStatus = idStatus;
             UpdateOrganizationOgrnInventory(organizationOgrnInventory);
         }
 
@@ -514,6 +513,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
             var organization = new OrganizationOgrnInventory()
             {
                 IdOgrn = organizationOgrnInventory.IdOgrn,
+                UserLogin = organizationOgrnInventory.UserLogin,
                 NumberOgrn = organizationOgrnInventory.NumberOgrn,
                 IdStatus = organizationOgrnInventory.IdStatus
             };
@@ -650,8 +650,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
         private void AddAndUpdateEventErrorIsError(string fullKey, int statusProcess, List<EfDatabaseAutomation.BaseLogica.AutoLogicInventory.GrnInventory> grnInventory)
         {
             var saveAndUpdateInventory = new AddAllObjectDb();
-            var idEvent = saveAndUpdateInventory.AddAndEditEventProcessError(fullKey, statusProcess);
-            saveAndUpdateInventory.AddAndSaveEventAndGrn(idEvent, grnInventory);
+            saveAndUpdateInventory.FullSaveAddAndEditEventProcessError(fullKey, statusProcess, grnInventory);
         }
 
         /// <summary>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
@@ -46,10 +45,12 @@ namespace SignalRLibraryAutomations.ConnectAutomations
         {
             var user = new UserModel()
             {
-                Name = Context.QueryString["user"],
+                Name = Context.QueryString["userName"],
                 TabelNumbers = Context.QueryString["tabelnumbers"]
             };
+
             Loggers.Log4NetLogger.Info(new Exception("Отключился пользователь: Имя - " + user.Name + " Номер - " + user.TabelNumbers + " Контекст - " + Context.ConnectionId));
+            Disconnected(Context.ConnectionId);
             Connections.Remove(user, Context.ConnectionId);
             return base.OnDisconnected(stopCalled);
         }
@@ -62,7 +63,7 @@ namespace SignalRLibraryAutomations.ConnectAutomations
         {
             var user = new UserModel()
             {
-                Name = Context.QueryString["user"],
+                Name = Context.QueryString["userName"],
                 TabelNumbers = Context.QueryString["tabelnumbers"]
             };
             if (!Connections.GetConnections(user).Contains(Context.ConnectionId))
@@ -72,7 +73,26 @@ namespace SignalRLibraryAutomations.ConnectAutomations
             Loggers.Log4NetLogger.Info(new Exception("Переподключился пользователь: Имя - " + user.Name + " Номер - " + user.TabelNumbers + " Контекст - " + Context.ConnectionId));
             return base.OnReconnected();
         }
-        //Тестовый метод для проверки что все сделанно правильно
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="connectedId">Контекст соединение</param>
+        public static void Disconnected(string connectedId)
+        {
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<HubAutomations>();
+            if (string.IsNullOrEmpty(connectedId))
+            {
+                context.Clients.All.Disconnected(
+                    "Сервер был остановлен соединение было прервано пере зайдите на сайт!!!");
+            }
+            else
+            {
+                context.Clients.Client(connectedId)
+                    .Disconnected("Соединение с сервером было прервано пере зайдите на сайт!!!");
+            }
+        }
+
+        //Тестовый метод для проверки что все сделано правильно
         public void HelloUser(string hellouser, string conectionId)
         {
             Clients.Client(conectionId).HelloUser(hellouser);
@@ -114,31 +134,37 @@ namespace SignalRLibraryAutomations.ConnectAutomations
         /// Подписка на редактирования дела
         /// </summary>
         /// <param name="organizationOgrnInventory">Дело ОГРН</param>
-        public static void SubscribeOrganizationOgrnInventory(string organizationOgrnInventory)
+        /// <param name="connectionId">Соединение пользователя</param>
+        public static void SubscribeOrganizationOgrnInventory(string organizationOgrnInventory, string connectionId)
         {
             IHubContext context = GlobalHost.ConnectionManager.GetHubContext<HubAutomations>();
             Loggers.Log4NetLogger.Info(new Exception("Модель дело ОГРН рассылка пошла!!!"));
-            context.Clients.All.SubscribeOrganizationOgrnInventory(organizationOgrnInventory);
+            context.Clients.Client(connectionId).SubscribeOrganizationOgrnInventory(organizationOgrnInventory);
+         //   context.Clients.All.SubscribeOrganizationOgrnInventory(organizationOgrnInventory);
         }
         /// <summary>
         /// Подписка на изменение ГРН
         /// </summary>
         /// <param name="grnInventory"></param>
-        public static void SubscribeGrnInventory(string grnInventory)
+        /// <param name="connectionId">Соединение пользователя</param>
+        public static void SubscribeGrnInventory(string grnInventory, string connectionId)
         {
             IHubContext context = GlobalHost.ConnectionManager.GetHubContext<HubAutomations>();
             Loggers.Log4NetLogger.Info(new Exception("Модель дело ГРН рассылка пошла!!!"));
-            context.Clients.All.SubscribeGrnInventory(grnInventory);
+            context.Clients.Client(connectionId).SubscribeGrnInventory(grnInventory);
+           // context.Clients.All.SubscribeGrnInventory(grnInventory);
         }
         /// <summary>
         /// Подписка на документ организации
         /// </summary>
         /// <param name="documentInventory"></param>
-        public static void SubscribeDocumentInventory(string documentInventory)
+        /// <param name="connectionId">Соединение пользователя</param>
+        public static void SubscribeDocumentInventory(string documentInventory, string connectionId)
         {
             IHubContext context = GlobalHost.ConnectionManager.GetHubContext<HubAutomations>();
             Loggers.Log4NetLogger.Info(new Exception("Модель документы рассылка пошла!!!"));
-            context.Clients.All.SubscribeDocumentInventory(documentInventory);
+            context.Clients.Client(connectionId).SubscribeDocumentInventory(documentInventory);
+           // context.Clients.All.SubscribeDocumentInventory(documentInventory);
         }
         /// <summary>
         /// Подписка на обновление или редактирование данных

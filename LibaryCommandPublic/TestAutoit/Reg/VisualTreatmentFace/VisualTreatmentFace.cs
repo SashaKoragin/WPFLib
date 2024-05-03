@@ -3,12 +3,14 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Threading;
+using AisPoco.UserLoginScan;
 using GalaSoft.MvvmLight.Threading;
 using LibraryAIS3Windows.ButtonsClikcs;
 using LibraryAIS3Windows.ExitLogica;
 using LibraryAIS3Windows.Window;
 using LibaryXMLAutoModelXmlAuto.FileVisualId;
 using ViewModelLib.ModelTestAutoit.PublicModel.ButtonStartAutomat;
+using ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect;
 
 namespace LibraryCommandPublic.TestAutoit.Reg.VisualTreatmentFace
 {
@@ -127,31 +129,36 @@ namespace LibraryCommandPublic.TestAutoit.Reg.VisualTreatmentFace
         ///
         /// </summary>
         /// <param name="statusButton">Кнопка старт</param>
-        public void ScanDocuments(StatusButtonMethod statusButton)
+        /// <param name="modelUser">Модель пользователей</param>
+        public void ScanDocuments(StatusButtonMethod statusButton, PublicModelCollectionSelect<UserLoginDatabaseModel> modelUser)
         {
             DispatcherHelper.Initialize();
-            Task.Run(delegate()
+            if (modelUser.IsValidation())
             {
-                try
+                Task.Run(delegate()
                 {
-                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
-                    KclicerButton clickerButton = new KclicerButton();
-                    WindowsAis3 ais3 = new WindowsAis3();
-                    if (ais3.WinexistsAis3() == 1)
+                    try
                     {
-                        clickerButton.Click64(statusButton);
-                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                        DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                        KclicerButton clickerButton = new KclicerButton();
+                        WindowsAis3 ais3 = new WindowsAis3();
+                        if (ais3.WinexistsAis3() == 1)
+                        {
+                            clickerButton.Click64(statusButton, modelUser);
+                            DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                        }
+                        else
+                        {
+                            MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                            DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                        }
                     }
-                    else
+                    catch (Exception e)
                     {
-                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                        MessageBox.Show(e.Message);
                     }
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
-            });
+                });
+            }
         }
         /// <summary>
         /// Автоматизация комплектования Тары
@@ -162,26 +169,26 @@ namespace LibraryCommandPublic.TestAutoit.Reg.VisualTreatmentFace
             DispatcherHelper.Initialize();
             Task.Run(delegate ()
             {
-                try
-                {
-                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
-                    KclicerButton clickerButton = new KclicerButton();
-                    WindowsAis3 ais3 = new WindowsAis3();
-                    if (ais3.WinexistsAis3() == 1)
-                    {
-                        clickerButton.Click65(statusButton);
-                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
-                    }
-                    else
-                    {
-                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
-                    }
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
-            });
-        }
+                 try
+                 {
+                     DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                     KclicerButton clickerButton = new KclicerButton();
+                     WindowsAis3 ais3 = new WindowsAis3();
+                     if (ais3.WinexistsAis3() == 1)
+                     {
+                         clickerButton.Click65(statusButton);
+                         DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                     }
+                     else
+                     {
+                         MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                     }
+                 }
+                 catch (Exception e)
+                 {
+                     MessageBox.Show(e.Message);
+                 }
+                });
+            }
     }
 }

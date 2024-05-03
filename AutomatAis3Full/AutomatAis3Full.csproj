@@ -180,6 +180,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Form\Automat\Okp4\RealEstateInquiries\ViewRealEstateInquiries\ViewRealEstateInquiries.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Form\Automat\Okp5\ActIzvesheniaReshenia121\ActIzvesheniaReshenia\ActIzvesheniaResheniaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -325,6 +329,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Form\Automat\Uregulirovanie\StartProcessFace\StartCash\ViewStartCash\ViewStartCash.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\StartProcess\Collection\ViewCollection\ViewCollection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Form\Automat\Uregulirovanie\StartProcess\Requirement\ViewRequirement\ViewRequirement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -507,6 +519,10 @@
     <Compile Include="Form\Automat\Okp4\PrintSnu\Print\UserPrintSnu.xaml.cs">
       <DependentUpon>UserPrintSnu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Form\Automat\Okp4\RealEstateInquiries\DataContextRealEstateInquiries\DataContextRealEstateInquiries.cs" />
+    <Compile Include="Form\Automat\Okp4\RealEstateInquiries\ViewRealEstateInquiries\ViewRealEstateInquiries.xaml.cs">
+      <DependentUpon>ViewRealEstateInquiries.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form\Automat\Okp5\ActIzvesheniaReshenia121\ActIzvesheniaReshenia\ActIzvesheniaResheniaView.xaml.cs">
       <DependentUpon>ActIzvesheniaResheniaView.xaml</DependentUpon>
     </Compile>
@@ -654,6 +670,14 @@
     <Compile Include="Form\Automat\Uregulirovanie\StartProcessFace\StartCash\DataContextStartCash\DataContextStartCash.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\StartProcessFace\StartCash\ViewStartCash\ViewStartCash.xaml.cs">
       <DependentUpon>ViewStartCash.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\StartProcess\Collection\DataContextCollection\DataContextCollection.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\StartProcess\Collection\ViewCollection\ViewCollection.xaml.cs">
+      <DependentUpon>ViewCollection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Form\Automat\Uregulirovanie\StartProcess\Requirement\DataContextRequirement\DataContextRequirement.cs" />
+    <Compile Include="Form\Automat\Uregulirovanie\StartProcess\Requirement\ViewRequirement\ViewRequirement.xaml.cs">
+      <DependentUpon>ViewRequirement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Form\Automat\Uregulirovanie\StatementNp\DataContextStatementNp\DataContextStatementNp.cs" />
     <Compile Include="Form\Automat\Uregulirovanie\StatementNp\ViewStatementNp\ViewStatementNp.xaml.cs">

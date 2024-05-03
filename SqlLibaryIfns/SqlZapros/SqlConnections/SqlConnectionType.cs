@@ -202,12 +202,11 @@ namespace SqlLibaryIfns.SqlZapros.SqlConnections
                                 str = reader.ReadOuterXml();
                                 sb.AppendLine(str);
                             }
-                            return sb.ToString();
                         }
                     }
                 }
             }
-            return string.Empty;
+            return sb.ToString();
         }
     }
 }

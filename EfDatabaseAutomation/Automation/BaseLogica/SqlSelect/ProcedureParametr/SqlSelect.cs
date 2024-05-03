@@ -5,7 +5,10 @@ using System.Data.SqlClient;
 using System.Dynamic;
 using System.Linq;
 using System.Text;
+using AisPoco.UserLoginScan;
 using EfDatabaseAutomation.Automation.Base;
+using EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelFilter;
+using EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelMessageServer;
 using EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelReportContainer;
 using EfDatabaseAutomation.Automation.SelectParametrSheme;
 using LibaryXMLAuto.ReadOrWrite;
@@ -154,6 +157,57 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.ProcedureParametr
             var resultModel = (T)xml.ReadXmlText(string.Join("", resultSql), typeof(T));
             return resultModel;
         }
+        /// <summary>
+        /// Процедура присваивание процессу статуса готово в случае жонглирования ГРН
+        /// </summary>
+        /// <param name="idProcess">Ун процесса для сброса ошибки</param>
+        /// <returns></returns>
+        public string SetStatusReadyProcess(int idProcess)
+        {
+            var model = SqlSelectModel(47);
+            var resultCommandsOutput = new SqlParameter(model.SelectedParametr.Split(',')[1], DBNull.Value) {Direction = ParameterDirection.Output, Size = 8000};
+            Automation.Database.ExecuteSqlCommand(model.SelectUser, new SqlParameter(model.SelectedParametr.Split(',')[0], idProcess), resultCommandsOutput );
+            return (string)resultCommandsOutput.Value;
+        }
+        /// <summary>
+        /// Удаление документа инвентаризации
+        /// </summary>
+        /// <param name="idDocument">Ун документа</param>
+        /// <returns></returns>
+        public DeleteDocumentInventory DeleteDeleteDocumentInventory(int idDocument)
+        {
+            var model = SqlSelectModel(49);
+            var resultCommandsOutput = new SqlParameter(model.SelectedParametr.Split(',')[1], DBNull.Value) { Direction = ParameterDirection.Output, Size = 8000 };
+            var statusDelete = new SqlParameter(model.SelectedParametr.Split(',')[2], DBNull.Value) { Direction = ParameterDirection.Output, Size = 8000, DbType = DbType.Int32};
+            Loggers.Log4NetLogger.Info(new Exception($"Удаление документа за номером {idDocument} произведено!!!"));
+            Automation.Database.ExecuteSqlCommand(model.SelectUser, new SqlParameter(model.SelectedParametr.Split(',')[0], idDocument), resultCommandsOutput, statusDelete);
+            return new DeleteDocumentInventory() {MessageProcess = (string) resultCommandsOutput.Value, CodeStatus = (int) statusDelete.Value};
+        }
+
+        /// <summary>
+        /// Фильтр для сайта автоматизации
+        /// </summary>
+        /// <param name="userLogin">Логин пользователя</param>
+        /// <returns></returns>
+        public string SelectModelFilter(string userLogin)
+        {
+            SerializeJson json = new SerializeJson();
+            var model = SqlSelectModel(48);
+            var filter = Automation.Database.SqlQuery<VirtualFilter>(model.SelectUser,
+                new SqlParameter(model.SelectedParametr.Split(',')[0], userLogin)).ToArray();
+            return json.JsonLibaryIgnoreDate(filter);
+        }
+        /// <summary>
+        /// Запрос на пользователей все модели
+        /// </summary>
+        /// <returns></returns>
+        public UserLoginDatabaseModel[] SelectUserModelScan()
+        {
+            var model = SqlSelectModel(50);
+            var userLoginDatabase = Automation.Database.SqlQuery<UserLoginDatabaseModel>(model.SelectUser).ToArray();
+            return userLoginDatabase;
+        }
+
         /// <summary>
         /// Выборка модели для манипуляции
         /// </summary>

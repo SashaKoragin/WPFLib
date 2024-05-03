@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.BaseLogica.AutoLogicInventory;
 using LibaryXMLAuto.ReadOrWrite;
-using DocumentInventory = EfDatabaseAutomation.Automation.Base.DocumentInventory;
+
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory
 {
@@ -21,25 +19,55 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory
             AutomationContext = new Base.Automation();
         }
 
+        /// <summary>
+        /// Создание таблицы в виде параметра
+        /// </summary>
+        /// <param name="tModelParameterArray"></param>
+        /// <param name="nameColumns">Наименование колонки для таблицы</param>
+        /// <param name="type">Тип колонки</param>
+        /// <returns></returns>
+        private DataTable CreteParameterTableSql<T>(T[] tModelParameterArray, string nameColumns, Type type)
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add(new DataColumn(nameColumns, type));
+            foreach (var parameter in tModelParameterArray)
+            {
+                table.Rows.Add(parameter);
+            }
+            return table;
+        }
 
         /// <summary>
         /// Отбор всех данных по ГРН нужно отбирать все ГРН которые StatusFinish не равен 1 это признак что все ГРН документы в ГРН отработаны (IdStatus при этом не важен это логика принятия решения)
         /// </summary>
         /// <returns></returns>
-        public ModelStartProcess SelectStartProcessInventory()
+        /// <param name="userName">Имена пользователей</param>
+        public ModelStartProcess SelectStartProcessInventory(string[] userName)
         {
             var xml = new XmlReadOrWrite();
             var selectParameters = AutomationContext.LogicsSelectAutomations.FirstOrDefault(x => x.Id == 41);
-            var result = AutomationContext.Database.SqlQuery<string>(selectParameters.SelectUser).ToArray();
+            var result = AutomationContext.Database.SqlQuery<string>(selectParameters.SelectUser,
+                new SqlParameter
+                {
+                    ParameterName = selectParameters.SelectedParametr.Split(',')[0],
+                    Value = CreteParameterTableSql(userName, "UserLogin", typeof(string)),
+                    TypeName = "dbo.ModelUser",
+                    SqlDbType = SqlDbType.Structured
+                }).ToArray();
             return (ModelStartProcess)xml.ReadXmlText(string.Join("", (string[])result), typeof(ModelStartProcess));
         }
         /// <summary>
         /// Выбор документов инвентаризации готовых к формирования тары
         /// </summary>
         /// <returns></returns>
-        public DocumentInventory[] SelectAllDocumentInventory()
+        public Base.DocumentInventory[] SelectAllDocumentInventory()
         {
-            return AutomationContext.DocumentInventories.Where(doc => doc.IdStatusDocument == 3).ToArray();
+           return (from doc in AutomationContext.DocumentInventories
+                join grn in AutomationContext.GrnInventories on doc.IdDocGrn equals grn.IdDocGrn
+                join grnError in AutomationContext.GrnInventoryAndEventProcessErrors on grn.IdDocGrn equals grnError.IdDocGrn
+                join eventEr in AutomationContext.EventProcessErrors on grnError.IdProcess equals eventEr.IdProcess
+                where doc.IdStatusDocument == 3 && eventEr.IdStatusEvent == 2
+                select doc ).Distinct().OrderBy(x => x.IdDocGrn).ToArray();
         }
 
         /// <summary>

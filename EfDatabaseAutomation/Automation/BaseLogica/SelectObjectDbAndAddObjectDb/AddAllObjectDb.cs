@@ -66,7 +66,9 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectD
             var organizationOgrnInventoryAddAndModified = new OrganizationOgrnInventory()
             {
                 IdOgrn = organizationOgrnInventory.IdOgrn,
+                UserLogin = organizationOgrnInventory.UserLogin,
                 NumberOgrn = organizationOgrnInventory.NumberOgrn,
+                IsHiddenWeb = organizationOgrnInventory.IsHiddenWeb,
                 IdStatus = organizationOgrnInventory.IdStatus
             };
             try
@@ -85,10 +87,25 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectD
                         }
                         return null;
                     }
-                    AutomationContext.OrganizationOgrnInventories.Add(organizationOgrnInventoryAddAndModified);
-                    AutomationContext.SaveChanges();
-                    organizationOgrnInventory.IdOgrn = organizationOgrnInventoryAddAndModified.IdOgrn;
-                    return organizationOgrnInventory;
+                    else
+                    {
+                        if (organizationOgrnInventory.IdOgrn == 0)
+                        {
+                            AutomationContext.OrganizationOgrnInventories.Add(organizationOgrnInventoryAddAndModified);
+                            AutomationContext.SaveChanges();
+                            organizationOgrnInventory.IdOgrn = organizationOgrnInventoryAddAndModified.IdOgrn;
+                            return organizationOgrnInventory;
+                        }
+                        var modelDataBase = from orgInv in context.OrganizationOgrnInventories where orgInv.IdOgrn == organizationOgrnInventory.IdOgrn select new { OrganizationOgrnInventory = orgInv };
+                        if (modelDataBase.Any())
+                        {
+                            AutomationContext.Entry(organizationOgrnInventoryAddAndModified).State = System.Data.Entity.EntityState.Modified;
+                            AutomationContext.SaveChanges();
+                            return organizationOgrnInventory;
+                        }
+                        return null;
+                    }
+
                 }
             }
             catch (Exception e)
@@ -120,7 +137,6 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectD
                 using (var context = new Base.Automation())
                 {
                     var modelGrn = from grnInv in context.GrnInventories where grnInv.NumberOgrnGrn == grnInventory.NumberOgrnGrn select new { GrnInventory = grnInv };
-                 
                     if (modelGrn.Any())
                     {
                         var modelDataBase = from grnInv in context.GrnInventories where grnInv.IdDocGrn == grnInventory.IdDocGrn & grnInv.NumberOgrnGrn == grnInventory.NumberOgrnGrn select new { GrnInventory = grnInv };
@@ -132,10 +148,25 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectD
                         }
                         return null;
                     }
-                    AutomationContext.GrnInventories.Add(grnInventoryAddAndModified);
-                    AutomationContext.SaveChanges();
-                    grnInventory.IdDocGrn = grnInventoryAddAndModified.IdDocGrn;
-                    return grnInventory;
+                    else
+                    {
+                        if (grnInventory.IdDocGrn == 0)
+                        {
+                            AutomationContext.GrnInventories.Add(grnInventoryAddAndModified);
+                            AutomationContext.SaveChanges();
+                            grnInventory.IdDocGrn = grnInventoryAddAndModified.IdDocGrn;
+                            return grnInventory;
+                        }
+                        var modelDataBase = from grnInv in context.GrnInventories where grnInv.IdDocGrn == grnInventory.IdDocGrn select new { GrnInventory = grnInv };
+                        if (modelDataBase.Any())
+                        {
+                            AutomationContext.Entry(grnInventoryAddAndModified).State = System.Data.Entity.EntityState.Modified;
+                            AutomationContext.SaveChanges();
+                            return grnInventory;
+                        }
+                        return null;
+                    }
+
                 }
             }
             catch (Exception e)
@@ -238,12 +269,34 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectD
                 using (var context = new Base.Automation())
                 {
                     var modelDb = from docContainer in context.DocumentContainers where docContainer.BarcodeContainer == documentContainer.BarcodeContainer select new { DocumentContainer = docContainer };
-                    if (!modelDb.Any())
+                    if (modelDb.Any())
                     {
-                        AutomationContext.DocumentContainers.Add(documentContainerAddAndModified);
-                        AutomationContext.SaveChanges();
-                        documentContainer.IdContainer = documentContainerAddAndModified.IdContainer;
-                        return documentContainer;
+                        var modelDataBase = from docContainer in context.DocumentContainers where docContainer.IdContainer == documentContainer.IdContainer & docContainer.BarcodeContainer == documentContainer.BarcodeContainer select new { DocumentContainer = docContainer };
+                        if (modelDataBase.Any())
+                        {
+                            AutomationContext.Entry(documentContainerAddAndModified).State = System.Data.Entity.EntityState.Modified;
+                            AutomationContext.SaveChanges();
+                            return documentContainerAddAndModified;
+                        }
+                    }
+                    else
+                    {
+                        if (documentContainer.IdContainer == 0)
+                        {
+                            AutomationContext.DocumentContainers.Add(documentContainerAddAndModified);
+                            AutomationContext.SaveChanges();
+                            documentContainer.IdContainer = documentContainerAddAndModified.IdContainer;
+                            return documentContainer;
+                        }
+                        var modelDataBase = from docContainer in context.DocumentContainers where docContainer.IdContainer == documentContainer.IdContainer select new { DocumentContainer = docContainer };
+                        if (modelDataBase.Any())
+                        {
+                            AutomationContext.Entry(documentContainerAddAndModified).State = System.Data.Entity.EntityState.Modified;
+                            AutomationContext.SaveChanges();
+                            return documentContainerAddAndModified;
+                        }
+
+                        return null;
                     }
                 }
             }
@@ -437,18 +490,36 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectD
             }
         }
         /// <summary>
-        /// Сохранение ошибочного процесса
+        /// Полное сохранение задания для отработки
         /// </summary>
         /// <param name="fullKey">Ключ процесса</param>
-        /// <param name="statusProcess">Статус процесса 1 ошибка 2 нет ошибки</param>
-        public int AddAndEditEventProcessError(string fullKey, int statusProcess)
+        /// <param name="statusProcess">Статус процесса 1 ошибка 2 нет ошибки 3 создаем процесс</param>
+        /// <param name="grnInventory">Список ГРН участвующих в процессе</param>
+        public void FullSaveAddAndEditEventProcessError(string fullKey, int statusProcess, List<EfDatabaseAutomation.BaseLogica.AutoLogicInventory.GrnInventory> grnInventory)
         {
-            int idProcess;
-            using (var context = new Base.Automation())
+            var eventProcessError = AutomationContext.EventProcessErrors.Where(eventProcess => eventProcess.FullKeyProcess == fullKey).ToArray();
+            if (eventProcessError.Any())
             {
-                var eventProcessError = context.EventProcessErrors.FirstOrDefault(eventProcess => eventProcess.FullKeyProcess == fullKey);
-                idProcess = eventProcessError?.IdProcess ?? 0;
+                foreach (var processError in eventProcessError)
+                {
+                    SaveEvent(fullKey, statusProcess, grnInventory, processError.IdProcess);
+                }
             }
+            else
+            {
+                SaveEvent(fullKey, statusProcess, grnInventory, 0);
+            }
+        }
+
+        /// <summary>
+        /// Сохранение или обновление процессов системы
+        /// </summary>
+        /// <param name="fullKey">Полный ключ</param>
+        /// <param name="statusProcess">Статус</param>
+        /// <param name="grnInventory">Список ГРН участвующих в процессе</param>
+        /// <param name="idProcess">Ун процесса если есть</param>
+        private void SaveEvent(string fullKey, int statusProcess, List<EfDatabaseAutomation.BaseLogica.AutoLogicInventory.GrnInventory> grnInventory, int idProcess)
+        {
             var eventProcessErrorAddAndModified = new EventProcessError()
             {
                 IdProcess = idProcess,
@@ -457,57 +528,55 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectD
             };
             try
             {
-                using (var context = new Base.Automation())
+                using (var contextSave = new Base.Automation())
                 {
-                    var modelDb = from eventProcess in context.EventProcessErrors where eventProcess.IdProcess == idProcess select new { EventProcess = eventProcess };
-                    if (modelDb.Any())
+                    var modelDb = from eventProcess in contextSave.EventProcessErrors where eventProcess.IdProcess == eventProcessErrorAddAndModified.IdProcess select new { EventProcess = eventProcess };
+
+                    using (var saveAndAddEvent = new Base.Automation())
                     {
-                        AutomationContext.Entry(eventProcessErrorAddAndModified).State = System.Data.Entity.EntityState.Modified;
-                        AutomationContext.SaveChanges();
-                        return eventProcessErrorAddAndModified.IdProcess; 
+                        if (modelDb.Any())
+                        {
+                            saveAndAddEvent.Entry(eventProcessErrorAddAndModified).State = System.Data.Entity.EntityState.Modified;
+                            saveAndAddEvent.SaveChanges();
+                        }
+                        else
+                        {
+                            saveAndAddEvent.EventProcessErrors.Add(eventProcessErrorAddAndModified);
+                            saveAndAddEvent.SaveChanges();
+                        }
                     }
-                    AutomationContext.EventProcessErrors.Add(eventProcessErrorAddAndModified);
-                    AutomationContext.SaveChanges();
-                    return eventProcessErrorAddAndModified.IdProcess;
+                }
+                foreach (var grn in grnInventory)
+                {
+                    var grnInventoryEventProcessErrorModified = new GrnInventoryAndEventProcessError()
+                    {
+                        Id = 0,
+                        IdDocGrn = grn.IdDocGrn,
+                        IdProcess = eventProcessErrorAddAndModified.IdProcess
+                    };
+                    using (var contextSaveGrn = new Base.Automation())
+                    {
+                        var grnInventoryAndEventProcessError = contextSaveGrn.GrnInventoryAndEventProcessErrors.FirstOrDefault(grnError => grnError.IdProcess == eventProcessErrorAddAndModified.IdProcess && grnError.IdDocGrn == grn.IdDocGrn);
+                        using (var saveAndAddEventProcessError = new Base.Automation())
+                        {
+                            if (grnInventoryAndEventProcessError != null)
+                            {
+                                grnInventoryEventProcessErrorModified.Id = grnInventoryAndEventProcessError.Id;
+                                saveAndAddEventProcessError.Entry(grnInventoryEventProcessErrorModified).State = System.Data.Entity.EntityState.Modified;
+                                saveAndAddEventProcessError.SaveChanges();
+                            }
+                            else
+                            {
+                                saveAndAddEventProcessError.GrnInventoryAndEventProcessErrors.Add(grnInventoryEventProcessErrorModified);
+                                saveAndAddEventProcessError.SaveChanges();
+                            }
+                        }
+                    }
                 }
             }
             catch (Exception e)
             {
                 Loggers.Log4NetLogger.Error(e);
-                return 0;
-            }
-
-        }
-        /// <summary>
-        /// Сохранение или обновление документов ГРН для записи в журнал
-        /// </summary>
-        /// <param name="idProcess">Ун процесса</param>
-        /// <param name="grnInventory">Список ГРН участвующих в процессе</param>
-        public void AddAndSaveEventAndGrn(int idProcess, List<EfDatabaseAutomation.BaseLogica.AutoLogicInventory.GrnInventory> grnInventory)
-        {
-            foreach (var grn in grnInventory)
-            {
-                var grnInventoryEventProcessErrorModified = new GrnInventoryAndEventProcessError()
-                {
-                    Id = 0,
-                    IdDocGrn = grn.IdDocGrn,
-                    IdProcess = idProcess
-                };
-                using (var context = new Base.Automation())
-                {
-                    var grnInventoryAndEventProcessError = context.GrnInventoryAndEventProcessErrors.FirstOrDefault(grnError => grnError.IdProcess == idProcess && grnError.IdDocGrn == grn.IdDocGrn);
-                    if (grnInventoryAndEventProcessError!=null)
-                    {
-                        grnInventoryEventProcessErrorModified.Id = grnInventoryAndEventProcessError.Id;
-                        AutomationContext.Entry(grnInventoryEventProcessErrorModified).State = System.Data.Entity.EntityState.Modified;
-                        AutomationContext.SaveChanges();
-                    }
-                    else
-                    {
-                        AutomationContext.GrnInventoryAndEventProcessErrors.Add(grnInventoryEventProcessErrorModified);
-                        AutomationContext.SaveChanges();
-                    }
-                }
             }
         }
 

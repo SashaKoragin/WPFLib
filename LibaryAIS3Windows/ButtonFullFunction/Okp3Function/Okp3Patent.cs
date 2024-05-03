@@ -37,8 +37,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
             var sw = _modelTreePatent.Split('\\').Last();
             var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
             libraryAutomation.FindFirstElement(fullTree, null, true);
-            libraryAutomation.FindElement.SetFocus();
-            libraryAutomation.ClickElements(fullTree, null, false, 25, 0, 0, 2);
             parametersModel.DataArea.Parameters.First(parameters => parameters.NameParameters == "РегНомер патента").ParametersGrid = string.Join("/", dataBaseAdd.PatentExportFull().Select(x => x.RegNumPatent).ToArray());
             foreach (var dataAreaParameters in parametersModel.DataArea.Parameters)
             {
