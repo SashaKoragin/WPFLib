@@ -1071,11 +1071,8 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         public void AddDocPatent(Patent patent, string pathXlsx, string sheetName)
         {
             PreCheckAddObject preCheckLoad = new PreCheckAddObject();
-            var connectionString = string.Format($"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={pathXlsx}; Extended Properties=Excel 12.0;");
-            var adapter = new OleDbDataAdapter($"Select * From [{sheetName}$]", connectionString);
-            var ds = new DataSet();
-            adapter.Fill(ds, "DocPatent");
-            DataTable dataTable = ds.Tables["DocPatent"];
+            XlsxToDataTable.XlsxToDataTable xlsxToDataTable = new XlsxToDataTable.XlsxToDataTable();
+            var dataTable = xlsxToDataTable.GetDateTableXslx(pathXlsx, sheetName);
             DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DocPatent> mapper = new DataNamesMapper<EfDatabaseAutomation.Automation.BaseLogica.XsdShemeSqlLoad.XsdAllBodyData.DocPatent>();
             var listDoc = new ArrayBodyDoc() { DocPatent = mapper.Map(dataTable).ToArray() };
             listDoc.DocPatent.ToList().ForEach(doc => doc.IdPatent = patent.IdPatent);

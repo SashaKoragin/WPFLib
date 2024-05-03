@@ -371,30 +371,29 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
                 AutoItX.Sleep(1000);
                 while (true)
                 {
-                    LibraryAutomations libraryAutomationSign = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomation.RootAutomationElements));
+
                     while (true)
                     {
-                        if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewWindowEnable, null, true, 40, 0, false, ';') != null)
+                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.NewWindowEnable, null, true, 40, 0, false, ';') != null)
                         {
-                            libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
-                            libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement, 85);
-                            var memo = libraryAutomationSign.SelectAutomationColrction(libraryAutomationSign.FindElement);
+                            libraryAutomation.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
+                            libraryAutomation.ClickElement(libraryAutomation.FindElement, 85);
+                            var memo = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement);
                             var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == textErrorAndNotError);
                             libraryAutomation.SelectionComboBoxSelectionItemPattern(elemClick);
-                            libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
-                            if (libraryAutomationSign.SelectionComboBoxPatternIsSelect(libraryAutomationSign.FindElement) != "")
+                            libraryAutomation.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
+                            if (libraryAutomation.SelectionComboBoxPatternIsSelect(libraryAutomation.FindElement) != "")
                             {
                                 break;
                             }
                         }
                     }
-                    libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewOkEdit));
+                    libraryAutomation.InvokePattern(libraryAutomation.IsEnableElements(Journal129AndJournal121.NewOkEdit));
                     //Здесь ок и ошибка на дочернем окне libraryAutomationSign у ОКП 1
                     AutoItX.Sleep(1000);
                     AutoItX.WinWait(Journal129AndJournal121.NewWarningOk);
                     AutoItX.WinActivate(Journal129AndJournal121.NewWarningOk);
-                    libraryAutomationSign = new LibraryAutomations(Journal129AndJournal121.NewWarningOk);
-                    libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewWarningButtonOk));
+                    libraryAutomation.InvokePattern(libraryAutomation.IsEnableElements(Journal129AndJournal121.NewWarningButtonOk));
                     AutoItX.Sleep(1000);
                     break;
                 }

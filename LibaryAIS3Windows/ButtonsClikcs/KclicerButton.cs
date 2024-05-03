@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Automation;
 using System.Windows.Forms;
 using AisPoco.Ifns51.ToAis;
+using AisPoco.UserLoginScan;
 using LibraryAIS3Windows.Window.Otdel.Analitic.TeskText;
 using AutoIt;
 using EfDatabaseAutomation.Automation.Base;
@@ -50,12 +51,14 @@ using LibraryAIS3Windows.ButtonFullFunction.KaoFunction;
 using ViewModelLib.ModelTestAutoit.PublicModel.RaschetBuh;
 using LibraryAIS3Windows.ButtonFullFunction.Okp1Function;
 using LibraryAIS3Windows.ButtonFullFunction.Okp3Function;
+using LibraryAIS3Windows.ButtonFullFunction.Okp4Function;
 using LibraryAIS3Windows.ButtonFullFunction.Okp6Function;
 using LibraryAIS3Windows.ButtonFullFunction.OrnFunction;
 using LibraryAIS3Windows.ButtonFullFunction.RaschBydjFunction;
 using LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction;
 using LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction;
 using LibraryAIS3Windows.ButtonFullFunction.OkpTaxJournal129;
+using ViewModelLib.ModelTestAutoit.PublicModel.PublicModelCollectionSelect;
 
 namespace LibraryAIS3Windows.ButtonsClikcs
 {
@@ -2850,10 +2853,12 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// </summary>
         /// <param name="statusButton">Кнопка запуска</param>
         /// <param name="pathJournalInfoUserTemplateRule">Путь сохранения информации по пользователям и их ролям с шаблонами</param>
-        public void Click38(StatusButtonMethod statusButton, string pathJournalInfoUserTemplateRule)
+        /// <param name="fullPathAis3">Полный путь запуска АИС 3</param>
+        public void Click38(StatusButtonMethod statusButton, string pathJournalInfoUserTemplateRule, string fullPathAis3)
         {
+            LibraryAutomations libraryAutomation = PublicGlobalFunction.StartAndWaitProcessAis3(fullPathAis3);
             ItFunctionAutomation itFunctionAutomation = new ItFunctionAutomation();
-            itFunctionAutomation.SelectAllUserTemplateAndRule(statusButton, pathJournalInfoUserTemplateRule);
+            itFunctionAutomation.SelectAllUserTemplateAndRule(libraryAutomation, statusButton, pathJournalInfoUserTemplateRule);
         }
         /// <summary>
         /// Сбор информации по СПН
@@ -3323,10 +3328,11 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// Налоговое администрирование\Централизованная система регистрации\Электронный архив\Запросить электронные образы документов дела из архива(преобразование) 
         /// </summary>
         /// <param name="statusButton">Кнопка старт Автомат</param>
-        public void Click64(StatusButtonMethod statusButton)
+        /// <param name="modelUser">Модель пользователей</param>
+        public void Click64(StatusButtonMethod statusButton, PublicModelCollectionSelect<UserLoginDatabaseModel> modelUser)
         {
             var scanDocument = new ScanDocument();
-            scanDocument.StartScanDocument(statusButton);
+            scanDocument.StartScanDocument(statusButton, modelUser);
         }
         /// <summary>
         /// Комплектование тары
@@ -3337,6 +3343,42 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         {
             var scanDocument = new ScanDocument();
             scanDocument.ScanAddContainer(statusButton);
+        }
+
+        /// <summary>
+        /// Запуск БП
+        /// Налоговое администрирование\Урегулирование задолженности (ЕНС)\Взыскание задолженности за счет ДС и ЭДС\Запуск БП
+        /// </summary>
+        /// <param name="statusButton"></param>
+        /// <param name="pathList">Полный путь к списку с ИНН</param>
+        public void Click66(StatusButtonMethod statusButton, string pathList)
+        {
+            var startProcess = new UregulirovanieStartProcess();
+            startProcess.StartProcessCollection(statusButton, pathList);
+        }
+
+        /// <summary>
+        /// Запуск БП
+        /// Налоговое администрирование\Урегулирование задолженности (ЕНС)\Требования об уплате\Запуск БП
+        /// </summary>
+        /// <param name="statusButton"></param>
+        /// <param name="pathList">Полный путь к списку с ИНН</param>
+        public void Click67(StatusButtonMethod statusButton, string pathList)
+        {
+            var startProcess = new UregulirovanieStartProcess();
+            startProcess.StartProcessRequirement(statusButton, pathList);
+        }
+
+        /// <summary>
+        /// Запуск БП
+        /// Налоговое администрирование\Собственность\08. Взаимодействие с органами Росреестра – Объекты недвижимости\09. Уточняющие запросы - Витрина запросов для уточнения сведений
+        /// </summary>
+        /// <param name="statusButton"></param>
+        /// <param name="pathList">Полный путь к списку с ИНН</param>
+        public void Click68(StatusButtonMethod statusButton, string pathList)
+        {
+             var startProcess = new RealEstateInquiries();
+            startProcess.StartRealEstateInquiries(statusButton, pathList);
         }
     }
 }

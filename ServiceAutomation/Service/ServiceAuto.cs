@@ -10,11 +10,14 @@ using EfDatabaseAutomation.Automation.BaseLogica.ModelGetPost;
 using System.Collections.Generic;
 using System.Linq;
 using AisPoco.Ifns51.ToAis;
+using AisPoco.UserLoginScan;
 using EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace;
 using EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectDb;
 using LibaryDocumentGenerator.Documents.Template;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 using EfDatabaseAutomation.Automation.Base;
+using EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelFilter;
+using EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelMessageServer;
 using EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelReportContainer;
 using EfDatabaseAutomation.Automation.BaseLogica.FaceRegistryReference;
 using EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfWitnesses;
@@ -581,12 +584,13 @@ namespace ServiceAutomation.Service
         /// Все документы описи реестра
         /// </summary>
         /// <returns></returns>
-        public async Task<string> SelectAllOgrnInventory()
+        /// <param name="virtualFilter">Виртуальный фильтр коллекции</param>
+        public async Task<string> SelectAllOgrnInventory(VirtualFilterToServer virtualFilter)
         {
             SelectAllObjectDb select = new SelectAllObjectDb();
             return await Task.Factory.StartNew(() =>
             {
-                var allQuestions = select.AllOgrnInventory();
+                var allQuestions = select.AllOgrnInventory(virtualFilter);
                 select.Dispose();
                 return allQuestions;
             });
@@ -626,8 +630,9 @@ namespace ServiceAutomation.Service
         /// Добавление и редактирование дела ОГРН
         /// </summary>
         /// <param name="organizationOgrnInventory">Дело ОГРН</param>
+        /// <param name="connectionId">Ун соединения пользователя</param>
         /// <returns></returns>
-        public async Task<OrganizationOgrnInventory> AddAndEditOrganizationOgrnInventory(OrganizationOgrnInventory organizationOgrnInventory)
+        public async Task<OrganizationOgrnInventory> AddAndEditOrganizationOgrnInventory(OrganizationOgrnInventory organizationOgrnInventory, string connectionId)
         {
             return await Task.Factory.StartNew(() =>
             {
@@ -636,7 +641,7 @@ namespace ServiceAutomation.Service
                 add.Dispose();
                 if (model == null) return null;
                 SerializeJson json = new SerializeJson();
-                SignalRLibraryAutomations.ConnectAutomations.HubAutomations.SubscribeOrganizationOgrnInventory(json.JsonLibaryIgnoreDate(model));
+                SignalRLibraryAutomations.ConnectAutomations.HubAutomations.SubscribeOrganizationOgrnInventory(json.JsonLibaryIgnoreDate(model), connectionId);
                 return model;
             });
         }
@@ -644,8 +649,9 @@ namespace ServiceAutomation.Service
         /// Добавление или редактирование ГРН Документа
         /// </summary>
         /// <param name="grnInventory">ГРН Документа</param>
+        /// <param name="connectionId">Ун соединения пользователя</param>
         /// <returns></returns>
-        public async Task<GrnInventory> AddAndEditGrnInventory(GrnInventory grnInventory)
+        public async Task<GrnInventory> AddAndEditGrnInventory(GrnInventory grnInventory, string connectionId)
         {
             
             return await Task.Factory.StartNew(() =>
@@ -655,7 +661,7 @@ namespace ServiceAutomation.Service
                 add.Dispose();
                 if (model == null) return null;
                 SerializeJson json = new SerializeJson();
-                SignalRLibraryAutomations.ConnectAutomations.HubAutomations.SubscribeGrnInventory(json.JsonLibaryIgnoreDate(model));
+                SignalRLibraryAutomations.ConnectAutomations.HubAutomations.SubscribeGrnInventory(json.JsonLibaryIgnoreDate(model), connectionId);
                 return model;
             });
         }
@@ -663,8 +669,9 @@ namespace ServiceAutomation.Service
         /// Добавление или Редактирование Документа под ГРН
         /// </summary>
         /// <param name="documentInventory">Дело ОГРН</param>
+        /// <param name="connectionId">Ун соединения пользователя</param>
         /// <returns></returns>
-        public async Task<DocumentInventory> AddAndEditDocumentInventory(DocumentInventory documentInventory)
+        public async Task<DocumentInventory> AddAndEditDocumentInventory(DocumentInventory documentInventory, string connectionId)
         {
             return await Task.Factory.StartNew(() =>
             {
@@ -673,7 +680,7 @@ namespace ServiceAutomation.Service
                 add.Dispose();
                 if (model == null) return null;
                 SerializeJson json = new SerializeJson();
-                SignalRLibraryAutomations.ConnectAutomations.HubAutomations.SubscribeDocumentInventory(json.JsonLibaryIgnoreDate(model));
+                SignalRLibraryAutomations.ConnectAutomations.HubAutomations.SubscribeDocumentInventory(json.JsonLibaryIgnoreDate(model), connectionId);
                 return model;
             });
         }
@@ -709,14 +716,13 @@ namespace ServiceAutomation.Service
                 return await Task.Factory.StartNew(() =>
                 {
                     SelectAllObjectDb select = new SelectAllObjectDb();
-                    var allQuestions = select.SelectAllBarcode(grnInventory);
+                    var allQuestions = select.SelectAllBarcode(grnInventory); //Здесь ошибка проверка на NULL
                     if (allQuestions != null)
                     {
                         var generateWord = new DocCodePdf417();
                         var barcode = new GenerateBarcode();
                         allQuestions.Select(docs => docs).ToList().ForEach(doc =>
-                            doc.FullPathPng =
-                                barcode.GeneratePdf417(_parameterConfig.PathSaveTemplate, doc.GuidDocument));
+                            doc.FullPathPng = barcode.GeneratePdf417(_parameterConfig.PathSaveTemplate, doc.GuidDocument));
                         generateWord.CreateDocument(_parameterConfig.PathSaveTemplate + "BarCode", allQuestions);
                         allQuestions.Select(x => x.FullPathPng).ToList().ForEach(File.Delete);
                         select.Dispose();
@@ -836,6 +842,30 @@ namespace ServiceAutomation.Service
             return null;
         }
         /// <summary>
+        /// Детализированный отчет по контейнеру
+        /// </summary>
+        /// <param name="documentContainer">Контейнер для детализации</param>
+        /// <returns></returns>
+        public async Task<Stream> ReportDetailingContainer(DocumentContainer documentContainer)
+        {
+            try
+            {
+                return await Task.Factory.StartNew(() =>
+                {
+                    var select = new SqlSelect();
+                    var logicSelect = select.SqlSelectModel(46);
+                    var selectFull = new SelectFull(_parameterConfig.ConnectionString);
+                    logicSelect.SelectUser = logicSelect.SelectUser.Replace("@IdContainer", documentContainer.IdContainer.ToString());
+                    return selectFull.GenerateStreamToSqlViewFileAutomation(logicSelect, _parameterConfig.PathSaveTemplate);
+                });
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+            }
+            return null;
+        }
+        /// <summary>
         /// Все процессы и их статусы
         /// </summary>
         /// <returns></returns>
@@ -863,6 +893,97 @@ namespace ServiceAutomation.Service
                 select.Dispose();
                 return allDetailingProcessEvent;
             });
+        }
+        /// <summary>
+        /// Процедура присваивание процессу статуса готово в случае жонглирования ГРН
+        /// </summary>
+        /// <param name="idProcess">Ун процесса</param>
+        /// <returns></returns>
+        public async Task<string> SetStatusReadyProcess(int idProcess)
+        {
+            try
+            {
+                return await Task.Factory.StartNew(() =>
+                {
+                    var select = new SqlSelect();
+                    var messageServer = select.SetStatusReadyProcess(idProcess);
+                    select.Dispose();
+                    return messageServer;
+                });
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+            }
+            return null;
+        }
+        /// <summary>
+        /// Фильтр для сайта автоматизации
+        /// </summary>
+        /// <param name="userLogin">Логин пользователя</param>
+        /// <returns></returns>
+        public async Task<string> SelectModelFilter(string userLogin)
+        {
+            try
+            {
+                return await Task.Factory.StartNew(() =>
+                {
+                    var select = new SqlSelect();
+                    var modelFilter = select.SelectModelFilter(userLogin);
+                    select.Dispose();
+                    return modelFilter;
+                });
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+            }
+            return null;
+        }
+        /// <summary>
+        /// Удаление документа инвентаризации со статусом 1 и 5
+        /// </summary>
+        /// <param name="documentInventory">Документ инвентаризации</param>
+        /// <returns></returns>
+        public async Task<DeleteDocumentInventory> DeleteDocumentInventory(DocumentInventory documentInventory)
+        {
+            try
+            {
+                return await Task.Factory.StartNew(() =>
+                {
+                    var select = new SqlSelect();
+                    var messageServer = select.DeleteDeleteDocumentInventory(documentInventory.IdDocument);
+                    select.Dispose();
+                    return messageServer;
+                });
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+            }
+            return null;
+        }
+        /// <summary>
+        /// Получение пользователей для моделей ретросканирования
+        /// </summary>
+        /// <returns></returns>
+        public async Task<UserLoginDatabaseModel[]> SelectUserScan()
+        {
+            try
+            {
+                return await Task.Factory.StartNew(() =>
+                {
+                    var select = new SqlSelect();
+                    var modelFilter = select.SelectUserModelScan();
+                    select.Dispose();
+                    return modelFilter;
+                });
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+            }
+            return null;
         }
     }
 }

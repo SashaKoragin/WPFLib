@@ -27,6 +27,11 @@
 					<xs:documentation>Ун ОГРН документа</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
+			<xs:attribute name="UserLogin" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Логин пользователя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="NumberOgrn" type="xs:long" use="required">
 				<xs:annotation>
 					<xs:documentation>ОГРН документа</xs:documentation>

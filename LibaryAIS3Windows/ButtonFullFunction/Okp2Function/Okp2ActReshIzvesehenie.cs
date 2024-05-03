@@ -262,7 +262,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                         case "1151001": //Не тестировался давно
                             CreateForm1151001(libraryAutomation, listDocMemo, journal, datePicker, senderSelect, dateCloseValidation, Convert.ToDecimal(sumNp) >= (decimal)0.00 ? sumNp : "0,00", colorError, correctNumber, oktmo);
                             break;
-                        case "1152017": //Рабочий Акт и Извещение
+                        case "1152017": //Рабочий Акт и Извещение и Решения только нулевки
                             listDocMemo = libraryAutomation.SelectAutomationColrction(
                                           libraryAutomation.FindFirstElement(Journal129AndJournal121.JournalIsh, panel[1]))
                                           .Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("select0 row")).ToArray(); //Для этой КНД берем все и уже внутри исключаем
@@ -2337,141 +2337,123 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                     var isGrinAll = isNotification.Any(x => libraryAutomationDoc.GetColorPixel(libraryAutomationDoc.SelectAutomationColrction(x).Cast<AutomationElement>().Where(automationElemenst => automationElemenst.Current.Name == "").ToList()[1]) != "8000");
                     var colorAct = libraryAutomationDoc.GetColorPixel(libraryAutomationDoc.SelectAutomationColrction(isAct).Cast<AutomationElement>().Where(automationElement => automationElement.Current.Name == "").ToList()[1]);
                     //////Если блок синий и акт и все извещение зеленые выставляем Решения
-                    if (journal.GlobalColor == "ff" && colorAct == "8000" && !isGrinAll && isResh.Count() == 0)
+                    if (journal.GlobalColor == "ff" && colorAct == "8000" && !isGrinAll && isResh.Count() == 0 && sumNp == "00,00")
                     {
                         journal.ColorDoc = colorAct; 
+                    //    Бывший поиск и анализ сумм штрафа
                     //    parametersModel.DataAreaDeclaration.Parameters.First(parameters => parameters.NameParameters == "РегНомер").ParametersGrid = journal.RegNumDeclaration.ToString();
-                        parametersModel.DataAreaAllDeclarationDocument.Parameters.First(parameters => parameters.NameParameters == "ИНН").ParametersGrid = journal.Inn;
-                        parametersModel.DataAreaAllDeclarationDocument.Parameters.First(parameters => parameters.NameParameters == "КНД декларации").ParametersGrid = journal.Knd.ToString();
+                    //    parametersModel.DataAreaAllDeclarationDocument.Parameters.First(parameters => parameters.NameParameters == "ИНН").ParametersGrid = journal.Inn;
+                    //    parametersModel.DataAreaAllDeclarationDocument.Parameters.First(parameters => parameters.NameParameters == "КНД декларации").ParametersGrid = journal.Knd.ToString();
                     //    FindMailDateDecl(libraryAutomation, ref journal, FindPathTree(libraryAutomation, parametersModel.DataAreaDeclaration, PathMailDecl));
                     //    var sumNpKrsb = FindSumNp(libraryAutomation, journal, senderSelect, new string[] { "18210501011010000110", "18210501021010000110" }, correctNumber, oktmo, sumNp);
                     //    TranslatorSum(journal, sumNpKrsb, 30, ref sumArrears, ref month, ref mouthAll); //Проверку сумму недоимки штрафа нарушение
                     //    var isCheck = FindSolutionRepeat(libraryAutomation, FindPathTree(libraryAutomation, parametersModel.DataAreaAllDeclarationDocument, PathAllDocument), ref sumArrears); //Проверку на повторное нарушение
+                       
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.OpenKnp);
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.EditP);
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Avg);
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.SendAvg);
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.UpdateDecl);
+                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.UpdateYes);
+
                         libraryAutomation.ScrollPatternViewElement(Journal129AndJournal121.ReshScroll);
                         PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ReshNo, null, true);
                         while (true)
                         {
                             if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ErrorFaceGr8, null, true) != null)
                             {
-                    //            //Проверка на просрочку
                                 date = DateTime.Now;
-                    //            if (journal.DateFinishKnp != null)
-                    //            {
-                    //                var dateFinish = (DateTime)journal.DateFinishKnp;
-                    //                date = dateFinish > DateTime.Now ? DateTime.Now : dateFinish; ///??? Текущая или нет
-                    //                var dateAdd = dateFinish.AddWorkdays(5);
-                    //                var totalDays = (dateAdd - DateTime.Now).TotalDays;
-                    //                var countDay = (int)totalDays;
-                    //                journal.IsPriznak = countDay < 0;
-                    //            }
+                                //            //Проверка на просрочку не нужно
+                                //            if (journal.DateFinishKnp != null)
+                                //            {
+                                //                var dateFinish = (DateTime)journal.DateFinishKnp;
+                                //                date = dateFinish > DateTime.Now ? DateTime.Now : dateFinish; ///??? Текущая или нет
+                                //                var dateAdd = dateFinish.AddWorkdays(5);
+                                //                var totalDays = (dateAdd - DateTime.Now).TotalDays;
+                                //                var countDay = (int)totalDays;
+                                //                journal.IsPriznak = countDay < 0;
+                                //            }
 
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.PublicInfo);
-                    //            libraryAutomation.IsEnableElements(Journal129AndJournal121.DateReshenia, null, true);????????
+                                libraryAutomation.IsEnableElements(Journal129AndJournal121.DateReshenia119, null, true);
                                 libraryAutomation.SetValuePattern(date.ToString("dd.MM.yy"));
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.PublicInfo);
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.AnyDocumentsGr3);
+                                libraryAutomation.InvokePattern(libraryAutomation.IsEnableElements(Journal129AndJournal121.DocumentsGr3AddButton, null, true));
                                 libraryAutomation.IsEnableElements(Journal129AndJournal121.AnyPastDocumentsGr3, null, true);
-                                libraryAutomation.SetValuePattern(string.Join("\r\n", allMaterial));
+                                AutoItX.Sleep(1000);
+                                libraryAutomation.FindElement.SetFocus();
+                                SendKeys.SendWait(string.Join("\r\n", allMaterial));
                                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.AnyDocumentsGr3);
-                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.InstallGr6);
-                                //libraryAutomation.IsEnableElements(Journal129AndJournal121.InstallTextGr6);
-                                //if (sumArrears < 1000 && sumArrears == 2000)
-                                //{
-                                //    libraryAutomation.SetValuePattern(string.Format(Journal129AndJournal121.ReshenieTemplate1152017, journal.God, journal.DateFinishDeclaration.ToString("dd.MM.yyyy"),
-                                //    journal.NameFace, journal.Inn, journal.DateStartDeclaration.ToString("dd.MM.yyyy"), correctNumber == 0 ? "первичную" : "уточненную", journal.God, journal.God, sumNp, journal.God, isCheck ? "Наша строка зависит от повторного правонарушения " : ""));
-                                //}
-                                //else
-                                //{
-                                //    libraryAutomation.SetValuePattern(string.Format(Journal129AndJournal121.ReshenieTemplate1152017_2, journal.God, journal.DateFinishDeclaration.ToString("dd.MM.yyyy"),
-                                //    journal.NameFace, journal.Inn, journal.DateStartDeclaration.ToString("dd.MM.yyyy"), correctNumber == 0 ? "первичную" : "уточненную", journal.God, journal.God, sumNp, journal.God, decimal.Round(sumArrears).ToString(), sumNp, month, isCheck ? "Наша строка зависит от повторного правонарушения " : ""));
-                                //}
-                    //            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.InstallGr6);
-                    //            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ErrorFaceGr11);
-                    //            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ListCashFace, null, true) != null)
-                    //            {
-                    //                var listCash = libraryAutomation
-                    //                    .SelectAutomationColrction(
-                    //                        libraryAutomation.FindFirstElement(Journal129AndJournal121.ListCashFace))
-                    //                    .Cast<AutomationElement>().Distinct().Where(elem => elem.Current.Name.Contains("Sanctions row")
-                    //                    ).ToList();
-                    //                if (listCash.Count > 1)
-                    //                {
-                    //                    AutomationElement cashDelete;
-                    //                    while ((cashDelete = libraryAutomation.IsEnableElements(Journal129AndJournal121.ListCashFaceRowNumber1, null, false, 10)) != null)
-                    //                    {
-                    //                        while (true)
-                    //                        {
-                    //                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                    //                                .SelectAutomationColrction(cashDelete)
-                    //                                .Cast<AutomationElement>().First(elemr => elemr.Current.Name.Contains("Ун документа НБО")));
-                    //                            var elem = libraryAutomation.FindFirstElement("Name:Удалить", cashDelete);
-                    //                            libraryAutomation.ClickElement(elem);
+                           
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ErrorFaceGr11);
+                                AddCircumstance(libraryAutomation, "11901013", oktmo, 0, 7);
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ErrorFaceGr11);
 
-                    //                            if (libraryAutomation.IsEnableElements(Journal129AndJournal121.DeleteWin, null, true) != null)
-                    //                            {
-                    //                                libraryAutomation.ClickElement(libraryAutomation.IsEnableElements(Journal129AndJournal121.DeleteWin));
-                    //                                break;
-                    //                            }
-                    //                        }
-                    //                    }
-                    //                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ErrorFaceGr15);
-                    //                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.AddNewErrror);
-                    //                    libraryAutomation.IsEnableElements(Journal129AndJournal121.WinSelect1);
-                    //                    libraryAutomation.SetValuePattern("11901013");
-                    //                    libraryAutomation.IsEnableElements(Journal129AndJournal121.WinSelect2);
-                    //                    libraryAutomation.SetValuePattern("11901013");
-                    //                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.WinSelectOk);
-                    //                    if (sumArrears > 1000)
-                    //                    {
-                    //                        while ((cashDelete = libraryAutomation.IsEnableElements(Journal129AndJournal121.ListCashFaceRowNumber1, null, false, 10)) != null)
-                    //                        {
-                    //                            var summSt = libraryAutomation
-                    //                                .SelectAutomationColrction(cashDelete)
-                    //                                .Cast<AutomationElement>().First(elemr => elemr.Current.Name == "Штраф, рублей");
-                    //                            libraryAutomation.FindElement = summSt;
-                    //                            libraryAutomation.SetValuePattern(Convert.ToString(decimal.Round(sumArrears)));
-                    //                            break;
-                    //                        }
-                    //                    }
-                    //                }
-                    //                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ErrorFaceGr15);
-                    //                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.AddNewCircumstance);
-                    //                libraryAutomation.IsEnableElements(Journal129AndJournal121.WinSelectCircumstance1);
-                    //                libraryAutomation.SetValuePattern("отсутствие обстоятельств");
-                    //                libraryAutomation.IsEnableElements(Journal129AndJournal121.WinSelectCircumstance2);
-                    //                libraryAutomation.SetValuePattern("22");
-                    //                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.WinSelectCircumstanceOk);
-                    //            }
-                    //            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ErrorFaceGr11);
-                    //            libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceNameSignGr15), senderSelect.SenderTaxJournalOkp2.NameUser, 0);
-                    //            PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Save);
-                    //            while (true)
-                    //            {
-                    //                if (libraryAutomation.IsEnableElements(Journal129AndJournal121.SignAll, null, true) != null)
-                    //                {
-                    //                    break;
-                    //                }
-                    //            }
-                    //            //PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.SignAll);
-                    //            //Если есть просрочка то не отправляем документ плательщику 
-                    //            //SaveSendDoc(libraryAutomation, journal, "Решение успешно выставлено!!!", "Решение");
-                    //            MouseCloseFormRsb(2);  //Закрытие формы 2 раза
-                    //            //if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ClosedComplex121, null, false, 5) != null)
-                    //            //{
-                    //            //    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex121);
-                    //            //    AutoItX.WinWait(Journal129AndJournal121.WinNameComplex);
-                    //            //    AutoItX.WinActivate(Journal129AndJournal121.WinNameComplex);
-                    //            //    LibraryAutomations libraryAutomationWin = new LibraryAutomations(Journal129AndJournal121.WinNameComplex);
-                    //            //    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin, Journal129AndJournal121.WinOkCloseComplex);
-                    //            //}
-                    //            //else
-                    //            //{
-                    //            //    WindowsAis3 winClose = new WindowsAis3();
-                    //            //    AutoItX.Sleep(1000);
-                    //            //    AutoItX.MouseClick(ButtonConstant.MouseLeft, winClose.WindowsAis.X + winClose.WindowsAis.Width - 20, winClose.WindowsAis.Y + 160);
-                    //            //}
-                    //            break;
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.InstallGr6);
+                                
+                                libraryAutomation.IsEnableElements(Journal129AndJournal121.InstallTextGr6);
+
+                                libraryAutomation.SetValuePattern(string.Format(Journal129AndJournal121.ReshenieTemplate1152017New, journal.God, journal.DateFinishDeclaration.ToString("dd.MM.yyyy"), journal.NameFace, journal.Inn, journal.DateStartDeclaration.ToString("dd.MM.yyyy"), correctNumber == 0 ? "первичную" : "уточненную", journal.God, journal.God, sumNp, journal.God));
+                                
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.InstallGr6);
+
+
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ErrorFaceGr15);
+                                libraryAutomation.SelectItemCombobox(libraryAutomation.IsEnableElements(Journal129AndJournal121.FaceNameSignGr15), senderSelect.SenderTaxJournalOkp2.NameUser, 0);
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Save);
+                                LibraryAutomations libraryAutomationDialog;
+                                LibraryAutomations libraryAutomationAddObject;
+                                while (true)
+                                {
+                                    libraryAutomationDialog = new LibraryAutomations(WindowsAis3.AisNalog3);
+                                    libraryAutomationAddObject = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomationDialog.RootAutomationElements));
+                                    if (libraryAutomationAddObject.IsEnableElements(Journal129AndJournal121.OkStringOktmo, null, true) != null)
+                                    {
+                                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationAddObject, Journal129AndJournal121.OkStringOktmo);
+                                        break;
+                                    }
+                                }
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Ok);
+                                AutoItX.Sleep(1000);
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.SignAll);
+                                while (true)
+                                {
+                                    libraryAutomationDialog = new LibraryAutomations(WindowsAis3.AisNalog3);
+                                    libraryAutomationAddObject = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomationDialog.RootAutomationElements));
+                                    if (libraryAutomationAddObject.IsEnableElements(Journal129AndJournal121.OkStringOktmo, null, true) != null)
+                                    {
+                                        PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationAddObject, Journal129AndJournal121.OkStringOktmo);
+                                        break;
+                                    }
+                                }
+                                SaveSendDoc(libraryAutomation, journal, "Решение успешно выставлено!!!", "Решение", true);
+                                while (true)
+                                {
+                                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.PublicInfo, null, true) != null)
+                                    {
+                                        break;
+                                    }
+                                }
+                                MouseCloseFormRsb(2);
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.Warning);
+                                break;
+                               
+                                //            Алгоритм комплекса мероприятия 
+                                //            //if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ClosedComplex121, null, false, 5) != null)
+                                //            //{
+                                //            //    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.ClosedComplex121);
+                                //            //    AutoItX.WinWait(Journal129AndJournal121.WinNameComplex);
+                                //            //    AutoItX.WinActivate(Journal129AndJournal121.WinNameComplex);
+                                //            //    LibraryAutomations libraryAutomationWin = new LibraryAutomations(Journal129AndJournal121.WinNameComplex);
+                                //            //    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationWin, Journal129AndJournal121.WinOkCloseComplex);
+                                //            //}
+                                //            //else
+                                //            //{
+                                //            //    WindowsAis3 winClose = new WindowsAis3();
+                                //            //    AutoItX.Sleep(1000);
+                                //            //    AutoItX.MouseClick(ButtonConstant.MouseLeft, winClose.WindowsAis.X + winClose.WindowsAis.Width - 20, winClose.WindowsAis.Y + 160);
+                                //            //} 
                             }
                         }
 
@@ -2681,9 +2663,11 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
         /// <param name="libraryAutomation">Автоматизированный элемент</param>
         /// <param name="kndForm">КНД форма </param>
         /// <param name="oktmo">ОКТМО</param>
-        /// <param name="isAdd2Param">Добавляем ли обстаятельство</param>
-        private void AddCircumstance(LibraryAutomations libraryAutomation, string kndForm, string oktmo = "")
+        /// <param name="type">Тип обстаятельства</param>
+        /// <param name="vid">Вид обстаятельства</param>
+        private void AddCircumstance(LibraryAutomations libraryAutomation, string kndForm, string oktmo = "", int type = 4, int vid = 0 )
         {
+          
             if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ListCashFace, null, true) != null)
             {
                 
@@ -2775,7 +2759,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                                 while (true)
                                 {
                                     elem = libraryAutomationAddObject.SelectAutomationColrction(listView).Cast<AutomationElement>().Where(elems => elems.Current.Name == "Rnivc.Cam.Nsi.Business.TaxKindCircumstanceEntity").ToArray();
-                                    libraryAutomationAddObject.SelectionComboBoxPattern(elem[4]);
+                                    libraryAutomationAddObject.SelectionComboBoxPattern(elem[type]);
                                     break;
                                 }
                                 break;
@@ -2786,7 +2770,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                                 while (true)
                                 {
                                     elem = libraryAutomationAddObject.SelectAutomationColrction(listView).Cast<AutomationElement>().Where(elems => elems.Current.Name == "Rnivc.Cam.Nsi.Business.TaxCircumstanceEntity").ToArray();
-                                    libraryAutomationAddObject.SelectionComboBoxPattern(elem[0]);
+                                    libraryAutomationAddObject.SelectionComboBoxPattern(elem[vid]);
                                     break;
                                 }
                                 break;
@@ -3094,60 +3078,34 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                 AutoItX.Sleep(1000);
                 while (true)
                 {
-                    LibraryAutomations libraryAutomationSign = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomation.RootAutomationElements));
+
                     while (true)
                     {
-                        if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewWindowEnable, null, true, 40, 0, false, ';') != null)
+                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.NewWindowEnable, null, true, 40, 0, false, ';') != null)
                         {
-                            libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
-                            libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement, 85);
-                            var memo = libraryAutomationSign.SelectAutomationColrction(libraryAutomationSign.FindElement);
+                            libraryAutomation.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
+                            libraryAutomation.ClickElement(libraryAutomation.FindElement, 85);
+                            var memo = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement);
                             var elemClick = memo.Cast<AutomationElement>().FirstOrDefault(x => x.Current.Name == textErrorAndNotError);
                             libraryAutomation.SelectionComboBoxSelectionItemPattern(elemClick);
-                            libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
-                            if (libraryAutomationSign.SelectionComboBoxPatternIsSelect(libraryAutomationSign.FindElement) != "")
+                            libraryAutomation.IsEnableElements(Journal129AndJournal121.NewComboBoxError, null, false, 40, 0, false, ';');
+                            if (libraryAutomation.SelectionComboBoxPatternIsSelect(libraryAutomation.FindElement) != "")
                             {
                                 break;
                             }
                         }
                     }
-                    libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewOkEdit));
+                    libraryAutomation.InvokePattern(libraryAutomation.IsEnableElements(Journal129AndJournal121.NewOkEdit));
                     //Здесь ок и ошибка на дочернем окне libraryAutomationSign у ОКП 1
                     AutoItX.Sleep(1000);
                     AutoItX.WinWait(Journal129AndJournal121.NewWarningOk);
                     AutoItX.WinActivate(Journal129AndJournal121.NewWarningOk);
-                    libraryAutomationSign = new LibraryAutomations(Journal129AndJournal121.NewWarningOk);
-                    libraryAutomationSign.InvokePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.NewWarningButtonOk));
+                    libraryAutomation.InvokePattern(libraryAutomation.IsEnableElements(Journal129AndJournal121.NewWarningButtonOk));
                     AutoItX.Sleep(1000);
                     break;
                 }
                 break;
             }
-
-            //while (true)
-            //{
-            //    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ClosedKnp, null, false, 10) != null)
-            //    {
-            //        libraryAutomation.ClickElements(Journal129AndJournal121.ClosedKnp, null, true);
-            //        AutoItX.WinWait(Journal129AndJournal121.EditWindows);
-            //        AutoItX.WinActivate(Journal129AndJournal121.EditWindows);
-            //        LibraryAutomations libraryAutomationSign = new LibraryAutomations(Journal129AndJournal121.EditWindows);
-            //        while (true)
-            //        {
-            //            if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.DateFinish, null, true) != null)
-            //            {
-            //                libraryAutomationSign.FindFirstElement(Journal129AndJournal121.DateFinish);
-            //                libraryAutomationSign.DateControlComboboxNotValue(dateEnd);
-            //                libraryAutomationSign.SelectItemCombobox(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ComboBoxError), textErrorAndNotError);
-            //                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationSign, Journal129AndJournal121.OkEdit);
-            //                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationSign, Journal129AndJournal121.WarningOk);
-            //                AutoItX.Sleep(1000);
-            //                break;
-            //            }
-            //        }
-            //        break;
-            //    }
-            //}
         }
         /// <summary>
         /// Функция генерации нажатий кнопок для вставки обстоятельств

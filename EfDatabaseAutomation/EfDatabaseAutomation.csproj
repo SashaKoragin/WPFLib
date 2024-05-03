@@ -72,6 +72,12 @@
     <Compile Include="Automation\BaseLogica\AutoLogicInventory\ModelBarcode\ModelBarcode.cs">
       <DependentUpon>ModelBarcode.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Automation\BaseLogica\AutoLogicInventory\ModelFilter\ModelFilter.cs">
+      <DependentUpon>ModelFilter.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Automation\BaseLogica\AutoLogicInventory\ModelMessageServer\ModelMessageServer.cs">
+      <DependentUpon>ModelMessageServer.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Automation\BaseLogica\AutoLogicInventory\ModelReportContainer\ReportContainer.cs">
       <DependentUpon>ReportContainer.xsd</DependentUpon>
     </Compile>
@@ -162,6 +168,12 @@
     <None Include="Automation\BaseLogica\AutoLogicInventory\ModelBarcode\ModelBarcode.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Automation\BaseLogica\AutoLogicInventory\ModelFilter\ModelFilter.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Automation\BaseLogica\AutoLogicInventory\ModelMessageServer\ModelMessageServer.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Automation\BaseLogica\AutoLogicInventory\ModelReportContainer\ReportContainer.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -236,8 +248,9 @@
       <!--<ModelInterrogationOfWitnesses Include="Automation\BaseLogica\SaveAndLoadInterrogationOfWitnesses\ModelInterrogationOfWitnesses\*.xsd" />-->
       <ModelBarcode Include="Automation\BaseLogica\AutoLogicInventory\ModelBarcode\*.xsd" />
       <WebSyteInventory Include="Automation\BaseLogica\AutoLogicInventory\ModelWebSyteInventory\*.xsd" />
-      <ModelContainer Include="Automation\BaseLogica\AutoLogicInventory\ModelReportContainer\*.xsd">
-      </ModelContainer>
+      <ModelContainer Include="Automation\BaseLogica\AutoLogicInventory\ModelReportContainer\*.xsd" />
+      <ModelFilter Include="Automation\BaseLogica\AutoLogicInventory\ModelFilter\*.xsd" />
+      <ModelMessageServer Include="Automation\BaseLogica\AutoLogicInventory\ModelMessageServer\*.xsd" />
     </ItemGroup>
     <Message Importance="high" Text="CreateDTOSheme" />
     <GetFrameworkSdkPath>
@@ -258,5 +271,7 @@
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(ModelBarcode.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.AutoLogicInventory.ModelBarcode /outputdir:Automation\BaseLogica\AutoLogicInventory\ModelBarcode" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(WebSyteInventory.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.AutoLogicInventory.ModelWebSyteInventory /outputdir:Automation\BaseLogica\AutoLogicInventory\ModelWebSyteInventory" />
     <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(ModelContainer.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.AutoLogicInventory.ModelReportContainer /outputdir:Automation\BaseLogica\AutoLogicInventory\ModelReportContainer" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(ModelFilter.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.AutoLogicInventory.ModelFilter /outputdir:Automation\BaseLogica\AutoLogicInventory\ModelFilter" />
+    <Exec Command="&quot;$(XsdToolPath)\xsd.exe&quot; &quot;%(ModelMessageServer.FullPath)&quot; /c /namespace:$(RootNamespace).Automation.BaseLogica.AutoLogicInventory.ModelMessageServer /outputdir:Automation\BaseLogica\AutoLogicInventory\ModelMessageServer" />
   </Target>
 </Project>

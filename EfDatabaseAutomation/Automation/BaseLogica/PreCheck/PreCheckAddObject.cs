@@ -220,8 +220,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
             using (var context = new Base.Automation())
             {
                 context.Database.CommandTimeout = 120000;
-                var idFl = (from users in context.FlFaces where users.Inn == innFl select users.IdFl).SingleOrDefault();
-                imZmTrFl.IdFl = idFl;
+                var idFl = (from users in context.FlFaces where users.Inn == innFl select users).OrderByDescending(u => u.IdFl).FirstOrDefault();
+                imZmTrFl.IdFl = idFl.IdFl;
             }
             //Тип объекта
             using (var context = new Base.Automation())
@@ -806,7 +806,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
                                                             || patent.IsParseSvedTr == false
                                                             || patent.IsParseSvedObject == false
                                                             || patent.IsParseParametrNalog == false
-                                                            || patent.IsParseSvedFactPatent == false).Take(150).ToArray();
+                                                            || patent.IsParseSvedFactPatent == false).Take(50).ToArray();
         }
         /// <summary>
         /// Выборка первых 100 в которых нет ошибок

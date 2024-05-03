@@ -27,9 +27,19 @@
 					<xs:documentation>Ун ОГРН</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
+			<xs:attribute name="UserLogin" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Логин пользователя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
 			<xs:attribute name="NumberOgrn" type="xs:long" use="required">
 				<xs:annotation>
 					<xs:documentation>Номер ОГРН</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IsHiddenWeb" type="xs:boolean" use="required">
+				<xs:annotation>
+					<xs:documentation>Признак скрытие на сайте</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 			<xs:attribute name="IdStatus" type="xs:int" use="required">

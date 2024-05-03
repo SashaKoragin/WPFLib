@@ -26,7 +26,7 @@ namespace AutomatAis3Full.Form.Automat.PublicFunctionLogics.PublicTaxJournal.Dat
             var senderList = new List<TemplateModel>();
             senderList.Add(new TemplateModel() { IdTemplate = 1, NameTemplate = "Отсутствует", DateCreate = DateTime.Now });
             senderList.Add(new TemplateModel() { IdTemplate = 2, NameTemplate = "ОКП2-{numberDocument}/12-18", DateCreate = DateTime.Now });
-            senderList.Add(new TemplateModel() { IdTemplate = 3, NameTemplate = "КВВ-{numberDocument}/15-13", DateCreate = DateTime.Now });
+            senderList.Add(new TemplateModel() { IdTemplate = 3, NameTemplate = "ССА-{numberDocument}/15-13", DateCreate = DateTime.Now });
          
             ModelTemplate = new PublicModelCollectionSelect<TemplateModel>(senderList);
             DatePicker = new DatePickerAdd();

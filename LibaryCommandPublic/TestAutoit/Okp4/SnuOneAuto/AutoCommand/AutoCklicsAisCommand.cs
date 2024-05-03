@@ -177,7 +177,7 @@ namespace LibraryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
                                         {
                                             break;
                                         }
-                                            statusButton.IsCheker();
+                                        statusButton.IsCheker();
                                     }
                                     var status = exit.Exitfunc(statusButton.Count, snumodelmass.ListInn.Length,
                                         statusButton.Iswork);
@@ -209,6 +209,37 @@ namespace LibraryCommandPublic.TestAutoit.Okp4.SnuOneAuto.AutoCommand
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
+            }
+        }
+        /// <summary>
+        /// Запуск процесса для уточнения сведений имущества
+        /// Налоговое администрирование\Собственность\08. Взаимодействие с органами Росреестра – Объекты недвижимости\09. Уточняющие запросы - Витрина запросов для уточнения сведений
+        /// </summary>
+        /// <param name="statusButton">Кнопка старт</param>
+        /// <param name="pathList">Полный путь к списку с ИНН</param>
+        public void StartRealEstateInquiries(StatusButtonMethod statusButton, string pathList)
+        {
+            DispatcherHelper.Initialize();
+            if (File.Exists(pathList))
+            {
+                Task.Run(delegate
+                {
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    WindowsAis3 ais3 = new WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
+                    {
+                        if (statusButton.Iswork)
+                        {
+                            clickerButton.Click68(statusButton, pathList);
+                        }
+                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                    }
+                    else
+                    {
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
+                    }
+                });
             }
         }
     }

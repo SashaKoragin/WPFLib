@@ -50,6 +50,7 @@ using AutomatAis3Full.Form.Automat.RaschetBudg.Krsb.Krsb;
 using AutomatAis3Full.Form.Automat.Registration.AcceptanceDocuments.UserControl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.StatementNp.ViewStatementNp;
 using AutomatAis3Full.Form.Automat.Okp1.EasJournal.EasJournal;
+using AutomatAis3Full.Form.Automat.Okp4.RealEstateInquiries.ViewRealEstateInquiries;
 using AutomatAis3Full.Form.Automat.Okp6.AddRequirements.ViewAddRequirements;
 using AutomatAis3Full.Form.Automat.Okp6.CheckDeclaration.ViewCheckDeclaration;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.ClearStatusStatementNp.UserControl;
@@ -73,6 +74,8 @@ using AutomatAis3Full.Form.Automat.Uregulirovanie.TechKorrect.ViewTechAdjustment
 using AutomatAis3Full.Form.Automat.Uregulirovanie.TechKorrectAgreement.ViewTechKorrectAgreement;
 using AutomatAis3Full.Form.Automat.Registration.IdentificationFace.IdentificationFl.ViewIdentificationFl;
 using AutomatAis3Full.Form.Automat.Uregulirovanie.PrintDocument.UserControlPrintDocument;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.StartProcess.Collection.ViewCollection;
+using AutomatAis3Full.Form.Automat.Uregulirovanie.StartProcess.Requirement.ViewRequirement;
 
 namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
 {
@@ -154,6 +157,37 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                       NameControl = "Урегулирование задолженности",
                       CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                       {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Урегулирование задолженности (ЕНС)",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Взыскание задолженности за счет ДС и ЭДС",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Запуск БП",
+                                              UserControl = new ViewCollection()
+                                          }
+                                      }
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Требования об уплате",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Запуск БП",
+                                              UserControl = new ViewRequirement()
+                                          }
+                                      }
+                                  }
+                              }
+                          },
                           new FullWindowAutoIt()
                           {
                               NameControl = "Проведение зачетов/возвратов",
@@ -522,6 +556,67 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                           }
                       }
                   },
+                      new FullWindowAutoIt()
+                  {
+                      NameControl = "ОКП4",
+                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                      {
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "Собственность",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "08. Взаимодействие с органами Росреестра – Объекты недвижимости",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "09. Уточняющие запросы - Витрина запросов для уточнения сведений",
+                                              UserControl = new ViewRealEstateInquiries()
+                                          }
+                                      }
+                                  }
+                               
+                              }
+                          },
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "1.06 Формирование и печать СНУ",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "1 Создание заявки на формирование СНУ",
+                                      UserControl = new FormSnuAuto()
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "1 Создание заявки на формирование СНУ массово!!!",
+                                      UserControl = new MassSnuForm()
+                                  },
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "2. Просмотр СНУ",
+                                      UserControl = new UserPrintSnu()
+                                  },
+                              }
+                          },
+                          new FullWindowAutoIt()
+                          {
+                              NameControl = "02. Доопределение данных об объектах собственности",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "14.КС–Корректировка сведений о правах не зарегистрированных  в органах Росреестра и правах наследования на ОН и ЗУ",
+                                      UserControl = new PravoEditForm()
+                                  }
+                              }
+                          }
+                      }
+                  },
                   new FullWindowAutoIt()
                   {
                       NameControl = "ОКП5",
@@ -852,47 +947,6 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                                           }
                                       }
                                    }
-                              }
-                          }
-                      }
-                  },
-                  new FullWindowAutoIt()
-                  {
-                      NameControl = "ОКП4",
-                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
-                      {
-                          new FullWindowAutoIt()
-                          {
-                              NameControl = "1.06 Формирование и печать СНУ",
-                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
-                              {
-                                  new FullWindowAutoIt()
-                                  {
-                                      NameControl = "1 Создание заявки на формирование СНУ",
-                                      UserControl = new FormSnuAuto()
-                                  },
-                                  new FullWindowAutoIt()
-                                  {
-                                      NameControl = "1 Создание заявки на формирование СНУ массово!!!",
-                                      UserControl = new MassSnuForm()
-                                  },
-                                  new FullWindowAutoIt()
-                                  {
-                                      NameControl = "2. Просмотр СНУ",
-                                      UserControl = new UserPrintSnu()
-                                  },
-                              }
-                          },
-                          new FullWindowAutoIt()
-                          {
-                              NameControl = "02. Доопределение данных об объектах собственности",
-                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
-                              {
-                                  new FullWindowAutoIt()
-                                  {
-                                      NameControl = "14.КС–Корректировка сведений о правах не зарегистрированных  в органах Росреестра и правах наследования на ОН и ЗУ",
-                                      UserControl = new PravoEditForm()
-                                  }
                               }
                           }
                       }

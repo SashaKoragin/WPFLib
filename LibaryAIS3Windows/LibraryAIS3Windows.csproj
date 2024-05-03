@@ -77,6 +77,7 @@
     <Compile Include="AutomationsUI\Otdels\Kao\ElementNameWitnesses.cs" />
     <Compile Include="AutomationsUI\Otdels\Okp1\ModelElementName.cs" />
     <Compile Include="AutomationsUI\Otdels\Okp2\IdentificationElementName.cs" />
+    <Compile Include="AutomationsUI\Otdels\Okp4\RealEstateInquiriesModel.cs" />
     <Compile Include="AutomationsUI\Otdels\Okp6\ModelElementFactOwner.cs" />
     <Compile Include="AutomationsUI\Otdels\PublicJournal129And121\129JournalAnd121Journal.cs" />
     <Compile Include="AutomationsUI\Otdels\PreCheck\PreCheckElementName.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="ButtonFullFunction\Okp2Function\Okp2GlobalFunction.cs" />
     <Compile Include="ButtonFullFunction\Okp3Function\Okp3Patent.cs" />
     <Compile Include="ButtonFullFunction\Okp3Function\SelectModelPatern.cs" />
+    <Compile Include="ButtonFullFunction\Okp4Function\RealEstateInquiries.cs" />
     <Compile Include="ButtonFullFunction\Okp6Function\Okp6FindFactOwner.cs" />
     <Compile Include="ButtonFullFunction\Okp6Function\Okp6Function.cs" />
     <Compile Include="ButtonFullFunction\OkpClosedComplex\OkpClosedComplex.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="ButtonFullFunction\RegistrationFunction\ScanDocument.cs" />
     <Compile Include="ButtonFullFunction\UregulirovanieAllFunction\UregulirovanieAllFunction.cs" />
     <Compile Include="ButtonFullFunction\UregulirovanieAllFunction\UregulirovaniePrintDocument.cs" />
+    <Compile Include="ButtonFullFunction\UregulirovanieAllFunction\UregulirovanieStartProcess.cs" />
     <Compile Include="ButtonsClikcs\ButtonConstant.cs" />
     <Compile Include="ButtonsClikcs\ClikcCheker\Cheker.cs" />
     <Compile Include="ButtonsClikcs\KclicerButton.cs" />

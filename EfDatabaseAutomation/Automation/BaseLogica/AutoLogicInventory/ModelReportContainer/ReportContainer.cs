@@ -163,11 +163,15 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelRep
         
         private int idContainerField;
         
+        private string userLoginField;
+        
         private long numberOgrnGrnField;
         
         private int sumPageIncludedField;
         
         private int sumPageNotIncludedField;
+        
+        private int countDocumentField;
         
         private int stateField;
         
@@ -190,6 +194,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelRep
             }
             set {
                 this.idContainerField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string UserLogin {
+            get {
+                return this.userLoginField;
+            }
+            set {
+                this.userLoginField = value;
             }
         }
         
@@ -223,6 +238,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelRep
             }
             set {
                 this.sumPageNotIncludedField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public int CountDocument {
+            get {
+                return this.countDocumentField;
+            }
+            set {
+                this.countDocumentField = value;
             }
         }
         

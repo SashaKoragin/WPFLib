@@ -5,7 +5,10 @@ using System.ServiceModel.Web;
 using System.Threading.Tasks;
 using AisPoco.Ifns51.FromAis;
 using AisPoco.Ifns51.ToAis;
+using AisPoco.UserLoginScan;
 using EfDatabaseAutomation.Automation.Base;
+using EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelFilter;
+using EfDatabaseAutomation.Automation.BaseLogica.AutoLogicInventory.ModelMessageServer;
 using EfDatabaseAutomation.Automation.BaseLogica.IdentificationFace;
 using EfDatabaseAutomation.Automation.BaseLogica.UploadFile;
 using EfDatabaseAutomation.Automation.SelectParametrSheme;
@@ -17,6 +20,7 @@ namespace ServiceAutomation.Service
     [ServiceContract]
     interface IServiceAuto
     {
+
         /// <summary>
         /// http://localhost:8050/ServiceAutomation/Identification
         /// Авторизация на сайте статистики
@@ -311,9 +315,10 @@ namespace ServiceAutomation.Service
         /// http://77068-app065:8050/ServiceAutomation/SelectAllOgrnInventory
         /// </summary>
         /// <returns></returns>
+        /// <param name="virtualFilter">Виртуальный фильтр коллекции</param>
         [OperationContract]
-        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectAllOgrnInventory", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        Task<string> SelectAllOgrnInventory();
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectAllOgrnInventory", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> SelectAllOgrnInventory(VirtualFilterToServer virtualFilter);
 
         /// <summary>
         /// Все документы из справочника АИС 3
@@ -348,27 +353,30 @@ namespace ServiceAutomation.Service
         /// Добавление или редактирование дела ОГРН
         /// </summary>
         /// <param name="organizationOgrnInventory">Отдел и подписант</param>
+        /// <param name="connectionId">Ун соединения пользователя</param>
         /// <returns></returns>
         [OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddAndEditOrganizationOgrnInventory", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        Task<OrganizationOgrnInventory> AddAndEditOrganizationOgrnInventory(OrganizationOgrnInventory organizationOgrnInventory);
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddAndEditOrganizationOgrnInventory?connectionId={connectionId}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<OrganizationOgrnInventory> AddAndEditOrganizationOgrnInventory(OrganizationOgrnInventory organizationOgrnInventory, string connectionId);
         /// <summary>
         /// Добавление или редактирование ГРН Документа
         /// </summary>
         /// <param name="grnInventory">ГРН Документа</param>
+        /// <param name="connectionId">Ун соединения пользователя</param>
         /// <returns></returns>
         [OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddAndEditGrnInventory", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        Task<GrnInventory> AddAndEditGrnInventory(GrnInventory grnInventory);
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddAndEditGrnInventory?connectionId={connectionId}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<GrnInventory> AddAndEditGrnInventory(GrnInventory grnInventory, string connectionId);
 
         /// <summary>
         /// Добавление или Редактирование Документа под ГРН
         /// </summary>
         /// <param name="documentInventory">Документ под ГРН</param>
+        /// <param name="connectionId">Ун соединения пользователя</param>
         /// <returns></returns>
         [OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddAndEditDocumentInventory", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        Task<DocumentInventory> AddAndEditDocumentInventory(DocumentInventory documentInventory);
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddAndEditDocumentInventory?connectionId={connectionId}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<DocumentInventory> AddAndEditDocumentInventory(DocumentInventory documentInventory, string connectionId);
         /// <summary>
         /// Добавление или редактирование описание документа
         /// </summary>
@@ -423,6 +431,14 @@ namespace ServiceAutomation.Service
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/ReportDocumentContainer", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<Stream> ReportDocumentContainer(DocumentContainer documentContainer);
         /// <summary>
+        /// Отчет детализации по контейнеру
+        /// </summary>
+        /// <param name="documentContainer">Контейнер</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/ReportDetailingContainer", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> ReportDetailingContainer(DocumentContainer documentContainer);
+        /// <summary>
         /// Запрос данных по всем процессам и их статусам
         /// http://77068-app065:8050/ServiceAutomation/SelectAllEventError
         /// </summary>
@@ -438,7 +454,38 @@ namespace ServiceAutomation.Service
         /// <param name="idProcess">Ун процесса для детализации ГРН</param>
         [OperationContract]
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectDetailingEventError?idProcess={idProcess}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-
         Task<string> SelectDetailingEventError(int idProcess);
+        /// <summary>
+        /// Процедура присваивание процессу статуса готово в случае жонглирования ГРН
+        /// http://localhost:8050/ServiceAutomation/SetStatusReadyProcess?idProcess=1
+        /// </summary>
+        /// <param name="idProcess">Ун процесса для детализации ГРН</param>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SetStatusReadyProcess?idProcess={idProcess}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> SetStatusReadyProcess(int idProcess);
+        /// <summary>
+        /// Детализация ошибок
+        /// http://localhost:8050/ServiceAutomation/SelectModelFilter?userLogin=
+        /// </summary>
+        /// <param name="userLogin">Логин пользователя для фильтра</param>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectModelFilter?userLogin={userLogin}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> SelectModelFilter(string userLogin);
+
+        /// <summary>
+        /// Удаление документа инвентаризации со статусом 1 и 5
+        /// </summary>
+        /// <param name="documentInventory">Документ инвентаризации</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/DeleteDocumentInventory", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<DeleteDocumentInventory> DeleteDocumentInventory(DocumentInventory documentInventory);
+        /// <summary>
+        /// Детализация ошибок
+        /// http://localhost:8050/ServiceAutomation/SelectUserScan
+        /// </summary>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectUserScan", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<UserLoginDatabaseModel[]> SelectUserScan();
     }
 }

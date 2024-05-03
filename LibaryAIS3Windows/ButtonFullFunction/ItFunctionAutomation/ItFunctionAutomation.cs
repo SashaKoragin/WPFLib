@@ -37,6 +37,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
             var sw = modelTreeMyRule.Split('\\').Last();
             var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
             LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
+            libraryAutomation.InvokePattern(libraryAutomation.FindFirstElement(PublicElementName.ShowAll));
             if (!libraryAutomation.IsEnableExpandTree(modelTreeMyRule)) return;
             libraryAutomation.FindFirstElement(fullTree, null, true);
             libraryAutomation.FindElement.SetFocus();
@@ -213,14 +214,15 @@ namespace LibraryAIS3Windows.ButtonFullFunction.ItFunctionAutomation
         /// <summary>
         /// Сбор информации о пользователях и их ролей с шаблонами
         /// </summary>
+        /// <param name="libraryAutomation">Библиотека автоматизации</param>
         /// <param name="statusButton">Кнопка запуска</param>
         /// <param name="pathJournalInfoUserTemplateRule">Путь сохранения информации по пользователям и их ролям с шаблонами</param>
-        public void SelectAllUserTemplateAndRule(StatusButtonMethod statusButton, string pathJournalInfoUserTemplateRule)
+        public void SelectAllUserTemplateAndRule(LibraryAutomations libraryAutomation, StatusButtonMethod statusButton, string pathJournalInfoUserTemplateRule)
         {
             
             var sw = modelSettingRule.Split('\\').Last();
             var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
-            LibraryAutomations libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
+            libraryAutomation.InvokePattern(libraryAutomation.FindFirstElement(PublicElementName.ShowAll));
             if (!libraryAutomation.IsEnableExpandTree(modelSettingRule)) return;
             libraryAutomation.FindFirstElement(fullTree, null, true);
             libraryAutomation.FindElement.SetFocus();

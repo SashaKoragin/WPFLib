@@ -2864,7 +2864,9 @@ namespace EfDatabaseAutomation.Automation.Base
     public class OrganizationOgrnInventory
     {
         public int IdOgrn { get; set; } // IdOgrn (Primary key)
+        public string UserLogin { get; set; } // UserLogin (length: 128)
         public long NumberOgrn { get; set; } // NumberOgrn
+        public bool? IsHiddenWeb { get; set; } // IsHiddenWeb
         public int IdStatus { get; set; } // IdStatus
         public System.DateTime? DateCreate { get; set; } // DateCreate
 
@@ -2884,6 +2886,8 @@ namespace EfDatabaseAutomation.Automation.Base
 
         public OrganizationOgrnInventory()
         {
+            UserLogin = "7751-00-170";
+            IsHiddenWeb = false;
             DateCreate = System.DateTime.Now;
             GrnInventories = new System.Collections.Generic.List<GrnInventory>();
         }
@@ -6664,7 +6668,9 @@ namespace EfDatabaseAutomation.Automation.Base
             HasKey(x => x.IdOgrn);
 
             Property(x => x.IdOgrn).HasColumnName(@"IdOgrn").HasColumnType("int").IsRequired().HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
+            Property(x => x.UserLogin).HasColumnName(@"UserLogin").HasColumnType("varchar").IsRequired().IsUnicode(false).HasMaxLength(128);
             Property(x => x.NumberOgrn).HasColumnName(@"NumberOgrn").HasColumnType("bigint").IsRequired();
+            Property(x => x.IsHiddenWeb).HasColumnName(@"IsHiddenWeb").HasColumnType("bit").IsOptional();
             Property(x => x.IdStatus).HasColumnName(@"IdStatus").HasColumnType("int").IsRequired();
             Property(x => x.DateCreate).HasColumnName(@"DateCreate").HasColumnType("smalldatetime").IsOptional();
 

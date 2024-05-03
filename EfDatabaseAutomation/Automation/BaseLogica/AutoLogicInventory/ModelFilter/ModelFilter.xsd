@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 (http://www.altova.com) by TeaM DJiNN (TeaM DJiNN) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="ModelVirtualFilter">
+		<xs:annotation>
+			<xs:documentation>Модель виртуального фильтра для Ретросканирования</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ModelVirtualFilter"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ModelVirtualFilter">
+		<xs:annotation>
+			<xs:documentation>Модель виртуального фильтра для Ретросканирования</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="VirtualFilter" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="VirtualFilterToServer" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="VirtualFilter">
+		<xs:annotation>
+			<xs:documentation>Виртуальный фильтр</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IdFilter" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун фильтра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameFilter" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Наименование фильтра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="LoginUser" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Логин  пользователя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IsHiddenWeb" type="xs:boolean" use="required">
+				<xs:annotation>
+					<xs:documentation>Признак скрытости</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="VirtualFilterToServer">
+		<xs:annotation>
+			<xs:documentation>Отправка на сервер фильтра</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IdFilter" type="xs:int" use="required">
+				<xs:annotation>
+					<xs:documentation>Ун фильтра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameFilter" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Наименование фильтра</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="LoginUser" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:documentation>Логин  пользователя</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IsHiddenWeb" type="xs:boolean" use="required">
+				<xs:annotation>
+					<xs:documentation>Признак скрытости</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

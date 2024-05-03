@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Transports;
 using Microsoft.Owin.Cors;
 using Owin;
 using SignalRLibraryAutomations.HubError;
@@ -12,9 +13,9 @@ namespace SignalRLibraryAutomations.ConnectAutomations
         {
             try
             {
-                GlobalHost.Configuration.ConnectionTimeout = TimeSpan.FromHours(8);
-                GlobalHost.Configuration.DisconnectTimeout = TimeSpan.FromHours(5);
+                
                 GlobalHost.HubPipeline.AddModule(new HubError.HubError());
+                GlobalHost.Configuration.DisconnectTimeout = TimeSpan.FromHours(8);
                 app.Map("/signalr", map =>
                 {
                     map.UseCors(CorsOptions.AllowAll);

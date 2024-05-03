@@ -244,6 +244,8 @@ namespace EfDatabaseAutomation.BaseLogica.AutoLogicInventory
 
         private int idOgrnField;
 
+        private string userLoginField;
+
         private long numberOgrnField;
 
         private int idStatusField;
@@ -278,6 +280,19 @@ namespace EfDatabaseAutomation.BaseLogica.AutoLogicInventory
             set
             {
                 this.idOgrnField = value;
+            }
+        }
+
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string UserLogin
+        {
+            get
+            {
+                return this.userLoginField;
+            }
+            set
+            {
+                this.userLoginField = value;
             }
         }
 

@@ -57,6 +57,11 @@
           <Property Id="DB" Value="Automation"/>
         </Control>
 
+        <Control Id="Ais3ExeText" Type="Text" X="10" Y="160" Width="80" Height="15" Transparent="yes" NoPrefix="yes" Text="Путь к АИС3:"></Control>
+        <Control Id="Ais3Exe" Type="Edit" X="65" Y="160" Width="295" Height="15" ToolTip="Путь к файлу:" Property="AIS3EXE" Text="[AIS3EXE]">
+          <Property Id="AIS3EXE" Value="C:\Program Files (x86)\Ais3Prom\Client\CommonComponents.UnifiedClient.exe"/>
+        </Control>
+
         <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)">
           <Publish Event="NewDialog" Value="VerifyReadyDlg" Order="10" />
         </Control>

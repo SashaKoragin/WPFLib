@@ -6,6 +6,8 @@ using System.Windows.Automation;
 using System.Windows.Forms;
 using AutoIt;
 using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
+using LibraryAIS3Windows.AutomationsUI.PublicElement;
+using LibraryAIS3Windows.Window;
 
 namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
 {
@@ -166,6 +168,31 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PublicGlobalFunction
                 libraryAutomationXlsx.Dispose();
                 CloseProcessProgram("EXCEL");
             }
+        }
+        /// <summary>
+        /// Запуск АИС 3
+        /// </summary>
+        /// <param name="fullPathAis3">Путь к АИС 3</param>
+        public static LibraryAutomations StartAndWaitProcessAis3(string fullPathAis3)
+        {
+            if (!File.Exists(fullPathAis3))
+            {
+                throw new InvalidOperationException($"Фатальная ошибка по части пути {fullPathAis3} отсутствует файл АИС 3!"); ;
+            }
+            var startInfo = new System.Diagnostics.ProcessStartInfo()
+            {
+                FileName = fullPathAis3,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+            var process = System.Diagnostics.Process.Start(startInfo);
+            while (process.MainWindowTitle != WindowsAis3.AisNalog3) {process.Refresh(); }
+            LibraryAutomations libraryAutomation = new LibraryAutomations(process.MainWindowHandle);
+            if (libraryAutomation.IsFocusableElement(PublicElementName.FullTreeIfns))
+            {
+                return libraryAutomation;
+            }
+            return null;
         }
 
         /// <summary>

@@ -35,6 +35,7 @@ namespace ServiceAutomation
         {
             try
             {
+                HubAutomations.Disconnected(null);
                 if (Service != null)
                 {
                     Service.Close();

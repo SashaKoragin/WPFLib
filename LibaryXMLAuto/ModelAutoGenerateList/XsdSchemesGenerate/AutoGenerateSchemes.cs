@@ -40,6 +40,8 @@ namespace LibaryXMLAuto.XsdModelAutoGenerate {
 
         private InnFace[] innFaceField;
 
+        private RealEstate[] realEstateField;
+
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxArrears")]
         public TaxArrears[] TaxArrears {
@@ -122,6 +124,18 @@ namespace LibaryXMLAuto.XsdModelAutoGenerate {
             set
             {
                 this.innFaceField = value;
+            }
+        }
+        [System.Xml.Serialization.XmlElementAttribute("RealEstate")]
+        public RealEstate[] RealEstate
+        {
+            get
+            {
+                return this.realEstateField;
+            }
+            set
+            {
+                this.realEstateField = value;
             }
         }
     }
@@ -529,5 +543,48 @@ namespace LibaryXMLAuto.XsdModelAutoGenerate {
                 this.innField = value;
             }
         }
+    }
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2046.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    public partial class RealEstate
+    {
+        private string cadastralNumberField;
+
+        private string objectTypeField;
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Кадастровый номер", "Кадастровый номер")]
+        public string CadastralNumber
+        {
+            get
+            {
+                return this.cadastralNumberField;
+            }
+            set
+            {
+                this.cadastralNumberField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames("Тип объекта недвижимости", "Тип объекта недвижимости")]
+        public string ObjectType
+        {
+            get
+            {
+                return this.objectTypeField;
+            }
+            set
+            {
+                this.objectTypeField = value;
+            }
+        }
+
     }
 }

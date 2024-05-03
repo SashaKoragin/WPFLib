@@ -209,7 +209,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
                 where groups.Any(gr => gr.Contains(departmentOdell.NameDepartamentActiveDerectory))
                 join sender in Automation.SenderTaxJournalOkp2 on departmentOdell.IdSender equals sender.Id
                 select sender;
-            return senderUser.SelectMany(h => h.DepartamentOtdels.Where(y => groups.Any(r => r.Contains(y.NameDepartamentActiveDerectory)))).FirstOrDefault();
+            return senderUser.SelectMany(h => h.DepartamentOtdels.Where(y => groups.Any(r => r.Contains(y.NameDepartamentActiveDerectory)))).Include(x=>x.SenderTaxJournalOkp2).FirstOrDefault();
         }
         /// <summary>
         /// Проверка на наличие документа если нет то требование не выставлялось
