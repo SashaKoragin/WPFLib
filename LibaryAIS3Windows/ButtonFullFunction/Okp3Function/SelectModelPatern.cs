@@ -109,7 +109,20 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
                 {
                     new Parameters() { NameParameters = "УН инспектора", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "1" } //Подписант 02.11.2023 17019218-Юрковский!  17019220-Чукалкин!
                 }
-            }
+            },
+            new DataArea()
+            {
+                FullPathDataArea = "AutomationId:FindFaceAll\\AutomationId:ultraPanelFormFill\\AutomationId:ultraPanelForNavigator\\AutomationId:ultraTabFace\\AutomationId:ultraTabPageControl2\\AutomationId:navigatorControlFL\\AutomationId:splitContainer\\AutomationId:conditionsPanel\\AutomationId:gridConditions\\",
+                FullPathGrid = "AutomationId:FindFaceAll\\AutomationId:ultraPanelFormFill\\AutomationId:ultraPanelForNavigator\\AutomationId:ultraTabFace\\AutomationId:ultraTabPageControl2\\AutomationId:navigatorControlFL\\AutomationId:splitContainer\\AutomationId:gridData",
+                ListRowDataGrid = "\\Name:select0 row ",
+                ListRowDataArea = "Name:List`1 row ",
+                Riborn = "Name:Выбор Налогоплательщика\\Name:DockTop\\Name:Ribbon\\Name:Налогоплательщик\\Name:Действия с навигатором\\Name:Выбрать",
+                Update = "Name:Выбор Налогоплательщика\\Name:DockTop\\Name:Ribbon\\Name:Налогоплательщик\\Name:Действия с навигатором\\Name:Обновить",
+                Parameters = new Parameters[]
+                {
+                    new Parameters() { NameParameters = "ИНН", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "3" }
+                }
+            },
 
         };
 

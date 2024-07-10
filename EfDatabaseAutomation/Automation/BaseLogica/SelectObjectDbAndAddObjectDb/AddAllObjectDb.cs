@@ -55,6 +55,47 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectD
                 return null;
             }
         }
+        /// <summary>
+        /// Добавление или редактирование Отдела подписанта и шаблона для допроса свидетелей
+        /// </summary>
+        /// <param name="departmentOtdelResponse">Отдел и подписант</param>
+        /// <returns></returns>
+        public DepartmentOtdelResponse AddAndEditDepartmentOtdelResponse(DepartmentOtdelResponse departmentOtdelResponse)
+        {
+            var departmentOtdelResponseAddAndModified = new DepartmentOtdelResponse()
+            {
+                IdDepartment = departmentOtdelResponse.IdDepartment,
+                IdSenderResponse = departmentOtdelResponse.IdSenderResponse,
+                IdTemplateResponse = departmentOtdelResponse.IdTemplateResponse,
+                NameDepartment = departmentOtdelResponse.NameDepartment,
+                NameDepartmentActiveDirectory = departmentOtdelResponse.NameDepartmentActiveDirectory,
+                TemplateDepartment = departmentOtdelResponse.TemplateDepartment,
+                Office = departmentOtdelResponse.Office,
+                Phone = departmentOtdelResponse.Phone
+            };
+            try
+            {
+                using (var context = new Base.Automation())
+                {
+                    var modelDb = from dep in context.DepartmentOtdelResponses where dep.IdDepartment == departmentOtdelResponse.IdDepartment select new { DepartmentOtdelResponse = dep };
+                    if (modelDb.Any())
+                    {
+                        AutomationContext.Entry(departmentOtdelResponseAddAndModified).State = System.Data.Entity.EntityState.Modified;
+                        AutomationContext.SaveChanges();
+                        return departmentOtdelResponse;
+                    }
+                }
+                AutomationContext.DepartmentOtdelResponses.Add(departmentOtdelResponseAddAndModified);
+                AutomationContext.SaveChanges();
+                departmentOtdelResponse.IdDepartment = departmentOtdelResponseAddAndModified.IdDepartment;
+                return departmentOtdelResponse;
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+                return null;
+            }
+        }
 
         /// <summary>
         /// Добавление или редактирование документа дела ОГРН

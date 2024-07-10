@@ -547,11 +547,11 @@ namespace EfDatabaseAutomation.Automation.SelectParametrSheme {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class TemplatePatent {
         
-        private int[] regNumberPatentField;
+        private long[] regNumberPatentField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public int[] RegNumberPatent {
+        public long[] RegNumberPatent {
             get {
                 return this.regNumberPatentField;
             }

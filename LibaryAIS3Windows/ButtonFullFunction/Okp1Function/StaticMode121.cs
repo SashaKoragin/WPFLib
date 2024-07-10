@@ -439,7 +439,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp1Function
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
         /// <param name="regNumDeclaration">Регистрационный номер декларации</param>
         /// <param name="pathTemp">Путь к сохранению документа</param>
-        private decimal? DeclarationIntelligenceUl(LibraryAutomations libraryAutomation, int regNumDeclaration, string pathTemp)
+        private decimal? DeclarationIntelligenceUl(LibraryAutomations libraryAutomation, long? regNumDeclaration, string pathTemp)
         {
             if (!libraryAutomation.IsEnableExpandTree(Tree)) return null;
             var sw = Tree.Split('\\').Last();

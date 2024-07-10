@@ -9,6 +9,7 @@ using System.Dynamic;
 using System.IO;
 using System.Linq;
 using EfDatabaseAutomation.Automation.Base;
+using EfDatabaseAutomation.Automation.BaseLogica.ActiveDirectory;
 using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.ProcedureDeclaration;
 using LibaryXMLAuto.ReadOrWrite;
 
@@ -181,30 +182,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
         /// <param name="idUserDomain">Табельный номер пользователя</param>
         public DepartamentOtdel SelectSenderJournal(string idUserDomain)
         {
-            string[] groups;
-            using (PrincipalContext context = new PrincipalContext(ContextType.Domain, "regions.tax.nalog.ru"))
-            {
-                using (var user = UserPrincipal.FindByIdentity(context, idUserDomain))
-                {
-                    if (user != null)
-                    {
-                        var group = user.GetGroups();
-                        {
-                            groups = new string[@group.Count()];
-                            var i = 0;
-                            foreach (var gr in @group)
-                            {
-                                groups[i] = gr.Name;
-                                i++;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException($"Пользователь по табельному номеру {idUserDomain} не найден в Active Directory!");
-                    }
-                }
-            }
+            var activeDirectorySelectModel = new ActiveDirectorySelectModel();
+            var groups = activeDirectorySelectModel.SelectAllGroupUser(idUserDomain);
+            if (groups == null)
+                return null;
             var senderUser = from departmentOdell in Automation.DepartamentOtdels
                 where groups.Any(gr => gr.Contains(departmentOdell.NameDepartamentActiveDerectory))
                 join sender in Automation.SenderTaxJournalOkp2 on departmentOdell.IdSender equals sender.Id

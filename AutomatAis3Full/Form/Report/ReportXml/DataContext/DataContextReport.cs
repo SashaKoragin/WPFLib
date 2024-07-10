@@ -33,30 +33,22 @@ namespace AutomatAis3Full.Form.Report.ReportXml.DataContext
 
         public DataContextReport()
         {
-            try
+            var command = new CommandSnuOneAuto();
+            ModelApi = ConfigFile.ResultGetTemplate<ModelServiceDataBase>(ConfigFile.ServiceModelInventory);
+            ModelApi?.ForEach(service=>service.ApiService = string.Format(service.ApiService, ConfigFile.HostNameService));
+            Report = new ReportXlsxMethod(ConfigFile.ExcelReportFile);
+            ReportJournalAndFile = new ReportJournalMethod(ConfigFile.PathJurnal, ConfigFile.PathInn, ModelApi);
+            LabelModel = new LabelModel();
+            DeleteJournal = new DelegateCommand(()=> { ReportJournalAndFile.DeleteXmlReportJournal();});
+            DeleteReport = new DelegateCommand(() => { Report.DeleteReportFile(); });
+            OpenReport = new DelegateCommand(() => { Report.OpenReport(); });
+            OpenFile = new DelegateCommand(() => { command.ConvertXslToXmlAndOpen(Report, ReportJournalAndFile, ConfigFile.ExcelReportFile); });
+            FileToServerApiReport = new DelegateCommand(() => command.FileToServerApiReport(LabelModel, ModelApi, ReportJournalAndFile));
+            Update = new DelegateCommand(() =>
             {
-                var command = new CommandSnuOneAuto();
-                ModelApi = ConfigFile.ResultGetTemplate<ModelServiceDataBase>(ConfigFile.ServiceModelInventory);
-                ModelApi.ForEach(service=>service.ApiService = string.Format(service.ApiService, ConfigFile.HostNameService));
-                Report = new ReportXlsxMethod(ConfigFile.ExcelReportFile);
-                ReportJournalAndFile = new ReportJournalMethod(ConfigFile.PathJurnal, ConfigFile.PathInn, ModelApi);
-                LabelModel = new LabelModel();
-                DeleteJournal = new DelegateCommand(()=> { ReportJournalAndFile.DeleteXmlReportJournal();});
-                DeleteReport = new DelegateCommand(() => { Report.DeleteReportFile(); });
-                OpenReport = new DelegateCommand(() => { Report.OpenReport(); });
-                OpenFile = new DelegateCommand(() => { command.ConvertXslToXmlAndOpen(Report, ReportJournalAndFile, ConfigFile.ExcelReportFile); });
-                FileToServerApiReport = new DelegateCommand(() => command.FileToServerApiReport(LabelModel, ModelApi, ReportJournalAndFile));
-                Update = new DelegateCommand(() =>
-                {
-                    ReportJournalAndFile.AddFileXml(ConfigFile.PathInn);
-                    ReportJournalAndFile.AddJournal(ConfigFile.PathJurnal);
-                });
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+                ReportJournalAndFile.AddFileXml(ConfigFile.PathInn);
+                ReportJournalAndFile.AddJournal(ConfigFile.PathJurnal);
+            });
         }
     }
 }

@@ -852,7 +852,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
         /// </summary>
         /// <param name="regNumDecl">Регистрационный номер декларации</param>
         /// <returns></returns>
-        public decimal DeclarationSumError(int regNumDecl)
+        public decimal DeclarationSumError(long? regNumDecl)
         {
             PreCheckAddObject preCheck = new PreCheckAddObject();
             var sum = preCheck.SumDeclaration(regNumDecl);

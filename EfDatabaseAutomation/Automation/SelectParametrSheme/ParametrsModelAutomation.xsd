@@ -219,7 +219,7 @@
 					<xs:documentation>Регистрационные номера патентов для добавления</xs:documentation>
 				</xs:annotation>
 				<xs:simpleType>
-					<xs:list itemType="xs:int"/>
+					<xs:list itemType="xs:long"/>
 				</xs:simpleType>
 			</xs:attribute>
 		</xs:complexType>

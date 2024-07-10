@@ -19,9 +19,17 @@ namespace AttributeHelperModelXml
                 (columnName))
                 {
                     var propertyValue = row[columnName];
+
                     if (propertyValue != DBNull.Value)
                     {
-                        ParsePrimitive(prop, entity, row[columnName]);
+                        if (columnName == "ИНН")
+                        {
+                            if (propertyValue.ToString().Length == 11)
+                            {
+                                propertyValue = "0" + propertyValue.ToString();
+                            }
+                        }
+                        ParsePrimitive(prop, entity, propertyValue);
                         break;
                     }
                 }

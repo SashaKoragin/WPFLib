@@ -114,7 +114,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.AddObjectDb
         /// </summary>
         /// <param name="regNumber">Регистрационный номер</param>
         /// <returns></returns>
-        public TaxJournal121 SelectJournal(int? regNumber)
+        public TaxJournal121 SelectJournal(long? regNumber)
         {
           return Automation.TaxJournal121.FirstOrDefault(x => x.RegNumDeclaration == regNumber && x.TypeDocument == "Акт");
         }

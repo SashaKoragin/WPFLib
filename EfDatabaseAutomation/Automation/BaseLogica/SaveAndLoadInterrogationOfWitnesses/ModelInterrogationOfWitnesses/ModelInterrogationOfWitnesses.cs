@@ -10,7 +10,7 @@
 
 // 
 // Этот исходный код был создан с помощью xsd, версия=4.7.2053.0.
-// 
+//
 using AttributeHelperModelXml;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfWitnesses.ModelInterrogationOfWitnesses {
@@ -28,6 +28,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfW
         private Organization[] organizationField;
         
         private Counterpart[] counterpartField;
+        
+        private CeoManager[] ceoManagerField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Organization")]
@@ -48,6 +50,17 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfW
             }
             set {
                 this.counterpartField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("CeoManager")]
+        public CeoManager[] CeoManager {
+            get {
+                return this.ceoManagerField;
+            }
+            set {
+                this.ceoManagerField = value;
             }
         }
     }
@@ -166,6 +179,58 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfW
             }
             set {
                 this.nameCounterpartyField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class CeoManager {
+        
+        private string innField;
+        
+        private string nameCeoField;
+        
+        private string typeOrgField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"ИНН", @"ИНН")]
+        public string Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"ФИО ДИРЕКТОРА", @"ФИО ДИРЕКТОРА")]
+        public string NameCeo {
+            get {
+                return this.nameCeoField;
+            }
+            set {
+                this.nameCeoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [DataNames(@"СФЕРА ДЕЯТЕЛЬНСТИ", @"СФЕРА ДЕЯТЕЛЬНСТИ")]
+        public string TypeOrg {
+            get {
+                return this.typeOrgField;
+            }
+            set {
+                this.typeOrgField = value;
             }
         }
     }

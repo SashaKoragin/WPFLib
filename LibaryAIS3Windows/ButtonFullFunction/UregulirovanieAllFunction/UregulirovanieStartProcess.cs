@@ -47,8 +47,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction
             libraryAutomation.InvokePattern(libraryAutomation.FindFirstElement(PublicElementName.ShowAll));
             libraryAutomation.IsEnableExpandTree(TreeCollection);
             libraryAutomation.FindFirstElement(fullTree, null, true);
-            libraryAutomation.FindElement.SetFocus();
-            libraryAutomation.ClickElements(fullTree, null, false, 25, 0, 0, 2);
             if (modelListIncomeJournal.InnFace != null)
             {
                 foreach (var inn in modelListIncomeJournal.InnFace)
@@ -68,6 +66,10 @@ namespace LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction
                                 libraryAutomation.IsEnableElements(UregulirovanieCollection.ButtonStart);
                                 libraryAutomation.InvokePattern(libraryAutomation.FindElement);
                                 read.DeleteAtributXml(pathList, LibaryXMLAuto.GenerateAtribyte.GeneratorAtribute.GenerateAtrAutoGenerateSchemesDeleteIdDocInn(inn.Inn));
+                                if (libraryAutomation.IsEnableElements(UregulirovanieCollection.SendInn) != null)
+                                {
+
+                                }
                             }
                         } 
                     }
@@ -92,9 +94,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction
             var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
             libraryAutomation.InvokePattern(libraryAutomation.FindFirstElement(PublicElementName.ShowAll));
             libraryAutomation.IsEnableExpandTree(TreeRequirement);
-            libraryAutomation.FindFirstElement(fullTree, null, true);
-            libraryAutomation.FindElement.SetFocus();
-            libraryAutomation.ClickElements(fullTree, null, false, 25, 0, 0, 2);
             if (modelListIncomeJournal.InnFace != null)
             {
                 foreach (var inn in modelListIncomeJournal.InnFace)

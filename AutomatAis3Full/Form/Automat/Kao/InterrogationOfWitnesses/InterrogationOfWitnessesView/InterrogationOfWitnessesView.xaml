@@ -27,64 +27,6 @@
                 Content="{Binding StartButton.Button}" />
             <Label FontSize="16" FontStyle="Normal"  Content="Команда приостановить Shift+S" />
             <Label FontSize="16" FontStyle="Normal"  Content="Команда возобновить Shift+A" />
-            <ListView 
-                x:Name="Template"
-                Margin="5,5,5,5"
-                FontSize="16"
-                HorizontalAlignment="Stretch">
-                <ListView.Template>
-                    <ControlTemplate>
-                        <StackPanel HorizontalAlignment="Stretch">
-                            <Label Content="Выбор подписанта на документе:"></Label>
-                            <ListView
-                                x:Name="ListView"
-                                Width="Auto"
-                                MaxHeight="200"
-                                SelectedItem="{Binding ModelTemplate.SelectModel, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"
-                                ItemsSource="{Binding ModelTemplate.ModelCollection}"
-                                SelectionMode="Single"
-                                ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}"
-                                Validation.ErrorTemplate="{StaticResource ValidationFailederror}">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn Width="Auto" Header="Выбор шаблона">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <CheckBox
-                                                      IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListViewItem}}" >
-                                                        <i:Interaction.Triggers>
-                                                            <i:EventTrigger EventName="Checked">
-                                                                <i:InvokeCommandAction Command="{Binding DataContext.SelectModelTemplate, ElementName=Template}" CommandParameter="{Binding IdTemplate}" />
-                                                            </i:EventTrigger>
-                                                            <i:EventTrigger EventName="Unchecked">
-                                                                <i:InvokeCommandAction Command="{Binding DataContext.DeleteModelTemplate, ElementName=Template}" CommandParameter="{Binding IdTemplate}" />
-                                                            </i:EventTrigger>
-                                                        </i:Interaction.Triggers>
-                                                    </CheckBox>
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                        <GridViewColumn Width="Auto" Header="Ун подписанта">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding IdTemplate}"></TextBlock>
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                        <GridViewColumn Width="Auto" Header="ФИО подписанта">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock HorizontalAlignment="Stretch" Text="{Binding NameTemplate}"></TextBlock>
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                        </StackPanel>
-                    </ControlTemplate>
-                </ListView.Template>
-            </ListView>
         </StackPanel>
     </Grid>
 </UserControl>

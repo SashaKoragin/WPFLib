@@ -510,14 +510,15 @@ namespace ServiceAutomation.Service
         /// Загрузка файла в БД 
         /// </summary>
         /// <param name="uploadFileModel">Модель файла Excel</param>
+        /// <param name="typeDepartment">Тип отдела</param>
+        /// <param name="userIdGuid">Guid пользователя</param>
         /// <returns></returns>
-        public async Task<string> AddFileModel(UploadFile uploadFileModel, string userIdGuid)
+        public async Task<string> AddFileModel(UploadFile uploadFileModel, string typeDepartment, string userIdGuid)
         {
             return await Task.Factory.StartNew(() =>
             {
                 SaveAndLoadInterrogationOfWitnesses saveAndLoadInterrogationOfWitnesses = new SaveAndLoadInterrogationOfWitnesses(_parameterConfig.PathSaveTemplate);
-                saveAndLoadInterrogationOfWitnesses.LoadAndSaveModel(uploadFileModel, userIdGuid);
-                return "Файл успешно загружен!!!";
+                return saveAndLoadInterrogationOfWitnesses.LoadAndSaveModel(uploadFileModel, typeDepartment, userIdGuid);
             });
         }
         /// <summary>
@@ -984,6 +985,80 @@ namespace ServiceAutomation.Service
                 Loggers.Log4NetLogger.Error(e);
             }
             return null;
+        }
+        /// <summary>
+        /// Все подписанты в БД для Допроса свидетелей
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> AllSenderResponse()
+        {
+            SelectAllObjectDb select = new SelectAllObjectDb();
+            return await Task.Factory.StartNew(() =>
+            {
+                var senderDepartment = select.AllSenderResponse();
+                select.Dispose();
+                return senderDepartment;
+            });
+        }
+        /// <summary>
+        /// Все шаблоны для Допроса свидетелей
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> AllTemplateModelResponse()
+        {
+            SelectAllObjectDb select = new SelectAllObjectDb();
+            return await Task.Factory.StartNew(() =>
+            {
+                var senderDepartment = select.AllTemplateModelResponse();
+                select.Dispose();
+                return senderDepartment;
+            });
+        }
+        /// <summary>
+        /// Все зарегистрированные отделы для Допроса свидетелей
+        /// </summary>
+        /// <returns></returns>
+        public async Task<string> AllDepartmentOtdelResponse()
+        {
+            SelectAllObjectDb select = new SelectAllObjectDb();
+            return await Task.Factory.StartNew(() =>
+            {
+                var senderDepartment = select.AllDepartmentOtdelResponse();
+                select.Dispose();
+                return senderDepartment;
+            });
+        }
+        /// <summary>
+        /// Добавление или редактирование Отдела подписанта и шаблона для допроса свидетелей
+        /// </summary>
+        /// <param name="departmentOtdelResponse">Отдел и подписант</param>
+        /// <returns></returns>
+        public async Task<DepartmentOtdelResponse> AddAndEditDepartmentOtdelResponse(DepartmentOtdelResponse departmentOtdelResponse)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                AddAllObjectDb add = new AddAllObjectDb();
+                var model = add.AddAndEditDepartmentOtdelResponse(departmentOtdelResponse);
+                add.Dispose();
+                if (model == null) return null;
+                SerializeJson json = new SerializeJson();
+                SignalRLibraryAutomations.ConnectAutomations.HubAutomations.SubscribeDepartmentOtdelResponse(json.JsonLibaryIgnoreDate(model));
+                return model;
+            });
+        }
+        /// <summary>
+        /// Все вопросы сотруднику в области регистрации
+        /// </summary>
+        /// <param name="idUserRegistrationFl">Ун пользователя</param>
+        public async Task<string> SelectQuestionsRegistration(int idUserRegistrationFl)
+        {
+            SelectAllObjectDb select = new SelectAllObjectDb();
+            return await Task.Factory.StartNew(() =>
+            {
+                var allQuestions = select.SelectQuestionsRegistration(idUserRegistrationFl);
+                select.Dispose();
+                return allQuestions;
+            });
         }
     }
 }

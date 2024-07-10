@@ -2264,8 +2264,6 @@ namespace LibraryAIS3Windows.ButtonsClikcs
             var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
             libraryAutomation.IsEnableExpandTree(IdentificationElementName.TreeIdentification);
             libraryAutomation.FindFirstElement(fullTree, null, true);
-            libraryAutomation.FindElement.SetFocus();
-            libraryAutomation.ClickElements(fullTree, null, false, 25, 0, 0, 2);
             foreach (var doc in identificationFaceList)
             {
                 if (statusButton.Iswork)
@@ -2895,7 +2893,7 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                     automationElement.SetFocus();
                     AutoItX.Sleep(1000);
                     journal.LoginUser = Environment.UserName;
-                    journal.RegNumDeclaration = Convert.ToInt32(
+                    journal.RegNumDeclaration = Convert.ToInt64(
                         libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                             .SelectAutomationColrction(automationElement)
                             .Cast<AutomationElement>().First(elem =>
@@ -2904,11 +2902,6 @@ namespace LibraryAIS3Windows.ButtonsClikcs
                                .SelectAutomationColrction(automationElement)
                                .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("КНД")));
 
-                    journal.RegNumDeclaration = Convert.ToInt32(
-                            libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
-                                .SelectAutomationColrction(automationElement)
-                                .Cast<AutomationElement>().First(elem =>
-                                    elem.Current.Name.Contains("Рег. номер декларации (расчета)"))));
                     journal.Period = libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(libraryAutomation
                             .SelectAutomationColrction(automationElement)
                             .Cast<AutomationElement>().First(elem => elem.Current.Name.Contains("Отчетный период")));
@@ -3306,11 +3299,10 @@ namespace LibraryAIS3Windows.ButtonsClikcs
         /// Опрос свидетелей для КАО
         /// </summary>
         /// <param name="statusButton">Кнопка</param>
-        /// <param name="idSender">Ун подписанта</param>
-        public void Click62(StatusButtonMethod statusButton, int idSender)
+        public void Click62(StatusButtonMethod statusButton)
         {
             var interrogationOfWitnesses = new InterrogationOfWitnesses();
-            interrogationOfWitnesses.StartModelInterrogationOfWitnesses(statusButton, idSender);
+            interrogationOfWitnesses.StartModelInterrogationOfWitnesses(statusButton);
         }
         /// <summary>
         /// Печать документов для ветки  Налоговое администрирование\Направление документов налогоплательщику\2. Единичная печать и отправка в ОПС\Печать и отправка\2 - Документы к отправке

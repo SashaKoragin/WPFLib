@@ -63,7 +63,9 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private MainOrgAndQuestions[] mainOrgAndQuestionsField;
         
-        private ViewRegisterDocumentsPrinting viewRegisterDocumentsPrintingField;
+        private ViewRegisterDocumentsPrinting[] viewRegisterDocumentsPrintingField;
+        
+        private MainUserAndQuestions[] mainUserAndQuestionsField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("TaxJournalAutoWebPage")]
@@ -286,12 +288,24 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         }
         
         /// <remarks/>
-        public ViewRegisterDocumentsPrinting ViewRegisterDocumentsPrinting {
+        [System.Xml.Serialization.XmlElementAttribute("ViewRegisterDocumentsPrinting")]
+        public ViewRegisterDocumentsPrinting[] ViewRegisterDocumentsPrinting {
             get {
                 return this.viewRegisterDocumentsPrintingField;
             }
             set {
                 this.viewRegisterDocumentsPrintingField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("MainUserAndQuestions")]
+        public MainUserAndQuestions[] MainUserAndQuestions {
+            get {
+                return this.mainUserAndQuestionsField;
+            }
+            set {
+                this.mainUserAndQuestionsField = value;
             }
         }
     }
@@ -564,7 +578,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private System.Nullable<System.DateTime> dateStartCheckField;
         
-        private System.Nullable<int> regNumDeclarationField;
+        private System.Nullable<long> regNumDeclarationField;
         
         private System.Nullable<int> godField;
         
@@ -728,7 +742,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> RegNumDeclaration {
+        public System.Nullable<long> RegNumDeclaration {
             get {
                 return this.regNumDeclarationField;
             }
@@ -2699,7 +2713,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private System.Nullable<int> idField;
         
-        private System.Nullable<int> regNumDeclarationField;
+        private System.Nullable<long> regNumDeclarationField;
         
         private System.Nullable<int> godField;
         
@@ -2750,7 +2764,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> RegNumDeclaration {
+        public System.Nullable<long> RegNumDeclaration {
             get {
                 return this.regNumDeclarationField;
             }
@@ -4127,6 +4141,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         public FaceRegistryReference() {
             this.logicsButtonField = "Button";
+            this.codeNoField = 0;
         }
         
         /// <remarks/>
@@ -4554,6 +4569,137 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.regNumberDocumetGuidField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.7.2053.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true)]
+    [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
+    public partial class MainUserAndQuestions {
+        
+        private string logicsButtonField;
+        
+        private System.Nullable<bool> isReadyField;
+        
+        private int idUserRegistrationFlField;
+        
+        private System.Nullable<int> codeNoField;
+        
+        private string nameTypeField;
+        
+        private string innField;
+        
+        private string nameUserField;
+        
+        private string noInField;
+        
+        private string noOutField;
+        
+        public MainUserAndQuestions() {
+            this.logicsButtonField = "Button";
+            this.codeNoField = 0;
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public string LogicsButton {
+            get {
+                return this.logicsButtonField;
+            }
+            set {
+                this.logicsButtonField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> IsReady {
+            get {
+                return this.isReadyField;
+            }
+            set {
+                this.isReadyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int IdUserRegistrationFl {
+            get {
+                return this.idUserRegistrationFlField;
+            }
+            set {
+                this.idUserRegistrationFlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> CodeNo {
+            get {
+                return this.codeNoField;
+            }
+            set {
+                this.codeNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameType {
+            get {
+                return this.nameTypeField;
+            }
+            set {
+                this.nameTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string Inn {
+            get {
+                return this.innField;
+            }
+            set {
+                this.innField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NameUser {
+            get {
+                return this.nameUserField;
+            }
+            set {
+                this.nameUserField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NoIn {
+            get {
+                return this.noInField;
+            }
+            set {
+                this.noInField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string NoOut {
+            get {
+                return this.noOutField;
+            }
+            set {
+                this.noOutField = value;
             }
         }
     }

@@ -21,36 +21,32 @@ namespace LibraryCommandPublic.TestAutoit.Kao
         /// Опрос свидетелей
         /// </summary>
         /// <param name="statusButton">Кнопка старт автомат</param>
-        ///<param name="templateSender">УН подписанта</param>
-        public void StartInterrogationOfWitnesses(StatusButtonMethod statusButton, PublicModelCollectionSelect<TemplateModel> templateSender)
+        public void StartInterrogationOfWitnesses(StatusButtonMethod statusButton)
         {
             DispatcherHelper.Initialize();
-            if (templateSender.IsValidation())
+            Task.Run(delegate
             {
-                Task.Run(delegate
+                try
                 {
-                    try
+                    DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
+                    KclicerButton clickerButton = new KclicerButton();
+                    LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
+                    if (ais3.WinexistsAis3() == 1)
                     {
-                        DispatcherHelper.CheckBeginInvokeOnUI(statusButton.StatusRed);
-                        KclicerButton clickerButton = new KclicerButton();
-                        LibraryAIS3Windows.Window.WindowsAis3 ais3 = new LibraryAIS3Windows.Window.WindowsAis3();
-                        if (ais3.WinexistsAis3() == 1)
-                        {
-                            clickerButton.Click62(statusButton, templateSender.SelectModel.IdTemplate);
-                        }
-                        else
-                        {
-                            MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
-                        }
-                        DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                        clickerButton.Click62(statusButton);
                     }
-                    catch (Exception e)
+                    else
                     {
-                        MessageBox.Show(e.ToString());
-                        throw;
+                        MessageBox.Show(LibraryAIS3Windows.Status.StatusAis.Status1);
                     }
-                });
-            }
+                    DispatcherHelper.UIDispatcher.Invoke(statusButton.StatusYellow);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.ToString());
+                    throw;
+                }
+            });
         }
     }
 }

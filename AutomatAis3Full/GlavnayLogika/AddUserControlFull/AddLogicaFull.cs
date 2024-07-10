@@ -997,6 +997,25 @@ namespace AutomatAis3Full.GlavnayLogika.AddUserControlFull
                           },
                           new FullWindowAutoIt()
                           {
+                              NameControl = "Контрольная работа",
+                              CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                              {
+                                  new FullWindowAutoIt()
+                                  {
+                                      NameControl = "Допрос свидетелей",
+                                      CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
+                                      {
+                                          new FullWindowAutoIt()
+                                          {
+                                              NameControl = "Инициализация процедуры допроса свидетеля",
+                                              UserControl = new InterrogationOfWitnessesView()
+                                          }
+                                      }
+                                  }
+                              }
+                          },
+                          new FullWindowAutoIt()
+                          {
                               NameControl = "Учет документов",
                               CollectionUserControl = new ObservableCollection<FullWindowAutoIt>()
                               {

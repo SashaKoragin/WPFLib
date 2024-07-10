@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Net;
+using System.Windows;
 using LibaryXMLAuto.ReadOrWrite.SerializationJson;
 
 namespace AutomatAis3Full.Config
@@ -80,18 +81,26 @@ namespace AutomatAis3Full.Config
         /// <returns></returns>
         public static List<T> ResultGetTemplate<T>(string serviceGetTemplate)
         {
-            var json = new SerializeJson();
-            var request = (HttpWebRequest)WebRequest.Create(serviceGetTemplate);
-            request.Method = "GET";
-            request.ContentType = "application/json";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            string resultServer;
-            using (StreamReader rdr = new StreamReader(response.GetResponseStream()))
+            try
             {
-                resultServer = rdr.ReadToEnd();
+                var json = new SerializeJson();
+                var request = (HttpWebRequest) WebRequest.Create(serviceGetTemplate);
+                request.Method = "GET";
+                request.ContentType = "application/json";
+                HttpWebResponse response = (HttpWebResponse) request.GetResponse();
+                string resultServer;
+                using (StreamReader rdr = new StreamReader(response.GetResponseStream()))
+                {
+                    resultServer = rdr.ReadToEnd();
+                }
+                return (List<T>) json.JsonDeserializeObjectListClass<T>(resultServer);
             }
-
-            return (List<T>)json.JsonDeserializeObjectListClass<T>(resultServer);
+            catch (Exception e)
+            {
+                MessageBox.Show("Сервис АИСИ не доступен!!!");
+                MessageBox.Show(e.Message);
+            }
+            return null;
         }
     }
 }

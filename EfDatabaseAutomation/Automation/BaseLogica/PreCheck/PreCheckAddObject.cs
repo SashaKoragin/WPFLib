@@ -688,7 +688,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.PreCheck
         /// </summary>
         /// <param name="regNumDecl"></param>
         /// <returns></returns>
-        public decimal SumDeclaration(int regNumDecl)
+        public decimal SumDeclaration(long? regNumDecl)
         {
           return Automation.Database.SqlQuery<decimal>(
                 @"Select SUM(CONVERT(decimal(28,2),ISNULL(Error,0))) as Error From DeclarationDataAll " +

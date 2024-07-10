@@ -36,7 +36,8 @@
 			<xs:element ref="RealEstateZmIm" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="FaceRegistryReference" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="MainOrgAndQuestions" minOccurs="0" maxOccurs="unbounded"/>
-			<xs:element ref="ViewRegisterDocumentsPrinting"/>
+			<xs:element ref="ViewRegisterDocumentsPrinting" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="MainUserAndQuestions" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="TaxJournalAutoWebPage">
@@ -276,7 +277,7 @@
 			<xs:documentation>Дата начала проверки</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="RegNumDeclaration" type="xs:int" nillable="true">
+	<xs:element name="RegNumDeclaration" type="xs:long" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Рег. номер декларации</xs:documentation>
 		</xs:annotation>
@@ -1577,7 +1578,7 @@
 			<xs:documentation>Тип лица (число)</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	<xs:element name="CodeNo" type="xs:int" nillable="true">
+	<xs:element name="CodeNo" type="xs:int" default="0" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Код НО</xs:documentation>
 		</xs:annotation>
@@ -1706,6 +1707,49 @@
 	<xs:element name="CountPage" type="xs:int" nillable="true">
 		<xs:annotation>
 			<xs:documentation>Колличество страниц</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MainUserAndQuestions">
+		<xs:annotation>
+			<xs:documentation>Генеральные директора вопросы</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="LogicsButton" minOccurs="0"/>
+				<xs:element ref="IsReady"/>
+				<xs:element ref="IdUserRegistrationFl"/>
+				<xs:element ref="CodeNo"/>
+			</xs:sequence>
+			<xs:attribute name="NameType" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Тип вопроса</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН генерального директора</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameUser" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ФИО генерального директора</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NoIn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение об ошибке</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NoOut" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сообщение об окончании</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IdUserRegistrationFl" type="xs:int" nillable="false">
+		<xs:annotation>
+			<xs:documentation>Ун генерального директора</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 </xs:schema>

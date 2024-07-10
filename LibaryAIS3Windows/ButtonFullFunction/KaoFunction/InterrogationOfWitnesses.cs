@@ -8,7 +8,6 @@ using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfWitnesses;
 using LibraryAIS3Windows.AutomationsUI.LibaryAutomations;
 using LibraryAIS3Windows.AutomationsUI.Otdels.Kao;
-using LibraryAIS3Windows.AutomationsUI.PublicElement;
 using LibraryAIS3Windows.ButtonFullFunction.Okp3Function;
 using LibraryAIS3Windows.ButtonsClikcs;
 using LibraryAIS3Windows.Window;
@@ -27,84 +26,182 @@ namespace LibraryAIS3Windows.ButtonFullFunction.KaoFunction
         /// </summary>
         private static string TreeProcedure = "Налоговое администрирование\\Контрольная работа\\Допрос свидетелей\\Работа с процедурой";
         /// <summary>
-        /// Запуск процесса допрос свидетелей
+        /// Запуск процесса допрос свидетелей для ОКП 6
         /// </summary>
         /// <param name="statusButton">Кнопка запустить</param>
-        /// <param name="idSender">Ун подписанта</param>
-        public void StartModelInterrogationOfWitnesses(StatusButtonMethod statusButton, int idSender)
+        public void StartModelInterrogationOfWitnesses(StatusButtonMethod statusButton)
         {
             var libraryAutomation = new LibraryAutomations(WindowsAis3.AisNalog3);
             var parametersModel = new ModelDataArea();
             SelectAndUpdateInterrogationOfWitnesses dataBaseAdd = new SelectAndUpdateInterrogationOfWitnesses();
-            var parametersOrg = dataBaseAdd.SelectAllMainOrgIsNotReady(); //Организация
-            foreach (var faceUl in parametersOrg)
+            var departmentResponse = dataBaseAdd.SelectFirstModelResponse(Environment.UserName);
+            if(departmentResponse==null)
+                throw new InvalidOperationException($"Пользователь подписывающий документ не определен!");
+            switch (departmentResponse.TemplateDepartment)
             {
-                if (statusButton.Iswork)
-                {
-                    var questions = dataBaseAdd.SelectTemplateQuestions(faceUl.IdType);  //Вопросы
-                    foreach (var user in faceUl.UserOrgs)
+                case "ОКП":
+                    var parametersOrg = dataBaseAdd.SelectAllMainOrgIsNotReady(); //Организация
+                    foreach (var faceUl in parametersOrg)
                     {
-                        if (!user.IsGood && !user.IsError)
+                        if (statusButton.Iswork)
                         {
-                            var idProcedureUsers = InitProcedure(libraryAutomation, dataBaseAdd, faceUl, parametersModel.DataAreaInterrogationOfWitnesses);
-                            WorkProcedure(libraryAutomation, dataBaseAdd, faceUl, user, parametersModel.DataAreaInterrogationOfWitnesses, questions, idProcedureUsers, idSender);
+                            var questions = dataBaseAdd.SelectTemplateQuestions(faceUl.IdType);  //Вопросы
+                            foreach (var user in faceUl.UserOrgs)
+                            {
+                                if (!user.IsGood && !user.IsError)
+                                {
+                                    var modelProcedureUsers = InitProcedure(libraryAutomation, parametersModel.DataAreaInterrogationOfWitnesses[1], departmentResponse, faceUl.Inn);
+                                    faceUl.NameOrg = modelProcedureUsers.NameSubject;
+                                    faceUl.NoIn = modelProcedureUsers.NoIn;
+                                    faceUl.IsReady = modelProcedureUsers.IsReady;
+                                    dataBaseAdd.SaveMainOrg(faceUl);
+                                    WorkProcedure(libraryAutomation, dataBaseAdd, faceUl, user, parametersModel.DataAreaInterrogationOfWitnesses, questions, modelProcedureUsers.IdProcedure, departmentResponse.SenderResponse.IdTemplateSender);
+                                }
+                            }
+                            if (dataBaseAdd.IsEndListUserOrg(faceUl.IdOrg)) continue;
+                            faceUl.IsReady = true;
+                            faceUl.NoOut = "Организация отработана смотри журнал!";
+                            dataBaseAdd.SaveMainOrg(faceUl);
+                        }
+                        else
+                        {
+                            break;
                         }
                     }
-                    if (dataBaseAdd.IsEndListUserOrg(faceUl.IdOrg)) continue;
-                    faceUl.IsReady = true;
-                    faceUl.NoOut = "Организация отработана смотри журнал!";
-                    dataBaseAdd.SaveMainOrg(faceUl);
-                }
-                else
-                {
                     break;
-                }
+                case "Регистрация":
+                    var parametersUserCeo = dataBaseAdd.SelectAllUserRegistrationFlIsNotReady(); //Генеральные директора
+                    foreach(var user in parametersUserCeo)
+                    {
+                        if (statusButton.Iswork)
+                        {
+                            var questions = dataBaseAdd.SelectTemplateQuestions(user.IdType);  //Вопросы
+                            var modelProcedureUsers = InitProcedure(libraryAutomation, parametersModel.DataAreaInterrogationOfWitnesses[6], departmentResponse, user.Inn, true);
+                            user.NoIn = modelProcedureUsers.NoIn;
+                            user.IsReady = modelProcedureUsers.IsReady;
+                            dataBaseAdd.SaveMainUserRegistrationFl(user);
+                            WokProcedureRegistration(libraryAutomation, dataBaseAdd, user, parametersModel.DataAreaInterrogationOfWitnesses, questions, modelProcedureUsers.IdProcedure, departmentResponse.SenderResponse.IdTemplateSender);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    break;
             }
+
         }
         /// <summary>
         /// Инициализация процедуры
         /// </summary>
         /// <param name="libraryAutomation">Библиотека автоматизации</param>
-        /// <param name="dataBaseAdd">База данных</param>
-        /// <param name="faceUl">Лицо ЮЛ</param>
-        /// <param name="modelDataAreaSelect">Массив параметров модели</param>
-        private int InitProcedure(LibraryAutomations libraryAutomation, SelectAndUpdateInterrogationOfWitnesses dataBaseAdd, MainOrg faceUl, DataArea[] modelDataAreaSelect)
+        /// <param name="modelDataAreaSelect">Модель выборки</param>
+        /// <param name="templateModel">Шаблон заполнения данными форму</param>
+        /// <param name="isFace">Выбирать плательщика ФЛ или нет по умолчанию нет</param>
+        /// <param name="inn">ИНН лица</param>
+        private ModelReturnInit InitProcedure(LibraryAutomations libraryAutomation, DataArea modelDataAreaSelect, DepartmentOtdelResponse templateModel, string inn, bool isFace = false)
         {
-            var idProcedure = 0;
-            if (!libraryAutomation.IsEnableExpandTree(TreeInterrogationOfWitnesses)) return idProcedure;
-            var sw = TreeInterrogationOfWitnesses.Split('\\').Last();
-            var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
-            libraryAutomation.FindFirstElement(fullTree, null, true);
-            libraryAutomation.FindElement.SetFocus();
-            libraryAutomation.ClickElements(fullTree, null, false, 25, 0, 0, 2);
+            ModelReturnInit modelReturnInit = new ModelReturnInit();
+            if (!libraryAutomation.IsEnableExpandTree(TreeInterrogationOfWitnesses)) return modelReturnInit;
             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.SelectFace);
-            if (ParameterSelectAdd(libraryAutomation, modelDataAreaSelect[1], "Name:Выбор Налогоплательщика\\Name:DropDown", faceUl.Inn))
+            if (isFace)
+            {
+                if(libraryAutomation.IsEnableElements(ElementNameWitnesses.SelectFaceFl)!= null)
+                {
+                    libraryAutomation.SelectionComboBoxSelectionItemPattern(libraryAutomation.FindElement);
+                }
+            }
+            if (ParameterSelectAdd(libraryAutomation, modelDataAreaSelect, "Name:Выбор Налогоплательщика\\Name:DropDown", inn))
             {
                 libraryAutomation.IsEnableElements(ElementNameWitnesses.NameMnk);
                 libraryAutomation.FindElement = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement).Cast<AutomationElement>().ToArray()[0];
-                libraryAutomation.SetLegacyIAccessibleValuePattern("Допрос должностного лица");
+                libraryAutomation.SetLegacyIAccessibleValuePattern(templateModel.TemplateModelResponse.NameMnk);
                 libraryAutomation.IsEnableElements(ElementNameWitnesses.DocMail);
                 libraryAutomation.FindElement = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement).Cast<AutomationElement>().ToArray()[0];
-                libraryAutomation.SetLegacyIAccessibleValuePattern("Письмо ФНС России");
+                libraryAutomation.SetLegacyIAccessibleValuePattern(templateModel.TemplateModelResponse.DocMail);
                 libraryAutomation.IsEnableElements(ElementNameWitnesses.NumberDoc);
                 libraryAutomation.FindElement = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement).Cast<AutomationElement>().ToArray()[0];
-                libraryAutomation.SetLegacyIAccessibleValuePattern("БВ-4-7/3060@");
-                libraryAutomation.IsEnableElements(ElementNameWitnesses.DataDoc);
-                libraryAutomation.SetValuePattern("10.03.2021");
-                faceUl.NameOrg = libraryAutomation.IsEnableElements(ElementNameWitnesses.NameOrg).Current.Name;
+                libraryAutomation.SetLegacyIAccessibleValuePattern(templateModel.TemplateModelResponse.NumberDoc);
+                if (templateModel.TemplateModelResponse.DataDoc != "GETDATE")
+                {
+                    libraryAutomation.IsEnableElements(ElementNameWitnesses.DataDoc);
+                    libraryAutomation.SetValuePattern(templateModel.TemplateModelResponse.DataDoc);
+                }
+                modelReturnInit.NameSubject = libraryAutomation.IsEnableElements(ElementNameWitnesses.NameOrg).Current.Name;
                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.StartProcedure);
-                idProcedure = Convert.ToInt32(Regex.Match(libraryAutomation.IsEnableElements(ElementNameWitnesses.NumberProcedure).Current.Name, "(\\d)+").Value);
+                modelReturnInit.IdProcedure = Convert.ToInt32(Regex.Match(libraryAutomation.IsEnableElements(ElementNameWitnesses.NumberProcedure).Current.Name, "(\\d)+").Value);
                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.OkProcedure);
-                dataBaseAdd.SaveMainOrg(faceUl);
             }
             else
             {
-                faceUl.IsReady = true;
-                faceUl.NoIn = "Отсутствует организация!";
-                dataBaseAdd.SaveMainOrg(faceUl);
+                modelReturnInit.IsReady = true;
+                modelReturnInit.NoIn = "Отсутствуют сведения о лице!";
                 MouseCloseFormRsb(1);
             }
-            return idProcedure;
+            return modelReturnInit;
+        }
+        /// <summary>
+        /// Работа с процедурой в отделе регистрации
+        /// </summary>
+        /// <param name="libraryAutomation">Библиотека автоматизации</param>
+        /// <param name="dataBaseAdd">База данных</param>
+        /// <param name="user">Генеральный директор из списка</param>
+        /// <param name="modelDataAreaSelect">Модель выборок</param>
+        /// <param name="templateQuestion">Шаблоны вопросов</param>
+        /// <param name="idProcedureUsers">Ун процедуры</param>
+        /// <param name="idSender">Ун подписанта</param>
+        private void WokProcedureRegistration(LibraryAutomations libraryAutomation, SelectAndUpdateInterrogationOfWitnesses dataBaseAdd, MainUserRegistrationFl user, DataArea[] modelDataAreaSelect, TemplateQuestion[] templateQuestion, int idProcedureUsers, long idSender)
+        {
+            if (!libraryAutomation.IsEnableExpandTree(TreeProcedure)) return;
+            if (ParameterSelectAdd(libraryAutomation, modelDataAreaSelect[0], "Name:DropDown", user.Inn, idProcedureUsers))
+            {
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.Find);
+                ParameterSelectAdd(libraryAutomation, modelDataAreaSelect[2], "Name:DropDown", user.Inn);
+                if (libraryAutomation.IsEnableElements(ElementNameWitnesses.YesNo, null, true, 10) != null)
+                {
+                    
+                    user.CodeNo = Convert.ToInt32(Regex.Match(libraryAutomation.IsEnableElements(ElementNameWitnesses.MessageCodeNo).Current.Name, "(\\d)+").Value);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.YesNo);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.Save);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.SaveYes);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.Registration);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.RegistrationYes);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.RegistrationOk);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.Senders);
+                    AddQuestionsRegistration(libraryAutomation, dataBaseAdd, templateQuestion, user);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.FaceSender);
+                    ParameterSelectAdd(libraryAutomation, modelDataAreaSelect[5], "Name:Выбор Должностного лица\\Name:DropDown", null, null, idSender);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.SaveDocument);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.DocumentOk);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.DocumentRegistration);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.DocumentYes);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.DocumentOk);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.DocYesToSend);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.Senders);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.SendMessage);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.SendInfo);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.SendInfo);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.Closed);
+                    MouseCloseFormRsb(1);
+                    user.IsReady = true;
+                    user.NoOut = "Процедура отработана успешно в чужой НО!!!";
+                }
+                else
+                {
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.Delete);
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.DeleteYes);
+                    libraryAutomation.IsEnableElements(ElementNameWitnesses.MessageError);
+                    libraryAutomation.FindElement = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement).Cast<AutomationElement>().ToArray()[0];
+                    libraryAutomation.FindElement.SetFocus();
+                    SendKeys.SendWait("Ошибка");
+                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.DeleteProcedure);
+                    AutoItX.Sleep(1000);
+                    MouseCloseFormRsb(1);
+                    user.IsReady = true;
+                    user.NoIn = "Процедура аннулирована в связи отсутствием алгоритма!!!";
+                }
+            }
+            dataBaseAdd.SaveMainUserRegistrationFl(user);
         }
 
         /// <summary>
@@ -118,14 +215,9 @@ namespace LibraryAIS3Windows.ButtonFullFunction.KaoFunction
         /// <param name="templateQuestion">Шаблоны с вопросами</param>
         /// <param name="idProcedureUsers">Ун процедуры пользователя</param>
         /// <param name="idSender">Ун подписанта</param>
-        private void WorkProcedure(LibraryAutomations libraryAutomation, SelectAndUpdateInterrogationOfWitnesses dataBaseAdd, MainOrg faceUl, UserOrg user, DataArea[] modelDataAreaSelect, TemplateQuestion[] templateQuestion, int idProcedureUsers, int idSender)
+        private void WorkProcedure(LibraryAutomations libraryAutomation, SelectAndUpdateInterrogationOfWitnesses dataBaseAdd, MainOrg faceUl, UserOrg user, DataArea[] modelDataAreaSelect, TemplateQuestion[] templateQuestion, int idProcedureUsers, long idSender)
         {
             if (!libraryAutomation.IsEnableExpandTree(TreeProcedure)) return;
-            var sw = TreeProcedure.Split('\\').Last();
-            var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
-            libraryAutomation.FindFirstElement(fullTree, null, true);
-            libraryAutomation.FindElement.SetFocus();
-            libraryAutomation.ClickElements(fullTree, null, false, 25, 0, 0, 2);
             if(ParameterSelectAdd(libraryAutomation, modelDataAreaSelect[0], "Name:DropDown", faceUl.Inn, idProcedureUsers))
             {
                 PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.Find);
@@ -196,7 +288,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.KaoFunction
         /// <param name="idProcedure">Ун созданной процедуры</param>
         /// <param name="idSender">Ун подписанта</param>
         /// <returns></returns>
-        private bool ParameterSelectAdd(LibraryAutomations libraryAutomation, DataArea parametersModel, string findElement, string inn, int? idProcedure = null, int? idSender= null)
+        private bool ParameterSelectAdd(LibraryAutomations libraryAutomation, DataArea parametersModel, string findElement, string inn, int? idProcedure = null, long? idSender= null)
         {
             if (inn != null)
             {
@@ -309,6 +401,25 @@ namespace LibraryAIS3Windows.ButtonFullFunction.KaoFunction
             }
 
         }
+
+        /// <summary>
+        /// <summary>
+        /// Добавление вопросов в АИС 3 
+        /// </summary>
+        /// </summary>
+        /// <param name="libraryAutomation">Автоматизация</param>
+        /// <param name="dataBaseAdd">База данных</param>
+        /// <param name="templateQuestion">Шаблоны вопросов</param>
+        /// <param name="mainUserRegistrationFl">Генеральный директор</param>
+        private void AddQuestionsRegistration(LibraryAutomations libraryAutomation, SelectAndUpdateInterrogationOfWitnesses dataBaseAdd, TemplateQuestion[] templateQuestion, MainUserRegistrationFl mainUserRegistrationFl)
+        {
+            foreach (var template in templateQuestion)
+            {
+                CreateAndSaveQuestionsMainUserCeo(libraryAutomation, dataBaseAdd, mainUserRegistrationFl.IdUserRegistrationFl, template.IdTemplateQuestions, template.InfoQuestions);
+            }
+        }
+
+
         /// <summary>
         /// Функция создания и внесения типового вопроса по допросам
         /// </summary>
@@ -319,12 +430,36 @@ namespace LibraryAIS3Windows.ButtonFullFunction.KaoFunction
         /// <param name="questions">Составной вопрос из шаблона</param>
         private void CreateAndSaveQuestionsUser(LibraryAutomations libraryAutomation, SelectAndUpdateInterrogationOfWitnesses dataBaseAdd, int idUser, int idTemplateQuestions, string questions)
         {
+            SetQuestions(libraryAutomation, questions);
+            dataBaseAdd.SaveQuestionsUser(idUser, idTemplateQuestions, questions);
+        }
+
+        /// <summary>
+        /// Функция создания и внесения типового вопроса по допросам
+        /// </summary>
+        /// <param name="libraryAutomation">Автоматизация</param>
+        /// <param name="dataBaseAdd">База данных</param>
+        /// <param name="idUserRegistration">Ун генерального директора</param>
+        /// <param name="idTemplateQuestions">Ун шаблона</param>
+        /// <param name="questions">Составной вопрос из шаблона</param>
+        private void CreateAndSaveQuestionsMainUserCeo(LibraryAutomations libraryAutomation, SelectAndUpdateInterrogationOfWitnesses dataBaseAdd, int idUserRegistration, int idTemplateQuestions, string questions)
+        {
+            SetQuestions(libraryAutomation, questions);
+            dataBaseAdd.SaveQuestionsAndUserRegistrationFl(idUserRegistration, idTemplateQuestions, questions);
+        }
+
+        /// <summary>
+        /// Проставить вопрос в поручение
+        /// </summary>
+        /// <param name="libraryAutomation">Автоматизация</param>
+        /// <param name="questions">Составной вопрос из шаблона</param>
+        public void SetQuestions(LibraryAutomations libraryAutomation, string questions)
+        {
             PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, ElementNameWitnesses.AddQuestion);
             libraryAutomation.IsEnableElements(ElementNameWitnesses.AddTextQuestion);
             libraryAutomation.FindElement = libraryAutomation.SelectAutomationColrction(libraryAutomation.FindElement).Cast<AutomationElement>().ToArray()[0];
             libraryAutomation.SetLegacyIAccessibleValuePattern(questions);
             libraryAutomation.InvokePattern(libraryAutomation.IsEnableElements(ElementNameWitnesses.OkQuestion));
-            dataBaseAdd.SaveQuestionsUser(idUser, idTemplateQuestions, questions);
         }
 
         /// <summary>
@@ -341,5 +476,30 @@ namespace LibraryAIS3Windows.ButtonFullFunction.KaoFunction
             }
         }
 
+    }
+    /// <summary>
+    /// Возвращаемая модель из Инициализации процедуры
+    /// </summary>
+    public class ModelReturnInit
+    {
+        /// <summary>
+        /// Ун процедуры для дальнейшей отработки
+        /// </summary>
+        public int IdProcedure { get; set; }
+
+        /// <summary>
+        /// Наименование субъекта
+        /// </summary>
+        public string NameSubject { get; set; }
+
+        /// <summary>
+        /// Завершение процедуры
+        /// </summary>
+        public bool IsReady { get; set; }
+
+        /// <summary>
+        /// Ошибка об нахождении
+        /// </summary>
+        public string NoIn { get; set; }
     }
 }

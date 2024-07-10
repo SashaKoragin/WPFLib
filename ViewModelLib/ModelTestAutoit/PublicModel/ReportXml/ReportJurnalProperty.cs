@@ -132,7 +132,7 @@ namespace ViewModelLib.ModelTestAutoit.PublicModel.ReportXml
                 XmlReportJournal.Clear();
                 foreach (var file in FileLogica.FileinfoMass(pathJournalXml))
                 {
-                    XmlReportJournal.Add(new ReportJournalProperty() { Icon = fileLogic.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName, InfoFile = ModelInfoFile.FirstOrDefault(x => x.ModelNameFileXml == file.Name)?.FileInfoFile});
+                    XmlReportJournal.Add(new ReportJournalProperty() { Icon = fileLogic.Extracticonfile(file.FullName), Name = file.Name, Path = file.FullName, InfoFile = ModelInfoFile?.FirstOrDefault(x => x.ModelNameFileXml == file.Name)?.FileInfoFile});
                 }
             }
         }
