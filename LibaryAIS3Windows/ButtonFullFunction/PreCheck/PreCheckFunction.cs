@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Configuration;
-using System.IO;
 using System.Linq;
 using System.Windows.Automation;
 using System.Windows.Forms;
@@ -34,9 +33,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             DataBaseElementAdd dataBaseAdd = new DataBaseElementAdd();
             var sw = model.Tree.Split('\\').Last();
             var post = new HttpGetAndPost();
-            libraryAutomation.FindFirstElement(tree, null, true);
-            libraryAutomation.FindElement.SetFocus();
-            libraryAutomation.ClickElements(tree, null, false, 25, 0, 0, 2);
             foreach (var inn in model.INN)
             {
                 model.TreeDataArea.DataAreaParameters.First(parameters => parameters.NameParameters == "ИНН").ParametersGrid = inn;
@@ -174,8 +170,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             var post = new HttpGetAndPost();
             WindowsAis3 win;
             libraryAutomation.FindFirstElement(tree, null, true);
-            libraryAutomation.FindElement.SetFocus();
-            libraryAutomation.ClickElements(tree, null, false, 25, 0, 0, 2);
             foreach (var inn in model.INN)
             {
                 model.TreeDataArea.DataAreaParameters.First(parameters => parameters.NameParameters == "ИНН").ParametersGrid = inn;
@@ -209,7 +203,9 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                                 if (libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.PeriodEnd, null, true)!= null)
                                 {
                                     var selectYear = yearReport - 1; //Костыль - 1 год от входящего
-                                    libraryAutomation.FindTextComboboxIsToFocusAndClickElement(PreCheckElementNameIndividualCards.PeriodEnd, selectYear.ToString());
+                                  //  libraryAutomation.FindTextComboboxIsToFocusAndClickElement(PreCheckElementNameIndividualCards.PeriodEnd, selectYear.ToString());
+                                    libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.PeriodEnd, null, true);
+                                    libraryAutomation.SetValuePattern(selectYear.ToString());
                                     if (libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.ErrorYear, null, true, 20) != null)
                                     {
                                         AutoItX.Sleep(1000);
@@ -221,7 +217,9 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
                                     }
 
                                     var minYear = yearReport - 3;
-                                    libraryAutomation.FindTextComboboxIsToFocusAndClickElement(PreCheckElementNameIndividualCards.PeriodBegin, minYear.ToString());
+                                    libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.PeriodBegin, null, true);
+                                    libraryAutomation.SetValuePattern(minYear.ToString());
+                                   // libraryAutomation.FindTextComboboxIsToFocusAndClickElement(PreCheckElementNameIndividualCards.PeriodBegin, minYear.ToString());
 
                                     if (libraryAutomation.IsEnableElements(PreCheckElementNameIndividualCards.ErrorYear, null, true, 20) != null)
                                     {
@@ -441,9 +439,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             var y1 = (yearReport - 1).ToString();
             var y2 = (yearReport - 2).ToString();
             var y3 = (yearReport - 3).ToString();
-            libraryAutomation.FindFirstElement(tree, null, true);
-            libraryAutomation.FindElement.SetFocus();
-            libraryAutomation.ClickElements(tree, null, false, 25, 0, 0, 2);
             foreach (var inn in model.INN)
             {
                 model.TreeDataArea.DataAreaParameters.First(parameters => parameters.NameParameters == "ИНН").ParametersGrid = inn;
@@ -551,9 +546,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.PreCheck
             if (!libraryAutomation.IsEnableExpandTree(model.Tree)) return;
             DataBaseElementAdd dataBaseAdd = new DataBaseElementAdd();
             var post = new HttpGetAndPost();
-            libraryAutomation.FindFirstElement(tree, null, true);
-            libraryAutomation.FindElement.SetFocus();
-            libraryAutomation.ClickElements(tree, null, false, 25, 0, 0, 2);
             foreach (var inn in model.INN)
             {
                 model.TreeDataArea.DataAreaParameters.First(parameters => parameters.NameParameters == "ИНН").ParametersGrid = inn;

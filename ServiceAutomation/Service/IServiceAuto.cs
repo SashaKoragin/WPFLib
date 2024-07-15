@@ -288,10 +288,11 @@ namespace ServiceAutomation.Service
         /// http://localhost:8050/ServiceAutomation/AddFileModel
         /// </summary>
         /// <param name="uploadFileModel">Модель с файлами Excel</param>
+        /// <param name="typeDepartment">Тип отдела</param>
         /// <param name="userIdGuid">GUID Пользователя</param>
         [OperationContract]
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddFileModel?userIdGuid={userIdGuid}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        Task<string> AddFileModel(UploadFile uploadFileModel, string userIdGuid);
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddFileModel?typeDepartment={typeDepartment}&userIdGuid={userIdGuid}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> AddFileModel(UploadFile uploadFileModel, string typeDepartment, string userIdGuid);
         /// <summary>
         /// Все сотрудники организации
         /// http://localhost:8050/ServiceAutomation/AllUsersOrg
@@ -487,5 +488,42 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectUserScan", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<UserLoginDatabaseModel[]> SelectUserScan();
+        /// <summary>
+        /// Все подписанты в БД для Допроса свидетелей
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AllSenderResponse", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> AllSenderResponse();
+        /// <summary>
+        /// Все шаблоны для Допроса свидетелей
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AllTemplateModelResponse", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> AllTemplateModelResponse();
+        /// <summary>
+        /// Все зарегистрированные отделы в системе
+        /// </summary>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AllDepartmentOtdelResponse", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> AllDepartmentOtdelResponse();
+        /// <summary>
+        /// Добавление или редактирование Отдела подписанта и шаблона для допроса свидетелей
+        /// </summary>
+        /// <param name="departmentOtdelResponse">Отдел и подписант</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/AddAndEditDepartmentOtdelResponse", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<DepartmentOtdelResponse> AddAndEditDepartmentOtdelResponse(DepartmentOtdelResponse departmentOtdelResponse);
+        /// <summary>
+        /// Все вопросы сотруднику в области регистрации
+        /// http://localhost:8050/ServiceAutomation/SelectQuestionsRegistration?idUserRegistrationFl=2
+        /// </summary>
+        /// <param name="idUserRegistrationFl">Ун пользователя</param>
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectQuestionsRegistration?idUserRegistrationFl={idUserRegistrationFl}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<string> SelectQuestionsRegistration(int idUserRegistrationFl);
     }
 }

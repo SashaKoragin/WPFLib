@@ -46,6 +46,33 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectD
             return json.JsonLibaryIgnoreDate(AutomationContext.DepartamentOtdels.Include(x=>x.SenderTaxJournalOkp2));
         }
         /// <summary>
+        /// Подписывающие лица процедуры допроса свидетелей
+        /// </summary>
+        /// <returns></returns>
+        public string AllSenderResponse()
+        {
+            SerializeJson json = new SerializeJson();
+            return json.JsonLibaryIgnoreDate(AutomationContext.SenderResponses);
+        }
+        /// <summary>
+        /// Все шаблоны для Допроса свидетелей
+        /// </summary>
+        /// <returns></returns>
+        public string AllTemplateModelResponse()
+        {
+            SerializeJson json = new SerializeJson();
+            return json.JsonLibaryIgnoreDate(AutomationContext.TemplateModelResponses);
+        }
+        /// <summary>
+        /// Все зарегистрированные отделы для Допроса свидетелей
+        /// </summary>
+        /// <returns></returns>
+        public string AllDepartmentOtdelResponse()
+        {
+            SerializeJson json = new SerializeJson();
+            return json.JsonLibaryIgnoreDate(AutomationContext.DepartmentOtdelResponses.Include(x => x.SenderResponse).Include(x => x.TemplateModelResponse));
+        }
+        /// <summary>
         /// Все сотрудники организации
         /// </summary>
         /// <param name="inn">ИНН организации</param>
@@ -71,6 +98,21 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectD
             {
                 x.IdQuestions, 
                 x.IdUser,
+                x.ModelQuestions
+            }));
+        }
+        /// <summary>
+        /// Вопросы к генеральным директорам в области допросы сведетелей
+        /// </summary>
+        /// <param name="idUserRegistrationFl">Ун лица</param>
+        /// <returns></returns>
+        public string SelectQuestionsRegistration(int idUserRegistrationFl)
+        {
+            SerializeJson json = new SerializeJson();
+            return json.JsonLibaryIgnoreDate(AutomationContext.QuestionsAndUserRegistrationFls.Where(x => x.IdUserRegistrationFl == idUserRegistrationFl).Select(x => new
+            {
+                x.IdQuestions,
+                x.IdUserRegistrationFl,
                 x.ModelQuestions
             }));
         }

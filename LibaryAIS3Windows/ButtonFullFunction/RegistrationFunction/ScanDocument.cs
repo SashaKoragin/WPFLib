@@ -99,6 +99,12 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
             var inventoryLogicSelect = new InventoryLogic();
             var container = inventoryLogicSelect.SelectFirstDocumentContainer();
             var documentInventory = inventoryLogicSelect.SelectAllDocumentInventory();
+            var sum = documentInventory.Select(x => x.CountPage).Sum();
+            if (sum < 500)
+            {
+                MessageBox.Show("Нет нужного количества документов Всего: " + sum);
+                return;
+            }
             if (container != null && documentInventory.Length > 0) //Условие должно быть что положить и куда положить одно без другого не может 
             {
                 var sw = TreeContainer.Split('\\').Last();
@@ -121,30 +127,43 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                        
                         if (countPageSum + inventory.CountPage <= container.CountDocumentMin || countPageSum + inventory.CountPage <= container.CountDocumentMax)
                         {
-                            libraryAutomation.InvokePattern(libraryAutomation.IsEnableElements(InventoryName.AddBarcode));
-                            if (libraryAutomation.IsEnableElement(InventoryName.AddTextBarcode)) //Если AIS зависает то документ не ложится только следующий за ним проблемная тара 1770006700561 как образец есть вариант заменить эту строку "if (libraryAutomation.IsEnableElements(InventoryName.AddTextBarcode) != null)"  на  "if(libraryAutomation.IsEnableElement(InventoryName.AddTextBarcode))" бесконечное ожидание элемента
+                            while (true)
                             {
-                                libraryAutomation.SetValuePattern(inventory.GuidDocument);
-                                AutoItX.Sleep(1000);
-                                SendKeys.SendWait(ButtonConstant.Enter);
-                                AutoItX.Sleep(2000);
-                                inventory.IdStatusDocument = 4;
-                                countPageSum += inventory.CountPage;
-                                container.CountCurrent = countPageSum;
-                                counterModel += 1;
-                                AddAndEditDocumentInventoryContainer(inventory);
-                                UpdateDocumentContainer(container);
-                                AddAddDocumentToContainer(container.IdContainer, inventory.IdDocument, counterModel);
-                                if (countPageSum >= container.CountDocumentMin)
+                                libraryAutomation.InvokePattern(libraryAutomation.IsEnableElements(InventoryName.AddBarcode));
+                                if (libraryAutomation.IsEnableElement(InventoryName.AddTextBarcode)) //Если AIS зависает то документ не ложится только следующий за ним проблемная тара 1770006700561 как образец есть вариант заменить эту строку "if (libraryAutomation.IsEnableElements(InventoryName.AddTextBarcode) != null)"  на  "if(libraryAutomation.IsEnableElement(InventoryName.AddTextBarcode))" бесконечное ожидание элемента
                                 {
-                                    //Сохранение и печать реестра
-                                    container.IsFinishContainer = true;
-                                    UpdateDocumentContainer(container);
-                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, InventoryName.Save);
-                                    MouseCloseForm(1);
-                                    return;
+                                    SendKeys.SendWait("");
+                                    libraryAutomation.SetValuePattern(inventory.GuidDocument);
+                                    AutoItX.Sleep(1000);
+                                    SendKeys.SendWait(ButtonConstant.Enter);
+                                    AutoItX.Sleep(500);
+                                }
+                                if (libraryAutomation.IsEnableElements(InventoryName.WinWarning, null, false, 5) != null)
+                                {
+                                    libraryAutomation.InvokePattern(libraryAutomation.FindElement);
+                                }
+                                else
+                                {
+                                    break;
                                 }
                             }
+                            inventory.IdStatusDocument = 4;
+                            countPageSum += inventory.CountPage;
+                            container.CountCurrent = countPageSum;
+                            counterModel += 1;
+                            AddAndEditDocumentInventoryContainer(inventory);
+                            UpdateDocumentContainer(container);
+                            AddAddDocumentToContainer(container.IdContainer, inventory.IdDocument, counterModel);
+                            if (countPageSum >= container.CountDocumentMin)
+                            {
+                                //Сохранение и печать реестра
+                                container.IsFinishContainer = true;
+                                UpdateDocumentContainer(container);
+                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, InventoryName.Save);
+                                MouseCloseForm(1);
+                                return;
+                            }
+                            
                         }
                     }
                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, InventoryName.Save);

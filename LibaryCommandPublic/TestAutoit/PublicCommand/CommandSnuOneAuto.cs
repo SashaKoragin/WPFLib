@@ -8,6 +8,7 @@ using ViewModelLib.ModelTestAutoit.ModelSnuOneAuto.DataXml;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXlsx;
 using ViewModelLib.ModelTestAutoit.PublicModel.ReportXml;
 using System.Text;
+using System.Windows.Forms;
 using System.Windows.Media;
 using AisPoco.ModelServiceDataBase;
 using LibaryXMLAuto.ModelServiceWcfCommand.ModelPathReport;
@@ -57,6 +58,11 @@ namespace LibraryCommandPublic.TestAutoit.PublicCommand
         /// <param name="reportJournal">Выбор файла в журнале</param>
         public void FileToServerApiReport(LabelModel model, List<ModelServiceDataBase>  serverApi, ReportJournalMethod reportJournal)
         {
+            if (serverApi == null)
+            {
+                MessageBox.Show("Сервер АИСИ не доступен преобретите модуль 'Инвентаризации' или настройте его правильно!!!");
+                return;
+            }
             var modelFileApi = serverApi.FirstOrDefault(api => api.ModelNameFileXml == reportJournal.XmlFile.Name);
             if (modelFileApi != null)
             {

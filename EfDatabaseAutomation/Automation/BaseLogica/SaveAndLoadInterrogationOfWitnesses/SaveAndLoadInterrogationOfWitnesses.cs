@@ -31,33 +31,55 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfW
         /// <summary>
         /// Загрузка списков для отработки свидетелей организации 
         /// </summary>
-        /// <param name="uploadFileModel"></param>
-        public void LoadAndSaveModel(UploadFile.UploadFile uploadFileModel, string userIdGuid)
+        /// <param name="uploadFileModel">Загружаемый файл</param>
+        /// <param name="typeDepartment">Тип отдела</param>
+        /// <param name="userIdGuid">Guid пользователя</param>
+        public string LoadAndSaveModel(UploadFile.UploadFile uploadFileModel, string typeDepartment, string userIdGuid)
         {
-            DataNamesMapper<Organization> mapperOrganization = new DataNamesMapper<Organization>();
-            DataNamesMapper<Counterpart> mapperCounterpart = new DataNamesMapper<Counterpart>();
+            KoograXlsxToDataTable.KoograXlsxToDataTable koograXlsxToDataTable = new KoograXlsxToDataTable.KoograXlsxToDataTable();
             foreach (var modelFile in uploadFileModel.Upload)
             {
                 var fullPathFile = string.Concat(PathSaveExcel, modelFile.NameFile);
                 File.WriteAllBytes(fullPathFile, modelFile.BlobFile);
-                KoograXlsxToDataTable.KoograXlsxToDataTable koograXlsxToDataTable = new KoograXlsxToDataTable.KoograXlsxToDataTable();
-                var dataList1 = koograXlsxToDataTable.GetDateTableXslx(fullPathFile, "Лист1"); //Заменил
-                var dataList2 = koograXlsxToDataTable.GetDateTableXslx(fullPathFile, "Лист2"); //Заменил
-                var allModelFile = new ModelInterrogationOfWitnesses.ModelInterrogationOfWitnesses() { Organization = mapperOrganization.Map(dataList1).ToArray(), Counterpart = mapperCounterpart.Map(dataList2).ToArray() };
-                AddInterrogationOfWitnesses(allModelFile, userIdGuid);
+                switch (typeDepartment)
+                {
+                    case "ОКП":
+                        DataNamesMapper<Organization> mapperOrganization = new DataNamesMapper<Organization>();
+                        DataNamesMapper<Counterpart> mapperCounterpart = new DataNamesMapper<Counterpart>();
+                        var dataListOrganization = koograXlsxToDataTable.GetDateTableXslx(fullPathFile, "Лист1"); //Заменил
+                        var dataListCounterpart = koograXlsxToDataTable.GetDateTableXslx(fullPathFile, "Лист2"); //Заменил
+                        var allModelFileKp7 = new ModelInterrogationOfWitnesses.ModelInterrogationOfWitnesses()
+                        {
+                            Organization = mapperOrganization.Map(dataListOrganization).ToArray(),
+                            Counterpart = mapperCounterpart.Map(dataListCounterpart).ToArray()
+                        };
+                        AddInterrogationOfWitnesses(allModelFileKp7,38, userIdGuid);
+                        break;
+                    case "Регистрация":
+                        DataNamesMapper<CeoManager> mapperCeoManager = new DataNamesMapper<CeoManager>();
+                        var dataListCeoManager = koograXlsxToDataTable.GetDateTableXslx(fullPathFile, "Лист1"); //Заменил
+                        var allModelFileR = new ModelInterrogationOfWitnesses.ModelInterrogationOfWitnesses()
+                        {
+                            CeoManager = mapperCeoManager.Map(dataListCeoManager).ToArray()
+                        };
+                        AddInterrogationOfWitnesses(allModelFileR, 52, userIdGuid);
+                        break;
+                }
             }
+            return "Файл успешно загружен!!!";
         }
 
         /// <summary>
         /// Добавление регистрационных номеров в систему для отработки
         /// </summary>
         /// <param name="modelInterrogationOfWitnesses">Список сотрудников</param>
+        /// <param name="indexProcedure">Ун процедуры в выборке</param>
         /// <param name="userIdGuid">GUID Пользователя</param>
-        private void AddInterrogationOfWitnesses(ModelInterrogationOfWitnesses.ModelInterrogationOfWitnesses modelInterrogationOfWitnesses, string userIdGuid)
+        private void AddInterrogationOfWitnesses(ModelInterrogationOfWitnesses.ModelInterrogationOfWitnesses modelInterrogationOfWitnesses, int indexProcedure, string userIdGuid)
         {
             try
             {
-                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == 38);
+                var logicModel = Automation.LogicsSelectAutomations.FirstOrDefault(logic => logic.Id == indexProcedure);
                 if (logicModel != null)
                 {
                     EventSqlEf.EventSqlEf eventMessage = new EventSqlEf.EventSqlEf() { UserNameGuid = userIdGuid };

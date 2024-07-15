@@ -44,34 +44,34 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                         libraryAutomation.ClickElement(libraryAutomation.IsEnableElements(Journal129AndJournal121.ButtonGroup3Add2Add));
                         break;
                 }
-                LibraryAutomations libraryAutomationDialog = new LibraryAutomations(WindowsAis3.AisNalog3);
+               // LibraryAutomations libraryAutomationDialog = new LibraryAutomations(WindowsAis3.AisNalog3);
                 AutoItX.Sleep(2000);
-                LibraryAutomations libraryAutomationAddObject = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomationDialog.RootAutomationElements));
-                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationAddObject, Journal129AndJournal121.WinSelect1);
+              //  LibraryAutomations libraryAutomationAddObject = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomationDialog.RootAutomationElements));
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.WinSelect1);
                 AutomationElement listView;
 
-                while ((listView = libraryAutomationAddObject.IsEnableElements(Journal129AndJournal121.WinSelect1Select, null,false, 10)) != null)
+                while ((listView = libraryAutomation.IsEnableElements(Journal129AndJournal121.WinSelect1Select, null,false, 10)) != null)
                 {
                     while (true)
                     {
-                        var elem = libraryAutomationAddObject.SelectAutomationColrction(listView).Cast<AutomationElement>().Where(elems => elems.Current.Name == "Rnivc.Cam.Nsi.Business.TaxKindCircumstanceEntity").ToArray();
-                        libraryAutomationAddObject.SelectionComboBoxPattern(elem[4]);
+                        var elem = libraryAutomation.SelectAutomationColrction(listView).Cast<AutomationElement>().Where(elems => elems.Current.Name == "Rnivc.Cam.Nsi.Business.TaxKindCircumstanceEntity").ToArray();
+                        libraryAutomation.SelectionComboBoxPattern(elem[4]);
                         break;
                     }
                     break;
                 }
-                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationAddObject, Journal129AndJournal121.WinSelect2);
-                while ((listView = libraryAutomationAddObject.IsEnableElements(Journal129AndJournal121.WinSelect2Select, null, false, 10)) != null)
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.WinSelect2);
+                while ((listView = libraryAutomation.IsEnableElements(Journal129AndJournal121.WinSelect2Select, null, false, 10)) != null)
                 {
                     while (true)
                     {
-                        var elem = libraryAutomationAddObject.SelectAutomationColrction(listView).Cast<AutomationElement>().Where(elems => elems.Current.Name == "Rnivc.Cam.Nsi.Business.TaxCircumstanceEntity").ToArray();
-                        libraryAutomationAddObject.SelectionComboBoxPattern(elem[0]);
+                        var elem = libraryAutomation.SelectAutomationColrction(listView).Cast<AutomationElement>().Where(elems => elems.Current.Name == "Rnivc.Cam.Nsi.Business.TaxCircumstanceEntity").ToArray();
+                        libraryAutomation.SelectionComboBoxPattern(elem[0]);
                         break;
                     }
                     break;
                 }
-                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomationAddObject, Journal129AndJournal121.WinSelectCircumstanceOk);
+                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, Journal129AndJournal121.WinSelectCircumstanceOk);
             }
         }
         /// <summary>
@@ -100,23 +100,23 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                     libraryAutomation.ClickElements(Journal129AndJournal121.AddButton);
                     LibraryAutomations libraryAutomationDiaolog = new LibraryAutomations(WindowsAis3.AisNalog3);
                     AutoItX.Sleep(2000);
-                    var libraryAutomationAddObject = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomationDiaolog.RootAutomationElements));
+                   // var libraryAutomationAddObject = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomationDiaolog.RootAutomationElements));
                     while (true)
                     {
-                        if (libraryAutomationAddObject.IsEnableElements(Journal129AndJournal121.WindowDateTime, null, true) != null)
+                        if (libraryAutomation.IsEnableElements(Journal129AndJournal121.WindowDateTime, null, true) != null)
                         {
-                            libraryAutomationAddObject.SetValuePattern(date.ToString("dd.MM.yy"));
-                            while ((setValue = libraryAutomationAddObject.IsEnableElements(Journal129AndJournal121.WindowHoursAndMinutes, null, false, 10)) != null)
+                            libraryAutomation.SetValuePattern(date.ToString("dd.MM.yy"));
+                            while ((setValue = libraryAutomation.IsEnableElements(Journal129AndJournal121.WindowHoursAndMinutes, null, false, 10)) != null)
                             {
-                                var elem = libraryAutomationAddObject.SelectAutomationColrction(setValue).Cast<AutomationElement>().Where(elems => elems.Current.LocalizedControlType == "поле").ToArray();
-                                libraryAutomationAddObject.FindElement = elem[0];
-                                libraryAutomationAddObject.SetValuePattern(hours);
-                                libraryAutomationAddObject.FindElement = elem[1];
-                                libraryAutomationAddObject.SetValuePattern(minute);
+                                var elem = libraryAutomation.SelectAutomationColrction(setValue).Cast<AutomationElement>().Where(elems => elems.Current.LocalizedControlType == "поле").ToArray();
+                                libraryAutomation.FindElement = elem[0];
+                                libraryAutomation.SetValuePattern(hours);
+                                libraryAutomation.FindElement = elem[1];
+                                libraryAutomation.SetValuePattern(minute);
                                 break;
                             }
-                            libraryAutomationAddObject.FindFirstElement(Journal129AndJournal121.WindowsOk);
-                            libraryAutomationAddObject.InvokePattern(libraryAutomationAddObject.FindElement);
+                            libraryAutomation.FindFirstElement(Journal129AndJournal121.WindowsOk);
+                            libraryAutomation.InvokePattern(libraryAutomation.FindElement);
                             break;
                         }
                     }
@@ -135,32 +135,32 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
         {
             while (true)
             {
-                LibraryAutomations libraryAutomationDiaolog = new LibraryAutomations(WindowsAis3.AisNalog3);
+                //LibraryAutomations libraryAutomationDiaolog = new LibraryAutomations(WindowsAis3.AisNalog3);
                 AutoItX.Sleep(2000);
-                LibraryAutomations libraryAutomationSign = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomationDiaolog.RootAutomationElements));
+                //LibraryAutomations libraryAutomationSign = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomationDiaolog.RootAutomationElements));
                 if (!string.IsNullOrEmpty(sender))
                 {
-                    if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.SenderSign, null, true) != null)
+                    if (libraryAutomation.IsEnableElements(Journal129AndJournal121.SenderSign, null, true) != null)
                     {
-                        libraryAutomationSign.SetValuePattern(sender);
+                        libraryAutomation.SetValuePattern(sender);
                     }
                 }
-                if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewPrint, null, true) != null)
+                if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ViewPrint, null, true) != null)
                 {
-                    libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
+                    libraryAutomation.ClickElement(libraryAutomation.FindElement);
                     AutoItX.Sleep(10000);
                     PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("AcroRd32", true);
                     PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("FoxitPhantom",true);
                     while (true)
                     {
-                        var toggle = libraryAutomationSign.TogglePattern(libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewCheks));
+                        var toggle = libraryAutomation.TogglePattern(libraryAutomation.IsEnableElements(Journal129AndJournal121.ViewCheks));
                         if (toggle == "Off" || toggle == null)
                         {
                             while (true)
                             {
-                                if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.ViewCheksText, null, true) != null)
+                                if (libraryAutomation.IsEnableElements(Journal129AndJournal121.ViewCheksText, null, true) != null)
                                 {
-                                    libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
+                                    libraryAutomation.ClickElement(libraryAutomation.FindElement);
                                     break;
                                 }
                             }
@@ -169,9 +169,9 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                         {
                             while (true)
                             {
-                                if (libraryAutomationSign.IsEnableElements(Journal129AndJournal121.Sign, null, true) != null)
+                                if (libraryAutomation.IsEnableElements(Journal129AndJournal121.Sign, null, true) != null)
                                 {
-                                    libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
+                                    libraryAutomation.ClickElement(libraryAutomation.FindElement);
                                     break;
                                 }
                             }

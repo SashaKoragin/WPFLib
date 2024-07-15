@@ -204,7 +204,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.OkpTaxJournal129
                                         break;
                                     }
                                 }
-                                globalFunction.SignAndSendDoc(libraryAutomation);
+                                globalFunction.SignAndSendDoc(libraryAutomation, false, senderSelect.SenderTaxJournalOkp2.NameUser);
                                 taxFace.IsLk3 = globalFunction.IsLk3;
                                 taxFace.IsMail = globalFunction.IsMail;
                                 taxFace.IsTks = globalFunction.IsTks;

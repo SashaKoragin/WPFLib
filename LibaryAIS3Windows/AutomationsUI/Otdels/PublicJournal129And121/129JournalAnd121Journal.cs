@@ -134,11 +134,11 @@
         /// <summary>
         ///Дата и время +50
         /// </summary>
-        public static string WindowDateTime = "Name:Дата и время вызова\\AutomationId:TabControl\\AutomationId:TabItem2\\ClassName:DatePicker\\ClassName:TextBox";
+        public static string WindowDateTime = "ClassName:Window\\Name:Дата и время вызова\\AutomationId:TabControl\\AutomationId:TabItem2\\ClassName:DatePicker\\ClassName:TextBox";
         /// <summary>
         /// Часы 10 и Минуты
         /// </summary>
-        public static string WindowHoursAndMinutes = "Name:Дата и время вызова\\AutomationId:TabControl\\AutomationId:TabItem2\\ClassName:GroupBox";
+        public static string WindowHoursAndMinutes = "ClassName:Window\\Name:Дата и время вызова\\AutomationId:TabControl\\AutomationId:TabItem2\\ClassName:GroupBox";
 
         public static string WindowHours = "AutomationId:TaxpayerDateTimeFormPeriod\\AutomationId:tabControl1\\AutomationId:tabPage2\\AutomationId:nbMinute\\Name:Text area";
         /// <summary>
@@ -148,28 +148,28 @@
         /// <summary>
         /// Ок кнопка нажатия даты и
         /// </summary>
-        public static string WindowsOk = "ClassName:Button";
+        public static string WindowsOk = "ClassName:Window\\ClassName:Button";
 
         /// <summary>
         /// Просмотреть форму
         /// </summary>
-        public static string ViewPrint = "Name:Подписание документа\\ClassName:Button\\Name:Просмотреть печатную форму документа";
+        public static string ViewPrint = "ClassName:Window\\Name:Подписание документа\\ClassName:Button\\Name:Просмотреть печатную форму документа";
         /// <summary>
         /// Ознакомится 1
         /// </summary>
-        public static string ViewCheks = "Name:Подписание документа\\ClassName:CheckBox";
+        public static string ViewCheks = "ClassName:Window\\Name:Подписание документа\\ClassName:CheckBox";
         /// <summary>
         /// Ознакомится 2
         /// </summary>
-        public static string ViewCheksText = "Name:Подписание документа\\ClassName:CheckBox\\ClassName:TextBlock";
+        public static string ViewCheksText = "ClassName:Window\\Name:Подписание документа\\ClassName:CheckBox\\ClassName:TextBlock";
         /// <summary>
         /// Подписант документа
         /// </summary>
-        public static string SenderSign = "Name:Подписание документа\\ClassName:ComboBox\\AutomationId:PART_EditableTextBox";
+        public static string SenderSign = "ClassName:Window\\Name:Подписание документа\\ClassName:ComboBox\\AutomationId:PART_EditableTextBox";
         /// <summary>
         /// Подписать
         /// </summary>
-        public static string Sign = "ClassName:Button\\Name:Подписать";
+        public static string Sign = "ClassName:Window\\ClassName:Button\\Name:Подписать";
        
         /// <summary>
         /// Извещение о времени и месте рассмотрения Акта
@@ -422,24 +422,24 @@
         /// <summary>
         /// Выберите обстаятельтво 1
         /// </summary>
-        public static string WinSelect1Obs = "Name:Выберите обстоятельство\\AutomationId:TypeTextBox";
+        public static string WinSelect1Obs = "ClassName:Window\\Name:Выберите обстоятельство\\AutomationId:TypeTextBox";
         /// <summary>
         /// Выберите обстаятельтво 2
         /// </summary>
-        public static string WinSelect2Obs = "Name:Выберите обстоятельство\\AutomationId:VidTextBox";
+        public static string WinSelect2Obs = "ClassName:Window\\Name:Выберите обстоятельство\\AutomationId:VidTextBox";
         /// <summary>
         /// Выберите нарушение 1
         /// </summary>
-        public static string WinSelect1Error = "Name:Выберите нарушение\\AutomationId:TaxSanctTextBox";
+        public static string WinSelect1Error = "ClassName:Window\\Name:Выберите нарушение\\AutomationId:TaxSanctTextBox";
         /// <summary>
         /// Выберите нарушение 2
         /// </summary>
-        public static string WinSelect2Error = "Name:Выберите нарушение\\AutomationId:TaxSancChargeTextBox";
+        public static string WinSelect2Error = "ClassName:Window\\Name:Выберите нарушение\\AutomationId:TaxSancChargeTextBox";
 
         /// <summary>
         /// Выберите нарушение Popup 
         /// </summary>
-        public static string WinSelectErrorPopup = "ClassName:Popup\\ClassName:ListView";
+        public static string WinSelectErrorPopup = "ClassName:Window\\ClassName:Popup\\ClassName:ListView";
 
         /// <summary>
         /// Добавить нарушение 1000
@@ -463,24 +463,24 @@
         /// <summary>
         /// Выбор обстоятельства Ок
         /// </summary>
-        public static string WinSelectCircumstanceOk = "ClassName:Button\\Name:ОК";
+        public static string WinSelectCircumstanceOk = "ClassName:Window\\ClassName:Button\\Name:ОК";
         /// <summary>
         /// Выбор нарушения 1
         /// </summary>
-        public static string WinSelect1 = "Name:Выберите обстоятельство\\AutomationId:TypeTextBox"; //"Name:Выберите обстоятельство\\AutomationId:TypeTextBox\\AutomationId:PART_ContentHost";
+        public static string WinSelect1 = "ClassName:Window\\Name:Выберите обстоятельство\\AutomationId:TypeTextBox"; //"Name:Выберите обстоятельство\\AutomationId:TypeTextBox\\AutomationId:PART_ContentHost";
         /// <summary>
         /// Выбор 1 Клик
         /// </summary>
-        public static string WinSelect1Select = "ClassName:Popup\\ClassName:ListView";
+        public static string WinSelect1Select = "ClassName:Window\\ClassName:Popup\\ClassName:ListView";
 
         /// <summary>
         /// Выбор нарушения 2
         /// </summary>
-        public static string WinSelect2 = "Name:Выберите обстоятельство\\AutomationId:VidTextBox";
+        public static string WinSelect2 = "ClassName:Window\\Name:Выберите обстоятельство\\AutomationId:VidTextBox";
         /// <summary>
         /// Выбор 2 Клик
         /// </summary>
-        public static string WinSelect2Select = "ClassName:Popup\\ClassName:ScrollViewer\\ClassName:ListView";
+        public static string WinSelect2Select = "ClassName:Window\\ClassName:Popup\\ClassName:ScrollViewer\\ClassName:ListView";
         /// <summary>
         /// Выбор нарушения Ok
         /// </summary>
@@ -982,7 +982,7 @@
         /// <summary>
         /// Ок строка
         /// </summary>
-        public static string OkStringOktmo = "ClassName:Button\\Name:ОК";
+        public static string OkStringOktmo = "ClassName:Window\\ClassName:Button\\Name:ОК";
         /// <summary>
         /// Ошибка Warning
         /// </summary>

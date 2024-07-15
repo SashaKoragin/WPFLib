@@ -15,7 +15,10 @@ namespace LibraryAIS3Windows.AutomationsUI.Otdels.Kao
         /// Кнопка выбора
         /// </summary>
         public static string SelectFace = $"{GlobalView}\\AutomationId:InitQuestioningOperationView\\AutomationId:InitProcGroupBox\\AutomationId:NPGroupBox\\AutomationId:NPButton";
-
+        /// <summary>
+        /// Выбрать ФЛ 
+        /// </summary>
+        public static string SelectFaceFl = "AutomationId:FindFaceAll\\AutomationId:ultraPanelFormFill\\AutomationId:ultraPanelForNavigator\\AutomationId:ultraTabFace\\Name:ФЛ";
         /// <summary>
         /// Наименование иного МНК
         /// </summary>
@@ -57,9 +60,17 @@ namespace LibraryAIS3Windows.AutomationsUI.Otdels.Kao
         /// </summary>
         public static string Find = $"{GlobalDataUsers}\\AutomationId:ultraButton3";
         /// <summary>
+        /// Сообщение о коде НО
+        /// </summary>
+        public static string MessageCodeNo = "Name:Предупреждение\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpTop\\AutomationId:lblMessage";
+        /// <summary>
         /// Предупреждение что в другом регионе
         /// </summary>
         public static string YesNo = "Name:Предупреждение\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnYes";
+        /// <summary>
+        /// Парсим код налогового органа
+        /// </summary>
+        public static string CodeNo = $"{GlobalView}\\AutomationId:QuestProcView\\AutomationId:ultraGroupBox1\\AutomationId:ultraGroupBox2\\AutomationId:ultraLabel6";
         ///UserData
         /// <summary>
         /// Фамилия свидетеля
@@ -121,6 +132,22 @@ namespace LibraryAIS3Windows.AutomationsUI.Otdels.Kao
         /// Зарегистрировать
         /// </summary>
         public static string Registration = "Name:DockTop\\Name:Ribbon\\Name:Процедура допроса свидетеля\\Name:Процедура\\Name:Зарегистрировать";
+        /// <summary>
+        /// Уведомление о вызове свидетеля
+        /// </summary>
+        public static string Uved = "Name:DockTop\\Name:Ribbon\\Name:Процедура допроса свидетеля\\Name:Документы\\Name:Уведомление о вызове свидетеля";
+        /// <summary>
+        /// Дата
+        /// </summary>
+        public static string Date = $"{GlobalView}\\AutomationId:QuestSummon126View\\AutomationId:ultraGroupBox1\\AutomationId:ultraGroupBox2\\AutomationId:ultraDateTimeEditor1";
+        /// <summary>
+        /// Время
+        /// </summary>
+        public static string Time = $"{GlobalView}\\AutomationId:QuestSummon126View\\AutomationId:ultraGroupBox1\\AutomationId:ultraGroupBox2\\AutomationId:DATE_BEGIN_LOOK_TIME";
+        /// <summary>
+        /// Кабинет
+        /// </summary>
+        public static string Office = $"{GlobalView}\\AutomationId:QuestSummon126View\\AutomationId:ultraGroupBox1\\AutomationId:ultraGroupBox2\\AutomationId:ultraTextEditor1\\LocalizedControlType:поле";
         /// <summary>
         /// Предупреждения процедуры регистрации
         /// </summary>

@@ -119,6 +119,16 @@ namespace SignalRLibraryAutomations.ConnectAutomations
             Loggers.Log4NetLogger.Info(new Exception("Модель Отдел и подписанты рассылка пошла!!!"));
             context.Clients.All.SubscribeDepartmentSender(department);
         }
+        /// <summary>
+        /// Рассылка модели допроса свидетелей
+        /// </summary>
+        /// <param name="departmentOtdelResponse">Json модель для допроса свидетелей </param>
+        public static void SubscribeDepartmentOtdelResponse(string departmentOtdelResponse)
+        {
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<HubAutomations>();
+            Loggers.Log4NetLogger.Info(new Exception("Модель Отдел и подписанты для Допроса свидетелей рассылка пошла!!!"));
+            context.Clients.All.SubscribeDepartmentOtdelResponse(departmentOtdelResponse);
+        }
 
         /// <summary>
         /// Отдел и подписанты подписка на удаление записи

@@ -38,9 +38,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.UregulirovanieAllFunction
             var sw = TreePrintDocument.Split('\\').Last();
             var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
             libraryAutomation.IsEnableExpandTree(TreePrintDocument);
-            libraryAutomation.FindFirstElement(fullTree, null, true);
-            libraryAutomation.FindElement.SetFocus();
-            libraryAutomation.ClickElements(fullTree, null, false, 25, 0, 0, 2);
             if (libraryAutomation.IsEnableElements(UregulirovaniePrintDocumentButton.OpenContextMenu) != null)
             {
                 libraryAutomation.SetValuePattern("Номер документа, Дата документа");

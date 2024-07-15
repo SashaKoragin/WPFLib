@@ -17,25 +17,14 @@ namespace AutomatAis3Full.Form.Automat.Kao.InterrogationOfWitnesses.Interrogatio
         /// </summary>
         public StatusButtonMethod StartButton { get; }
         /// <summary>
-        /// Модель подписантов
-        /// </summary>
-        public PublicModelCollectionSelect<TemplateModel> ModelTemplate { get; }
-        public DelegateCommand<object> SelectModelTemplate { get; }
-        public DelegateCommand<object> DeleteModelTemplate { get; }
-        /// <summary>
         /// Дата контекст
         /// </summary>
         public InterrogationOfWitnessesDataContext()
         {
-            var senderList = new List<TemplateModel>();
-            senderList.Add(new TemplateModel(){IdTemplate = 17019218, NameTemplate = "Юрковский А.В.", DateCreate = DateTime.Now});
-            senderList.Add(new TemplateModel() { IdTemplate = 17019220, NameTemplate = "Чукалкин В.Г.", DateCreate = DateTime.Now });
             var command = new LibraryCommandPublic.TestAutoit.Kao.InterrogationOfWitnesses();
-            ModelTemplate = new PublicModelCollectionSelect<TemplateModel>(senderList);
             StartButton = new StatusButtonMethod();
-            StartButton.Button.Command = new DelegateCommand(() => { command.StartInterrogationOfWitnesses(StartButton, ModelTemplate); });
-            SelectModelTemplate = new DelegateCommand<object>(param => { ModelTemplate.SelectModelTemplate(param); });
-            DeleteModelTemplate = new DelegateCommand<object>(param => { ModelTemplate.DeleteModelTemplate(param); });
+            StartButton.Button.Command = new DelegateCommand(() => { command.StartInterrogationOfWitnesses(StartButton); });
+
         }
     }
 }

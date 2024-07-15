@@ -508,7 +508,10 @@
         /// Вставка в поле Штрихкода
         /// </summary>
         public static string AddTextBarcode = $"{MainViewOgrn}AutomationId:DocumentRegistrationView\\AutomationId:elementHost\\ClassName:Pane\\ClassName:DocumentBoxingControl\\AutomationId:PART_Text";
-
+        /// <summary>
+        /// Комманда отмена документа запретить
+        /// </summary>
+        public static string WinWarning = "ClassName:Popup\\AutomationId:CancelRemoveDocumentCommand";
         /// <summary>
         /// Кнопка сохранить
         /// </summary>

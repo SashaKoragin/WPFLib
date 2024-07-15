@@ -13,6 +13,7 @@
 		<xs:sequence>
 			<xs:element ref="Organization" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element ref="Counterpart" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="CeoManager" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="Organization">
@@ -60,6 +61,28 @@
 			<xs:attribute name="NameCounterparty" type="xs:string">
 				<xs:annotation>
 					<xs:documentation>Наименование контрагента</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CeoManager">
+		<xs:annotation>
+			<xs:documentation>Генеральный директор</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Inn" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ИНН генерального директора</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NameCeo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>ФИО генерального директора</xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="TypeOrg" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Сфера деятельности</xs:documentation>
 				</xs:annotation>
 			</xs:attribute>
 		</xs:complexType>
