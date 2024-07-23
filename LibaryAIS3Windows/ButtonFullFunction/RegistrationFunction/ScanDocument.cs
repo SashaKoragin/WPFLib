@@ -138,10 +138,11 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                                     SendKeys.SendWait(ButtonConstant.Enter);
                                     AutoItX.Sleep(500);
                                 }
-                                if (libraryAutomation.IsEnableElements(InventoryName.WinWarning, null, false, 5) != null)
+                                if (libraryAutomation.IsEnableElements(InventoryName.WinWarning, null, false, 5) != null) //Исправление на отмену документа
                                 {
                                     libraryAutomation.InvokePattern(libraryAutomation.FindElement);
                                 }
+
                                 else
                                 {
                                     break;
