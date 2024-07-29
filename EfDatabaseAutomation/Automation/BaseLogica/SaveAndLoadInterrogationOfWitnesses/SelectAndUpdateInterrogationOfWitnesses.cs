@@ -62,7 +62,7 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfW
         ///<param name="typeQuestions">Тип вопросов для организации</param>
         public TemplateQuestion[] SelectTemplateQuestions(int typeQuestions)
         {
-            return Automation.TemplateQuestions.Where(x=>x.IdType == typeQuestions).ToArray();
+            return Automation.TemplateQuestions.Where(x=>x.IdType == typeQuestions && x.IsActualQuestions == true).ToArray();
         }
         /// <summary>
         /// Функция Проверки все ли лица обработаны

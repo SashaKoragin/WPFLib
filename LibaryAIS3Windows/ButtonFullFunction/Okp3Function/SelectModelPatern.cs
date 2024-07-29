@@ -18,7 +18,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp3Function
             Parameters = new Parameters[]
             {
                 new Parameters() { NameParameters = "КНД", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно",IndexParameters = "1" },
-                new Parameters() { NameParameters = "Дата документа", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "7" }
+                new Parameters() { NameParameters = "Дата документа", FindNameMemo = "Name:Значение", FindSelectParameter = "Равно", IndexParameters = "6" }
             }
         };
 

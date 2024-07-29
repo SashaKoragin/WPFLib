@@ -386,8 +386,11 @@ namespace LibraryAIS3Windows.ButtonFullFunction.KaoFunction
                         CreateAndSaveQuestionsUser(libraryAutomation, dataBaseAdd, userFace.IdUser, template.IdTemplateQuestions, modelQuestions);
                         break;
                     case 2:
-                        modelQuestions = template.InfoQuestions.Replace("{FIOGenDir}", faceUl.Derector.NameDerector).Replace("{NameOrg}", faceUl.NameOrg).Replace("{InnOrg}", faceUl.Inn);
-                        CreateAndSaveQuestionsUser(libraryAutomation, dataBaseAdd, userFace.IdUser, template.IdTemplateQuestions, modelQuestions);
+                        foreach (var faceUlMainOrgAndUserQuestion in faceUl.MainOrgAndUserQuestions)
+                        {
+                            modelQuestions = template.InfoQuestions.Replace("{FIOGenDir}", faceUlMainOrgAndUserQuestion.Derector.NameDerector).Replace("{NameOrg}", faceUl.NameOrg).Replace("{InnOrg}", faceUl.Inn);
+                            CreateAndSaveQuestionsUser(libraryAutomation, dataBaseAdd, userFace.IdUser, template.IdTemplateQuestions, modelQuestions);
+                        }
                         break;
                 }
             }

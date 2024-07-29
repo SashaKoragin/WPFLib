@@ -677,7 +677,6 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SelectObjectDbAndAddObjectD
                 var mainOrgAddAndModified = new MainOrg()
                 {
                     IdOrg = selectMainOrg.IdOrg,
-                    IdDerector = selectMainOrg.IdDerector,
                     IdType = selectMainOrg.IdType,
                     Inn = selectMainOrg.Inn,
                     NameOrg = selectMainOrg.NameOrg,
