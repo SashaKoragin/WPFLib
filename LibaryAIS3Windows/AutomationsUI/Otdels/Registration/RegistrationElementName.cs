@@ -513,6 +513,10 @@
         /// </summary>
         public static string WinWarning = "ClassName:Popup\\AutomationId:CancelRemoveDocumentCommand";
         /// <summary>
+        /// Текст ошибки Документ не может быть добавлен в тару.
+        /// </summary>
+        public static string TextWarning = $"{MainViewOgrn}AutomationId:DocumentRegistrationView\\AutomationId:elementHost\\ClassName:Pane\\ClassName:DocumentBoxingControl\\Name:Документ не может быть добавлен в тару.";
+        /// <summary>
         /// Кнопка сохранить
         /// </summary>
         public static string Save = $"{MainViewOgrn}AutomationId:DocumentRegistrationView\\AutomationId:elementHost\\ClassName:Pane\\ClassName:DocumentBoxingControl\\Name:Сохранить";

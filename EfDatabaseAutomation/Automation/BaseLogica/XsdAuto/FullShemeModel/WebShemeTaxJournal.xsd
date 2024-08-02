@@ -1358,6 +1358,7 @@
 				<xs:element ref="IsTks"/>
 				<xs:element ref="IsMail"/>
 				<xs:element ref="IsLk3"/>
+				<xs:element ref="DateCreate"/>
 			</xs:sequence>
 			<xs:attribute name="NameDocument" type="xs:string">
 				<xs:annotation>

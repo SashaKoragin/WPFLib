@@ -107,8 +107,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
             }
             if (container != null && documentInventory.Length > 0) //Условие должно быть что положить и куда положить одно без другого не может 
             {
-                var sw = TreeContainer.Split('\\').Last();
-                var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
                 libraryAutomation.IsEnableExpandTree(TreeContainer);
                 if (libraryAutomation.IsEnableElement(InventoryName.ContanerAdd))
                 {
@@ -122,9 +120,9 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                     }
                     var countPageSum = container.CountCurrent;
                     var counterModel = 0;
+                    var isFindDocumentAis3 = true;
                     foreach (var inventory in documentInventory)
                     {
-                       
                         if (countPageSum + inventory.CountPage <= container.CountDocumentMin || countPageSum + inventory.CountPage <= container.CountDocumentMax)
                         {
                             while (true)
@@ -138,32 +136,42 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
                                     SendKeys.SendWait(ButtonConstant.Enter);
                                     AutoItX.Sleep(500);
                                 }
-                                if (libraryAutomation.IsEnableElements(InventoryName.WinWarning, null, false, 5) != null)
+                                if (libraryAutomation.IsEnableElements(InventoryName.WinWarning, null, false, 5) != null) //Исправление сообщение на отмену документа если вставлен пустой штрих-код
                                 {
                                     libraryAutomation.InvokePattern(libraryAutomation.FindElement);
+                                }
+                                else if (libraryAutomation.IsEnableElements(InventoryName.TextWarning, null, false, 5) != null) //Ошибка документ не зарегистрирован тое-сть затерся штрих-код вторым процессом по ОГРН
+                                {
+                                    inventory.IdStatusDocument = 6;
+                                    AddAndEditDocumentInventoryContainer(inventory);
+                                    isFindDocumentAis3 = false;
+                                    break;
                                 }
                                 else
                                 {
                                     break;
                                 }
                             }
-                            inventory.IdStatusDocument = 4;
-                            countPageSum += inventory.CountPage;
-                            container.CountCurrent = countPageSum;
-                            counterModel += 1;
-                            AddAndEditDocumentInventoryContainer(inventory);
-                            UpdateDocumentContainer(container);
-                            AddAddDocumentToContainer(container.IdContainer, inventory.IdDocument, counterModel);
-                            if (countPageSum >= container.CountDocumentMin)
+                            if (isFindDocumentAis3)
                             {
-                                //Сохранение и печать реестра
-                                container.IsFinishContainer = true;
+                                inventory.IdStatusDocument = 4;
+                                countPageSum += inventory.CountPage;
+                                container.CountCurrent = countPageSum;
+                                counterModel += 1;
+                                AddAndEditDocumentInventoryContainer(inventory);
                                 UpdateDocumentContainer(container);
-                                PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, InventoryName.Save);
-                                MouseCloseForm(1);
-                                return;
+                                AddAddDocumentToContainer(container.IdContainer, inventory.IdDocument, counterModel);
+                                if (countPageSum >= container.CountDocumentMin)
+                                {
+                                    //Сохранение и печать реестра
+                                    container.IsFinishContainer = true;
+                                    UpdateDocumentContainer(container);
+                                    PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, InventoryName.Save);
+                                    MouseCloseForm(1);
+                                    return;
+                                }
                             }
-                            
+                            isFindDocumentAis3 = true;
                         }
                     }
                     PublicGlobalFunction.PublicGlobalFunction.WindowElementClick(libraryAutomation, InventoryName.Save);
@@ -181,8 +189,6 @@ namespace LibraryAIS3Windows.ButtonFullFunction.RegistrationFunction
         private void StartProcessInventory(LibraryAutomations libraryAutomation, TemplateOgrn organizationOgrnInventory)
         {
             libraryAutomation.GarantInvokePattern(InventoryName.TaskAll);
-            var sw = TreeScanDocumentsStartProcess.Split('\\').Last();
-            var fullTree = string.Concat(PublicElementName.FullTree, $"Name:{sw}");
             libraryAutomation.IsEnableExpandTree(TreeScanDocumentsStartProcess);
             while (true)
             {

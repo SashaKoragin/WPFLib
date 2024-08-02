@@ -264,12 +264,13 @@ namespace SqlLibaryIfns.ZaprosSelectNotParam
         /// </summary>
         /// <param name="pathSaveReport">Путь сохранения</param>
         /// <param name="inn">ИНН</param>
+        /// <param name="idReport">Ун отчета</param>
         /// <returns></returns>
-        public Stream GenerateSummarySales(string pathSaveReport, string inn)
+        public Stream GenerateSummarySales(string pathSaveReport, string inn, int idReport)
         {
             DataSet dataReport = new DataSet();
             var selectProcedureReport = new SelectAll();
-            var reportModel = selectProcedureReport.ReturnReportModelXlsx(1);
+            var reportModel = selectProcedureReport.ReturnReportModelXlsx(idReport);
             var fullPath = Path.Combine(pathSaveReport, reportModel.NameFile);
             dataReport.Tables.Add(selectProcedureReport.ReturnModelReport(reportModel, inn));
             selectProcedureReport.Dispose();

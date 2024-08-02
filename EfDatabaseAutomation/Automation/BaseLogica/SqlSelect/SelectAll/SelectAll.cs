@@ -12,6 +12,8 @@ using EfDatabaseAutomation.Automation.Base;
 using EfDatabaseAutomation.Automation.BaseLogica.ActiveDirectory;
 using EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.ProcedureDeclaration;
 using LibaryXMLAuto.ReadOrWrite;
+using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
 
 namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
 {
@@ -158,6 +160,45 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SqlSelect.SelectAll
             try
             {
                 return new MemoryStream(Automation.Declaration3NdflFl.FirstOrDefault(x => x.Id == numberElement)?.Document ?? throw new InvalidOperationException("Жаль отсутствует файл Требования"));
+            }
+            catch (Exception e)
+            {
+                Loggers.Log4NetLogger.Error(e);
+            }
+            return null;
+        }
+        /// <summary>
+        /// Метод выгрузки и объединения файлов в БД по выборке
+        /// </summary>
+        /// <param name="sqlSelect">Логика Sql Select</param>
+        /// <returns></returns>
+        public Stream LoadMergeFilePdf(SelectParametrSheme.LogicsSelectAutomation sqlSelect)
+        {
+            try
+            {
+                var result = new MemoryStream();
+                var selectAllDocuments = Automation.Database.SqlQuery<Declaration3NdflFl>(sqlSelect.SelectUser).ToArray();
+                using (var resultPdf = new PdfDocument(result))
+                {
+                    foreach (var selectAllDocument in selectAllDocuments)
+                    {
+                        if (selectAllDocument.Document != null)
+                        {
+                            using (var src = new MemoryStream(selectAllDocument.Document))
+                            {
+                                using (var srcPDF = PdfReader.Open(src, PdfDocumentOpenMode.Import))
+                                {
+                                    for (int i = 0; i < srcPDF.PageCount; i++)
+                                    {
+                                        resultPdf.AddPage(srcPDF.Pages[i]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    resultPdf.Save(result);
+                    return result;
+                }
             }
             catch (Exception e)
             {

@@ -3625,6 +3625,8 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
         
         private System.Nullable<bool> isLk3Field;
         
+        private System.DateTime dateCreateField;
+        
         private string nameDocumentField;
         
         private string nameNpField;
@@ -3776,6 +3778,16 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.XsdAuto.FullShemeModel {
             }
             set {
                 this.isLk3Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime DateCreate {
+            get {
+                return this.dateCreateField;
+            }
+            set {
+                this.dateCreateField = value;
             }
         }
         
