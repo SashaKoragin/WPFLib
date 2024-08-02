@@ -1538,19 +1538,19 @@
         /// <summary>
         /// Просмотреть форму утвержденного документа
         /// </summary>
-        public static string ViewPrint = "Name:Утверждение документа\\ClassName:Button\\Name:Просмотреть печатную форму документа";
+        public static string ViewPrint = "Name:Утверждение документа\\Name:Утверждение документа\\ClassName:Button\\Name:Просмотреть печатную форму документа";
         /// <summary>
         /// Ознакомится 1
         /// </summary>
-        public static string ViewCheks = "Name:Утверждение документа\\ClassName:CheckBox";
+        public static string ViewCheks = "Name:Утверждение документа\\Name:Утверждение документа\\ClassName:CheckBox";
         /// <summary>
         /// Ознакомится 2
         /// </summary>
-        public static string ViewCheksText = "Name:Утверждение документа\\ClassName:CheckBox\\ClassName:TextBlock";
+        public static string ViewCheksText = "Name:Утверждение документа\\Name:Утверждение документа\\ClassName:CheckBox\\ClassName:TextBlock";
         /// <summary>
         /// Подписать
         /// </summary>
-        public static string UtvDoc = "ClassName:Button\\Name:Утвердить";
+        public static string UtvDoc = "Name:Утверждение документа\\ClassName:Button\\Name:Утвердить";
 
     }
 }

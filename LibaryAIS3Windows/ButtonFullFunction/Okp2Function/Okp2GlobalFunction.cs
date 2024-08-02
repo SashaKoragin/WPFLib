@@ -298,25 +298,23 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
         {
             while (true)
             {
-                LibraryAutomations libraryAutomationDialog = new LibraryAutomations(WindowsAis3.AisNalog3);
                 AutoItX.Sleep(2000);
-                LibraryAutomations libraryAutomationSign = new LibraryAutomations(TreeWalker.RawViewWalker.GetPreviousSibling(libraryAutomationDialog.RootAutomationElements));
-                if (libraryAutomationSign.IsEnableElements(JournalSolutionCalculations.ViewPrint, null, true) != null)
+                if (libraryAutomation.IsEnableElements(JournalSolutionCalculations.ViewPrint, null, true) != null)
                 {
-                    libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
+                    libraryAutomation.ClickElement(libraryAutomation.FindElement);
                     AutoItX.Sleep(10000);
                     PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("AcroRd32", true);
                     PublicGlobalFunction.PublicGlobalFunction.CloseProcessProgram("FoxitPhantom", true);
                     while (true)
                     {
-                        var toggle = libraryAutomationSign.TogglePattern(libraryAutomationSign.IsEnableElements(JournalSolutionCalculations.ViewCheks));
+                        var toggle = libraryAutomation.TogglePattern(libraryAutomation.IsEnableElements(JournalSolutionCalculations.ViewCheks));
                         if (toggle == "Off" || toggle == null)
                         {
                             while (true)
                             {
-                                if (libraryAutomationSign.IsEnableElements(JournalSolutionCalculations.ViewCheksText, null, true) != null)
+                                if (libraryAutomation.IsEnableElements(JournalSolutionCalculations.ViewCheksText, null, true) != null)
                                 {
-                                    libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
+                                    libraryAutomation.ClickElement(libraryAutomation.FindElement);
                                     break;
                                 }
                             }
@@ -325,9 +323,9 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                         {
                             while (true)
                             {
-                                if (libraryAutomationSign.IsEnableElements(JournalSolutionCalculations.UtvDoc, null, true) != null)
+                                if (libraryAutomation.IsEnableElements(JournalSolutionCalculations.UtvDoc, null, true) != null)
                                 {
-                                    libraryAutomationSign.ClickElement(libraryAutomationSign.FindElement);
+                                    libraryAutomation.ClickElement(libraryAutomation.FindElement);
                                     break;
                                 }
                             }

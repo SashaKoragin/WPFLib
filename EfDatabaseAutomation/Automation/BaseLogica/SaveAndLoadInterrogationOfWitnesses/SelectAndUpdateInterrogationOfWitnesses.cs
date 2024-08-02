@@ -26,9 +26,10 @@ namespace EfDatabaseAutomation.Automation.BaseLogica.SaveAndLoadInterrogationOfW
         /// Запрос всех не выполненных организаций
         /// </summary>
         /// <returns></returns>
-        public MainOrg[] SelectAllMainOrgIsNotReady()
+        public MainOrg[] SelectAllMainOrgIsNotReady(int[] arrType)
         {
-            return Automation.MainOrgs.Include(x=>x.UserOrgs).Where(x => x.IsReady == false).ToArray();
+            return Automation.MainOrgs.Include(x=>x.UserOrgs).Include(z=>z.MainOrgAndUserQuestions.Select(x=>x.Derector)
+                ).Where(x => x.IsReady == false && arrType.Contains(x.IdType)).ToArray();
         }
         /// <summary>
         /// Запрос всех неотработаных генеральных директоров

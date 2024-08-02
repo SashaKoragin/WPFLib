@@ -320,7 +320,7 @@ namespace LibraryAIS3Windows.ButtonFullFunction.Okp2Function
                         ColorType6 = libraryAutomation.GetColorPixel(libraryAutomation
                             .SelectAutomationColrction(automationElement)
                             .Cast<AutomationElement>().Where(elem => elem.Current.Name == "").ToList()[5]),
-                        RegNumDecl = Convert.ToInt32(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
+                        RegNumDecl = Convert.ToInt64(libraryAutomation.ParseElementLegacyIAccessiblePatternIdentifiers(
                             libraryAutomation
                                 .SelectAutomationColrction(automationElement)
                                 .Cast<AutomationElement>().First(elem =>

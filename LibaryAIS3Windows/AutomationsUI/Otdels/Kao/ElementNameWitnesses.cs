@@ -67,6 +67,11 @@ namespace LibraryAIS3Windows.AutomationsUI.Otdels.Kao
         /// Предупреждение что в другом регионе
         /// </summary>
         public static string YesNo = "Name:Предупреждение\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnYes";
+
+        /// <summary>
+        /// Внимание по лицу приостановленны выездные проверки
+        /// </summary>
+        public static string Warning = "Name:Внимание\\AutomationId:MessageBoxView\\AutomationId:grpBackground\\AutomationId:grpBottom\\AutomationId:btnOK";
         /// <summary>
         /// Парсим код налогового органа
         /// </summary>

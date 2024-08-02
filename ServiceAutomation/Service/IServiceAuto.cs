@@ -261,7 +261,15 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadFile3NdflRequirements", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<Stream> LoadFile3NdflRequirements(int numberElement);
-
+        /// <summary>
+        /// Выгрузка файла для ОКП 6 Требования объединенные выборкой
+        /// http://localhost:8050/ServiceAutomation/LoadCompare3NdflPdfFile
+        /// </summary>
+        /// <param name="sqlSelect">Выборка Sql Select</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/ServiceMerge3NdflPdfFile", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> ServiceMerge3NdflPdfFile(LogicsSelectAutomation sqlSelect);
         /// <summary>
         /// Добавление регистрационных номеров патента для отработки
         /// http://localhost:8050/ServiceAutomation/AddInnFaceRegistryReference
@@ -525,5 +533,16 @@ namespace ServiceAutomation.Service
         [OperationContract]
         [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, UriTemplate = "/SelectQuestionsRegistration?idUserRegistrationFl={idUserRegistrationFl}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         Task<string> SelectQuestionsRegistration(int idUserRegistrationFl);
+
+
+        /// <summary>
+        /// Выгрузка пользователей и их статусы
+        /// http://localhost:8050/ServiceAutomation/LoadUserQuestions
+        /// </summary>
+        /// <param name="inn">Запрос</param>
+        /// <returns></returns>
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, UriTemplate = "/LoadUserQuestions",  ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        Task<Stream> LoadUserQuestions(string inn);
     }
 }

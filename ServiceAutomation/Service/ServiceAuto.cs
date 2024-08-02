@@ -155,6 +155,16 @@ namespace ServiceAutomation.Service
             return await Task.Factory.StartNew(() => selectAll.LoadFile3NdflRequirements(numberElement));
         }
         /// <summary>
+        /// Метод объединения и выгрузки файла PDF
+        /// </summary>
+        /// <param name="sqlSelect">Логика Sql Select</param>
+        /// <returns></returns>
+        public async Task<Stream> ServiceMerge3NdflPdfFile(LogicsSelectAutomation sqlSelect)
+        {
+            var selectAll = new SelectAll();
+            return await Task.Factory.StartNew(() => selectAll.LoadMergeFilePdf(sqlSelect));
+        }
+        /// <summary>
         /// Метод добавление ИНН для ввода
         /// </summary>
         /// <param name="templateModel">Шаблон для добавления</param>
@@ -426,7 +436,7 @@ namespace ServiceAutomation.Service
             return await Task.Factory.StartNew(() =>
             {
                 var selectFull = new SelectFull(_parameterConfig.ConnectionString);
-                return selectFull.GenerateSummarySales(_parameterConfig.PathSaveTemplate, inn);
+                return selectFull.GenerateSummarySales(_parameterConfig.PathSaveTemplate, inn, 1);
             });
         }
         /// <summary>
@@ -1058,6 +1068,19 @@ namespace ServiceAutomation.Service
                 var allQuestions = select.SelectQuestionsRegistration(idUserRegistrationFl);
                 select.Dispose();
                 return allQuestions;
+            });
+        }
+        /// <summary>
+        /// Генерация отчета по Лицам с вопросами
+        /// </summary>
+        /// <param name="inn"></param>
+        /// <returns></returns>
+        public async Task<Stream> LoadUserQuestions(string inn)
+        {
+            return await Task.Factory.StartNew(() =>
+            {
+                var selectFull = new SelectFull(_parameterConfig.ConnectionString);
+                return selectFull.GenerateSummarySales(_parameterConfig.PathSaveTemplate, inn, 2);
             });
         }
     }
