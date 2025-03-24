@@ -38,7 +38,7 @@
     "uglifyjs-webpack-plugin": "1.2.5",
     "awesome-typescript-loader": "5.2.1",
     "style-loader": "0.23.0",
-    "node-sass": "4.11.0",
+    "node-sass": "7.0.0",
     "css-loader": "1.0.0",
     "rxjs": "6.3.2",
     "zone.js": "^0.8.26",
